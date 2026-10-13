@@ -69,11 +69,14 @@ renderer, so the two stay comparable side-by-side:
   **not renderable in the simulator** (no mGBA/ROM access) — rendered as a
   labeled placeholder box instead, so layout/spacing is still visible even
   though the actual decoded sprite isn't.
-- No Android `dp`→`px` density conversion needed since the simulator
-  targets the device's native pixel resolution directly — pack authors'
-  `width`/`height`/`size`/etc. values are used as literal CSS pixels,
-  matching what they'd see as `dp` values multiplied by the Thor's real
-  density (already baked into the 1080×1240 canvas size).
+- The Thor's companion display reports `density 369dpi` (confirmed via
+  `adb shell dumpsys display`), i.e. an Android density factor of
+  `369 / 160 = 2.30625` — the same multiplier `WidgetRenderer.kt`'s
+  `px(dpValue) = (dpValue * dp).toInt()` uses. `render-widget.js` ports
+  this exactly: a `DEVICE_DENSITY = 2.30625` constant and a matching
+  `px(dpValue) = Math.round(dpValue * DEVICE_DENSITY)` helper, so a pack's
+  `width: 340` (meant as 340dp) renders at the same real pixel size in
+  the simulator as it would on the physical second screen.
 
 **Parity discipline (process, not code):** `render-widget.js` is a manual
 port with no shared compiler — it will drift from `WidgetRenderer.kt` over
