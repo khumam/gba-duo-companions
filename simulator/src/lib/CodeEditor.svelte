@@ -50,7 +50,7 @@
 					keymap.of([...defaultKeymap, ...historyKeymap]),
 					languageExtension(),
 					oneDark,
-					EditorView.theme({ '&': { height: '100%', fontSize: '13px' }, '.cm-scroller': { overflow: 'auto' } }),
+					EditorView.theme({ '&': { height: '100%', fontSize: '16px' }, '.cm-scroller': { overflow: 'auto' } }),
 					EditorView.updateListener.of((update) => {
 						if (!update.docChanged) return;
 						lastPushedValue = update.state.doc.toString();

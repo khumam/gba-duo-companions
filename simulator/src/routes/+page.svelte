@@ -10,7 +10,7 @@
 	// preview column but kept at the exact same aspect ratio, never distorted.
 	const DEVICE_WIDTH = 1080;
 	const DEVICE_HEIGHT = 1240;
-	const PREVIEW_SCALE = 0.42;
+	const PREVIEW_SCALE = 0.6;
 
 	const TABS = [
 		{ id: 'layout', label: 'layout.json', language: 'json' },
@@ -284,13 +284,14 @@
 		flex-direction: column;
 		min-height: 100vh;
 		box-sizing: border-box;
+		padding: 0 32px;
 	}
 
 	header {
 		display: flex;
 		align-items: center;
 		gap: 16px;
-		padding: 16px 24px;
+		padding: 16px 0;
 		border-bottom: 1px solid #111111;
 		box-sizing: border-box;
 	}
