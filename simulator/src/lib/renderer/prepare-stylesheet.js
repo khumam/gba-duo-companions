@@ -50,8 +50,14 @@ export function prepareStylesheetCss(cssText, packBaseUrl, baseCssText = '') {
 	// `[data-gbaduo-hidden]` is how render-widget.js hides a `pages` widget's unselected pages
 	// (CompanionNode.hiddenBySwitch). It has to beat any pack/default `display` rule, and stay
 	// separate from `visibleIf`'s inline display:none so the two never fight each other.
+	// `min-width/min-height: 0`: LayoutEngine.kt documents that `auto` is 0, not min-content,
+	// so flex items (e.g. tabs in a full tab strip) shrink below their longest word instead
+	// of overflowing the screen. `overflow-wrap: anywhere` then lets a word that no longer
+	// fits break mid-word, as Compose's text layout does — otherwise the browser would keep
+	// the word whole and let it spill out of its shrunken box.
 	const resetRule =
-		'*{ box-sizing: border-box; --gbaduo-stack: 0; }\n[data-gbaduo-hidden]{ display: none !important; }\n';
+		'*{ box-sizing: border-box; --gbaduo-stack: 0; min-width: 0; min-height: 0; overflow-wrap: anywhere; }\n' +
+		'[data-gbaduo-hidden]{ display: none !important; }\n';
 	const translated = blocks
 		.filter(({ selector }) => !selector.trim().startsWith('@font-face'))
 		.map(({ selector, body }) => {

@@ -2,7 +2,7 @@ import { describe, it, expect, afterEach } from 'vitest';
 import { readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { parseLayout } from './parse-layout.js';
-import { createRenderer, applyStackChildPlacement, applyBarAccentColors } from './render-widget.js';
+import { createRenderer, applyStackChildPlacement, applyBarAccentColors, applyScrollContainers } from './render-widget.js';
 import { prepareStylesheetCss } from './prepare-stylesheet.js';
 
 const PACKS_DIR = join(process.cwd(), '..', 'packs');
@@ -71,6 +71,7 @@ describe.each(['pokemon-firered-companion', 'harvest-moon-fomt-companion'])('rea
 		for (const tab of tabs) {
 			tab.dispatchEvent(new Event('click', { bubbles: true }));
 			applyStackChildPlacement(rootEl);
+			applyScrollContainers(rootEl);
 			applyBarAccentColors(rootEl);
 			const bars = rootEl.querySelectorAll('[data-type="bar"]');
 			bars.forEach((bar) => {

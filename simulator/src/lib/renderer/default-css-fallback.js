@@ -72,6 +72,7 @@ tabs {
 tab-bar {
     display: flex;
     flex-direction: row;
+    flex-shrink: 0;
 }
 
 tab {

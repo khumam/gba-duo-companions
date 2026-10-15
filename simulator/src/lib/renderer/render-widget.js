@@ -1,4 +1,5 @@
 import { resolve, interpolate, isTruthy, asNumber, asList, scopedValues } from './binding.js';
+import { parseScriptResult } from './actions.js';
 
 // Matches the Thor's companion display: 369dpi / 160 = 2.30625x, the same multiplier
 // WidgetRenderer.kt's `px(dpValue) = (dpValue * dp).toInt()` uses. Only applies to legacy
@@ -368,6 +369,7 @@ export function createRenderer(packBaseUrl, options = {}) {
 			// hadn't been attached yet when applyBarAccentColors first ran. Both passes are
 			// cheap and idempotent, so just re-running them here is simplest.
 			applyStackChildPlacement(content);
+			applyScrollContainers(content);
 			applyBarAccentColors(content);
 		}
 
@@ -451,7 +453,9 @@ export function createRenderer(packBaseUrl, options = {}) {
 
 		bindings.push((ctx) => {
 			const snapshotRoot = ctx != null && typeof ctx === 'object' && 'root' in ctx ? ctx.root : ctx;
-			const items = asList(resolve(widget.itemsPath, snapshotRoot));
+			// Like CompanionTree.buildList: against the current list item first, then the
+			// snapshot root, so a nested list can iterate its parent item's own list ($types).
+			const items = asList(resolve(widget.itemsPath, ctx));
 
 			if (items.length !== itemRenderers.length) {
 				while (container.children.length > 1) {
@@ -486,11 +490,24 @@ export function createRenderer(packBaseUrl, options = {}) {
 		 * a list item renderer takes its ScopedValues as-is.
 		 */
 		update(context) {
-			if (isRoot) {
-				store.snapshot = context;
-				applyAll(withUi(context));
-			} else {
+			if (!isRoot) {
 				applyAll(context);
+				return;
+			}
+			// CompanionTree.updateFromScript: a top-level `ui` entry from update() (here: in
+			// preview-data.json) runs as UI actions after the data, and never reaches the
+			// bindings as data — `$ui.*` is always the UI state.
+			let uiActions = null;
+			let data = context;
+			if (context != null && typeof context === 'object' && !Array.isArray(context) && UI_KEY in context) {
+				({ [UI_KEY]: uiActions, ...data } = context);
+			}
+			store.snapshot = data;
+			applyAll(withUi(data));
+			if (uiActions != null) {
+				const warnings = [];
+				perform(parseScriptResult(uiActions, warnings), null);
+				for (const w of warnings) console.warn(`[simulator] update() ui: ${w}`);
 			}
 		},
 		/** The current UI state (`$ui.*`). */
@@ -533,6 +550,28 @@ export function applyStackChildPlacement(root) {
 			child.style.gridRow = '1';
 			child.style.gridColumn = '1';
 		}
+	}
+}
+
+/**
+ * The engine scrolls `overflow: auto|scroll` with Compose's verticalScroll, which lays the
+ * content out with *unbounded* height — so a flex column inside it never shrinks its items,
+ * it just gets taller and scrolls. A browser scroll box keeps its definite height, and with
+ * min-height: 0 (the engine's "auto is 0", see prepare-stylesheet.js) the items would shrink
+ * to fit and nothing would scroll. Pinning flex-shrink: 0 on a column scroll container's
+ * direct children reproduces the engine. Rows are left alone: their main axis is width,
+ * which verticalScroll still bounds. Call after [root] is attached; safe to re-run.
+ */
+export function applyScrollContainers(root) {
+	const candidates = [root, ...root.querySelectorAll('*')];
+	for (const el of candidates) {
+		const cs = getComputedStyle(el);
+		// jsdom doesn't expand the `overflow` shorthand into overflow-y, so check both.
+		const isScroll = (v) => v === 'auto' || v === 'scroll';
+		const scrolls = isScroll(cs.overflowY) || isScroll((cs.overflow ?? '').split(/\s+/).pop());
+		const column = cs.display.includes('flex') && cs.flexDirection.startsWith('column');
+		if (!scrolls || !column) continue;
+		for (const child of el.children) child.style.flexShrink = '0';
 	}
 }
 

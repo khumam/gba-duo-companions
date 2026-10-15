@@ -4,7 +4,12 @@ import { prepareStylesheetCss, extractFontFaceCss } from './prepare-stylesheet.j
 describe('prepareStylesheetCss', () => {
 	it('always prepends a universal border-box reset, matching the real engine\'s box model', () => {
 		const out = prepareStylesheetCss('.card { width: 100px; }', '/packs/x');
-		expect(out).toMatch(/^\*\{ box-sizing: border-box; --gbaduo-stack: 0; \}/);
+		expect(out).toMatch(/^\*\{ box-sizing: border-box; --gbaduo-stack: 0;/);
+	});
+
+	it('treats min-width/min-height auto as 0 like LayoutEngine.kt, so flex items can shrink below a word', () => {
+		const out = prepareStylesheetCss('', '/packs/x');
+		expect(out).toMatch(/^\*\{[^}]*min-width: 0; min-height: 0; overflow-wrap: anywhere; \}/);
 	});
 
 	it('rescales px lengths by the device density', () => {

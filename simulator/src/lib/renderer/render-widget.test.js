@@ -1,6 +1,6 @@
 import { describe, it, expect, afterEach } from 'vitest';
 import { parseLayout } from './parse-layout.js';
-import { createRenderer, applyStackChildPlacement, applyBarAccentColors } from './render-widget.js';
+import { createRenderer, applyStackChildPlacement, applyBarAccentColors, applyScrollContainers } from './render-widget.js';
 
 const packBaseUrl = '/packs/test-pack';
 
@@ -418,5 +418,88 @@ describe('onClick, pages and UI state', () => {
 		expect(el.children[0].style.display).toBe('none');
 		tap(el.children[1]);
 		expect(el.children[0].style.display).not.toBe('none');
+	});
+});
+
+describe('applyScrollContainers', () => {
+	it("a column scroll container's items don't shrink — the engine's verticalScroll lays them out unbounded", () => {
+		injectTestStyle(`
+			.scroller { display: flex; flex-direction: column; overflow: auto; }
+			.row-scroller { display: flex; flex-direction: row; overflow: auto; }
+		`);
+		const scroller = document.createElement('div');
+		scroller.className = 'scroller';
+		scroller.append(document.createElement('div'), document.createElement('div'));
+		const row = document.createElement('div');
+		row.className = 'row-scroller';
+		row.append(document.createElement('div'));
+		document.body.append(scroller, row);
+
+		applyScrollContainers(document.body);
+
+		expect([...scroller.children].map((c) => c.style.flexShrink)).toEqual(['0', '0']);
+		expect(row.children[0].style.flexShrink).toBe(''); // a row's width is still bounded
+	});
+});
+
+// ---- update() can drive pages — ported from CompanionTreeTest.kt ----------------------
+
+const battlePages = JSON.stringify({
+	type: 'pages',
+	pages: [
+		{ name: 'overworld', child: { type: 'text', text: 'walking' } },
+		{ name: 'battle', child: { type: 'text', text: 'vs {battle.foe} · {ui.page}' } },
+	],
+});
+
+describe('a ui entry from update() runs as UI actions', () => {
+	it('navigates after the data is applied', () => {
+		let changes = 0;
+		const renderer = createRenderer(packBaseUrl, { onUiChange: () => changes++ });
+		const el = renderer.build(parseLayout(battlePages));
+		renderer.update({ battle: { foe: 'Brock' } });
+		expect(renderer.ui.page).toBe('overworld');
+
+		renderer.update({ battle: { foe: 'Onix' }, ui: { navigate: 'battle' } });
+		expect(renderer.ui.page).toBe('battle');
+		expect(el.children[0].hasAttribute('data-gbaduo-hidden')).toBe(true);
+		expect(el.children[1].hasAttribute('data-gbaduo-hidden')).toBe(false);
+		expect(el.children[1].textContent).toBe('vs Onix · battle');
+		expect(changes).toBe(1);
+
+		renderer.update({ battle: { foe: 'Onix' }, ui: { navigate: 'battle' } });
+		expect(changes).toBe(1);
+
+		renderer.update({ ui: { back: true } });
+		expect(renderer.ui.page).toBe('overworld');
+	});
+
+	it('can set keys but not call', () => {
+		let calls = 0;
+		const renderer = createRenderer(packBaseUrl, { onCall: () => calls++ });
+		renderer.build(parseLayout(battlePages));
+		renderer.update({ ui: [{ set: { turn: 3 } }, { call: 'heal' }] });
+		expect(renderer.ui.turn).toBe(3);
+		expect(calls).toBe(0);
+	});
+});
+
+describe('nested lists', () => {
+	it("iterate the parent item's own list first, like CompanionTree.buildList", () => {
+		const renderer = createRenderer(packBaseUrl);
+		const el = renderer.build(
+			parseLayout(
+				JSON.stringify({
+					type: 'list',
+					items: '$mons',
+					template: { type: 'list', items: '$types', template: { type: 'text', text: '{name}' } },
+				}),
+			),
+		);
+		renderer.update({ mons: [{ types: [{ name: 'Grass' }, { name: 'Poison' }] }, { types: [{ name: 'Fire' }] }], types: [] });
+		const inner = [...el.querySelectorAll(':scope > [data-list-item]')].map((m) =>
+			[...m.querySelectorAll('[data-list-item]')].map((t) => t.textContent),
+		);
+		expect(inner).toEqual([['Grass', 'Poison'], ['Fire']]);
 	});
 });

@@ -1,7 +1,7 @@
 <script>
 	import CodeEditor from '../lib/CodeEditor.svelte';
 	import { parseLayoutWithWarnings } from '../lib/renderer/parse-layout.js';
-	import { createRenderer, applyStackChildPlacement, applyBarAccentColors } from '../lib/renderer/render-widget.js';
+	import { createRenderer, applyStackChildPlacement, applyBarAccentColors, applyScrollContainers } from '../lib/renderer/render-widget.js';
 	import { prepareStylesheetCss, extractFontFaceCss } from '../lib/renderer/prepare-stylesheet.js';
 
 	let { data } = $props();
@@ -145,6 +145,7 @@
 	function runComputedStylePasses() {
 		if (!rootElement) return;
 		applyStackChildPlacement(rootElement);
+		applyScrollContainers(rootElement);
 		applyBarAccentColors(rootElement);
 	}
 

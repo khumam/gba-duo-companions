@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { parseActions } from './actions.js';
+import { parseActions, parseScriptResult } from './actions.js';
 
 // Ported from gbaduo's ActionTest.kt.
 function parse(value) {
@@ -50,5 +50,15 @@ describe('parseActions', () => {
 		]);
 		expect(actions).toEqual([{ kind: 'set', values: { ok: 2 } }]);
 		expect(warnings).toHaveLength(7);
+	});
+});
+
+describe('parseScriptResult', () => {
+	it('drops call with a warning', () => {
+		const warnings = [];
+		expect(parseScriptResult({ navigate: 'battle', call: 'heal' }, warnings)).toEqual([
+			{ kind: 'navigate', page: 'battle', state: 'page' },
+		]);
+		expect(warnings).toHaveLength(1);
 	});
 });

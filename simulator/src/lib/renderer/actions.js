@@ -91,3 +91,16 @@ function parseObject(obj, warnings) {
 	}
 	return actions;
 }
+
+/**
+ * UI actions the pack's script returned — from `actions.<name>()`, or as the `ui` entry of
+ * `update()` (Actions.parseScriptResult). Same shape as an `onClick`, minus `call`, which is
+ * dropped with a warning.
+ */
+export function parseScriptResult(value, warnings = []) {
+	return parseActions(value, warnings).filter((action) => {
+		if (action.kind !== 'call') return true;
+		warnings.push("a script can't return 'call'; call the Lua function directly");
+		return false;
+	});
+}
