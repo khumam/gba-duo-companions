@@ -2,214 +2,333 @@
   "type": "box",
   "id": "screen",
   "child": {
-    "type": "tabs",
-    "tabs": [
+    "type": "pages",
+    "pages": [
       {
-        "title": "Party",
-        "child": {
-          "type": "list",
-          "items": "$party",
-          "empty": "No Pokemon",
-          "template": {
-            "type": "box",
-            "class": "card card-party",
-            "child": {
-              "type": "row",
-              "gap": 16,
-              "children": [
-                {
-                  "type": "image",
-                  "src": "$icon",
-                  "size": 32
-                },
-                {
-                  "type": "column",
-                  "gap": 8,
-                  "children": [
-                    {
-                      "type": "text",
-                      "class": "name",
-                      "text": "{name}  LV.{level}"
-                    },
-                    {
-                      "type": "bar",
-                      "value": "$hp",
-                      "maxKey": "$maxHp",
-                      "max": 1,
-                      "height": 10
-                    },
-                    {
-                      "type": "text",
-                      "class": "hp-label",
-                      "text": "{hp}/{maxHp} HP  {status}"
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        }
-      },
-      {
-        "title": "Bag",
+        "name": "main",
         "child": {
           "type": "tabs",
           "tabs": [
             {
-              "title": "Items",
+              "title": "Party",
               "child": {
                 "type": "list",
-                "class": "bag-list",
-                "items": "$bag.items",
-                "empty": "Empty",
+                "items": "$party",
+                "empty": "No Pokemon",
                 "template": {
                   "type": "box",
-                  "class": "card card-item",
+                  "class": "card card-party",
                   "child": {
-                    "type": "text",
-                    "class": "item-label",
-                    "text": "{name}  x{count}"
+                    "type": "row",
+                    "gap": 16,
+                    "children": [
+                      {
+                        "type": "image",
+                        "src": "$icon",
+                        "size": 32
+                      },
+                      {
+                        "type": "column",
+                        "gap": 8,
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "name",
+                            "text": "{name}  LV.{level}"
+                          },
+                          {
+                            "type": "bar",
+                            "value": "$hp",
+                            "maxKey": "$maxHp",
+                            "max": 1,
+                            "height": 10
+                          },
+                          {
+                            "type": "text",
+                            "class": "hp-label",
+                            "text": "{hp}/{maxHp} HP  {status}"
+                          }
+                        ]
+                      }
+                    ]
                   }
                 }
               }
             },
             {
-              "title": "Key Items",
+              "title": "Bag",
               "child": {
-                "type": "list",
-                "class": "bag-list",
-                "items": "$bag.keyItems",
-                "empty": "Empty",
-                "template": {
-                  "type": "box",
-                  "class": "card card-item",
-                  "child": {
-                    "type": "text",
-                    "class": "item-label",
-                    "text": "{name}  x{count}"
+                "type": "tabs",
+                "tabs": [
+                  {
+                    "title": "Items",
+                    "child": {
+                      "type": "list",
+                      "class": "bag-list",
+                      "items": "$bag.items",
+                      "empty": "Empty",
+                      "template": {
+                        "type": "box",
+                        "class": "card card-item",
+                        "child": {
+                          "type": "text",
+                          "class": "item-label",
+                          "text": "{name}  x{count}"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "title": "Key Items",
+                    "child": {
+                      "type": "list",
+                      "class": "bag-list",
+                      "items": "$bag.keyItems",
+                      "empty": "Empty",
+                      "template": {
+                        "type": "box",
+                        "class": "card card-item",
+                        "child": {
+                          "type": "text",
+                          "class": "item-label",
+                          "text": "{name}  x{count}"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "title": "Poke Balls",
+                    "child": {
+                      "type": "list",
+                      "class": "bag-list",
+                      "items": "$bag.balls",
+                      "empty": "Empty",
+                      "template": {
+                        "type": "box",
+                        "class": "card card-item",
+                        "child": {
+                          "type": "text",
+                          "class": "item-label",
+                          "text": "{name}  x{count}"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "title": "TM/HM",
+                    "child": {
+                      "type": "list",
+                      "class": "bag-list",
+                      "items": "$bag.tmHm",
+                      "empty": "Empty",
+                      "template": {
+                        "type": "box",
+                        "class": "card card-item",
+                        "child": {
+                          "type": "text",
+                          "class": "item-label",
+                          "text": "{name}  x{count}"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "title": "Berries",
+                    "child": {
+                      "type": "list",
+                      "class": "bag-list",
+                      "items": "$bag.berries",
+                      "empty": "Empty",
+                      "template": {
+                        "type": "box",
+                        "class": "card card-item",
+                        "child": {
+                          "type": "text",
+                          "class": "item-label",
+                          "text": "{name}  x{count}"
+                        }
+                      }
+                    }
                   }
-                }
+                ]
               }
             },
             {
-              "title": "Poke Balls",
+              "title": "Trainer",
               "child": {
-                "type": "list",
-                "class": "bag-list",
-                "items": "$bag.balls",
-                "empty": "Empty",
-                "template": {
-                  "type": "box",
-                  "class": "card card-item",
-                  "child": {
-                    "type": "text",
-                    "class": "item-label",
-                    "text": "{name}  x{count}"
+                "type": "row",
+                "class": "trainer-grid",
+                "children": [
+                  {
+                    "type": "box",
+                    "class": "tile tile-money",
+                    "child": {
+                      "type": "column",
+                      "gap": 8,
+                      "children": [
+                        {
+                          "type": "text",
+                          "class": "stat-label",
+                          "text": "MONEY"
+                        },
+                        {
+                          "type": "text",
+                          "class": "stat-value money",
+                          "text": "{trainer.money}"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "box",
+                    "class": "tile tile-badges",
+                    "child": {
+                      "type": "column",
+                      "gap": 8,
+                      "children": [
+                        {
+                          "type": "text",
+                          "class": "stat-label",
+                          "text": "BADGES"
+                        },
+                        {
+                          "type": "text",
+                          "class": "stat-value",
+                          "text": "{trainer.badges}/8"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "box",
+                    "class": "tile tile-time",
+                    "child": {
+                      "type": "column",
+                      "gap": 8,
+                      "children": [
+                        {
+                          "type": "text",
+                          "class": "stat-label",
+                          "text": "PLAY TIME"
+                        },
+                        {
+                          "type": "text",
+                          "class": "stat-value",
+                          "text": "{trainer.playTime}"
+                        }
+                      ]
+                    }
                   }
-                }
-              }
-            },
-            {
-              "title": "TM/HM",
-              "child": {
-                "type": "list",
-                "class": "bag-list",
-                "items": "$bag.tmHm",
-                "empty": "Empty",
-                "template": {
-                  "type": "box",
-                  "class": "card card-item",
-                  "child": {
-                    "type": "text",
-                    "class": "item-label",
-                    "text": "{name}  x{count}"
-                  }
-                }
-              }
-            },
-            {
-              "title": "Berries",
-              "child": {
-                "type": "list",
-                "class": "bag-list",
-                "items": "$bag.berries",
-                "empty": "Empty",
-                "template": {
-                  "type": "box",
-                  "class": "card card-item",
-                  "child": {
-                    "type": "text",
-                    "class": "item-label",
-                    "text": "{name}  x{count}"
-                  }
-                }
+                ]
               }
             }
           ]
         }
       },
       {
-        "title": "Trainer",
+        "name": "battle",
         "child": {
-          "type": "row",
-          "class": "trainer-grid",
+          "type": "column",
+          "class": "battle-page",
           "children": [
             {
-              "type": "box",
-              "class": "tile tile-money",
-              "child": {
-                "type": "column",
-                "gap": 8,
-                "children": [
-                  {
-                    "type": "text",
-                    "class": "stat-label",
-                    "text": "MONEY"
-                  },
-                  {
-                    "type": "text",
-                    "class": "stat-value money",
-                    "text": "{trainer.money}"
-                  }
-                ]
-              }
+              "type": "row",
+              "class": "battle-head",
+              "children": [
+                {
+                  "type": "text",
+                  "class": "battle-kind",
+                  "text": "{battle.kind}"
+                },
+                {
+                  "type": "button",
+                  "class": "battle-back",
+                  "text": "BACK",
+                  "onClick": "back"
+                }
+              ]
             },
             {
-              "type": "box",
-              "class": "tile tile-badges",
-              "child": {
-                "type": "column",
-                "gap": 8,
+              "type": "list",
+              "class": "battle-mons",
+              "items": "$battle.mons",
+              "template": {
+                "type": "box",
+                "class": "card card-battle",
+                "classIf": {
+                  "foe": "$foe"
+                },
                 "children": [
                   {
-                    "type": "text",
-                    "class": "stat-label",
-                    "text": "BADGES"
+                    "type": "row",
+                    "class": "battle-mon-head",
+                    "children": [
+                      {
+                        "type": "text",
+                        "class": "battle-side",
+                        "text": "{side}"
+                      },
+                      {
+                        "type": "text",
+                        "class": "name",
+                        "text": "{name}  LV.{level}"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "list",
+                    "class": "type-chips",
+                    "items": "$types",
+                    "template": {
+                      "type": "text",
+                      "class": "type-chip",
+                      "text": "{name}",
+                      "bindStyle": {
+                        "background-color": "{color}"
+                      }
+                    }
+                  },
+                  {
+                    "type": "bar",
+                    "class": "battle-hp",
+                    "value": "$hp",
+                    "maxKey": "$maxHp",
+                    "max": 1
                   },
                   {
                     "type": "text",
-                    "class": "stat-value",
-                    "text": "{trainer.badges}/8"
-                  }
-                ]
-              }
-            },
-            {
-              "type": "box",
-              "class": "tile tile-time",
-              "child": {
-                "type": "column",
-                "gap": 8,
-                "children": [
-                  {
-                    "type": "text",
-                    "class": "stat-label",
-                    "text": "PLAY TIME"
+                    "class": "hp-label",
+                    "text": "{hp}/{maxHp} HP  {status}"
                   },
                   {
-                    "type": "text",
-                    "class": "stat-value",
-                    "text": "{trainer.playTime}"
+                    "type": "list",
+                    "class": "battle-stats",
+                    "items": "$stats",
+                    "template": {
+                      "type": "box",
+                      "class": "battle-stat",
+                      "children": [
+                        {
+                          "type": "text",
+                          "class": "stat-label",
+                          "text": "{name}"
+                        },
+                        {
+                          "type": "text",
+                          "class": "stat-value",
+                          "text": "{value}"
+                        },
+                        {
+                          "type": "text",
+                          "class": "stat-stage",
+                          "classIf": {
+                            "up": "$up",
+                            "down": "$down"
+                          },
+                          "text": "{stage}"
+                        }
+                      ]
+                    }
                   }
                 ]
               }

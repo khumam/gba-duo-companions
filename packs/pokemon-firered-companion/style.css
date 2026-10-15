@@ -174,3 +174,128 @@ bar {
 .stat-value.money {
   color: #3F8F42;
 }
+
+/* ---- Battle page: opened by main.lua when a battle starts ---- */
+
+.battle-page {
+  gap: 12px;
+}
+
+.battle-head {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.battle-kind {
+  font-family: "Silkscreen";
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--poke-red-border);
+}
+
+.battle-back {
+  background-color: #FFFFFF;
+  border: 3px solid var(--poke-red-border);
+  border-radius: 8px;
+  padding: 6px 14px;
+}
+
+.battle-back > .label {
+  font-family: "Silkscreen";
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.battle-back:pressed {
+  background-color: var(--electric);
+}
+
+.battle-mons {
+  gap: 12px;
+}
+
+.card-battle {
+  border: 3px solid var(--poke-red-border);
+  padding: 12px 16px;
+  gap: 8px;
+  margin-bottom: 0;
+}
+
+.card-battle.foe {
+  border-color: var(--water-border);
+}
+
+.battle-mon-head {
+  align-items: center;
+  gap: 10px;
+}
+
+.battle-side {
+  font-family: "Silkscreen";
+  font-size: 9px;
+  font-weight: 700;
+  color: #FFFFFF;
+  background-color: var(--poke-red);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+
+.card-battle.foe .battle-side {
+  background-color: var(--water-border);
+}
+
+.type-chips {
+  flex-direction: row;
+  gap: 6px;
+}
+
+.type-chip {
+  font-family: "Silkscreen";
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  padding: 2px 8px;
+}
+
+.battle-stats {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+}
+
+.battle-stat {
+  align-items: center;
+  gap: 2px;
+  background-color: var(--electric);
+  border: 2px solid var(--electric-border);
+  border-radius: 8px;
+  padding: 6px 4px;
+}
+
+.card-battle.foe .battle-stat {
+  background-color: var(--water);
+  border-color: var(--water-border);
+}
+
+.battle-stat .stat-value {
+  font-size: 14px;
+}
+
+.stat-stage {
+  font-family: "Silkscreen";
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+
+.stat-stage.up {
+  color: #3F8F42;
+}
+
+.stat-stage.down {
+  color: var(--poke-red-border);
+}

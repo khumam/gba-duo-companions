@@ -13,5 +13,122 @@
     "tmHm": [],
     "berries": []
   },
-  "trainer": { "money": 3000, "badges": 0, "playTime": "0:03:56" }
+  "trainer": { "money": 3000, "badges": 0, "playTime": "0:03:56" },
+  "battle": {
+    "kind": "WILD BATTLE",
+    "mons": [
+      {
+        "side": "YOU",
+        "foe": false,
+        "name": "BULBASAUR",
+        "level": 5,
+        "hp": 17,
+        "maxHp": 20,
+        "status": "",
+        "types": [
+          {
+            "name": "Grass",
+            "color": "#A7DB8D"
+          },
+          {
+            "name": "Poison",
+            "color": "#C183C1"
+          }
+        ],
+        "stats": [
+          {
+            "name": "ATK",
+            "value": 10,
+            "stage": "",
+            "up": false,
+            "down": false
+          },
+          {
+            "name": "DEF",
+            "value": 10,
+            "stage": "-1",
+            "up": false,
+            "down": true
+          },
+          {
+            "name": "SP.ATK",
+            "value": 12,
+            "stage": "",
+            "up": false,
+            "down": false
+          },
+          {
+            "name": "SP.DEF",
+            "value": 12,
+            "stage": "",
+            "up": false,
+            "down": false
+          },
+          {
+            "name": "SPEED",
+            "value": 9,
+            "stage": "",
+            "up": false,
+            "down": false
+          }
+        ]
+      },
+      {
+        "side": "FOE",
+        "foe": true,
+        "name": "PIDGEY",
+        "level": 3,
+        "hp": 9,
+        "maxHp": 15,
+        "status": "",
+        "types": [
+          {
+            "name": "Normal",
+            "color": "#C6C6A7"
+          },
+          {
+            "name": "Flying",
+            "color": "#C6B7F5"
+          }
+        ],
+        "stats": [
+          {
+            "name": "ATK",
+            "value": 7,
+            "stage": "",
+            "up": false,
+            "down": false
+          },
+          {
+            "name": "DEF",
+            "value": 7,
+            "stage": "",
+            "up": false,
+            "down": false
+          },
+          {
+            "name": "SP.ATK",
+            "value": 6,
+            "stage": "",
+            "up": false,
+            "down": false
+          },
+          {
+            "name": "SP.DEF",
+            "value": 6,
+            "stage": "",
+            "up": false,
+            "down": false
+          },
+          {
+            "name": "SPEED",
+            "value": 8,
+            "stage": "+1",
+            "up": true,
+            "down": false
+          }
+        ]
+      }
+    ]
+  }
 }

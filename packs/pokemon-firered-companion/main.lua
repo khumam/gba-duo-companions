@@ -106,7 +106,84 @@ local function readPocket(sb1, offset, count)
   return list
 end
 
-function update()
+-- ---- Battle -------------------------------------------------------------------
+-- FireRed US v1.0 addresses, from the Ironmon-Tracker's verified FireRed v1.0 table
+-- (its `pstats` matches our PARTY_ADDR above). gBattleMons holds the live in-battle
+-- copy of each battler (struct BattlePokemon, 0x58 bytes): stats with stat stages
+-- applied by the battle engine, current HP, status. Battler 0 = yours, 1 = the foe.
+local BATTLE_MONS_ADDR = 0x02023BE4
+local BATTLE_MON_SIZE = 0x58
+local BATTLERS_COUNT_ADDR = 0x02023BCC
+-- 0 while a battle is on; 1 won, 2 lost, 4 ran, 7 caught. Not cleared afterwards.
+local BATTLE_OUTCOME_ADDR = 0x02023E8A
+local BATTLE_TYPE_FLAGS_ADDR = 0x02022B4C
+local BATTLE_MAIN_FUNC_ADDR = 0x03004F84
+local RETURN_FROM_BATTLE_TO_OVERWORLD = 0x08015B59
+local BATTLE_TYPE_TRAINER = 0x08
+local MAX_SPECIES = 411
+
+local TYPE_NAMES = { [0] = "Normal", "Fighting", "Flying", "Poison", "Ground", "Rock", "Bug", "Ghost", "Steel",
+  "???", "Fire", "Water", "Grass", "Electric", "Psychic", "Ice", "Dragon", "Dark" }
+local TYPE_COLORS = { [0] = "#C6C6A7", "#D67873", "#C6B7F5", "#C183C1", "#EBD69D", "#D1C17D", "#C6D16E", "#A292BC",
+  "#D1D1E0", "#9DC1B7", "#F5AC78", "#9DB7F5", "#A7DB8D", "#FAE078", "#FA92B2", "#BCE6E6", "#A27DFA", "#A29288" }
+
+-- Display stats: name, offset in BattlePokemon, index in its statStages[] (6 = neutral).
+local BATTLE_STATS = {
+  { "ATK", 0x02, 1 }, { "DEF", 0x04, 2 }, { "SP.ATK", 0x08, 4 }, { "SP.DEF", 0x0A, 5 }, { "SPEED", 0x06, 3 },
+}
+
+local function inBattle()
+  if mem.u8(BATTLE_OUTCOME_ADDR) ~= 0 then return false end
+  if mem.u8(BATTLERS_COUNT_ADDR) < 2 then return false end
+  local mainFunc = mem.u32(BATTLE_MAIN_FUNC_ADDR)
+  if mainFunc == 0 or mainFunc == RETURN_FROM_BATTLE_TO_OVERWORLD then return false end
+  local species = mem.u16(BATTLE_MONS_ADDR)
+  return species > 0 and species <= MAX_SPECIES
+end
+
+local function readBattleMon(battler, side)
+  local base = BATTLE_MONS_ADDR + battler * BATTLE_MON_SIZE
+  local species = mem.u16(base)
+  local types = {}
+  local t1, t2 = mem.u8(base + 0x21), mem.u8(base + 0x22)
+  for _, t in ipairs(t1 == t2 and { t1 } or { t1, t2 }) do
+    types[#types + 1] = { name = TYPE_NAMES[t] or "?", color = TYPE_COLORS[t] or "#D1D1E0" }
+  end
+  local stats = {}
+  for _, s in ipairs(BATTLE_STATS) do
+    local stage = mem.u8(base + 0x18 + s[3]) - 6
+    stats[#stats + 1] = {
+      name = s[1],
+      value = mem.u16(base + s[2]),
+      stage = stage > 0 and ("+" .. stage) or (stage < 0 and tostring(stage) or ""),
+      up = stage > 0,
+      down = stage < 0,
+    }
+  end
+  return {
+    side = side,
+    foe = side == "FOE",
+    name = species_names[species] or ("#" .. species),
+    level = mem.u8(base + 0x2A),
+    hp = mem.u16(base + 0x28),
+    maxHp = mem.u16(base + 0x2C),
+    status = statusText(mem.u32(base + 0x4C)),
+    types = types,
+    stats = stats,
+  }
+end
+
+local function readBattle()
+  local trainer = (mem.u32(BATTLE_TYPE_FLAGS_ADDR) & BATTLE_TYPE_TRAINER) ~= 0
+  return {
+    kind = trainer and "TRAINER BATTLE" or "WILD BATTLE",
+    mons = { readBattleMon(0, "YOU"), readBattleMon(1, "FOE") },
+  }
+end
+
+local wasInBattle = false
+
+function update(ui)
   local sb1 = mem.u32(SAVEBLOCK1_PTR_ADDR)
   local sb2 = mem.u32(SAVEBLOCK2_PTR_ADDR)
 
@@ -124,7 +201,7 @@ function update()
   local minutes = mem.u8(sb2 + PLAYTIME_MINUTES_OFFSET)
   local seconds = mem.u8(sb2 + PLAYTIME_SECONDS_OFFSET)
 
-  return {
+  local out = {
     party = readParty(),
     bag = {
       items = readPocket(sb1, BAG_ITEMS_OFFSET, BAG_ITEMS_COUNT),
@@ -139,4 +216,16 @@ function update()
       playTime = string.format("%d:%02d:%02d", hours, minutes, seconds),
     },
   }
+
+  -- Open the battle page when a battle starts and go back when it ends — only on the
+  -- change, so the player can still tap away from it mid-battle.
+  local battling = inBattle()
+  if battling then out.battle = readBattle() end
+  if battling and not wasInBattle then
+    out.ui = { navigate = "battle" }
+  elseif wasInBattle and not battling then
+    out.ui = { back = true }
+  end
+  wasInBattle = battling
+  return out
 end
