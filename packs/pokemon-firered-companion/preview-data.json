@@ -1,0 +1,17 @@
+{
+  "party": [
+    { "name": "BULBASAUR", "level": 5, "hp": 20, "maxHp": 20, "status": "" },
+    { "name": "PIDGEY", "level": 7, "hp": 24, "maxHp": 27, "status": "Poisoned" }
+  ],
+  "bag": {
+    "items": [
+      { "name": "Potion", "count": 3 },
+      { "name": "Antidote", "count": 1 }
+    ],
+    "keyItems": [{ "name": "Town Map", "count": 1 }],
+    "balls": [{ "name": "Poke Ball", "count": 5 }],
+    "tmHm": [],
+    "berries": []
+  },
+  "trainer": { "money": 3000, "badges": 0, "playTime": "0:03:56" }
+}
