@@ -209,6 +209,14 @@ export function createRenderer(packBaseUrl) {
 			content.innerHTML = '';
 			content.appendChild(childEls[index]);
 			tabEls.forEach((tabEl, i) => tabEl.classList.toggle('active', i === index));
+			// The newly-attached tab's subtree may have sat detached (never in the live
+			// document) until now, e.g. a non-default tab's content between initial render and
+			// this click. getComputedStyle on a detached node doesn't resolve real cascaded
+			// values — confirmed: a bar's accent-color read as transparent for a tab that
+			// hadn't been attached yet when applyBarAccentColors first ran. Both passes are
+			// cheap and idempotent, so just re-running them here is simplest.
+			applyStackChildPlacement(content);
+			applyBarAccentColors(content);
 		}
 
 		widget.tabs.forEach((tab, i) => {

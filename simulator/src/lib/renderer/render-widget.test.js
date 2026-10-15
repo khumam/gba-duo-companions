@@ -103,6 +103,26 @@ describe('createRenderer', () => {
 		expect(content.textContent).toBe('b');
 	});
 
+	it('resolves a bar\'s accent-color correctly in a non-default tab once selected, even though it sat detached until the click', () => {
+		injectTestStyle('[data-type="bar"] { accent-color: rgb(232, 113, 143); }');
+		const widget = parseLayout(
+			'{"type":"tabs","tabs":[' +
+				'{"title":"A","child":{"type":"text","text":"a"}},' +
+				'{"title":"B","child":{"type":"bar","value":"$hp","max":100}}' +
+				']}',
+		);
+		const renderer = createRenderer(packBaseUrl);
+		const el = renderer.build(widget);
+		document.body.appendChild(el);
+		renderer.update({ hp: 50 });
+
+		const tabs = el.querySelectorAll('[data-type="tab"]');
+		tabs[1].dispatchEvent(new Event('click', { bubbles: true }));
+
+		const fill = el.querySelector('[data-type="bar"] > [data-type="fill"]');
+		expect(fill.style.backgroundColor).toBe('rgb(232, 113, 143)');
+	});
+
 	it('renders a list, rebuilding only when item count changes, with a renamed empty part', () => {
 		const widget = parseLayout(
 			'{"type":"list","items":"$party","empty":"No Pokemon","template":{"type":"text","text":"{name}"}}',
