@@ -1,0 +1,18 @@
+{
+  "money": 5420,
+  "year": 1,
+  "day": 12,
+  "time": "08:45",
+  "weatherToday": 0,
+  "weatherTomorrow": 2,
+  "horseRaceMedals": 1,
+  "frisbeeRecord": 34,
+  "loves": [
+    { "name": "Popuri", "value": 240, "pct": 0.24 },
+    { "name": "Mary", "value": 580, "pct": 0.58 },
+    { "name": "Karen", "value": 120, "pct": 0.12 },
+    { "name": "Elli", "value": 390, "pct": 0.39 },
+    { "name": "Ann", "value": 710, "pct": 0.71 },
+    { "name": "Harvest Goddess", "value": 1000, "pct": 1.0 }
+  ]
+}
