@@ -26,7 +26,15 @@ export function GET({ params }) {
 	const layoutJson = existsSync(layoutPath) ? readFileSync(layoutPath, 'utf-8') : null;
 
 	const previewDataPath = join(packDir, 'preview-data.json');
-	const previewData = readJsonIfExists(previewDataPath) ?? {};
+	// Raw text too, so the editor shows the file exactly as written — re-serializing it would
+	// make the first keystroke's save reformat the whole file.
+	const previewDataJson = existsSync(previewDataPath) ? readFileSync(previewDataPath, 'utf-8') : null;
+	let previewData = {};
+	try {
+		previewData = previewDataJson ? JSON.parse(previewDataJson) : {};
+	} catch {
+		previewData = {};
+	}
 
 	const styleFiles = Array.isArray(manifest.styles) ? manifest.styles : [];
 	const stylePaths = styleFiles.map((f) => join(packDir, f));
@@ -43,6 +51,7 @@ export function GET({ params }) {
 		layoutJson,
 		styleCss,
 		previewData,
+		previewDataJson,
 		mtimes: {
 			layout: mtimeIfExists(layoutPath),
 			previewData: mtimeIfExists(previewDataPath),

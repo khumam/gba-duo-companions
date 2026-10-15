@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { parseLayout, InvalidLayoutError } from './parse-layout.js';
+import { parseLayout, parseLayoutWithWarnings, InvalidLayoutError } from './parse-layout.js';
 
 describe('parseLayout', () => {
 	it('parses text with no legacy keys present', () => {
@@ -144,5 +144,75 @@ describe('parseLayout', () => {
 		);
 		expect(widget.meta.classIf).toEqual({ low: 'hpLow', fainted: 'fainted' });
 		expect(widget.meta.bindStyle).toEqual({ width: '{hpPct}%', '--accent': '{typeColor}' });
+	});
+});
+
+// ---- pages, button, onClick — ported from gbaduo's LayoutTest.kt ----------------------
+
+describe('pages, button and onClick', () => {
+	it('parses pages and buttons', () => {
+		const pages = parseLayout(
+			JSON.stringify({
+				type: 'pages',
+				state: 'screen',
+				initial: 'b',
+				pages: [
+					{ name: 'a', child: { type: 'text', text: 'A' } },
+					{
+						name: 'b',
+						child: {
+							type: 'button',
+							text: 'Go {x}',
+							onClick: { navigate: 'a', state: 'screen' },
+							children: [{ type: 'spacer' }],
+						},
+					},
+				],
+			}),
+		);
+		expect(pages.state).toBe('screen');
+		expect(pages.initial).toBe('b');
+		expect(pages.pages.map((p) => p.name)).toEqual(['a', 'b']);
+		const button = pages.pages[1].child;
+		expect(button.type).toBe('button');
+		expect(button.meta.onClick).toEqual([{ kind: 'navigate', page: 'a', state: 'screen' }]);
+		expect(button.children[0].type).toBe('text');
+		expect(button.children[0].text).toBe('Go {x}');
+		expect(button.children[0].meta.classes).toEqual(['label']);
+		expect(button.children[1].type).toBe('spacer');
+	});
+
+	it('pages default to the first page and the page key', () => {
+		const pages = parseLayout('{"type":"pages","pages":[{"name":"main","child":{"type":"spacer"}}]}');
+		expect(pages.state).toBe('page');
+		expect(pages.initial).toBe('main');
+	});
+
+	it('invalid pages are rejected', () => {
+		const bad = [
+			'{"type":"pages","pages":[]}',
+			'{"type":"pages"}',
+			'{"type":"pages","initial":"nope","pages":[{"name":"a","child":{"type":"spacer"}}]}',
+			'{"type":"pages","pages":[{"name":"a","child":{"type":"spacer"}},{"name":"a","child":{"type":"spacer"}}]}',
+			'{"type":"pages","state":"a.b","pages":[{"name":"a","child":{"type":"spacer"}}]}',
+		];
+		for (const json of bad) expect(() => parseLayout(json), json).toThrow(InvalidLayoutError);
+	});
+
+	it('onClick works on any widget and bad actions warn', () => {
+		const parsed = parseLayoutWithWarnings(
+			JSON.stringify({
+				type: 'row',
+				onClick: [{ set: { selected: '{@index}' } }, { navigate: 'detail' }],
+				children: [{ type: 'text', text: 'x', onClick: 'sideways' }],
+			}),
+		);
+		expect(parsed.root.meta.onClick).toEqual([
+			{ kind: 'set', values: { selected: '{@index}' } },
+			{ kind: 'navigate', page: 'detail', state: 'page' },
+		]);
+		expect(parsed.root.children[0].meta.onClick).toEqual([]);
+		expect(parsed.warnings).toHaveLength(1);
+		expect(parsed.warnings[0]).toContain('onClick');
 	});
 });

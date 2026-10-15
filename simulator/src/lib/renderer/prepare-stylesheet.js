@@ -9,7 +9,7 @@ const DEVICE_DENSITY = 2.30625;
 // to `<img>`), so every element gets a `data-type` attribute instead, and bare type
 // selectors are rewritten to attribute selectors before the browser ever sees them.
 const WIDGET_TYPES = [
-	'box', 'text', 'row', 'column', 'tabs', 'list', 'image', 'bar', 'spacer',
+	'box', 'text', 'row', 'column', 'tabs', 'pages', 'button', 'list', 'image', 'bar', 'spacer',
 	'fill', 'label', 'tab-bar', 'tab', 'tab-content', 'empty',
 ];
 
@@ -47,7 +47,11 @@ export function prepareStylesheetCss(cssText, packBaseUrl, baseCssText = '') {
 	// it, every descendant of a real stack container would also report --gbaduo-stack: 1 via
 	// inheritance, not just the container itself. A directly-specified value always beats an
 	// inherited one, so only elements translateStackDisplay actually touches end up with 1.
-	const resetRule = '*{ box-sizing: border-box; --gbaduo-stack: 0; }\n';
+	// `[data-gbaduo-hidden]` is how render-widget.js hides a `pages` widget's unselected pages
+	// (CompanionNode.hiddenBySwitch). It has to beat any pack/default `display` rule, and stay
+	// separate from `visibleIf`'s inline display:none so the two never fight each other.
+	const resetRule =
+		'*{ box-sizing: border-box; --gbaduo-stack: 0; }\n[data-gbaduo-hidden]{ display: none !important; }\n';
 	const translated = blocks
 		.filter(({ selector }) => !selector.trim().startsWith('@font-face'))
 		.map(({ selector, body }) => {

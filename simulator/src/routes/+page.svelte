@@ -1,6 +1,6 @@
 <script>
 	import CodeEditor from '../lib/CodeEditor.svelte';
-	import { parseLayout } from '../lib/renderer/parse-layout.js';
+	import { parseLayoutWithWarnings } from '../lib/renderer/parse-layout.js';
 	import { createRenderer, applyStackChildPlacement, applyBarAccentColors } from '../lib/renderer/render-widget.js';
 	import { prepareStylesheetCss, extractFontFaceCss } from '../lib/renderer/prepare-stylesheet.js';
 
@@ -33,6 +33,11 @@
 	let saveStatus = $state('');
 
 	let activeRenderer = null;
+	let rootElement = null;
+	/** UI state to start the next rebuild from when there's no live renderer (e.g. after a layout error). */
+	let keptUi = {};
+	let uiState = $state({});
+	let lastCall = $state('');
 	// Guards the same overlapping-async-call hazard as the old polling loop did: switching
 	// packs (or a slow default-css fetch) shouldn't let an older in-flight load clobber a
 	// newer one's DOM. See render-widget.js/applyStackChildPlacement's sibling note.
@@ -77,13 +82,18 @@
 		if (!canvasEl) return;
 		const shadowRoot = getShadowRoot();
 		shadowRoot.innerHTML = '';
+		if (activeRenderer) keptUi = activeRenderer.ui;
 		activeRenderer = null;
+		rootElement = null;
 		layoutError = '';
 		styleError = '';
 
 		let widget;
 		try {
-			widget = parseLayout(layoutText);
+			const parsed = parseLayoutWithWarnings(layoutText);
+			widget = parsed.root;
+			// Non-fatal (e.g. an unknown onClick action): the layout still renders, like on device.
+			layoutError = parsed.warnings.join('\n');
 		} catch (e) {
 			layoutError = e.message;
 			shadowRoot.textContent = `Layout error: ${e.message}`;
@@ -104,15 +114,38 @@
 		shadowRoot.appendChild(styleEl);
 		injectGlobalFontFaces(extractFontFaceCss(styleText, packBaseUrl));
 
-		const renderer = createRenderer(packBaseUrl);
+		// Keep the current UI state (page, selection) across a layout/style edit, which rebuilds
+		// the whole tree — otherwise every keystroke on a detail page's CSS would bounce back
+		// to the first page. Switching packs starts fresh (loadPack clears it).
+		const renderer = createRenderer(packBaseUrl, {
+			initialUi: keptUi,
+			onUiChange: (ui) => {
+				uiState = ui;
+				runComputedStylePasses();
+			},
+			onCall: (name, args) => {
+				// The simulator doesn't run the pack's Lua: show what would have been called.
+				lastCall = `actions.${name}(${args.map((a) => JSON.stringify(a)).join(', ')})`;
+				console.info(`[simulator] onClick call: ${lastCall}`);
+			},
+		});
 		const rootEl = renderer.build(widget);
 		// `:root` in a pack's/default.css's CSS (prepare-stylesheet.js) targets this marker,
 		// not the shadow host — see that file for why.
 		rootEl.setAttribute('data-gbaduo-root', '');
 		shadowRoot.appendChild(rootEl);
+		rootElement = rootEl;
 		activeRenderer = renderer;
 
 		reapplyPreviewData();
+		uiState = renderer.ui;
+	}
+
+	/** Stack placement and bar accent colors need the live, styled DOM — re-run after any rebind. */
+	function runComputedStylePasses() {
+		if (!rootElement) return;
+		applyStackChildPlacement(rootElement);
+		applyBarAccentColors(rootElement);
 	}
 
 	/**
@@ -131,11 +164,7 @@
 		}
 		previewDataError = '';
 		activeRenderer.update(parsed);
-		const shadowRoot = getShadowRoot();
-		if (shadowRoot.firstElementChild) {
-			applyStackChildPlacement(shadowRoot.firstElementChild);
-			applyBarAccentColors(shadowRoot.firstElementChild);
-		}
+		runComputedStylePasses();
 	}
 
 	/** Persists one editor tab's content back to the pack's real file on disk. */
@@ -198,10 +227,22 @@
 
 		layoutText = packData.layoutJson ?? '';
 		styleText = packData.styleCss ?? '';
-		previewDataText = JSON.stringify(packData.previewData, null, 2);
+		previewDataText = packData.previewDataJson ?? JSON.stringify(packData.previewData, null, 2);
 		previewDataError = '';
 		saveStatus = '';
+		// Like the device: UI state starts empty (apart from each pages widget's initial page)
+		// whenever a pack is loaded.
+		activeRenderer = null;
+		keptUi = {};
+		lastCall = '';
 
+		rebuildAndRender();
+	}
+
+	function resetUi() {
+		activeRenderer = null;
+		keptUi = {};
+		lastCall = '';
 		rebuildAndRender();
 	}
 
@@ -266,6 +307,20 @@
 				<div class="canvas-scaler" style="transform: scale({PREVIEW_SCALE});">
 					<div bind:this={canvasEl} class="canvas"></div>
 				</div>
+			</div>
+			<div class="ui-panel" style="width: {DEVICE_WIDTH * PREVIEW_SCALE}px;">
+				<div class="ui-row">
+					<span class="ui-key">UI state ($ui)</span>
+					<code class="ui-value">{JSON.stringify(uiState)}</code>
+					<button type="button" class="ui-reset" onclick={resetUi}>Reset</button>
+				</div>
+				{#if lastCall}
+					<div class="ui-row">
+						<span class="ui-key">Last call</span>
+						<code class="ui-value">{lastCall}</code>
+					</div>
+					<p class="ui-note">The simulator doesn't run the pack's Lua — on device this calls the script's <code>actions</code> table.</p>
+				{/if}
 			</div>
 		</section>
 	</div>
@@ -435,6 +490,53 @@
 		border: 1px solid #111111;
 		overflow: hidden;
 		line-height: 0;
+	}
+
+	.ui-panel {
+		margin-top: 12px;
+		font-size: 12px;
+		box-sizing: border-box;
+	}
+
+	.ui-row {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		padding: 6px 0;
+		border-top: 1px solid #d8d8d0;
+	}
+
+	.ui-key {
+		flex-shrink: 0;
+		width: 96px;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+	}
+
+	.ui-value {
+		flex: 1 1 auto;
+		min-width: 0;
+		font-family: monospace;
+		font-size: 12px;
+		overflow-wrap: anywhere;
+	}
+
+	.ui-reset {
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+		padding: 4px 10px;
+		background: #ffffff;
+		border: 1px solid #111111;
+		cursor: pointer;
+	}
+
+	.ui-note {
+		margin: 4px 0 0;
+		font-size: 11px;
+		color: #666666;
 	}
 
 	.canvas-scaler {

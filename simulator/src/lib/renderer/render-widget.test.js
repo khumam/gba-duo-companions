@@ -26,13 +26,34 @@ describe('createRenderer', () => {
 		expect(el.textContent).toBe('Money: 3000');
 	});
 
-	it('renders column children with gap spacers', () => {
+	it('turns a legacy column gap into a CSS gap, like Layout.kt legacyPx', () => {
 		const widget = parseLayout(
 			'{"type":"column","gap":8,"children":[{"type":"text","text":"a"},{"type":"text","text":"b"}]}',
 		);
 		const renderer = createRenderer(packBaseUrl);
 		const el = renderer.build(widget);
-		expect(el.children).toHaveLength(3);
+		expect(el.children).toHaveLength(2);
+		expect(el.style.gap).toBe('18px');
+		// display/flex-direction come from default.css, so pack CSS can override them.
+		expect(el.style.display).toBe('');
+	});
+
+	it('only sizes an image/spacer inline when `size` is written', () => {
+		const sized = createRenderer(packBaseUrl).build(parseLayout('{"type":"image","src":"asset:a.png","size":16}'));
+		expect(sized.style.width).toBe('37px');
+		const unsized = createRenderer(packBaseUrl).build(parseLayout('{"type":"image","src":"asset:a.png"}'));
+		expect(unsized.style.width).toBe('');
+		expect(unsized.getAttribute('src')).toBe('/packs/test-pack/assets/a.png');
+	});
+
+	it('resolves a $-bound image source on update', () => {
+		const renderer = createRenderer(packBaseUrl);
+		const el = renderer.build(parseLayout('{"type":"image","src":"$detail.icon"}'));
+		expect(el.getAttribute('src')).toMatch(/^data:image\/gif/);
+		renderer.update({ detail: { icon: 'asset:mon-fire.png' } });
+		expect(el.getAttribute('src')).toBe('/packs/test-pack/assets/mon-fire.png');
+		renderer.update({ detail: { icon: 'gfx:party0' } });
+		expect(el.getAttribute('src')).toMatch(/^data:image\/gif/);
 	});
 
 	it('applies box legacy keys only when present, regardless of a stylesheet existing', () => {
@@ -184,6 +205,22 @@ describe('applyBarAccentColors', () => {
 	});
 });
 
+describe('applyBarAccentColors keeps a fill that has its own background', () => {
+	it('like CompanionScreen.boxPaint, accent-color is only the fallback', () => {
+		injectTestStyle(`
+			[data-type="bar"] { accent-color: rgb(1, 2, 3); }
+			.styled > [data-type="fill"] { background-color: rgb(240, 128, 48); }
+		`);
+		const styled = createRenderer(packBaseUrl).build(parseLayout('{"type":"bar","class":"styled","value":"$v","max":10}'));
+		const plain = createRenderer(packBaseUrl).build(parseLayout('{"type":"bar","value":"$v","max":10}'));
+		document.body.append(styled, plain);
+		applyBarAccentColors(document.body);
+		applyBarAccentColors(document.body); // re-running must not get stuck on its own inline value
+		expect(styled.querySelector('[data-type="fill"]').style.backgroundColor).toBe('');
+		expect(plain.querySelector('[data-type="fill"]').style.backgroundColor).toBe('rgb(1, 2, 3)');
+	});
+});
+
 describe('applyStackChildPlacement', () => {
 	it('places non-absolute children of a --gbaduo-stack element into the same grid cell', () => {
 		injectTestStyle(`
@@ -205,5 +242,181 @@ describe('applyStackChildPlacement', () => {
 		expect(overlay.style.gridRow).toBe('1');
 		expect(overlay.style.gridColumn).toBe('1');
 		expect(fill.style.gridRow).toBe('');
+	});
+});
+
+// ---- onClick, pages and UI state — ported from gbaduo's CompanionTreeTest.kt ----------
+
+const partyWithDetail = JSON.stringify({
+	type: 'pages',
+	pages: [
+		{
+			name: 'party',
+			child: {
+				type: 'list',
+				items: '$party',
+				template: {
+					type: 'row',
+					class: 'mon',
+					onClick: [{ set: { selected: '{@index}', name: '{name}' } }, { navigate: 'detail' }],
+					children: [{ type: 'text', text: '{name}' }],
+				},
+			},
+		},
+		{
+			name: 'detail',
+			child: {
+				type: 'column',
+				children: [
+					{ type: 'button', text: 'Back', onClick: 'back' },
+					{ type: 'text', text: '{detail.name} #{ui.selected}' },
+					{ type: 'button', text: 'Heal', onClick: { call: 'heal', args: ['{ui.selected}', '{detail.name}'] } },
+				],
+			},
+		},
+	],
+});
+
+const isHidden = (el) => el.hasAttribute('data-gbaduo-hidden');
+const tap = (el) => el.dispatchEvent(new Event('click', { bubbles: true }));
+
+describe('onClick, pages and UI state', () => {
+	it('tapping a list item navigates to its detail page', () => {
+		const uiChanges = [];
+		const renderer = createRenderer(packBaseUrl, { onUiChange: (ui) => uiChanges.push(ui) });
+		const el = renderer.build(parseLayout(partyWithDetail));
+		renderer.update({ party: [{ name: 'Bulba' }, { name: 'Pika' }], detail: { name: '?' } });
+		const [partyPage, detailPage] = el.children;
+		expect(renderer.ui).toEqual({ page: 'party' });
+		expect(isHidden(partyPage)).toBe(false);
+		expect(isHidden(detailPage)).toBe(true);
+
+		tap(partyPage.children[2]); // "Pika" (children[0] is the list's empty part)
+		expect(renderer.ui).toEqual({ page: 'detail', selected: 1, name: 'Pika' });
+		expect(uiChanges).toEqual([renderer.ui]);
+		expect(isHidden(partyPage)).toBe(true);
+		expect(isHidden(detailPage)).toBe(false);
+		expect(detailPage.children[1].textContent).toBe('? #1'); // bindings re-ran with the new ui at once
+
+		renderer.update({ party: [], detail: { name: 'Pika' } });
+		expect(detailPage.children[1].textContent).toBe('Pika #1');
+
+		tap(detailPage.children[0]); // Back
+		expect(renderer.ui.page).toBe('party');
+		expect(isHidden(partyPage)).toBe(false);
+		expect(renderer.ui.selected).toBe(1); // other ui state stays
+	});
+
+	it('a call runs after the UI change from the same tap', () => {
+		const events = [];
+		const renderer = createRenderer(packBaseUrl, {
+			onUiChange: (ui) => events.push(`ui ${ui.selected}`),
+			onCall: (name, args) => events.push(`call ${name} ${JSON.stringify(args)}`),
+		});
+		const el = renderer.build(
+			parseLayout(
+				JSON.stringify({
+					type: 'list',
+					items: '$party',
+					template: {
+						type: 'box',
+						onClick: [{ call: 'open', args: ['{@index}', '{name}', 'Lv {level}', true] }, { set: { selected: '{@index}' } }],
+						children: [],
+					},
+				}),
+			),
+		);
+		renderer.update({ party: [{ name: 'A', level: 5 }, { name: 'B', level: 7 }] });
+		tap(el.children[2]);
+		expect(events).toEqual(['ui 1', 'call open [1,"B","Lv 7",true]']);
+	});
+
+	it('back without history returns to the initial page, and history nests', () => {
+		const renderer = createRenderer(packBaseUrl);
+		renderer.build(
+			parseLayout(
+				JSON.stringify({
+					type: 'pages',
+					initial: 'a',
+					pages: ['a', 'b', 'c'].map((name) => ({ name, child: { type: 'spacer' } })),
+				}),
+			),
+		);
+		renderer.update({});
+		renderer.perform([
+			{ kind: 'navigate', page: 'b', state: 'page' },
+			{ kind: 'navigate', page: 'c', state: 'page' },
+		]);
+		expect(renderer.ui.page).toBe('c');
+		renderer.perform([{ kind: 'back', state: 'page' }]);
+		expect(renderer.ui.page).toBe('b');
+		renderer.perform([{ kind: 'back', state: 'page' }]);
+		expect(renderer.ui.page).toBe('a');
+		renderer.perform([{ kind: 'set', values: { page: 'b' } }]);
+		renderer.perform([{ kind: 'back', state: 'page' }]); // a plain `set` leaves no history
+		expect(renderer.ui.page).toBe('a');
+	});
+
+	it('an unknown page shows the initial one, and no change reports nothing', () => {
+		let changes = 0;
+		const renderer = createRenderer(packBaseUrl, { onUiChange: () => changes++ });
+		const el = renderer.build(
+			parseLayout(
+				JSON.stringify({ type: 'pages', pages: ['a', 'b'].map((name) => ({ name, child: { type: 'spacer' } })) }),
+			),
+		);
+		renderer.update({});
+		renderer.perform([{ kind: 'set', values: { page: 'typo' } }]);
+		expect(isHidden(el.children[0])).toBe(false);
+		expect(isHidden(el.children[1])).toBe(true);
+		renderer.perform([{ kind: 'set', values: { page: 'typo' } }]);
+		expect(changes).toBe(1);
+	});
+
+	it('script results drive navigation without a context', () => {
+		const renderer = createRenderer(packBaseUrl);
+		const el = renderer.build(parseLayout(partyWithDetail));
+		renderer.update({ party: [] });
+		// What `return { set = { selected = 0 }, navigate = "detail" }` from actions.* becomes.
+		renderer.perform([
+			{ kind: 'set', values: { selected: 0 } },
+			{ kind: 'navigate', page: 'detail', state: 'page' },
+		]);
+		expect(renderer.ui.page).toBe('detail');
+		expect(isHidden(el.children[1])).toBe(false);
+		expect(el.children[1].children[1].textContent).toBe(' #0');
+	});
+
+	it('buttons get a label child and :pressed while held', () => {
+		const el = createRenderer(packBaseUrl).build(
+			parseLayout(JSON.stringify({ type: 'button', text: 'Go', onClick: { navigate: 'x' } })),
+		);
+		expect(el.dataset.type).toBe('button');
+		expect(el.children[0].dataset.type).toBe('text');
+		expect(el.children[0].className).toBe('label');
+		expect(el.children[0].textContent).toBe('Go');
+		el.dispatchEvent(new Event('pointerdown'));
+		expect(el.classList.contains('pressed')).toBe(true);
+		el.dispatchEvent(new Event('pointerup'));
+		expect(el.classList.contains('pressed')).toBe(false);
+	});
+
+	it('$ui is readable in bindings, including visibleIf', () => {
+		const renderer = createRenderer(packBaseUrl);
+		const el = renderer.build(
+			parseLayout(
+				JSON.stringify({
+					type: 'column',
+					children: [
+						{ type: 'text', text: 'all', visibleIf: '$ui.showAll' },
+						{ type: 'button', text: 'Show', onClick: { set: { showAll: true } } },
+					],
+				}),
+			),
+		);
+		renderer.update({});
+		expect(el.children[0].style.display).toBe('none');
+		tap(el.children[1]);
+		expect(el.children[0].style.display).not.toBe('none');
 	});
 });

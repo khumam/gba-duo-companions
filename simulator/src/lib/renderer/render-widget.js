@@ -10,11 +10,136 @@ function px(dpValue) {
 	return Math.round(dpValue * DEVICE_DENSITY);
 }
 
+/** The snapshot key bindings read UI state from (`$ui.page`), as CompanionTree.UI_KEY. */
+export const UI_KEY = 'ui';
+const MAX_HISTORY = 32;
+const EMPTY_IMAGE = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+const WHOLE_BINDING = /^\{([^{}]+)\}$/;
+
+/**
+ * The UI state (`$ui.*`) one screen shares across its root renderer and every nested list
+ * item renderer — mirrors CompanionTree's uiState/history/initialPages.
+ */
+function createStore(initialUi) {
+	return {
+		ui: { ...(initialUi ?? {}) },
+		history: {},
+		initialPages: {},
+		snapshot: null,
+		rebind: () => {},
+		onCall: () => {},
+		onUiChange: () => {},
+	};
+}
+
 /**
  * @param packBaseUrl base path assets/fonts resolve against, e.g. `/packs/{id}`.
+ * @param options.onCall (name, args) => void — a tap's `call` action. The simulator has
+ *   no Lua, so this is where the caller can log/show it.
+ * @param options.onUiChange (ui) => void — after any UI state change from a tap.
+ * @param options.initialUi UI state to start from instead of empty (e.g. to stay on the
+ *   same page across a layout/style edit, which rebuilds the whole tree).
+ * @param options.store internal: the parent screen's store, for list item renderers.
  */
-export function createRenderer(packBaseUrl) {
+export function createRenderer(packBaseUrl, options = {}) {
 	const bindings = [];
+	const isRoot = options.store == null;
+	const store = options.store ?? createStore(options.initialUi);
+	if (isRoot) {
+		if (options.onCall) store.onCall = options.onCall;
+		if (options.onUiChange) store.onUiChange = options.onUiChange;
+		store.rebind = () => applyAll(withUi(store.snapshot));
+	}
+
+	function applyAll(context) {
+		for (const apply of bindings) apply(context);
+	}
+
+	/** Bindings also see the UI state, under `ui` (CompanionTree.withUi). */
+	function withUi(context) {
+		const ui = { ...store.ui };
+		if (context == null) return { [UI_KEY]: ui };
+		if (typeof context === 'object' && !Array.isArray(context)) return { ...context, [UI_KEY]: ui };
+		return context;
+	}
+
+	/** A whole-string `{path}` keeps the bound value's type (e.g. `{@index}` stays a number). */
+	function actionValue(value, context) {
+		if (typeof value !== 'string') return value;
+		const whole = WHOLE_BINDING.exec(value);
+		if (!whole) return interpolate(value, context);
+		return resolve(whole[1], context);
+	}
+
+	/**
+	 * Runs actions from a tap (with the tapped widget's binding context): UI changes apply
+	 * at once and re-bind the whole screen; `call`s go to onCall afterwards. Port of
+	 * CompanionTree.perform.
+	 */
+	function perform(actions, context) {
+		let changed = false;
+		const calls = [];
+		const setUi = (key, value) => {
+			if (key in store.ui && store.ui[key] === value) return;
+			store.ui[key] = value;
+			changed = true;
+		};
+		for (const action of actions) {
+			switch (action.kind) {
+				case 'set':
+					for (const [key, value] of Object.entries(action.values)) setUi(key, actionValue(value, context));
+					break;
+				case 'navigate': {
+					const page = interpolate(action.page, context);
+					const current = store.ui[action.state] == null ? null : String(store.ui[action.state]);
+					if (page !== current) {
+						if (current != null) {
+							const stack = (store.history[action.state] ??= []);
+							stack.push(current);
+							if (stack.length > MAX_HISTORY) stack.shift();
+						}
+						setUi(action.state, page);
+					}
+					break;
+				}
+				case 'back': {
+					const stack = store.history[action.state];
+					const previous = (stack && stack.length ? stack.pop() : null) ?? store.initialPages[action.state];
+					if (previous != null) setUi(action.state, previous);
+					break;
+				}
+				case 'call':
+					calls.push({ name: action.name, args: action.args.map((v) => actionValue(v, context)) });
+					break;
+			}
+		}
+		if (changed) {
+			store.rebind();
+			store.onUiChange({ ...store.ui });
+		}
+		for (const call of calls) store.onCall(call.name, call.args);
+	}
+
+	/** `:pressed` while held — prepare-stylesheet.js turns `:pressed` into `.pressed`. */
+	function bindPressed(el) {
+		el.addEventListener('pointerdown', () => el.classList.add('pressed'));
+		el.addEventListener('pointerup', () => el.classList.remove('pressed'));
+		el.addEventListener('pointerleave', () => el.classList.remove('pressed'));
+	}
+
+	function bindClick(el, actions) {
+		let context = null;
+		bindings.push((ctx) => {
+			context = ctx;
+		});
+		el.style.cursor = 'pointer';
+		bindPressed(el);
+		el.addEventListener('click', (event) => {
+			// Compose's innermost clickable consumes the tap; outer ones don't also fire.
+			event.stopPropagation();
+			perform(actions, context);
+		});
+	}
 
 	function applyMeta(el, widget) {
 		el.dataset.type = widget.type;
@@ -37,6 +162,7 @@ export function createRenderer(packBaseUrl) {
 				}
 			});
 		}
+		if (widget.meta?.onClick?.length) bindClick(el, widget.meta.onClick);
 	}
 
 	function applyVisibility(el, visibleIf) {
@@ -49,11 +175,15 @@ export function createRenderer(packBaseUrl) {
 	function inflate(widget) {
 		switch (widget.type) {
 			case 'column':
-				return buildBox(widget, 'column');
+				return buildBox(widget);
 			case 'row':
-				return buildBox(widget, 'row');
+				return buildBox(widget);
 			case 'tabs':
 				return buildTabs(widget);
+			case 'pages':
+				return buildPages(widget);
+			case 'button':
+				return buildButton(widget);
 			case 'text':
 				return buildText(widget);
 			case 'bar':
@@ -71,22 +201,25 @@ export function createRenderer(packBaseUrl) {
 		}
 	}
 
-	function buildBox(widget, direction) {
+	/**
+	 * row/column: layout comes from default.css (`row`/`column` rules) so pack CSS can override
+	 * it, and a legacy `gap` becomes a CSS `gap` — Layout.kt's legacyPx("gap", "gap") — rather
+	 * than inline display/flex-direction plus spacer elements that pack CSS couldn't touch.
+	 */
+	function buildBox(widget) {
 		const el = document.createElement('div');
 		applyMeta(el, widget);
-		el.style.display = 'flex';
-		el.style.flexDirection = direction;
-		widget.children.forEach((child, i) => {
-			el.appendChild(inflate(child));
-			if (i < widget.children.length - 1 && widget.gap > 0) {
-				const spacer = document.createElement('div');
-				if (direction === 'column') spacer.style.height = `${px(widget.gap)}px`;
-				else spacer.style.width = `${px(widget.gap)}px`;
-				el.appendChild(spacer);
-			}
-		});
+		if ('gap' in (widget.legacy ?? {})) el.style.gap = `${px(widget.legacy.gap)}px`;
+		widget.children.forEach((child) => el.appendChild(inflate(child)));
 		applyVisibility(el, widget.visibleIf);
 		return el;
+	}
+
+	/** Legacy `size` on image/spacer → width+height, only when written (Layout.kt legacyPx). */
+	function applyLegacySize(el, widget) {
+		if (!('size' in (widget.legacy ?? {}))) return;
+		el.style.width = `${px(widget.legacy.size)}px`;
+		el.style.height = `${px(widget.legacy.size)}px`;
 	}
 
 	function applyLegacyText(el, legacy) {
@@ -146,14 +279,34 @@ export function createRenderer(packBaseUrl) {
 	function buildImage(widget) {
 		const el = document.createElement('img');
 		applyMeta(el, widget);
-		el.style.width = `${px(widget.size)}px`;
-		el.style.height = `${px(widget.size)}px`;
-		if (widget.src.startsWith('asset:')) {
-			el.src = `${packBaseUrl}/assets/${widget.src.slice('asset:'.length)}`;
-		} else if (widget.src.startsWith('gfx:')) {
-			el.alt = '[gfx: not renderable in simulator]';
-		} else if (widget.src.startsWith('$')) {
-			el.alt = '[dynamic sprite: not renderable in simulator]';
+		applyLegacySize(el, widget);
+		el.alt = '';
+		let shownKey;
+		// CompanionTree.showImage: `asset:` loads from the pack; `gfx:` sprites only exist once
+		// the pack's Lua decodes them, which the simulator can't do, so they stay empty (like an
+		// undecoded sprite on device) with a tooltip saying why.
+		const show = (key) => {
+			if (key === shownKey) return;
+			shownKey = key;
+			if (typeof key === 'string' && key.startsWith('asset:')) {
+				el.src = `${packBaseUrl}/assets/${key.slice('asset:'.length)}`;
+				el.removeAttribute('title');
+			} else {
+				// A transparent pixel, not a missing src: Chromium draws a gray placeholder border
+				// around a src-less <img>, while the device draws nothing in an empty image box.
+				el.src = EMPTY_IMAGE;
+				el.title = typeof key === 'string' && key.startsWith('gfx:') ? `${key} (Lua-decoded sprite, not available in the simulator)` : '';
+			}
+		};
+		if (widget.src.startsWith('$')) {
+			const path = widget.src.slice(1);
+			show(null); // empty until the first snapshot binds it
+			bindings.push((ctx) => {
+				const value = resolve(path, ctx);
+				show(typeof value === 'string' ? value : null);
+			});
+		} else {
+			show(widget.src);
 		}
 		applyVisibility(el, widget.visibleIf);
 		return el;
@@ -162,8 +315,7 @@ export function createRenderer(packBaseUrl) {
 	function buildSpacer(widget) {
 		const el = document.createElement('div');
 		applyMeta(el, widget);
-		el.style.width = `${px(widget.size)}px`;
-		el.style.height = `${px(widget.size)}px`;
+		applyLegacySize(el, widget);
 		applyVisibility(el, widget.visibleIf);
 		return el;
 	}
@@ -240,6 +392,47 @@ export function createRenderer(packBaseUrl) {
 	}
 
 	/**
+	 * Shows one page at a time: the one named by UI key `widget.state`, or the initial page
+	 * until something navigates (unknown names fall back to it too). Port of
+	 * CompanionTree.buildPages. Unlike tabs, every page stays attached and bound — hidden
+	 * ones just carry `data-gbaduo-hidden` (display:none !important, see
+	 * prepare-stylesheet.js), the counterpart of CompanionNode.hiddenBySwitch — so they're
+	 * up to date when opened and getComputedStyle still resolves inside them.
+	 */
+	function buildPages(widget) {
+		const el = document.createElement('div');
+		applyMeta(el, widget);
+		if (!(widget.state in store.initialPages)) store.initialPages[widget.state] = widget.initial;
+		if (!(widget.state in store.ui)) store.ui[widget.state] = widget.initial;
+
+		const panels = widget.pages.map((page) => {
+			const panel = inflate(page.child);
+			el.appendChild(panel);
+			return panel;
+		});
+
+		function show(name) {
+			let index = widget.pages.findIndex((p) => p.name === name);
+			if (index < 0) index = widget.pages.findIndex((p) => p.name === widget.initial);
+			panels.forEach((panel, i) => panel.toggleAttribute('data-gbaduo-hidden', i !== index));
+		}
+
+		show(store.ui[widget.state] == null ? null : String(store.ui[widget.state]));
+		bindings.push(() => show(store.ui[widget.state] == null ? null : String(store.ui[widget.state])));
+		applyVisibility(el, widget.visibleIf);
+		return el;
+	}
+
+	/** A tappable container (a flex row via default.css); its `text` is a `text.label` child. */
+	function buildButton(widget) {
+		const el = document.createElement('div');
+		applyMeta(el, widget);
+		widget.children.forEach((child) => el.appendChild(inflate(child)));
+		applyVisibility(el, widget.visibleIf);
+		return el;
+	}
+
+	/**
 	 * Data-driven repeat: rebuilds item elements only when the resolved list's length
 	 * changes; otherwise just re-binds each existing item renderer. Mirrors
 	 * CompanionTree.kt's list handling.
@@ -265,7 +458,7 @@ export function createRenderer(packBaseUrl) {
 					container.removeChild(container.lastChild);
 				}
 				itemRenderers = items.map(() => {
-					const renderer = createRenderer(packBaseUrl);
+					const renderer = createRenderer(packBaseUrl, { store });
 					const el = renderer.build(widget.template);
 					el.setAttribute('data-list-item', '');
 					container.appendChild(el);
@@ -288,8 +481,28 @@ export function createRenderer(packBaseUrl) {
 			bindings.length = 0;
 			return inflate(widget);
 		},
+		/**
+		 * The root renderer takes the pack's snapshot and adds `ui` to it (CompanionTree.update);
+		 * a list item renderer takes its ScopedValues as-is.
+		 */
 		update(context) {
-			for (const apply of bindings) apply(context);
+			if (isRoot) {
+				store.snapshot = context;
+				applyAll(withUi(context));
+			} else {
+				applyAll(context);
+			}
+		},
+		/** The current UI state (`$ui.*`). */
+		get ui() {
+			return { ...store.ui };
+		},
+		/**
+		 * Runs parsed actions with no binding context — how CompanionTree.perform applies what
+		 * a script's actions.* returns (e.g. `{ set = { selected = 0 }, navigate = "detail" }`).
+		 */
+		perform(actions) {
+			perform(actions, null);
 		},
 	};
 }
@@ -323,17 +536,28 @@ export function applyStackChildPlacement(root) {
 	}
 }
 
+const DEFAULT_ACCENT = '#6c4ab6';
+
 /**
  * `accent-color` is a real, inherited CSS property every browser resolves through the
- * normal cascade. CompanionScreen.kt reads it off a bar's *own* resolved style (not the
- * fill's) to color the fill — a pack sets `accent-color` on `bar`/a bar's class, never on
- * `.fill` directly. Call after [root] is attached to a real document.
+ * normal cascade. Like CompanionScreen.kt's boxPaint, a bar's fill *defaults* to the bar's
+ * own resolved accent-color — but only when the fill has no background of its own
+ * (transparent, no image/gradient). A pack styling `bar > fill { background: ... }` keeps
+ * it. Call after [root] is attached to a real document; safe to re-run.
  */
 export function applyBarAccentColors(root) {
 	const candidates = [root, ...root.querySelectorAll('*')].filter((el) => el.dataset?.type === 'bar');
 	for (const barEl of candidates) {
 		const fillEl = barEl.querySelector(':scope > [data-type="fill"]');
-		if (fillEl) fillEl.style.backgroundColor = getComputedStyle(barEl).accentColor;
+		if (!fillEl) continue;
+		// Drop our own previous fallback first, so the check sees only the pack's styles.
+		fillEl.style.backgroundColor = '';
+		const fill = getComputedStyle(fillEl);
+		const transparent = fill.backgroundColor === '' || fill.backgroundColor === 'transparent' || /^rgba\(.*,\s*0\)$/.test(fill.backgroundColor);
+		const noImage = !fill.backgroundImage || fill.backgroundImage === 'none';
+		if (!transparent || !noImage) continue;
+		const accent = getComputedStyle(barEl).accentColor;
+		fillEl.style.backgroundColor = !accent || accent === 'auto' ? DEFAULT_ACCENT : accent;
 	}
 }
 

@@ -65,6 +65,8 @@ bar > label {
 tabs {
     display: flex;
     flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
 }
 
 tab-bar {
@@ -85,9 +87,32 @@ tab-content {
     display: stack;
     place-items: stretch;
     flex: 1 1 auto;
+    min-height: 0;
 }
 
 empty {
     color: #888888;
+}
+
+pages {
+    display: stack;
+    place-items: stretch;
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+button:pressed {
+    opacity: 0.7;
 }
 `;
