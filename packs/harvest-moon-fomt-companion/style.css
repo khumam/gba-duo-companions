@@ -1,0 +1,185 @@
+/*
+ * Design: retro-cozy Swiss bento grid, pastel palette. Built for the
+ * Compose-based companion engine (real CSS grid, box-shadow, transitions,
+ * accent-color), via the ui-ux-pro-max skill's farm/cozy-pastel direction.
+ *
+ * One grid, one spacing scale (8px), one accent per surface, generous
+ * rounded bento corners (Apple-bento, not GBA-sharp — this is a cozy life
+ * sim, not an arcade cartridge) and soft elevation instead of hard borders.
+ */
+
+:root {
+  --cream:    #FDF6E9; /* screen background: sunlit parchment, not stark white */
+  --ink:      #4A3728; /* primary text: warm soil brown, not pure black */
+  --ink-soft: #8D7B6A; /* secondary text / labels */
+
+  --mint:        #D7EFD9;
+  --mint-border: #A8D8AC;
+  --sky:         #D7E8F7;
+  --sky-border:  #A9CCEA;
+  --peach:       #FBE3CE;
+  --peach-border:#F0C295;
+  --lavender:    #E6DEF3;
+  --lavender-border: #C9B8E6;
+  --blush:       #FBDCE3;
+  --blush-border:#F0AFC0;
+
+  --gold:     #E3A008;
+  --coral:    #E8836B;
+  --rose:     #E8718F;
+
+  --radius: 20px;
+}
+
+@font-face { font-family: "Baloo2"; src: url("assets/fonts/Baloo2.ttf"); }
+@font-face { font-family: "Quicksand"; src: url("assets/fonts/Quicksand.ttf"); }
+
+#screen {
+  background-color: var(--cream);
+  color: var(--ink);
+  font-family: "Quicksand", sans-serif;
+  padding: 16px;
+}
+
+/* ---- tabs: pastel pill strip, replaces default.css's plain text tabs ---- */
+
+tab-bar {
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+tab {
+  font-family: "Baloo2", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  background-color: #FFFFFF;
+  border: 2px solid var(--mint-border);
+  border-radius: 999px;
+  padding: 8px 20px;
+  transition: background-color 200ms ease-out, color 200ms ease-out, border-color 200ms ease-out;
+}
+
+tab:active {
+  color: #FFFFFF;
+  background-color: var(--coral);
+  border-color: var(--coral);
+}
+
+tab:pressed {
+  background-color: var(--peach);
+}
+
+tab-content {
+  padding-top: 4px;
+}
+
+/* ---- shared bento tile ---- */
+
+.card {
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(74, 55, 40, 0.1);
+  gap: 4px;
+}
+
+.tile-label, .hero-label {
+  font-family: "Baloo2", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--ink-soft);
+}
+
+.tile-value {
+  font-family: "Baloo2", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.tile-sub {
+  font-family: "Quicksand", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* ---- Farm tab ---- */
+
+.farm-tab {
+  gap: 12px;
+}
+
+.card-hero {
+  background-color: var(--peach);
+  border: 2px solid var(--peach-border);
+  align-items: center;
+}
+
+.hero-value {
+  font-family: "Baloo2", sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.card-date { background-color: var(--sky); border: 2px solid var(--sky-border); }
+.card-time { background-color: var(--mint); border: 2px solid var(--mint-border); }
+.card-weather { background-color: var(--lavender); border: 2px solid var(--lavender-border); }
+.card-records { background-color: var(--blush); border: 2px solid var(--blush-border); }
+
+.card-time .tile-value {
+  font-size: 28px;
+}
+
+/* ---- Love tab ---- */
+
+.love-tab {
+  padding-top: 4px;
+}
+
+.love-list {
+  gap: 10px;
+}
+
+.card-love {
+  background-color: var(--blush);
+  border: 2px solid var(--blush-border);
+  gap: 8px;
+}
+
+.love-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.love-name {
+  font-family: "Baloo2", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.love-score {
+  font-family: "Quicksand", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+
+.love-bar {
+  height: 14px;
+  border-radius: 999px;
+  background-color: rgba(232, 113, 143, 0.18);
+  accent-color: var(--rose);
+  transition: width 400ms ease-out;
+}

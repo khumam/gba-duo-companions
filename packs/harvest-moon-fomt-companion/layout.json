@@ -1,0 +1,98 @@
+{
+  "type": "box",
+  "id": "screen",
+  "children": [
+    {
+      "type": "tabs",
+      "tabs": [
+        {
+          "title": "Farm",
+          "child": {
+            "type": "box",
+            "class": "farm-tab",
+            "children": [
+              {
+                "type": "box",
+                "class": "card card-hero",
+                "children": [
+                  { "type": "text", "class": "hero-label", "text": "GOLD" },
+                  { "type": "text", "class": "hero-value", "text": "{money} G" }
+                ]
+              },
+              {
+                "type": "box",
+                "class": "bento-grid",
+                "children": [
+                  {
+                    "type": "box",
+                    "class": "card card-date",
+                    "children": [
+                      { "type": "text", "class": "tile-label", "text": "DATE" },
+                      { "type": "text", "class": "tile-value", "text": "Year {year}" },
+                      { "type": "text", "class": "tile-sub", "text": "Day {day}" }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "card card-time",
+                    "children": [
+                      { "type": "text", "class": "tile-label", "text": "TIME" },
+                      { "type": "text", "class": "tile-value", "text": "{time}" }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "card card-weather",
+                    "children": [
+                      { "type": "text", "class": "tile-label", "text": "WEATHER" },
+                      { "type": "text", "class": "tile-sub", "text": "Today: {weatherToday}" },
+                      { "type": "text", "class": "tile-sub", "text": "Tomorrow: {weatherTomorrow}" }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "card card-records",
+                    "children": [
+                      { "type": "text", "class": "tile-label", "text": "RECORDS" },
+                      { "type": "text", "class": "tile-sub", "text": "Horse medals: {horseRaceMedals}" },
+                      { "type": "text", "class": "tile-sub", "text": "Frisbee: {frisbeeRecord}" }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "title": "Love",
+          "child": {
+            "type": "box",
+            "class": "love-tab",
+            "children": [
+              {
+                "type": "list",
+                "items": "$loves",
+                "class": "love-list",
+                "template": {
+                  "type": "box",
+                  "class": "card card-love",
+                  "children": [
+                    {
+                      "type": "box",
+                      "class": "love-header",
+                      "children": [
+                        { "type": "text", "class": "love-name", "text": "{name}" },
+                        { "type": "text", "class": "love-score", "text": "{value} / 1000" }
+                      ]
+                    },
+                    { "type": "bar", "value": "$pct", "max": 1, "class": "love-bar" }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
