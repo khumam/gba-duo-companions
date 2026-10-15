@@ -138,6 +138,12 @@ function rescalePxLengths(body) {
 function rewriteUrls(body, packBaseUrl) {
 	return body.replace(/url\(\s*(['"]?)([^'")]+)\1\s*\)/g, (_match, quote, path) => {
 		if (/^(https?:|data:|\/)/.test(path)) return `url(${quote}${path}${quote})`;
-		return `url("${packBaseUrl}/assets/${path}")`;
+		// The real engine resolves a stylesheet's url() relative to the pack's root directory
+		// (CssParser.resolveUrl), so an author writes "assets/fonts/x.ttf" meaning exactly that
+		// path under the pack root. The simulator serves assets at /packs/{id}/assets/..., so
+		// strip a leading "assets/" before appending — otherwise an already-"assets/"-prefixed
+		// path doubles up into .../assets/assets/fonts/x.ttf and 404s.
+		const relativePath = path.startsWith('assets/') ? path.slice('assets/'.length) : path;
+		return `url("${packBaseUrl}/assets/${relativePath}")`;
 	});
 }

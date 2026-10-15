@@ -65,6 +65,12 @@ describe('prepareStylesheetCss', () => {
 		expect(out).toContain('.card{ color: red; }');
 	});
 
+	it('does not double the assets/ prefix when a url() already starts with it', () => {
+		const out = prepareStylesheetCss('.card { background: url(assets/images/bg.png); }', '/packs/x');
+		expect(out).toContain('url("/packs/x/assets/images/bg.png")');
+		expect(out).not.toContain('assets/assets');
+	});
+
 	it('leaves absolute and data urls untouched', () => {
 		const out = prepareStylesheetCss('.a { background: url(https://example.com/x.png); }', '/packs/x');
 		expect(out).toContain('url(https://example.com/x.png)');
@@ -100,6 +106,13 @@ describe('extractFontFaceCss', () => {
 		expect(out).toContain('@font-face{ font-family: "Pixel"; src: url("/packs/demo/assets/fonts/Pixel.ttf"); }');
 		expect(out).not.toContain(':root');
 		expect(out).not.toContain('.card');
+	});
+
+	it('does not double the assets/ prefix for a real-pack-style @font-face src', () => {
+		const css = '@font-face { font-family: "Baloo2"; src: url("assets/fonts/Baloo2.ttf"); }';
+		const out = extractFontFaceCss(css, '/packs/harvest-moon-fomt-companion');
+		expect(out).toContain('url("/packs/harvest-moon-fomt-companion/assets/fonts/Baloo2.ttf")');
+		expect(out).not.toContain('assets/assets');
 	});
 
 	it('returns an empty string when there are no @font-face blocks', () => {
