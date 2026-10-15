@@ -76,10 +76,11 @@ describe('prepareStylesheetCss', () => {
 		expect(out).toContain('url(https://example.com/x.png)');
 	});
 
-	it('translates :root to :host so custom properties work inside a shadow tree', () => {
-		const out = prepareStylesheetCss(':root { --accent: red; }', '/packs/x');
-		expect(out).toContain(':host{ --accent: red; }');
+	it('translates :root to a data-gbaduo-root marker so it targets the actual root widget, not the shadow host', () => {
+		const out = prepareStylesheetCss(':root { --accent: red; width: 100px; }', '/packs/x');
+		expect(out).toContain('[data-gbaduo-root]{ --accent: red; width: 231px; }');
 		expect(out).not.toContain(':root');
+		expect(out).not.toContain(':host');
 	});
 
 	it('translates display: stack to display: grid plus the stack marker', () => {
@@ -137,10 +138,10 @@ describe('extractFontFaceCss', () => {
 });
 
 describe('prepareStylesheetCss with comments', () => {
-	it('strips a leading block comment before parsing, so :root still translates to :host', () => {
+	it('strips a leading block comment before parsing, so :root still translates correctly', () => {
 		const css = `/*\n * Design notes spanning\n * multiple lines\n */\n:root { --accent: red; }`;
 		const out = prepareStylesheetCss(css, '/packs/x');
-		expect(out).toContain(':host{ --accent: red; }');
+		expect(out).toContain('[data-gbaduo-root]{ --accent: red; }');
 	});
 
 	it('strips inline comments inside a rule body', () => {

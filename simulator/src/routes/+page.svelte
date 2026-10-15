@@ -15,6 +15,14 @@
 	let previewDataText = $state('{}');
 	let previewDataError = $state('');
 	let activeRenderer = null;
+	// `pollForChanges` fires every 500ms regardless of whether an earlier `loadAndRender` call
+	// is still in flight (its awaits can take longer than that, e.g. on first load fetching
+	// default-css + pack data). Without this guard, two overlapping calls both end up calling
+	// `shadowRoot.innerHTML = ''` and rebuilding — interleaved DOM mutations on the same shadow
+	// tree produce visibly broken layout (confirmed: text lines collapsing to 0-height and
+	// overlapping). Each call captures its own generation number and bails before touching the
+	// DOM if a newer call has since started, so only the most recent call's result ever lands.
+	let renderGeneration = 0;
 
 	/**
 	 * Pack content renders inside a Shadow DOM root so a pack's style.css (real selectors like
@@ -73,10 +81,16 @@
 
 	async function loadAndRender(packId) {
 		if (!packId || !canvasEl) return;
+		const myGeneration = ++renderGeneration;
+
 		await ensureDefaultCss();
+		if (myGeneration !== renderGeneration) return;
+
 		const res = await fetch(`/api/pack/${packId}`);
 		if (!res.ok) return;
 		const packData = await res.json();
+		if (myGeneration !== renderGeneration) return;
+
 		currentMtimes = packData.mtimes;
 		previewDataText = JSON.stringify(packData.previewData, null, 2);
 		previewDataError = '';
@@ -107,6 +121,9 @@
 
 		const renderer = createRenderer(packBaseUrl);
 		const rootEl = renderer.build(widget);
+		// `:root` in a pack's/default.css's CSS (prepare-stylesheet.js) targets this marker,
+		// not the shadow host — see that file for why.
+		rootEl.setAttribute('data-gbaduo-root', '');
 		shadowRoot.appendChild(rootEl);
 		activeRenderer = renderer;
 		renderer.update(packData.previewData);
@@ -276,6 +293,12 @@
 		color: white;
 		overflow: hidden;
 		position: relative;
+		/* `.canvas-frame`'s `line-height: 0` (below) is inherited CSS meant only to remove the
+		   inline-block whitespace gap under this element — but `line-height` inherits, and shadow
+		   DOM doesn't block inheritance, so without this reset every bit of text rendered inside
+		   the shadow tree (which never declares its own line-height) collapses to 0-height lines
+		   and visibly overlaps. Confirmed via a side-by-side clone comparison. */
+		line-height: normal;
 	}
 
 	.warning-banner {

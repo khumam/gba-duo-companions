@@ -299,7 +299,14 @@ export function createRenderer(packBaseUrl) {
 export function applyStackChildPlacement(root) {
 	const candidates = [root, ...root.querySelectorAll('*')];
 	for (const el of candidates) {
-		if (getComputedStyle(el).getPropertyValue('--gbaduo-stack').trim() !== '1') continue;
+		const computed = getComputedStyle(el);
+		// `--gbaduo-stack` is a custom property, which *inherits* — every descendant of a real
+		// stack container reports the same value via inheritance, not just the container
+		// itself. `display` is never inherited, so checking it too (must be `grid`, set
+		// directly by translateStackDisplay on this exact element) is what actually narrows
+		// this down to genuine stack containers instead of every element nested inside one.
+		if (computed.display !== 'grid') continue;
+		if (computed.getPropertyValue('--gbaduo-stack').trim() !== '1') continue;
 		for (const child of el.children) {
 			if (getComputedStyle(child).position === 'absolute') continue;
 			child.style.gridRow = '1';

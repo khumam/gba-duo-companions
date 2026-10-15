@@ -38,11 +38,23 @@ const WIDGET_TYPES = [
  */
 export function prepareStylesheetCss(cssText, packBaseUrl, baseCssText = '') {
 	const blocks = splitIntoBlocks(stripComments(`${baseCssText}\n${cssText}`));
-	return blocks
+	// Custom properties inherit: without this, every descendant of a real stack container
+	// (however many levels down, through however many non-stack elements) would also report
+	// --gbaduo-stack: 1 via inheritance, not just the container itself. A universal rule gives
+	// every element its own directly-specified value (0), which CSS always prefers over an
+	// inherited one — so only elements translateStackDisplay touches directly end up with 1.
+	const resetRule = '*{ --gbaduo-stack: 0; }\n';
+	const translated = blocks
 		.filter(({ selector }) => !selector.trim().startsWith('@font-face'))
 		.map(({ selector, body }) => {
 			const trimmedSelector = selector.trim();
-			const rootTranslated = trimmedSelector === ':root' ? ':host' : trimmedSelector;
+			// `:root` means the companion tree's root widget node (CompanionTree's root is the
+			// stylesheet's "document"), not the shadow DOM host. `:host` styles the outer host
+			// <div> (one DOM level above the rendered tree) — `width`/`height`/other
+			// non-inherited properties set there never reach the actual root widget element,
+			// which is what needs to actually fill the canvas. The caller tags the real root
+			// element with `data-gbaduo-root` (see +page.svelte) so this targets it directly.
+			const rootTranslated = trimmedSelector === ':root' ? '[data-gbaduo-root]' : trimmedSelector;
 			const typeTranslated = rootTranslated === '' ? rootTranslated : translateTypeSelectors(rootTranslated);
 			const translatedSelector = translatePseudoStates(typeTranslated);
 			const stackTranslatedBody = translateStackDisplay(body);
@@ -51,6 +63,7 @@ export function prepareStylesheetCss(cssText, packBaseUrl, baseCssText = '') {
 			return `${translatedSelector}{${rewrittenBody}}`;
 		})
 		.join('\n');
+	return resetRule + translated;
 }
 
 /**

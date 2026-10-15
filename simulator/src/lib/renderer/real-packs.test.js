@@ -57,6 +57,7 @@ describe.each(['pokemon-firered-companion', 'harvest-moon-fomt-companion'])('rea
 
 		const renderer = createRenderer(`/packs/${packId}`);
 		const rootEl = renderer.build(widget);
+		rootEl.setAttribute('data-gbaduo-root', '');
 		document.body.appendChild(rootEl);
 
 		expect(() => renderer.update(previewData)).not.toThrow();
