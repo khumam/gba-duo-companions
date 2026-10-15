@@ -2,6 +2,11 @@ import { describe, it, expect } from 'vitest';
 import { prepareStylesheetCss, extractFontFaceCss } from './prepare-stylesheet.js';
 
 describe('prepareStylesheetCss', () => {
+	it('always prepends a universal border-box reset, matching the real engine\'s box model', () => {
+		const out = prepareStylesheetCss('.card { width: 100px; }', '/packs/x');
+		expect(out).toMatch(/^\*\{ box-sizing: border-box; --gbaduo-stack: 0; \}/);
+	});
+
 	it('rescales px lengths by the device density', () => {
 		const out = prepareStylesheetCss('.card { width: 440px; padding: 12px; }', '/packs/x');
 		expect(out).toContain('width: 1015px');

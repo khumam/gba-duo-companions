@@ -38,12 +38,16 @@ const WIDGET_TYPES = [
  */
 export function prepareStylesheetCss(cssText, packBaseUrl, baseCssText = '') {
 	const blocks = splitIntoBlocks(stripComments(`${baseCssText}\n${cssText}`));
-	// Custom properties inherit: without this, every descendant of a real stack container
-	// (however many levels down, through however many non-stack elements) would also report
-	// --gbaduo-stack: 1 via inheritance, not just the container itself. A universal rule gives
-	// every element its own directly-specified value (0), which CSS always prefers over an
-	// inherited one — so only elements translateStackDisplay touches directly end up with 1.
-	const resetRule = '*{ --gbaduo-stack: 0; }\n';
+	// The real engine's box model is always border-box (width/height include padding+border —
+	// see ComputedStyle/BoxStyle.kt). The browser default is content-box, where padding adds
+	// to the declared width instead of being subtracted from it: a 1080px-wide element with
+	// 16px (37px scaled) padding renders 74px too wide, and that excess cascades through every
+	// nested box. --gbaduo-stack gets the same universal-rule treatment for the same reason
+	// custom properties inherit (see translateStackDisplay/applyStackChildPlacement): without
+	// it, every descendant of a real stack container would also report --gbaduo-stack: 1 via
+	// inheritance, not just the container itself. A directly-specified value always beats an
+	// inherited one, so only elements translateStackDisplay actually touches end up with 1.
+	const resetRule = '*{ box-sizing: border-box; --gbaduo-stack: 0; }\n';
 	const translated = blocks
 		.filter(({ selector }) => !selector.trim().startsWith('@font-face'))
 		.map(({ selector, body }) => {
