@@ -38,25 +38,46 @@ The packs need GBADuo **v0.1.3** or newer.
 
 ### Pokémon FireRed — `pokemon-firered-companion`
 
-For Pokémon FireRed (US, game code `BPRE`).
+For Pokémon FireRed (US, game code `BPRE`). Design: *Cinnabar Nightfire*, a volcano at
+night behind obsidian and molten-bronze panels.
 
-- **PARTY** - your team with levels, HP bars and status.
+- **PARTY** - your team with a type-coloured orb, types, levels, HP bars that turn amber
+  and red, and status tags; the lead Pokémon gets a molten frame.
 - **BAG** - every pocket: items, key items, Poké Balls, TMs & HMs, berries.
-- **TRAINER** - money, badges and play time.
+- **TRAINER** - your trainer card (name, ID, money, play time), the eight badges, and
+  Pokédex seen/caught.
 - **BATTLE** - opens by itself when a battle starts and goes back when it ends: both
   Pokémon with their types, HP and live stats, with stat changes (+1, -2…) marked.
 
 ### Harvest Moon: Friends of Mineral Town — `harvest-moon-fomt-companion`
 
 For Harvest Moon: Friends of Mineral Town (EU `A4NP`, US `BHFE`). Checked on the EU cart.
+Design: *The Mineral Town Almanac*, a storybook farm whose backdrop follows the in-game
+season and darkens to a starry sky at night.
 
-- **FARM** - gold, the tool in your hand, date and time, stamina and fatigue, weather and records.
+- **FARM** - date and time, today's and tomorrow's weather, gold, the tool in your hand,
+  stamina and fatigue, and records.
 - **BAG** - your rucksack: tools (the one in your hand first) and items.
 - **LOVE** - the bachelorettes with their heart colour, and every villager's friendship.
 - **SPRITES** - each Harvest Sprite's friendship, today's job and work experience
   (harvesting, watering, animals).
 
 See [`harvest-moon-fomt-companion/NOTES.md`](harvest-moon-fomt-companion/NOTES.md) for
+what's verified on the device and what isn't yet.
+
+### The Legend of Zelda: The Minish Cap — `zelda-minish-cap-companion`
+
+For The Minish Cap (US `BZME`, EU `BZMP`, JP `BZMJ`). Design: *Enchanted forest*, the world
+at Minish size, with leaf-framed plaques over a firefly-lit canopy.
+
+- **LINK** - hearts and heart pieces, where you are, the A and B items, rupees and wallet,
+  shells, bombs and arrows, bottles, and the active charm or picolyte with its time left.
+- **ITEMS** - the four elements, your best gear, tiger scrolls learned and quest items.
+- **KINSTONES** - pieces in the bag by colour, and fusions done out of 100.
+- **DUNGEONS** - each dungeon's keys, map, compass and big key, which ones are cleared,
+  and the one you're in.
+
+See [`zelda-minish-cap-companion/NOTES.md`](zelda-minish-cap-companion/NOTES.md) for
 what's verified on the device and what isn't yet.
 
 Want a pack for another game? [Open an issue](https://github.com/khumam/gba-duo-companions/issues).
@@ -83,6 +104,9 @@ The guides live in the app repo:
 - [Styling the companion](https://github.com/khumam/gba-duo/blob/main/docs-packs/companion-styling.md) - layout widgets, CSS selectors and properties, fonts.
 - [Pages and buttons](https://github.com/khumam/gba-duo/blob/main/docs-packs/companion-pages.md) - `onClick`, pages, and switching pages from `update()`.
 - [Examples](https://github.com/khumam/gba-duo/tree/main/docs-packs/examples).
+- [`skill/enchanted-forest-pack-design`](skill/enchanted-forest-pack-design) - the design
+  system behind these packs (art kit, base stylesheet, layout snippets, preview renderer),
+  packaged as a Claude Code skill.
 
 <details>
 <summary><strong>Preview while you build</strong></summary>
@@ -102,9 +126,10 @@ root of the zip) and import it in GBADuo.
 
 Each release has one zip per pack, named `<pack-id>-<version>.zip`, with the pack's files
 at the root of the zip. Bump `version` in the pack's `manifest.json` when it changes.
+`art/` holds the SVG sources and the script that draws `assets/img/`; it stays out of the zip.
 
 ```sh
-cd my-pack && zip -rX ../my-pack-1.0.0.zip . -x '*.DS_Store'
+cd my-pack && zip -rX ../my-pack-1.0.0.zip . -x '*.DS_Store' 'art/*'
 ```
 
 </details>
@@ -118,15 +143,22 @@ cd my-pack && zip -rX ../my-pack-1.0.0.zip . -x '*.DS_Store'
   Ironmon-Tracker's FireRed address table for battle data.
 - Harvest Moon: [Data Crystal's RAM map](https://datacrystal.tcrf.net/wiki/Harvest_Moon:_Friends_of_Mineral_Town/RAM_map)
   and samurai goroh's code guide.
+- The Minish Cap: the [zeldaret](https://github.com/zeldaret/tmc) tmc decompilation and
+  samurai goroh's code guide.
 - Fonts: [Silkscreen](https://fonts.google.com/specimen/Silkscreen),
-  [Baloo 2](https://fonts.google.com/specimen/Baloo+2) and
-  [Quicksand](https://fonts.google.com/specimen/Quicksand), under the SIL Open Font License 1.1.
+  [Bungee](https://fonts.google.com/specimen/Bungee),
+  [Barlow Semi Condensed](https://fonts.google.com/specimen/Barlow+Semi+Condensed),
+  [Sniglet](https://fonts.google.com/specimen/Sniglet), [Mali](https://fonts.google.com/specimen/Mali),
+  [Uncial Antiqua](https://fonts.google.com/specimen/Uncial+Antiqua),
+  [Cinzel Decorative](https://fonts.google.com/specimen/Cinzel+Decorative) and
+  [Alegreya Sans](https://fonts.google.com/specimen/Alegreya+Sans), under the SIL Open Font License 1.1.
+- Art: every image in the packs is original, drawn in code by each pack's `art/build.mjs`.
 
 </details>
 
 ## Disclaimer
 
 These packs are fan-made, not affiliated with or endorsed by Nintendo, Game Freak,
-Creatures, The Pokémon Company or Marvelous. Pokémon, Harvest Moon and all related
+Creatures, The Pokémon Company or Marvelous. Pokémon, Harvest Moon, The Legend of Zelda and all related
 names are trademarks of their respective owners. No games or game art are included:
 use your own legally dumped ROMs.

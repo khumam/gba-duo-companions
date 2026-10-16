@@ -1,0 +1,187 @@
+/*
+ * ENCHANTED FOREST THEME — copy to <pack>/style.css, then add game sections.
+ * Needs assets/img/* from art-kit.mjs and assets/fonts/* (see SKILL.md).
+ *
+ * GBADuo CSS reminders: background-size takes px/cover/contain only (no %),
+ * no radial gradients / filter / keyframes / pseudo-elements, and every art
+ * image needs image-rendering: auto (images default to pixelated).
+ */
+
+:root {
+  --night:     #06180F;
+  --glass:     rgba(9, 34, 24, 0.82);
+  --glass-hi:  rgba(22, 64, 42, 0.86);
+  --gold:      #E8BE55;
+  --gold-hi:   #FFE9A3;
+  --gold-deep: #9C6F1C;
+  --parchment: #F6EDCF;
+  --parch-low: #E6D29C;
+  --ink:       #2A2216;
+  --ink-soft:  #6B5A3A;
+  --text:      #F3EBD3;
+  --text-soft: #B8C8A8;
+
+  --leaf-shape: 22px 6px 22px 6px;
+}
+
+@font-face { font-family: "Uncial"; src: url("assets/fonts/UncialAntiqua.ttf"); }
+@font-face { font-family: "Cinzel"; src: url("assets/fonts/CinzelDecorative-Bold.ttf"); }
+@font-face { font-family: "Alegreya"; src: url("assets/fonts/AlegreyaSans-Medium.ttf"); }
+@font-face { font-family: "AlegreyaBold"; src: url("assets/fonts/AlegreyaSans-Bold.ttf"); }
+
+#screen {
+  background-color: var(--night);
+  background-image: url("assets/img/forest.png");
+  background-size: cover;
+  color: var(--text);
+  font-family: "Alegreya", serif;
+  padding: 10px 12px 0 12px;
+}
+
+/* ---- waiting for a save ---------------------------------------------------- */
+
+.waiting { align-items: center; justify-content: center; height: 100%; gap: 2px; }
+.emblem { width: 200px; height: 200px; image-rendering: auto; }
+.waiting-title {
+  font-family: "Uncial", serif;
+  font-size: 30px;
+  color: var(--gold-hi);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85);
+  margin-top: -6px;
+}
+.waiting-garland { width: 240px; height: 20px; image-rendering: auto; }
+.waiting-sub { font-size: 14px; color: var(--text-soft); text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9); }
+
+/* ---- tabs: a fixed 84x34 leaf each (px only), gold when selected ---------------- */
+
+tab-bar { gap: 0; justify-content: space-between; margin-bottom: 6px; }
+
+tab {
+  width: 84px;
+  height: 34px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: "Cinzel", serif;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  color: var(--text);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
+  background-image: url("assets/img/tab-leaf.png");
+  background-size: 84px 34px;
+  padding: 9px 0 0 0;
+  transition: color 200ms ease-out, transform 150ms ease-out;
+}
+
+tab:active {
+  color: #3A2408;
+  text-shadow: 0 1px 0 rgba(255, 240, 200, 0.6);
+  background-image: url("assets/img/tab-leaf-active.png");
+}
+
+tab:pressed { transform: scale(0.94); }
+tab-content { padding-top: 2px; }
+
+.tab-page { gap: 10px; overflow: auto; padding: 12px 2px 24px 2px; }
+
+/* ---- plaques ------------------------------------------------------------------ */
+
+.plaque {
+  position: relative;
+  background: linear-gradient(160deg, var(--glass-hi), var(--glass));
+  border: 1px solid rgba(232, 190, 85, 0.55);
+  border-radius: 14px;
+  padding: 10px 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  gap: 4px;
+}
+
+.plaque.hero {
+  background: linear-gradient(170deg, var(--parchment), var(--parch-low));
+  border: 2px solid var(--gold-deep);
+  border-radius: var(--leaf-shape);
+  padding: 14px 16px 12px 16px;
+  color: var(--ink);
+  gap: 6px;
+}
+
+.sprig { position: absolute; width: 62px; height: 41px; image-rendering: auto; }
+.sprig-l { top: -18px; left: -14px; }
+.sprig-r { top: -18px; right: -14px; }
+.sprig.small { width: 46px; height: 30px; top: -14px; right: -10px; }
+
+.hero-name { font-family: "Uncial", serif; font-size: 26px; line-height: 28px; color: #234A2C; text-align: center; }
+.hero-title { font-family: "Uncial", serif; font-size: 22px; color: #234A2C; }
+.hero-foot { flex-direction: row; justify-content: space-between; align-items: center; }
+.foot-text { font-size: 12px; color: var(--ink-soft); }
+
+/* ---- type ------------------------------------------------------------------------ */
+
+.label { font-family: "Cinzel", serif; font-size: 10px; letter-spacing: 1px; color: var(--gold); }
+.num { font-family: "AlegreyaBold", sans-serif; font-size: 24px; line-height: 26px; color: var(--text); }
+.fine { font-size: 11px; color: var(--text-soft); }
+.grow { flex: 1; }
+
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+
+/* section title: vine, words, vine */
+.vine-title { flex-direction: row; align-items: center; justify-content: center; gap: 6px; margin-top: 4px; }
+.vine { width: 84px; height: 13px; image-rendering: auto; }
+.vine-text {
+  font-family: "Cinzel", serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--gold-hi);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+}
+
+/* ---- gauges: dark groove, gem-coloured fill (one gradient per stat) --------------- */
+
+.gauge {
+  height: 7px;
+  border-radius: 999px;
+  background-color: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(232, 190, 85, 0.35);
+  margin-top: 2px;
+}
+.gauge > fill { border-radius: 999px; transition: width 400ms ease-out; }
+.gold-gauge > fill { background: linear-gradient(90deg, var(--gold-deep), var(--gold-hi)); }
+
+/* ---- stat plaque: icon + label/number, gauge, fine print ---------------------------- */
+
+.stat-head { flex-direction: row; align-items: center; gap: 8px; }
+.stat-col { gap: 0; }
+.icon { width: 24px; height: 24px; image-rendering: auto; }
+
+/* ---- button badge: a letter on an acorn (display: stack) ---------------------------- */
+
+.button-card { flex-direction: row; align-items: center; gap: 8px; padding: 8px 10px; border-radius: 6px 18px 6px 18px; }
+.acorn { display: stack; place-items: center; width: 34px; height: 34px; }
+.acorn-img { width: 34px; height: 34px; image-rendering: auto; }
+.acorn-letter { font-family: "Cinzel", serif; font-size: 14px; color: #3A2408; margin-top: 8px; }
+
+/* ---- chips: leaf-cut; locked ones faded, owned ones gold ---------------------------- */
+
+.leaf-chip {
+  font-size: 13px;
+  color: var(--text);
+  background: linear-gradient(160deg, var(--glass-hi), var(--glass));
+  border: 1px solid rgba(232, 190, 85, 0.45);
+  border-radius: 14px 4px 14px 4px;
+  padding: 7px 10px;
+}
+.leaf-chip.locked { color: rgba(243, 235, 211, 0.4); border-color: rgba(232, 190, 85, 0.18); }
+.leaf-chip.owned { color: #3A2408; background: linear-gradient(160deg, var(--gold-hi), var(--gold)); border-color: var(--gold-deep); }
+
+.dim { opacity: 0.22; }
+.dim.owned { opacity: 1; }
+
+/* ---- heart row: one image per container, wraps after ~12 ------------------------------ */
+
+.heart-row { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 2px; padding: 2px 0; }
+.heart { width: 24px; height: 22px; image-rendering: auto; }
+
+/* ---- markers (absolute: put them inside a .plaque) ------------------------------------- */
+
+.seal { position: absolute; top: 6px; right: 8px; width: 36px; height: 36px; image-rendering: auto; }
+.icon-firefly { width: 18px; height: 18px; image-rendering: auto; }
