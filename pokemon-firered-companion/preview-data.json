@@ -1,72 +1,378 @@
 {
+  "ready": true,
+  "waiting": false,
   "party": [
-    { "name": "BULBASAUR", "level": 5, "hp": 20, "maxHp": 20, "status": "" },
-    { "name": "PIDGEY", "level": 7, "hp": 24, "maxHp": 27, "status": "Poisoned" }
+    {
+      "name": "CHARMELEON",
+      "level": 24,
+      "hp": 61,
+      "maxHp": 72,
+      "status": "",
+      "lead": true,
+      "slot": 1,
+      "orb": "asset:img/orb-fire.png",
+      "types": [
+        {
+          "name": "Fire",
+          "color": "#EE8130"
+        }
+      ],
+      "hpPct": 0.8472222222222222,
+      "hpHigh": true,
+      "hpMid": false,
+      "hpLow": false,
+      "fainted": false,
+      "hasStatus": false,
+      "statusTag": "",
+      "statusColor": "#555"
+    },
+    {
+      "name": "PIDGEOTTO",
+      "level": 19,
+      "hp": 30,
+      "maxHp": 55,
+      "status": "Paralyzed",
+      "lead": false,
+      "slot": 2,
+      "orb": "asset:img/orb-normal.png",
+      "types": [
+        {
+          "name": "Normal",
+          "color": "#A8A77A"
+        },
+        {
+          "name": "Flying",
+          "color": "#A98FF3"
+        }
+      ],
+      "hpPct": 0.5454545454545454,
+      "hpHigh": true,
+      "hpMid": false,
+      "hpLow": false,
+      "fainted": false,
+      "hasStatus": true,
+      "statusTag": "PAR",
+      "statusColor": "#D8B42A"
+    },
+    {
+      "name": "PIKACHU",
+      "level": 17,
+      "hp": 8,
+      "maxHp": 44,
+      "status": "",
+      "lead": false,
+      "slot": 3,
+      "orb": "asset:img/orb-electric.png",
+      "types": [
+        {
+          "name": "Electric",
+          "color": "#F7D02C"
+        }
+      ],
+      "hpPct": 0.18181818181818182,
+      "hpHigh": false,
+      "hpMid": false,
+      "hpLow": true,
+      "fainted": false,
+      "hasStatus": false,
+      "statusTag": "",
+      "statusColor": "#555"
+    },
+    {
+      "name": "GEODUDE",
+      "level": 15,
+      "hp": 40,
+      "maxHp": 40,
+      "status": "",
+      "lead": false,
+      "slot": 4,
+      "orb": "asset:img/orb-rock.png",
+      "types": [
+        {
+          "name": "Rock",
+          "color": "#B6A136"
+        },
+        {
+          "name": "Ground",
+          "color": "#E2BF65"
+        }
+      ],
+      "hpPct": 1.0,
+      "hpHigh": true,
+      "hpMid": false,
+      "hpLow": false,
+      "fainted": false,
+      "hasStatus": false,
+      "statusTag": "",
+      "statusColor": "#555"
+    },
+    {
+      "name": "ODDISH",
+      "level": 14,
+      "hp": 22,
+      "maxHp": 39,
+      "status": "Poisoned",
+      "lead": false,
+      "slot": 5,
+      "orb": "asset:img/orb-grass.png",
+      "types": [
+        {
+          "name": "Grass",
+          "color": "#7AC74C"
+        },
+        {
+          "name": "Poison",
+          "color": "#A33EA1"
+        }
+      ],
+      "hpPct": 0.5641025641025641,
+      "hpHigh": true,
+      "hpMid": false,
+      "hpLow": false,
+      "fainted": false,
+      "hasStatus": true,
+      "statusTag": "PSN",
+      "statusColor": "#A33EA1"
+    },
+    {
+      "name": "SLOWPOKE",
+      "level": 16,
+      "hp": 0,
+      "maxHp": 52,
+      "status": "",
+      "lead": false,
+      "slot": 6,
+      "orb": "asset:img/orb-water.png",
+      "types": [
+        {
+          "name": "Water",
+          "color": "#6390F0"
+        },
+        {
+          "name": "Psychic",
+          "color": "#F95587"
+        }
+      ],
+      "hpPct": 0.0,
+      "hpHigh": false,
+      "hpMid": false,
+      "hpLow": true,
+      "fainted": true,
+      "hasStatus": false,
+      "statusTag": "FNT",
+      "statusColor": "#555"
+    }
   ],
+  "partyCount": 6,
   "bag": {
     "items": [
-      { "name": "Potion", "count": 3 },
-      { "name": "Antidote", "count": 1 }
+      {
+        "name": "Potion",
+        "count": 4
+      },
+      {
+        "name": "Super Potion",
+        "count": 2
+      },
+      {
+        "name": "Antidote",
+        "count": 3
+      },
+      {
+        "name": "Paralyze Heal",
+        "count": 1
+      },
+      {
+        "name": "Escape Rope",
+        "count": 1
+      },
+      {
+        "name": "Repel",
+        "count": 5
+      },
+      {
+        "name": "Nugget",
+        "count": 1
+      }
     ],
-    "keyItems": [{ "name": "Town Map", "count": 1 }],
-    "balls": [{ "name": "Poke Ball", "count": 5 }],
-    "tmHm": [],
-    "berries": []
+    "keyItems": [
+      {
+        "name": "Town Map",
+        "count": 1
+      },
+      {
+        "name": "Bicycle",
+        "count": 1
+      },
+      {
+        "name": "Old Rod",
+        "count": 1
+      },
+      {
+        "name": "S.S. Ticket",
+        "count": 1
+      }
+    ],
+    "balls": [
+      {
+        "name": "Poke Ball",
+        "count": 11
+      },
+      {
+        "name": "Great Ball",
+        "count": 3
+      }
+    ],
+    "tmHm": [
+      {
+        "name": "TM28",
+        "count": 1
+      },
+      {
+        "name": "TM39",
+        "count": 1
+      },
+      {
+        "name": "TM45",
+        "count": 1
+      },
+      {
+        "name": "HM01",
+        "count": 1
+      }
+    ],
+    "berries": [
+      {
+        "name": "Oran Berry",
+        "count": 3
+      },
+      {
+        "name": "Pecha Berry",
+        "count": 1
+      }
+    ],
+    "itemsCount": 7,
+    "keyItemsCount": 4,
+    "ballsCount": 2,
+    "tmHmCount": 4,
+    "berriesCount": 2
   },
-  "trainer": { "money": 3000, "badges": 0, "playTime": "0:03:56" },
+  "trainer": {
+    "name": "RED",
+    "id": "24601",
+    "money": 12480,
+    "moneyText": "12,480",
+    "badges": 3,
+    "badgeList": [
+      {
+        "name": "Boulder",
+        "earned": true,
+        "src": "asset:img/badge-1.png"
+      },
+      {
+        "name": "Cascade",
+        "earned": true,
+        "src": "asset:img/badge-2.png"
+      },
+      {
+        "name": "Thunder",
+        "earned": true,
+        "src": "asset:img/badge-3.png"
+      },
+      {
+        "name": "Rainbow",
+        "earned": false,
+        "src": "asset:img/badge-4-empty.png"
+      },
+      {
+        "name": "Soul",
+        "earned": false,
+        "src": "asset:img/badge-5-empty.png"
+      },
+      {
+        "name": "Marsh",
+        "earned": false,
+        "src": "asset:img/badge-6-empty.png"
+      },
+      {
+        "name": "Volcano",
+        "earned": false,
+        "src": "asset:img/badge-7-empty.png"
+      },
+      {
+        "name": "Earth",
+        "earned": false,
+        "src": "asset:img/badge-8-empty.png"
+      }
+    ],
+    "badgePct": 0.375,
+    "caught": 23,
+    "seen": 41,
+    "dexTotal": 151,
+    "caughtPct": 0.152317880794702,
+    "seenPct": 0.271523178807947,
+    "playTime": "6:42:17"
+  },
   "battle": {
-    "kind": "WILD BATTLE",
+    "kind": "TRAINER BATTLE",
     "mons": [
       {
-        "side": "YOU",
-        "foe": false,
-        "name": "BULBASAUR",
-        "level": 5,
-        "hp": 17,
-        "maxHp": 20,
+        "name": "CHARMELEON",
+        "level": 24,
+        "hp": 61,
+        "maxHp": 72,
         "status": "",
+        "lead": false,
+        "slot": 1,
+        "orb": "asset:img/orb-fire.png",
         "types": [
           {
-            "name": "Grass",
-            "color": "#A7DB8D"
-          },
-          {
-            "name": "Poison",
-            "color": "#C183C1"
+            "name": "Fire",
+            "color": "#EE8130"
           }
         ],
+        "hpPct": 0.8472222222222222,
+        "hpHigh": true,
+        "hpMid": false,
+        "hpLow": false,
+        "fainted": false,
+        "hasStatus": false,
+        "statusTag": "",
+        "statusColor": "#555",
+        "side": "YOU",
+        "foe": false,
         "stats": [
           {
             "name": "ATK",
-            "value": 10,
+            "value": 49,
+            "stage": "+1",
+            "up": true,
+            "down": false
+          },
+          {
+            "name": "DEF",
+            "value": 44,
             "stage": "",
             "up": false,
             "down": false
           },
           {
-            "name": "DEF",
-            "value": 10,
-            "stage": "-1",
-            "up": false,
-            "down": true
-          },
-          {
             "name": "SP.ATK",
-            "value": 12,
+            "value": 56,
             "stage": "",
             "up": false,
             "down": false
           },
           {
             "name": "SP.DEF",
-            "value": 12,
+            "value": 47,
             "stage": "",
             "up": false,
             "down": false
           },
           {
             "name": "SPEED",
-            "value": 9,
+            "value": 60,
             "stage": "",
             "up": false,
             "down": false
@@ -74,57 +380,68 @@
         ]
       },
       {
-        "side": "FOE",
-        "foe": true,
-        "name": "PIDGEY",
-        "level": 3,
-        "hp": 9,
-        "maxHp": 15,
-        "status": "",
+        "name": "ONIX",
+        "level": 14,
+        "hp": 24,
+        "maxHp": 41,
+        "status": "Burned",
+        "lead": false,
+        "slot": 1,
+        "orb": "asset:img/orb-rock.png",
         "types": [
           {
-            "name": "Normal",
-            "color": "#C6C6A7"
+            "name": "Rock",
+            "color": "#B6A136"
           },
           {
-            "name": "Flying",
-            "color": "#C6B7F5"
+            "name": "Ground",
+            "color": "#E2BF65"
           }
         ],
+        "hpPct": 0.5853658536585366,
+        "hpHigh": true,
+        "hpMid": false,
+        "hpLow": false,
+        "fainted": false,
+        "hasStatus": true,
+        "statusTag": "BRN",
+        "statusColor": "#E2552A",
+        "side": "FOE",
+        "foe": true,
         "stats": [
           {
             "name": "ATK",
-            "value": 7,
+            "value": 23,
             "stage": "",
             "up": false,
             "down": false
           },
           {
             "name": "DEF",
-            "value": 7,
-            "stage": "",
+            "value": 72,
+            "stage": "-1",
             "up": false,
-            "down": false
+            "down": true
           },
           {
             "name": "SP.ATK",
-            "value": 6,
+            "value": 19,
             "stage": "",
             "up": false,
             "down": false
           },
           {
             "name": "SP.DEF",
-            "value": 6,
+            "value": 25,
             "stage": "",
             "up": false,
             "down": false
           },
           {
             "name": "SPEED",
-            "value": 8,
-            "stage": "+1",
-            "up": true,
+            "value": 39,
+            "stage": "",
+            "up": false,
             "down": false
           }
         ]

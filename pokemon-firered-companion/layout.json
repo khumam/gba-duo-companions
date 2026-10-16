@@ -1,341 +1,477 @@
 {
   "type": "box",
   "id": "screen",
-  "child": {
-    "type": "pages",
-    "pages": [
-      {
-        "name": "main",
-        "child": {
-          "type": "tabs",
-          "tabs": [
-            {
-              "title": "Party",
-              "child": {
-                "type": "list",
-                "items": "$party",
-                "empty": "No Pokemon",
-                "template": {
+  "children": [
+    {
+      "type": "box",
+      "class": "waiting",
+      "visibleIf": "$waiting",
+      "children": [
+        { "type": "image", "class": "crest", "src": "asset:img/firebird.png" },
+        { "type": "text", "class": "waiting-title", "text": "FIRERED" },
+        {
+          "type": "box",
+          "class": "rule",
+          "children": [
+            { "type": "image", "class": "rule-img", "src": "asset:img/divider-left.png" },
+            { "type": "image", "class": "rule-img", "src": "asset:img/divider-right.png" }
+          ]
+        },
+        { "type": "text", "class": "waiting-sub", "text": "Continue your journey to light the fire" }
+      ]
+    },
+    {
+      "type": "pages",
+      "visibleIf": "$ready",
+      "pages": [
+        {
+          "name": "main",
+          "child": {
+            "type": "tabs",
+            "tabs": [
+              {
+                "title": "Party",
+                "child": {
                   "type": "box",
-                  "class": "card card-party",
-                  "child": {
-                    "type": "row",
-                    "gap": 16,
-                    "children": [
-                      {
-                        "type": "image",
-                        "src": "$icon",
-                        "size": 32
-                      },
-                      {
-                        "type": "column",
-                        "gap": 8,
+                  "class": "tab-page",
+                  "children": [
+                    {
+                      "type": "list",
+                      "class": "party-list",
+                      "items": "$party",
+                      "empty": "No Pokemon yet",
+                      "template": {
+                        "type": "box",
+                        "class": "plaque mon",
+                        "classIf": { "lead": "$lead", "fainted": "$fainted" },
                         "children": [
+                          { "type": "image", "class": "flare flare-l", "visibleIf": "$lead", "src": "asset:img/flare-left.png" },
+                          { "type": "image", "class": "flare flare-r", "visibleIf": "$lead", "src": "asset:img/flare-right.png" },
+                          { "type": "image", "class": "orb", "src": "$orb" },
                           {
-                            "type": "text",
-                            "class": "name",
-                            "text": "{name}  LV.{level}"
-                          },
-                          {
-                            "type": "bar",
-                            "value": "$hp",
-                            "maxKey": "$maxHp",
-                            "max": 1,
-                            "height": 10
-                          },
-                          {
-                            "type": "text",
-                            "class": "hp-label",
-                            "text": "{hp}/{maxHp} HP  {status}"
+                            "type": "box",
+                            "class": "mon-info",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "mon-head",
+                                "children": [
+                                  { "type": "text", "class": "mon-name", "text": "{name}" },
+                                  { "type": "text", "class": "mon-level", "text": "Lv{level}" }
+                                ]
+                              },
+                              {
+                                "type": "list",
+                                "class": "type-row",
+                                "items": "$types",
+                                "template": { "type": "text", "class": "type-chip", "text": "{name}", "bindStyle": { "background-color": "{color}" } }
+                              },
+                              {
+                                "type": "bar",
+                                "class": "hp-bar",
+                                "classIf": { "high": "$hpHigh", "mid": "$hpMid", "low": "$hpLow" },
+                                "value": "$hpPct",
+                                "max": 1
+                              },
+                              {
+                                "type": "box",
+                                "class": "mon-foot",
+                                "children": [
+                                  { "type": "text", "class": "hp-text", "text": "{hp} / {maxHp} HP" },
+                                  { "type": "text", "class": "status-chip", "visibleIf": "$hasStatus", "text": "{statusTag}", "bindStyle": { "background-color": "{statusColor}" } },
+                                  { "type": "text", "class": "status-chip fnt", "visibleIf": "$fainted", "text": "FNT" }
+                                ]
+                              }
+                            ]
                           }
                         ]
                       }
-                    ]
-                  }
+                    }
+                  ]
                 }
-              }
-            },
-            {
-              "title": "Bag",
-              "child": {
-                "type": "tabs",
-                "tabs": [
-                  {
-                    "title": "Items",
-                    "child": {
-                      "type": "list",
-                      "class": "bag-list",
-                      "items": "$bag.items",
-                      "empty": "Empty",
-                      "template": {
+              },
+              {
+                "title": "Bag",
+                "child": {
+                  "type": "tabs",
+                  "tabs": [
+                    {
+                      "title": "Items",
+                      "child": {
                         "type": "box",
-                        "class": "card card-item",
-                        "child": {
-                          "type": "text",
-                          "class": "item-label",
-                          "text": "{name}  x{count}"
-                        }
-                      }
-                    }
-                  },
-                  {
-                    "title": "Key Items",
-                    "child": {
-                      "type": "list",
-                      "class": "bag-list",
-                      "items": "$bag.keyItems",
-                      "empty": "Empty",
-                      "template": {
-                        "type": "box",
-                        "class": "card card-item",
-                        "child": {
-                          "type": "text",
-                          "class": "item-label",
-                          "text": "{name}  x{count}"
-                        }
-                      }
-                    }
-                  },
-                  {
-                    "title": "Poke Balls",
-                    "child": {
-                      "type": "list",
-                      "class": "bag-list",
-                      "items": "$bag.balls",
-                      "empty": "Empty",
-                      "template": {
-                        "type": "box",
-                        "class": "card card-item",
-                        "child": {
-                          "type": "text",
-                          "class": "item-label",
-                          "text": "{name}  x{count}"
-                        }
-                      }
-                    }
-                  },
-                  {
-                    "title": "TM/HM",
-                    "child": {
-                      "type": "list",
-                      "class": "bag-list",
-                      "items": "$bag.tmHm",
-                      "empty": "Empty",
-                      "template": {
-                        "type": "box",
-                        "class": "card card-item",
-                        "child": {
-                          "type": "text",
-                          "class": "item-label",
-                          "text": "{name}  x{count}"
-                        }
-                      }
-                    }
-                  },
-                  {
-                    "title": "Berries",
-                    "child": {
-                      "type": "list",
-                      "class": "bag-list",
-                      "items": "$bag.berries",
-                      "empty": "Empty",
-                      "template": {
-                        "type": "box",
-                        "class": "card card-item",
-                        "child": {
-                          "type": "text",
-                          "class": "item-label",
-                          "text": "{name}  x{count}"
-                        }
-                      }
-                    }
-                  }
-                ]
-              }
-            },
-            {
-              "title": "Trainer",
-              "child": {
-                "type": "row",
-                "class": "trainer-grid",
-                "children": [
-                  {
-                    "type": "box",
-                    "class": "tile tile-money",
-                    "child": {
-                      "type": "column",
-                      "gap": 8,
-                      "children": [
-                        {
-                          "type": "text",
-                          "class": "stat-label",
-                          "text": "MONEY"
-                        },
-                        {
-                          "type": "text",
-                          "class": "stat-value money",
-                          "text": "{trainer.money}"
-                        }
-                      ]
-                    }
-                  },
-                  {
-                    "type": "box",
-                    "class": "tile tile-badges",
-                    "child": {
-                      "type": "column",
-                      "gap": 8,
-                      "children": [
-                        {
-                          "type": "text",
-                          "class": "stat-label",
-                          "text": "BADGES"
-                        },
-                        {
-                          "type": "text",
-                          "class": "stat-value",
-                          "text": "{trainer.badges}/8"
-                        }
-                      ]
-                    }
-                  },
-                  {
-                    "type": "box",
-                    "class": "tile tile-time",
-                    "child": {
-                      "type": "column",
-                      "gap": 8,
-                      "children": [
-                        {
-                          "type": "text",
-                          "class": "stat-label",
-                          "text": "PLAY TIME"
-                        },
-                        {
-                          "type": "text",
-                          "class": "stat-value",
-                          "text": "{trainer.playTime}"
-                        }
-                      ]
-                    }
-                  }
-                ]
-              }
-            }
-          ]
-        }
-      },
-      {
-        "name": "battle",
-        "child": {
-          "type": "column",
-          "class": "battle-page",
-          "children": [
-            {
-              "type": "row",
-              "class": "battle-head",
-              "children": [
-                {
-                  "type": "text",
-                  "class": "battle-kind",
-                  "text": "{battle.kind}"
-                },
-                {
-                  "type": "button",
-                  "class": "battle-back",
-                  "text": "BACK",
-                  "onClick": "back"
-                }
-              ]
-            },
-            {
-              "type": "list",
-              "class": "battle-mons",
-              "items": "$battle.mons",
-              "template": {
-                "type": "box",
-                "class": "card card-battle",
-                "classIf": {
-                  "foe": "$foe"
-                },
-                "children": [
-                  {
-                    "type": "row",
-                    "class": "battle-mon-head",
-                    "children": [
-                      {
-                        "type": "text",
-                        "class": "battle-side",
-                        "text": "{side}"
-                      },
-                      {
-                        "type": "text",
-                        "class": "name",
-                        "text": "{name}  LV.{level}"
-                      }
-                    ]
-                  },
-                  {
-                    "type": "list",
-                    "class": "type-chips",
-                    "items": "$types",
-                    "template": {
-                      "type": "text",
-                      "class": "type-chip",
-                      "text": "{name}",
-                      "bindStyle": {
-                        "background-color": "{color}"
-                      }
-                    }
-                  },
-                  {
-                    "type": "bar",
-                    "class": "battle-hp",
-                    "value": "$hp",
-                    "maxKey": "$maxHp",
-                    "max": 1
-                  },
-                  {
-                    "type": "text",
-                    "class": "hp-label",
-                    "text": "{hp}/{maxHp} HP  {status}"
-                  },
-                  {
-                    "type": "list",
-                    "class": "battle-stats",
-                    "items": "$stats",
-                    "template": {
-                      "type": "box",
-                      "class": "battle-stat",
-                      "children": [
-                        {
-                          "type": "text",
-                          "class": "stat-label",
-                          "text": "{name}"
-                        },
-                        {
-                          "type": "text",
-                          "class": "stat-value",
-                          "text": "{value}"
-                        },
-                        {
-                          "type": "text",
-                          "class": "stat-stage",
-                          "classIf": {
-                            "up": "$up",
-                            "down": "$down"
+                        "class": "tab-page pocket-page",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "plaque pocket-head",
+                            "children": [
+                              { "type": "image", "class": "icon", "src": "asset:img/pocket-items.png" },
+                              { "type": "text", "class": "pocket-title", "text": "Items" },
+                              { "type": "text", "class": "pocket-count", "text": "{bag.itemsCount}" }
+                            ]
                           },
-                          "text": "{stage}"
+                          {
+                            "type": "list",
+                            "class": "item-grid",
+                            "items": "$bag.items",
+                            "empty": "Nothing here",
+                            "template": {
+                              "type": "box",
+                              "class": "item",
+                              "children": [
+                                { "type": "text", "class": "item-name", "text": "{name}" },
+                                { "type": "text", "class": "item-qty", "text": "×{count}" }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "title": "Key",
+                      "child": {
+                        "type": "box",
+                        "class": "tab-page pocket-page",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "plaque pocket-head",
+                            "children": [
+                              { "type": "image", "class": "icon", "src": "asset:img/pocket-key.png" },
+                              { "type": "text", "class": "pocket-title", "text": "Key Items" },
+                              { "type": "text", "class": "pocket-count", "text": "{bag.keyItemsCount}" }
+                            ]
+                          },
+                          {
+                            "type": "list",
+                            "class": "item-grid",
+                            "items": "$bag.keyItems",
+                            "empty": "Nothing here",
+                            "template": {
+                              "type": "box",
+                              "class": "item",
+                              "children": [
+                                { "type": "text", "class": "item-name", "text": "{name}" }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "title": "Balls",
+                      "child": {
+                        "type": "box",
+                        "class": "tab-page pocket-page",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "plaque pocket-head",
+                            "children": [
+                              { "type": "image", "class": "icon", "src": "asset:img/pocket-balls.png" },
+                              { "type": "text", "class": "pocket-title", "text": "Poke Balls" },
+                              { "type": "text", "class": "pocket-count", "text": "{bag.ballsCount}" }
+                            ]
+                          },
+                          {
+                            "type": "list",
+                            "class": "item-grid",
+                            "items": "$bag.balls",
+                            "empty": "Nothing here",
+                            "template": {
+                              "type": "box",
+                              "class": "item",
+                              "children": [
+                                { "type": "text", "class": "item-name", "text": "{name}" },
+                                { "type": "text", "class": "item-qty", "text": "×{count}" }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "title": "TM/HM",
+                      "child": {
+                        "type": "box",
+                        "class": "tab-page pocket-page",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "plaque pocket-head",
+                            "children": [
+                              { "type": "image", "class": "icon", "src": "asset:img/pocket-tmhm.png" },
+                              { "type": "text", "class": "pocket-title", "text": "TMs & HMs" },
+                              { "type": "text", "class": "pocket-count", "text": "{bag.tmHmCount}" }
+                            ]
+                          },
+                          {
+                            "type": "list",
+                            "class": "item-grid",
+                            "items": "$bag.tmHm",
+                            "empty": "Nothing here",
+                            "template": {
+                              "type": "box",
+                              "class": "item",
+                              "children": [
+                                { "type": "text", "class": "item-name", "text": "{name}" },
+                                { "type": "text", "class": "item-qty", "text": "×{count}" }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "title": "Berries",
+                      "child": {
+                        "type": "box",
+                        "class": "tab-page pocket-page",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "plaque pocket-head",
+                            "children": [
+                              { "type": "image", "class": "icon", "src": "asset:img/pocket-berries.png" },
+                              { "type": "text", "class": "pocket-title", "text": "Berries" },
+                              { "type": "text", "class": "pocket-count", "text": "{bag.berriesCount}" }
+                            ]
+                          },
+                          {
+                            "type": "list",
+                            "class": "item-grid",
+                            "items": "$bag.berries",
+                            "empty": "Nothing here",
+                            "template": {
+                              "type": "box",
+                              "class": "item",
+                              "children": [
+                                { "type": "text", "class": "item-name", "text": "{name}" },
+                                { "type": "text", "class": "item-qty", "text": "×{count}" }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "title": "Trainer",
+                "child": {
+                  "type": "box",
+                  "class": "tab-page",
+                  "children": [
+                    {
+                      "type": "box",
+                      "class": "plaque hero",
+                      "children": [
+                        { "type": "image", "class": "flare flare-l", "src": "asset:img/flare-left.png" },
+                        { "type": "image", "class": "flare flare-r", "src": "asset:img/flare-right.png" },
+                        { "type": "text", "class": "card-kicker", "text": "TRAINER CARD" },
+                        { "type": "text", "class": "card-name", "text": "{trainer.name}" },
+                        { "type": "text", "class": "card-id", "text": "ID No. {trainer.id}" },
+                        {
+                          "type": "box",
+                          "class": "card-stats",
+                          "children": [
+                            {
+                              "type": "box",
+                              "class": "card-stat",
+                              "children": [
+                                { "type": "image", "class": "icon", "src": "asset:img/coin.png" },
+                                {
+                                  "type": "box",
+                                  "class": "stat-col",
+                                  "children": [
+                                    { "type": "text", "class": "label", "text": "MONEY" },
+                                    { "type": "text", "class": "card-num", "text": "${trainer.moneyText}" }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "box",
+                              "class": "card-stat",
+                              "children": [
+                                { "type": "image", "class": "icon", "src": "asset:img/hourglass.png" },
+                                {
+                                  "type": "box",
+                                  "class": "stat-col",
+                                  "children": [
+                                    { "type": "text", "class": "label", "text": "TIME" },
+                                    { "type": "text", "class": "card-num", "text": "{trainer.playTime}" }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "box",
+                      "class": "rule-title",
+                      "children": [
+                        { "type": "image", "class": "rule-img", "src": "asset:img/divider-left.png" },
+                        { "type": "text", "class": "rule-text", "text": "BADGES {trainer.badges}/8" },
+                        { "type": "image", "class": "rule-img", "src": "asset:img/divider-right.png" }
+                      ]
+                    },
+                    {
+                      "type": "list",
+                      "class": "badge-grid",
+                      "items": "$trainer.badgeList",
+                      "template": {
+                        "type": "box",
+                        "class": "badge",
+                        "classIf": { "earned": "$earned" },
+                        "children": [
+                          { "type": "image", "class": "badge-img", "src": "$src" },
+                          { "type": "text", "class": "badge-name", "text": "{name}" }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "box",
+                      "class": "rule-title",
+                      "children": [
+                        { "type": "image", "class": "rule-img", "src": "asset:img/divider-left.png" },
+                        { "type": "text", "class": "rule-text", "text": "POKEDEX" },
+                        { "type": "image", "class": "rule-img", "src": "asset:img/divider-right.png" }
+                      ]
+                    },
+                    {
+                      "type": "box",
+                      "class": "plaque dex",
+                      "children": [
+                        { "type": "image", "class": "dex-icon", "src": "asset:img/dex.png" },
+                        {
+                          "type": "box",
+                          "class": "dex-col",
+                          "children": [
+                            {
+                              "type": "box",
+                              "class": "dex-row",
+                              "children": [
+                                { "type": "text", "class": "label", "text": "SEEN" },
+                                { "type": "text", "class": "dex-num", "text": "{trainer.seen}/{trainer.dexTotal}" }
+                              ]
+                            },
+                            { "type": "bar", "class": "gauge seen-gauge", "value": "$trainer.seenPct", "max": 1 },
+                            {
+                              "type": "box",
+                              "class": "dex-row",
+                              "children": [
+                                { "type": "text", "class": "label", "text": "CAUGHT" },
+                                { "type": "text", "class": "dex-num", "text": "{trainer.caught}/{trainer.dexTotal}" }
+                              ]
+                            },
+                            { "type": "bar", "class": "gauge caught-gauge", "value": "$trainer.caughtPct", "max": 1 }
+                          ]
                         }
                       ]
                     }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "battle",
+          "child": {
+            "type": "box",
+            "class": "battle-page",
+            "children": [
+              {
+                "type": "box",
+                "class": "battle-head",
+                "children": [
+                  { "type": "text", "class": "battle-kind", "text": "{battle.kind}" },
+                  {
+                    "type": "button",
+                    "class": "battle-back",
+                    "onClick": "back",
+                    "children": [{ "type": "text", "class": "back-text", "text": "BACK" }]
                   }
                 ]
-              }
-            }
-          ]
+              },
+              {
+                "type": "list",
+                "class": "battle-mons",
+                "items": "$battle.mons",
+                "template": {
+                  "type": "box",
+                  "class": "plaque fighter",
+                  "classIf": { "foe": "$foe" },
+                  "children": [
+                    {
+                      "type": "box",
+                      "class": "fighter-head",
+                      "children": [
+                        { "type": "image", "class": "orb small", "src": "$orb" },
+                        {
+                          "type": "box",
+                          "class": "mon-info",
+                          "children": [
+                            {
+                              "type": "box",
+                              "class": "mon-head",
+                              "children": [
+                                { "type": "text", "class": "side-tag", "text": "{side}" },
+                                { "type": "text", "class": "mon-name grow", "text": "{name}" },
+                                { "type": "text", "class": "mon-level", "text": "Lv{level}" }
+                              ]
+                            },
+                            {
+                              "type": "list",
+                              "class": "type-row",
+                              "items": "$types",
+                              "template": { "type": "text", "class": "type-chip", "text": "{name}", "bindStyle": { "background-color": "{color}" } }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "bar",
+                      "class": "hp-bar",
+                      "classIf": { "high": "$hpHigh", "mid": "$hpMid", "low": "$hpLow" },
+                      "value": "$hpPct",
+                      "max": 1
+                    },
+                    {
+                      "type": "box",
+                      "class": "mon-foot",
+                      "children": [
+                        { "type": "text", "class": "hp-text", "text": "{hp} / {maxHp} HP" },
+                        { "type": "text", "class": "status-chip", "visibleIf": "$hasStatus", "text": "{statusTag}", "bindStyle": { "background-color": "{statusColor}" } }
+                      ]
+                    },
+                    {
+                      "type": "list",
+                      "class": "stat-grid",
+                      "items": "$stats",
+                      "template": {
+                        "type": "box",
+                        "class": "stat-cell",
+                        "children": [
+                          { "type": "text", "class": "stat-name", "text": "{name}" },
+                          { "type": "text", "class": "stat-value", "text": "{value}" },
+                          { "type": "text", "class": "stat-stage", "classIf": { "up": "$up", "down": "$down" }, "text": "{stage}" }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              { "type": "image", "class": "vs", "src": "asset:img/vs-crest.png" }
+            ]
+          }
         }
-      }
-    ]
-  }
+      ]
+    }
+  ]
 }

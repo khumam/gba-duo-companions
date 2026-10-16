@@ -58,6 +58,36 @@ local function statusText(status)
   return ""
 end
 
+-- Short status tags for the chips, with the colour each one wears.
+local STATUS_TAGS = {
+  Asleep = { "SLP", "#8C8CA8" }, Poisoned = { "PSN", "#A33EA1" }, Burned = { "BRN", "#E2552A" },
+  Frozen = { "FRZ", "#5AB8D8" }, Paralyzed = { "PAR", "#D8B42A" }, ["Badly Poisoned"] = { "TOX", "#7A1F78" },
+}
+
+local IMG = "asset:img/"
+
+-- gBaseStats (FireRed US 1.0): 0x1C bytes per species, type 1 and 2 at +6/+7.
+local BASE_STATS_ADDR = 0x08254784
+local BASE_STATS_SIZE = 0x1C
+local TYPE_KEYS = { [0] = "normal", "fighting", "flying", "poison", "ground", "rock", "bug", "ghost", "steel",
+  "unknown", "fire", "water", "grass", "electric", "psychic", "ice", "dragon", "dark" }
+
+-- HP colour bands as the game draws them: over half green, over a fifth amber.
+local function hpBands(hp, maxHp)
+  local pct = maxHp > 0 and hp / maxHp or 0
+  return pct, pct > 0.5, pct <= 0.5 and pct > 0.2, pct <= 0.2
+end
+
+local function decorate(mon, status)
+  local tag = STATUS_TAGS[status]
+  mon.hpPct, mon.hpHigh, mon.hpMid, mon.hpLow = hpBands(mon.hp, mon.maxHp)
+  mon.fainted = mon.hp == 0
+  mon.hasStatus = tag ~= nil and not mon.fainted
+  mon.statusTag = mon.fainted and "FNT" or (tag and tag[1] or "")
+  mon.statusColor = tag and tag[2] or "#555"
+  return mon
+end
+
 local function readIcon(species)
   local iconPtr = mem.u32(ICON_TABLE_ADDR + species * 4)
   local paletteIdx = mem.u8(ICON_PALETTE_INDEX_ADDR + species)
@@ -65,22 +95,45 @@ local function readIcon(species)
   return gfx.decode({ tiles = iconPtr, palette = paletteAddr, width = 32, height = 32, bpp = 4, lz77 = false })
 end
 
+-- Defined further down with the battle data; party cards use the same colours.
+local TYPE_NAMES, TYPE_COLORS
+
+local function typeList(t1, t2)
+  local types = {}
+  for _, t in ipairs(t1 == t2 and { t1 } or { t1, t2 }) do
+    types[#types + 1] = { name = TYPE_NAMES[t] or "?", color = TYPE_COLORS[t] or "#D1D1E0" }
+  end
+  return types
+end
+
+local function orbFor(t)
+  return IMG .. "orb-" .. (TYPE_KEYS[t] or "normal") .. ".png"
+end
+
 local function readParty()
   local count = mem.u8(PARTY_COUNT_ADDR)
   local party = {}
+  if count > 6 then return party end
   for i = 0, count - 1 do
     local base = PARTY_ADDR + i * POKEMON_SIZE
     local personality = mem.u32(base)
     local otId = mem.u32(base + 0x04)
     local species = readSpecies(base, personality, otId)
-    party[#party + 1] = {
+    local stats = BASE_STATS_ADDR + species * BASE_STATS_SIZE
+    local t1, t2 = mem.u8(stats + 6), mem.u8(stats + 7)
+    local status = statusText(mem.u32(base + 0x50))
+    party[#party + 1] = decorate({
       icon = readIcon(species),
+      orb = orbFor(t1),
+      types = typeList(t1, t2),
+      lead = i == 0,
+      slot = i + 1,
       name = species_names[species] or ("#" .. species),
       level = mem.u8(base + 0x54),
       hp = mem.u16(base + 0x56),
       maxHp = mem.u16(base + 0x58),
-      status = statusText(mem.u32(base + 0x50)),
-    }
+      status = status,
+    }, status)
   end
   return party
 end
@@ -122,10 +175,10 @@ local RETURN_FROM_BATTLE_TO_OVERWORLD = 0x08015B59
 local BATTLE_TYPE_TRAINER = 0x08
 local MAX_SPECIES = 411
 
-local TYPE_NAMES = { [0] = "Normal", "Fighting", "Flying", "Poison", "Ground", "Rock", "Bug", "Ghost", "Steel",
+TYPE_NAMES = { [0] = "Normal", "Fighting", "Flying", "Poison", "Ground", "Rock", "Bug", "Ghost", "Steel",
   "???", "Fire", "Water", "Grass", "Electric", "Psychic", "Ice", "Dragon", "Dark" }
-local TYPE_COLORS = { [0] = "#C6C6A7", "#D67873", "#C6B7F5", "#C183C1", "#EBD69D", "#D1C17D", "#C6D16E", "#A292BC",
-  "#D1D1E0", "#9DC1B7", "#F5AC78", "#9DB7F5", "#A7DB8D", "#FAE078", "#FA92B2", "#BCE6E6", "#A27DFA", "#A29288" }
+TYPE_COLORS = { [0] = "#A8A77A", "#C22E28", "#A98FF3", "#A33EA1", "#E2BF65", "#B6A136", "#A6B91A", "#735797",
+  "#B7B7CE", "#68A090", "#EE8130", "#6390F0", "#7AC74C", "#F7D02C", "#F95587", "#96D9D6", "#6F35FC", "#705746" }
 
 -- Display stats: name, offset in BattlePokemon, index in its statStages[] (6 = neutral).
 local BATTLE_STATS = {
@@ -144,11 +197,8 @@ end
 local function readBattleMon(battler, side)
   local base = BATTLE_MONS_ADDR + battler * BATTLE_MON_SIZE
   local species = mem.u16(base)
-  local types = {}
   local t1, t2 = mem.u8(base + 0x21), mem.u8(base + 0x22)
-  for _, t in ipairs(t1 == t2 and { t1 } or { t1, t2 }) do
-    types[#types + 1] = { name = TYPE_NAMES[t] or "?", color = TYPE_COLORS[t] or "#D1D1E0" }
-  end
+  local types = typeList(t1, t2)
   local stats = {}
   for _, s in ipairs(BATTLE_STATS) do
     local stage = mem.u8(base + 0x18 + s[3]) - 6
@@ -160,17 +210,19 @@ local function readBattleMon(battler, side)
       down = stage < 0,
     }
   end
-  return {
+  local status = statusText(mem.u32(base + 0x4C))
+  return decorate({
     side = side,
     foe = side == "FOE",
+    orb = orbFor(t1),
     name = species_names[species] or ("#" .. species),
     level = mem.u8(base + 0x2A),
     hp = mem.u16(base + 0x28),
     maxHp = mem.u16(base + 0x2C),
-    status = statusText(mem.u32(base + 0x4C)),
+    status = status,
     types = types,
     stats = stats,
-  }
+  }, status)
 end
 
 local function readBattle()
@@ -181,11 +233,66 @@ local function readBattle()
   }
 end
 
+-- ---- Trainer card ---------------------------------------------------------------
+-- struct SaveBlock2: playerName[8] at 0x00 (game charset, 0xFF ends it),
+-- playerTrainerId[4] at 0x0A (low half = the ID on the card), and the Pokedex
+-- at 0x18 with owned[52] at +0x10 and seen[52] at +0x44 (bit n = dex no. n+1).
+local PLAYER_NAME_OFFSET, PLAYER_NAME_LEN = 0x00, 7
+local TRAINER_ID_OFFSET = 0x0A
+local DEX_OWNED_OFFSET = 0x28
+local DEX_SEEN_OFFSET = 0x5C
+local KANTO_DEX = 151
+
+local BADGES = { "Boulder", "Cascade", "Thunder", "Rainbow", "Soul", "Marsh", "Volcano", "Earth" }
+
+local function decodeChar(c)
+  if c == 0x00 then return " " end
+  if c >= 0xA1 and c <= 0xAA then return string.char(48 + c - 0xA1) end
+  if c >= 0xBB and c <= 0xD4 then return string.char(65 + c - 0xBB) end
+  if c >= 0xD5 and c <= 0xEE then return string.char(97 + c - 0xD5) end
+  return ({ [0xAB] = "!", [0xAC] = "?", [0xAD] = ".", [0xAE] = "-", [0xB4] = "'" })[c] or ""
+end
+
+local function readName(addr, len)
+  local out = {}
+  for i = 0, len - 1 do
+    local c = mem.u8(addr + i)
+    if c == 0xFF then break end
+    out[#out + 1] = decodeChar(c)
+  end
+  return table.concat(out)
+end
+
+local function countBits(addr, bits)
+  local n = 0
+  for i = 0, bits - 1 do
+    if (mem.u8(addr + i // 8) >> (i % 8)) & 1 == 1 then n = n + 1 end
+  end
+  return n
+end
+
+local function withCommas(n)
+  local s = tostring(n)
+  while true do
+    local k
+    s, k = s:gsub("^(%d+)(%d%d%d)", "%1,%2")
+    if k == 0 then return s end
+  end
+end
+
+local function inEwram(p) return p >= 0x02000000 and p < 0x02040000 end
+
 local wasInBattle = false
 
 function update(ui)
   local sb1 = mem.u32(SAVEBLOCK1_PTR_ADDR)
   local sb2 = mem.u32(SAVEBLOCK2_PTR_ADDR)
+  local partyCount = mem.u8(PARTY_COUNT_ADDR)
+  -- Before a save is loaded (title, intro) there's no party and no save blocks.
+  if not (inEwram(sb1) and inEwram(sb2)) or partyCount == 0 or partyCount > 6 then
+    wasInBattle = false
+    return { ready = false, waiting = true }
+  end
 
   local encMoney = mem.u32(sb1 + MONEY_OFFSET)
   local encKey = mem.u32(sb2 + ENCRYPTION_KEY_OFFSET)
@@ -193,26 +300,54 @@ function update(ui)
 
   local badgeByte = mem.u8(sb1 + BADGE_BYTE_OFFSET)
   local badgeCount = 0
+  local badges = {}
   for b = 0, 7 do
-    if (badgeByte >> b) & 1 == 1 then badgeCount = badgeCount + 1 end
+    local earned = (badgeByte >> b) & 1 == 1
+    if earned then badgeCount = badgeCount + 1 end
+    badges[#badges + 1] = {
+      name = BADGES[b + 1],
+      earned = earned,
+      src = IMG .. "badge-" .. (b + 1) .. (earned and "" or "-empty") .. ".png",
+    }
   end
 
   local hours = mem.u16(sb2 + PLAYTIME_HOURS_OFFSET)
   local minutes = mem.u8(sb2 + PLAYTIME_MINUTES_OFFSET)
   local seconds = mem.u8(sb2 + PLAYTIME_SECONDS_OFFSET)
 
+  local bag = {
+    items = readPocket(sb1, BAG_ITEMS_OFFSET, BAG_ITEMS_COUNT),
+    keyItems = readPocket(sb1, BAG_KEYITEMS_OFFSET, BAG_KEYITEMS_COUNT),
+    balls = readPocket(sb1, BAG_BALLS_OFFSET, BAG_BALLS_COUNT),
+    tmHm = readPocket(sb1, BAG_TMHM_OFFSET, BAG_TMHM_COUNT),
+    berries = readPocket(sb1, BAG_BERRIES_OFFSET, BAG_BERRIES_COUNT),
+  }
+  for _, pocket in ipairs({ "items", "keyItems", "balls", "tmHm", "berries" }) do
+    bag[pocket .. "Count"] = #bag[pocket]
+  end
+
+  local caught = countBits(sb2 + DEX_OWNED_OFFSET, KANTO_DEX)
+  local seen = countBits(sb2 + DEX_SEEN_OFFSET, KANTO_DEX)
+
   local out = {
+    ready = true,
+    waiting = false,
     party = readParty(),
-    bag = {
-      items = readPocket(sb1, BAG_ITEMS_OFFSET, BAG_ITEMS_COUNT),
-      keyItems = readPocket(sb1, BAG_KEYITEMS_OFFSET, BAG_KEYITEMS_COUNT),
-      balls = readPocket(sb1, BAG_BALLS_OFFSET, BAG_BALLS_COUNT),
-      tmHm = readPocket(sb1, BAG_TMHM_OFFSET, BAG_TMHM_COUNT),
-      berries = readPocket(sb1, BAG_BERRIES_OFFSET, BAG_BERRIES_COUNT),
-    },
+    partyCount = partyCount,
+    bag = bag,
     trainer = {
+      name = readName(sb2 + PLAYER_NAME_OFFSET, PLAYER_NAME_LEN),
+      id = string.format("%05d", mem.u16(sb2 + TRAINER_ID_OFFSET)),
       money = money,
+      moneyText = withCommas(money),
       badges = badgeCount,
+      badgeList = badges,
+      badgePct = badgeCount / 8,
+      caught = caught,
+      seen = seen,
+      dexTotal = KANTO_DEX,
+      caughtPct = caught / KANTO_DEX,
+      seenPct = seen / KANTO_DEX,
       playTime = string.format("%d:%02d:%02d", hours, minutes, seconds),
     },
   }

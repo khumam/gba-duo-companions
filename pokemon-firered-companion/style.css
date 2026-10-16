@@ -1,301 +1,399 @@
 /*
- * Design: retro-pixel x pastel Pokemon x Swiss bento grid. Built for the
- * Compose-based companion engine (CSS grid, box-shadow, transitions,
- * accent-color) — same system documented in
- * .claude/skills/styling-the-companion-screen/SKILL.md.
+ * Design: Cinnabar Nightfire. A volcano at night behind obsidian plaques
+ * rimmed in bronze; the lead Pokemon and the trainer card are framed in molten
+ * gold with flame flares on the corners. Follows the enchanted-forest pack
+ * system (skill/enchanted-forest-pack-design) with a fire palette.
  *
- * Swiss discipline: one grid, one 8px spacing rhythm, one accent per card,
- * chunky pixel borders (2-3px, not hairlines) kept on softly-rounded bento
- * tiles — a Pokemon Center receptionist's desk, not a GBA dialog box.
+ * Fonts: Bungee (names, numbers), Barlow Semi Condensed (reading text),
+ * Silkscreen (tiny pixel tags: levels, status). Art: art/build.mjs.
+ * Engine: background-size px/cover only, no radial gradients, art images need
+ * image-rendering: auto.
  */
+
 :root {
-  --cream:     #FFF8EC; /* screen bg: Pokedex-screen pastel cream */
-  --ink:       #2E2440; /* primary text: deep plum, not pure black */
-  --ink-soft:  #8B7FA3; /* secondary text / labels */
-
-  --poke-red:        #FF8095;
-  --poke-red-border: #E85D74;
-  --electric:        #FFE48A;
-  --electric-border: #F0C94A;
-  --water:           #9FD3FF;
-  --water-border:    #5FA8E8;
-  --grass:           #AEEAAA;
-  --grass-border:    #7DCB7F;
-  --poison:          #D9B8F5;
-  --poison-border:   #B98EE0;
-
-  --radius: 10px;
+  --night:     #0C0506;
+  --glass:     rgba(26, 10, 10, 0.86);
+  --glass-hi:  rgba(54, 22, 18, 0.88);
+  --bronze:    #C98A3B;
+  --bronze-hi: #FFD9A0;
+  --bronze-lo: #6E4318;
+  --ember:     #FF6A1A;
+  --flame:     #FFA23A;
+  --gold:      #FFD27A;
+  --ash:       #F5E6D3;
+  --ash-soft:  #C7AE98;
+  --smoke:     #8E7A70;
+  --hp-high:   #49D17A;
+  --hp-mid:    #F5C23A;
+  --hp-low:    #F0443A;
 }
 
-@font-face { font-family: "Silkscreen"; src: url("assets/fonts/Silkscreen-Regular.ttf"); font-weight: 400; }
-@font-face { font-family: "Silkscreen"; src: url("assets/fonts/Silkscreen-Bold.ttf"); font-weight: 700; }
+@font-face { font-family: "Bungee"; src: url("assets/fonts/Bungee-Regular.ttf"); }
+@font-face { font-family: "Barlow"; src: url("assets/fonts/BarlowSemiCondensed-Medium.ttf"); }
+@font-face { font-family: "BarlowBold"; src: url("assets/fonts/BarlowSemiCondensed-Bold.ttf"); }
+@font-face { font-family: "Pixel"; src: url("assets/fonts/Silkscreen-Regular.ttf"); }
+@font-face { font-family: "PixelBold"; src: url("assets/fonts/Silkscreen-Bold.ttf"); }
 
 #screen {
-  background-color: var(--cream);
-  color: var(--ink);
-  font-family: "Silkscreen", monospace;
-  padding: 16px;
+  background-color: var(--night);
+  background-image: url("assets/img/nightfire.png");
+  background-size: cover;
+  color: var(--ash);
+  font-family: "Barlow", sans-serif;
+  padding: 10px 12px 0 12px;
 }
 
-/* ---- tabs: pastel pixel pill strip ---- */
+/* ---- waiting --------------------------------------------------------------------- */
 
-tab-bar {
-  gap: 8px;
-  margin-bottom: 12px;
+.waiting { align-items: center; justify-content: center; height: 100%; gap: 4px; }
+.crest { width: 200px; height: 200px; image-rendering: auto; }
+.waiting-title {
+  font-family: "Bungee", sans-serif;
+  font-size: 30px;
+  letter-spacing: 3px;
+  color: var(--gold);
+  text-shadow: 0 0 12px rgba(255, 106, 26, 0.9);
 }
+.rule { flex-direction: row; gap: 4px; }
+.waiting-sub { font-size: 14px; color: var(--ash-soft); text-shadow: 0 1px 4px #000; }
+
+/* ---- main tabs: obsidian plates, the selected one molten (110x36, px only) ------------- */
+
+tab-bar { gap: 0; justify-content: space-between; margin-bottom: 4px; }
 
 tab {
-  font-family: "Silkscreen";
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--ink-soft);
-  background-color: #FFFFFF;
-  border: 3px solid var(--poke-red-border);
-  border-radius: 8px;
-  padding: 8px 16px;
-  transition: background-color 150ms ease-out, color 150ms ease-out;
+  width: 110px;
+  height: 36px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: "Bungee", sans-serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--ash-soft);
+  background-image: url("assets/img/tab-plate.png");
+  background-size: 110px 36px;
+  padding: 10px 0 0 0;
+  transition: color 200ms ease-out, transform 150ms ease-out;
 }
 
 tab:active {
-  color: #FFFFFF;
-  background-color: var(--poke-red);
+  color: #3A1206;
+  text-shadow: 0 1px 0 rgba(255, 240, 210, 0.5);
+  background-image: url("assets/img/tab-plate-active.png");
 }
 
-tab:pressed {
-  background-color: var(--electric);
-  color: var(--ink);
-}
+tab:pressed { transform: scale(0.95); }
 
-tab-content {
-  padding-top: 4px;
-}
-
-/* ---- shared bento card ---- */
-
-.card {
-  background-color: #FFFFFF;
-  border-radius: var(--radius);
-  box-shadow: 0 3px 0 rgba(46, 36, 64, 0.15);
-  margin-bottom: 10px;
-}
-
-/* ---- Party tab ---- */
-
-.card-party {
-  border: 3px solid var(--poke-red-border);
-  padding: 12px 16px;
-}
-
-.name {
-  font-family: "Silkscreen";
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--ink);
-}
-
-bar {
-  height: 10px;
+/* bag pockets: a second, smaller row of ember pills inside the Bag tab */
+tab-content tab {
+  width: auto;
+  height: auto;
+  font-family: "BarlowBold", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  color: var(--ash-soft);
+  background-image: none;
+  background-color: rgba(26, 10, 10, 0.75);
+  border: 1px solid rgba(201, 138, 59, 0.45);
   border-radius: 999px;
-  background-color: rgba(46, 36, 64, 0.1);
-  border: 2px solid var(--ink);
-  accent-color: var(--grass-border);
-  transition: width 400ms ease-out;
+  padding: 5px 11px;
 }
 
-.hp-label {
-  font-family: "Silkscreen";
-  font-size: 10px;
-  color: var(--ink-soft);
+tab-content tab:active {
+  color: #2A0E06;
+  background-image: none;
+  background: linear-gradient(180deg, var(--gold), var(--ember));
+  border-color: var(--bronze-hi);
 }
 
-/* ---- Bag tab ---- */
+tab-content tab-bar { justify-content: center; gap: 5px; margin: 8px 0 0 0; }
 
-.card-item {
-  border: 2px solid var(--water-border);
-  background-color: #FBFDFF;
-  padding: 10px 14px;
+tab-content { padding-top: 0; }
+
+.tab-page { gap: 10px; overflow: auto; padding: 12px 2px 24px 2px; }
+.pocket-page { padding-top: 10px; }
+
+/* ---- plaques ------------------------------------------------------------------------ */
+
+.plaque {
+  position: relative;
+  background: linear-gradient(160deg, var(--glass-hi), var(--glass));
+  border: 1px solid rgba(201, 138, 59, 0.6);
+  border-radius: 12px;
+  padding: 10px 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
+  gap: 4px;
 }
 
-.item-label {
-  font-family: "Silkscreen";
-  font-size: 11px;
-  color: var(--ink);
+.plaque.hero {
+  background: linear-gradient(165deg, #4A1C12, #1C0A09);
+  border: 2px solid var(--bronze);
+  border-radius: 20px 6px 20px 6px;
+  padding: 16px 16px 14px 16px;
+  align-items: center;
+  gap: 2px;
 }
 
-.bag-list {
-  height: 100%;
-  overflow: auto;
-}
+.flare { position: absolute; width: 60px; height: 42px; image-rendering: auto; }
+.flare-l { top: -20px; left: -14px; }
+.flare-r { top: -20px; right: -14px; }
 
-/* ---- Trainer tab: bento grid of pastel stat tiles ---- */
+.label { font-family: "Pixel", monospace; font-size: 9px; letter-spacing: 1px; color: var(--flame); }
+.icon { width: 24px; height: 24px; image-rendering: auto; }
+.stat-col { gap: 0; }
+.grow { flex: 1; }
 
-.trainer-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-}
-
-.tile {
-  border-radius: var(--radius);
-  box-shadow: 0 3px 0 rgba(46, 36, 64, 0.15);
-  padding: 14px 10px;
-}
-
-.tile-money {
-  background-color: var(--grass);
-  border: 3px solid var(--grass-border);
-}
-
-.tile-badges {
-  background-color: var(--electric);
-  border: 3px solid var(--electric-border);
-}
-
-.tile-time {
-  background-color: var(--water);
-  border: 3px solid var(--water-border);
-}
-
-.stat-label {
-  font-family: "Silkscreen";
-  font-size: 8px;
-  font-weight: 700;
+.rule-title { flex-direction: row; align-items: center; justify-content: center; gap: 6px; margin-top: 4px; }
+.rule-img { width: 84px; height: 13px; image-rendering: auto; }
+.rule-text {
+  font-family: "Bungee", sans-serif;
+  font-size: 12px;
   letter-spacing: 1px;
-  color: var(--ink-soft);
+  color: var(--gold);
+  text-shadow: 0 0 8px rgba(255, 106, 26, 0.8);
 }
 
-.stat-value {
-  font-family: "Silkscreen";
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--ink);
+.gauge {
+  height: 7px;
+  border-radius: 999px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(201, 138, 59, 0.35);
+}
+.gauge > fill { border-radius: 999px; transition: width 400ms ease-out; }
+.seen-gauge > fill   { background: linear-gradient(90deg, #8E3A1A, var(--flame)); }
+.caught-gauge > fill { background: linear-gradient(90deg, var(--ember), var(--gold)); }
+
+/* ---- party ---------------------------------------------------------------------------- */
+
+.party-list { gap: 9px; }
+
+.mon {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
 }
 
-.stat-value.money {
-  color: #3F8F42;
+.mon.lead {
+  background: linear-gradient(160deg, #5A2214, #1E0B0A);
+  border: 2px solid var(--flame);
+  border-radius: 18px 6px 18px 6px;
+  margin-top: 8px;
+  padding: 12px 12px;
 }
 
-/* ---- Battle page: opened by main.lua when a battle starts ---- */
+.mon.fainted { opacity: 0.5; }
 
-.battle-page {
-  gap: 12px;
+.orb { width: 44px; height: 44px; image-rendering: auto; }
+.mon.lead .orb { width: 54px; height: 54px; }
+.orb.small { width: 38px; height: 38px; }
+
+.mon-info { flex: 1; gap: 3px; }
+
+.mon-head { flex-direction: row; align-items: center; gap: 6px; }
+
+.mon-name {
+  font-family: "Bungee", sans-serif;
+  font-size: 14px;
+  color: var(--ash);
+  flex: 1;
 }
 
-.battle-head {
+.mon.lead .mon-name { font-size: 17px; color: var(--gold); }
+
+.mon-level {
+  font-family: "PixelBold", monospace;
+  font-size: 11px;
+  color: var(--bronze-hi);
+}
+
+.type-row { flex-direction: row; gap: 4px; }
+
+.type-chip {
+  font-family: "BarlowBold", sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
+  border-radius: 4px;
+  padding: 1px 6px;
+}
+
+.hp-bar {
+  height: 8px;
+  border-radius: 999px;
+  background-color: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(201, 138, 59, 0.4);
+  margin-top: 2px;
+}
+.hp-bar > fill { border-radius: 999px; transition: width 500ms ease-out; }
+.hp-bar.high > fill { background: linear-gradient(90deg, #1E8F4A, var(--hp-high)); }
+.hp-bar.mid > fill  { background: linear-gradient(90deg, #C27A12, var(--hp-mid)); }
+.hp-bar.low > fill  { background: linear-gradient(90deg, #8E1410, var(--hp-low)); }
+
+.mon-foot { flex-direction: row; align-items: center; justify-content: space-between; }
+
+.hp-text { font-family: "BarlowBold", sans-serif; font-size: 12px; color: var(--ash-soft); }
+
+.status-chip {
+  font-family: "PixelBold", monospace;
+  font-size: 9px;
+  color: #FFFFFF;
+  border-radius: 4px;
+  padding: 1px 6px;
+}
+.status-chip.fnt { background-color: #3A2A2A; color: var(--ash-soft); }
+
+/* ---- bag -------------------------------------------------------------------------------- */
+
+.pocket-head { flex-direction: row; align-items: center; gap: 8px; padding: 8px 12px; }
+
+.pocket-title { font-family: "Bungee", sans-serif; font-size: 14px; color: var(--gold); flex: 1; }
+
+.pocket-count {
+  font-family: "PixelBold", monospace;
+  font-size: 11px;
+  color: #2A0E06;
+  background: linear-gradient(180deg, var(--gold), var(--flame));
+  border-radius: 999px;
+  padding: 1px 8px;
+}
+
+.item-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 7px; }
+
+.item {
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  gap: 4px;
+  background: linear-gradient(160deg, var(--glass-hi), var(--glass));
+  border: 1px solid rgba(201, 138, 59, 0.4);
+  border-radius: 10px 3px 10px 3px;
+  padding: 7px 10px;
 }
 
+.item-name { font-size: 13px; color: var(--ash); flex: 1; }
+.item-qty { font-family: "BarlowBold", sans-serif; font-size: 13px; color: var(--flame); }
+
+/* ---- trainer card ---------------------------------------------------------------------- */
+
+.card-kicker { font-family: "Pixel", monospace; font-size: 10px; letter-spacing: 3px; color: var(--flame); }
+
+.card-name {
+  font-family: "Bungee", sans-serif;
+  font-size: 28px;
+  line-height: 32px;
+  color: var(--gold);
+  text-shadow: 0 0 10px rgba(255, 106, 26, 0.7);
+}
+
+.card-id { font-family: "BarlowBold", sans-serif; font-size: 12px; letter-spacing: 1px; color: var(--ash-soft); }
+
+.card-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  width: 100%;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(201, 138, 59, 0.45);
+}
+
+.card-stat { flex-direction: row; align-items: center; gap: 8px; }
+
+.card-num { font-family: "Bungee", sans-serif; font-size: 15px; color: var(--ash); }
+
+.badge-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+
+.badge { align-items: center; gap: 1px; }
+
+.badge-img { width: 52px; height: 52px; image-rendering: auto; }
+
+.badge-name { font-family: "BarlowBold", sans-serif; font-size: 11px; color: var(--smoke); }
+.badge.earned .badge-name { color: var(--gold); }
+
+.dex { flex-direction: row; align-items: center; gap: 12px; }
+.dex-icon { width: 36px; height: 36px; image-rendering: auto; }
+.dex-col { flex: 1; gap: 3px; }
+.dex-row { flex-direction: row; justify-content: space-between; align-items: center; }
+.dex-num { font-family: "BarlowBold", sans-serif; font-size: 13px; color: var(--ash); }
+
+/* ---- battle ------------------------------------------------------------------------------ */
+
+.battle-page { position: relative; gap: 10px; padding: 4px 2px 0 2px; }
+
+.battle-head { flex-direction: row; justify-content: space-between; align-items: center; }
+
 .battle-kind {
-  font-family: "Silkscreen";
-  font-size: 13px;
-  font-weight: 700;
+  font-family: "Bungee", sans-serif;
+  font-size: 15px;
   letter-spacing: 1px;
-  color: var(--poke-red-border);
+  color: var(--gold);
+  text-shadow: 0 0 10px rgba(255, 106, 26, 0.9);
+}
+
+.back-text {
+  font-family: "Bungee", sans-serif;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: #2A0E06;
 }
 
 .battle-back {
-  background-color: #FFFFFF;
-  border: 3px solid var(--poke-red-border);
-  border-radius: 8px;
-  padding: 6px 14px;
+  background: linear-gradient(180deg, var(--gold), var(--ember));
+  border: 1px solid var(--bronze-hi);
+  border-radius: 999px;
+  padding: 5px 14px;
 }
 
-.battle-back > .label {
-  font-family: "Silkscreen";
-  font-size: 10px;
-  font-weight: 700;
-  color: var(--ink);
+.battle-back:pressed { transform: scale(0.94); }
+
+.battle-mons { gap: 26px; }
+
+.fighter { gap: 5px; padding: 10px 12px; border-color: var(--bronze); }
+
+.fighter.foe {
+  background: linear-gradient(160deg, rgba(80, 16, 14, 0.9), rgba(30, 8, 8, 0.88));
+  border-color: #E2453A;
 }
 
-.battle-back:pressed {
-  background-color: var(--electric);
+.fighter-head { flex-direction: row; align-items: center; gap: 10px; }
+
+.side-tag {
+  font-family: "PixelBold", monospace;
+  font-size: 9px;
+  color: #2A0E06;
+  background-color: var(--bronze-hi);
+  border-radius: 3px;
+  padding: 1px 5px;
 }
 
-.battle-mons {
-  gap: 12px;
-}
+.fighter.foe .side-tag { background-color: #FF8A7A; }
 
-.card-battle {
-  border: 3px solid var(--poke-red-border);
-  padding: 12px 16px;
-  gap: 8px;
-  margin-bottom: 0;
-}
+.stat-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; margin-top: 2px; }
 
-.card-battle.foe {
-  border-color: var(--water-border);
-}
-
-.battle-mon-head {
+.stat-cell {
   align-items: center;
-  gap: 10px;
-}
-
-.battle-side {
-  font-family: "Silkscreen";
-  font-size: 9px;
-  font-weight: 700;
-  color: #FFFFFF;
-  background-color: var(--poke-red);
+  background-color: rgba(0, 0, 0, 0.35);
   border-radius: 6px;
-  padding: 3px 8px;
+  padding: 4px 2px;
+  gap: 0;
 }
 
-.card-battle.foe .battle-side {
-  background-color: var(--water-border);
-}
+.stat-name { font-family: "Pixel", monospace; font-size: 8px; color: var(--flame); }
+.stat-value { font-family: "BarlowBold", sans-serif; font-size: 15px; color: var(--ash); }
+.stat-stage { font-family: "PixelBold", monospace; font-size: 9px; color: var(--smoke); }
+.stat-stage.up { color: var(--hp-high); }
+.stat-stage.down { color: var(--hp-low); }
 
-.type-chips {
-  flex-direction: row;
-  gap: 6px;
-}
-
-.type-chip {
-  font-family: "Silkscreen";
-  font-size: 9px;
-  font-weight: 700;
-  color: var(--ink);
-  border: 2px solid var(--ink);
-  border-radius: 6px;
-  padding: 2px 8px;
-}
-
-.battle-stats {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 6px;
-}
-
-.battle-stat {
-  align-items: center;
-  gap: 2px;
-  background-color: var(--electric);
-  border: 2px solid var(--electric-border);
-  border-radius: 8px;
-  padding: 6px 4px;
-}
-
-.card-battle.foe .battle-stat {
-  background-color: var(--water);
-  border-color: var(--water-border);
-}
-
-.battle-stat .stat-value {
-  font-size: 14px;
-}
-
-.stat-stage {
-  font-family: "Silkscreen";
-  font-size: 9px;
-  font-weight: 700;
-  color: var(--ink-soft);
-}
-
-.stat-stage.up {
-  color: #3F8F42;
-}
-
-.stat-stage.down {
-  color: var(--poke-red-border);
+/* the crest sits in the gap between the two fighters */
+.vs {
+  position: absolute;
+  left: 134px;
+  top: 188px;
+  width: 64px;
+  height: 44px;
+  image-rendering: auto;
 }
