@@ -1,400 +1,457 @@
 {
-  "money": 5420,
-  "year": 1,
-  "day": 2,
-  "time": "08:45",
-  "weatherToday": 0,
-  "weatherTomorrow": 2,
-  "horseRaceMedals": 1,
-  "frisbeeRecord": 34,
-  "stamina": 92,
-  "staminaPct": 0.736,
-  "fatigue": 18,
-  "fatiguePct": 0.18,
   "bag": {
+    "handIcon": "asset:img/tool-hoe.png",
+    "handItem": "Nothing",
     "handTool": "Copper Hoe",
-    "handItem": "Turnip",
-    "toolCount": 5,
     "itemCount": 3,
-    "tools": [
-      {
-        "name": "Copper Hoe",
-        "held": true
-      },
-      {
-        "name": "Sickle",
-        "held": false
-      },
-      {
-        "name": "Axe",
-        "held": false
-      },
-      {
-        "name": "Hammer",
-        "held": false
-      },
-      {
-        "name": "Watering Can",
-        "held": false
-      }
-    ],
     "items": [
       {
-        "name": "Turnip"
+        "icon": "asset:img/tool-basket.png",
+        "name": "Potato"
       },
       {
-        "name": "Moon Drop Grass"
+        "icon": "asset:img/tool-crate.png",
+        "name": "Wool (S)"
       },
       {
-        "name": "Medium Fish"
+        "icon": "asset:img/tool-basket.png",
+        "name": "Good Quality Egg"
+      }
+    ],
+    "toolCount": 8,
+    "tools": [
+      {
+        "held": true,
+        "icon": "asset:img/tool-hoe.png",
+        "name": "Copper Hoe"
+      },
+      {
+        "held": false,
+        "icon": "asset:img/tool-sickle.png",
+        "name": "Sickle"
+      },
+      {
+        "held": false,
+        "icon": "asset:img/tool-axe.png",
+        "name": "Axe"
+      },
+      {
+        "held": false,
+        "icon": "asset:img/tool-hammer.png",
+        "name": "Hammer"
+      },
+      {
+        "held": false,
+        "icon": "asset:img/tool-can.png",
+        "name": "Watering Can"
+      },
+      {
+        "held": false,
+        "icon": "asset:img/tool-rod.png",
+        "name": "Fishing Rod"
+      },
+      {
+        "held": false,
+        "icon": "asset:img/tool-seeds.png",
+        "name": "Turnip Seeds"
+      },
+      {
+        "held": false,
+        "icon": "asset:img/tool-milker.png",
+        "name": "Milker"
       }
     ]
   },
-  "loves": [
-    {
-      "name": "Popuri",
-      "value": 24000,
-      "heart": "Blue heart",
-      "heartColor": "#6FA8DC",
-      "pct": 0.366
-    },
-    {
-      "name": "Mary",
-      "value": 41000,
-      "heart": "Yellow heart",
-      "heartColor": "#D9A520",
-      "pct": 0.626
-    },
-    {
-      "name": "Karen",
-      "value": 8000,
-      "heart": "Black heart",
-      "heartColor": "#6B5E57",
-      "pct": 0.122
-    },
-    {
-      "name": "Elli",
-      "value": 15500,
-      "heart": "Purple heart",
-      "heartColor": "#A98BD8",
-      "pct": 0.237
-    },
-    {
-      "name": "Ann",
-      "value": 62000,
-      "heart": "Red heart",
-      "heartColor": "#E8718F",
-      "pct": 0.946
-    },
-    {
-      "name": "Harvest Goddess",
-      "value": 30500,
-      "heart": "Green heart",
-      "heartColor": "#6DBB7C",
-      "pct": 0.465
-    }
-  ],
+  "corner": "asset:img/corner-spring.png",
+  "cornerR": "asset:img/corner-spring-r.png",
+  "day": 3,
+  "fatigue": 18,
+  "fatiguePct": 0.18,
   "friends": [
     {
       "name": "Lillia",
-      "value": 120,
-      "pct": 0.471
+      "pct": 0.26274509803922,
+      "value": 67
     },
     {
       "name": "Rick",
-      "value": 64,
-      "pct": 0.251
+      "pct": 0.4078431372549,
+      "value": 104
     },
     {
       "name": "Barley",
-      "value": 90,
-      "pct": 0.353
+      "pct": 0.55294117647059,
+      "value": 141
     },
     {
       "name": "May",
-      "value": 150,
-      "pct": 0.588
+      "pct": 0.69803921568627,
+      "value": 178
     },
     {
       "name": "Saibara",
-      "value": 40,
-      "pct": 0.157
+      "pct": 0.84313725490196,
+      "value": 215
     },
     {
       "name": "Gray",
-      "value": 22,
-      "pct": 0.086
+      "pct": 0.20392156862745,
+      "value": 52
     },
     {
       "name": "Duke",
-      "value": 75,
-      "pct": 0.294
+      "pct": 0.34901960784314,
+      "value": 89
     },
     {
       "name": "Manna",
-      "value": 180,
-      "pct": 0.706
+      "pct": 0.49411764705882,
+      "value": 126
     },
     {
       "name": "Basil",
-      "value": 60,
-      "pct": 0.235
+      "pct": 0.63921568627451,
+      "value": 163
     },
     {
       "name": "Anna",
-      "value": 110,
-      "pct": 0.431
+      "pct": 0.7843137254902,
+      "value": 200
     },
     {
       "name": "Thomas",
-      "value": 200,
-      "pct": 0.784
+      "pct": 0.14509803921569,
+      "value": 37
     },
     {
       "name": "Harris",
-      "value": 35,
-      "pct": 0.137
+      "pct": 0.29019607843137,
+      "value": 74
     },
     {
       "name": "Ellen",
-      "value": 95,
-      "pct": 0.373
+      "pct": 0.43529411764706,
+      "value": 111
     },
     {
       "name": "Stu",
-      "value": 140,
-      "pct": 0.549
+      "pct": 0.58039215686275,
+      "value": 148
     },
     {
       "name": "Jeff",
-      "value": 55,
-      "pct": 0.216
+      "pct": 0.72549019607843,
+      "value": 185
     },
     {
       "name": "Sasha",
-      "value": 80,
-      "pct": 0.314
+      "pct": 0.87058823529412,
+      "value": 222
     },
     {
       "name": "Doctor",
-      "value": 30,
-      "pct": 0.118
+      "pct": 0.23137254901961,
+      "value": 59
     },
     {
       "name": "Carter",
-      "value": 48,
-      "pct": 0.188
+      "pct": 0.37647058823529,
+      "value": 96
     },
     {
       "name": "Cliff",
-      "value": 18,
-      "pct": 0.071
+      "pct": 0.52156862745098,
+      "value": 133
     },
     {
       "name": "Doug",
-      "value": 130,
-      "pct": 0.51
+      "pct": 0.66666666666667,
+      "value": 170
     },
     {
       "name": "Kai",
-      "value": 70,
-      "pct": 0.275
+      "pct": 0.81176470588235,
+      "value": 207
     },
     {
       "name": "Gotz",
-      "value": 25,
-      "pct": 0.098
+      "pct": 0.17254901960784,
+      "value": 44
     },
     {
       "name": "Zack",
-      "value": 160,
-      "pct": 0.627
+      "pct": 0.31764705882353,
+      "value": 81
     },
     {
       "name": "Won",
-      "value": 45,
-      "pct": 0.176
+      "pct": 0.46274509803922,
+      "value": 118
     },
     {
       "name": "Lou",
-      "value": 12,
-      "pct": 0.047
+      "pct": 0.6078431372549,
+      "value": 155
     },
     {
       "name": "Lu",
-      "value": 10,
-      "pct": 0.039
+      "pct": 0.75294117647059,
+      "value": 192
     }
   ],
+  "frisbeeRecord": 0,
+  "horseRaceMedals": 0,
+  "isDusk": false,
+  "isFall": false,
+  "isNight": false,
+  "isSpring": true,
+  "isSummer": false,
+  "isWinter": false,
+  "loves": [
+    {
+      "heart": "Green heart",
+      "heartColor": "#6DBB7C",
+      "heartIcon": "asset:img/heart-green.png",
+      "name": "Popuri",
+      "pct": 0.52185854886702,
+      "value": 34200
+    },
+    {
+      "heart": "Purple heart",
+      "heartColor": "#A98BD8",
+      "heartIcon": "asset:img/heart-purple.png",
+      "name": "Mary",
+      "pct": 0.19531548027771,
+      "value": 12800
+    },
+    {
+      "heart": "Black heart",
+      "heartColor": "#6B5E57",
+      "heartIcon": "asset:img/heart-black.png",
+      "name": "Karen",
+      "pct": 0.079346913862821,
+      "value": 5200
+    },
+    {
+      "heart": "Red heart",
+      "heartColor": "#E8718F",
+      "heartIcon": "asset:img/heart-red.png",
+      "name": "Elli",
+      "pct": 0.93080033569848,
+      "value": 61000
+    },
+    {
+      "heart": "Blue heart",
+      "heartColor": "#6FA8DC",
+      "heartIcon": "asset:img/heart-blue.png",
+      "name": "Ann",
+      "pct": 0.33569848172732,
+      "value": 22000
+    },
+    {
+      "heart": "Black heart",
+      "heartColor": "#6B5E57",
+      "heartIcon": "asset:img/heart-black.png",
+      "name": "Harvest Goddess",
+      "pct": 0.012207217517357,
+      "value": 800
+    }
+  ],
+  "money": 12480,
+  "moneyText": "12,480",
+  "ready": true,
+  "season": "Spring",
+  "seasonKey": "spring",
   "sprites": [
     {
+      "friendPct": 0.23529411764706,
+      "friendship": 60,
+      "hat": "asset:img/sprite-staid.png",
+      "job": "Free",
       "name": "Staid",
+      "working": false,
+      "xp": [
+        {
+          "name": "HARVEST",
+          "pct": 0.11764705882353,
+          "value": 30
+        },
+        {
+          "name": "WATER",
+          "pct": 0.70588235294118,
+          "value": 180
+        },
+        {
+          "name": "ANIMALS",
+          "pct": 0.047058823529412,
+          "value": 12
+        }
+      ]
+    },
+    {
+      "friendPct": 0.31372549019608,
       "friendship": 80,
-      "friendPct": 0.314,
-      "job": "Harvesting \u00b7 3 days",
-      "working": true,
-      "xp": [
-        {
-          "name": "HARVEST",
-          "value": 40,
-          "pct": 0.157
-        },
-        {
-          "name": "WATER",
-          "value": 12,
-          "pct": 0.047
-        },
-        {
-          "name": "ANIMALS",
-          "value": 5,
-          "pct": 0.02
-        }
-      ]
-    },
-    {
+      "hat": "asset:img/sprite-nappy.png",
+      "job": "Watering · 3 days",
       "name": "Nappy",
-      "friendship": 55,
-      "friendPct": 0.216,
-      "job": "Free",
-      "working": false,
+      "working": true,
       "xp": [
         {
           "name": "HARVEST",
-          "value": 10,
-          "pct": 0.039
+          "pct": 0.23529411764706,
+          "value": 60
         },
         {
           "name": "WATER",
-          "value": 30,
-          "pct": 0.118
+          "pct": 0.62745098039216,
+          "value": 160
         },
         {
           "name": "ANIMALS",
-          "value": 8,
-          "pct": 0.031
+          "pct": 0.094117647058824,
+          "value": 24
         }
       ]
     },
     {
+      "friendPct": 0.3921568627451,
+      "friendship": 100,
+      "hat": "asset:img/sprite-bold.png",
+      "job": "Free",
       "name": "Bold",
+      "working": false,
+      "xp": [
+        {
+          "name": "HARVEST",
+          "pct": 0.35294117647059,
+          "value": 90
+        },
+        {
+          "name": "WATER",
+          "pct": 0.54901960784314,
+          "value": 140
+        },
+        {
+          "name": "ANIMALS",
+          "pct": 0.14117647058824,
+          "value": 36
+        }
+      ]
+    },
+    {
+      "friendPct": 0.47058823529412,
       "friendship": 120,
-      "friendPct": 0.471,
-      "job": "Watering \u00b7 1 day",
-      "working": true,
-      "xp": [
-        {
-          "name": "HARVEST",
-          "value": 22,
-          "pct": 0.086
-        },
-        {
-          "name": "WATER",
-          "value": 64,
-          "pct": 0.251
-        },
-        {
-          "name": "ANIMALS",
-          "value": 15,
-          "pct": 0.059
-        }
-      ]
-    },
-    {
+      "hat": "asset:img/sprite-chef.png",
+      "job": "Watering · 3 days",
       "name": "Chef",
-      "friendship": 30,
-      "friendPct": 0.118,
-      "job": "Free",
-      "working": false,
-      "xp": [
-        {
-          "name": "HARVEST",
-          "value": 5,
-          "pct": 0.02
-        },
-        {
-          "name": "WATER",
-          "value": 5,
-          "pct": 0.02
-        },
-        {
-          "name": "ANIMALS",
-          "value": 40,
-          "pct": 0.157
-        }
-      ]
-    },
-    {
-      "name": "Aqua",
-      "friendship": 90,
-      "friendPct": 0.353,
-      "job": "Animal care \u00b7 5 days",
       "working": true,
       "xp": [
         {
           "name": "HARVEST",
-          "value": 18,
-          "pct": 0.071
+          "pct": 0.47058823529412,
+          "value": 120
         },
         {
           "name": "WATER",
-          "value": 25,
-          "pct": 0.098
+          "pct": 0.47058823529412,
+          "value": 120
         },
         {
           "name": "ANIMALS",
-          "value": 70,
-          "pct": 0.275
+          "pct": 0.18823529411765,
+          "value": 48
         }
       ]
     },
     {
+      "friendPct": 0.54901960784314,
+      "friendship": 140,
+      "hat": "asset:img/sprite-aqua.png",
+      "job": "Free",
+      "name": "Aqua",
+      "working": false,
+      "xp": [
+        {
+          "name": "HARVEST",
+          "pct": 0.58823529411765,
+          "value": 150
+        },
+        {
+          "name": "WATER",
+          "pct": 0.3921568627451,
+          "value": 100
+        },
+        {
+          "name": "ANIMALS",
+          "pct": 0.23529411764706,
+          "value": 60
+        }
+      ]
+    },
+    {
+      "friendPct": 0.62745098039216,
+      "friendship": 160,
+      "hat": "asset:img/sprite-hoggy.png",
+      "job": "Watering · 3 days",
       "name": "Hoggy",
-      "friendship": 15,
-      "friendPct": 0.059,
-      "job": "Free",
-      "working": false,
+      "working": true,
       "xp": [
         {
           "name": "HARVEST",
-          "value": 2,
-          "pct": 0.008
+          "pct": 0.70588235294118,
+          "value": 180
         },
         {
           "name": "WATER",
-          "value": 0,
-          "pct": 0.0
+          "pct": 0.31372549019608,
+          "value": 80
         },
         {
           "name": "ANIMALS",
-          "value": 0,
-          "pct": 0.0
+          "pct": 0.28235294117647,
+          "value": 72
         }
       ]
     },
     {
-      "name": "Timid",
-      "friendship": 44,
-      "friendPct": 0.173,
+      "friendPct": 0.70588235294118,
+      "friendship": 180,
+      "hat": "asset:img/sprite-timid.png",
       "job": "Free",
+      "name": "Timid",
       "working": false,
       "xp": [
         {
           "name": "HARVEST",
-          "value": 9,
-          "pct": 0.035
+          "pct": 0.82352941176471,
+          "value": 210
         },
         {
           "name": "WATER",
-          "value": 14,
-          "pct": 0.055
+          "pct": 0.23529411764706,
+          "value": 60
         },
         {
           "name": "ANIMALS",
-          "value": 3,
-          "pct": 0.012
+          "pct": 0.32941176470588,
+          "value": 84
         }
       ]
     }
   ],
-  "season": "Spring"
+  "stamina": 92,
+  "staminaPct": 0.736,
+  "time": "14:30",
+  "today": {
+    "icon": "asset:img/weather-sunny.png",
+    "name": "Sunny"
+  },
+  "tomorrow": {
+    "icon": "asset:img/weather-rainy.png",
+    "name": "Rainy"
+  },
+  "waiting": false,
+  "weatherToday": 0,
+  "weatherTomorrow": 1,
+  "year": 1
 }

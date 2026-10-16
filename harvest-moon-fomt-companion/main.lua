@@ -47,18 +47,29 @@ local MAX_TOOL_ID = 0x50
 -- (adb logcat -s GBADuoPack).
 local DEBUG_BYTES = false
 
--- The stage whose gold and in-hand tool read as plausible values wins; Stage 2
--- is the fallback since loading a save is the normal way to play.
-local function plausibleAt(offset)
-  local money = mem.u32(MONEY_ADDR + offset)
-  local toolId, toolState = mem.u8(HAND_TOOL_ADDR + offset), mem.u8(HAND_TOOL_ADDR + 1 + offset)
-  return money <= 999999 and toolState <= 1 and toolId <= MAX_TOOL_ID
+-- Scores how much a stage looks like live game data. Year, date and clock have
+-- tight ranges, so zeroed RAM (year 0) and the 0xBF fill the game leaves
+-- elsewhere both fail. Gold and the in-hand tool alone weren't enough: the
+-- empty-hand byte is 0x51 with state 0, and zeroed RAM reads as 0 gold.
+local function stageScore(offset)
+  local score = 0
+  local year = mem.u8(YEAR_ADDR + offset)
+  if year >= 1 and year <= 99 then score = score + 2 end
+  local dayByte = mem.u8(DAY_ADDR + offset)
+  if dayByte < 0x80 and (dayByte >> 2) <= 29 then score = score + 1 end
+  local t = mem.u16(HOUR_ADDR + offset)
+  if (t & 0x1F) <= 23 and ((t >> 5) & 0x3F) <= 59 then score = score + 1 end
+  if mem.u32(MONEY_ADDR + offset) <= 999999 then score = score + 1 end
+  if mem.u8(HAND_TOOL_ADDR + 1 + offset) <= 1 then score = score + 1 end
+  return score
 end
 
+-- Stage 1 unless Stage 2 clearly scores higher. Checked on the EU cart: a game
+-- continued from the battery save and one loaded from a save state both kept
+-- their data at the Stage 1 addresses.
 local function detectStage()
-  if plausibleAt(STAGE_2_OFFSET) then return STAGE_2_OFFSET end
-  if plausibleAt(0) then return 0 end
-  return STAGE_2_OFFSET
+  if stageScore(STAGE_2_OFFSET) > stageScore(0) then return STAGE_2_OFFSET end
+  return 0
 end
 
 local function toolName(id)
@@ -80,25 +91,41 @@ end
 local function readTool(addr)
   local id = mem.u8(addr)
   if mem.u8(addr + 1) == 0 or id > MAX_TOOL_ID then return nil end
-  return toolName(id)
+  return toolName(id), id
+end
+
+-- Tool ids come in blocks of eight upgrades (sickle 00-07, hoe 08-0F, ...),
+-- then seeds and the animal tools; each block gets one icon.
+local IMG = "asset:img/"
+local TOOL_BLOCKS = { "sickle", "hoe", "axe", "hammer", "can", "rod" }
+local TOOL_SINGLES = { [0x46] = "brush", [0x47] = "milker", [0x48] = "clippers", [0x49] = "bell" }
+
+local function toolIcon(id)
+  local kind = TOOL_BLOCKS[id // 8 + 1]
+  if id >= 0x30 then kind = (id >= 0x32 and id <= 0x45) and "seeds" or TOOL_SINGLES[id] or "tool" end
+  return IMG .. "tool-" .. kind .. ".png"
 end
 
 local function readBag()
-  local handTool = readTool(at(HAND_TOOL_ADDR))
+  local handTool, handId = readTool(at(HAND_TOOL_ADDR))
   -- The held tool isn't in a rucksack slot, but the in-game rucksack lists it,
   -- so it leads the list here too.
   local tools, items = {}, {}
-  if handTool then tools[1] = { name = handTool, held = true } end
+  if handTool then tools[1] = { name = handTool, held = true, icon = toolIcon(handId) } end
   for i = 0, BAG_TOOL_SLOTS - 1 do
-    local name = readTool(at(BAG_TOOLS_ADDR) + i * BAG_TOOL_SIZE)
-    if name then tools[#tools + 1] = { name = name, held = false } end
+    local name, id = readTool(at(BAG_TOOLS_ADDR) + i * BAG_TOOL_SIZE)
+    if name then tools[#tools + 1] = { name = name, held = false, icon = toolIcon(id) } end
   end
   for i = 0, BAG_ITEM_SLOTS - 1 do
-    local name = readItem(at(BAG_ITEMS_ADDR) + i * BAG_ITEM_SIZE)
-    if name then items[#items + 1] = { name = name } end
+    local addr = at(BAG_ITEMS_ADDR) + i * BAG_ITEM_SIZE
+    local name = readItem(addr)
+    if name then
+      items[#items + 1] = { name = name, icon = IMG .. (mem.u8(addr) == 0 and "tool-basket" or "tool-crate") .. ".png" }
+    end
   end
   return {
     handTool = handTool or "Nothing",
+    handIcon = handId and toolIcon(handId) or IMG .. "tool-tool.png",
     handItem = readItem(at(HAND_ITEM_ADDR)) or "Nothing",
     tools = tools,
     items = items,
@@ -162,6 +189,7 @@ local function readLoves()
       value = raw,
       heart = HEARTS[heart + 1] .. " heart",
       heartColor = HEART_COLORS[heart + 1],
+      heartIcon = IMG .. "heart-" .. HEARTS[heart + 1]:lower() .. ".png",
       pct = raw / GIRL_MAX,
     }
   end
@@ -204,6 +232,7 @@ local function readSprites()
     local friendship = mem.u8(base)
     sprites[#sprites + 1] = {
       name = s[1],
+      hat = IMG .. "sprite-" .. s[1]:lower() .. ".png",
       friendship = friendship,
       friendPct = friendship / FRIEND_MAX,
       job = working and string.format("%s · %d day%s", JOBS[kind], days, days == 1 and "" or "s") or "Free",
@@ -220,11 +249,30 @@ local function fraction(value, max)
   return math.max(0, math.min(1, value / max))
 end
 
+-- Weather byte, from the code guide's "Set the Weather": 0 sunny, 1 rainy,
+-- 2 snowy, 3 stormy and 4 blizzard (both keep you indoors).
+local WEATHER = { [0] = "sunny", "rainy", "snowy", "stormy", "blizzard" }
+
+local function weather(byte)
+  local key = WEATHER[byte]
+  return {
+    name = key and (key:sub(1, 1):upper() .. key:sub(2)) or string.format("Weather #%d", byte),
+    icon = IMG .. "weather-" .. (key or "unknown") .. ".png",
+  }
+end
+
 local tick = 0
 
 function update()
   stageOffset = detectStage()
+  -- On the title screen neither stage holds a real date yet: empty RAM reads
+  -- year 0, the title's leftovers read years like 180 or 220 (see stageScore).
+  local year = mem.u8(at(YEAR_ADDR))
+  if year < 1 or year > 99 or stageScore(stageOffset) < 4 then
+    return { ready = false, waiting = true }
+  end
   local season, day = readDate()
+  local hour = mem.u16(at(HOUR_ADDR)) & 0x1F
   local stamina = mem.u8(at(STAMINA_ADDR)) & 0x7F
   local fatigue = mem.u8(at(FATIGUE_ADDR)) & 0x7F
 
@@ -237,14 +285,32 @@ function update()
     end
   end
 
+  local seasonKey = season:lower()
+  local money = mem.u32(at(MONEY_ADDR))
+  local moneyText = tostring(money):reverse():gsub("(%d%d%d)", "%1,"):reverse():gsub("^,", "")
   return {
-    money = mem.u32(at(MONEY_ADDR)),
+    ready = true,
+    waiting = false,
+    money = money,
+    moneyText = moneyText,
     year = mem.u8(at(YEAR_ADDR)),
     season = season,
+    seasonKey = seasonKey,
+    isSpring = seasonKey == "spring",
+    isSummer = seasonKey == "summer",
+    isFall = seasonKey == "fall",
+    isWinter = seasonKey == "winter",
+    corner = IMG .. "corner-" .. seasonKey .. ".png",
+    cornerR = IMG .. "corner-" .. seasonKey .. "-r.png",
+    -- Evening glow from 17:00, the night sky from 19:00 until 6:00.
+    isDusk = hour >= 17 and hour < 19,
+    isNight = hour >= 19 or hour < 6,
     day = day,
     time = readTime(),
     weatherToday = mem.u8(at(WEATHER_TODAY_ADDR)),
     weatherTomorrow = mem.u8(at(WEATHER_TOMORROW_ADDR)),
+    today = weather(mem.u8(at(WEATHER_TODAY_ADDR))),
+    tomorrow = weather(mem.u8(at(WEATHER_TOMORROW_ADDR))),
     horseRaceMedals = mem.u16(at(HORSE_MEDALS_ADDR)),
     frisbeeRecord = mem.u16(at(FRISBEE_RECORD_ADDR)),
     stamina = stamina,
