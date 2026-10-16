@@ -1,0 +1,400 @@
+{
+  "money": 5420,
+  "year": 1,
+  "day": 2,
+  "time": "08:45",
+  "weatherToday": 0,
+  "weatherTomorrow": 2,
+  "horseRaceMedals": 1,
+  "frisbeeRecord": 34,
+  "stamina": 92,
+  "staminaPct": 0.736,
+  "fatigue": 18,
+  "fatiguePct": 0.18,
+  "bag": {
+    "handTool": "Copper Hoe",
+    "handItem": "Turnip",
+    "toolCount": 5,
+    "itemCount": 3,
+    "tools": [
+      {
+        "name": "Copper Hoe",
+        "held": true
+      },
+      {
+        "name": "Sickle",
+        "held": false
+      },
+      {
+        "name": "Axe",
+        "held": false
+      },
+      {
+        "name": "Hammer",
+        "held": false
+      },
+      {
+        "name": "Watering Can",
+        "held": false
+      }
+    ],
+    "items": [
+      {
+        "name": "Turnip"
+      },
+      {
+        "name": "Moon Drop Grass"
+      },
+      {
+        "name": "Medium Fish"
+      }
+    ]
+  },
+  "loves": [
+    {
+      "name": "Popuri",
+      "value": 24000,
+      "heart": "Blue heart",
+      "heartColor": "#6FA8DC",
+      "pct": 0.366
+    },
+    {
+      "name": "Mary",
+      "value": 41000,
+      "heart": "Yellow heart",
+      "heartColor": "#D9A520",
+      "pct": 0.626
+    },
+    {
+      "name": "Karen",
+      "value": 8000,
+      "heart": "Black heart",
+      "heartColor": "#6B5E57",
+      "pct": 0.122
+    },
+    {
+      "name": "Elli",
+      "value": 15500,
+      "heart": "Purple heart",
+      "heartColor": "#A98BD8",
+      "pct": 0.237
+    },
+    {
+      "name": "Ann",
+      "value": 62000,
+      "heart": "Red heart",
+      "heartColor": "#E8718F",
+      "pct": 0.946
+    },
+    {
+      "name": "Harvest Goddess",
+      "value": 30500,
+      "heart": "Green heart",
+      "heartColor": "#6DBB7C",
+      "pct": 0.465
+    }
+  ],
+  "friends": [
+    {
+      "name": "Lillia",
+      "value": 120,
+      "pct": 0.471
+    },
+    {
+      "name": "Rick",
+      "value": 64,
+      "pct": 0.251
+    },
+    {
+      "name": "Barley",
+      "value": 90,
+      "pct": 0.353
+    },
+    {
+      "name": "May",
+      "value": 150,
+      "pct": 0.588
+    },
+    {
+      "name": "Saibara",
+      "value": 40,
+      "pct": 0.157
+    },
+    {
+      "name": "Gray",
+      "value": 22,
+      "pct": 0.086
+    },
+    {
+      "name": "Duke",
+      "value": 75,
+      "pct": 0.294
+    },
+    {
+      "name": "Manna",
+      "value": 180,
+      "pct": 0.706
+    },
+    {
+      "name": "Basil",
+      "value": 60,
+      "pct": 0.235
+    },
+    {
+      "name": "Anna",
+      "value": 110,
+      "pct": 0.431
+    },
+    {
+      "name": "Thomas",
+      "value": 200,
+      "pct": 0.784
+    },
+    {
+      "name": "Harris",
+      "value": 35,
+      "pct": 0.137
+    },
+    {
+      "name": "Ellen",
+      "value": 95,
+      "pct": 0.373
+    },
+    {
+      "name": "Stu",
+      "value": 140,
+      "pct": 0.549
+    },
+    {
+      "name": "Jeff",
+      "value": 55,
+      "pct": 0.216
+    },
+    {
+      "name": "Sasha",
+      "value": 80,
+      "pct": 0.314
+    },
+    {
+      "name": "Doctor",
+      "value": 30,
+      "pct": 0.118
+    },
+    {
+      "name": "Carter",
+      "value": 48,
+      "pct": 0.188
+    },
+    {
+      "name": "Cliff",
+      "value": 18,
+      "pct": 0.071
+    },
+    {
+      "name": "Doug",
+      "value": 130,
+      "pct": 0.51
+    },
+    {
+      "name": "Kai",
+      "value": 70,
+      "pct": 0.275
+    },
+    {
+      "name": "Gotz",
+      "value": 25,
+      "pct": 0.098
+    },
+    {
+      "name": "Zack",
+      "value": 160,
+      "pct": 0.627
+    },
+    {
+      "name": "Won",
+      "value": 45,
+      "pct": 0.176
+    },
+    {
+      "name": "Lou",
+      "value": 12,
+      "pct": 0.047
+    },
+    {
+      "name": "Lu",
+      "value": 10,
+      "pct": 0.039
+    }
+  ],
+  "sprites": [
+    {
+      "name": "Staid",
+      "friendship": 80,
+      "friendPct": 0.314,
+      "job": "Harvesting \u00b7 3 days",
+      "working": true,
+      "xp": [
+        {
+          "name": "HARVEST",
+          "value": 40,
+          "pct": 0.157
+        },
+        {
+          "name": "WATER",
+          "value": 12,
+          "pct": 0.047
+        },
+        {
+          "name": "ANIMALS",
+          "value": 5,
+          "pct": 0.02
+        }
+      ]
+    },
+    {
+      "name": "Nappy",
+      "friendship": 55,
+      "friendPct": 0.216,
+      "job": "Free",
+      "working": false,
+      "xp": [
+        {
+          "name": "HARVEST",
+          "value": 10,
+          "pct": 0.039
+        },
+        {
+          "name": "WATER",
+          "value": 30,
+          "pct": 0.118
+        },
+        {
+          "name": "ANIMALS",
+          "value": 8,
+          "pct": 0.031
+        }
+      ]
+    },
+    {
+      "name": "Bold",
+      "friendship": 120,
+      "friendPct": 0.471,
+      "job": "Watering \u00b7 1 day",
+      "working": true,
+      "xp": [
+        {
+          "name": "HARVEST",
+          "value": 22,
+          "pct": 0.086
+        },
+        {
+          "name": "WATER",
+          "value": 64,
+          "pct": 0.251
+        },
+        {
+          "name": "ANIMALS",
+          "value": 15,
+          "pct": 0.059
+        }
+      ]
+    },
+    {
+      "name": "Chef",
+      "friendship": 30,
+      "friendPct": 0.118,
+      "job": "Free",
+      "working": false,
+      "xp": [
+        {
+          "name": "HARVEST",
+          "value": 5,
+          "pct": 0.02
+        },
+        {
+          "name": "WATER",
+          "value": 5,
+          "pct": 0.02
+        },
+        {
+          "name": "ANIMALS",
+          "value": 40,
+          "pct": 0.157
+        }
+      ]
+    },
+    {
+      "name": "Aqua",
+      "friendship": 90,
+      "friendPct": 0.353,
+      "job": "Animal care \u00b7 5 days",
+      "working": true,
+      "xp": [
+        {
+          "name": "HARVEST",
+          "value": 18,
+          "pct": 0.071
+        },
+        {
+          "name": "WATER",
+          "value": 25,
+          "pct": 0.098
+        },
+        {
+          "name": "ANIMALS",
+          "value": 70,
+          "pct": 0.275
+        }
+      ]
+    },
+    {
+      "name": "Hoggy",
+      "friendship": 15,
+      "friendPct": 0.059,
+      "job": "Free",
+      "working": false,
+      "xp": [
+        {
+          "name": "HARVEST",
+          "value": 2,
+          "pct": 0.008
+        },
+        {
+          "name": "WATER",
+          "value": 0,
+          "pct": 0.0
+        },
+        {
+          "name": "ANIMALS",
+          "value": 0,
+          "pct": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Timid",
+      "friendship": 44,
+      "friendPct": 0.173,
+      "job": "Free",
+      "working": false,
+      "xp": [
+        {
+          "name": "HARVEST",
+          "value": 9,
+          "pct": 0.035
+        },
+        {
+          "name": "WATER",
+          "value": 14,
+          "pct": 0.055
+        },
+        {
+          "name": "ANIMALS",
+          "value": 3,
+          "pct": 0.012
+        }
+      ]
+    }
+  ],
+  "season": "Spring"
+}

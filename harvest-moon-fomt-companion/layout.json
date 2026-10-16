@@ -1,0 +1,280 @@
+{
+  "type": "box",
+  "id": "screen",
+  "children": [
+    {
+      "type": "tabs",
+      "tabs": [
+        {
+          "title": "Farm",
+          "child": {
+            "type": "box",
+            "class": "farm-tab",
+            "children": [
+              {
+                "type": "box",
+                "class": "card card-hero",
+                "children": [
+                  { "type": "text", "class": "hero-label", "text": "GOLD" },
+                  { "type": "text", "class": "hero-value", "text": "{money} G" }
+                ]
+              },
+              {
+                "type": "box",
+                "class": "card card-hand",
+                "children": [
+                  { "type": "text", "class": "tile-label", "text": "IN HAND" },
+                  { "type": "text", "class": "tile-value", "text": "{bag.handTool}" },
+                  { "type": "text", "class": "tile-sub", "text": "Carrying: {bag.handItem}" }
+                ]
+              },
+              {
+                "type": "box",
+                "class": "bento-grid",
+                "children": [
+                  {
+                    "type": "box",
+                    "class": "card card-date",
+                    "children": [
+                      { "type": "text", "class": "tile-label", "text": "DATE" },
+                      { "type": "text", "class": "tile-value", "text": "Year {year}" },
+                      { "type": "text", "class": "tile-sub", "text": "{season} {day}" }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "card card-time",
+                    "children": [
+                      { "type": "text", "class": "tile-label", "text": "TIME" },
+                      { "type": "text", "class": "tile-value", "text": "{time}" }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "card card-energy",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "meter-header",
+                        "children": [
+                          { "type": "text", "class": "tile-label", "text": "STAMINA" },
+                          { "type": "text", "class": "meter-value", "text": "{stamina} / 125" }
+                        ]
+                      },
+                      { "type": "bar", "value": "$staminaPct", "max": 1, "class": "meter-bar stamina-bar" },
+                      {
+                        "type": "box",
+                        "class": "meter-header",
+                        "children": [
+                          { "type": "text", "class": "tile-label", "text": "FATIGUE" },
+                          { "type": "text", "class": "meter-value", "text": "{fatigue} / 100" }
+                        ]
+                      },
+                      { "type": "bar", "value": "$fatiguePct", "max": 1, "class": "meter-bar fatigue-bar" }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "card card-weather",
+                    "children": [
+                      { "type": "text", "class": "tile-label", "text": "WEATHER" },
+                      { "type": "text", "class": "tile-sub", "text": "Today: {weatherToday}" },
+                      { "type": "text", "class": "tile-sub", "text": "Tomorrow: {weatherTomorrow}" }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "card card-records",
+                    "children": [
+                      { "type": "text", "class": "tile-label", "text": "RECORDS" },
+                      { "type": "text", "class": "tile-sub", "text": "Horse medals: {horseRaceMedals}" },
+                      { "type": "text", "class": "tile-sub", "text": "Frisbee: {frisbeeRecord}" }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "title": "Bag",
+          "child": {
+            "type": "box",
+            "class": "bag-tab",
+            "children": [
+              {
+                "type": "box",
+                "class": "card card-hand",
+                "children": [
+                  { "type": "text", "class": "tile-label", "text": "IN HAND" },
+                  { "type": "text", "class": "tile-value", "text": "{bag.handTool}" },
+                  { "type": "text", "class": "tile-sub", "text": "Carrying: {bag.handItem}" }
+                ]
+              },
+              {
+                "type": "box",
+                "class": "card card-pocket card-tools",
+                "children": [
+                  {
+                    "type": "box",
+                    "class": "meter-header",
+                    "children": [
+                      { "type": "text", "class": "tile-label", "text": "TOOLS" },
+                      { "type": "text", "class": "meter-value", "text": "{bag.toolCount} / 8" }
+                    ]
+                  },
+                  {
+                    "type": "list",
+                    "class": "pocket-list",
+                    "items": "$bag.tools",
+                    "empty": "No tools",
+                    "template": {
+                      "type": "text",
+                      "class": "pocket-chip",
+                      "classIf": { "held": "$held" },
+                      "text": "{name}"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "class": "card card-pocket card-items",
+                "children": [
+                  {
+                    "type": "box",
+                    "class": "meter-header",
+                    "children": [
+                      { "type": "text", "class": "tile-label", "text": "ITEMS" },
+                      { "type": "text", "class": "meter-value", "text": "{bag.itemCount} / 8" }
+                    ]
+                  },
+                  {
+                    "type": "list",
+                    "class": "pocket-list",
+                    "items": "$bag.items",
+                    "empty": "No items",
+                    "template": { "type": "text", "class": "pocket-chip", "text": "{name}" }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "title": "Love",
+          "child": {
+            "type": "box",
+            "class": "love-tab",
+            "children": [
+              { "type": "text", "class": "section-title", "text": "SWEETHEARTS" },
+              {
+                "type": "list",
+                "items": "$loves",
+                "class": "love-list",
+                "template": {
+                  "type": "box",
+                  "class": "card card-love",
+                  "children": [
+                    {
+                      "type": "box",
+                      "class": "love-header",
+                      "children": [
+                        { "type": "text", "class": "love-name", "text": "{name}" },
+                        {
+                          "type": "text",
+                          "class": "heart-chip",
+                          "text": "{heart}",
+                          "bindStyle": { "background-color": "{heartColor}" }
+                        }
+                      ]
+                    },
+                    { "type": "bar", "value": "$pct", "max": 1, "class": "love-bar" },
+                    { "type": "text", "class": "love-score", "text": "{value} / 65535" }
+                  ]
+                }
+              },
+              { "type": "text", "class": "section-title", "text": "TOWNSFOLK" },
+              {
+                "type": "list",
+                "items": "$friends",
+                "class": "friend-grid",
+                "template": {
+                  "type": "box",
+                  "class": "card card-friend",
+                  "children": [
+                    {
+                      "type": "box",
+                      "class": "meter-header",
+                      "children": [
+                        { "type": "text", "class": "friend-name", "text": "{name}" },
+                        { "type": "text", "class": "meter-value", "text": "{value}" }
+                      ]
+                    },
+                    { "type": "bar", "value": "$pct", "max": 1, "class": "meter-bar friend-bar" }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "title": "Sprites",
+          "child": {
+            "type": "box",
+            "class": "sprites-tab",
+            "children": [
+              {
+                "type": "list",
+                "items": "$sprites",
+                "class": "sprite-list",
+                "template": {
+                  "type": "box",
+                  "class": "card card-sprite",
+                  "children": [
+                    {
+                      "type": "box",
+                      "class": "love-header",
+                      "children": [
+                        { "type": "text", "class": "love-name", "text": "{name}" },
+                        {
+                          "type": "text",
+                          "class": "job-chip",
+                          "classIf": { "working": "$working" },
+                          "text": "{job}"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "box",
+                      "class": "meter-header",
+                      "children": [
+                        { "type": "text", "class": "tile-label", "text": "FRIENDSHIP" },
+                        { "type": "text", "class": "meter-value", "text": "{friendship} / 255" }
+                      ]
+                    },
+                    { "type": "bar", "value": "$friendPct", "max": 1, "class": "meter-bar friend-bar" },
+                    {
+                      "type": "list",
+                      "items": "$xp",
+                      "class": "xp-grid",
+                      "template": {
+                        "type": "box",
+                        "class": "xp-cell",
+                        "children": [
+                          { "type": "text", "class": "xp-label", "text": "{name}" },
+                          { "type": "text", "class": "xp-value", "text": "{value}" },
+                          { "type": "bar", "value": "$pct", "max": 1, "class": "meter-bar xp-bar" }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
