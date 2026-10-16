@@ -1,0 +1,254 @@
+{
+  "arrowMax": 30,
+  "arrowPct": 0.83333333333333,
+  "arrows": 25,
+  "bombMax": 30,
+  "bombPct": 0.4,
+  "bombs": 12,
+  "bottles": [
+    {
+      "empty": false,
+      "name": "Red Potion"
+    },
+    {
+      "empty": true,
+      "name": "Empty"
+    },
+    {
+      "name": "Fairy",
+      "empty": false
+    }
+  ],
+  "buttonA": "White Sword",
+  "buttonB": "Gust Jar",
+  "charm": "Farore's Charm · 1:00",
+  "dungeons": [
+    {
+      "bigKey": false,
+      "cleared": true,
+      "compass": false,
+      "here": false,
+      "keys": 0,
+      "map": false,
+      "name": "Deepwood Shrine",
+      "prize": "Earth Element"
+    },
+    {
+      "bigKey": false,
+      "cleared": false,
+      "compass": true,
+      "here": true,
+      "keys": 1,
+      "map": true,
+      "name": "Cave of Flames",
+      "prize": "Fire Element"
+    },
+    {
+      "bigKey": false,
+      "cleared": false,
+      "compass": false,
+      "here": false,
+      "keys": 0,
+      "map": false,
+      "name": "Fortress of Winds",
+      "prize": "Ocarina of Wind"
+    },
+    {
+      "bigKey": false,
+      "cleared": false,
+      "compass": false,
+      "here": false,
+      "keys": 0,
+      "map": false,
+      "name": "Temple of Droplets",
+      "prize": "Water Element"
+    },
+    {
+      "bigKey": false,
+      "cleared": false,
+      "compass": false,
+      "here": false,
+      "keys": 0,
+      "map": false,
+      "name": "Palace of Winds",
+      "prize": "Wind Element"
+    },
+    {
+      "bigKey": false,
+      "cleared": false,
+      "compass": false,
+      "here": false,
+      "keys": 0,
+      "map": false,
+      "name": "Dark Hyrule Castle",
+      "prize": "Vaati"
+    }
+  ],
+  "elementCount": 2,
+  "elements": [
+    {
+      "name": "Earth",
+      "owned": true,
+      "src": "asset:img/element-earth.png"
+    },
+    {
+      "name": "Fire",
+      "owned": true,
+      "src": "asset:img/element-fire.png"
+    },
+    {
+      "name": "Water",
+      "owned": false,
+      "src": "asset:img/element-empty.png"
+    },
+    {
+      "name": "Wind",
+      "owned": false,
+      "src": "asset:img/element-empty.png"
+    }
+  ],
+  "enemiesKilled": 200,
+  "figurinePct": 0.088235294117647,
+  "figurineTotal": 136,
+  "figurines": 12,
+  "fused": 7,
+  "fusedPct": 0.07,
+  "fusionTotal": 100,
+  "gear": [
+    {
+      "name": "White Sword"
+    },
+    {
+      "name": "Small Shield"
+    },
+    {
+      "name": "Bombs"
+    },
+    {
+      "name": "Bow"
+    },
+    {
+      "name": "Gust Jar"
+    },
+    {
+      "name": "Power Bracelets"
+    }
+  ],
+  "hasBombs": true,
+  "hasBow": true,
+  "healthPct": 0.5625,
+  "heartPieces": 3,
+  "heartRow": [
+    {
+      "src": "asset:img/heart-4.png"
+    },
+    {
+      "src": "asset:img/heart-4.png"
+    },
+    {
+      "src": "asset:img/heart-4.png"
+    },
+    {
+      "src": "asset:img/heart-1.png"
+    },
+    {
+      "src": "asset:img/heart-0.png"
+    },
+    {
+      "src": "asset:img/heart-0.png"
+    }
+  ],
+  "hearts": "3¼",
+  "location": "Cave of Flames",
+  "lowHealth": false,
+  "maxHearts": 6,
+  "name": "Link",
+  "picolyte": "None",
+  "pieceTotal": 5,
+  "pieces": [
+    {
+      "amount": 1,
+      "color": "Gold",
+      "id": "#6A",
+      "isBlue": false,
+      "isGold": true,
+      "isGreen": false,
+      "isRed": false,
+      "name": "Castor Wilds",
+      "src": "asset:img/kinstone-gold.png"
+    },
+    {
+      "amount": 4,
+      "color": "Red",
+      "id": "#6F",
+      "isBlue": false,
+      "isGold": false,
+      "isGreen": false,
+      "isRed": true,
+      "name": "Red piece",
+      "src": "asset:img/kinstone-red.png"
+    }
+  ],
+  "quest": [
+    {
+      "name": "Lon Lon Ranch Key"
+    },
+    {
+      "name": "Wake-Up Mushroom"
+    }
+  ],
+  "ready": true,
+  "rupeePct": 0.6,
+  "rupees": 300,
+  "shells": 42,
+  "skillCount": 2,
+  "skillTotal": 11,
+  "skills": [
+    {
+      "name": "Spin Attack",
+      "owned": true
+    },
+    {
+      "name": "Roll Attack",
+      "owned": true
+    },
+    {
+      "name": "Dash Attack",
+      "owned": false
+    },
+    {
+      "name": "Rock Breaker",
+      "owned": false
+    },
+    {
+      "name": "Sword Beam",
+      "owned": false
+    },
+    {
+      "name": "Great Spin",
+      "owned": false
+    },
+    {
+      "name": "Down Thrust",
+      "owned": false
+    },
+    {
+      "name": "Peril Beam",
+      "owned": false
+    },
+    {
+      "name": "Fast Spin",
+      "owned": false
+    },
+    {
+      "name": "Fast Split",
+      "owned": false
+    },
+    {
+      "name": "Long Spin",
+      "owned": false
+    }
+  ],
+  "waiting": false,
+  "walletMax": 500
+}

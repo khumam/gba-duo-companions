@@ -1,0 +1,456 @@
+{
+  "type": "box",
+  "id": "screen",
+  "children": [
+    {
+      "type": "box",
+      "class": "waiting",
+      "visibleIf": "$waiting",
+      "children": [
+        { "type": "image", "class": "emblem", "src": "asset:img/emblem.png" },
+        { "type": "text", "class": "waiting-title", "text": "The Minish Cap" },
+        { "type": "image", "class": "waiting-garland", "src": "asset:img/garland.png" },
+        { "type": "text", "class": "waiting-sub", "text": "Load a file to begin your adventure" }
+      ]
+    },
+    {
+      "type": "tabs",
+      "visibleIf": "$ready",
+      "tabs": [
+        {
+          "title": "Link",
+          "child": {
+            "type": "box",
+            "class": "tab-page",
+            "children": [
+              {
+                "type": "box",
+                "class": "plaque hero",
+                "children": [
+                  { "type": "image", "class": "sprig sprig-l", "src": "asset:img/sprig-left.png" },
+                  { "type": "image", "class": "sprig sprig-r", "src": "asset:img/sprig-right.png" },
+                  { "type": "text", "class": "hero-name", "text": "{name}" },
+                  {
+                    "type": "box",
+                    "class": "place",
+                    "children": [
+                      { "type": "image", "class": "icon-firefly", "src": "asset:img/firefly.png" },
+                      { "type": "text", "class": "place-text", "text": "{location}" }
+                    ]
+                  },
+                  {
+                    "type": "list",
+                    "class": "heart-row",
+                    "items": "$heartRow",
+                    "template": { "type": "image", "class": "heart", "src": "$src" }
+                  },
+                  {
+                    "type": "box",
+                    "class": "hero-foot",
+                    "children": [
+                      { "type": "text", "class": "life-text", "classIf": { "low": "$lowHealth" }, "text": "{hearts} of {maxHearts} hearts" },
+                      { "type": "text", "class": "foot-text", "text": "Pieces {heartPieces}/4" }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "class": "button-row",
+                "children": [
+                  {
+                    "type": "box",
+                    "class": "plaque button-card",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "acorn",
+                        "children": [
+                          { "type": "image", "class": "acorn-img", "src": "asset:img/acorn.png" },
+                          { "type": "text", "class": "acorn-letter", "text": "B" }
+                        ]
+                      },
+                      { "type": "text", "class": "button-item", "text": "{buttonB}" }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "plaque button-card",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "acorn",
+                        "children": [
+                          { "type": "image", "class": "acorn-img", "src": "asset:img/acorn.png" },
+                          { "type": "text", "class": "acorn-letter", "text": "A" }
+                        ]
+                      },
+                      { "type": "text", "class": "button-item", "text": "{buttonA}" }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "class": "vine-title",
+                "children": [
+                  { "type": "image", "class": "vine", "src": "asset:img/vine-left.png" },
+                  { "type": "text", "class": "vine-text", "text": "Treasury" },
+                  { "type": "image", "class": "vine", "src": "asset:img/vine-right.png" }
+                ]
+              },
+              {
+                "type": "box",
+                "class": "grid-2",
+                "children": [
+                  {
+                    "type": "box",
+                    "class": "plaque stat",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "stat-head",
+                        "children": [
+                          { "type": "image", "class": "icon-rupee", "src": "asset:img/rupee.png" },
+                          {
+                            "type": "box",
+                            "class": "stat-col",
+                            "children": [
+                              { "type": "text", "class": "label", "text": "Rupees" },
+                              { "type": "text", "class": "num rupee-num", "text": "{rupees}" }
+                            ]
+                          }
+                        ]
+                      },
+                      { "type": "bar", "value": "$rupeePct", "max": 1, "class": "gauge rupee-gauge" },
+                      { "type": "text", "class": "fine", "text": "Wallet holds {walletMax}" }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "plaque stat",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "stat-head",
+                        "children": [
+                          { "type": "image", "class": "icon-shell", "src": "asset:img/shell.png" },
+                          {
+                            "type": "box",
+                            "class": "stat-col",
+                            "children": [
+                              { "type": "text", "class": "label", "text": "Shells" },
+                              { "type": "text", "class": "num shell-num", "text": "{shells}" }
+                            ]
+                          }
+                        ]
+                      },
+                      { "type": "bar", "value": "$figurinePct", "max": 1, "class": "gauge shell-gauge" },
+                      { "type": "text", "class": "fine", "text": "Figurines {figurines}/{figurineTotal}" }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "plaque stat",
+                    "visibleIf": "$hasBombs",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "stat-head",
+                        "children": [
+                          { "type": "image", "class": "icon-ammo", "src": "asset:img/bomb.png" },
+                          {
+                            "type": "box",
+                            "class": "stat-col",
+                            "children": [
+                              { "type": "text", "class": "label", "text": "Bombs" },
+                              { "type": "text", "class": "num", "text": "{bombs}" }
+                            ]
+                          }
+                        ]
+                      },
+                      { "type": "bar", "value": "$bombPct", "max": 1, "class": "gauge bomb-gauge" },
+                      { "type": "text", "class": "fine", "text": "Bag holds {bombMax}" }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "plaque stat",
+                    "visibleIf": "$hasBow",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "stat-head",
+                        "children": [
+                          { "type": "image", "class": "icon-ammo", "src": "asset:img/arrow.png" },
+                          {
+                            "type": "box",
+                            "class": "stat-col",
+                            "children": [
+                              { "type": "text", "class": "label", "text": "Arrows" },
+                              { "type": "text", "class": "num", "text": "{arrows}" }
+                            ]
+                          }
+                        ]
+                      },
+                      { "type": "bar", "value": "$arrowPct", "max": 1, "class": "gauge arrow-gauge" },
+                      { "type": "text", "class": "fine", "text": "Quiver holds {arrowMax}" }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "class": "vine-title",
+                "children": [
+                  { "type": "image", "class": "vine", "src": "asset:img/vine-left.png" },
+                  { "type": "text", "class": "vine-text", "text": "Bottles" },
+                  { "type": "image", "class": "vine", "src": "asset:img/vine-right.png" }
+                ]
+              },
+              {
+                "type": "list",
+                "class": "grid-2",
+                "items": "$bottles",
+                "empty": "No bottles yet",
+                "template": {
+                  "type": "box",
+                  "class": "plaque chip-card",
+                  "classIf": { "dim": "$empty" },
+                  "children": [
+                    { "type": "image", "class": "icon-bottle", "src": "asset:img/bottle.png" },
+                    { "type": "text", "class": "chip-text", "text": "{name}" }
+                  ]
+                }
+              },
+              {
+                "type": "box",
+                "class": "plaque blessing",
+                "children": [
+                  { "type": "image", "class": "sprig sprig-r small", "src": "asset:img/sprig-right.png" },
+                  {
+                    "type": "box",
+                    "class": "blessing-row",
+                    "children": [
+                      { "type": "text", "class": "label", "text": "Charm" },
+                      { "type": "text", "class": "blessing-text", "text": "{charm}" }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "blessing-row",
+                    "children": [
+                      { "type": "text", "class": "label", "text": "Picolyte" },
+                      { "type": "text", "class": "blessing-text", "text": "{picolyte}" }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "title": "Items",
+          "child": {
+            "type": "box",
+            "class": "tab-page",
+            "children": [
+              {
+                "type": "box",
+                "class": "plaque hero",
+                "children": [
+                  { "type": "image", "class": "sprig sprig-l", "src": "asset:img/sprig-left.png" },
+                  { "type": "image", "class": "sprig sprig-r", "src": "asset:img/sprig-right.png" },
+                  {
+                    "type": "box",
+                    "class": "hero-foot",
+                    "children": [
+                      { "type": "text", "class": "hero-title", "text": "Elements" },
+                      { "type": "text", "class": "foot-text", "text": "{elementCount} of 4" }
+                    ]
+                  },
+                  {
+                    "type": "list",
+                    "class": "element-row",
+                    "items": "$elements",
+                    "template": {
+                      "type": "box",
+                      "class": "element",
+                      "classIf": { "owned": "$owned" },
+                      "children": [
+                        { "type": "image", "class": "element-img", "src": "$src" },
+                        { "type": "text", "class": "element-name", "text": "{name}" }
+                      ]
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "class": "vine-title",
+                "children": [
+                  { "type": "image", "class": "vine", "src": "asset:img/vine-left.png" },
+                  { "type": "text", "class": "vine-text", "text": "Gear" },
+                  { "type": "image", "class": "vine", "src": "asset:img/vine-right.png" }
+                ]
+              },
+              {
+                "type": "list",
+                "class": "grid-2",
+                "items": "$gear",
+                "empty": "Nothing yet",
+                "template": { "type": "text", "class": "leaf-chip", "text": "{name}" }
+              },
+              {
+                "type": "box",
+                "class": "vine-title",
+                "children": [
+                  { "type": "image", "class": "vine", "src": "asset:img/vine-left.png" },
+                  { "type": "text", "class": "vine-text", "text": "Tiger Scrolls {skillCount}/{skillTotal}" },
+                  { "type": "image", "class": "vine", "src": "asset:img/vine-right.png" }
+                ]
+              },
+              {
+                "type": "list",
+                "class": "grid-2",
+                "items": "$skills",
+                "template": { "type": "text", "class": "scroll-chip", "classIf": { "owned": "$owned" }, "text": "{name}" }
+              },
+              {
+                "type": "box",
+                "class": "vine-title",
+                "children": [
+                  { "type": "image", "class": "vine", "src": "asset:img/vine-left.png" },
+                  { "type": "text", "class": "vine-text", "text": "Quest" },
+                  { "type": "image", "class": "vine", "src": "asset:img/vine-right.png" }
+                ]
+              },
+              {
+                "type": "list",
+                "class": "grid-2",
+                "items": "$quest",
+                "empty": "Nothing to deliver",
+                "template": { "type": "text", "class": "leaf-chip", "text": "{name}" }
+              }
+            ]
+          }
+        },
+        {
+          "title": "Kinstones",
+          "child": {
+            "type": "box",
+            "class": "tab-page",
+            "children": [
+              {
+                "type": "box",
+                "class": "plaque hero",
+                "children": [
+                  { "type": "image", "class": "sprig sprig-l", "src": "asset:img/sprig-left.png" },
+                  { "type": "image", "class": "sprig sprig-r", "src": "asset:img/sprig-right.png" },
+                  {
+                    "type": "box",
+                    "class": "hero-foot",
+                    "children": [
+                      { "type": "text", "class": "hero-title", "text": "Fusions" },
+                      { "type": "text", "class": "fusion-num", "text": "{fused}/{fusionTotal}" }
+                    ]
+                  },
+                  { "type": "bar", "value": "$fusedPct", "max": 1, "class": "gauge fusion-gauge" },
+                  { "type": "text", "class": "foot-text", "text": "{pieceTotal} pieces in the bag" }
+                ]
+              },
+              {
+                "type": "box",
+                "class": "vine-title",
+                "children": [
+                  { "type": "image", "class": "vine", "src": "asset:img/vine-left.png" },
+                  { "type": "text", "class": "vine-text", "text": "The Bag" },
+                  { "type": "image", "class": "vine", "src": "asset:img/vine-right.png" }
+                ]
+              },
+              {
+                "type": "list",
+                "class": "grid-2",
+                "items": "$pieces",
+                "empty": "The bag is empty",
+                "template": {
+                  "type": "box",
+                  "class": "plaque piece",
+                  "classIf": { "gold": "$isGold", "red": "$isRed", "blue": "$isBlue", "green": "$isGreen" },
+                  "children": [
+                    { "type": "image", "class": "piece-img", "src": "$src" },
+                    {
+                      "type": "box",
+                      "class": "stat-col grow",
+                      "children": [
+                        { "type": "text", "class": "piece-color", "text": "{color}" },
+                        { "type": "text", "class": "fine", "text": "{name} {id}" }
+                      ]
+                    },
+                    { "type": "text", "class": "piece-amount", "text": "×{amount}" }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "title": "Dungeons",
+          "child": {
+            "type": "box",
+            "class": "tab-page",
+            "children": [
+              {
+                "type": "list",
+                "class": "dungeon-list",
+                "items": "$dungeons",
+                "template": {
+                  "type": "box",
+                  "class": "plaque dungeon",
+                  "classIf": { "cleared": "$cleared", "here": "$here" },
+                  "children": [
+                    { "type": "image", "class": "seal", "visibleIf": "$cleared", "src": "asset:img/seal.png" },
+                    {
+                      "type": "box",
+                      "class": "dungeon-head",
+                      "children": [
+                        { "type": "image", "class": "icon-firefly", "visibleIf": "$here", "src": "asset:img/firefly.png" },
+                        { "type": "text", "class": "dungeon-name", "text": "{name}" }
+                      ]
+                    },
+                    { "type": "text", "class": "fine", "text": "{prize}" },
+                    {
+                      "type": "box",
+                      "class": "relics",
+                      "children": [
+                        {
+                          "type": "box",
+                          "class": "relic owned",
+                          "children": [
+                            { "type": "image", "class": "relic-img", "src": "asset:img/key.png" },
+                            { "type": "text", "class": "relic-text", "text": "×{keys}" }
+                          ]
+                        },
+                        { "type": "image", "class": "relic-img lone", "classIf": { "owned": "$map" }, "src": "asset:img/map.png" },
+                        { "type": "image", "class": "relic-img lone", "classIf": { "owned": "$compass" }, "src": "asset:img/compass.png" },
+                        { "type": "image", "class": "relic-img lone", "classIf": { "owned": "$bigKey" }, "src": "asset:img/big-key.png" }
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "box",
+                "class": "plaque records",
+                "children": [
+                  { "type": "text", "class": "label", "text": "Enemies defeated" },
+                  { "type": "text", "class": "num", "text": "{enemiesKilled}" }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
