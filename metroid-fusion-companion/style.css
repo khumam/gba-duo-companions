@@ -1,0 +1,233 @@
+/*
+ * Design: BSL Bio-Interface. The research station's HUD over SR388: dark
+ * holographic glass panels with cyan corner brackets, hex plates for every
+ * ability, and X parasites drifting in the backdrop. When energy runs low the
+ * hero panel turns alarm red. Follows the enchanted-forest pack system
+ * (skill/enchanted-forest-pack-design) with a sci-fi palette: brackets stand in
+ * for leaf sprigs, the scan line for the vine divider.
+ *
+ * Fonts: Audiowide (display numbers, titles), Chakra Petch (HUD text).
+ * Art: art/build.mjs. Engine: background-size px/cover only, art images need
+ * image-rendering: auto.
+ */
+
+:root {
+  --void:     #02060E;
+  --glass:    rgba(6, 20, 32, 0.84);
+  --glass-hi: rgba(14, 42, 62, 0.86);
+  --cyan:     #4FE6FF;
+  --cyan-lo:  rgba(79, 230, 255, 0.45);
+  --text:     #DDF6FF;
+  --text-lo:  #7FA6BC;
+  --alarm:    #FF4A4A;
+  --missile:  #FF9A3A;
+  --bomb:     #FF5AC8;
+  --suit:     #6AF08A;
+  --here:     #FFD84A;
+}
+
+@font-face { font-family: "Audiowide"; src: url("assets/fonts/Audiowide-Regular.ttf"); }
+@font-face { font-family: "Chakra"; src: url("assets/fonts/ChakraPetch-Medium.ttf"); }
+@font-face { font-family: "ChakraBold"; src: url("assets/fonts/ChakraPetch-Bold.ttf"); }
+
+#screen {
+  background-color: var(--void);
+  background-image: url("assets/img/bsl-space.png");
+  background-size: cover;
+  color: var(--text);
+  font-family: "Chakra", sans-serif;
+  padding: 10px 12px 0 12px;
+}
+
+/* ---- waiting ----------------------------------------------------------------------- */
+
+.waiting { align-items: center; justify-content: center; height: 100%; gap: 6px; }
+.core { width: 200px; height: 200px; image-rendering: auto; }
+.waiting-title {
+  font-family: "Audiowide", sans-serif;
+  font-size: 26px;
+  letter-spacing: 4px;
+  color: var(--cyan);
+  text-shadow: 0 0 12px rgba(79, 230, 255, 0.8);
+}
+
+/* ---- tabs: holo plates (110x36, px only) ------------------------------------------------ */
+
+tab-bar { gap: 0; justify-content: space-between; margin-bottom: 2px; }
+
+tab {
+  width: 110px;
+  height: 36px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: "Audiowide", sans-serif;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-lo);
+  background-image: url("assets/img/tab-holo.png");
+  background-size: 110px 36px;
+  padding: 8px 0 0 0;
+  transition: color 200ms ease-out, transform 150ms ease-out;
+}
+
+tab:active {
+  color: #03202E;
+  background-image: url("assets/img/tab-holo-active.png");
+}
+
+tab:pressed { transform: scale(0.95); }
+tab-content { padding-top: 0; }
+
+.tab-page { gap: 10px; overflow: auto; padding: 14px 2px 24px 2px; }
+
+/* ---- panels ------------------------------------------------------------------------------ */
+
+.panel {
+  position: relative;
+  background: linear-gradient(160deg, var(--glass-hi), var(--glass));
+  border: 1px solid var(--cyan-lo);
+  border-radius: 4px 14px 4px 14px;
+  padding: 10px 12px;
+  box-shadow: 0 0 14px rgba(79, 230, 255, 0.12);
+  gap: 4px;
+}
+
+.panel.hero {
+  border: 1px solid var(--cyan);
+  border-radius: 6px 20px 6px 20px;
+  padding: 14px 16px 12px 16px;
+  box-shadow: 0 0 18px rgba(79, 230, 255, 0.25);
+  gap: 8px;
+}
+
+.panel.hero.slim { padding: 12px 16px; }
+
+.panel.hero.alert {
+  border-color: var(--alarm);
+  background: linear-gradient(160deg, rgba(70, 10, 14, 0.9), rgba(20, 4, 8, 0.88));
+  box-shadow: 0 0 22px rgba(255, 74, 74, 0.45);
+}
+
+.bracket { position: absolute; width: 38px; height: 38px; image-rendering: auto; }
+.bracket-l { top: -5px; left: -5px; }
+.bracket-r { top: -5px; right: -5px; }
+
+.col { gap: 0; }
+.right { align-items: flex-end; }
+.grow { flex: 1; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+
+.label { font-family: "ChakraBold", sans-serif; font-size: 10px; letter-spacing: 2px; color: var(--cyan); }
+.fine { font-size: 11px; color: var(--text-lo); }
+.icon { width: 22px; height: 22px; image-rendering: auto; }
+.icon-small { width: 18px; height: 18px; image-rendering: auto; }
+.dim { opacity: 0.2; }
+.dim.on { opacity: 1; }
+
+.scan-title { flex-direction: row; align-items: center; justify-content: center; gap: 6px; margin-top: 2px; }
+.scan { width: 80px; height: 10px; image-rendering: auto; }
+.scan-text {
+  font-family: "Audiowide", sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--cyan);
+  text-shadow: 0 0 8px rgba(79, 230, 255, 0.7);
+}
+
+.gauge {
+  height: 6px;
+  border-radius: 1px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(79, 230, 255, 0.25);
+}
+.gauge > fill { border-radius: 1px; transition: width 400ms ease-out; }
+.energy-gauge > fill  { background: linear-gradient(90deg, #1AA8D8, #9AF6FF); }
+.energy-gauge.alert > fill { background: linear-gradient(90deg, #8E1010, var(--alarm)); }
+.missile-gauge > fill { background: linear-gradient(90deg, #B85A10, var(--missile)); }
+.bomb-gauge > fill    { background: linear-gradient(90deg, #A01A7A, var(--bomb)); }
+.sector-gauge > fill  { background: linear-gradient(90deg, #1AA8D8, var(--suit)); }
+
+/* ---- status ------------------------------------------------------------------------------ */
+
+.energy-row { flex-direction: row; justify-content: space-between; align-items: center; }
+
+.energy-num {
+  font-family: "Audiowide", sans-serif;
+  font-size: 46px;
+  line-height: 48px;
+  color: var(--text);
+  text-shadow: 0 0 14px rgba(79, 230, 255, 0.8);
+}
+
+.energy-num.alert { color: #FFB0B0; text-shadow: 0 0 14px rgba(255, 74, 74, 0.9); }
+
+.alarm {
+  font-family: "Audiowide", sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #FFFFFF;
+  background-color: var(--alarm);
+  border-radius: 2px;
+  padding: 1px 6px;
+  margin-bottom: 2px;
+}
+
+.tank-row { flex-direction: row; flex-wrap: wrap; gap: 3px; }
+.tank { width: 16px; height: 16px; image-rendering: auto; }
+
+.stat { gap: 4px; }
+.stat-head { flex-direction: row; align-items: center; gap: 6px; }
+.count-row { flex-direction: row; align-items: flex-end; gap: 4px; }
+.count { font-family: "Audiowide", sans-serif; font-size: 24px; line-height: 26px; }
+.missile-num { color: var(--missile); }
+.bomb-num { color: var(--bomb); }
+
+.value { font-family: "Audiowide", sans-serif; font-size: 16px; color: var(--text); }
+.value.time { font-size: 20px; }
+
+.location { flex-direction: row; align-items: center; gap: 10px; }
+.emblem { width: 40px; height: 40px; image-rendering: auto; }
+.place { font-family: "ChakraBold", sans-serif; font-size: 16px; color: var(--text); }
+.icon-here { width: 26px; height: 26px; image-rendering: auto; }
+
+.pip-row { flex-direction: row; gap: 4px; margin-top: 2px; }
+.pip { width: 26px; height: 7px; border-radius: 1px; opacity: 0.45; }
+.pip.open { opacity: 1; }
+
+/* ---- abilities ------------------------------------------------------------------------------ */
+
+.title { font-family: "Audiowide", sans-serif; font-size: 18px; letter-spacing: 3px; color: var(--cyan); }
+.title-count { font-family: "Audiowide", sans-serif; font-size: 22px; color: var(--text); }
+
+.groups { gap: 10px; }
+.group { gap: 6px; padding: 8px 8px 10px 8px; }
+
+.ability-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+
+.ability { align-items: center; gap: 1px; }
+.ability-img { width: 48px; height: 48px; image-rendering: auto; }
+
+.ability-name {
+  font-family: "ChakraBold", sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.5px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #3A5A72;
+  text-shadow: 0 1px 3px #000000;
+}
+
+.ability.owned .ability-name { color: var(--text); }
+
+/* ---- sectors ------------------------------------------------------------------------------- */
+
+.sector-list { gap: 8px; }
+
+.sector { flex-direction: row; align-items: center; gap: 10px; }
+.sector.here { border: 1px solid var(--here); box-shadow: 0 0 16px rgba(255, 216, 74, 0.3); }
+
+.sector-head { flex-direction: row; align-items: center; gap: 6px; margin-bottom: 3px; }
+.sector-code { font-family: "Audiowide", sans-serif; font-size: 15px; color: var(--text); }
+.pct { font-family: "Audiowide", sans-serif; font-size: 13px; color: var(--suit); }

@@ -80,6 +80,20 @@ at Minish size, with leaf-framed plaques over a firefly-lit canopy.
 See [`zelda-minish-cap-companion/NOTES.md`](zelda-minish-cap-companion/NOTES.md) for
 what's verified on the device and what isn't yet.
 
+### Metroid Fusion — `metroid-fusion-companion`
+
+For Metroid Fusion (US `AMTE`, EU `AMTP`, JP `AMTJ`). Design: *BSL Bio-Interface*, the
+station's HUD over SR388 with X parasites drifting past.
+
+- **STATUS** - energy with its tanks (the panel turns red when energy is low), missiles,
+  power bombs, where you are, security level and mission time.
+- **ABILITIES** - every beam, missile, bomb, suit and move upgrade, lit once you have it.
+- **SECTORS** - Main Deck and Sectors 1-6 with their percentage, downloaded maps and
+  where you are.
+
+See [`metroid-fusion-companion/NOTES.md`](metroid-fusion-companion/NOTES.md) for
+what's verified on the device and what isn't yet.
+
 Want a pack for another game? [Open an issue](https://github.com/khumam/gba-duo-companions/issues).
 
 ## Make a pack
@@ -145,13 +159,17 @@ cd my-pack && zip -rX ../my-pack-1.0.0.zip . -x '*.DS_Store' 'art/*'
   and samurai goroh's code guide.
 - The Minish Cap: the [zeldaret](https://github.com/zeldaret/tmc) tmc decompilation and
   samurai goroh's code guide.
+- Metroid Fusion: [Data Crystal's RAM map](https://datacrystal.tcrf.net/wiki/Metroid_Fusion/RAM_map)
+  and the [metroidret](https://github.com/metroidret/mf) mf decompilation.
 - Fonts: [Silkscreen](https://fonts.google.com/specimen/Silkscreen),
   [Bungee](https://fonts.google.com/specimen/Bungee),
   [Barlow Semi Condensed](https://fonts.google.com/specimen/Barlow+Semi+Condensed),
   [Sniglet](https://fonts.google.com/specimen/Sniglet), [Mali](https://fonts.google.com/specimen/Mali),
   [Uncial Antiqua](https://fonts.google.com/specimen/Uncial+Antiqua),
-  [Cinzel Decorative](https://fonts.google.com/specimen/Cinzel+Decorative) and
-  [Alegreya Sans](https://fonts.google.com/specimen/Alegreya+Sans), under the SIL Open Font License 1.1.
+  [Cinzel Decorative](https://fonts.google.com/specimen/Cinzel+Decorative),
+  [Alegreya Sans](https://fonts.google.com/specimen/Alegreya+Sans),
+  [Audiowide](https://fonts.google.com/specimen/Audiowide) and
+  [Chakra Petch](https://fonts.google.com/specimen/Chakra+Petch), under the SIL Open Font License 1.1.
 - Art: every image in the packs is original, drawn in code by each pack's `art/build.mjs`.
 
 </details>
@@ -159,6 +177,6 @@ cd my-pack && zip -rX ../my-pack-1.0.0.zip . -x '*.DS_Store' 'art/*'
 ## Disclaimer
 
 These packs are fan-made, not affiliated with or endorsed by Nintendo, Game Freak,
-Creatures, The Pokémon Company or Marvelous. Pokémon, Harvest Moon, The Legend of Zelda and all related
+Creatures, The Pokémon Company or Marvelous. Pokémon, Harvest Moon, The Legend of Zelda, Metroid and all related
 names are trademarks of their respective owners. No games or game art are included:
 use your own legally dumped ROMs.

@@ -1,0 +1,13 @@
+{
+  "id": "metroid-fusion-companion",
+  "name": "Metroid Fusion Companion",
+  "version": "1.0.0",
+  "author": "khumam",
+  "formatVersion": 2,
+  "match": { "gameCode": ["AMTE", "AMTP", "AMTJ"], "crc32": [] },
+  "tickHz": 4,
+  "layout": "layout.json",
+  "styles": ["style.css"],
+  "script": "main.lua",
+  "values": {}
+}
