@@ -9,7 +9,8 @@
 //   JAVA_HOME=<JDK 17+> ./gradlew :app:testDebugUnitTest --tests '*PreviewRender' --rerun
 //   open /tmp/pack-preview                                # screen-N.png, tall-N.png
 //
-// screen-N = the Thor's bottom screen (360x413dp) per tab; tall-N = the whole
+// screen-N = the Thor's companion screen (1240x1080 px landscape, 369 dpi = ~538x468dp)
+// per tab; tall-N = the whole
 // scrolling page. CSS/layout/tree warnings print to the test output (-i).
 // Gradle needs JDK 17 (a portable Temurin in /tmp is enough). It draws the
 // decor view itself because captureToImage() times out under Robolectric here,
@@ -100,10 +101,10 @@ class PreviewRender {
     }
 
     @Test
-    @Config(sdk = [34], qualifiers = "w360dp-h413dp-xxhdpi")
+    @Config(sdk = [34], qualifiers = "w538dp-h468dp-land-369dpi")
     fun screen() = render("screen")
 
     @Test
-    @Config(sdk = [34], qualifiers = "w360dp-h1100dp-hdpi")
+    @Config(sdk = [34], qualifiers = "w538dp-h1400dp-369dpi")
     fun tall() = render("tall")
 }

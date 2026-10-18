@@ -52,7 +52,8 @@ can't read SVG.
 - Owned/locked: locked items at 0.22–0.55 opacity or an "empty socket" icon; owned
   turn gold. Never hide progress — show what's missing.
 - Numbers in Alegreya Bold, coloured by their gem; labels in Cinzel, gold, 10px.
-- Screen is 360×413dp (Thor bottom, half of 1080×1240). Tabs: 4 × 84px max.
+- Screen is 1240×1080 px landscape at 369 dpi (2.30625 px/dp) = ~538×468dp. 1 device px
+  = 0.4336dp: for crisp pixel art, size in whole device px (e.g. 5px = 2.168dp).
 
 ## Common mistakes
 
