@@ -67,18 +67,22 @@ what's verified on the device and what isn't yet.
 
 ### The Legend of Zelda: The Minish Cap — `zelda-minish-cap-companion`
 
-For The Minish Cap (US `BZME`, EU `BZMP`, JP `BZMJ`). Design: *Enchanted forest*, the world
-at Minish size, with leaf-framed plaques over a firefly-lit canopy.
+For The Minish Cap (US `BZME`, EU `BZMP`, JP `BZMJ`). Folder:
+[`zelda-the-minish-cap-companion`](zelda-the-minish-cap-companion). Design: the game's own
+pause menu, with navy Link panels, carved stone panels with item sockets and the
+title banners, in the game's pixel font.
 
-- **LINK** - hearts and heart pieces, where you are, the A and B items, rupees and wallet,
-  shells, bombs and arrows, bottles, and the active charm or picolyte with its time left.
-- **ITEMS** - the four elements, your best gear, tiger scrolls learned and quest items.
-- **KINSTONES** - pieces in the bag by colour, and fusions done out of 100.
+- **STATS** - hearts and heart pieces, where you are, the A and B items, the world map
+  with Link's spot, rupees, shells, bombs, arrows and figurines, bottles, and the active
+  charm or picolyte with its time left.
+- **ITEMS** - your gear as icons (tap one to see its name), the four elements, tiger
+  scrolls learned and quest items.
+- **KINSTONES** - fusions done out of 100, and the pieces in the bag by colour.
 - **DUNGEONS** - each dungeon's keys, map, compass and big key, which ones are cleared,
   and the one you're in.
 
-See [`zelda-minish-cap-companion/NOTES.md`](zelda-minish-cap-companion/NOTES.md) for
-what's verified on the device and what isn't yet.
+See [`zelda-the-minish-cap-companion/NOTES.md`](zelda-the-minish-cap-companion/NOTES.md)
+for what's verified on the device and what isn't yet.
 
 ### Metroid Fusion — `metroid-fusion-companion`
 
@@ -140,10 +144,11 @@ root of the zip) and import it in GBADuo.
 
 Each release has one zip per pack, named `<pack-id>-<version>.zip`, with the pack's files
 at the root of the zip. Bump `version` in the pack's `manifest.json` when it changes.
-`art/` holds the SVG sources and the script that draws `assets/img/`; it stays out of the zip.
+`art/` holds the scripts that build a pack's images (and their sources); it stays out
+of the zip, along with `NOTES.md` and `preview-data.json`.
 
 ```sh
-cd my-pack && zip -rX ../my-pack-1.0.0.zip . -x '*.DS_Store' 'art/*'
+cd my-pack && zip -rX ../my-pack-1.0.0.zip . -x '*.DS_Store' 'art/*' NOTES.md preview-data.json
 ```
 
 </details>
@@ -170,7 +175,13 @@ cd my-pack && zip -rX ../my-pack-1.0.0.zip . -x '*.DS_Store' 'art/*'
   [Alegreya Sans](https://fonts.google.com/specimen/Alegreya+Sans),
   [Audiowide](https://fonts.google.com/specimen/Audiowide) and
   [Chakra Petch](https://fonts.google.com/specimen/Chakra+Petch), under the SIL Open Font License 1.1.
-- Art: every image in the packs is original, drawn in code by each pack's `art/build.mjs`.
+- The Minish Cap pack's font: "TLOZ Minish Cap/A Link to the Past/Four Sword" by
+  David Fens ([FontStruct](https://fontstruct.com/fontstructions/show/875429)), under the
+  FontStruct Non-Commercial License.
+- Art: the FireRed, Harvest Moon and Metroid Fusion packs' images are original, drawn in
+  code by each pack's `art/build.mjs`. The Minish Cap pack uses graphics from the game
+  itself: item sprites from the [Zelda Dungeon wiki](https://www.zeldadungeon.net/wiki/The_Minish_Cap_Items),
+  plus the logo, menu frames and world map. They belong to Nintendo.
 
 </details>
 
@@ -178,5 +189,7 @@ cd my-pack && zip -rX ../my-pack-1.0.0.zip . -x '*.DS_Store' 'art/*'
 
 These packs are fan-made, not affiliated with or endorsed by Nintendo, Game Freak,
 Creatures, The Pokémon Company or Marvelous. Pokémon, Harvest Moon, The Legend of Zelda, Metroid and all related
-names are trademarks of their respective owners. No games or game art are included:
-use your own legally dumped ROMs.
+names are trademarks of their respective owners. No games are included: use your own
+legally dumped ROMs. The Minish Cap pack includes graphics from the game for a
+non-commercial fan project; they remain Nintendo's property and will be removed on
+request.
