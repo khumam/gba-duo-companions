@@ -1,667 +1,564 @@
+/*
+ * Minish-OS (Picori Pedestal), after zeldauinew.jpeg: deep-green backdrop in a
+ * charcoal bezel, stitched leather header, copper-riveted panels crowned with
+ * leafy title plaques, parchment cards, and a steel-framed wooden command dock.
+ *
+ * Guide lengths (3DS, 320 x 240) are scaled ~x1.5 for the Thor's ~538 x 468 dp
+ * screen. Jersey 10 sets labels, Press Start 2P the tabular numbers.
+ */
+
 :root {
-  --aqua: #58D0F8;
-  --light-aqua: #D8F8F8;
-  --purple: #703090;
-  --dark-purple: #000030;
-  --dark-blue: #0818A8;
-  --blue: #4000E8;
-  --white: #F8F8F8;
-  --light-gray: #BCBCC0;
-  --gray: #505057;
-  --black: #000000;
+  --link-green: #22C55E;
+  --ezlo-teal: #06B6D4;
+  --triforce-gold: #EAB308;
+  --kinstone-red: #EF4444;
+  --kinstone-blue: #3B82F6;
+  --kinstone-green: #10B981;
+
+  --border-dark: #18181B;
+  --leather-brown: #78350F;
+  --wood-dark: #3A2312;
+  --wood-edge: #2B1408;
+  --parchment-bg: #FEF3C7;
+  --parchment-dark: #E9C98A;
+  --parchment-edge: #8A5A2B;
+  --forest: #1F4A34;
+  --bezel: #2A2D31;
+  --steel: #A3AAB3;
+  --cream: #F5E6C4;
 }
 
-@font-face { font-family: "Zelda"; src: url("assets/fonts/Zelda.ttf"); }
-
-#main-screen {
-  width: 100%;
-  height: 100%;
-  background-color: var(--black);
-  background-image: url("assets/img/background.png");
-  background-size: cover;
-  font-family: "Zelda", monospace;
-  font-size: 13.875px;
-  color: var(--white);
-}
+@font-face { font-family: "Jersey"; src: url("assets/fonts/Jersey10-Regular.ttf"); }
+@font-face { font-family: "PressStart"; src: url("assets/fonts/PressStart2P-Regular.ttf"); }
 
 image { image-rendering: pixelated; }
+text { white-space: nowrap; }
 
-/* -- Waiting screen -- */
+.grow { flex: 1; }
+.num { font-family: "PressStart"; font-size: 12px; line-height: 14px; }
 
-.waiting-screen {
+/* ---- canvas: charcoal bezel around a deep-green field --------------------------------- */
+
+#screen {
   width: 100%;
   height: 100%;
+  padding: 8px;
+  background-color: var(--forest);
+  background-image: url("assets/ui/canopy.png");
+  background-size: 48px 48px;
+  border: 4px solid var(--bezel);
+  border-radius: 14px;
+  font-family: "Jersey";
+  font-size: 16px;
+  color: var(--cream);
+}
+
+.shell { flex: 1 1 auto; min-height: 0; gap: 8px; position: relative; }
+
+/* ---- header: stitched leather strip --------------------------------------------------- */
+
+.header {
+  flex-shrink: 0;
+  height: 56px;
+  padding: 4px;
+  background-color: #6B3A1F;
+  background-image: url("assets/ui/leather.png");
+  background-size: 16px 16px;
+  border: 3px solid var(--wood-edge);
+  border-radius: 8px;
+  box-shadow: 0 4px 0 #0F2A1D;
+}
+.header-in {
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  padding: 0 6px 0 12px;
+  border: 2px dashed #D9A066;
+  border-radius: 5px;
+}
+.hgroup { flex-direction: row; align-items: center; gap: 6px; }
+.hicon { width: 30px; height: 30px; }
+.hicon-rupee { width: 18px; height: 25px; }
+.rupees { font-size: 18px; line-height: 20px; color: #4ADE80; text-shadow: 2px 2px 0 #18181B; }
+.of, .kin { font-size: 18px; line-height: 20px; color: #FFFFFF; text-shadow: 2px 2px 0 #18181B; }
+
+.ezlo-btn {
+  width: 48px;
+  height: 33px;
+  padding: 0;
+  gap: 0;
+  background-color: #F97316;
+  border: 3px solid var(--border-dark);
+  border-radius: 6px;
+  box-shadow: 2px 2px 0 #18181B;
+}
+.ezlo-btn:pressed { transform: translate(2px, 2px); box-shadow: 0 0 0 #18181B; opacity: 1; }
+/* Ezlo's sprite from the ROM (29 x 28) at 2 device px per pixel (1 px = 0.4336dp) */
+.ezlo { width: 25.15px; height: 24.28px; }
+
+/* Ezlo's hint bubble */
+.bubble {
+  position: absolute;
+  top: 62px;
+  right: 0;
+  width: 320px;
+  z-index: 10;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 10px;
+  background-color: var(--parchment-bg);
+  border: 3px solid var(--border-dark);
+  border-radius: 8px;
+  box-shadow: 4px 4px 0 #18181B;
+}
+.bubble-ezlo { width: 37.72px; height: 36.42px; flex-shrink: 0; } /* 3 device px per pixel */
+.bubble-body { flex: 1; min-width: 0; gap: 3px; }
+.bubble-name { font-size: 17px; line-height: 16px; color: #0E7490; }
+.bubble-text { white-space: normal; font-size: 18px; line-height: 17px; color: var(--border-dark); }
+.bubble-close { font-size: 13px; line-height: 13px; color: #A16207; text-align: right; }
+
+/* ---- pages -------------------------------------------------------------------------- */
+
+.pages-wrap { flex: 1; min-height: 0; width: 100%; }
+.pages { width: 100%; height: 100%; }
+.page { width: 100%; height: 100%; gap: 6px; }
+.content { flex: 1; min-height: 0; display: grid; grid-template-rows: 1fr; column-gap: 12px; }
+.cols-map { grid-template-columns: 1.08fr 1fr; }
+.cols-items { grid-template-columns: 1.35fr 1fr; }
+.cols-kin { grid-template-columns: 1.35fr 1fr; }
+.cols-quest { grid-template-columns: 1.15fr 1fr; }
+
+/* ---- panels: copper rim, rivets, leafy plaque ------------------------------------------ */
+
+.panel { position: relative; min-width: 0; min-height: 0; padding-top: 13px; }
+/* Copper rim: one bevelled gradient (no tiling, so every edge matches) with
+   rivets pinned at fixed, symmetric spots. */
+.panel-frame {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  padding: 10px;
+  background-color: #B4632D;
+  background-image: linear-gradient(160deg, #E8955A 0%, #B4632D 45%, #7A3B14 100%);
+  border: 3px solid var(--wood-edge);
+  border-radius: 8px;
+  box-shadow: 0 4px 0 #0F2A1D;
+}
+.rivet { position: absolute; width: 8px; height: 8px; }
+.rivet-tl { left: 1px; top: 1px; }
+.rivet-tr { right: 1px; top: 1px; }
+.rivet-bl { left: 1px; bottom: 1px; }
+.rivet-br { right: 1px; bottom: 1px; }
+.rivet-ml { left: 1px; top: 50%; transform: translate(0, -4px); }
+.rivet-mr { right: 1px; top: 50%; transform: translate(0, -4px); }
+.rivet-bm { left: 50%; bottom: 1px; transform: translate(-4px, 0); }
+.panel-inner {
+  flex: 1;
+  min-height: 0;
+  gap: 7px;
+  padding: 22px 8px 8px 8px;
+  background-color: var(--wood-dark);
+  background-image: url("assets/ui/wood.png");
+  background-size: 16px 16px;
+  border: 3px solid var(--wood-edge);
+  border-radius: 4px;
+}
+
+.plaque-row { position: absolute; left: 0; top: 0; right: 0; align-items: center; }
+.plaque {
+  position: relative;
+  padding: 2px 24px;
+  background-color: #4A2A14;
+  background-image: linear-gradient(180deg, #6B3E1E 0%, #4A2A14 55%, #331A0A 100%);
+  border: 3px solid var(--wood-edge);
+  border-radius: 6px;
+  box-shadow: 0 3px 0 #0F2A1D;
+}
+.plaque-text {
+  font-size: 23px;
+  line-height: 21px;
+  letter-spacing: 1px;
+  color: var(--cream);
+  text-shadow: 2px 2px 0 #18181B;
+}
+.plaque-leaf { position: absolute; top: 0px; width: 33px; height: 27px; }
+.plaque-leaf-l { left: -10px; }
+.plaque-leaf-r { right: -10px; }
+
+/* Parchment card set into a panel */
+.card {
+  min-height: 0;
+  gap: 6px;
+  padding: 6px 8px 8px 8px;
+  background-color: var(--parchment-bg);
+  background-image: url("assets/ui/parchment.png");
+  background-size: 16px 16px;
+  border: 3px solid var(--parchment-edge);
+  border-radius: 4px;
+}
+.card-head { display: stack; place-items: center; flex-shrink: 0; height: 20px; }
+.card-title { font-size: 18px; line-height: 17px; letter-spacing: 1px; color: #5A2609; }
+.picked {
+  flex-direction: row;
+  align-items: center;
+  justify-self: stretch;
+  align-self: stretch;
+  gap: 6px;
+  padding: 0 8px 0 4px;
+  background-color: var(--triforce-gold);
+  border: 2px solid var(--border-dark);
+  border-radius: 4px;
+}
+.picked-icon { width: 16px; height: 16px; }
+.picked-name { font-size: 17px; line-height: 15px; color: var(--border-dark); }
+
+/* Tan item slots */
+.slot {
+  position: relative;
   align-items: center;
   justify-content: center;
-  gap: 24px;
+  background-color: #D9B77E;
+  border: 3px solid var(--parchment-edge);
+  border-radius: 4px;
 }
+.slot:pressed { transform: translate(1px, 1px); border-color: var(--triforce-gold); }
+.slot.empty { background-color: #C9A46A; }
+.slot-icon { width: 32px; height: 32px; }
+.slot-s .slot-icon { width: 28px; height: 28px; }
+.slot-count { position: absolute; right: 2px; bottom: 1px; }
+.count { font-size: 7.5px; line-height: 9px; color: #FFFFFF; text-shadow: 1px 1px 0 #18181B; }
 
-.logo { width: 280px; height: 163px; image-rendering: auto; }
+/* ---- map panel ------------------------------------------------------------------------- */
 
-.waiting-box {
-  padding: 6px 12px;
-  background: var(--aqua);
-  border: 2px solid var(--purple);
-}
-
-.waiting-text {
-  color: var(--purple);
-  text-shadow: 1px 1.5px 0 var(--white);
-  font-size: 12px;
-}
-
-/* -- Pages section -- */
-
-.page-body { padding: 24px; gap: 20px }
-
-.title-section {
-  position: relative;
-  background: var(--dark-blue);
-  width: 50%;
-  border: 4px solid var(--light-aqua);
-  padding: 5px 10px 5px 42px;
-  background-clip: padding-box;
-  border-radius: 50px;
-  margin-left: 5px
-}
-
-.bc-ol {
-  position: absolute;
-  left: -10px;
-  top: -12px;
-  background-image: url("assets/img/or-l.png");
-  background-repeat: no-repeat;
-  background-size: 40px;
-  height: 60px;
-  width: 40px;
-}
-
-.bc-or {
-  position: absolute;
-  right: -10px;
-  top: -12px;
-  background-image: url("assets/img/or-l.png");
-  background-repeat: no-repeat;
-  background-size: 40px;
-  height: 60px;
-  width: 40px;
-}
-
-.stats-section {
-  background: var(--dark-purple);
-  min-height: 100px;
-  position: relative;
-  gap: 10px
-}
-
-.link-xt {
-  position: absolute;
-  background-image: url("assets/img/link-x.png");
-  background-repeat: repeat-x;
+/* The world map's own 5:4 shape (160 x 128), so Link's marker lands on the right spot. */
+.map-view {
+  aspect-ratio: 5 / 4;
   width: 100%;
-  z-index: 0;
-  top: 0px;
+  position: relative;
+  overflow: hidden;
+  background-color: #D6B98A;
+  border: 3px solid var(--wood-edge);
+  border-radius: 3px;
 }
-
-.link-xb {
-  position: absolute;
-  background-image: url("assets/img/link-x.png");
-  background-repeat: repeat-x;
-  width: 100%;
-  z-index: 0;
-  bottom: 0px;
-  transform: rotate(180deg)
+.map-img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: fill; }
+.mark { position: absolute; }
+.mark-link { width: 24px; height: 24px; transform: translate(-12px, -12px); }
+/* The place's name, in a bar under the map. */
+.map-tag {
+  flex-shrink: 0;
+  align-items: center;
+  padding: 2px 6px;
+  background-color: var(--parchment-bg);
+  border: 2px solid var(--border-dark);
+  border-radius: 4px;
 }
+.map-tag-text { font-size: 18px; line-height: 17px; color: var(--border-dark); text-align: center; }
 
+/* ---- A / B equip rings ------------------------------------------------------------------ */
 
-.link-yl {
+.equips { flex-direction: row; justify-content: space-around; flex-shrink: 0; }
+.equip { align-items: center; gap: 3px; }
+/* Faceted gem in a notched gold bezel (assets/ui/gem-a|b.png) behind the item. */
+.equip-ring {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  align-items: center;
+  justify-content: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.equip-a .equip-ring { background-image: url("assets/ui/gem-a.png"); }
+.equip-b .equip-ring { background-image: url("assets/ui/gem-b.png"); }
+.equip-icon { width: 38px; height: 38px; }
+.equip-badge {
   position: absolute;
-  background-image: url("assets/img/link-y.png");
-  background-repeat: repeat-y;
-  height: 100%;
-  z-index: 0;
   left: 0px;
+  bottom: 0px;
+  width: 22px;
+  height: 22px;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #FFFFFF;
+  border-radius: 999px;
 }
+.equip-a .equip-badge { background-color: #DC2626; }
+.equip-b .equip-badge { background-color: #2563EB; }
+.equip-key { font-size: 15px; line-height: 13px; color: #FFFFFF; }
+.equip-name { font-size: 18px; line-height: 16px; color: #FFFFFF; text-shadow: 2px 2px 0 #18181B; }
 
-.link-yr {
-  position: absolute;
-  background-image: url("assets/img/link-y.png");
-  background-repeat: repeat-y;
-  height: 100%;
-  z-index: 0;
-  right: 0px;
-  transform: rotate(180deg);
+/* Link and his hearts, from the ROM (1 device px = 0.4336dp): his 32 x 24 frame at 4 device
+   px per pixel, on top; the 8 x 8 hearts at 6, centred under him and wrapping onto more
+   rows as he gains containers. A leaf in each corner (the panel plaques' leaves; the top
+   pair turned over). */
+.link-card {
+  flex: 1;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 18px 16px;
 }
-
-.lc-tl {
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  z-index: 0;
-  width: 10px;
-  height: 10px;
-}
-
-.lc-tr {
-  position: absolute;
-  top: -2px;
-  right: -2px;
-  z-index: 0;
-  width: 10px;
-  height: 10px;
-}
-
-.lc-bl {
-  position: absolute;
-  bottom: -2px;
-  left: -2px;
-  z-index: 0;
-  width: 10px;
-  height: 10px;
-}
-
-.lc-br {
-  position: absolute;
-  bottom: -2px;
-  right: -2px;
-  z-index: 0;
-  width: 10px;
-  height: 10px;
-}
-
-.hero-name {
-  font-size: 16px;
-  color: var(--white);
-  margin: 20px 20px 0 20px;
-}
-
-.heart-row {
+.link-sprite { width: 55.50px; height: 41.63px; flex-shrink: 0; }
+.hearts {
+  align-self: stretch;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 2.168px;
-  margin: 0px 20px 20px 20px;
+  justify-content: center;
+  gap: 2.60px;
 }
-.heart { width: 27.317px; height: 24.282px; }
+.heart { width: 20.81px; height: 20.81px; }
+.link-leaf { position: absolute; width: 33px; height: 27px; }
+.link-leaf-tl { left: -6px; top: -6px; transform: rotate(180deg); }
+.link-leaf-tr { right: -6px; top: -6px; transform: rotate(180deg); }
+.link-leaf-bl { left: -6px; bottom: -6px; }
+.link-leaf-br { right: -6px; bottom: -6px; }
 
-/* -- Item section */
+/* ---- items page ------------------------------------------------------------------------- */
 
-.item-stats {
-  position: relative;
-  background: var(--light-gray);
-  min-height: 200px;
-  border: 2px solid var(--gray);
-  box-sizing: border-box;
-}
-
-.bc-tl {
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  z-index: 0;
-}
-
-.bc-tr {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  z-index: 0;
-}
-
-.bc-bl {
-  position: absolute;
-  bottom: -5px;
-  left: -5px;
-  z-index: 0;
-}
-
-.bc-br {
-  position: absolute;
-  bottom: -5px;
-  right: -5px;
-  z-index: 0;
-}
-
-.bc-xt {
-  position: absolute;
-  background-image: url("assets/img/bc-x.png");
-  background-repeat: repeat-x;
-  width: 100%;
-  background-size: 28px;
-  z-index: 0;
-  top: 0px;
-}
-
-.bc-xb {
-  position: absolute;
-  background-image: url("assets/img/bc-x.png");
-  background-repeat: repeat-x;
-  width: 100%;
-  background-size: 28px;
-  z-index: 0;
-  bottom: -10px;
-}
-
-
-.bc-yl {
-  position: absolute;
-  background-image: url("assets/img/bc-y.png");
-  background-repeat: repeat-y;
-  height: 100%;
-  background-size: 28px;
-  z-index: 0;
-  left: 0px;
-}
-
-.bc-yr {
-  position: absolute;
-  background-image: url("assets/img/bc-y.png");
-  background-repeat: repeat-y;
-  height: 100%;
-  background-size: 28px;
-  z-index: 0;
-  right: -4px;
-}
-
-
-
-
-
-
-
-/* ================================================================================
- * Navigation and the Kinstones / Dungeons pages. Everything above is unchanged:
- * these rules only add to it and reuse its frames (.stats-section + link-* for the
- * navy Link panel, .item-stats + bc-* for the gray triforce panel, .title-section).
- * ================================================================================ */
-
-/* Each page = its page-body (scrolls when long) + the button row, filling the screen. */
-.main-pages { width: 100%; height: 100%; }
-.page { width: 100%; height: 100%; }
-.page .page-body { flex: 1; min-height: 0; overflow: auto; }
-
-/* -- Button row: full width, the four buttons split it evenly -- */
-
-.nav {
-  width: 100%;
-  gap: 10px;
-  padding: 14px 24px 14px 24px;
-}
-
-/* Pills like the title banner; the open page's button looks like the banner itself. */
-.nav-btn {
+.pouch-card { flex: 1; }
+.item-grid {
   flex: 1;
-  height: 40px;
-  padding: 0;
-  border-radius: 50px;
-  background-color: var(--dark-purple);
-  border: 3px solid var(--dark-blue);
-}
-
-.nav-btn.on { background-color: var(--dark-blue); border-color: var(--light-aqua); }
-.nav-btn:pressed { opacity: 1; transform: translate(0, 2px); }
-
-.nav-text { font-size: 13.875px; color: var(--light-aqua); }
-.nav-btn.on .nav-text { color: var(--white); }
-
-/* -- Shared panel content -- */
-
-/* A navy Link panel holding rows of text instead of the stats page's hero. The
-   frame box keeps no padding (its edge strips are width/height: 100%); the
-   content sits in .panel-inner. */
-.panel { min-height: 0; }
-.panel-inner { padding: 20px 22px; gap: 6px; }
-
-.panel-row { flex-direction: row; align-items: center; justify-content: space-between; gap: 10px; }
-.panel-title { font-size: 16px; color: var(--white); }
-.panel-num { font-size: 16px; color: var(--aqua); }
-.panel-fine { font-size: 12px; color: var(--light-gray); }
-
-.gauge {
-  height: 12px;
-  background-color: var(--dark-blue);
-  border: 2px solid var(--light-aqua);
-}
-
-.gauge > fill { background-color: var(--aqua); }
-
-/* -- Kinstones: the bag inside the gray triforce panel -- */
-
-/* The inner padding clears the bc-* edge strips. */
-.bag { min-height: 0; }
-.bag .panel-inner { padding: 34px 36px; }
-
-.piece-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px 18px;
-}
-
-.piece { flex-direction: row; align-items: center; gap: 10px; }
-.piece-img { width: 17px; height: 28px; image-rendering: auto; }
-.piece-col { flex-grow: 1; gap: 2px; }
-.piece-color { font-size: 13.875px; color: var(--dark-purple); }
-.piece-name { font-size: 12px; color: var(--gray); }
-.piece-amount { font-size: 16px; color: var(--purple); }
-
-.bag .empty { color: var(--gray); }
-
-/* -- Dungeons: one navy Link panel per dungeon -- */
-
-.dungeon-list { gap: 16px; }
-
-.dungeon.here { background-color: var(--dark-blue); }
-.dungeon.cleared .dungeon-name { color: var(--aqua); }
-
-.dungeon-state { font-size: 12px; }
-.cleared-text { color: var(--aqua); }
-.here-text { color: var(--light-aqua); }
-
-.relics { flex-direction: row; align-items: center; gap: 12px; margin-top: 4px; }
-.relic { flex-direction: row; align-items: center; gap: 4px; }
-.relic-img { width: 22px; height: 22px; image-rendering: auto; }
-.relic-text { font-size: 13.875px; color: var(--white); }
-.lone { opacity: 0.3; }
-.lone.owned { opacity: 1; }
-
-/* ================================================================================
- * Item icons (assets/icons, from item_names.lua). The wiki sprites come at mixed,
- * fractional upscales, so they're shown in fixed boxes with smooth scaling, which
- * keeps them clean when shrunk; pixelated would drop pixels unevenly.
- * ================================================================================ */
-
-.icon { image-rendering: auto; object-fit: contain; }
-
-/* Small headings between panels: a pill like the title banner and the buttons. */
-.section { margin-top: 4px; }
-
-.section-pill {
-  background-color: var(--dark-blue);
-  border: 2px solid var(--light-aqua);
-  border-radius: 50px;
-  padding: 3px 14px;
-}
-
-.section-text { font-size: 12px; color: var(--white); }
-
-/* An item: its icon over its name. */
-.tile-grid {
+  min-height: 0;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 14px 10px;
+  grid-template-rows: repeat(4, 1fr);
+  gap: 5px;
 }
 
-.tile { align-items: center; gap: 4px; }
-/* A fixed slot, so names line up even when an item has no icon. */
-.tile-slot { width: 40px; height: 40px; align-items: center; justify-content: center; }
-.tile-icon { width: 40px; height: 40px; }
-.tile-name { font-size: 12px; color: var(--dark-purple); text-align: center; }
-.tile-name.light { color: var(--white); }
-
-.bag .empty { font-size: 13.875px; }
-
-/* -- Stats: B / A items -- */
-
-.equip-row {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-}
-
-.equip { align-items: center; gap: 10px; }
-
-.key-pill {
-  background-color: var(--dark-blue);
-  border: 2px solid var(--light-aqua);
-  border-radius: 50px;
-  padding: 2px 9px;
-}
-
-.key-letter { font-size: 13.875px; color: var(--white); }
-.equip-icon { width: 36px; height: 36px; }
-.equip-name { flex-grow: 1; font-size: 13.875px; color: var(--white); }
-
-/* -- Stats: counters in the gray panel -- */
-
-.counter-row { flex-wrap: wrap; justify-content: space-around; gap: 12px 18px; }
-.counter { align-items: center; gap: 6px; }
-.counter-icon { width: 28px; height: 28px; }
-.counter-num { font-size: 13.875px; color: var(--dark-purple); }
-
-/* -- Stats: bottles, charm, picolyte -- */
-
-.bottle-row { flex-direction: row; flex-wrap: wrap; gap: 18px; }
-.bottles-panel .tile-name { color: var(--white); }
-.bottle.dim { opacity: 0.45; }
-.bottles-panel .empty { color: var(--light-gray); font-size: 13.875px; }
-
-.buff-row { gap: 24px; margin-top: 8px; }
-.buff { align-items: center; gap: 6px; }
-.buff-label { font-size: 12px; color: var(--light-aqua); }
-.buff-icon { width: 24px; height: 24px; }
-.buff-text { font-size: 12px; color: var(--white); }
-
-/* -- Items: elements and Tiger Scrolls (dim until found / learned) -- */
-
-.element-row {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-}
-
-.element { align-items: center; gap: 4px; opacity: 0.35; }
-.element.owned { opacity: 1; }
-.element-icon { width: 48px; height: 48px; }
-
-.scroll-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 8px 16px;
-}
-
-.scroll { align-items: center; gap: 8px; opacity: 0.4; }
-.scroll.owned { opacity: 1; }
-.scroll-icon { width: 22px; height: 26px; }
-.scroll-name { font-size: 13.875px; color: var(--white); }
-
-/* -- Kinstones: the kinstone icons are taller than the old placeholders -- */
-
-.icon.piece-img { width: 22px; height: 31px; }
-
-/* -- Stats: "3 of 6 hearts" and heart pieces, under the hearts -- */
-
-/* Sits right under .heart-row (which keeps its own 20px bottom margin). */
-.hero-foot {
+.gear-panel .panel-inner { justify-content: space-between; padding: 24px 10px 10px 10px; }
+.gear-row {
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
-  margin: -20px 20px 20px 20px;
+  gap: 8px;
+  padding: 4px 8px 4px 4px;
+  background-color: rgba(24, 24, 27, 0.35);
+  border: 2px solid var(--border-dark);
+  border-radius: 6px;
 }
-
-.life-text { font-size: 13.875px; color: var(--white); }
-.life-text.low { color: #F83818; }
-.hero-foot .fine { font-size: 12px; color: var(--light-gray); }
-
-/* -- Item sockets: on the stone panels every item sits in item-placeholder.png,
- *    the round slot carved into the stone. The socket is pixel art drawn at a
- *    whole number of device px per pixel (369 dpi: 1px = 0.4336dp):
- *    4px -> 41.63dp for item tiles and kinstones, 3px -> 31.22dp for counters. -- */
-
-.item-stats .tile-slot, .socket {
-  width: 41.63px;
-  height: 41.63px;
-  align-items: center;
-  justify-content: center;
-  background-image: url("assets/img/item-placeholder.png");
-  background-size: 41.63px 41.63px;
-  background-repeat: no-repeat;
-  image-rendering: pixelated;
+.gear-icon { width: 26px; height: 26px; }
+.gear-main { flex: 1; gap: 3px; }
+.gear-top { flex-direction: row; align-items: center; }
+.gear-name { font-size: 17px; line-height: 16px; color: var(--cream); }
+.gear-val { font-size: 9px; line-height: 11px; color: var(--triforce-gold); }
+.gear-bar {
+  height: 9px;
+  background-color: var(--wood-edge);
+  border: 2px solid var(--border-dark);
+  border-radius: 3px;
+  transition: width 400ms ease-out;
 }
+.gear-row.red .gear-bar { accent-color: var(--kinstone-red); }
+.gear-row.blue .gear-bar { accent-color: var(--kinstone-blue); }
 
-.socket-sm {
-  width: 31.22px;
-  height: 31.22px;
-  background-size: 31.22px 31.22px;
-}
+/* ---- kinstone page ---------------------------------------------------------------------- */
 
-/* Icons sit inside the socket's rim. */
-.item-stats .tile-icon { width: 30px; height: 30px; }
-.socket .icon.piece-img { width: 19px; height: 27px; }
-.socket-sm .counter-icon { width: 21px; height: 21px; }
-
-/* -- Items: the gear grid shows icons only (no names), so more fit on a row.
- *    Socket at 5 device px per pixel -> 52.04dp. -- */
-
-.gear-grid {
-  grid-template-columns: repeat(6, 1fr);
-  gap: 16px 12px;
-  margin: 8px 6px;
-}
-
-.gear-grid .tile { align-items: center; }
-.gear-grid .tile-slot { width: 52.04px; height: 52.04px; background-size: 52.04px 52.04px; }
-.gear-grid .tile-icon { width: 38px; height: 38px; }
-
-/* -- Items: tap an item to see its name, top right, level with the ITEMS banner.
- *    The layout sets ui.itemName; main.lua marks the matching item .selected. -- */
-
-.page .page-body { position: relative; }
-
-/* Same height and look as the title banner: 4px light-aqua rim, dark blue pill. */
-.item-name-tag {
-  position: absolute;
-  top: 24px;
-  right: 24px;
-  background-color: var(--dark-blue);
-  border: 4px solid var(--light-aqua);
-  border-radius: 50px;
-  padding: 5px 16px;
-}
-
-.item-name-text { font-size: 12px; color: var(--white); text-shadow: 1px 1.5px 0 var(--purple); }
-
-.tile:pressed { transform: translate(0, 2px); }
-
-/* The tapped item: its socket gets a dark blue ring. */
-.tile.selected .tile-slot {
-  box-sizing: border-box;
-  border: 3px solid var(--dark-blue);
-  border-radius: 12px;
-}
-
-/* -- Section headings (BOTTLES, ELEMENTS, TIGER SCROLLS, QUEST) use the page
- *    title's own .title-section + .title + ornaments; .subtitle only adds room
- *    above for the ornaments, which reach 12px over the banner. -- */
-
-.subtitle { margin-top: 8px; }
-
-/* -- Stats: location | B and A, under Link's panel -- */
-
-.where-row {
+.piece-card { flex: 1; padding: 6px; }
+.piece-grid {
+  flex: 1;
+  min-height: 0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+  grid-template-rows: repeat(4, 1fr);
+  gap: 6px;
 }
-
-/* Both cards share the row's height; content centred vertically. */
-.where-row .panel-inner { flex-grow: 1; justify-content: center; }
-
-.location { align-items: center; gap: 12px; }
-.location-icon { width: 36px; height: 36px; }
-.location-name { flex-grow: 1; font-size: 16px; color: var(--white); }
-
-.buttons-card .panel-inner { gap: 10px; }
-
-/* a-button.png / b-button.png are 12x14 pixel art: 4 device px per pixel. */
-.ab-button { width: 20.81px; height: 24.28px; image-rendering: pixelated; }
-
-/* -- Items: elements on stone, in sockets like the gear; missing ones are dim
- *    (only the icon, so the socket stays solid). -- */
-
-.elements-panel .element { opacity: 1; gap: 6px; }
-.elements-panel .tile-slot { width: 52.04px; height: 52.04px; background-size: 52.04px 52.04px; }
-.elements-panel .element-icon { width: 38px; height: 38px; opacity: 0.3; }
-.elements-panel .element.owned .element-icon { opacity: 1; }
-.elements-panel .tile-name { color: var(--gray); }
-.elements-panel .element.owned .tile-name { color: var(--dark-purple); }
-
-/* -- Stats: world map with Link's spot, on stone.
- *    worldmap.png is 154x124 pixel art, drawn at 4 device px per pixel
- *    (369 dpi: 616x496 px = 267.10 x 215.07dp). The script gives Link's
- *    overworld spot as mapLeftPct / mapTopPct (% of the map), so the marker is
- *    placed with bindStyle and stays right at any map size. -- */
-
-.map-panel .panel-inner { align-items: center; }
-
-.world-map {
-  position: relative;
-  width: 267.10px;
-  height: 215.07px;
-  background-image: url("assets/icons/worldmap.png");
-  background-size: 267.10px 215.07px;
-  background-repeat: no-repeat;
-  image-rendering: pixelated;
+.piece {
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 6px 2px 3px;
+  border: 3px solid var(--parchment-edge);
+  border-radius: 4px;
 }
+.piece.red { background-color: #FECACA; }
+.piece.blue { background-color: #BFDBFE; }
+.piece.green { background-color: #A7F3D0; }
+.piece.gold { background-color: #FDE68A; }
+.piece-icon { width: 24px; height: 24px; flex-shrink: 0; }
+.piece-text { flex: 1; min-width: 0; gap: 3px; }
+.piece-foot { flex-direction: row; align-items: center; }
+.piece-name { font-size: 15px; line-height: 14px; color: var(--border-dark); text-overflow: ellipsis; }
+.piece-amt { font-size: 10.5px; line-height: 12px; color: var(--border-dark); }
+.piece-id { font-size: 7.5px; line-height: 9px; color: #78350F; }
 
-/* Centred on the spot: negative margins of half its size. */
-.map-marker {
-  position: absolute;
-  width: 10.84px;
-  height: 10.84px;
-  margin-left: -5.42px;
-  margin-top: -5.42px;
-  background-color: #F83818;
-  border: 2px solid var(--white);
-  border-radius: 50px;
-}
-
-/* -- Stats: counters (left, as a list) and the world map (right) share one stone
- *    panel. Not halves: the map keeps its fixed pixel-art size, the list takes
- *    the rest. -- */
-
-.map-panel .panel-inner { align-items: stretch; }
-
-.map-row { align-items: center; gap: 16px; }
-
-.counter-list {
-  flex-grow: 1;
-  justify-content: center;
-  gap: 8px;
-}
-
-.counter-list .counter { justify-content: flex-start; }
-
-.world-map { flex-shrink: 0; }
-
-/* -- The world map sits in map-placeholder-6.png: the 48x48 map-placeholder.png
- *    socket 9-sliced around the map by art/map_placeholder.py with a 6px gap
- *    (166x136), drawn at 4 device px per pixel like the map: 287.91 x 235.88dp.
- *    The map is inset by the gap: 24 device px = 10.406dp. -- */
-
-.map-socket {
+.fuse-panel .panel-inner { gap: 9px; padding: 26px 10px 10px 10px; }
+.fuse-count { flex-direction: row; align-items: flex-end; justify-content: center; gap: 4px; }
+.fuse-num { font-size: 27px; line-height: 28px; color: var(--triforce-gold); text-shadow: 2px 2px 0 #18181B; }
+.fuse-of { font-size: 12px; line-height: 16px; color: var(--parchment-dark); }
+.fuse-bar {
+  height: 14px;
   flex-shrink: 0;
-  width: 287.91px;
-  height: 235.88px;
-  padding: 10.406px;
-  box-sizing: border-box;
-  background-image: url("assets/img/map-placeholder-6.png");
-  background-size: 287.91px 235.88px;
-  background-repeat: no-repeat;
-  image-rendering: pixelated;
+  background-color: var(--wood-edge);
+  border: 3px solid var(--border-dark);
+  border-radius: 4px;
+  accent-color: var(--link-green);
+  transition: width 400ms ease-out;
 }
+.tally { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
+.tally-cell {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px 8px 3px 4px;
+  background-color: rgba(24, 24, 27, 0.35);
+  border: 2px solid var(--border-dark);
+  border-radius: 6px;
+}
+.tally-icon { width: 24px; height: 24px; }
+.tally-num { color: var(--cream); }
+.alert {
+  flex-shrink: 0;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  background-color: var(--kinstone-red);
+  border: 3px solid var(--border-dark);
+  border-radius: 6px;
+}
+.alert-icon { width: 26px; height: 26px; flex-shrink: 0; }
+.alert-text { flex: 1; white-space: normal; font-size: 17px; line-height: 16px; color: #FFFFFF; text-shadow: 1px 1px 0 #18181B; }
 
-/* -- Nav buttons, gradients running up from the bottom, slightly rounded corners. Inactive: teal green
- *    with a mint rim. Active (the open page): bright green with a yellow rim. -- */
+/* ---- quest page ------------------------------------------------------------------------- */
 
-.nav-btn {
-  background: linear-gradient(to top, #10B090, #28C090, #50D898);
-  border: 3px solid #70F0A8;
+.element-row { flex-direction: row; gap: 7px; flex-shrink: 0; }
+.element {
+  flex: 1;
+  align-items: center;
+  gap: 2px;
+  padding: 4px 0 2px 0;
+  background-color: #D9B77E;
+  border: 3px solid var(--parchment-edge);
+  border-radius: 4px;
+}
+.element.owned { border-color: var(--triforce-gold); }
+.element.locked { opacity: 0.45; }
+.element-icon { width: 30px; height: 30px; }
+.element-name { font-size: 15px; line-height: 14px; color: var(--border-dark); }
+
+.dungeon-card { flex: 1; }
+.dungeon-list { flex: 1; min-height: 0; justify-content: space-between; }
+.dungeon { flex-direction: row; align-items: center; gap: 6px; padding: 0 6px 0 2px; border-radius: 4px; }
+.dungeon.here { background-color: #FDE68A; border: 2px solid var(--triforce-gold); }
+.dg-mark { width: 18px; height: 18px; display: stack; place-items: center; }
+.dg-check { width: 16px; height: 12px; }
+.dg-here { width: 16px; height: 16px; }
+.dg-name { font-size: 17px; line-height: 16px; color: #78350F; }
+.dungeon.cleared .dg-name { color: #15803D; }
+.dungeon.here .dg-name { color: var(--border-dark); }
+
+.side-panel .panel-inner { padding: 24px 10px 10px 10px; }
+.side-list { gap: 6px; }
+.side {
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 6px 3px 4px;
+  background-color: var(--parchment-bg);
+  border: 2px solid var(--parchment-edge);
+  border-radius: 4px;
+}
+.side.done { background-color: var(--parchment-dark); opacity: 0.7; }
+.side-icon { width: 24px; height: 24px; }
+.side-name { font-size: 18px; line-height: 17px; color: var(--border-dark); }
+.side-done { font-size: 14px; line-height: 13px; color: #15803D; }
+.stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
+.stat {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px 8px 3px 4px;
+  background-color: rgba(24, 24, 27, 0.35);
+  border: 2px solid var(--border-dark);
+  border-radius: 6px;
+}
+.stat-icon { width: 24px; height: 24px; }
+.stat-val { font-size: 9px; line-height: 11px; color: var(--triforce-gold); }
+
+/* ---- command dock: steel-framed wooden planks -------------------------------------------- */
+
+.dock {
+  position: relative;
+  flex-shrink: 0;
+  gap: 4px;
+  padding: 8px;
+  background-color: var(--wood-dark);
+  background-image: url("assets/ui/wood.png");
+  background-size: 16px 16px;
+  border: 3px solid var(--wood-edge);
+  border-radius: 8px;
+}
+.dock-leaves { position: absolute; top: -22px; width: 45px; height: 36px; }
+.dock-leaves-l { left: -10px; }
+.dock-leaves-r { right: -10px; }
+.tabs { flex-direction: row; gap: 8px; }
+.tab {
+  flex: 1;
+  height: 50px;
+  position: relative;
+  padding: 4px;
+  gap: 0;
+  align-items: stretch;
+  background-color: var(--steel);
+  background-image: linear-gradient(180deg, #D5DAE0 0%, #A3AAB3 50%, #6B7280 100%);
+  border: 2px solid var(--border-dark);
+  border-radius: 6px;
+  box-shadow: 2px 2px 0 #0F0A05;
+  transition: transform 60ms linear;
+}
+.tab:pressed { transform: translate(1px, 1px); box-shadow: 1px 1px 0 #0F0A05; opacity: 1; }
+.tab-plank {
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  background-color: #6B4226;
+  background-image: url("assets/ui/wood.png");
+  background-size: 16px 16px;
+  border: 2px solid var(--wood-edge);
+  border-radius: 3px;
+}
+.tab-label { font-size: 21px; line-height: 19px; color: var(--cream); text-shadow: 2px 2px 0 #18181B; }
+.tab.on { background-image: linear-gradient(180deg, #FDE68A 0%, #EAB308 50%, #A16207 100%); box-shadow: 0 0 8px #FDE047; }
+.tab.on .tab-plank { background-color: #8A5A2B; }
+.tab.on .tab-label { color: #FDE68A; }
+.bolt { position: absolute; width: 7px; height: 7px; }
+.bolt-tl { left: 1px; top: 1px; }
+.bolt-tr { right: 1px; top: 1px; }
+.bolt-bl { left: 1px; bottom: 1px; }
+.bolt-br { right: 1px; bottom: 1px; }
+.tab-alert { position: absolute; top: -12px; right: 6px; width: 22px; height: 22px; }
+
+/* ---- waiting (boot) ---------------------------------------------------------------------- */
+
+.waiting { flex: 1 1 auto; align-items: center; justify-content: center; }
+.boot {
+  width: 320px;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 0;
+  background-color: var(--parchment-bg);
+  background-image: url("assets/ui/parchment.png");
+  background-size: 16px 16px;
+  border: 4px solid #B4632D;
   border-radius: 10px;
+  box-shadow: 5px 5px 0 #0F2A1D;
 }
+/* The title screen's logo from the ROM (176 x 89) at 3 device px per pixel */
+.boot-emblem { width: 228.94px; height: 115.77px; }
+.boot-title { font-size: 28px; line-height: 28px; color: var(--triforce-gold); }
+.boot-pill { padding: 3px 12px; background-color: var(--wood-dark); border: 2px solid var(--border-dark); border-radius: 6px; }
+.boot-pill-text { font-size: 16px; line-height: 16px; color: var(--triforce-gold); }
 
-.nav-btn.on {
-  background: linear-gradient(to top, #08C008, #28E008, #50F810);
-  border-color: #F8F810;
+/* ---- empty lists ------------------------------------------------------------------------ */
+
+.piece-grid empty,
+.side-list empty {
+  align-self: center;
+  font-size: 18px;
+  line-height: 17px;
+  letter-spacing: 1px;
 }
-
-.nav-text { color: var(--white); text-shadow: 1px 1.5px 0 #086050; }
-.nav-btn.on .nav-text { color: var(--white); text-shadow: 1px 1.5px 0 #086008; }
+.piece-grid empty { color: #A16207; grid-column: span 2; justify-self: center; align-self: center; }
+.side-list empty { color: var(--parchment-dark); padding-top: 12px; }

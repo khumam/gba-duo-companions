@@ -1,11 +1,14 @@
--- The Legend of Zelda: The Minish Cap (GBA) memory map, from the zeldaret/tmc
--- decompilation (include/save.h, include/player.h, linker.ld):
+-- The Legend of Zelda: The Minish Cap (GBA), Minish-OS companion.
+--
+-- Memory map from the zeldaret/tmc decompilation (include/save.h,
+-- include/player.h, include/item.h, include/area.h, linker.ld):
 -- https://github.com/zeldaret/tmc
 -- and samurai goroh's code guide, which agrees with it:
 -- http://www.erick.guillen.com.mx/Codes/GBA%20The%20Legend%20of%20Zelda%20Minish%20Cap.txt
 --
--- Everything the save file holds lives in one struct, gSave, at a fixed
--- address in every release (US, EU and JP share the EWRAM layout).
+-- Everything the save file holds lives in one struct, gSave, at the same
+-- address in the US, EU and JP builds. update() returns the shape the layout
+-- binds (see preview-data.json).
 
 local item_names = pack.require("item_names")
 local area_names = pack.require("area_names")
@@ -15,28 +18,24 @@ local SAVE = 0x02002A40
 -- ---- Save header -------------------------------------------------------------
 local SAVE_INVALID = SAVE + 0x000
 local SAVE_INITIALIZED = SAVE + 0x001
-local ENEMIES_KILLED = SAVE + 0x050  -- u32
-local FILE_NAME, FILE_NAME_LEN = SAVE + 0x080, 6
 
 -- ---- Stats (gSave + 0xA8) ----------------------------------------------------
 local STATS = SAVE + 0x0A8
 local WALLET_TYPE = STATS + 0x00
-local HEART_PIECES = STATS + 0x01
-local HEALTH = STATS + 0x02      -- 8 per heart, 2 per quarter
+local HEART_PIECES = STATS + 0x01  -- pieces towards the next container, 0-3
+local HEALTH = STATS + 0x02        -- 8 per heart
 local MAX_HEALTH = STATS + 0x03
 local BOMBS = STATS + 0x04
 local ARROWS = STATS + 0x05
 local BOMB_BAG_TYPE = STATS + 0x06
 local QUIVER_TYPE = STATS + 0x07
-local CHARM = STATS + 0x0A       -- bottle item id of the active charm, 0 = none
-local PICOLYTE = STATS + 0x0B    -- bottle item id of the active picolyte, 0 = none
+local CHARM = STATS + 0x0A         -- bottle item id of the active charm, 0 = none
 local EQUIPPED_A = STATS + 0x0C
 local EQUIPPED_B = STATS + 0x0D
-local BOTTLES = STATS + 0x0E     -- 4 bytes, bottle contents
-local RUPEES = STATS + 0x18      -- u16
-local SHELLS = STATS + 0x1A      -- u16
-local CHARM_TIMER = STATS + 0x1C -- u16, frames
-local PICOLYTE_TIMER = STATS + 0x1E
+local BOTTLES = STATS + 0x0E       -- 4 bytes, bottle contents
+local RUPEES = STATS + 0x18        -- u16
+local SHELLS = STATS + 0x1A        -- u16
+local CHARM_TIMER = STATS + 0x1C   -- u16, frames
 
 -- Indexed by the *Type bytes above (itemUtils.c).
 local WALLET_SIZES = { [0] = 100, 300, 500, 999 }
@@ -45,33 +44,66 @@ local QUIVER_SIZES = { [0] = 30, 50, 70, 99 }
 
 -- ---- Collections ---------------------------------------------------------------
 local FIGURINES, FIGURINE_BYTES, FIGURINE_TOTAL = SAVE + 0x0D0, 36, 136
-local INVENTORY = SAVE + 0x0F2   -- 2 bits per item id
+local INVENTORY = SAVE + 0x0F2     -- 2 bits per item id
 local KINSTONES = SAVE + 0x114
 local FUSED_COUNT = KINSTONES + 0x03
 local BAG_TYPES = KINSTONES + 0x04
 local BAG_AMOUNTS = KINSTONES + 0x17
-local BAG_SLOTS = 18             -- the game only fills 0x12 of the 19
+local BAG_SLOTS = 18               -- the game only fills 0x12 of the 19
 local FUSION_TOTAL = 100
 
 -- ---- Flags and dungeons --------------------------------------------------------
 local GLOBAL_FLAGS = SAVE + 0x25C  -- bit n = global flag n
-local DUNGEON_KEYS = SAVE + 0x45C  -- indexed by dungeon id
-local DUNGEON_ITEMS = SAVE + 0x46C -- 1 = map, 2 = compass, 4 = big key
+
+-- ---- Where Link is -------------------------------------------------------------
+local ROOM_AREA = 0x03000BF4        -- gRoomControls.area (IWRAM)
+local AREA_DUNGEON_IDX = 0x02033A93 -- gArea.dungeon_idx
+local AREA_FLAGS = 0x02033A90       -- gArea.areaMetadata, 2 = area has keys
+
+-- gRoomTransition.player_status (IWRAM 0x030010A0 + 0x0C, room.h): where the
+-- pause menu draws Link. Overworld units span 0..0xF90 x 0..0xC60
+-- (pauseMenu.c); the spot is kept while Link is indoors or in a dungeon, and
+-- reads 0,0 on the title screen and file select.
+local PLAYER_STATUS = 0x030010A0 + 0x0C
+local OVERWORLD_MAP_X, OVERWORLD_MAP_Y = PLAYER_STATUS + 0x14, PLAYER_STATUS + 0x16
+local WORLD_W, WORLD_H = 0xF90, 0xC60
+
+-- That spot is only refreshed on a room change (gameUtils.c UpdatePlayerMapCoords
+-- copies Link's position into it). In an overworld area Link's own position is
+-- already in those units, so while he's outdoors read it live: gPlayerEntity
+-- (IWRAM 0x03001160), x and y are Q16.16 at +0x2C / +0x30, pixels in the high half.
+-- gArea.areaMetadata bit 0 = AR_IS_OVERWORLD (area.h).
+local PLAYER_X, PLAYER_Y = 0x03001160 + 0x2E, 0x03001160 + 0x32
+
+local function linkWorldPos()
+  if mem.u8(AREA_FLAGS) & 1 == 1 then
+    local x, y = mem.u16(PLAYER_X), mem.u16(PLAYER_Y)
+    if x > 0 and x < WORLD_W and y > 0 and y < WORLD_H then return x, y, true end
+  end
+  return mem.u16(OVERWORLD_MAP_X), mem.u16(OVERWORLD_MAP_Y), false
+end
+
+-- ---- The world map --------------------------------------------------------------
+-- The pause screen's world map, drawn at runtime from the player's own ROM
+-- (rom_gfx.lua). 160 x 128 px, the same rectangle the pause menu draws Link on
+-- (pauseMenu.c: x * 160 / 0xF90 + 40), so Link's world position maps straight onto
+-- it. An unknown release falls back to the pack's drawn map.
+local rom_gfx = pack.require("rom_gfx")
+local FALLBACK_MAP = "asset:ui/map-terrain.png"
+
+-- Where each dungeon sits on that map, in %.
 
 -- Dungeon ids are the LVn of the LVn_CLEAR global flags (flag n + 1).
 local DUNGEONS = {
-  { 1, "Deepwood Shrine", "Earth Element" },
-  { 2, "Cave of Flames", "Fire Element" },
-  { 3, "Fortress of Winds", "Ocarina of Wind" },
-  { 4, "Temple of Droplets", "Water Element" },
-  { 5, "Palace of Winds", "Wind Element" },
-  { 6, "Dark Hyrule Castle", "Vaati" },
+  { 1, "Deepwood Shrine", "Minish Woods" },
+  { 2, "Cave of Flames", "Mt. Crenel" },
+  { 3, "Fortress of Winds", "the Wind Ruins" },
+  { 4, "Temple of Droplets", "Lake Hylia" },
+  { 5, "Palace of Winds", "the Cloud Tops" },
+  { 6, "Dark Hyrule Castle", "Hyrule Castle" },
 }
 
--- ---- Where Link is -------------------------------------------------------------
-local ROOM_AREA = 0x03000BF4      -- gRoomControls.area (IWRAM)
-local AREA_DUNGEON_IDX = 0x02033A93 -- gArea.dungeon_idx
-local AREA_FLAGS = 0x02033A90       -- gArea.areaMetadata, 2 = area has keys
+local POUCH_SLOTS = 20   -- the ITEMS page grid (5 x 4)
 
 -- -----------------------------------------------------------------------------
 
@@ -100,41 +132,14 @@ local function fraction(value, max)
   return math.max(0, math.min(1, value / max))
 end
 
-local IMG = "asset:img/"
-
--- 8 health per heart, 2 per quarter: 27 -> "3¼".
-local QUARTERS = { [0] = "", "¼", "½", "¾" }
-local function hearts(health)
-  return tostring(health // 8) .. QUARTERS[(health % 8) // 2]
+-- 0..1 -> a CSS percentage with two decimals, kept 6% inside the edges so a
+-- marker centred on it isn't clipped by the map frame.
+local function pct(f)
+  return math.floor(math.max(0.06, math.min(0.94, f)) * 10000 + 0.5) / 100
 end
 
--- One entry per heart container, each drawn with 0-4 quarters filled.
-local function heartRow(health, maxHealth)
-  local row = {}
-  for i = 0, maxHealth // 8 - 1 do
-    local quarters = math.max(0, math.min(8, health - i * 8)) // 2
-    row[#row + 1] = { src = IMG .. "heart-" .. quarters .. ".png" }
-  end
-  return row
-end
-
-local function equipName(id)
-  if id == 0 then return "Nothing" end
-  return item_names.equip[id] or string.format("Item #%02X", id)
-end
-
-local function bottleName(id)
-  return item_names.bottle[id] or string.format("Item #%02X", id)
-end
-
-local function fileName()
-  local chars = {}
-  for i = 0, FILE_NAME_LEN - 1 do
-    local c = mem.u8(FILE_NAME + i)
-    if c == 0 then break end
-    if c >= 0x20 and c < 0x7F then chars[#chars + 1] = string.char(c) end
-  end
-  return #chars > 0 and table.concat(chars) or "Link"
+local function pad3(n)
+  return string.format("%03d", n)
 end
 
 -- A loaded file is initialized, not marked invalid, and has 3-20 hearts.
@@ -145,72 +150,94 @@ local function saveLoaded()
     and maxHealth >= 24 and maxHealth <= 160 and maxHealth % 8 == 0
 end
 
--- ---- Link --------------------------------------------------------------------
+-- ---- Slots ---------------------------------------------------------------------
+-- Every grid cell the layout draws: an item, or an empty well.
 
-local function readBuff(itemAddr, timerAddr)
-  local id = mem.u8(itemAddr)
-  if id == 0 then return nil end
-  local seconds = mem.u16(timerAddr) // 60
-  return string.format("%s · %d:%02d", bottleName(id), seconds // 60, seconds % 60)
+local EMPTY = { name = "", icon = "", count = "", hasCount = false, owned = false, empty = true }
+
+local function slot(name, count)
+  local icon = item_names.icon(name)
+  if not icon then return nil end -- nothing to draw (Fire Rod, Grab, Butter)
+  return {
+    name = name:upper(),
+    icon = icon,
+    count = count and ("x" .. count) or "",
+    hasCount = count ~= nil,
+    owned = true,
+    empty = false,
+  }
 end
 
--- The icon of the charm/picolyte in effect, or nil.
-local function buffIcon(itemAddr)
-  local id = mem.u8(itemAddr)
-  if id == 0 then return nil end
-  return item_names.icon(item_names.bottle[id])
+local function padded(list, size)
+  local out = {}
+  for i = 1, size do out[i] = list[i] or EMPTY end
+  return out
 end
 
-local function readBottles()
-  local bottles = {}
-  for i, slot in ipairs(item_names.bottles) do
-    if hasItem(slot) then
-      local id = mem.u8(BOTTLES + i - 1)
-      local name = bottleName(id)
-      bottles[#bottles + 1] = { name = name, empty = id == 0x20, icon = item_names.icon(name) }
-    end
-  end
-  return bottles
+local function equipSlot(addr)
+  local id = mem.u8(addr)
+  local name = item_names.equip[id]
+  if not name then return { name = "NONE", icon = "" } end
+  return { name = name:upper(), icon = item_names.icon(name) or "" }
 end
 
-local function readLocation()
-  local area = mem.u8(ROOM_AREA)
-  return area_names[area] or string.format("Area %02X", area)
-end
-
--- ---- Items -------------------------------------------------------------------
-
--- The item whose name the layout shows after a tap (ui.itemName, set by onClick).
-local function isSelected(name)
-  return ui ~= nil and ui.itemName == name
-end
-
-local function readGear()
-  local gear = {}
+-- The best owned item of every gear group, in pause-menu order, then the
+-- bottles. Bombs and arrows carry their counts.
+local function readGear(bombs, arrows)
+  local all = {}
   for _, group in ipairs(item_names.gear) do
     for i = 2, #group do
-      if hasItem(group[i][1]) then
-        gear[#gear + 1] = { name = group[i][2], icon = item_names.icon(group[i][2]), selected = isSelected(group[i][2]) }
+      local id, name = group[i][1], group[i][2]
+      if hasItem(id) then
+        local count = (group[1] == "Bombs" and bombs) or (group[1] == "Bow" and arrows) or nil
+        local s = slot(name, count)
+        if s then all[#all + 1] = s end
         break
       end
     end
   end
-  return gear
+  for i, bottleId in ipairs(item_names.bottles) do
+    if hasItem(bottleId) then
+      local name = item_names.bottle[mem.u8(BOTTLES + i - 1)] or "Empty"
+      all[#all + 1] = slot(name == "Empty" and "Bottle" or name) or slot("Bottle")
+    end
+  end
+  return padded(all, POUCH_SLOTS)
 end
 
-local function readOwned(list)
-  local out = {}
-  for _, entry in ipairs(list) do
-    out[#out + 1] = { name = entry[2], owned = hasItem(entry[1]), icon = item_names.icon(entry[2]) }
+-- ---- Kinstones -------------------------------------------------------------------
+
+local function readKinstones()
+  local pieces, total = {}, 0
+  local byColor = { Red = 0, Blue = 0, Green = 0, Gold = 0 }
+  for i = 0, BAG_SLOTS - 1 do
+    local id, amount = mem.u8(BAG_TYPES + i), mem.u8(BAG_AMOUNTS + i)
+    if id ~= 0 and amount > 0 then
+      local color, place = item_names.kinstone(id)
+      if color == "?" then color = "Gold" end
+      pieces[#pieces + 1] = {
+        name = place or (color .. " Piece"),
+        color = color:upper(),
+        id = string.format("#%02X", id),
+        amount = "x" .. amount,
+        icon = item_names.kinstoneIcon(color),
+        isRed = color == "Red", isBlue = color == "Blue",
+        isGreen = color == "Green", isGold = color == "Gold",
+      }
+      total = total + amount
+      byColor[color] = byColor[color] + amount
+    end
   end
-  return out
+  return pieces, total, byColor
 end
+
+-- ---- Quest -------------------------------------------------------------------------
 
 local function readElements()
-  local out = readOwned(item_names.elements)
-  for _, e in ipairs(out) do
-    e.src = IMG .. (e.owned and "element-" .. e.name:lower() or "element-empty") .. ".png"
-    e.icon = item_names.elementIcon(e.name)
+  local out = {}
+  for _, e in ipairs(item_names.elements) do
+    local owned = hasItem(e[1])
+    out[#out + 1] = { name = e[2]:upper(), icon = item_names.elementIcon(e[2]), owned = owned, locked = not owned }
   end
   return out
 end
@@ -218,182 +245,170 @@ end
 local function countOwned(list)
   local n = 0
   for _, entry in ipairs(list) do
-    if entry.owned then n = n + 1 end
+    if hasItem(entry[1]) then n = n + 1 end
   end
   return n
 end
 
-local function readQuest()
+-- Quest items Link carries right now. The game takes each one away when its
+-- errand is done, so everything listed is still open.
+local function readSideQuests()
   local out = {}
   for _, entry in ipairs(item_names.quest) do
-    if hasItem(entry[1]) then out[#out + 1] = { name = entry[2], icon = item_names.icon(entry[2]), selected = isSelected(entry[2]) } end
-  end
-  return out
-end
-
--- ---- Kinstones ---------------------------------------------------------------
-
-local function readBag()
-  local pieces, total = {}, 0
-  for i = 0, BAG_SLOTS - 1 do
-    local id = mem.u8(BAG_TYPES + i)
-    local amount = mem.u8(BAG_AMOUNTS + i)
-    if id ~= 0 and amount > 0 then
-      local color, place = item_names.kinstone(id)
-      pieces[#pieces + 1] = {
-        color = color,
-        src = IMG .. "kinstone-" .. (color == "?" and "gold" or color:lower()) .. ".png",
-        icon = item_names.kinstoneIcon(color),
-        isGold = color == "Gold",
-        isRed = color == "Red",
-        isBlue = color == "Blue",
-        isGreen = color == "Green",
-        name = place or string.format("%s piece", color),
-        id = string.format("#%02X", id),
-        amount = amount,
-      }
-      total = total + amount
+    if hasItem(entry[1]) then
+      out[#out + 1] = { name = entry[2], icon = item_names.icon(entry[2]) or "", done = false }
     end
   end
-  return pieces, total
-end
-
--- ---- Dungeons ----------------------------------------------------------------
-
-local function readDungeons(currentIdx)
-  local out = {}
-  for _, d in ipairs(DUNGEONS) do
-    local idx = d[1]
-    local items = mem.u8(DUNGEON_ITEMS + idx)
-    out[#out + 1] = {
-      name = d[2],
-      prize = d[3],
-      cleared = flag(idx + 1),
-      here = idx == currentIdx,
-      keys = mem.u8(DUNGEON_KEYS + idx),
-      map = items & 1 ~= 0,
-      compass = items & 2 ~= 0,
-      bigKey = items & 4 ~= 0,
-    }
-  end
   return out
 end
 
--- ---- Map position ----------------------------------------------------------
--- gRoomTransition.player_status (IWRAM 0x030010A0 + 0x0C, zeldaret/tmc room.h):
--- where the pause menu draws Link. Overworld units span 0..0xF90 x 0..0xC60
--- (pauseMenu.c: x * 160 / 0xF90, (y << 7) / 0xC60); the overworld spot is kept
--- while Link is indoors or in a dungeon. Map hints are gSave.map_hints, one bit
--- per destination Ezlo marks on the pause map.
-local PLAYER_STATUS = 0x030010A0 + 0x0C
-local DUNGEON_MAP_X, DUNGEON_MAP_Y = PLAYER_STATUS + 0x10, PLAYER_STATUS + 0x12
-local OVERWORLD_MAP_X, OVERWORLD_MAP_Y = PLAYER_STATUS + 0x14, PLAYER_STATUS + 0x16
-local WORLD_W, WORLD_H = 0xF90, 0xC60
-local MAP_HINTS = SAVE + 0x020     -- u16 bitmask
-local WINDCRESTS = SAVE + 0x040    -- u32, upper bits = activated windcrests
-
-local function readMapHints()
-  local bits, out = mem.u16(MAP_HINTS), {}
-  for i = 0, 15 do
-    if (bits >> i) & 1 == 1 then out[#out + 1] = { id = i } end
+local function readDungeons(currentIdx)
+  local list, nextUp = {}, nil
+  for _, d in ipairs(DUNGEONS) do
+    local idx, name = d[1], d[2]
+    local cleared, here = flag(idx + 1), idx == currentIdx
+    list[#list + 1] = { name = name, cleared = cleared, here = here, todo = not cleared and not here }
+    if not cleared then nextUp = nextUp or d end
   end
-  return out, bits
+  return list, nextUp
+end
+
+-- ---- Link and his hearts ---------------------------------------------------------------
+-- 8 health per heart, drawn in quarters like the game's HUD (rom_gfx.heart: 0 empty
+-- .. 4 full). Without the ROM's art (unknown release) the hearts are left out.
+
+local function readLink(health)
+  local containers = mem.u8(MAX_HEALTH) // 8
+  local hearts = {}
+  for i = 0, containers - 1 do
+    local quarters = math.max(0, math.min(4, (health - i * 8) // 2))
+    hearts[#hearts + 1] = { src = rom_gfx.heart(quarters) or "" }
+  end
+  return {
+    sprite = rom_gfx.link() or "asset:ui/mark-link.png",
+    hearts = hearts,
+    hasHearts = rom_gfx.heart(4) ~= nil,
+  }
+end
+
+-- ---- Ezlo's hint -------------------------------------------------------------------
+-- The game keeps Ezlo's lines in ROM text, not RAM, so this is the companion's
+-- own advice from what it can read: health, ammo, then the next dungeon.
+
+local function ezloHint(health, bombs, hasBombs, inDungeon, nextUp)
+  if health <= 8 then
+    return "Link, you're nearly out of hearts! Find a fairy, or drink a potion if you have one."
+  end
+  if hasBombs and bombs == 0 then
+    return "Your bomb bag is empty. Cut some grass or smash pots, bombs turn up all over Hyrule."
+  end
+  if inDungeon then
+    return "Keep an eye out for small keys. Every locked door in here has one somewhere."
+  end
+  if nextUp then
+    return string.format("Next up: the %s, in %s. Let's get going!", nextUp[2], nextUp[3])
+  end
+  return "We've cleared every dungeon. Vaati won't know what hit him!"
 end
 
 -- -----------------------------------------------------------------------------
 
 function update()
   if not saveLoaded() then
-    return { ready = false, waiting = true }
+    local logo = rom_gfx.titleLogo()
+    return { ready = false, waiting = true, logo = logo or "", hasLogo = logo ~= nil, noLogo = logo == nil }
   end
 
-  local health, maxHealth = mem.u8(HEALTH), mem.u8(MAX_HEALTH)
+  local health = mem.u8(HEALTH)
   local rupees, walletMax = mem.u16(RUPEES), WALLET_SIZES[mem.u8(WALLET_TYPE)] or 999
   local bombs, bombMax = mem.u8(BOMBS), BOMB_BAG_SIZES[mem.u8(BOMB_BAG_TYPE)] or 99
   local arrows, arrowMax = mem.u8(ARROWS), QUIVER_SIZES[mem.u8(QUIVER_TYPE)] or 99
   local hasBombs = hasItem(0x07) or hasItem(0x08)
   local hasBow = hasItem(0x09) or hasItem(0x0A)
 
-  local elements = readElements()
-  local skills = readOwned(item_names.skills)
-  local pieces, pieceTotal = readBag()
+  local items = readGear(hasBombs and bombs or nil, hasBow and arrows or nil)
+  local pieces, pieceTotal, byColor = readKinstones()
   local fused = mem.u8(FUSED_COUNT)
-  local figurines = popcount(FIGURINES, FIGURINE_BYTES)
 
-  local inKeyArea = (mem.u8(AREA_FLAGS) >> 1) & 1 == 1
-  local dungeonIdx = inKeyArea and mem.u8(AREA_DUNGEON_IDX) or -1
+  local inDungeon = (mem.u8(AREA_FLAGS) >> 1) & 1 == 1
+  local dungeons, nextUp = readDungeons(inDungeon and mem.u8(AREA_DUNGEON_IDX) or -1)
+
+  local area = mem.u8(ROOM_AREA)
+  local location = area_names[area] or string.format("Area %02X", area)
+
+  local worldX, worldY = linkWorldPos()
+
+  local charmId = mem.u8(CHARM)
+  local charmName = charmId ~= 0 and item_names.bottle[charmId] or nil
+  local charmSeconds = mem.u16(CHARM_TIMER) // 60
 
   return {
     ready = true,
     waiting = false,
+    ezlo = rom_gfx.ezlo() or "asset:ui/cap.png",
 
-    worldX = mem.u16(OVERWORLD_MAP_X),
-    worldY = mem.u16(OVERWORLD_MAP_Y),
-    worldXPct = fraction(mem.u16(OVERWORLD_MAP_X), WORLD_W),
-    worldYPct = fraction(mem.u16(OVERWORLD_MAP_Y), WORLD_H),
-    -- The same spot as a CSS percentage of the map image (2 decimals), for a
-    -- marker placed with bindStyle left/top over any size of map.
-    -- 0,0 until Link is in the world (title / file select): no marker then.
-    onMap = mem.u16(OVERWORLD_MAP_X) ~= 0 or mem.u16(OVERWORLD_MAP_Y) ~= 0,
-    mapLeftPct = math.floor(fraction(mem.u16(OVERWORLD_MAP_X), WORLD_W) * 10000 + 0.5) / 100,
-    mapTopPct = math.floor(fraction(mem.u16(OVERWORLD_MAP_Y), WORLD_H) * 10000 + 0.5) / 100,
-    dungeonMapX = mem.u16(DUNGEON_MAP_X),
-    dungeonMapY = mem.u16(DUNGEON_MAP_Y),
-    mapHints = (readMapHints()),
-    mapHintBits = select(2, readMapHints()),
-    windcrestBits = mem.u32(WINDCRESTS),
-    name = fileName(),
-    location = readLocation(),
+    rupees = tostring(rupees),
+    walletMax = tostring(walletMax),
+    kinstones = "x" .. pieceTotal,
+    location = location,
+    ezloHint = ezloHint(health, bombs, hasBombs, inDungeon, nextUp),
 
-    hearts = hearts(health),
-    heartRow = heartRow(health, maxHealth),
-    maxHearts = maxHealth // 8,
-    healthPct = fraction(health, maxHealth),
-    lowHealth = health <= 8,
-    heartPieces = mem.u8(HEART_PIECES),
+    map = {
+      image = rom_gfx.worldMap() or FALLBACK_MAP,
+      linkX = pct(fraction(worldX, WORLD_W)),
+      linkY = pct(fraction(worldY, WORLD_H)),
+    },
+    link = readLink(health),
 
-    rupees = rupees,
-    walletMax = walletMax,
-    rupeePct = fraction(rupees, walletMax),
-    shells = mem.u16(SHELLS),
+    equipA = equipSlot(EQUIPPED_A),
+    equipB = equipSlot(EQUIPPED_B),
+    items = items,
 
-    hasBombs = hasBombs,
-    bombs = bombs,
-    bombMax = bombMax,
-    bombPct = fraction(bombs, bombMax),
-    hasBow = hasBow,
-    arrows = arrows,
-    arrowMax = arrowMax,
-    arrowPct = fraction(arrows, arrowMax),
+    gear = {
+      bombs = tostring(bombs), bombMax = tostring(bombMax), bombPct = fraction(bombs, bombMax),
+      arrows = tostring(arrows), arrowMax = tostring(arrowMax), arrowPct = fraction(arrows, arrowMax),
+      shells = tostring(mem.u16(SHELLS)),
+      heartPieces = mem.u8(HEART_PIECES) .. "/4",
+      charm = charmName and charmName:upper() or "NONE",
+      charmIcon = charmName and item_names.icon(charmName) or "",
+      charmTime = charmName and string.format("%d:%02d", charmSeconds // 60, charmSeconds % 60) or "--:--",
+    },
 
-    buttonA = equipName(mem.u8(EQUIPPED_A)),
-    buttonB = equipName(mem.u8(EQUIPPED_B)),
-    buttonAIcon = item_names.icon(item_names.equip[mem.u8(EQUIPPED_A)]),
-    buttonBIcon = item_names.icon(item_names.equip[mem.u8(EQUIPPED_B)]),
-    bottles = readBottles(),
-    charm = readBuff(CHARM, CHARM_TIMER) or "None",
-    picolyte = readBuff(PICOLYTE, PICOLYTE_TIMER) or "None",
-    charmIcon = buffIcon(CHARM),
-    picolyteIcon = buffIcon(PICOLYTE),
+    kinstone = {
+      fused = pad3(fused),
+      fusionTotal = tostring(FUSION_TOTAL),
+      fusedPct = fraction(fused, FUSION_TOTAL),
+      pieces = pieces,
+      red = tostring(byColor.Red), blue = tostring(byColor.Blue),
+      green = tostring(byColor.Green), gold = tostring(byColor.Gold),
+      -- No RAM flag for "an NPC nearby can fuse" has been found yet.
+      ready = false,
+      readyHint = "",
+    },
 
-    gear = readGear(),
-    elements = elements,
-    elementCount = countOwned(elements),
-    skills = skills,
-    skillCount = countOwned(skills),
-    skillTotal = #skills,
-    quest = readQuest(),
+    -- Fixed icons the layout shows (header, tallies, gear and quest stats).
+    icons = {
+      kinstoneRed = item_names.kinstoneIcon("Red"),
+      kinstoneBlue = item_names.kinstoneIcon("Blue"),
+      kinstoneGreen = item_names.kinstoneIcon("Green"),
+      kinstoneGold = item_names.kinstoneIcon("Gold"),
+      figurines = "asset:ui/figurine.png",
+      tigerScroll = item_names.icon("Spin Attack") or "",
+      heartPiece = rom_gfx.heartPiece(mem.u8(HEART_PIECES)) or "",
+      shell = item_names.icon("Shells") or "",
+      bombs = item_names.icon("Bombs") or "",
+      quiver = item_names.icon("Quiver") or "",
+      charm = (charmName and item_names.icon(charmName)) or item_names.icon("Farore's Charm") or "",
+    },
 
-    pieces = pieces,
-    pieceTotal = pieceTotal,
-    fused = fused,
-    fusionTotal = FUSION_TOTAL,
-    fusedPct = fraction(fused, FUSION_TOTAL),
-
-    dungeons = readDungeons(dungeonIdx),
-    figurines = figurines,
-    figurineTotal = FIGURINE_TOTAL,
-    figurinePct = fraction(figurines, FIGURINE_TOTAL),
-    enemiesKilled = mem.u32(ENEMIES_KILLED),
+    quest = {
+      elements = readElements(),
+      dungeons = dungeons,
+      side = readSideQuests(),
+      figurines = popcount(FIGURINES, FIGURINE_BYTES) .. "/" .. FIGURINE_TOTAL,
+      skills = countOwned(item_names.skills) .. "/" .. #item_names.skills,
+      heartPieces = mem.u8(HEART_PIECES) .. "/4",
+      shells = tostring(mem.u16(SHELLS)),
+    },
   }
 end

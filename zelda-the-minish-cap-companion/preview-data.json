@@ -1,302 +1,414 @@
 {
-  "arrowMax": 30,
-  "arrowPct": 0.83333333333333,
-  "arrows": 25,
-  "bombMax": 30,
-  "bombPct": 0.4,
-  "bombs": 12,
-  "bottles": [
-    {
-      "empty": false,
-      "name": "Red Potion",
-      "icon": "asset:icons/red-potion.png"
-    },
-    {
-      "empty": true,
-      "name": "Empty",
-      "icon": "asset:icons/bottle.png"
-    },
-    {
-      "name": "Fairy",
-      "empty": false,
-      "icon": "asset:icons/fairy.png"
-    }
-  ],
-  "buttonA": "White Sword",
-  "buttonB": "Gust Jar",
-  "charm": "Farore's Charm · 1:00",
-  "dungeons": [
-    {
-      "bigKey": false,
-      "cleared": true,
-      "compass": false,
-      "here": false,
-      "keys": 0,
-      "map": false,
-      "name": "Deepwood Shrine",
-      "prize": "Earth Element"
-    },
-    {
-      "bigKey": false,
-      "cleared": false,
-      "compass": true,
-      "here": true,
-      "keys": 1,
-      "map": true,
-      "name": "Cave of Flames",
-      "prize": "Fire Element"
-    },
-    {
-      "bigKey": false,
-      "cleared": false,
-      "compass": false,
-      "here": false,
-      "keys": 0,
-      "map": false,
-      "name": "Fortress of Winds",
-      "prize": "Ocarina of Wind"
-    },
-    {
-      "bigKey": false,
-      "cleared": false,
-      "compass": false,
-      "here": false,
-      "keys": 0,
-      "map": false,
-      "name": "Temple of Droplets",
-      "prize": "Water Element"
-    },
-    {
-      "bigKey": false,
-      "cleared": false,
-      "compass": false,
-      "here": false,
-      "keys": 0,
-      "map": false,
-      "name": "Palace of Winds",
-      "prize": "Wind Element"
-    },
-    {
-      "bigKey": false,
-      "cleared": false,
-      "compass": false,
-      "here": false,
-      "keys": 0,
-      "map": false,
-      "name": "Dark Hyrule Castle",
-      "prize": "Vaati"
-    }
-  ],
-  "elementCount": 2,
-  "elements": [
-    {
-      "name": "Earth",
-      "owned": true,
-      "src": "asset:img/element-earth.png",
-      "icon": "asset:icons/earth-element.png"
-    },
-    {
-      "name": "Fire",
-      "owned": true,
-      "src": "asset:img/element-fire.png",
-      "icon": "asset:icons/fire-element.png"
-    },
-    {
-      "name": "Water",
-      "owned": false,
-      "src": "asset:img/element-empty.png",
-      "icon": "asset:icons/water-element.png"
-    },
-    {
-      "name": "Wind",
-      "owned": false,
-      "src": "asset:img/element-empty.png",
-      "icon": "asset:icons/wind-element.png"
-    }
-  ],
-  "enemiesKilled": 200,
-  "figurinePct": 0.088235294117647,
-  "figurineTotal": 136,
-  "figurines": 12,
-  "fused": 7,
-  "fusedPct": 0.07,
-  "fusionTotal": 100,
-  "gear": [
-    {
-      "name": "White Sword",
-      "icon": "asset:icons/white-sword.png"
-    },
-    {
-      "name": "Small Shield",
-      "icon": "asset:icons/small-shield.png"
-    },
-    {
-      "name": "Bombs",
-      "icon": "asset:icons/bombs.png"
-    },
-    {
-      "name": "Bow",
-      "icon": "asset:icons/bow.png"
-    },
-    {
-      "name": "Gust Jar",
-      "icon": "asset:icons/gust-jar.png"
-    },
-    {
-      "name": "Power Bracelets",
-      "icon": "asset:icons/power-bracelets.png"
-    }
-  ],
-  "hasBombs": true,
-  "hasBow": true,
-  "healthPct": 0.5625,
-  "heartPieces": 3,
-  "heartRow": [
-    {
-      "src": "asset:img/heart-4.png"
-    },
-    {
-      "src": "asset:img/heart-4.png"
-    },
-    {
-      "src": "asset:img/heart-4.png"
-    },
-    {
-      "src": "asset:img/heart-1.png"
-    },
-    {
-      "src": "asset:img/heart-0.png"
-    },
-    {
-      "src": "asset:img/heart-0.png"
-    }
-  ],
-  "hearts": "3¼",
-  "location": "Cave of Flames",
-  "lowHealth": false,
-  "maxHearts": 6,
-  "name": "Link",
-  "picolyte": "None",
-  "pieceTotal": 5,
-  "pieces": [
-    {
-      "amount": 1,
-      "color": "Gold",
-      "id": "#6A",
-      "isBlue": false,
-      "isGold": true,
-      "isGreen": false,
-      "isRed": false,
-      "name": "Castor Wilds",
-      "src": "asset:img/kinstone-gold.png",
-      "icon": "asset:icons/kinstone-gold.png"
-    },
-    {
-      "amount": 4,
-      "color": "Red",
-      "id": "#6F",
-      "isBlue": false,
-      "isGold": false,
-      "isGreen": false,
-      "isRed": true,
-      "name": "Red piece",
-      "src": "asset:img/kinstone-red.png",
-      "icon": "asset:icons/kinstone-red.png"
-    }
-  ],
-  "quest": [
-    {
-      "name": "Lon Lon Ranch Key",
-      "icon": "asset:icons/spare-key.png"
-    },
-    {
-      "name": "Wake-Up Mushroom",
-      "icon": "asset:icons/wake-up-mushroom.png"
-    }
-  ],
   "ready": true,
-  "rupeePct": 0.6,
-  "rupees": 300,
-  "shells": 42,
-  "skillCount": 2,
-  "skillTotal": 11,
-  "skills": [
-    {
-      "name": "Spin Attack",
-      "owned": true,
-      "icon": "asset:icons/tiger-scroll.png"
-    },
-    {
-      "name": "Roll Attack",
-      "owned": true,
-      "icon": "asset:icons/tiger-scroll.png"
-    },
-    {
-      "name": "Dash Attack",
-      "owned": false,
-      "icon": "asset:icons/tiger-scroll.png"
-    },
-    {
-      "name": "Rock Breaker",
-      "owned": false,
-      "icon": "asset:icons/tiger-scroll.png"
-    },
-    {
-      "name": "Sword Beam",
-      "owned": false,
-      "icon": "asset:icons/tiger-scroll.png"
-    },
-    {
-      "name": "Great Spin",
-      "owned": false,
-      "icon": "asset:icons/tiger-scroll.png"
-    },
-    {
-      "name": "Down Thrust",
-      "owned": false,
-      "icon": "asset:icons/tiger-scroll.png"
-    },
-    {
-      "name": "Peril Beam",
-      "owned": false,
-      "icon": "asset:icons/tiger-scroll.png"
-    },
-    {
-      "name": "Fast Spin",
-      "owned": false,
-      "icon": "asset:icons/tiger-scroll.png"
-    },
-    {
-      "name": "Fast Split",
-      "owned": false,
-      "icon": "asset:icons/tiger-scroll.png"
-    },
-    {
-      "name": "Long Spin",
-      "owned": false,
-      "icon": "asset:icons/tiger-scroll.png"
-    }
-  ],
   "waiting": false,
-  "walletMax": 500,
-  "buttonAIcon": "asset:icons/white-sword.png",
-  "buttonBIcon": "asset:icons/gust-jar.png",
-  "charmIcon": "asset:icons/farores-charm.png",
-  "picolyteIcon": null,
-  "worldX": 3442,
-  "worldY": 3072,
-  "worldXPct": 0.8639558232931727,
-  "worldYPct": 0.9696969696969697,
-  "dungeonMapX": 0,
-  "dungeonMapY": 0,
-  "mapHints": [
+  "rupees": "300",
+  "walletMax": "500",
+  "kinstones": "x12",
+  "location": "MT. CRENEL",
+  "area": "CAVE OF FLAMES",
+  "ezloHint": "The Cave of Flames is just ahead. The Gust Jar can pull loose rocks off the cave walls!",
+  "map": {
+    "linkX": 22,
+    "linkY": 22,
+    "image": "asset:ui/map-terrain.png"
+  },
+  "equipA": {
+    "name": "WHITE SWORD",
+    "icon": "asset:ui/item-unknown.png",
+    "count": "",
+    "hasCount": false,
+    "owned": true,
+    "empty": false
+  },
+  "equipB": {
+    "name": "GUST JAR",
+    "icon": "asset:ui/item-unknown.png",
+    "count": "",
+    "hasCount": false,
+    "owned": true,
+    "empty": false
+  },
+  "items": [
     {
-      "id": 0
+      "name": "WHITE SWORD",
+      "icon": "asset:ui/item-unknown.png",
+      "count": "",
+      "hasCount": false,
+      "owned": true,
+      "empty": false
+    },
+    {
+      "name": "SMALL SHIELD",
+      "icon": "asset:ui/item-unknown.png",
+      "count": "",
+      "hasCount": false,
+      "owned": true,
+      "empty": false
+    },
+    {
+      "name": "GUST JAR",
+      "icon": "asset:ui/item-unknown.png",
+      "count": "",
+      "hasCount": false,
+      "owned": true,
+      "empty": false
+    },
+    {
+      "name": "CANE OF PACCI",
+      "icon": "asset:ui/item-unknown.png",
+      "count": "",
+      "hasCount": false,
+      "owned": true,
+      "empty": false
+    },
+    {
+      "name": "MOLE MITTS",
+      "icon": "asset:ui/item-unknown.png",
+      "count": "",
+      "hasCount": false,
+      "owned": true,
+      "empty": false
+    },
+    {
+      "name": "ROC'S CAPE",
+      "icon": "asset:ui/item-unknown.png",
+      "count": "",
+      "hasCount": false,
+      "owned": true,
+      "empty": false
+    },
+    {
+      "name": "BOOMERANG",
+      "icon": "asset:ui/item-unknown.png",
+      "count": "",
+      "hasCount": false,
+      "owned": true,
+      "empty": false
+    },
+    {
+      "name": "BOMBS",
+      "icon": "asset:ui/item-unknown.png",
+      "count": "x12",
+      "hasCount": true,
+      "owned": true,
+      "empty": false
+    },
+    {
+      "name": "BOW",
+      "icon": "asset:ui/item-unknown.png",
+      "count": "x25",
+      "hasCount": true,
+      "owned": true,
+      "empty": false
+    },
+    {
+      "name": "FLAME LANTERN",
+      "icon": "asset:ui/item-unknown.png",
+      "count": "",
+      "hasCount": false,
+      "owned": true,
+      "empty": false
+    },
+    {
+      "name": "PEGASUS BOOTS",
+      "icon": "asset:ui/item-unknown.png",
+      "count": "",
+      "hasCount": false,
+      "owned": true,
+      "empty": false
+    },
+    {
+      "name": "OCARINA OF WIND",
+      "icon": "asset:ui/item-unknown.png",
+      "count": "",
+      "hasCount": false,
+      "owned": true,
+      "empty": false
+    },
+    {
+      "name": "RED POTION",
+      "icon": "asset:ui/item-unknown.png",
+      "count": "",
+      "hasCount": false,
+      "owned": true,
+      "empty": false
+    },
+    {
+      "name": "FAIRY",
+      "icon": "asset:ui/item-unknown.png",
+      "count": "",
+      "hasCount": false,
+      "owned": true,
+      "empty": false
+    },
+    {
+      "name": "BOTTLE",
+      "icon": "asset:ui/item-unknown.png",
+      "count": "",
+      "hasCount": false,
+      "owned": true,
+      "empty": false
+    },
+    {
+      "name": "POWER BRACELETS",
+      "icon": "asset:ui/item-unknown.png",
+      "count": "",
+      "hasCount": false,
+      "owned": true,
+      "empty": false
+    },
+    {
+      "name": "FLIPPERS",
+      "icon": "asset:ui/item-unknown.png",
+      "count": "",
+      "hasCount": false,
+      "owned": true,
+      "empty": false
+    },
+    {
+      "name": "",
+      "icon": "",
+      "count": "",
+      "hasCount": false,
+      "owned": false,
+      "empty": true
+    },
+    {
+      "name": "",
+      "icon": "",
+      "count": "",
+      "hasCount": false,
+      "owned": false,
+      "empty": true
+    },
+    {
+      "name": "",
+      "icon": "",
+      "count": "",
+      "hasCount": false,
+      "owned": false,
+      "empty": true
     }
   ],
-  "mapHintBits": 1,
-  "windcrestBits": 79744,
-  "mapLeftPct": 86.4,
-  "mapTopPct": 96.97,
-  "onMap": true
+  "gear": {
+    "bombs": "12",
+    "bombMax": "30",
+    "bombPct": 0.4,
+    "arrows": "25",
+    "arrowMax": "30",
+    "arrowPct": 0.833,
+    "shells": "42",
+    "heartPieces": "3/4",
+    "charm": "FARORE'S CHARM",
+    "charmIcon": "asset:ui/item-unknown.png",
+    "charmTime": "1:00",
+    "picolyte": "NONE"
+  },
+  "kinstone": {
+    "fused": "007",
+    "fusionTotal": "100",
+    "fusedPct": 0.07,
+    "ready": true,
+    "readyHint": "A Goron nearby wants to fuse!",
+    "pieces": [
+      {
+        "name": "Castor Wilds",
+        "color": "GOLD",
+        "id": "#6A",
+        "amount": "x1",
+        "icon": "asset:ui/kinstone-gold.png",
+        "isRed": false,
+        "isBlue": false,
+        "isGreen": false,
+        "isGold": true
+      },
+      {
+        "name": "Red Crescent",
+        "color": "RED",
+        "id": "#6F",
+        "amount": "x4",
+        "icon": "asset:ui/kinstone-red.png",
+        "isRed": true,
+        "isBlue": false,
+        "isGreen": false,
+        "isGold": false
+      },
+      {
+        "name": "Red Wedge",
+        "color": "RED",
+        "id": "#70",
+        "amount": "x2",
+        "icon": "asset:ui/kinstone-red.png",
+        "isRed": true,
+        "isBlue": false,
+        "isGreen": false,
+        "isGold": false
+      },
+      {
+        "name": "Blue Spike",
+        "color": "BLUE",
+        "id": "#73",
+        "amount": "x3",
+        "icon": "asset:ui/kinstone-blue.png",
+        "isRed": false,
+        "isBlue": true,
+        "isGreen": false,
+        "isGold": false
+      },
+      {
+        "name": "Blue Hook",
+        "color": "BLUE",
+        "id": "#74",
+        "amount": "x1",
+        "icon": "asset:ui/kinstone-blue.png",
+        "isRed": false,
+        "isBlue": true,
+        "isGreen": false,
+        "isGold": false
+      },
+      {
+        "name": "Green Zigzag",
+        "color": "GREEN",
+        "id": "#76",
+        "amount": "x2",
+        "icon": "asset:ui/kinstone-green.png",
+        "isRed": false,
+        "isBlue": false,
+        "isGreen": true,
+        "isGold": false
+      },
+      {
+        "name": "Green Fork",
+        "color": "GREEN",
+        "id": "#77",
+        "amount": "x1",
+        "icon": "asset:ui/kinstone-green.png",
+        "isRed": false,
+        "isBlue": false,
+        "isGreen": true,
+        "isGold": false
+      },
+      {
+        "name": "Green Peak",
+        "color": "GREEN",
+        "id": "#78",
+        "amount": "x1",
+        "icon": "asset:ui/kinstone-green.png",
+        "isRed": false,
+        "isBlue": false,
+        "isGreen": true,
+        "isGold": false
+      }
+    ],
+    "red": "6",
+    "blue": "4",
+    "green": "4",
+    "gold": "1"
+  },
+  "quest": {
+    "elements": [
+      {
+        "name": "EARTH",
+        "icon": "asset:ui/item-unknown.png",
+        "owned": true,
+        "locked": false
+      },
+      {
+        "name": "FIRE",
+        "icon": "asset:ui/item-unknown.png",
+        "owned": true,
+        "locked": false
+      },
+      {
+        "name": "WATER",
+        "icon": "asset:ui/item-unknown.png",
+        "owned": false,
+        "locked": true
+      },
+      {
+        "name": "WIND",
+        "icon": "asset:ui/item-unknown.png",
+        "owned": false,
+        "locked": true
+      }
+    ],
+    "dungeons": [
+      {
+        "name": "Deepwood Shrine",
+        "cleared": true,
+        "here": false,
+        "todo": false
+      },
+      {
+        "name": "Cave of Flames",
+        "cleared": false,
+        "here": true,
+        "todo": false
+      },
+      {
+        "name": "Fortress of Winds",
+        "cleared": false,
+        "here": false,
+        "todo": true
+      },
+      {
+        "name": "Temple of Droplets",
+        "cleared": false,
+        "here": false,
+        "todo": true
+      },
+      {
+        "name": "Palace of Winds",
+        "cleared": false,
+        "here": false,
+        "todo": true
+      },
+      {
+        "name": "Dark Hyrule Castle",
+        "cleared": false,
+        "here": false,
+        "todo": true
+      }
+    ],
+    "side": [
+      {
+        "name": "Lon Lon Ranch Key",
+        "icon": "asset:ui/item-unknown.png",
+        "done": false
+      },
+      {
+        "name": "Wake-Up Mushroom",
+        "icon": "asset:ui/item-unknown.png",
+        "done": false
+      },
+      {
+        "name": "Dog Food",
+        "icon": "asset:ui/item-unknown.png",
+        "done": true
+      }
+    ],
+    "figurines": "12/136",
+    "skills": "2/11",
+    "heartPieces": "3/4",
+    "shells": "42"
+  },
+  "ezlo": "asset:ui/cap.png",
+  "logo": "",
+  "hasLogo": false,
+  "noLogo": true,
+  "link": {
+    "sprite": "asset:ui/mark-link.png",
+    "hearts": [
+      {
+        "src": ""
+      },
+      {
+        "src": ""
+      },
+      {
+        "src": ""
+      }
+    ],
+    "hasHearts": false
+  }
 }

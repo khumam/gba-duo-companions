@@ -2,6 +2,7 @@
 -- samurai goroh's code guide (A/B button items 00-1F, bottle contents 20-31).
 
 local M = {}
+local rom_gfx = pack.require("rom_gfx")
 
 -- What the A and B buttons can hold.
 M.equip = {
@@ -84,75 +85,58 @@ function M.kinstone(id)
   return "?", nil
 end
 
--- Icons in assets/icons, keyed by the names above. Sprites from the Zelda Dungeon
--- wiki (https://www.zeldadungeon.net/wiki/The_Minish_Cap_Items). Names with no
--- entry have no icon there (Fire Rod, Grab, Butter): M.icon gives nil
--- and the layout should fall back to the name.
-local ICON_DIR = "asset:icons/"
+-- ---- Icons ------------------------------------------------------------------------
+-- Drawn from the player's ROM by rom_gfx.lua (the pause screen's own item sprites),
+-- so the pack ships no Nintendo art for them. The few the ROM tables don't cover
+-- here use the pack's own pixel art in assets/ui (art/minish-os.mjs).
 
-M.icons = {
-  -- A/B items
-  ["Smith's Sword"] = "smiths-sword", ["White Sword"] = "white-sword",
-  ["White Sword +2"] = "white-sword-2", ["White Sword +3"] = "white-sword-3",
-  ["Sword"] = "picori-blade", -- id 0x05; assumed to be the Picori Blade, unchecked
-  ["Four Sword"] = "four-sword",
-  ["Bombs"] = "bombs", ["Remote Bombs"] = "remote-bombs", ["Bow"] = "bow",
-  ["Light Arrows"] = "light-arrows", ["Boomerang"] = "boomerang",
-  ["Magic Boomerang"] = "magic-boomerang", ["Small Shield"] = "small-shield",
-  ["Mirror Shield"] = "mirror-shield", ["Flame Lantern"] = "flame-lantern",
-  ["Gust Jar"] = "gust-jar", ["Cane of Pacci"] = "cane-of-pacci", ["Mole Mitts"] = "mole-mitts",
-  ["Roc's Cape"] = "rocs-cape", ["Pegasus Boots"] = "pegasus-boots",
-  ["Ocarina of Wind"] = "ocarina-of-wind", ["Bottle"] = "bottle",
 
-  -- Bottle contents, charms and picolytes
-  ["Empty"] = "bottle", ["Lon Lon Milk"] = "lon-lon-milk",
-  ["Lon Lon Milk (1/2)"] = "lon-lon-milk", -- no half-full icon; same as full
-  ["Red Potion"] = "red-potion", ["Blue Potion"] = "blue-potion", ["Water"] = "water",
-  ["Mineral Water"] = "mineral-water", ["Fairy"] = "fairy",
-  ["Red Picolyte"] = "red-picolyte", ["Orange Picolyte"] = "orange-picolyte",
-  ["Yellow Picolyte"] = "yellow-picolyte", ["Green Picolyte"] = "green-picolyte",
-  ["Blue Picolyte"] = "blue-picolyte", ["White Picolyte"] = "white-picolyte",
-  ["Nayru's Charm"] = "nayrus-charm", ["Farore's Charm"] = "farores-charm", ["Din's Charm"] = "dins-charm",
+-- Every name above -> its item id (the pause sprite table is indexed by item id).
+local ID = {}
+for id, name in pairs(M.equip) do if ID[name] == nil then ID[name] = id end end
+for id, name in pairs(M.bottle) do ID[name] = id end
+for _, group in ipairs(M.gear) do for i = 2, #group do ID[group[i][2]] = ID[group[i][2]] or group[i][1] end end
+for _, list in ipairs({ M.skills, M.quest }) do for _, e in ipairs(list) do ID[e[2]] = e[1] end end
+-- Elements apart: "Water" is also a bottle content.
+local ELEMENT_ID = {}
+for _, e in ipairs(M.elements) do ELEMENT_ID[e[2]] = e[1] end
+ID["Bottle"] = 0x1C
+ID["Empty"] = 0x20
+ID["Shells"] = 0x3F
+ID["Heart Container"] = 0x62
+ID["Wallet"] = 0x64
+ID["Bomb Bag"] = 0x65
+ID["Quiver"] = 0x66
+ID["Kinstone Bag"] = 0x67
 
-  -- Gear
-  ["Grip Ring"] = "grip-ring", ["Power Bracelets"] = "power-bracelets", ["Flippers"] = "flippers",
-  ["Hyrule Map"] = "dungeon-map", -- no Hyrule Map icon on the wiki; the dungeon map's
-
-  -- Tiger Scrolls: the wiki has one scroll icon for all eleven
-  ["Spin Attack"] = "tiger-scroll", ["Roll Attack"] = "tiger-scroll", ["Dash Attack"] = "tiger-scroll",
-  ["Rock Breaker"] = "tiger-scroll", ["Sword Beam"] = "tiger-scroll", ["Great Spin"] = "tiger-scroll",
-  ["Down Thrust"] = "tiger-scroll", ["Peril Beam"] = "tiger-scroll", ["Fast Spin"] = "tiger-scroll",
-  ["Fast Split"] = "tiger-scroll", ["Long Spin"] = "tiger-scroll",
-
-  -- Quest items
-  ["Dog Food"] = "dog-food", ["Lon Lon Ranch Key"] = "spare-key", ["Wake-Up Mushroom"] = "wake-up-mushroom",
-  -- Which library book is 1, 2 and 3 is assumed, unchecked
-  ["Library Book 1"] = "book-hyrulean-bestiary", ["Library Book 2"] = "book-legend-of-the-picori",
-  ["Library Book 3"] = "book-history-of-masks",
-  ["Graveyard Key"] = "graveyard-key", ["Tingle Trophy"] = "tingle-trophy",
-  ["Carlov Medal"] = "carlov-medal", ["Jabber Nut"] = "jabber-nut",
-  -- One butterfly icon on the wiki for all three
+-- Names with no icon in the ROM tables: the pack's own art.
+local ORIGINAL = {
+  ["Hyrule Map"] = "hyrule-map", ["Jabber Nut"] = "jabber-nut",
   ["Arrow Butterfly"] = "butterfly", ["Digging Butterfly"] = "butterfly", ["Swim Butterfly"] = "butterfly",
 }
 
+local UI = "asset:ui/"
+
+--- The icon for an item name: the game's own sprite from the ROM, the pack's art, or nil.
 function M.icon(name)
-  local file = name and M.icons[name]
-  return file and (ICON_DIR .. file .. ".png") or nil
+  if not name then return nil end
+  local id = ID[name]
+  local key = id and rom_gfx.itemIcon(id)
+  if key then return key end
+  if ORIGINAL[name] then return UI .. ORIGINAL[name] .. ".png" end
+  return id and (UI .. "item-unknown.png") or nil
 end
 
--- Elements by their name in M.elements ("Earth" -> earth-element.png). Kept apart
--- from M.icons because "Water" there is the bottle content.
+--- Elements by their name in M.elements ("Earth").
 function M.elementIcon(name)
-  return ICON_DIR .. name:lower() .. "-element.png"
+  local id = ELEMENT_ID[name]
+  return (id and rom_gfx.itemIcon(id)) or (UI .. "item-unknown.png")
 end
 
+--- Kinstone pieces: the pack's own art, one per colour.
 function M.kinstoneIcon(color)
   if color == "?" then color = "Gold" end
-  return ICON_DIR .. "kinstone-" .. color:lower() .. ".png"
+  return UI .. "kinstone-" .. color:lower() .. ".png"
 end
-
--- Other icons the layout can use directly (asset:icons/<name>.png): small-key,
--- big-key, compass, dungeon-map, rupee, shell, heart-piece, heart-container,
--- figurines, bomb-bag, quiver, wallet, kinstone-bag, arrow.
 
 return M

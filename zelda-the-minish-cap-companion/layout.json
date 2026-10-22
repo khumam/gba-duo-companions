@@ -1,36 +1,37 @@
 {
   "type": "box",
-  "id": "main-screen",
+  "class": "bezel",
   "children": [
     {
       "type": "box",
-      "class": "waiting-screen",
+      "class": "waiting",
       "children": [
         {
-          "type": "image",
-          "class": "logo",
-          "src": "asset:img/emblem.png"
-        },
-        {
           "type": "box",
-          "class": "waiting-box",
+          "class": "boot",
           "children": [
             {
-              "type": "box",
-              "class": "win-a"
-            },
-            {
-              "type": "box",
-              "class": "win-b"
-            },
-            {
-              "type": "box",
-              "class": "win-c"
+              "type": "image",
+              "class": "boot-emblem",
+              "src": "$logo",
+              "visibleIf": "$hasLogo"
             },
             {
               "type": "text",
-              "class": "waiting-text",
-              "text": "The Companion for GBA DUO"
+              "class": "boot-title",
+              "text": "THE MINISH CAP",
+              "visibleIf": "$noLogo"
+            },
+            {
+              "type": "box",
+              "class": "boot-pill",
+              "children": [
+                {
+                  "type": "text",
+                  "class": "boot-pill-text",
+                  "text": "GBADUO COMPANION PACK"
+                }
+              ]
             }
           ]
         }
@@ -39,1697 +40,594 @@
     },
     {
       "type": "box",
-      "class": "main-pages",
+      "class": "shell",
       "children": [
         {
-          "type": "pages",
-          "pages": [
+          "type": "box",
+          "class": "header",
+          "children": [
             {
-              "name": "stats",
-              "child": {
-                "type": "column",
-                "class": "page",
-                "children": [
-                  {
+              "type": "box",
+              "class": "header-in",
+              "children": [
+                {
+                  "type": "box",
+                  "class": "hgroup",
+                  "children": [
+                    {
+                      "type": "image",
+                      "class": "hicon hicon-rupee",
+                      "src": "asset:ui/rupee-green.png"
+                    },
+                    {
+                      "type": "text",
+                      "class": "num rupees",
+                      "text": "{rupees}"
+                    },
+                    {
+                      "type": "text",
+                      "class": "num of",
+                      "text": " / {walletMax}"
+                    }
+                  ]
+                },
+                {
+                  "type": "box",
+                  "class": "hgroup",
+                  "children": [
+                    {
+                      "type": "image",
+                      "class": "hicon",
+                      "src": "$icons.kinstoneRed"
+                    },
+                    {
+                      "type": "text",
+                      "class": "num kin",
+                      "text": "{kinstones}"
+                    }
+                  ]
+                },
+                {
+                  "type": "box",
+                  "class": "grow",
+                  "children": []
+                },
+                {
+                  "type": "button",
+                  "class": "ezlo-btn",
+                  "onClick": [
+                    {
+                      "set": {
+                        "hint": true
+                      }
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "image",
+                      "class": "ezlo",
+                      "src": "$ezlo"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "box",
+          "class": "pages-wrap",
+          "children": [
+            {
+              "type": "pages",
+              "class": "pages",
+              "pages": [
+                {
+                  "name": "map",
+                  "child": {
                     "type": "box",
-                    "class": "page-body",
+                    "class": "page page-map",
                     "children": [
                       {
                         "type": "box",
-                        "class": "title-section",
-                        "children": [
-                          {
-                            "type": "image",
-                            "class": "bc-ol"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-or"
-                          },
-                          {
-                            "type": "text",
-                            "class": "title",
-                            "text": "STATS"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "box",
-                        "class": "stats-section",
-                        "children": [
-                          {
-                            "type": "image",
-                            "class": "link-xt"
-                          },
-                          {
-                            "type": "image",
-                            "class": "link-xb"
-                          },
-                          {
-                            "type": "image",
-                            "class": "link-yl"
-                          },
-                          {
-                            "type": "image",
-                            "class": "link-yr"
-                          },
-                          {
-                            "type": "image",
-                            "class": "lc-tl",
-                            "src": "asset:img/link-or.png"
-                          },
-                          {
-                            "type": "image",
-                            "class": "lc-tr",
-                            "src": "asset:img/link-or.png"
-                          },
-                          {
-                            "type": "image",
-                            "class": "lc-bl",
-                            "src": "asset:img/link-or.png"
-                          },
-                          {
-                            "type": "image",
-                            "class": "lc-br",
-                            "src": "asset:img/link-or.png"
-                          },
-                          {
-                            "type": "text",
-                            "class": "hero-name",
-                            "text": "{name}"
-                          },
-                          {
-                            "type": "list",
-                            "class": "heart-row",
-                            "items": "$heartRow",
-                            "template": {
-                              "type": "image",
-                              "class": "heart",
-                              "src": "$src"
-                            }
-                          },
-                          {
-                            "type": "box",
-                            "class": "hero-foot",
-                            "children": [
-                              {
-                                "type": "text",
-                                "class": "life-text",
-                                "text": "{hearts} of {maxHearts} hearts",
-                                "classIf": {
-                                  "low": "$lowHealth"
-                                }
-                              },
-                              {
-                                "type": "text",
-                                "class": "fine",
-                                "text": "Pieces {heartPieces}/4"
-                              }
-                            ]
-                          }
-                        ]
-                      },
-                      {
-                        "type": "box",
-                        "class": "where-row",
+                        "class": "content cols-map",
                         "children": [
                           {
                             "type": "box",
-                            "class": "stats-section panel location-card",
+                            "class": "panel map-panel",
                             "children": [
-                              {
-                                "type": "image",
-                                "class": "link-xt"
-                              },
-                              {
-                                "type": "image",
-                                "class": "link-xb"
-                              },
-                              {
-                                "type": "image",
-                                "class": "link-yl"
-                              },
-                              {
-                                "type": "image",
-                                "class": "link-yr"
-                              },
-                              {
-                                "type": "image",
-                                "class": "lc-tl",
-                                "src": "asset:img/link-or.png"
-                              },
-                              {
-                                "type": "image",
-                                "class": "lc-tr",
-                                "src": "asset:img/link-or.png"
-                              },
-                              {
-                                "type": "image",
-                                "class": "lc-bl",
-                                "src": "asset:img/link-or.png"
-                              },
-                              {
-                                "type": "image",
-                                "class": "lc-br",
-                                "src": "asset:img/link-or.png"
-                              },
                               {
                                 "type": "box",
-                                "class": "panel-inner",
+                                "class": "panel-frame",
                                 "children": [
-                                  {
-                                    "type": "row",
-                                    "class": "location",
-                                    "children": [
-                                      {
-                                        "type": "image",
-                                        "class": "icon location-icon",
-                                        "src": "asset:icons/dungeon-map.png"
-                                      },
-                                      {
-                                        "type": "text",
-                                        "class": "location-name",
-                                        "text": "{location}"
-                                      }
-                                    ]
-                                  }
-                                ]
-                              }
-                            ]
-                          },
-                          {
-                            "type": "box",
-                            "class": "stats-section panel buttons-card",
-                            "children": [
-                              {
-                                "type": "image",
-                                "class": "link-xt"
-                              },
-                              {
-                                "type": "image",
-                                "class": "link-xb"
-                              },
-                              {
-                                "type": "image",
-                                "class": "link-yl"
-                              },
-                              {
-                                "type": "image",
-                                "class": "link-yr"
-                              },
-                              {
-                                "type": "image",
-                                "class": "lc-tl",
-                                "src": "asset:img/link-or.png"
-                              },
-                              {
-                                "type": "image",
-                                "class": "lc-tr",
-                                "src": "asset:img/link-or.png"
-                              },
-                              {
-                                "type": "image",
-                                "class": "lc-bl",
-                                "src": "asset:img/link-or.png"
-                              },
-                              {
-                                "type": "image",
-                                "class": "lc-br",
-                                "src": "asset:img/link-or.png"
-                              },
-                              {
-                                "type": "box",
-                                "class": "panel-inner",
-                                "children": [
-                                  {
-                                    "type": "row",
-                                    "class": "equip",
-                                    "children": [
-                                      {
-                                        "type": "image",
-                                        "class": "ab-button",
-                                        "src": "asset:img/b-button.png"
-                                      },
-                                      {
-                                        "type": "image",
-                                        "class": "icon equip-icon",
-                                        "src": "$buttonBIcon"
-                                      },
-                                      {
-                                        "type": "text",
-                                        "class": "equip-name",
-                                        "text": "{buttonB}"
-                                      }
-                                    ]
-                                  },
-                                  {
-                                    "type": "row",
-                                    "class": "equip",
-                                    "children": [
-                                      {
-                                        "type": "image",
-                                        "class": "ab-button",
-                                        "src": "asset:img/a-button.png"
-                                      },
-                                      {
-                                        "type": "image",
-                                        "class": "icon equip-icon",
-                                        "src": "$buttonAIcon"
-                                      },
-                                      {
-                                        "type": "text",
-                                        "class": "equip-name",
-                                        "text": "{buttonA}"
-                                      }
-                                    ]
-                                  }
-                                ]
-                              }
-                            ]
-                          }
-                        ]
-                      },
-                      {
-                        "type": "box",
-                        "class": "item-stats bag map-panel",
-                        "children": [
-                          {
-                            "type": "image",
-                            "class": "bc-xt"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-xb"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-yl"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-yr"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-tl",
-                            "src": "asset:img/bc-tl.png"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-tr",
-                            "src": "asset:img/bc-tr.png"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-bl",
-                            "src": "asset:img/bc-bl.png"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-br",
-                            "src": "asset:img/bc-br.png"
-                          },
-                          {
-                            "type": "box",
-                            "class": "panel-inner",
-                            "children": [
-                              {
-                                "type": "row",
-                                "class": "map-row",
-                                "children": [
-                                  {
-                                    "type": "column",
-                                    "class": "counter-list",
-                                    "children": [
-                                      {
-                                        "type": "row",
-                                        "class": "counter",
-                                        "children": [
-                                          {
-                                            "type": "box",
-                                            "class": "socket socket-sm",
-                                            "children": [
-                                              {
-                                                "type": "image",
-                                                "class": "icon counter-icon",
-                                                "src": "asset:icons/rupee.png"
-                                              }
-                                            ]
-                                          },
-                                          {
-                                            "type": "text",
-                                            "class": "counter-num",
-                                            "text": "{rupees}/{walletMax}"
-                                          }
-                                        ]
-                                      },
-                                      {
-                                        "type": "row",
-                                        "class": "counter",
-                                        "children": [
-                                          {
-                                            "type": "box",
-                                            "class": "socket socket-sm",
-                                            "children": [
-                                              {
-                                                "type": "image",
-                                                "class": "icon counter-icon",
-                                                "src": "asset:icons/shell.png"
-                                              }
-                                            ]
-                                          },
-                                          {
-                                            "type": "text",
-                                            "class": "counter-num",
-                                            "text": "{shells}"
-                                          }
-                                        ]
-                                      },
-                                      {
-                                        "type": "row",
-                                        "class": "counter",
-                                        "children": [
-                                          {
-                                            "type": "box",
-                                            "class": "socket socket-sm",
-                                            "children": [
-                                              {
-                                                "type": "image",
-                                                "class": "icon counter-icon",
-                                                "src": "asset:icons/bombs.png"
-                                              }
-                                            ]
-                                          },
-                                          {
-                                            "type": "text",
-                                            "class": "counter-num",
-                                            "text": "{bombs}"
-                                          }
-                                        ],
-                                        "visibleIf": "$hasBombs"
-                                      },
-                                      {
-                                        "type": "row",
-                                        "class": "counter",
-                                        "children": [
-                                          {
-                                            "type": "box",
-                                            "class": "socket socket-sm",
-                                            "children": [
-                                              {
-                                                "type": "image",
-                                                "class": "icon counter-icon",
-                                                "src": "asset:icons/arrow.png"
-                                              }
-                                            ]
-                                          },
-                                          {
-                                            "type": "text",
-                                            "class": "counter-num",
-                                            "text": "{arrows}"
-                                          }
-                                        ],
-                                        "visibleIf": "$hasBow"
-                                      },
-                                      {
-                                        "type": "row",
-                                        "class": "counter",
-                                        "children": [
-                                          {
-                                            "type": "box",
-                                            "class": "socket socket-sm",
-                                            "children": [
-                                              {
-                                                "type": "image",
-                                                "class": "icon counter-icon",
-                                                "src": "asset:icons/heart-piece.png"
-                                              }
-                                            ]
-                                          },
-                                          {
-                                            "type": "text",
-                                            "class": "counter-num",
-                                            "text": "{heartPieces}/4"
-                                          }
-                                        ]
-                                      },
-                                      {
-                                        "type": "row",
-                                        "class": "counter",
-                                        "children": [
-                                          {
-                                            "type": "box",
-                                            "class": "socket socket-sm",
-                                            "children": [
-                                              {
-                                                "type": "image",
-                                                "class": "icon counter-icon",
-                                                "src": "asset:icons/figurines.png"
-                                              }
-                                            ]
-                                          },
-                                          {
-                                            "type": "text",
-                                            "class": "counter-num",
-                                            "text": "{figurines}"
-                                          }
-                                        ]
-                                      }
-                                    ]
-                                  },
                                   {
                                     "type": "box",
-                                    "class": "map-socket",
+                                    "class": "panel-inner",
                                     "children": [
                                       {
                                         "type": "box",
-                                        "class": "world-map",
+                                        "class": "map-view",
                                         "children": [
                                           {
-                                            "type": "box",
-                                            "class": "map-marker",
+                                            "type": "image",
+                                            "class": "map-img",
+                                            "src": "$map.image"
+                                          },
+                                          {
+                                            "type": "image",
+                                            "class": "mark mark-link",
+                                            "src": "asset:ui/mark-link.png",
                                             "bindStyle": {
-                                              "left": "{mapLeftPct}%",
-                                              "top": "{mapTopPct}%"
-                                            },
-                                            "visibleIf": "$onMap"
+                                              "left": "{map.linkX}%",
+                                              "top": "{map.linkY}%"
+                                            }
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "map-tag",
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "class": "map-tag-text",
+                                            "text": "{location}"
                                           }
                                         ]
                                       }
                                     ]
-                                  }
-                                ]
-                              }
-                            ]
-                          }
-                        ]
-                      },
-                      {
-                        "type": "box",
-                        "class": "title-section subtitle",
-                        "children": [
-                          {
-                            "type": "image",
-                            "class": "bc-ol"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-or"
-                          },
-                          {
-                            "type": "text",
-                            "class": "title",
-                            "text": "BOTTLES"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "box",
-                        "class": "stats-section panel bottles-panel",
-                        "children": [
-                          {
-                            "type": "image",
-                            "class": "link-xt"
-                          },
-                          {
-                            "type": "image",
-                            "class": "link-xb"
-                          },
-                          {
-                            "type": "image",
-                            "class": "link-yl"
-                          },
-                          {
-                            "type": "image",
-                            "class": "link-yr"
-                          },
-                          {
-                            "type": "image",
-                            "class": "lc-tl",
-                            "src": "asset:img/link-or.png"
-                          },
-                          {
-                            "type": "image",
-                            "class": "lc-tr",
-                            "src": "asset:img/link-or.png"
-                          },
-                          {
-                            "type": "image",
-                            "class": "lc-bl",
-                            "src": "asset:img/link-or.png"
-                          },
-                          {
-                            "type": "image",
-                            "class": "lc-br",
-                            "src": "asset:img/link-or.png"
-                          },
-                          {
-                            "type": "box",
-                            "class": "panel-inner",
-                            "children": [
-                              {
-                                "type": "list",
-                                "class": "bottle-row",
-                                "items": "$bottles",
-                                "template": {
-                                  "type": "box",
-                                  "class": "tile bottle",
-                                  "children": [
-                                    {
-                                      "type": "box",
-                                      "class": "tile-slot",
-                                      "children": [
-                                        {
-                                          "type": "image",
-                                          "class": "icon tile-icon",
-                                          "src": "$icon"
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "type": "text",
-                                      "class": "tile-name",
-                                      "text": "{name}"
-                                    }
-                                  ],
-                                  "classIf": {
-                                    "dim": "$empty"
-                                  }
-                                },
-                                "empty": "No bottles yet"
-                              },
-                              {
-                                "type": "row",
-                                "class": "buff-row",
-                                "children": [
-                                  {
-                                    "type": "row",
-                                    "class": "buff",
-                                    "children": [
-                                      {
-                                        "type": "text",
-                                        "class": "buff-label",
-                                        "text": "Charm"
-                                      },
-                                      {
-                                        "type": "image",
-                                        "class": "icon buff-icon",
-                                        "src": "$charmIcon"
-                                      },
-                                      {
-                                        "type": "text",
-                                        "class": "buff-text",
-                                        "text": "{charm}"
-                                      }
-                                    ]
                                   },
                                   {
-                                    "type": "row",
-                                    "class": "buff",
+                                    "type": "image",
+                                    "class": "rivet rivet-tl",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-tr",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-bl",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-br",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-ml",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-mr",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-bm",
+                                    "src": "asset:ui/rivet.png"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "plaque-row",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "plaque",
                                     "children": [
                                       {
+                                        "type": "image",
+                                        "class": "plaque-leaf plaque-leaf-l",
+                                        "src": "asset:ui/leaf-l.png"
+                                      },
+                                      {
                                         "type": "text",
-                                        "class": "buff-label",
-                                        "text": "Picolyte"
+                                        "class": "plaque-text",
+                                        "text": "HYRULE MAP"
                                       },
                                       {
                                         "type": "image",
-                                        "class": "icon buff-icon",
-                                        "src": "$picolyteIcon"
-                                      },
-                                      {
-                                        "type": "text",
-                                        "class": "buff-text",
-                                        "text": "{picolyte}"
+                                        "class": "plaque-leaf plaque-leaf-r",
+                                        "src": "asset:ui/leaf-r.png"
                                       }
                                     ]
                                   }
                                 ]
                               }
                             ]
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "type": "row",
-                    "class": "nav",
-                    "children": [
-                      {
-                        "type": "button",
-                        "class": "nav-btn on",
-                        "onClick": [
-                          {
-                            "navigate": "stats"
-                          }
-                        ],
-                        "children": [
-                          {
-                            "type": "text",
-                            "class": "nav-text",
-                            "text": "Stats"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "button",
-                        "class": "nav-btn",
-                        "onClick": [
-                          {
-                            "navigate": "items"
-                          }
-                        ],
-                        "children": [
-                          {
-                            "type": "text",
-                            "class": "nav-text",
-                            "text": "Items"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "button",
-                        "class": "nav-btn",
-                        "onClick": [
-                          {
-                            "navigate": "kinstones"
-                          }
-                        ],
-                        "children": [
-                          {
-                            "type": "text",
-                            "class": "nav-text",
-                            "text": "Kinstones"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "button",
-                        "class": "nav-btn",
-                        "onClick": [
-                          {
-                            "navigate": "dungeons"
-                          }
-                        ],
-                        "children": [
-                          {
-                            "type": "text",
-                            "class": "nav-text",
-                            "text": "Dungeons"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              }
-            },
-            {
-              "name": "items",
-              "child": {
-                "type": "column",
-                "class": "page",
-                "children": [
-                  {
-                    "type": "box",
-                    "class": "page-body",
-                    "children": [
-                      {
-                        "type": "box",
-                        "class": "title-section",
-                        "children": [
-                          {
-                            "type": "image",
-                            "class": "bc-ol"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-or"
-                          },
-                          {
-                            "type": "text",
-                            "class": "title",
-                            "text": "ITEMS"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "box",
-                        "class": "item-name-tag",
-                        "visibleIf": "$ui.itemName",
-                        "onClick": [
-                          {
-                            "set": {
-                              "itemName": ""
-                            }
-                          }
-                        ],
-                        "children": [
-                          {
-                            "type": "text",
-                            "class": "item-name-text",
-                            "text": "{ui.itemName}"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "box",
-                        "class": "item-stats",
-                        "children": [
-                          {
-                            "type": "image",
-                            "class": "bc-xt"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-xb"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-yl"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-yr"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-tl",
-                            "src": "asset:img/bc-tl.png"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-tr",
-                            "src": "asset:img/bc-tr.png"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-bl",
-                            "src": "asset:img/bc-bl.png"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-br",
-                            "src": "asset:img/bc-br.png"
                           },
                           {
                             "type": "box",
-                            "class": "panel-inner",
-                            "children": [
-                              {
-                                "type": "list",
-                                "class": "tile-grid gear-grid",
-                                "items": "$gear",
-                                "template": {
-                                  "type": "box",
-                                  "class": "tile",
-                                  "children": [
-                                    {
-                                      "type": "box",
-                                      "class": "tile-slot",
-                                      "children": [
-                                        {
-                                          "type": "image",
-                                          "class": "icon tile-icon",
-                                          "src": "$icon"
-                                        }
-                                      ]
-                                    }
-                                  ],
-                                  "onClick": [
-                                    {
-                                      "set": {
-                                        "itemName": "{name}"
-                                      }
-                                    }
-                                  ],
-                                  "classIf": {
-                                    "selected": "$selected"
-                                  }
-                                },
-                                "empty": "Nothing yet"
-                              }
-                            ]
-                          }
-                        ]
-                      },
-                      {
-                        "type": "box",
-                        "class": "title-section subtitle",
-                        "children": [
-                          {
-                            "type": "image",
-                            "class": "bc-ol"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-or"
-                          },
-                          {
-                            "type": "text",
-                            "class": "title",
-                            "text": "ELEMENTS {elementCount}/4"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "box",
-                        "class": "item-stats bag elements-panel",
-                        "children": [
-                          {
-                            "type": "image",
-                            "class": "bc-xt"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-xb"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-yl"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-yr"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-tl",
-                            "src": "asset:img/bc-tl.png"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-tr",
-                            "src": "asset:img/bc-tr.png"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-bl",
-                            "src": "asset:img/bc-bl.png"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-br",
-                            "src": "asset:img/bc-br.png"
-                          },
-                          {
-                            "type": "box",
-                            "class": "panel-inner",
-                            "children": [
-                              {
-                                "type": "list",
-                                "class": "element-row",
-                                "items": "$elements",
-                                "template": {
-                                  "type": "box",
-                                  "class": "element",
-                                  "children": [
-                                    {
-                                      "type": "box",
-                                      "class": "tile-slot",
-                                      "children": [
-                                        {
-                                          "type": "image",
-                                          "class": "icon element-icon",
-                                          "src": "$icon"
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "type": "text",
-                                      "class": "tile-name",
-                                      "text": "{name}"
-                                    }
-                                  ],
-                                  "classIf": {
-                                    "owned": "$owned"
-                                  }
-                                }
-                              }
-                            ]
-                          }
-                        ]
-                      },
-                      {
-                        "type": "box",
-                        "class": "title-section subtitle",
-                        "children": [
-                          {
-                            "type": "image",
-                            "class": "bc-ol"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-or"
-                          },
-                          {
-                            "type": "text",
-                            "class": "title",
-                            "text": "TIGER SCROLLS {skillCount}/{skillTotal}"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "box",
-                        "class": "stats-section panel scrolls-panel",
-                        "children": [
-                          {
-                            "type": "image",
-                            "class": "link-xt"
-                          },
-                          {
-                            "type": "image",
-                            "class": "link-xb"
-                          },
-                          {
-                            "type": "image",
-                            "class": "link-yl"
-                          },
-                          {
-                            "type": "image",
-                            "class": "link-yr"
-                          },
-                          {
-                            "type": "image",
-                            "class": "lc-tl",
-                            "src": "asset:img/link-or.png"
-                          },
-                          {
-                            "type": "image",
-                            "class": "lc-tr",
-                            "src": "asset:img/link-or.png"
-                          },
-                          {
-                            "type": "image",
-                            "class": "lc-bl",
-                            "src": "asset:img/link-or.png"
-                          },
-                          {
-                            "type": "image",
-                            "class": "lc-br",
-                            "src": "asset:img/link-or.png"
-                          },
-                          {
-                            "type": "box",
-                            "class": "panel-inner",
-                            "children": [
-                              {
-                                "type": "list",
-                                "class": "scroll-grid",
-                                "items": "$skills",
-                                "template": {
-                                  "type": "row",
-                                  "class": "scroll",
-                                  "children": [
-                                    {
-                                      "type": "image",
-                                      "class": "icon scroll-icon",
-                                      "src": "$icon"
-                                    },
-                                    {
-                                      "type": "text",
-                                      "class": "scroll-name",
-                                      "text": "{name}"
-                                    }
-                                  ],
-                                  "classIf": {
-                                    "owned": "$owned"
-                                  }
-                                }
-                              }
-                            ]
-                          }
-                        ]
-                      },
-                      {
-                        "type": "box",
-                        "class": "title-section subtitle",
-                        "children": [
-                          {
-                            "type": "image",
-                            "class": "bc-ol"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-or"
-                          },
-                          {
-                            "type": "text",
-                            "class": "title",
-                            "text": "QUEST"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "box",
-                        "class": "item-stats bag quest-panel",
-                        "children": [
-                          {
-                            "type": "image",
-                            "class": "bc-xt"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-xb"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-yl"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-yr"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-tl",
-                            "src": "asset:img/bc-tl.png"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-tr",
-                            "src": "asset:img/bc-tr.png"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-bl",
-                            "src": "asset:img/bc-bl.png"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-br",
-                            "src": "asset:img/bc-br.png"
-                          },
-                          {
-                            "type": "box",
-                            "class": "panel-inner",
-                            "children": [
-                              {
-                                "type": "list",
-                                "class": "tile-grid",
-                                "items": "$quest",
-                                "template": {
-                                  "type": "box",
-                                  "class": "tile",
-                                  "children": [
-                                    {
-                                      "type": "box",
-                                      "class": "tile-slot",
-                                      "children": [
-                                        {
-                                          "type": "image",
-                                          "class": "icon tile-icon",
-                                          "src": "$icon"
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "type": "text",
-                                      "class": "tile-name",
-                                      "text": "{name}"
-                                    }
-                                  ],
-                                  "onClick": [
-                                    {
-                                      "set": {
-                                        "itemName": "{name}"
-                                      }
-                                    }
-                                  ],
-                                  "classIf": {
-                                    "selected": "$selected"
-                                  }
-                                },
-                                "empty": "Nothing to deliver"
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "type": "row",
-                    "class": "nav",
-                    "children": [
-                      {
-                        "type": "button",
-                        "class": "nav-btn",
-                        "onClick": [
-                          {
-                            "navigate": "stats"
-                          }
-                        ],
-                        "children": [
-                          {
-                            "type": "text",
-                            "class": "nav-text",
-                            "text": "Stats"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "button",
-                        "class": "nav-btn on",
-                        "onClick": [
-                          {
-                            "navigate": "items"
-                          }
-                        ],
-                        "children": [
-                          {
-                            "type": "text",
-                            "class": "nav-text",
-                            "text": "Items"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "button",
-                        "class": "nav-btn",
-                        "onClick": [
-                          {
-                            "navigate": "kinstones"
-                          }
-                        ],
-                        "children": [
-                          {
-                            "type": "text",
-                            "class": "nav-text",
-                            "text": "Kinstones"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "button",
-                        "class": "nav-btn",
-                        "onClick": [
-                          {
-                            "navigate": "dungeons"
-                          }
-                        ],
-                        "children": [
-                          {
-                            "type": "text",
-                            "class": "nav-text",
-                            "text": "Dungeons"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              }
-            },
-            {
-              "name": "kinstones",
-              "child": {
-                "type": "column",
-                "class": "page",
-                "children": [
-                  {
-                    "type": "box",
-                    "class": "page-body",
-                    "children": [
-                      {
-                        "type": "box",
-                        "class": "title-section",
-                        "children": [
-                          {
-                            "type": "image",
-                            "class": "bc-ol"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-or"
-                          },
-                          {
-                            "type": "text",
-                            "class": "title",
-                            "text": "KINSTONES"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "box",
-                        "class": "stats-section panel",
-                        "children": [
-                          {
-                            "type": "image",
-                            "class": "link-xt"
-                          },
-                          {
-                            "type": "image",
-                            "class": "link-xb"
-                          },
-                          {
-                            "type": "image",
-                            "class": "link-yl"
-                          },
-                          {
-                            "type": "image",
-                            "class": "link-yr"
-                          },
-                          {
-                            "type": "image",
-                            "class": "lc-tl",
-                            "src": "asset:img/link-or.png"
-                          },
-                          {
-                            "type": "image",
-                            "class": "lc-tr",
-                            "src": "asset:img/link-or.png"
-                          },
-                          {
-                            "type": "image",
-                            "class": "lc-bl",
-                            "src": "asset:img/link-or.png"
-                          },
-                          {
-                            "type": "image",
-                            "class": "lc-br",
-                            "src": "asset:img/link-or.png"
-                          },
-                          {
-                            "type": "box",
-                            "class": "panel-inner",
+                            "class": "panel items-panel",
                             "children": [
                               {
                                 "type": "box",
-                                "class": "panel-row",
+                                "class": "panel-frame",
                                 "children": [
                                   {
-                                    "type": "text",
-                                    "class": "panel-title",
-                                    "text": "Fusions"
+                                    "type": "box",
+                                    "class": "panel-inner",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "equips",
+                                        "children": [
+                                          {
+                                            "type": "box",
+                                            "class": "equip equip-a",
+                                            "children": [
+                                              {
+                                                "type": "box",
+                                                "class": "equip-ring",
+                                                "children": [
+                                                  {
+                                                    "type": "image",
+                                                    "class": "equip-icon",
+                                                    "src": "$equipA.icon"
+                                                  },
+                                                  {
+                                                    "type": "box",
+                                                    "class": "equip-badge",
+                                                    "children": [
+                                                      {
+                                                        "type": "text",
+                                                        "class": "equip-key",
+                                                        "text": "A"
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "type": "text",
+                                                "class": "equip-name",
+                                                "text": "{equipA.name}"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "equip equip-b",
+                                            "children": [
+                                              {
+                                                "type": "box",
+                                                "class": "equip-ring",
+                                                "children": [
+                                                  {
+                                                    "type": "image",
+                                                    "class": "equip-icon",
+                                                    "src": "$equipB.icon"
+                                                  },
+                                                  {
+                                                    "type": "box",
+                                                    "class": "equip-badge",
+                                                    "children": [
+                                                      {
+                                                        "type": "text",
+                                                        "class": "equip-key",
+                                                        "text": "B"
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "type": "text",
+                                                "class": "equip-name",
+                                                "text": "{equipB.name}"
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "card link-card",
+                                        "children": [
+                                          {
+                                            "type": "image",
+                                            "class": "link-leaf link-leaf-tl",
+                                            "src": "asset:ui/leaf-r.png"
+                                          },
+                                          {
+                                            "type": "image",
+                                            "class": "link-leaf link-leaf-tr",
+                                            "src": "asset:ui/leaf-l.png"
+                                          },
+                                          {
+                                            "type": "image",
+                                            "class": "link-leaf link-leaf-bl",
+                                            "src": "asset:ui/leaf-l.png"
+                                          },
+                                          {
+                                            "type": "image",
+                                            "class": "link-leaf link-leaf-br",
+                                            "src": "asset:ui/leaf-r.png"
+                                          },
+                                          {
+                                            "type": "image",
+                                            "class": "link-sprite",
+                                            "src": "$link.sprite"
+                                          },
+                                          {
+                                            "type": "list",
+                                            "class": "hearts",
+                                            "items": "$link.hearts",
+                                            "template": {
+                                              "type": "image",
+                                              "class": "heart",
+                                              "src": "$src"
+                                            },
+                                            "visibleIf": "$link.hasHearts"
+                                          }
+                                        ]
+                                      }
+                                    ]
                                   },
                                   {
-                                    "type": "text",
-                                    "class": "panel-num",
-                                    "text": "{fused}/{fusionTotal}"
+                                    "type": "image",
+                                    "class": "rivet rivet-tl",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-tr",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-bl",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-br",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-ml",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-mr",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-bm",
+                                    "src": "asset:ui/rivet.png"
                                   }
                                 ]
                               },
                               {
-                                "type": "bar",
-                                "value": "$fusedPct",
-                                "max": 1,
-                                "class": "gauge"
-                              },
-                              {
-                                "type": "text",
-                                "class": "panel-fine",
-                                "text": "{pieceTotal} pieces in the bag"
-                              }
-                            ]
-                          }
-                        ]
-                      },
-                      {
-                        "type": "box",
-                        "class": "item-stats bag",
-                        "children": [
-                          {
-                            "type": "image",
-                            "class": "bc-xt"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-xb"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-yl"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-yr"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-tl",
-                            "src": "asset:img/bc-tl.png"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-tr",
-                            "src": "asset:img/bc-tr.png"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-bl",
-                            "src": "asset:img/bc-bl.png"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-br",
-                            "src": "asset:img/bc-br.png"
-                          },
-                          {
-                            "type": "box",
-                            "class": "panel-inner",
-                            "children": [
-                              {
-                                "type": "list",
-                                "class": "piece-grid",
-                                "items": "$pieces",
-                                "empty": "The bag is empty",
-                                "template": {
-                                  "type": "box",
-                                  "class": "piece",
-                                  "children": [
-                                    {
-                                      "type": "box",
-                                      "class": "socket",
-                                      "children": [
-                                        {
-                                          "type": "image",
-                                          "class": "icon piece-img",
-                                          "src": "$icon"
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "type": "box",
-                                      "class": "piece-col",
-                                      "children": [
-                                        {
-                                          "type": "text",
-                                          "class": "piece-color",
-                                          "text": "{color}"
-                                        },
-                                        {
-                                          "type": "text",
-                                          "class": "piece-name",
-                                          "text": "{name} {id}"
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "type": "text",
-                                      "class": "piece-amount",
-                                      "text": "x{amount}"
-                                    }
-                                  ]
-                                }
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "type": "row",
-                    "class": "nav",
-                    "children": [
-                      {
-                        "type": "button",
-                        "class": "nav-btn",
-                        "onClick": [
-                          {
-                            "navigate": "stats"
-                          }
-                        ],
-                        "children": [
-                          {
-                            "type": "text",
-                            "class": "nav-text",
-                            "text": "Stats"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "button",
-                        "class": "nav-btn",
-                        "onClick": [
-                          {
-                            "navigate": "items"
-                          }
-                        ],
-                        "children": [
-                          {
-                            "type": "text",
-                            "class": "nav-text",
-                            "text": "Items"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "button",
-                        "class": "nav-btn on",
-                        "onClick": [
-                          {
-                            "navigate": "kinstones"
-                          }
-                        ],
-                        "children": [
-                          {
-                            "type": "text",
-                            "class": "nav-text",
-                            "text": "Kinstones"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "button",
-                        "class": "nav-btn",
-                        "onClick": [
-                          {
-                            "navigate": "dungeons"
-                          }
-                        ],
-                        "children": [
-                          {
-                            "type": "text",
-                            "class": "nav-text",
-                            "text": "Dungeons"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              }
-            },
-            {
-              "name": "dungeons",
-              "child": {
-                "type": "column",
-                "class": "page",
-                "children": [
-                  {
-                    "type": "box",
-                    "class": "page-body",
-                    "children": [
-                      {
-                        "type": "box",
-                        "class": "title-section",
-                        "children": [
-                          {
-                            "type": "image",
-                            "class": "bc-ol"
-                          },
-                          {
-                            "type": "image",
-                            "class": "bc-or"
-                          },
-                          {
-                            "type": "text",
-                            "class": "title",
-                            "text": "DUNGEONS"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "list",
-                        "class": "dungeon-list",
-                        "items": "$dungeons",
-                        "template": {
-                          "type": "box",
-                          "class": "stats-section panel dungeon",
-                          "children": [
-                            {
-                              "type": "image",
-                              "class": "link-xt"
-                            },
-                            {
-                              "type": "image",
-                              "class": "link-xb"
-                            },
-                            {
-                              "type": "image",
-                              "class": "link-yl"
-                            },
-                            {
-                              "type": "image",
-                              "class": "link-yr"
-                            },
-                            {
-                              "type": "image",
-                              "class": "lc-tl",
-                              "src": "asset:img/link-or.png"
-                            },
-                            {
-                              "type": "image",
-                              "class": "lc-tr",
-                              "src": "asset:img/link-or.png"
-                            },
-                            {
-                              "type": "image",
-                              "class": "lc-bl",
-                              "src": "asset:img/link-or.png"
-                            },
-                            {
-                              "type": "image",
-                              "class": "lc-br",
-                              "src": "asset:img/link-or.png"
-                            },
-                            {
-                              "type": "box",
-                              "class": "panel-inner",
-                              "children": [
-                                {
-                                  "type": "box",
-                                  "class": "panel-row",
-                                  "children": [
-                                    {
-                                      "type": "text",
-                                      "class": "panel-title dungeon-name",
-                                      "text": "{name}"
-                                    },
-                                    {
-                                      "type": "text",
-                                      "class": "dungeon-state cleared-text",
-                                      "text": "Cleared",
-                                      "visibleIf": "$cleared"
-                                    },
-                                    {
-                                      "type": "text",
-                                      "class": "dungeon-state here-text",
-                                      "text": "You are here",
-                                      "visibleIf": "$here"
-                                    }
-                                  ]
-                                },
-                                {
-                                  "type": "text",
-                                  "class": "panel-fine",
-                                  "text": "{prize}"
-                                },
-                                {
-                                  "type": "box",
-                                  "class": "relics",
-                                  "children": [
-                                    {
-                                      "type": "box",
-                                      "class": "relic",
-                                      "children": [
-                                        {
-                                          "type": "image",
-                                          "class": "icon relic-img",
-                                          "src": "asset:icons/small-key.png"
-                                        },
-                                        {
-                                          "type": "text",
-                                          "class": "relic-text",
-                                          "text": "x{keys}"
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "type": "image",
-                                      "class": "icon relic-img lone",
-                                      "classIf": {
-                                        "owned": "$map"
-                                      },
-                                      "src": "asset:icons/dungeon-map.png"
-                                    },
-                                    {
-                                      "type": "image",
-                                      "class": "icon relic-img lone",
-                                      "classIf": {
-                                        "owned": "$compass"
-                                      },
-                                      "src": "asset:icons/compass.png"
-                                    },
-                                    {
-                                      "type": "image",
-                                      "class": "icon relic-img lone",
-                                      "classIf": {
-                                        "owned": "$bigKey"
-                                      },
-                                      "src": "asset:icons/big-key.png"
-                                    }
-                                  ]
-                                }
-                              ]
-                            }
-                          ],
-                          "classIf": {
-                            "cleared": "$cleared",
-                            "here": "$here"
-                          }
-                        }
-                      },
-                      {
-                        "type": "box",
-                        "class": "stats-section panel records",
-                        "children": [
-                          {
-                            "type": "image",
-                            "class": "link-xt"
-                          },
-                          {
-                            "type": "image",
-                            "class": "link-xb"
-                          },
-                          {
-                            "type": "image",
-                            "class": "link-yl"
-                          },
-                          {
-                            "type": "image",
-                            "class": "link-yr"
-                          },
-                          {
-                            "type": "image",
-                            "class": "lc-tl",
-                            "src": "asset:img/link-or.png"
-                          },
-                          {
-                            "type": "image",
-                            "class": "lc-tr",
-                            "src": "asset:img/link-or.png"
-                          },
-                          {
-                            "type": "image",
-                            "class": "lc-bl",
-                            "src": "asset:img/link-or.png"
-                          },
-                          {
-                            "type": "image",
-                            "class": "lc-br",
-                            "src": "asset:img/link-or.png"
-                          },
-                          {
-                            "type": "box",
-                            "class": "panel-inner",
-                            "children": [
-                              {
                                 "type": "box",
-                                "class": "panel-row",
+                                "class": "plaque-row",
                                 "children": [
                                   {
-                                    "type": "text",
-                                    "class": "panel-title",
-                                    "text": "Enemies defeated"
+                                    "type": "box",
+                                    "class": "plaque",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "plaque-leaf plaque-leaf-l",
+                                        "src": "asset:ui/leaf-l.png"
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "plaque-text",
+                                        "text": "LINK"
+                                      },
+                                      {
+                                        "type": "image",
+                                        "class": "plaque-leaf plaque-leaf-r",
+                                        "src": "asset:ui/leaf-r.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "dock",
+                        "children": [
+                          {
+                            "type": "image",
+                            "class": "dock-leaves dock-leaves-l",
+                            "src": "asset:ui/leaves-big-l.png"
+                          },
+                          {
+                            "type": "image",
+                            "class": "dock-leaves dock-leaves-r",
+                            "src": "asset:ui/leaves-big-r.png"
+                          },
+                          {
+                            "type": "box",
+                            "class": "tabs",
+                            "children": [
+                              {
+                                "type": "button",
+                                "class": "tab tab-map on",
+                                "onClick": [
+                                  {
+                                    "navigate": "map"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "tab-plank",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "tab-label",
+                                        "text": "[MAP]"
+                                      }
+                                    ]
                                   },
                                   {
-                                    "type": "text",
-                                    "class": "panel-num",
-                                    "text": "{enemiesKilled}"
+                                    "type": "image",
+                                    "class": "bolt bolt-tl",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-tr",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-bl",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-br",
+                                    "src": "asset:ui/bolt.png"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "tab tab-items",
+                                "onClick": [
+                                  {
+                                    "navigate": "items"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "tab-plank",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "tab-label",
+                                        "text": "[ITEMS]"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-tl",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-tr",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-bl",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-br",
+                                    "src": "asset:ui/bolt.png"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "tab tab-kinstone",
+                                "onClick": [
+                                  {
+                                    "navigate": "kinstone"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "tab-plank",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "tab-label",
+                                        "text": "[KINSTONE]"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-tl",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-tr",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-bl",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-br",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "tab-alert",
+                                    "src": "$icons.kinstoneRed",
+                                    "visibleIf": "$kinstone.ready"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "tab tab-quest",
+                                "onClick": [
+                                  {
+                                    "navigate": "quest"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "tab-plank",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "tab-label",
+                                        "text": "[QUEST]"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-tl",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-tr",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-bl",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-br",
+                                    "src": "asset:ui/bolt.png"
                                   }
                                 ]
                               }
@@ -1738,78 +636,1798 @@
                         ]
                       }
                     ]
-                  },
-                  {
-                    "type": "row",
-                    "class": "nav",
+                  }
+                },
+                {
+                  "name": "items",
+                  "child": {
+                    "type": "box",
+                    "class": "page page-items",
                     "children": [
                       {
-                        "type": "button",
-                        "class": "nav-btn",
-                        "onClick": [
-                          {
-                            "navigate": "stats"
-                          }
-                        ],
+                        "type": "box",
+                        "class": "content cols-items",
                         "children": [
                           {
-                            "type": "text",
-                            "class": "nav-text",
-                            "text": "Stats"
+                            "type": "box",
+                            "class": "panel bag-panel",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "panel-frame",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "panel-inner",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "card pouch-card",
+                                        "children": [
+                                          {
+                                            "type": "box",
+                                            "class": "card-head",
+                                            "children": [
+                                              {
+                                                "type": "text",
+                                                "class": "card-title",
+                                                "text": "TAP AN ITEM"
+                                              },
+                                              {
+                                                "type": "box",
+                                                "class": "picked",
+                                                "children": [
+                                                  {
+                                                    "type": "image",
+                                                    "class": "picked-icon",
+                                                    "src": "$ui.pickIcon"
+                                                  },
+                                                  {
+                                                    "type": "text",
+                                                    "class": "picked-name",
+                                                    "text": "{ui.pick}"
+                                                  }
+                                                ],
+                                                "visibleIf": "$ui.picked"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "list",
+                                            "class": "item-grid",
+                                            "items": "$items",
+                                            "template": {
+                                              "type": "box",
+                                              "class": "slot slot-s",
+                                              "children": [
+                                                {
+                                                  "type": "image",
+                                                  "class": "slot-icon",
+                                                  "src": "$icon",
+                                                  "visibleIf": "$owned"
+                                                },
+                                                {
+                                                  "type": "box",
+                                                  "class": "slot-count",
+                                                  "children": [
+                                                    {
+                                                      "type": "text",
+                                                      "class": "num count",
+                                                      "text": "{count}"
+                                                    }
+                                                  ],
+                                                  "visibleIf": "$hasCount"
+                                                }
+                                              ],
+                                              "classIf": {
+                                                "empty": "$empty"
+                                              },
+                                              "onClick": [
+                                                {
+                                                  "set": {
+                                                    "pick": "{name}",
+                                                    "pickIcon": "{icon}",
+                                                    "picked": true
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-tl",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-tr",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-bl",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-br",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-ml",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-mr",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-bm",
+                                    "src": "asset:ui/rivet.png"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "plaque-row",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "plaque",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "plaque-leaf plaque-leaf-l",
+                                        "src": "asset:ui/leaf-l.png"
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "plaque-text",
+                                        "text": "ITEM POUCH"
+                                      },
+                                      {
+                                        "type": "image",
+                                        "class": "plaque-leaf plaque-leaf-r",
+                                        "src": "asset:ui/leaf-r.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "panel gear-panel",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "panel-frame",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "panel-inner",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "gear-row red",
+                                        "children": [
+                                          {
+                                            "type": "image",
+                                            "class": "gear-icon",
+                                            "src": "$icons.bombs"
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "gear-main",
+                                            "children": [
+                                              {
+                                                "type": "box",
+                                                "class": "gear-top",
+                                                "children": [
+                                                  {
+                                                    "type": "text",
+                                                    "class": "gear-name",
+                                                    "text": "BOMBS"
+                                                  },
+                                                  {
+                                                    "type": "box",
+                                                    "class": "grow",
+                                                    "children": []
+                                                  },
+                                                  {
+                                                    "type": "text",
+                                                    "class": "num gear-val",
+                                                    "text": "{gear.bombs}/{gear.bombMax}"
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "type": "bar",
+                                                "class": "gear-bar",
+                                                "value": "$gear.bombPct",
+                                                "max": 1
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "gear-row blue",
+                                        "children": [
+                                          {
+                                            "type": "image",
+                                            "class": "gear-icon",
+                                            "src": "$icons.quiver"
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "gear-main",
+                                            "children": [
+                                              {
+                                                "type": "box",
+                                                "class": "gear-top",
+                                                "children": [
+                                                  {
+                                                    "type": "text",
+                                                    "class": "gear-name",
+                                                    "text": "ARROWS"
+                                                  },
+                                                  {
+                                                    "type": "box",
+                                                    "class": "grow",
+                                                    "children": []
+                                                  },
+                                                  {
+                                                    "type": "text",
+                                                    "class": "num gear-val",
+                                                    "text": "{gear.arrows}/{gear.arrowMax}"
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "type": "bar",
+                                                "class": "gear-bar",
+                                                "value": "$gear.arrowPct",
+                                                "max": 1
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "gear-row ",
+                                        "children": [
+                                          {
+                                            "type": "image",
+                                            "class": "gear-icon",
+                                            "src": "$icons.charm"
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "gear-main",
+                                            "children": [
+                                              {
+                                                "type": "box",
+                                                "class": "gear-top",
+                                                "children": [
+                                                  {
+                                                    "type": "text",
+                                                    "class": "gear-name",
+                                                    "text": "CHARM"
+                                                  },
+                                                  {
+                                                    "type": "box",
+                                                    "class": "grow",
+                                                    "children": []
+                                                  },
+                                                  {
+                                                    "type": "text",
+                                                    "class": "num gear-val",
+                                                    "text": "{gear.charmTime}"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "gear-row ",
+                                        "children": [
+                                          {
+                                            "type": "image",
+                                            "class": "gear-icon",
+                                            "src": "$icons.shell"
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "gear-main",
+                                            "children": [
+                                              {
+                                                "type": "box",
+                                                "class": "gear-top",
+                                                "children": [
+                                                  {
+                                                    "type": "text",
+                                                    "class": "gear-name",
+                                                    "text": "SHELLS"
+                                                  },
+                                                  {
+                                                    "type": "box",
+                                                    "class": "grow",
+                                                    "children": []
+                                                  },
+                                                  {
+                                                    "type": "text",
+                                                    "class": "num gear-val",
+                                                    "text": "{gear.shells}"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "gear-row ",
+                                        "children": [
+                                          {
+                                            "type": "image",
+                                            "class": "gear-icon",
+                                            "src": "$icons.heartPiece"
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "gear-main",
+                                            "children": [
+                                              {
+                                                "type": "box",
+                                                "class": "gear-top",
+                                                "children": [
+                                                  {
+                                                    "type": "text",
+                                                    "class": "gear-name",
+                                                    "text": "PIECES"
+                                                  },
+                                                  {
+                                                    "type": "box",
+                                                    "class": "grow",
+                                                    "children": []
+                                                  },
+                                                  {
+                                                    "type": "text",
+                                                    "class": "num gear-val",
+                                                    "text": "{gear.heartPieces}"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-tl",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-tr",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-bl",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-br",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-ml",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-mr",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-bm",
+                                    "src": "asset:ui/rivet.png"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "plaque-row",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "plaque",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "plaque-leaf plaque-leaf-l",
+                                        "src": "asset:ui/leaf-l.png"
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "plaque-text",
+                                        "text": "GEAR"
+                                      },
+                                      {
+                                        "type": "image",
+                                        "class": "plaque-leaf plaque-leaf-r",
+                                        "src": "asset:ui/leaf-r.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
                           }
                         ]
                       },
                       {
-                        "type": "button",
-                        "class": "nav-btn",
-                        "onClick": [
-                          {
-                            "navigate": "items"
-                          }
-                        ],
+                        "type": "box",
+                        "class": "dock",
                         "children": [
                           {
-                            "type": "text",
-                            "class": "nav-text",
-                            "text": "Items"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "button",
-                        "class": "nav-btn",
-                        "onClick": [
+                            "type": "image",
+                            "class": "dock-leaves dock-leaves-l",
+                            "src": "asset:ui/leaves-big-l.png"
+                          },
                           {
-                            "navigate": "kinstones"
-                          }
-                        ],
-                        "children": [
+                            "type": "image",
+                            "class": "dock-leaves dock-leaves-r",
+                            "src": "asset:ui/leaves-big-r.png"
+                          },
                           {
-                            "type": "text",
-                            "class": "nav-text",
-                            "text": "Kinstones"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "button",
-                        "class": "nav-btn on",
-                        "onClick": [
-                          {
-                            "navigate": "dungeons"
-                          }
-                        ],
-                        "children": [
-                          {
-                            "type": "text",
-                            "class": "nav-text",
-                            "text": "Dungeons"
+                            "type": "box",
+                            "class": "tabs",
+                            "children": [
+                              {
+                                "type": "button",
+                                "class": "tab tab-map",
+                                "onClick": [
+                                  {
+                                    "navigate": "map"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "tab-plank",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "tab-label",
+                                        "text": "[MAP]"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-tl",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-tr",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-bl",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-br",
+                                    "src": "asset:ui/bolt.png"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "tab tab-items on",
+                                "onClick": [
+                                  {
+                                    "navigate": "items"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "tab-plank",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "tab-label",
+                                        "text": "[ITEMS]"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-tl",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-tr",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-bl",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-br",
+                                    "src": "asset:ui/bolt.png"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "tab tab-kinstone",
+                                "onClick": [
+                                  {
+                                    "navigate": "kinstone"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "tab-plank",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "tab-label",
+                                        "text": "[KINSTONE]"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-tl",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-tr",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-bl",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-br",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "tab-alert",
+                                    "src": "$icons.kinstoneRed",
+                                    "visibleIf": "$kinstone.ready"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "tab tab-quest",
+                                "onClick": [
+                                  {
+                                    "navigate": "quest"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "tab-plank",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "tab-label",
+                                        "text": "[QUEST]"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-tl",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-tr",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-bl",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-br",
+                                    "src": "asset:ui/bolt.png"
+                                  }
+                                ]
+                              }
+                            ]
                           }
                         ]
                       }
                     ]
                   }
-                ]
+                },
+                {
+                  "name": "kinstone",
+                  "child": {
+                    "type": "box",
+                    "class": "page page-kinstone",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "content cols-kin",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "panel fusion-bag",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "panel-frame",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "panel-inner",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "card piece-card",
+                                        "children": [
+                                          {
+                                            "type": "list",
+                                            "class": "piece-grid",
+                                            "items": "$kinstone.pieces",
+                                            "template": {
+                                              "type": "box",
+                                              "class": "piece",
+                                              "children": [
+                                                {
+                                                  "type": "image",
+                                                  "class": "piece-icon",
+                                                  "src": "$icon"
+                                                },
+                                                {
+                                                  "type": "box",
+                                                  "class": "piece-text",
+                                                  "children": [
+                                                    {
+                                                      "type": "text",
+                                                      "class": "piece-name",
+                                                      "text": "{name}"
+                                                    },
+                                                    {
+                                                      "type": "box",
+                                                      "class": "piece-foot",
+                                                      "children": [
+                                                        {
+                                                          "type": "text",
+                                                          "class": "num piece-id",
+                                                          "text": "{id}"
+                                                        },
+                                                        {
+                                                          "type": "box",
+                                                          "class": "grow",
+                                                          "children": []
+                                                        },
+                                                        {
+                                                          "type": "text",
+                                                          "class": "num piece-amt",
+                                                          "text": "{amount}"
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ],
+                                              "classIf": {
+                                                "red": "$isRed",
+                                                "blue": "$isBlue",
+                                                "green": "$isGreen",
+                                                "gold": "$isGold"
+                                              }
+                                            },
+                                            "empty": "NO KINSTONE PIECES YET"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-tl",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-tr",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-bl",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-br",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-ml",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-mr",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-bm",
+                                    "src": "asset:ui/rivet.png"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "plaque-row",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "plaque",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "plaque-leaf plaque-leaf-l",
+                                        "src": "asset:ui/leaf-l.png"
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "plaque-text",
+                                        "text": "FUSION BAG"
+                                      },
+                                      {
+                                        "type": "image",
+                                        "class": "plaque-leaf plaque-leaf-r",
+                                        "src": "asset:ui/leaf-r.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "panel fuse-panel",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "panel-frame",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "panel-inner",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "fuse-count",
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "class": "num fuse-num",
+                                            "text": "{kinstone.fused}"
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "num fuse-of",
+                                            "text": "/{kinstone.fusionTotal}"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "bar",
+                                        "class": "fuse-bar",
+                                        "value": "$kinstone.fusedPct",
+                                        "max": 1
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "tally",
+                                        "children": [
+                                          {
+                                            "type": "box",
+                                            "class": "tally-cell",
+                                            "children": [
+                                              {
+                                                "type": "image",
+                                                "class": "tally-icon",
+                                                "src": "$icons.kinstoneRed"
+                                              },
+                                              {
+                                                "type": "text",
+                                                "class": "num tally-num",
+                                                "text": "{kinstone.red}"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "tally-cell",
+                                            "children": [
+                                              {
+                                                "type": "image",
+                                                "class": "tally-icon",
+                                                "src": "$icons.kinstoneBlue"
+                                              },
+                                              {
+                                                "type": "text",
+                                                "class": "num tally-num",
+                                                "text": "{kinstone.blue}"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "tally-cell",
+                                            "children": [
+                                              {
+                                                "type": "image",
+                                                "class": "tally-icon",
+                                                "src": "$icons.kinstoneGreen"
+                                              },
+                                              {
+                                                "type": "text",
+                                                "class": "num tally-num",
+                                                "text": "{kinstone.green}"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "tally-cell",
+                                            "children": [
+                                              {
+                                                "type": "image",
+                                                "class": "tally-icon",
+                                                "src": "$icons.kinstoneGold"
+                                              },
+                                              {
+                                                "type": "text",
+                                                "class": "num tally-num",
+                                                "text": "{kinstone.gold}"
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "grow",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "alert",
+                                        "children": [
+                                          {
+                                            "type": "image",
+                                            "class": "alert-icon",
+                                            "src": "$icons.kinstoneRed"
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "alert-text",
+                                            "text": "{kinstone.readyHint}"
+                                          }
+                                        ],
+                                        "visibleIf": "$kinstone.ready"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-tl",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-tr",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-bl",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-br",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-ml",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-mr",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-bm",
+                                    "src": "asset:ui/rivet.png"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "plaque-row",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "plaque",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "plaque-leaf plaque-leaf-l",
+                                        "src": "asset:ui/leaf-l.png"
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "plaque-text",
+                                        "text": "FUSION"
+                                      },
+                                      {
+                                        "type": "image",
+                                        "class": "plaque-leaf plaque-leaf-r",
+                                        "src": "asset:ui/leaf-r.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "dock",
+                        "children": [
+                          {
+                            "type": "image",
+                            "class": "dock-leaves dock-leaves-l",
+                            "src": "asset:ui/leaves-big-l.png"
+                          },
+                          {
+                            "type": "image",
+                            "class": "dock-leaves dock-leaves-r",
+                            "src": "asset:ui/leaves-big-r.png"
+                          },
+                          {
+                            "type": "box",
+                            "class": "tabs",
+                            "children": [
+                              {
+                                "type": "button",
+                                "class": "tab tab-map",
+                                "onClick": [
+                                  {
+                                    "navigate": "map"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "tab-plank",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "tab-label",
+                                        "text": "[MAP]"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-tl",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-tr",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-bl",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-br",
+                                    "src": "asset:ui/bolt.png"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "tab tab-items",
+                                "onClick": [
+                                  {
+                                    "navigate": "items"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "tab-plank",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "tab-label",
+                                        "text": "[ITEMS]"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-tl",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-tr",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-bl",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-br",
+                                    "src": "asset:ui/bolt.png"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "tab tab-kinstone on",
+                                "onClick": [
+                                  {
+                                    "navigate": "kinstone"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "tab-plank",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "tab-label",
+                                        "text": "[KINSTONE]"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-tl",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-tr",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-bl",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-br",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "tab-alert",
+                                    "src": "$icons.kinstoneRed",
+                                    "visibleIf": "$kinstone.ready"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "tab tab-quest",
+                                "onClick": [
+                                  {
+                                    "navigate": "quest"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "tab-plank",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "tab-label",
+                                        "text": "[QUEST]"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-tl",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-tr",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-bl",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-br",
+                                    "src": "asset:ui/bolt.png"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "quest",
+                  "child": {
+                    "type": "box",
+                    "class": "page page-quest",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "content cols-quest",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "panel quest-panel",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "panel-frame",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "panel-inner",
+                                    "children": [
+                                      {
+                                        "type": "list",
+                                        "class": "element-row",
+                                        "items": "$quest.elements",
+                                        "template": {
+                                          "type": "box",
+                                          "class": "element",
+                                          "children": [
+                                            {
+                                              "type": "image",
+                                              "class": "element-icon",
+                                              "src": "$icon"
+                                            },
+                                            {
+                                              "type": "text",
+                                              "class": "element-name",
+                                              "text": "{name}"
+                                            }
+                                          ],
+                                          "classIf": {
+                                            "owned": "$owned",
+                                            "locked": "$locked"
+                                          }
+                                        }
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "card dungeon-card",
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "class": "card-title",
+                                            "text": "DUNGEONS"
+                                          },
+                                          {
+                                            "type": "list",
+                                            "class": "dungeon-list",
+                                            "items": "$quest.dungeons",
+                                            "template": {
+                                              "type": "box",
+                                              "class": "dungeon",
+                                              "children": [
+                                                {
+                                                  "type": "box",
+                                                  "class": "dg-mark",
+                                                  "children": [
+                                                    {
+                                                      "type": "image",
+                                                      "class": "dg-check",
+                                                      "src": "asset:ui/check.png",
+                                                      "visibleIf": "$cleared"
+                                                    },
+                                                    {
+                                                      "type": "image",
+                                                      "class": "dg-here",
+                                                      "src": "asset:ui/mark-link.png",
+                                                      "visibleIf": "$here"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "type": "text",
+                                                  "class": "dg-name",
+                                                  "text": "{name}"
+                                                }
+                                              ],
+                                              "classIf": {
+                                                "cleared": "$cleared",
+                                                "here": "$here"
+                                              }
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-tl",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-tr",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-bl",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-br",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-ml",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-mr",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-bm",
+                                    "src": "asset:ui/rivet.png"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "plaque-row",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "plaque",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "plaque-leaf plaque-leaf-l",
+                                        "src": "asset:ui/leaf-l.png"
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "plaque-text",
+                                        "text": "ELEMENTS"
+                                      },
+                                      {
+                                        "type": "image",
+                                        "class": "plaque-leaf plaque-leaf-r",
+                                        "src": "asset:ui/leaf-r.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "panel side-panel",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "panel-frame",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "panel-inner",
+                                    "children": [
+                                      {
+                                        "type": "list",
+                                        "class": "side-list",
+                                        "items": "$quest.side",
+                                        "template": {
+                                          "type": "box",
+                                          "class": "side",
+                                          "children": [
+                                            {
+                                              "type": "image",
+                                              "class": "side-icon",
+                                              "src": "$icon"
+                                            },
+                                            {
+                                              "type": "text",
+                                              "class": "side-name",
+                                              "text": "{name}"
+                                            },
+                                            {
+                                              "type": "box",
+                                              "class": "grow",
+                                              "children": []
+                                            },
+                                            {
+                                              "type": "text",
+                                              "class": "side-done",
+                                              "text": "DONE",
+                                              "visibleIf": "$done"
+                                            }
+                                          ],
+                                          "classIf": {
+                                            "done": "$done"
+                                          }
+                                        },
+                                        "empty": "NO ERRANDS RIGHT NOW"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "grow",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "stats",
+                                        "children": [
+                                          {
+                                            "type": "box",
+                                            "class": "stat",
+                                            "children": [
+                                              {
+                                                "type": "image",
+                                                "class": "stat-icon",
+                                                "src": "$icons.figurines"
+                                              },
+                                              {
+                                                "type": "text",
+                                                "class": "num stat-val",
+                                                "text": "{quest.figurines}"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "stat",
+                                            "children": [
+                                              {
+                                                "type": "image",
+                                                "class": "stat-icon",
+                                                "src": "$icons.tigerScroll"
+                                              },
+                                              {
+                                                "type": "text",
+                                                "class": "num stat-val",
+                                                "text": "{quest.skills}"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "stat",
+                                            "children": [
+                                              {
+                                                "type": "image",
+                                                "class": "stat-icon",
+                                                "src": "$icons.heartPiece"
+                                              },
+                                              {
+                                                "type": "text",
+                                                "class": "num stat-val",
+                                                "text": "{quest.heartPieces}"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "stat",
+                                            "children": [
+                                              {
+                                                "type": "image",
+                                                "class": "stat-icon",
+                                                "src": "$icons.shell"
+                                              },
+                                              {
+                                                "type": "text",
+                                                "class": "num stat-val",
+                                                "text": "{quest.shells}"
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-tl",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-tr",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-bl",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-br",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-ml",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-mr",
+                                    "src": "asset:ui/rivet.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "rivet rivet-bm",
+                                    "src": "asset:ui/rivet.png"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "plaque-row",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "plaque",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "plaque-leaf plaque-leaf-l",
+                                        "src": "asset:ui/leaf-l.png"
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "plaque-text",
+                                        "text": "SIDE QUESTS"
+                                      },
+                                      {
+                                        "type": "image",
+                                        "class": "plaque-leaf plaque-leaf-r",
+                                        "src": "asset:ui/leaf-r.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "dock",
+                        "children": [
+                          {
+                            "type": "image",
+                            "class": "dock-leaves dock-leaves-l",
+                            "src": "asset:ui/leaves-big-l.png"
+                          },
+                          {
+                            "type": "image",
+                            "class": "dock-leaves dock-leaves-r",
+                            "src": "asset:ui/leaves-big-r.png"
+                          },
+                          {
+                            "type": "box",
+                            "class": "tabs",
+                            "children": [
+                              {
+                                "type": "button",
+                                "class": "tab tab-map",
+                                "onClick": [
+                                  {
+                                    "navigate": "map"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "tab-plank",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "tab-label",
+                                        "text": "[MAP]"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-tl",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-tr",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-bl",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-br",
+                                    "src": "asset:ui/bolt.png"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "tab tab-items",
+                                "onClick": [
+                                  {
+                                    "navigate": "items"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "tab-plank",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "tab-label",
+                                        "text": "[ITEMS]"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-tl",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-tr",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-bl",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-br",
+                                    "src": "asset:ui/bolt.png"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "tab tab-kinstone",
+                                "onClick": [
+                                  {
+                                    "navigate": "kinstone"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "tab-plank",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "tab-label",
+                                        "text": "[KINSTONE]"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-tl",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-tr",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-bl",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-br",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "tab-alert",
+                                    "src": "$icons.kinstoneRed",
+                                    "visibleIf": "$kinstone.ready"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "tab tab-quest on",
+                                "onClick": [
+                                  {
+                                    "navigate": "quest"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "tab-plank",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "tab-label",
+                                        "text": "[QUEST]"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-tl",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-tr",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-bl",
+                                    "src": "asset:ui/bolt.png"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "bolt bolt-br",
+                                    "src": "asset:ui/bolt.png"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "box",
+          "class": "bubble",
+          "children": [
+            {
+              "type": "image",
+              "class": "bubble-ezlo",
+              "src": "$ezlo"
+            },
+            {
+              "type": "box",
+              "class": "bubble-body",
+              "children": [
+                {
+                  "type": "text",
+                  "class": "bubble-name",
+                  "text": "EZLO"
+                },
+                {
+                  "type": "text",
+                  "class": "bubble-text",
+                  "text": "{ezloHint}"
+                },
+                {
+                  "type": "text",
+                  "class": "bubble-close",
+                  "text": "TAP TO CLOSE"
+                }
+              ]
+            }
+          ],
+          "visibleIf": "$ui.hint",
+          "onClick": [
+            {
+              "set": {
+                "hint": false
               }
             }
           ]
@@ -1817,5 +2435,6 @@
       ],
       "visibleIf": "$ready"
     }
-  ]
+  ],
+  "id": "screen"
 }

@@ -38,14 +38,18 @@ The packs need GBADuo **v0.1.3** or newer.
 
 ### Pokémon FireRed — `pokemon-firered-companion`
 
-For Pokémon FireRed (US, game code `BPRE`). Design: *Cinnabar Nightfire*, a volcano at
-night behind obsidian and molten-bronze panels.
+For Pokémon FireRed (US v1.0, game code `BPRE`). Design: *Pocket-OS*, a chunky handheld
+interface with hazard-striped headers and a colour-coded dock.
 
-- **PARTY** - your team with a type-coloured orb, types, levels, HP bars that turn amber
-  and red, and status tags; the lead Pokémon gets a molten frame.
+- **MAP** - the game's own Town Map, read from your ROM, with a crosshair on where you
+  are (it moves along a route as you walk it). Under it, the wild Pokémon on your
+  current map with levels and chances: tap the button for grass, surfing, Rock Smash
+  or each fishing rod. Beside it, your party at a glance.
+- **PARTY** - your team with types, levels, HP and status; tap a Pokémon for its stats,
+  moves, ability, nature, held item and EXP to the next level.
 - **BAG** - every pocket: items, key items, Poké Balls, TMs & HMs, berries.
-- **TRAINER** - your trainer card (name, ID, money, play time), the eight badges, and
-  Pokédex seen/caught.
+- **DEX** - Pokédex seen and caught, and the latest catch.
+- **CARD** - your trainer card (name, ID, money, play time) and the eight badges.
 - **BATTLE** - opens by itself when a battle starts and goes back when it ends: both
   Pokémon with their types, HP and live stats, with stat changes (+1, -2…) marked.
 
@@ -68,18 +72,20 @@ what's verified on the device and what isn't yet.
 ### The Legend of Zelda: The Minish Cap — `zelda-minish-cap-companion`
 
 For The Minish Cap (US `BZME`, EU `BZMP`, JP `BZMJ`). Folder:
-[`zelda-the-minish-cap-companion`](zelda-the-minish-cap-companion). Design: the game's own
-pause menu, with navy Link panels, carved stone panels with item sockets and the
-title banners, in the game's pixel font.
+[`zelda-the-minish-cap-companion`](zelda-the-minish-cap-companion). Design: *Minish-OS*,
+wood and leather panels with pixel leaves and stone item sockets.
 
-- **STATS** - hearts and heart pieces, where you are, the A and B items, the world map
-  with Link's spot, rupees, shells, bombs, arrows and figurines, bottles, and the active
-  charm or picolyte with its time left.
-- **ITEMS** - your gear as icons (tap one to see its name), the four elements, tiger
-  scrolls learned and quest items.
-- **KINSTONES** - fusions done out of 100, and the pieces in the bag by colour.
-- **DUNGEONS** - each dungeon's keys, map, compass and big key, which ones are cleared,
-  and the one you're in.
+The game's own graphics (the world map, item icons, Link, his hearts, Ezlo and the title
+logo) are drawn at runtime from your ROM, so the pack ships none of them.
+
+- **MAP** - the world map with Link's spot (live while he's outdoors) and where he is,
+  the A and B items, and Link with his heart containers, filled to his health.
+- **ITEMS** - your gear as icons (tap one to see its name), bombs and arrows, the active
+  charm, shells and heart pieces.
+- **KINSTONE** - fusions done out of 100, and the pieces in the bag by colour.
+- **QUEST** - the four elements, the dungeons cleared and the next one, side-quest
+  items, figurines, tiger scrolls, heart pieces and shells.
+- **Ezlo** - tap him in the header for a hint: low health, ammo, or where to go next.
 
 See [`zelda-the-minish-cap-companion/NOTES.md`](zelda-the-minish-cap-companion/NOTES.md)
 for what's verified on the device and what isn't yet.
@@ -166,7 +172,9 @@ cd my-pack && zip -rX ../my-pack-1.0.0.zip . -x '*.DS_Store' 'art/*' NOTES.md pr
   samurai goroh's code guide.
 - Metroid Fusion: [Data Crystal's RAM map](https://datacrystal.tcrf.net/wiki/Metroid_Fusion/RAM_map)
   and the [metroidret](https://github.com/metroidret/mf) mf decompilation.
-- Fonts: [Silkscreen](https://fonts.google.com/specimen/Silkscreen),
+- Fonts: [Jersey 10](https://fonts.google.com/specimen/Jersey+10),
+  [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P),
+  [Silkscreen](https://fonts.google.com/specimen/Silkscreen),
   [Bungee](https://fonts.google.com/specimen/Bungee),
   [Barlow Semi Condensed](https://fonts.google.com/specimen/Barlow+Semi+Condensed),
   [Sniglet](https://fonts.google.com/specimen/Sniglet), [Mali](https://fonts.google.com/specimen/Mali),
@@ -178,10 +186,11 @@ cd my-pack && zip -rX ../my-pack-1.0.0.zip . -x '*.DS_Store' 'art/*' NOTES.md pr
 - The Minish Cap pack's font: "TLOZ Minish Cap/A Link to the Past/Four Sword" by
   David Fens ([FontStruct](https://fontstruct.com/fontstructions/show/875429)), under the
   FontStruct Non-Commercial License.
-- Art: the FireRed, Harvest Moon and Metroid Fusion packs' images are original, drawn in
-  code by each pack's `art/build.mjs`. The Minish Cap pack uses graphics from the game
-  itself: item sprites from the [Zelda Dungeon wiki](https://www.zeldadungeon.net/wiki/The_Minish_Cap_Items),
-  plus the logo, menu frames and world map. They belong to Nintendo.
+- Art: the packs' interfaces are original, drawn in code by each pack's `art/` scripts.
+  The FireRed pack's Pokémon, item, type and badge sprites come from the
+  [PokeAPI sprites](https://github.com/PokeAPI/sprites) repository; they belong to
+  Nintendo, Game Freak and Creatures. Its Town Map, and all of the Minish Cap pack's game
+  graphics, are read from the player's own ROM at runtime and not included.
 
 </details>
 
@@ -190,6 +199,7 @@ cd my-pack && zip -rX ../my-pack-1.0.0.zip . -x '*.DS_Store' 'art/*' NOTES.md pr
 These packs are fan-made, not affiliated with or endorsed by Nintendo, Game Freak,
 Creatures, The Pokémon Company or Marvelous. Pokémon, Harvest Moon, The Legend of Zelda, Metroid and all related
 names are trademarks of their respective owners. No games are included: use your own
-legally dumped ROMs. The Minish Cap pack includes graphics from the game for a
-non-commercial fan project; they remain Nintendo's property and will be removed on
-request.
+legally dumped ROMs. The FireRed pack includes Pokémon, item, type and badge sprites for
+a non-commercial fan project; they remain the property of Nintendo, Game Freak and
+Creatures and will be removed on request. The Minish Cap pack includes none of the game's
+graphics: it draws them from your ROM.

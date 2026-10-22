@@ -54,3 +54,68 @@ Checked on the AYN Thor (EU ROM, early save):
 
 Images: `assets/img/map-placeholder-6.png` is built from `map-placeholder.png` by
 `art/map_placeholder.py` (run it again after editing the placeholder).
+
+## 3.0.0, Minish-OS redesign
+
+`main.lua` keeps every address above and returns the new layout's shape (see
+`preview-data.json`). Checked on the AYN Thor (EU ROM, early save, Minish Village):
+rupees 4/100, A = Small Shield, B = Smith's Sword, 0 kinstones, no dungeons cleared,
+Link's marker in Minish Woods.
+
+- **Map art follows the game's geography** (`art/minish-os.mjs`, `TERRAIN`), so the
+  overworld position (x / 0xF90, y / 0xC60) lands on the right terrain. Dungeon marks
+  and the MINISH view's portals are placed by hand on that art, not read from RAM.
+- **Ezlo's hint** is generated from what the script reads (health, bombs, dungeon,
+  next uncleared dungeon); the game keeps Ezlo's real lines in ROM text.
+- **Kinstone alert** (`kinstone.ready`) stays off: no RAM flag for "an NPC nearby can
+  fuse" has been found yet.
+- **Engine:** write `flex: 1`, not `flex: 1 1 0`. The engine's `flex` shorthand
+  rejects a unitless 0 basis and drops the whole declaration (browsers accept it).
+- **Live position.** `overworld_map_x/y` only refreshes on a room change
+  (`gameUtils.c` `UpdatePlayerMapCoords` copies `gPlayerEntity` x/y into it, overworld
+  areas only). In an overworld area (`gArea.areaMetadata` bit 0, `AR_IS_OVERWORLD`) Link's
+  entity position is already in the pause map's units, so `main.lua` reads
+  `gPlayerEntity` (IWRAM `0x03001160`, x/y high halves at `+0x2E`/`+0x32`) live there and
+  falls back to the stored spot elsewhere. Checked on the Thor that the address tracks Link
+  (Minish Village, area flags 0x00: 520,992 -> 555,872 after walking up and right). In Minish
+  Woods (an overworld area) the map tracks him live: walking north moved him from
+  3890,3071 to 3900,2902.
+- **World map from the ROM.** The MAP panel shows the game's own pause-screen world map,
+  built at runtime from the player's ROM with `gfx.tilemap` (app feature), so the pack
+  ships none of it. Found by saving a state on the pause map screen: BG1 (char base
+  0x0000, screen base 0xE000, palette banks 6-12) holds the whole map, every region, and
+  its tiles, tilemap and palettes are stored raw in the ROM. EU (BZMP) addresses: tiles
+  `0x08931DB0`, tilemap `0x08935DB0` (32 wide, the map is cells 5-24 x 1-16 = 160 x 128),
+  palette banks 6-12 at `0x085B39D0`. Rebuilt from the ROM it matches the pause screen
+  pixel for pixel; checked on the Thor. US/JP addresses come from the zeldaret/tmc
+  decompilation (gGfx_94_0, gGfx_94_1, gPalette_2224; `assets/gfx.json` lists the US
+  address and EU/JP offsets) and are in `rom_gfx.lua`; not checked on a US/JP ROM. An
+  unknown release (or a hack with a new game code) falls back to the drawn map
+  (`assets/ui/map-terrain.png`).
+- Dungeon markers were moved to match the game's map (they were placed for the drawn one).
+- **Item icons from the ROM.** Every item, quest item, element, tiger scroll, charm,
+  bottle and gear icon is the pause screen's own sprite, drawn at runtime with
+  `gfx.sprite` (app feature) in `rom_gfx.lua`. Item id -> `gSpriteAnimations_322[id]` ->
+  frame -> `gSpriteFrames_322[frame]` first tile in `gSprite_082E68F4`, plus the frame's
+  object list in `gFrameObjLists` (sprite 0x141 EU, 0x142 US/JP). Palette bank: absolute
+  `high >> 4` when the object's flags bit 0 is set, else `3 + (high >> 4)` (the pause
+  menu's base). The ammo counter object (flags 0x40 at -1,-4, tile 0) is skipped. All 75
+  icons rebuilt from the EU ROM matched a reference render of the same data; on the Thor
+  they match the pause screen.
+- **Heart piece.** The Quest Status container, one 32x32 sprite per 0-3 pieces at
+  `gGfx_91_2 + 0xC00 + pieces * 0x200`, palette `gPalette_2219` bank 0. Found on the EU
+  screen at 2/4.
+- **Still the pack's own art** (`assets/ui`, drawn in `art/minish-os.mjs`): kinstone pieces
+  (their sprites use palettes set up at runtime per fusion), figurines, butterflies,
+  Hyrule Map, Jabber Nut (no icon in the pause sprite table), and `item-unknown.png` for a
+  known item on an unknown release.
+- `gfx.*` is called every tick (cheap: the app caches by arguments); `rom_gfx.lua` only
+  keeps the arguments, so an image the app dropped from its cache is drawn again.
+- **Ezlo and the title logo from the ROM.** Ezlo (header button, hint bubble) is the
+  EzloCap sprite (sprite 11 in `gSpritePtrs`, EU `0x08002A5C`), frame 44, over
+  `gSprite_Link` with Link's OBJ palette (gPalette_0 + 14 * 32, bank 6 in a state saved
+  while Ezlo talked). The waiting screen's logo is the title screen's 14 logo sprites
+  (fixedTypeGfx_511-513, gPalette_3419/3421/3423); rebuilt from the EU ROM it matches a
+  state saved on the title screen. JP has the Japanese logo, so it, and any unknown
+  release, shows a "THE MINISH CAP" text title; Ezlo falls back to `assets/ui/cap.png`.
+  `assets/img` is no longer used by the pack.
