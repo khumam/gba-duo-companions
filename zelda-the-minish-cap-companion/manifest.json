@@ -1,7 +1,7 @@
 {
   "id": "zelda-minish-cap-companion",
   "name": "The Legend of Zelda: The Minish Cap Companion",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "author": "khumam",
   "formatVersion": 2,
   "match": { "gameCode": ["BZME", "BZMP", "BZMJ"], "crc32": [] },

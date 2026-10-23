@@ -79,7 +79,9 @@ The game's own graphics (the world map, item icons, Link, his hearts, Ezlo and t
 logo) are drawn at runtime from your ROM, so the pack ships none of them.
 
 - **MAP** - the world map with Link's spot (live while he's outdoors) and where he is,
-  the A and B items, and Link with his heart containers, filled to his health.
+  the A and B items, and Link with his heart containers, filled to his health. In a
+  dungeon, WORLD / DUNGEON tabs: the dungeon's floors (Link's, and the boss's once you
+  have the compass), its map, compass and big key, and your small keys.
 - **ITEMS** - your gear as icons (tap one to see its name), bombs and arrows, the active
   charm, shells and heart pieces.
 - **KINSTONE** - fusions done out of 100, and the pieces in the bag by colour.

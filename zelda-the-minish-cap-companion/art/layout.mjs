@@ -119,12 +119,63 @@ const equip = (key, path) =>
     text("equip-name", `{${path}.name}`),
   ]);
 
+const mapTab = (label, worldAt, on) => ({
+  type: "button",
+  class: "map-tab",
+  onClick: [{ set: { mapWorldAt: worldAt } }],
+  classIf: { on },
+  children: [text("map-tab-label", label)],
+});
+
+// The dungeon you're in: its floors (Link's, and the boss's once you have the compass),
+// then the map, compass and big key (dimmed until found) and the small keys, drawn
+// with the pause menu's own sprites.
+const dungeonView = box(
+  "dmap",
+  [
+    box("dmap-head", [text("dmap-name", "{dungeon.name}")]),
+    box("dmap-body", [
+      list(
+        "dmap-floors",
+        "$dungeon.floors",
+        box(
+          "dfloor",
+          [
+            box("dfloor-mark", [img("dfloor-link", "$icons.linkHead", { visibleIf: "$here" })]),
+            text("num dfloor-name", "{name}"),
+            box("dfloor-mark", [img("dfloor-boss", ui("mark-boss"), { visibleIf: "$boss" })]),
+          ],
+          { classIf: { here: "$here" } },
+        ),
+      ),
+      box("dmap-items", [
+        list(
+          "ditem-row",
+          "$dungeon.items",
+          box("ditem", [box("ditem-slot", [img("ditem-icon", "$icon")]), text("ditem-name", "{name}")], {
+            classIf: { missing: "$missing" },
+          }),
+        ),
+        box("dkeys", [img("dkey-icon", "$dungeon.keyIcon"), text("num dkey-num", "{dungeon.keys}")]),
+      ]),
+    ]),
+  ],
+  { visibleIf: "$map.showDungeon" },
+);
+
 const mapPage = box("content cols-map", [
   panel("map-panel", "HYRULE MAP", [
+    // In a dungeon: WORLD / DUNGEON. WORLD keeps the visit it was tapped in, so the
+    // next dungeon opens on DUNGEON again (main.lua readDungeonMap).
+    box("map-tabs", [
+      mapTab("WORLD", "{map.visit}", "$map.showWorld"),
+      mapTab("DUNGEON", "", "$map.showDungeon"),
+    ], { visibleIf: "$map.inDungeon" }),
     box("map-view", [
       // The game's own world map, built from the player's ROM by main.lua (or the drawn fallback).
       img("map-img", "$map.image"),
-      img("mark mark-link", ui("mark-link"), { bindStyle: { left: "{map.linkX}%", top: "{map.linkY}%" } }),
+      img("mark mark-link", "$icons.linkHead", { bindStyle: { left: "{map.linkX}%", top: "{map.linkY}%" } }),
+      dungeonView,
     ]),
     box("map-tag", [text("map-tag-text", "{location}")]),
   ]),
@@ -223,7 +274,7 @@ const questPage = box("content cols-quest", [
           [
             box("dg-mark", [
               img("dg-check", ui("check"), { visibleIf: "$cleared" }),
-              img("dg-here", ui("mark-link"), { visibleIf: "$here" }),
+              img("dg-here", "$icons.linkHead", { visibleIf: "$here" }),
             ]),
             text("dg-name", "{name}"),
           ],

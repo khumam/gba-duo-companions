@@ -119,3 +119,36 @@ Link's marker in Minish Woods.
   state saved on the title screen. JP has the Japanese logo, so it, and any unknown
   release, shows a "THE MINISH CAP" text title; Ezlo falls back to `assets/ui/cap.png`.
   `assets/img` is no longer used by the pack.
+
+## Dungeon tab (WORLD / DUNGEON)
+
+In a dungeon (`gArea.areaMetadata` bit 1) the MAP panel shows WORLD / DUNGEON tabs and opens
+on DUNGEON. Not checked on a device yet (no save inside a dungeon); the script ran against the
+EU ROM with faked RAM, and the icons were rebuilt from that ROM.
+
+- **Dungeon items.** Per dungeon id: `gSave.dungeonKeys` (`0x02002E9C`, small keys held) and
+  `gSave.dungeonItems` (`0x02002EAC`): bit 0 map, bit 1 compass, bit 2 big key
+  (`gameUtils.c` `HasDungeonMap/Compass/BigKey`; save.h's comment lists the bits wrongly).
+- **Floors.** `gDungeonFloorMetadatas` (common.c, hard-coded in `main.lua`): floor count, top
+  floor's number, boss floor's number, where 3 = 1F, 4 = 2F, 2 = B1. Link's floor row is
+  `dungeon_map_y >> 11` (`0x030010BE`, 0 = top floor). With the compass the boss's floor is
+  marked until the dungeon is cleared, like the pause menu (which also hides it in Dark Hyrule
+  Castle after a local flag; the pack doesn't).
+- **Icons.** The item sprite table only has placeholder swords for 0x50-0x53. The dungeon map
+  page draws them with sprite 0x143 (EU, 0x144 US/JP) over `fixedTypeGfx_521` (EU
+  `0x085C2470`, US `0x085C2F60`, JP `0x085C2C00` inferred from the hearts' JP offset), palette
+  banks 4 (map), 0 (compass), the big key's own 1; the small key uses 4.
+- **Tab memory.** The layout can't compare values, so the WORLD tab stores the current visit
+  number in `ui.mapWorldAt` and `main.lua` shows WORLD only while that matches. Each new
+  dungeon entry bumps the visit, so it opens on DUNGEON again.
+- **The dungeon map itself isn't drawn.** Unlike the world map it isn't stored in the ROM as a
+  picture: the pause menu paints it into RAM (`gDungeonMap`, `0x0201AEE0`) from per-room 2-bit
+  masks (`gMapData` + `DungeonLayout.mapDataOffset`), room positions (`gAreaRoomHeaders`) and
+  visited flags, and gameplay reuses that buffer. Drawing it needs an app call that takes
+  pixels from the script (e.g. `gfx.bitmap`).
+- **Link's marker** (world map, dungeon floor list, quest page) is the pause world map's own
+  head sprite: DrawDirect sprite 0x1FA (EU) frame 0x59, OBJ tile 0x240 (the object's high byte
+  adds 0x200), which the map screen's gfx group 93 fills from `gGfx_94_3` + 0x800 (EU
+  `0x08936CB0`, US `0x08939EE0`, JP `0x08939B80` inferred). Coloured with Link's palette
+  (gPalette_0 + 14 * 32). The pause palette tables put a placeholder (magenta) palette in OBJ
+  bank 7, so the colours here are picked, not read from the screen; check on the device.

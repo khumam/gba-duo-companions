@@ -4,13 +4,17 @@
   "rupees": "300",
   "walletMax": "500",
   "kinstones": "x12",
-  "location": "MT. CRENEL",
+  "location": "Deepwood Shrine",
   "area": "CAVE OF FLAMES",
   "ezloHint": "The Cave of Flames is just ahead. The Gust Jar can pull loose rocks off the cave walls!",
   "map": {
     "linkX": 22,
     "linkY": 22,
-    "image": "asset:ui/map-terrain.png"
+    "image": "asset:ui/map-terrain.png",
+    "inDungeon": true,
+    "showWorld": false,
+    "showDungeon": true,
+    "visit": 1
   },
   "equipA": {
     "name": "WHITE SWORD",
@@ -410,5 +414,55 @@
       }
     ],
     "hasHearts": false
+  },
+  "dungeon": {
+    "inDungeon": true,
+    "showWorld": false,
+    "showDungeon": true,
+    "visit": 1,
+    "name": "DEEPWOOD SHRINE",
+    "floor": "B1",
+    "floors": [
+      {
+        "name": "1F",
+        "here": false,
+        "boss": true
+      },
+      {
+        "name": "B1",
+        "here": true,
+        "boss": false
+      },
+      {
+        "name": "B2",
+        "here": false,
+        "boss": false
+      }
+    ],
+    "items": [
+      {
+        "name": "MAP",
+        "icon": "asset:ui/item-unknown.png",
+        "owned": true,
+        "missing": false
+      },
+      {
+        "name": "COMPASS",
+        "icon": "asset:ui/item-unknown.png",
+        "owned": true,
+        "missing": false
+      },
+      {
+        "name": "BIG KEY",
+        "icon": "asset:ui/item-unknown.png",
+        "owned": false,
+        "missing": true
+      }
+    ],
+    "keys": "x2",
+    "keyIcon": "asset:ui/item-unknown.png"
+  },
+  "icons": {
+    "linkHead": "asset:ui/mark-link.png"
   }
 }

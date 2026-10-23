@@ -146,6 +146,55 @@
                                     "children": [
                                       {
                                         "type": "box",
+                                        "class": "map-tabs",
+                                        "children": [
+                                          {
+                                            "type": "button",
+                                            "class": "map-tab",
+                                            "onClick": [
+                                              {
+                                                "set": {
+                                                  "mapWorldAt": "{map.visit}"
+                                                }
+                                              }
+                                            ],
+                                            "classIf": {
+                                              "on": "$map.showWorld"
+                                            },
+                                            "children": [
+                                              {
+                                                "type": "text",
+                                                "class": "map-tab-label",
+                                                "text": "WORLD"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "button",
+                                            "class": "map-tab",
+                                            "onClick": [
+                                              {
+                                                "set": {
+                                                  "mapWorldAt": ""
+                                                }
+                                              }
+                                            ],
+                                            "classIf": {
+                                              "on": "$map.showDungeon"
+                                            },
+                                            "children": [
+                                              {
+                                                "type": "text",
+                                                "class": "map-tab-label",
+                                                "text": "DUNGEON"
+                                              }
+                                            ]
+                                          }
+                                        ],
+                                        "visibleIf": "$map.inDungeon"
+                                      },
+                                      {
+                                        "type": "box",
                                         "class": "map-view",
                                         "children": [
                                           {
@@ -156,11 +205,130 @@
                                           {
                                             "type": "image",
                                             "class": "mark mark-link",
-                                            "src": "asset:ui/mark-link.png",
+                                            "src": "$icons.linkHead",
                                             "bindStyle": {
                                               "left": "{map.linkX}%",
                                               "top": "{map.linkY}%"
                                             }
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "dmap",
+                                            "children": [
+                                              {
+                                                "type": "box",
+                                                "class": "dmap-head",
+                                                "children": [
+                                                  {
+                                                    "type": "text",
+                                                    "class": "dmap-name",
+                                                    "text": "{dungeon.name}"
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "type": "box",
+                                                "class": "dmap-body",
+                                                "children": [
+                                                  {
+                                                    "type": "list",
+                                                    "class": "dmap-floors",
+                                                    "items": "$dungeon.floors",
+                                                    "template": {
+                                                      "type": "box",
+                                                      "class": "dfloor",
+                                                      "children": [
+                                                        {
+                                                          "type": "box",
+                                                          "class": "dfloor-mark",
+                                                          "children": [
+                                                            {
+                                                              "type": "image",
+                                                              "class": "dfloor-link",
+                                                              "src": "$icons.linkHead",
+                                                              "visibleIf": "$here"
+                                                            }
+                                                          ]
+                                                        },
+                                                        {
+                                                          "type": "text",
+                                                          "class": "num dfloor-name",
+                                                          "text": "{name}"
+                                                        },
+                                                        {
+                                                          "type": "box",
+                                                          "class": "dfloor-mark",
+                                                          "children": [
+                                                            {
+                                                              "type": "image",
+                                                              "class": "dfloor-boss",
+                                                              "src": "asset:ui/mark-boss.png",
+                                                              "visibleIf": "$boss"
+                                                            }
+                                                          ]
+                                                        }
+                                                      ],
+                                                      "classIf": {
+                                                        "here": "$here"
+                                                      }
+                                                    }
+                                                  },
+                                                  {
+                                                    "type": "box",
+                                                    "class": "dmap-items",
+                                                    "children": [
+                                                      {
+                                                        "type": "list",
+                                                        "class": "ditem-row",
+                                                        "items": "$dungeon.items",
+                                                        "template": {
+                                                          "type": "box",
+                                                          "class": "ditem",
+                                                          "children": [
+                                                            {
+                                                              "type": "box",
+                                                              "class": "ditem-slot",
+                                                              "children": [
+                                                                {
+                                                                  "type": "image",
+                                                                  "class": "ditem-icon",
+                                                                  "src": "$icon"
+                                                                }
+                                                              ]
+                                                            },
+                                                            {
+                                                              "type": "text",
+                                                              "class": "ditem-name",
+                                                              "text": "{name}"
+                                                            }
+                                                          ],
+                                                          "classIf": {
+                                                            "missing": "$missing"
+                                                          }
+                                                        }
+                                                      },
+                                                      {
+                                                        "type": "box",
+                                                        "class": "dkeys",
+                                                        "children": [
+                                                          {
+                                                            "type": "image",
+                                                            "class": "dkey-icon",
+                                                            "src": "$dungeon.keyIcon"
+                                                          },
+                                                          {
+                                                            "type": "text",
+                                                            "class": "num dkey-num",
+                                                            "text": "{dungeon.keys}"
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ],
+                                            "visibleIf": "$map.showDungeon"
                                           }
                                         ]
                                       },
@@ -1909,7 +2077,7 @@
                                                     {
                                                       "type": "image",
                                                       "class": "dg-here",
-                                                      "src": "asset:ui/mark-link.png",
+                                                      "src": "$icons.linkHead",
                                                       "visibleIf": "$here"
                                                     }
                                                   ]

@@ -244,7 +244,8 @@ text { white-space: nowrap; }
 }
 .map-img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: fill; }
 .mark { position: absolute; }
-.mark-link { width: 24px; height: 24px; transform: translate(-12px, -12px); }
+/* Link's head from the ROM (16 x 16) at 3 device px per pixel. */
+.mark-link { width: 20.81px; height: 20.81px; transform: translate(-10.4px, -10.4px); }
 /* The place's name, in a bar under the map. */
 .map-tag {
   flex-shrink: 0;
@@ -255,6 +256,85 @@ text { white-space: nowrap; }
   border-radius: 4px;
 }
 .map-tag-text { font-size: 18px; line-height: 17px; color: var(--border-dark); text-align: center; }
+
+/* WORLD / DUNGEON, above the map while Link is in a dungeon. */
+.map-tabs { flex-shrink: 0; flex-direction: row; gap: 6px; }
+.map-tab {
+  flex: 1;
+  height: 22px;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  background-color: #C9A46A;
+  border: 2px solid var(--border-dark);
+  border-radius: 4px;
+  box-shadow: 2px 2px 0 #18181B;
+}
+.map-tab:pressed { transform: translate(1px, 1px); box-shadow: 1px 1px 0 #18181B; opacity: 1; }
+.map-tab.on { background-color: var(--triforce-gold); }
+.map-tab-label { font-size: 17px; line-height: 15px; letter-spacing: 1px; color: var(--border-dark); }
+
+/* The dungeon view: covers the world map, same frame. */
+.dmap {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  gap: 4px;
+  padding: 8px 8px 6px 8px;
+  background-color: #1E2A47;
+}
+.dmap-head { flex-shrink: 0; align-items: center; }
+.dmap-name { font-size: 18px; line-height: 17px; letter-spacing: 1px; color: var(--cream); text-shadow: 2px 2px 0 #0B1222; }
+.dmap-body { flex: 1; min-height: 0; flex-direction: row; gap: 8px; }
+
+/* Floors, top floor first, like the pause menu's floor column. */
+.dmap-floors { flex-shrink: 0; justify-content: center; gap: 3px; }
+.dfloor {
+  flex-direction: row;
+  align-items: center;
+  gap: 2px;
+  padding: 1px 2px;
+  border: 2px solid transparent;
+  border-radius: 3px;
+}
+.dfloor.here { background-color: #33466F; border-color: var(--triforce-gold); }
+.dfloor-mark { width: 14px; height: 14px; align-items: center; justify-content: center; }
+.dfloor-link { width: 13.87px; height: 13.87px; } /* 2 device px per pixel */
+.dfloor-boss { width: 14px; height: 14px; }
+.dfloor-name { width: 26px; font-size: 9px; line-height: 11px; text-align: center; color: #8FA3C9; }
+.dfloor.here .dfloor-name { color: #FFFFFF; }
+
+.dmap-items { flex: 1; min-width: 0; justify-content: center; align-items: center; gap: 6px; }
+.ditem-row { flex-direction: row; justify-content: center; gap: 5px; }
+.ditem { align-items: center; gap: 2px; }
+.ditem-slot {
+  width: 34px;
+  height: 34px;
+  align-items: center;
+  justify-content: center;
+  background-color: #D9B77E;
+  border: 2px solid var(--parchment-edge);
+  border-radius: 4px;
+}
+/* The 16 x 16 sprites at 3 device px per pixel. */
+.ditem-icon { width: 20.81px; height: 20.81px; }
+.ditem-name { font-size: 13px; line-height: 12px; color: var(--cream); }
+.ditem.missing .ditem-slot { background-color: #3A4A6B; border-color: #2A3655; }
+.ditem.missing .ditem-icon { opacity: 0.25; }
+.ditem.missing .ditem-name { color: #6F80A6; }
+.dkeys {
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  background-color: #33466F;
+  border-radius: 4px;
+}
+.dkey-icon { width: 10.41px; height: 20.81px; } /* 8 x 16 at 3 device px */
+.dkey-num { font-size: 10px; line-height: 12px; color: #FFFFFF; }
 
 /* ---- A / B equip rings ------------------------------------------------------------------ */
 

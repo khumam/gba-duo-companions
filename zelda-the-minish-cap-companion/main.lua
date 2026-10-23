@@ -54,6 +54,10 @@ local FUSION_TOTAL = 100
 
 -- ---- Flags and dungeons --------------------------------------------------------
 local GLOBAL_FLAGS = SAVE + 0x25C  -- bit n = global flag n
+-- Per dungeon id (save.h): small keys held, and the dungeon items (gameUtils.c
+-- HasDungeonMap/Compass/BigKey: bit 0 map, bit 1 compass, bit 2 big key).
+local DUNGEON_KEYS = SAVE + 0x45C
+local DUNGEON_ITEMS = SAVE + 0x46C
 
 -- ---- Where Link is -------------------------------------------------------------
 local ROOM_AREA = 0x03000BF4        -- gRoomControls.area (IWRAM)
@@ -66,6 +70,9 @@ local AREA_FLAGS = 0x02033A90       -- gArea.areaMetadata, 2 = area has keys
 -- reads 0,0 on the title screen and file select.
 local PLAYER_STATUS = 0x030010A0 + 0x0C
 local OVERWORLD_MAP_X, OVERWORLD_MAP_Y = PLAYER_STATUS + 0x14, PLAYER_STATUS + 0x16
+-- In a dungeon: Link's spot on the dungeon map; y >> 11 is the floor row, 0 = the
+-- top floor (common.c sub_0801DB94).
+local DUNGEON_MAP_Y = PLAYER_STATUS + 0x12
 local WORLD_W, WORLD_H = 0xF90, 0xC60
 
 -- That spot is only refreshed on a room change (gameUtils.c UpdatePlayerMapCoords
@@ -101,6 +108,12 @@ local DUNGEONS = {
   { 4, "Temple of Droplets", "Lake Hylia" },
   { 5, "Palace of Winds", "the Cloud Tops" },
   { 6, "Dark Hyrule Castle", "Hyrule Castle" },
+}
+
+-- gDungeonFloorMetadatas (common.c), per dungeon id: floor count, the top floor's
+-- number and the boss's floor number. Floor numbers: 3 = 1F, 4 = 2F, 2 = B1, 1 = B2.
+local FLOORS = {
+  [0] = { 1, 2, 2 }, { 3, 3, 3 }, { 4, 3, 0 }, { 3, 5, 5 }, { 3, 2, 2 }, { 5, 7, 7 }, { 5, 5, 5 },
 }
 
 local POUCH_SLOTS = 20   -- the ITEMS page grid (5 x 4)
@@ -273,6 +286,70 @@ local function readDungeons(currentIdx)
   return list, nextUp
 end
 
+-- ---- The dungeon map panel ------------------------------------------------------------
+-- In a dungeon the MAP panel gets WORLD / DUNGEON tabs and opens on DUNGEON. The WORLD
+-- tab stores the visit it was tapped in (ui.mapWorldAt), so entering a dungeon again
+-- opens on DUNGEON.
+
+local function floorName(n)
+  if n >= 3 then return (n - 2) .. "F" end
+  return "B" .. (3 - n)
+end
+
+local visit, visitIdx = 0, nil
+
+local function readDungeonMap(ui, inDungeon, idx, location)
+  if not inDungeon then
+    visitIdx = nil
+    return { inDungeon = false, showWorld = true, showDungeon = false, visit = visit }
+  end
+  if idx ~= visitIdx then visit, visitIdx = visit + 1, idx end
+  local showWorld = ui ~= nil and tonumber(ui.mapWorldAt) == visit
+
+  local bits, keys = mem.u8(DUNGEON_ITEMS + idx), mem.u8(DUNGEON_KEYS + idx)
+  local hasMap, hasCompass, hasBigKey = bits & 1 ~= 0, bits & 2 ~= 0, bits & 4 ~= 0
+
+  local meta = FLOORS[idx] or { 1, 3, 3 }
+  local count, top, bossFloor = meta[1], meta[2], meta[3]
+  local row = math.min(mem.u16(DUNGEON_MAP_Y) >> 11, count - 1)
+  local cleared = idx >= 1 and flag(idx + 1)
+  local floors = {}
+  for i = 0, count - 1 do
+    local n = top - i
+    floors[#floors + 1] = {
+      name = floorName(n),
+      here = i == row,
+      -- The compass shows the boss's floor until the boss is beaten, as in the game.
+      boss = hasCompass and not cleared and n == bossFloor,
+    }
+  end
+
+  local function item(kind, name, owned)
+    return { name = name, icon = rom_gfx.dungeonItem(kind) or "", owned = owned, missing = not owned }
+  end
+
+  local entry = nil
+  for _, d in ipairs(DUNGEONS) do
+    if d[1] == idx then entry = d end
+  end
+  return {
+    inDungeon = true,
+    showWorld = showWorld,
+    showDungeon = not showWorld,
+    visit = visit,
+    name = (entry and entry[2] or location):upper(),
+    floor = floorName(top - row),
+    floors = floors,
+    items = {
+      item("map", "MAP", hasMap),
+      item("compass", "COMPASS", hasCompass),
+      item("bigKey", "BIG KEY", hasBigKey),
+    },
+    keys = "x" .. keys,
+    keyIcon = rom_gfx.dungeonItem("smallKey") or "",
+  }
+end
+
 -- ---- Link and his hearts ---------------------------------------------------------------
 -- 8 health per heart, drawn in quarters like the game's HUD (rom_gfx.heart: 0 empty
 -- .. 4 full). Without the ROM's art (unknown release) the hearts are left out.
@@ -313,7 +390,7 @@ end
 
 -- -----------------------------------------------------------------------------
 
-function update()
+function update(ui)
   if not saveLoaded() then
     local logo = rom_gfx.titleLogo()
     return { ready = false, waiting = true, logo = logo or "", hasLogo = logo ~= nil, noLogo = logo == nil }
@@ -331,10 +408,12 @@ function update()
   local fused = mem.u8(FUSED_COUNT)
 
   local inDungeon = (mem.u8(AREA_FLAGS) >> 1) & 1 == 1
-  local dungeons, nextUp = readDungeons(inDungeon and mem.u8(AREA_DUNGEON_IDX) or -1)
+  local dungeonIdx = mem.u8(AREA_DUNGEON_IDX)
+  local dungeons, nextUp = readDungeons(inDungeon and dungeonIdx or -1)
 
   local area = mem.u8(ROOM_AREA)
   local location = area_names[area] or string.format("Area %02X", area)
+  local dungeonMap = readDungeonMap(ui, inDungeon and dungeonIdx < 16, dungeonIdx, location)
 
   local worldX, worldY = linkWorldPos()
 
@@ -357,7 +436,12 @@ function update()
       image = rom_gfx.worldMap() or FALLBACK_MAP,
       linkX = pct(fraction(worldX, WORLD_W)),
       linkY = pct(fraction(worldY, WORLD_H)),
+      inDungeon = dungeonMap.inDungeon,
+      showWorld = dungeonMap.showWorld,
+      showDungeon = dungeonMap.showDungeon,
+      visit = dungeonMap.visit,
     },
+    dungeon = dungeonMap,
     link = readLink(health),
 
     equipA = equipSlot(EQUIPPED_A),
@@ -392,6 +476,7 @@ function update()
       kinstoneBlue = item_names.kinstoneIcon("Blue"),
       kinstoneGreen = item_names.kinstoneIcon("Green"),
       kinstoneGold = item_names.kinstoneIcon("Gold"),
+      linkHead = rom_gfx.linkHead() or "asset:ui/mark-link.png",
       figurines = "asset:ui/figurine.png",
       tigerScroll = item_names.icon("Spin Attack") or "",
       heartPiece = rom_gfx.heartPiece(mem.u8(HEART_PIECES)) or "",

@@ -30,6 +30,16 @@
 -- * Hearts: the HUD's heart tiles, 8x8 each in gGfx_89_2 + 0x220: empty, 1/4, 1/2, 3/4,
 --   full, in that order, with gPalette_12 (BG bank 15 on screen). Found in a state saved
 --   in play (BG0 tiles 0x11-0x15).
+-- * Link's head: the marker the pause screen's world map draws Link with (pauseMenu.c,
+--   DrawDirect sprite 0x1FA EU / 0x1FB, frame 0x59): a 16x16 at OBJ tile 0x240, which the
+--   world map screen's gfx group 93 fills from gGfx_94_3 + 0x800. Drawn with Link's own
+--   palette (gPalette_0 + 14 * 32), the colours he has on that screen.
+-- * Dungeon items: the pause menu's dungeon map page (pauseMenu.c DrawDungeonMapActually)
+--   draws the map, compass and big key with sprite 0x143 (EU, 0x144 elsewhere), the frame
+--   gSpriteAnimations_322[0x50 + n] gives, over fixedTypeGfx_521 (OBJ tile 0x380, loaded
+--   by gfx group 0x81). Map at palette bank 4, compass at 0, the big key's own bank 1.
+--   The small key (0x53) isn't drawn there; it uses bank 4 like the map. Rebuilt from the
+--   EU ROM; US from gfx.json, JP inferred from the hearts' JP offset.
 
 local M = {}
 
@@ -42,6 +52,7 @@ local RELEASES = {
     ezloFrames = 0x0811651C, linkGfx = 0x0813A500, linkFrames = 0x081146E0,
     logoTiles = 0x088D5F30, logoPalette = 0x085BCEF0,
     heartTiles = 0x085C2D90, hudPalette = 0x085A2550,
+    dungeonTiles = 0x085C2470, mapObjTiles = 0x08936CB0,
   },
   BZME = { -- US
     mapTiles = 0x08934FE0, map = 0x08938FE0, mapPalette6 = 0x085B4480,
@@ -51,6 +62,7 @@ local RELEASES = {
     ezloFrames = 0x08116DD4, linkGfx = 0x0813AE14, linkFrames = 0x08114F98,
     logoTiles = 0x088D6760, logoPalette = 0x085BD9E0,
     heartTiles = 0x085C3880, hudPalette = 0x085A3000,
+    dungeonTiles = 0x085C2F60, mapObjTiles = 0x08939EE0,
   },
   BZMJ = { -- JP
     mapTiles = 0x08934C80, map = 0x08938C80, mapPalette6 = 0x085B4120,
@@ -59,6 +71,7 @@ local RELEASES = {
     questGfx = 0x08913140, questPalette = 0x085B4080,
     ezloFrames = 0x08116A98, linkGfx = 0x0813AA40, linkFrames = 0x08114C5C,
     heartTiles = 0x085C3520, hudPalette = 0x085A2CA0,
+    dungeonTiles = 0x085C2C00, mapObjTiles = 0x08939B80,
   },
 }
 
@@ -120,10 +133,10 @@ end
 local function s8(v) return v >= 128 and v - 256 or v end
 
 -- The sprite arguments for one frame of a sprite: [frames] gives the frame's first
--- tile in [gfx], gFrameObjLists (entry [sprite]) its objects. [bankOf](flags, high)
+-- tile in [gfx] (nil: tile 0), gFrameObjLists (entry [sprite]) its objects. [bankOf](flags, high)
 -- picks each object's palette bank. False if the frame can't be drawn.
 local function frameArgs(r, sprite, frames, gfx, palette, frame, bankOf)
-  local firstTile = mem.u16(frames + frame * 4 + 2)
+  local firstTile = frames and mem.u16(frames + frame * 4 + 2) or 0
   local list = r.objLists + mem.u32(r.objLists + mem.u32(r.objLists + sprite * 4) + frame * 4)
 
   local parts, minX, minY, maxX, maxY = {}, 1e9, 1e9, -1e9, -1e9
@@ -209,6 +222,40 @@ function M.heart(quarters)
     } or false
   end
   return draw(gfx.sprite, heartArgs[quarters], "heart")
+end
+
+local headArgs
+--- Link's head, the pause map's marker for him, as a 16x16 image key; nil on an unknown release.
+function M.linkHead()
+  if headArgs == nil then
+    local r = current()
+    headArgs = r and {
+      tiles = r.mapObjTiles + 0x800, palette = r.objPalette + 14 * 32, width = 16, height = 16,
+      parts = { { x = 0, y = 0, w = 16, h = 16, tile = 0, bank = 0 } },
+    } or false
+  end
+  return draw(gfx.sprite, headArgs, "link head")
+end
+
+-- Dungeon items: item id and the palette bank the dungeon map page draws it with.
+local DUNGEON_ITEMS = {
+  map = { 0x50, 4 }, compass = { 0x51, 0 }, bigKey = { 0x52, 4 }, smallKey = { 0x53, 4 },
+}
+
+local dungeonArgs = {}
+--- A dungeon item's icon ("map", "compass", "bigKey", "smallKey") as an image key; nil on an unknown release.
+function M.dungeonItem(kind)
+  local item = DUNGEON_ITEMS[kind]
+  if not item then return nil end
+  if dungeonArgs[kind] == nil then
+    local r = current()
+    local anim = r and mem.u32(r.anims + item[1] * 4)
+    dungeonArgs[kind] = (r and anim >= 0x08000000 and anim < 0x0A000000)
+      and frameArgs(r, r.sprite + 2, nil, r.dungeonTiles, r.objPalette, mem.u8(anim), function(flags, high)
+        return (flags & 1 == 1) and (high >> 4) or (item[2] + (high >> 4))
+      end) or false
+  end
+  return draw(gfx.sprite, dungeonArgs[kind], "dungeon " .. kind)
 end
 
 local EZLO_SPRITE, EZLO_FRAME = 11, 44
