@@ -1,0 +1,67 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"title": "GBA Duo companion catalog",
+	"type": "object",
+	"required": ["formatVersion", "companions"],
+	"properties": {
+		"$schema": { "type": "string" },
+		"formatVersion": { "const": 1 },
+		"companions": { "type": "array", "items": { "$ref": "#/$defs/companion" } }
+	},
+	"additionalProperties": false,
+	"$defs": {
+		"companion": {
+			"type": "object",
+			"required": ["id", "title", "description", "version", "author", "official", "repo", "tag", "url", "download", "games", "tags", "canModifyGame", "screenshots"],
+			"properties": {
+				"id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$", "description": "Same as the pack's manifest.json id." },
+				"title": { "type": "string", "maxLength": 80 },
+				"description": { "type": "string", "maxLength": 200, "description": "One or two sentences for the catalog card." },
+				"version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$", "description": "The released version, matching the zip." },
+				"author": { "type": "string", "description": "GitHub username." },
+				"official": { "type": "boolean", "description": "true only for packs in khumam/gba-duo-companions." },
+				"repo": { "type": "string", "pattern": "^[A-Za-z0-9-]+/[A-Za-z0-9._-]+$", "description": "GitHub owner/name." },
+				"path": { "type": "string", "description": "Pack folder inside the repo. Omit when the pack is at the repo root." },
+				"tag": { "type": "string", "description": "Release tag the zip is attached to." },
+				"url": { "type": "string", "format": "uri", "pattern": "^https://", "description": "Where to read about the pack." },
+				"download": { "type": "string", "format": "uri", "pattern": "^https://github\\.com/.+\\.zip$", "description": "Release zip." },
+				"sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$", "description": "Hash of the zip. Required for community packs." },
+				"games": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"type": "object",
+						"required": ["title", "gameCode"],
+						"properties": {
+							"title": { "type": "string" },
+							"region": { "enum": ["US", "EU", "JP", "AU", "KR", "CN", "World"] },
+							"gameCode": { "type": "string", "pattern": "^[A-Z0-9]{4}$" }
+						},
+						"additionalProperties": false
+					}
+				},
+				"design": { "type": "string", "description": "Name of the pack's visual theme." },
+				"pages": { "type": "array", "items": { "type": "string" } },
+				"tags": { "type": "array", "items": { "type": "string", "pattern": "^[a-z0-9-]+$" }, "uniqueItems": true },
+				"minAppVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+				"recommendedAppVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$", "description": "Version needed for every feature, when newer than minAppVersion." },
+				"canModifyGame": { "type": "boolean", "description": "true if main.lua writes to game memory." },
+				"screenshots": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"required": ["src", "alt"],
+						"properties": {
+							"src": { "type": "string", "description": "Path relative to the repo root, or an https URL." },
+							"alt": { "type": "string" }
+						},
+						"additionalProperties": false
+					}
+				}
+			},
+			"if": { "properties": { "official": { "const": false } } },
+			"then": { "required": ["sha256"] },
+			"additionalProperties": false
+		}
+	}
+}

@@ -1,0 +1,99 @@
+{
+	"$schema": "./companions.schema.json",
+	"formatVersion": 1,
+	"companions": [
+		{
+			"id": "pokemon-firered-companion",
+			"title": "Pokémon FireRed Companion",
+			"description": "Town Map with your spot and the wild Pokémon around you, party with stats and moves, bag, Pokédex, trainer card, and a live battle page.",
+			"version": "2.0.0",
+			"author": "khumam",
+			"official": true,
+			"repo": "khumam/gba-duo-companions",
+			"path": "pokemon-firered-companion",
+			"tag": "v1.4.1",
+			"url": "https://github.com/khumam/gba-duo-companions/tree/main/pokemon-firered-companion",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.4.1/pokemon-firered-companion-2.0.0.zip",
+			"games": [{ "title": "Pokémon FireRed", "region": "US", "gameCode": "BPRE" }],
+			"design": "Pocket-OS",
+			"pages": ["Map", "Party", "Bag", "Dex", "Card", "Battle"],
+			"tags": ["pokemon", "rpg", "map", "party", "battle", "rom-graphics"],
+			"minAppVersion": "0.1.3",
+			"recommendedAppVersion": "0.1.7",
+			"canModifyGame": false,
+			"screenshots": []
+		},
+		{
+			"id": "harvest-moon-fomt-companion",
+			"title": "Harvest Moon: Friends of Mineral Town Companion",
+			"description": "Gold, date and time, weather, stamina, held tool and rucksack, affection, and the Harvest Sprites' work, on a backdrop that follows the season.",
+			"version": "1.1.0",
+			"author": "khumam",
+			"official": true,
+			"repo": "khumam/gba-duo-companions",
+			"path": "harvest-moon-fomt-companion",
+			"tag": "v1.4.1",
+			"url": "https://github.com/khumam/gba-duo-companions/tree/main/harvest-moon-fomt-companion",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.4.1/harvest-moon-fomt-companion-1.1.0.zip",
+			"games": [
+				{ "title": "Harvest Moon: Friends of Mineral Town", "region": "EU", "gameCode": "A4NP" },
+				{ "title": "Harvest Moon: Friends of Mineral Town", "region": "US", "gameCode": "BHFE" }
+			],
+			"design": "The Mineral Town Almanac",
+			"pages": ["Farm", "Bag", "Love", "Sprites"],
+			"tags": ["harvest-moon", "farming", "simulation", "relationships"],
+			"minAppVersion": "0.1.3",
+			"canModifyGame": false,
+			"screenshots": []
+		},
+		{
+			"id": "zelda-minish-cap-companion",
+			"title": "The Legend of Zelda: The Minish Cap Companion",
+			"description": "World and dungeon maps with Link's spot, his hearts, items, kinstone fusions, and quest progress, drawn from your own ROM. Tap Ezlo for a hint.",
+			"version": "3.0.0",
+			"author": "khumam",
+			"official": true,
+			"repo": "khumam/gba-duo-companions",
+			"path": "zelda-the-minish-cap-companion",
+			"tag": "v1.4.1",
+			"url": "https://github.com/khumam/gba-duo-companions/tree/main/zelda-the-minish-cap-companion",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.4.1/zelda-minish-cap-companion-3.0.0.zip",
+			"games": [
+				{ "title": "The Legend of Zelda: The Minish Cap", "region": "US", "gameCode": "BZME" },
+				{ "title": "The Legend of Zelda: The Minish Cap", "region": "EU", "gameCode": "BZMP" },
+				{ "title": "The Legend of Zelda: The Minish Cap", "region": "JP", "gameCode": "BZMJ" }
+			],
+			"design": "Minish-OS",
+			"pages": ["Map", "Items", "Kinstone", "Quest"],
+			"tags": ["zelda", "adventure", "map", "dungeon", "hints", "rom-graphics"],
+			"minAppVersion": "0.1.3",
+			"recommendedAppVersion": "0.1.7",
+			"canModifyGame": false,
+			"screenshots": []
+		},
+		{
+			"id": "metroid-fusion-companion",
+			"title": "Metroid Fusion Companion",
+			"description": "Energy and tanks, missiles, power bombs, every ability upgrade, and sector completion with downloaded maps.",
+			"version": "1.0.0",
+			"author": "khumam",
+			"official": true,
+			"repo": "khumam/gba-duo-companions",
+			"path": "metroid-fusion-companion",
+			"tag": "v1.4.1",
+			"url": "https://github.com/khumam/gba-duo-companions/tree/main/metroid-fusion-companion",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.4.1/metroid-fusion-companion-1.0.0.zip",
+			"games": [
+				{ "title": "Metroid Fusion", "region": "US", "gameCode": "AMTE" },
+				{ "title": "Metroid Fusion", "region": "EU", "gameCode": "AMTP" },
+				{ "title": "Metroid Fusion", "region": "JP", "gameCode": "AMTJ" }
+			],
+			"design": "BSL Bio-Interface",
+			"pages": ["Status", "Abilities", "Sectors"],
+			"tags": ["metroid", "action", "exploration", "upgrades"],
+			"minAppVersion": "0.1.3",
+			"canModifyGame": false,
+			"screenshots": []
+		}
+	]
+}
