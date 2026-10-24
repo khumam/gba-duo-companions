@@ -11,7 +11,7 @@
 			"official": true,
 			"repo": "khumam/gba-duo-companions",
 			"path": "pokemon-firered-companion",
-			"tag": "v2.0.0",
+			"tag": "v1.4.1",
 			"url": "https://github.com/khumam/gba-duo-companions/tree/main/pokemon-firered-companion",
 			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.4.1/pokemon-firered-companion-2.0.0.zip",
 			"games": [{ "title": "Pokémon FireRed", "region": "US", "gameCode": "BPRE" }],
@@ -32,7 +32,7 @@
 			"official": true,
 			"repo": "khumam/gba-duo-companions",
 			"path": "harvest-moon-fomt-companion",
-			"tag": "v1.1.0",
+			"tag": "v1.4.1",
 			"url": "https://github.com/khumam/gba-duo-companions/tree/main/harvest-moon-fomt-companion",
 			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.4.1/harvest-moon-fomt-companion-1.1.0.zip",
 			"games": [
@@ -55,7 +55,7 @@
 			"official": true,
 			"repo": "khumam/gba-duo-companions",
 			"path": "zelda-the-minish-cap-companion",
-			"tag": "v3.0.0",
+			"tag": "v1.4.1",
 			"url": "https://github.com/khumam/gba-duo-companions/tree/main/zelda-the-minish-cap-companion",
 			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.4.1/zelda-minish-cap-companion-3.0.0.zip",
 			"games": [
@@ -80,7 +80,7 @@
 			"official": true,
 			"repo": "khumam/gba-duo-companions",
 			"path": "metroid-fusion-companion",
-			"tag": "v1.0.0",
+			"tag": "v1.4.1",
 			"url": "https://github.com/khumam/gba-duo-companions/tree/main/metroid-fusion-companion",
 			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.4.1/metroid-fusion-companion-1.0.0.zip",
 			"games": [
