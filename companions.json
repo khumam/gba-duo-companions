@@ -27,29 +27,6 @@
 			]
 		},
 		{
-			"id": "harvest-moon-fomt-companion",
-			"title": "Harvest Moon: Friends of Mineral Town Companion",
-			"description": "Gold, date and time, weather, stamina, held tool and rucksack, affection, and the Harvest Sprites' work, on a backdrop that follows the season.",
-			"version": "1.1.0",
-			"author": "khumam",
-			"official": true,
-			"repo": "khumam/gba-duo-companions",
-			"path": "harvest-moon-fomt-companion",
-			"tag": "v1.4.1",
-			"url": "https://github.com/khumam/gba-duo-companions/tree/main/harvest-moon-fomt-companion",
-			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.4.1/harvest-moon-fomt-companion-1.1.0.zip",
-			"games": [
-				{ "title": "Harvest Moon: Friends of Mineral Town", "region": "EU", "gameCode": "A4NP" },
-				{ "title": "Harvest Moon: Friends of Mineral Town", "region": "US", "gameCode": "BHFE" }
-			],
-			"design": "Harvest Moon: Friends of Mineral Town",
-			"pages": ["Farm", "Bag", "Love", "Sprites"],
-			"tags": ["harvest-moon", "farming", "simulation", "relationships"],
-			"minAppVersion": "0.1.3",
-			"canModifyGame": false,
-			"screenshots": []
-		},
-		{
 			"id": "zelda-minish-cap-companion",
 			"title": "The Legend of Zelda: The Minish Cap Companion",
 			"description": "World and dungeon maps with Link's spot, his hearts, items, kinstone fusions, and quest progress, drawn from your own ROM. Tap Ezlo for a hint.",
@@ -77,30 +54,6 @@
 				{ "src": "zelda-the-minish-cap-companion/screenshoots/zelda2.png", "alt": "Items page: the item pouch, bombs, arrows, charm, shells and heart pieces" },
 				{ "src": "zelda-the-minish-cap-companion/screenshoots/zelda3.png", "alt": "Kinstone page: the fusion bag and fusions done out of 100" }
 			]
-		},
-		{
-			"id": "metroid-fusion-companion",
-			"title": "Metroid Fusion Companion",
-			"description": "Energy and tanks, missiles, power bombs, every ability upgrade, and sector completion with downloaded maps.",
-			"version": "1.0.0",
-			"author": "khumam",
-			"official": true,
-			"repo": "khumam/gba-duo-companions",
-			"path": "metroid-fusion-companion",
-			"tag": "v1.4.1",
-			"url": "https://github.com/khumam/gba-duo-companions/tree/main/metroid-fusion-companion",
-			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.4.1/metroid-fusion-companion-1.0.0.zip",
-			"games": [
-				{ "title": "Metroid Fusion", "region": "US", "gameCode": "AMTE" },
-				{ "title": "Metroid Fusion", "region": "EU", "gameCode": "AMTP" },
-				{ "title": "Metroid Fusion", "region": "JP", "gameCode": "AMTJ" }
-			],
-			"design": "Metroid Fusion",
-			"pages": ["Status", "Abilities", "Sectors"],
-			"tags": ["metroid", "action", "exploration", "upgrades"],
-			"minAppVersion": "0.1.3",
-			"canModifyGame": false,
-			"screenshots": []
 		}
 	]
 }
