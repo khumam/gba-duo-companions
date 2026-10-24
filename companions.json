@@ -15,13 +15,16 @@
 			"url": "https://github.com/khumam/gba-duo-companions/tree/main/pokemon-firered-companion",
 			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.4.1/pokemon-firered-companion-2.0.0.zip",
 			"games": [{ "title": "Pokémon FireRed", "region": "US", "gameCode": "BPRE" }],
-			"design": "Pocket-OS",
+			"design": "Pokémon FireRed",
 			"pages": ["Map", "Party", "Bag", "Dex", "Card", "Battle"],
 			"tags": ["pokemon", "rpg", "map", "party", "battle", "rom-graphics"],
 			"minAppVersion": "0.1.3",
 			"recommendedAppVersion": "0.1.7",
 			"canModifyGame": false,
-			"screenshots": []
+			"screenshots": [
+				{ "src": "pokemon-firered-companion/screenshoots/pokemon2.png", "alt": "Map page: the Kanto Town Map with your spot, and a quick look at your party" },
+				{ "src": "pokemon-firered-companion/screenshoots/pokemon1.png", "alt": "Party page: Bulbasaur with its types, level and HP" }
+			]
 		},
 		{
 			"id": "harvest-moon-fomt-companion",
@@ -39,7 +42,7 @@
 				{ "title": "Harvest Moon: Friends of Mineral Town", "region": "EU", "gameCode": "A4NP" },
 				{ "title": "Harvest Moon: Friends of Mineral Town", "region": "US", "gameCode": "BHFE" }
 			],
-			"design": "The Mineral Town Almanac",
+			"design": "Harvest Moon: Friends of Mineral Town",
 			"pages": ["Farm", "Bag", "Love", "Sprites"],
 			"tags": ["harvest-moon", "farming", "simulation", "relationships"],
 			"minAppVersion": "0.1.3",
@@ -63,13 +66,17 @@
 				{ "title": "The Legend of Zelda: The Minish Cap", "region": "EU", "gameCode": "BZMP" },
 				{ "title": "The Legend of Zelda: The Minish Cap", "region": "JP", "gameCode": "BZMJ" }
 			],
-			"design": "Minish-OS",
+			"design": "The Legend of Zelda: The Minish Cap",
 			"pages": ["Map", "Items", "Kinstone", "Quest"],
 			"tags": ["zelda", "adventure", "map", "dungeon", "hints", "rom-graphics"],
 			"minAppVersion": "0.1.3",
 			"recommendedAppVersion": "0.1.7",
 			"canModifyGame": false,
-			"screenshots": []
+			"screenshots": [
+				{ "src": "zelda-the-minish-cap-companion/screenshoots/zelda1.png", "alt": "Map page in Deepwood Shrine: dungeon floors, map, compass, big key, and Link with his A and B items and hearts" },
+				{ "src": "zelda-the-minish-cap-companion/screenshoots/zelda2.png", "alt": "Items page: the item pouch, bombs, arrows, charm, shells and heart pieces" },
+				{ "src": "zelda-the-minish-cap-companion/screenshoots/zelda3.png", "alt": "Kinstone page: the fusion bag and fusions done out of 100" }
+			]
 		},
 		{
 			"id": "metroid-fusion-companion",
@@ -88,7 +95,7 @@
 				{ "title": "Metroid Fusion", "region": "EU", "gameCode": "AMTP" },
 				{ "title": "Metroid Fusion", "region": "JP", "gameCode": "AMTJ" }
 			],
-			"design": "BSL Bio-Interface",
+			"design": "Metroid Fusion",
 			"pages": ["Status", "Abilities", "Sectors"],
 			"tags": ["metroid", "action", "exploration", "upgrades"],
 			"minAppVersion": "0.1.3",

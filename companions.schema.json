@@ -52,7 +52,7 @@
 						"type": "object",
 						"required": ["src", "alt"],
 						"properties": {
-							"src": { "type": "string", "description": "Path relative to the repo root, or an https URL." },
+							"src": { "type": "string", "description": "Path relative to the repo root, served from its default branch, or a raw.githubusercontent.com URL. Keep them out of the release zip." },
 							"alt": { "type": "string" }
 						},
 						"additionalProperties": false
