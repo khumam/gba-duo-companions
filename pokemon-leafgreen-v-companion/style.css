@@ -1,0 +1,961 @@
+/*
+ * Pocket-OS (LeafGreen): chunky 16-bit, flat bold borders, hard offset shadows.
+ *
+ * The guide is drawn for the 3DS bottom screen (320 x 240). The Thor's second
+ * screen is ~538 x 468 dp, so every guide length is scaled x1.5:
+ *   borders 3 -> 4 (outer), 2 -> 3 (inner)    radius 6 -> 9, 4 -> 6, 3 -> 5
+ *   shadow  3 -> 4, pressed 1 -> 1.5 (+3 shift), popover 4 -> 6
+ *   type    12 -> 18 (header), 10 -> 15 (labels), 8-9 -> 12 (numbers)
+ *   header  28 -> 42      dock: right sidebar, 104 wide   margin 4 -> 6
+ */
+
+/*
+ * LeafGreen palette ("Viridian canopy"): deep pine-teal night, leaf-lime header,
+ * lake blue, fern, berry and amber accents. Every text/fill pair is >= 4.5:1
+ * (WCAG AA) except the decorative stripes.
+ */
+:root {
+  --leaf: #9FD86B;        /* header, highlights            ink 10.3:1 */
+  --berry: #C2413A;       /* foe, low HP, stat down        white 5.1:1 */
+  --fern: #45B36B;        /* caught, HP ok, stat up        ink 6.5:1 */
+  --lake: #2A6FA8;        /* party, seen, EXP              white 5.3:1 */
+  --teal: #1F7A72;        /* trainer                        white 5.1:1 */
+  --amber: #E39B3A;       /* battle, mid HP                 ink 7.4:1 */
+
+  --bg-pine: #10241F;
+  --container-moss: #1A3A36;
+  --edge: #06120E;
+  --card-mist: #CFE3D8;
+  --card-paper: #EEF6F0;
+  --white-pure: #FFFFFF;
+  --ink: #0E1E19;
+  --track: #0F2B28;
+  --disabled: #56706A;    /* also muted text on paper       4.9:1 */
+
+  --shadow: 4px 4px 0 #06120E;
+  --shadow-pressed: 1.5px 1.5px 0 #06120E;
+  --shadow-float: 6px 6px 0 #06120E;
+}
+
+@font-face { font-family: "Silkscreen"; src: url("assets/fonts/Silkscreen-Regular.ttf"); font-weight: 400; }
+@font-face { font-family: "Silkscreen"; src: url("assets/fonts/Silkscreen-Bold.ttf"); font-weight: 700; }
+@font-face { font-family: "Jersey"; src: url("assets/fonts/Jersey10-Regular.ttf"); }
+@font-face { font-family: "PressStart"; src: url("assets/fonts/PressStart2P-Regular.ttf"); }
+
+image { image-rendering: pixelated; }
+text { white-space: nowrap; }
+
+/* ---- canvas ------------------------------------------------------------------ */
+
+#screen {
+  width: 100%;
+  height: 100%;
+  padding: 6px;
+  background-color: var(--bg-pine);
+  background-image: url("assets/ui/lcd.png");
+  background-size: 3px 3px;
+  background-repeat: repeat;
+  font-family: "Jersey";
+  font-size: 20px;
+  color: var(--white-pure);
+}
+
+.grow { flex: 1; }
+
+/* Tabular numbers: one monospaced pixel face for every value. */
+.num {
+  font-family: "PressStart";
+  font-size: 12px;
+  line-height: 15px;
+  white-space: nowrap;
+}
+
+.ic8 { width: 12px; height: 12px; flex-shrink: 0; }
+
+.shell { flex: 1 1 auto; min-height: 0; gap: 8px; }
+
+/* ---- A. hazard header ---------------------------------------------------------- */
+
+.header {
+  flex-direction: row;
+  flex-shrink: 0;
+  height: 42px;
+  background-color: var(--leaf);
+  border: 4px solid var(--edge);
+  border-radius: 9px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.stripes {
+  width: 30px;
+  align-self: stretch;
+  background-image: url("assets/ui/hazard.png");
+  background-size: 12px 12px;
+  background-repeat: repeat;
+}
+.stripes:first-child { border-right: 4px solid var(--edge); }
+.stripes:last-child { border-left: 4px solid var(--edge); }
+
+.header-body {
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  gap: 9px;
+  padding: 0 9px;
+}
+
+.loc-pill {
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 9px;
+  background-color: var(--edge);
+  border-radius: 6px;
+}
+.loc-text {
+  font-family: "Jersey";
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--white-pure);
+}
+
+.hstat { flex-direction: row; align-items: center; gap: 5px; }
+.hnum { color: var(--ink); margin-top: 2px }
+
+/* ---- pages + dock ---------------------------------------------------------------- */
+
+.page { flex: 1 1 auto; flex-direction: row; min-height: 0; gap: 10px; }
+
+.content { flex: 1; min-height: 0; min-width: 0; }
+.two-col {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 10px;
+}
+/* The radar column is as wide as the Town Map picture (218.53 + 6 border + 12 padding + 8 border). */
+.map-cols { grid-template-columns: 246px 1fr; }
+.trainer-cols { grid-template-columns: 1fr 1fr; }
+
+/* B. navigation dock: a right-hand sidebar, one row-shaped button per tab */
+.dock {
+  flex-direction: column;
+  flex-shrink: 0;
+  width: 104px;
+  /* 6px gap = 2px of visible space after each button's 4px shadow */
+  gap: 6px;
+  padding: 0 4px 4px 0;
+}
+
+.dock-btn {
+  flex: 1;
+  min-height: 0;
+  padding: 0;
+  gap: 0;
+  border: 4px solid var(--edge);
+  border-radius: 9px;
+  box-shadow: var(--shadow);
+  position: relative;
+  align-items: stretch;
+  transition: transform 60ms linear;
+}
+/* Unselected: a darker shade of the tab colour. Selected (.on): full colour. */
+.dock-map { background-color: #8CC062; }
+.dock-party { background-color: #2A6496; }
+.dock-bag { background-color: #C98B3A; }
+.dock-dex { background-color: #45A066; }
+.dock-trainer { background-color: #226D66; }
+.dock-battle { background-color: #A93C36; }
+.dock-map.on { background-color: var(--leaf); }
+.dock-party.on { background-color: var(--lake); }
+.dock-bag.on { background-color: var(--amber); }
+.dock-dex.on { background-color: var(--fern); }
+.dock-trainer.on { background-color: var(--teal); }
+.dock-battle.on { background-color: var(--berry); }
+
+/* Held down: shift +3/+3 and drop to the 1.5px shadow. */
+.dock-btn.on,
+.dock-btn:pressed {
+  transform: translate(3px, 3px);
+  box-shadow: var(--shadow-pressed);
+  opacity: 1;
+}
+.dock-btn.on { z-index: 2; }
+
+.dock-inner {
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2px;
+  padding: 0 4px 0 0;
+  border: 3px solid transparent;
+  border-radius: 5px;
+}
+.dock-btn.on .dock-inner { border-color: var(--white-pure); }
+
+.dock-icon { width: 38px; height: 38px; margin: 0 -2px 0 -4px; flex-shrink: 0; }
+.dock-label {
+  font-family: "Jersey";
+  font-size: 16px;
+  line-height: 17px;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.dock-party .dock-label,
+.dock-trainer .dock-label,
+.dock-battle .dock-label { color: var(--white-pure); }
+
+/* ---- panels --------------------------------------------------------------------- */
+
+.panel { min-height: 0; min-width: 0; }
+
+.panel-head {
+  flex-direction: row;
+  align-items: flex-end;
+  flex-shrink: 0;
+  gap: 6px;
+  padding: 0 4px 0 9px;
+}
+.panel-tab {
+  padding: 4px 10px 2px 10px;
+  background-color: var(--edge);
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+.panel-title {
+  font-family: "Jersey";
+  font-size: 21px;
+  line-height: 24px;
+  letter-spacing: 1px;
+  color: var(--white-pure);
+  text-transform: uppercase;
+}
+
+.panel-body {
+  flex: 1;
+  min-height: 0;
+  padding: 6px;
+  gap: 6px;
+  background-color: var(--container-moss);
+  border: 4px solid var(--edge);
+  border-radius: 9px;
+  box-shadow: var(--shadow);
+}
+
+/* C. badges & tags: rectangular, 3px black stroke, 3/9 padding. */
+.chip {
+  margin-bottom: 5px;
+  padding: 3px 9px;
+  border: 3px solid var(--edge);
+  box-shadow: 3px 3px 0 #06120E;
+  background-color: var(--white-pure);
+}
+.chip-text {
+  font-family: "Jersey";
+  font-size: 16px;
+  line-height: 17px;
+  color: var(--ink);
+}
+.chip-red { background-color: var(--berry); }
+.chip-red .chip-text { color: var(--white-pure); }
+.chip-green { background-color: var(--fern); }
+.chip-blue { background-color: var(--lake); }
+.chip-blue .chip-text { color: var(--white-pure); }
+.chip-yellow { background-color: var(--leaf); }
+
+/* ---- pokemon cards ---------------------------------------------------------------- */
+
+.card {
+  position: relative;
+  border: 3px solid var(--edge);
+  border-radius: 9px;
+  box-shadow: 3px 3px 0 #06120E;
+  color: var(--ink);
+}
+/* Lead = selected focus: an inner 3px white ring. */
+.ring {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  border: 2px solid var(--white-pure);
+  border-radius: 6px;
+}
+/* Fainted = disabled: slate at half opacity, crossed out. */
+.card.fainted { opacity: 0.5; background-color: var(--disabled); }
+.strike {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  top: 45%;
+  height: 3px;
+  background-color: var(--edge);
+  transform: rotate(-4deg);
+}
+
+/* Game sprites are 64x64 with transparent margins: centre them in a smaller
+   slot and let them spill over the card edge, like the reference. */
+.sprite-slot {
+  display: stack;
+  place-items: center;
+  flex-shrink: 0;
+}
+.sprite-s { width: 40px; height: 32px; }
+.sprite-s .sprite { width: 52px; height: 52px; }
+.sprite-l { width: 60px; height: 56px; }
+.sprite-l .sprite { width: 64px; height: 64px; }
+.sprite-dex {
+  width: 64px;
+  height: 64px;
+  background-color: var(--white-pure);
+  border: 3px solid var(--edge);
+  border-radius: 6px;
+}
+.sprite-dex .sprite { width: 64px; height: 64px; }
+
+.name-row { flex-direction: row; align-items: center; gap: 6px; }
+.mon-name {
+  font-family: "Jersey";
+  font-size: 20px;
+  line-height: 21px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.lv { flex-shrink: 0; font-size: 10.5px; line-height: 12px; }
+
+.status {
+  flex-shrink: 0;
+  padding: 1px 4px;
+  border: 2px solid var(--edge);
+}
+.status-text {
+  font-family: "Silkscreen";
+  font-weight: 700;
+  font-size: 10.5px;
+  line-height: 11px;
+}
+
+.hp-row { flex-direction: row; align-items: center; gap: 5px; }
+.hp-tag {
+  padding: 1px 3px;
+  background-color: var(--amber);
+  border: 2px solid var(--edge);
+}
+.hp-tag-text {
+  font-family: "PressStart";
+  font-size: 7.5px;
+  line-height: 8px;
+  color: var(--ink);
+}
+.hp {
+  flex: 1;
+  height: 11px;
+  background-color: var(--track);
+  border: 2px solid var(--edge);
+  border-radius: 3px;
+  accent-color: var(--leaf);
+  transition: width 400ms ease-out;
+}
+.hp.mid { accent-color: var(--amber); }
+.hp.low { accent-color: var(--berry); }
+.hp-num { font-size: 10.5px; line-height: 12px; }
+
+/* quick party (map page) */
+.quick-panel .panel-body { padding: 6px 9px 9px 6px; }
+.qlist { flex: 1; min-height: 0; gap: 5px; overflow: auto; padding: 0 4px 4px 0; }
+.qcard {
+  flex-shrink: 0;
+  height: 42px;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 6px 2px 3px;
+}
+.qcard-body { flex: 1; min-width: 0; gap: 2px; }
+.qcard .mon-name { font-size: 18px; line-height: 16px; }
+/* The column beside the radar is narrow: name, level and a bare HP bar only
+   (status and exact HP live on the PARTY page). */
+.qcard .status,
+.qcard .hp-tag,
+.qcard .hp-num { display: none; }
+.qcard .name-row { gap: 4px; }
+.qcard .lv { flex-shrink: 0; font-family: "Jersey"; font-size: 17px; line-height: 16px; }
+
+/* full party */
+.party-panel { flex: 1; }
+.party-panel .panel-body { padding: 8px 7px 7px 8px; }
+/* Two columns that scroll: flex-wrap rather than grid, so any number of rows works. */
+.pgrid {
+  flex: 1;
+  min-height: 0;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: flex-start;
+  row-gap: 8px;
+  overflow: auto;
+  padding: 0 4px 4px 0;
+}
+.pgrid .pcard { width: 49%; height: 86px; flex-shrink: 0; }
+.pcard { flex-direction: row; align-items: center; gap: 4px; padding: 5px 8px 5px 2px; }
+.pcard-body { flex: 1; min-width: 0; gap: 2px; }
+.hp-foot { flex-direction: row; }
+.hp-big { font-size: 12px; line-height: 13px; }
+
+.type-row { flex-direction: row; gap: 4px; }
+.type-img { width: 48px; height: 18px; }
+
+/* ---- radar map ------------------------------------------------------------------- */
+
+/* The map at the top, the wild Pokemon under it. */
+.radar-panel .panel-body { padding: 6px; align-items: center; justify-content: flex-start; gap: 6px; }
+/* The radar is as big as the Town Map picture, so the marker's % positions land on it. */
+.radar {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--lake);
+  border: 3px solid var(--edge);
+  border-radius: 6px;
+}
+/* The game's Town Map (168 x 136) at 3 device px per pixel (1 device px = 0.4336dp). */
+.radar-img {
+  width: 218.53px;
+  height: 176.91px;
+  object-fit: fill;
+}
+.pins { position: absolute; left: 0; top: 0; right: 0; bottom: 0; }
+.pin { position: absolute; width: 12px; height: 12px; }
+
+/* Wild Pokemon: the method button (tap for the next one) stays put, the list beside it
+   scrolls; one readable row per species. */
+.wild {
+  align-self: stretch;
+  flex: 1;
+  min-height: 0;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 6px;
+}
+/* A button is a centred row by default: stack its three lines instead. */
+.wild-method {
+  width: 76px;
+  flex-shrink: 0;
+  flex-direction: column;
+  padding: 4px;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  background-color: var(--leaf);
+  border: 3px solid var(--edge);
+  border-radius: 6px;
+  box-shadow: 3px 3px 0 #06120E;
+}
+.wild-method:pressed { transform: translate(2px, 2px); box-shadow: 0 0 0 #06120E; }
+.wild-label { font-family: "Jersey"; font-size: 13px; line-height: 13px; color: var(--ink); text-align: center; }
+/* Long methods ("SUPER ROD") wrap onto a second line inside the button. */
+.wild-method-text { align-self: stretch; font-family: "Jersey"; font-size: 20px; line-height: 20px; color: var(--ink); text-align: center; white-space: normal; }
+.wild-mons { flex: 1; min-height: 0; gap: 4px; overflow: auto; padding: 0 4px 4px 0; }
+.wild-mon {
+  flex-direction: row;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 6px 2px 2px;
+  background-color: var(--card-mist);
+  border: 2px solid var(--edge);
+  border-radius: 5px;
+}
+.wild-sprite { width: 34px; height: 34px; flex-shrink: 0; }
+.wild-info { flex: 1; min-width: 0; gap: 1px; }
+.wild-name { font-family: "Jersey"; font-size: 17px; line-height: 17px; color: var(--ink); white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
+.wild-level { font-family: "Jersey"; font-size: 14px; line-height: 14px; color: #2F4A44; }
+.wild-chance { flex-shrink: 0; padding: 1px 5px; background-color: var(--edge); border-radius: 4px; }
+.wild-chance-text { font-family: "Jersey"; font-size: 15px; line-height: 15px; color: var(--white-pure); }
+.wild-none { justify-content: center; align-items: center; }
+.wild-none-text { font-family: "Jersey"; font-size: 18px; line-height: 20px; color: #A9C4BA; }
+
+.cross-anchor {
+  position: absolute;
+  display: stack;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+  transform: translate(-25px, -25px);
+}
+.crosshair { width: 50px; height: 50px; }
+.you { width: 16px; height: 16px; }
+
+/* ---- bag --------------------------------------------------------------------------- */
+
+.bag-panel { flex: 1; }
+.pockets { gap: 9px; }
+.pockets tab-bar { gap: 8px; padding: 0 4px 4px 0; }
+.pockets tab {
+  padding: 4px 10px;
+  background-color: var(--card-mist);
+  border: 3px solid var(--edge);
+  border-radius: 6px;
+  box-shadow: 3px 3px 0 #06120E;
+  font-family: "Jersey";
+  font-size: 16px;
+  line-height: 19px;
+  color: var(--ink);
+}
+.pockets tab:active {
+  background-color: var(--leaf);
+  transform: translate(2px, 2px);
+  box-shadow: var(--shadow-pressed);
+  color: var(--ink);
+}
+
+.item-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  align-content: start;
+  overflow: auto;
+  padding: 0 4px 4px 0;
+}
+.item-row {
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 9px;
+  background-color: var(--card-paper);
+  border: 3px solid var(--edge);
+  border-radius: 6px;
+  box-shadow: 3px 3px 0 #06120E;
+}
+.item-icon { width: 30px; height: 30px; margin: -4px 0; }
+.item-name {
+  font-family: "Jersey";
+  font-size: 20px;
+  line-height: 21px;
+  color: var(--ink);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.item-count { color: var(--ink); text-align: right; }
+.item-grid empty {
+  font-family: "Silkscreen";
+  font-size: 12px;
+  color: var(--card-mist);
+  padding: 9px;
+}
+
+/* ---- dex --------------------------------------------------------------------------- */
+
+.dex-panel .panel-body { gap: 9px; padding: 8px 11px 11px 8px; }
+.dex-stat {
+  flex: 1;
+  justify-content: space-between;
+  padding: 8px 10px;
+  border: 3px solid var(--edge);
+  border-radius: 9px;
+  box-shadow: 3px 3px 0 #06120E;
+}
+.dex-stat.seen { background-color: var(--lake); color: var(--white-pure); }
+.dex-stat.caught { background-color: var(--fern); color: var(--ink); }
+.dex-stat-head { flex-direction: row; align-items: center; }
+.dex-label {
+  font-family: "Jersey";
+  font-size: 20px;
+  line-height: 21px;
+  letter-spacing: 1.5px;
+}
+.dex-of { font-size: 10.5px; }
+.dex-num {
+  font-size: 27px;
+  line-height: 30px;
+  text-shadow: 2px 2px 0 #06120E;
+}
+.dex-stat.caught .dex-num { color: var(--ink); text-shadow: 2px 2px 0 #9FD86B; }
+.dex-bar {
+  height: 15px;
+  background-color: var(--track);
+  border: 3px solid var(--edge);
+  border-radius: 3px;
+  accent-color: var(--leaf);
+  transition: width 400ms ease-out;
+}
+
+.dex-side .panel-body { gap: 9px; padding: 8px 11px 11px 8px; }
+.complete {
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background-color: var(--leaf);
+  border: 3px solid var(--edge);
+  border-radius: 9px;
+  box-shadow: 3px 3px 0 #06120E;
+}
+.complete-num { font-size: 36px; line-height: 40px; color: var(--ink); }
+.complete-sub {
+  font-family: "Jersey";
+  font-size: 14px;
+  line-height: 16px;
+  color: var(--ink);
+}
+.last {
+  gap: 6px;
+  padding: 8px 10px;
+  background-color: var(--card-paper);
+  border: 3px solid var(--edge);
+  border-radius: 9px;
+  box-shadow: 3px 3px 0 #06120E;
+}
+.last-label {
+  font-family: "Jersey";
+  font-size: 14px;
+  line-height: 16px;
+  color: var(--disabled);
+}
+.last-row { flex-direction: row; align-items: center; gap: 9px; }
+.last-id { gap: 4px; }
+.last-no { color: var(--ink); font-size: 10.5px; }
+.last-name {
+  font-family: "Jersey";
+  font-size: 24px;
+  line-height: 25px;
+  color: var(--ink);
+}
+
+/* ---- trainer card ------------------------------------------------------------------ */
+
+.id-panel .panel-body,
+.badge-panel .panel-body { padding: 8px 11px 11px 8px; }
+.id-card {
+  flex: 1;
+  background-color: var(--card-paper);
+  border: 3px solid var(--edge);
+  border-radius: 9px;
+  box-shadow: 3px 3px 0 #06120E;
+  overflow: hidden;
+}
+.id-band {
+  flex-direction: row;
+  align-items: center;
+  padding: 5px 9px;
+  background-color: var(--berry);
+  border-bottom: 3px solid var(--edge);
+}
+.id-band-text {
+  font-family: "Jersey";
+  font-size: 16px;
+  line-height: 17px;
+  color: var(--white-pure);
+}
+.id-no { color: var(--white-pure); text-shadow: 1px 1px 0 #06120E; }
+.id-main { flex: 1; gap: 9px; padding: 9px; }
+.id-photo {
+  width: 54px;
+  height: 66px;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--card-mist);
+  border: 3px solid var(--edge);
+  border-radius: 6px;
+  align-self: center;
+}
+.id-photo-img { width: 60px; height: 60px; }
+.id-rows { flex: 1; min-width: 0; justify-content: space-evenly; }
+.id-row {
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--card-mist);
+}
+.id-row:last-child { border-bottom: 0 solid transparent; }
+.id-key {
+  font-family: "Jersey";
+  font-size: 18px;
+  line-height: 18px;
+  color: var(--disabled);
+}
+.id-val { color: var(--ink); font-size: 12px; line-height: 14px; }
+
+.badge-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 8px;
+}
+/* small badges: sharp corners */
+.badge {
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 2px 4px;
+  border: 3px solid var(--edge);
+  box-shadow: 3px 3px 0 #06120E;
+}
+.badge.earned { background-color: var(--white-pure); }
+.badge.locked { background-color: var(--disabled); opacity: 0.6; }
+.badge.locked .badge-name { color: var(--card-mist); }
+.badge-img { width: 40px; height: 40px; image-rendering: auto; }
+.badge-lock { width: 24px; height: 24px; margin: 8px 0; }
+.badge-name {
+  font-family: "Jersey";
+  font-size: 16px;
+  line-height: 16px;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+/* ---- battle ---------------------------------------------------------------------- */
+
+.battle-content { display: stack; place-items: stretch; }
+.battle-cols {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 10px;
+}
+.battle-side .panel-body { padding: 8px 11px 11px 8px; gap: 8px; }
+.foe-side .panel-tab { background-color: var(--berry); }
+.stat-list { flex: 1; gap: 4px; justify-content: space-between; }
+.stat-row {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 4px 3px 9px;
+  background-color: var(--card-paper);
+  border: 2px solid var(--edge);
+  border-radius: 5px;
+}
+.stat-name {
+  font-family: "Jersey";
+  font-size: 18px;
+  line-height: 18px;
+  color: var(--ink);
+}
+.stat-val { color: var(--ink); font-size: 12px; line-height: 14px; }
+.stage {
+  width: 36px;
+  align-items: center;
+  padding: 1px 0;
+  border: 2px solid var(--edge);
+  background-color: var(--card-mist);
+}
+.stage-text { font-size: 9px; line-height: 10px; color: var(--ink); }
+.stat-row.up .stage { background-color: var(--fern); }
+.stat-row.down .stage { background-color: var(--berry); }
+.stat-row.down .stage-text { color: var(--white-pure); }
+
+.no-battle { align-items: center; justify-content: center; }
+.no-battle-card {
+  align-items: center;
+  gap: 9px;
+  padding: 18px 27px;
+  background-color: var(--disabled);
+  border: 4px solid var(--edge);
+  border-radius: 9px;
+  box-shadow: var(--shadow);
+}
+.no-battle-icon { width: 48px; height: 48px; opacity: 0.6; }
+.no-battle-text {
+  font-family: "Jersey";
+  font-size: 24px;
+  line-height: 27px;
+  letter-spacing: 1.5px;
+  color: var(--white-pure);
+  text-shadow: 1px 1px 0 #06120E;
+}
+.no-battle-sub {
+  font-family: "Silkscreen";
+  font-size: 10.5px;
+  line-height: 12px;
+  color: var(--white-pure);
+}
+
+/* ---- waiting (boot) screen ------------------------------------------------------- */
+
+.waiting { flex: 1 1 auto; align-items: center; justify-content: center; }
+.boot {
+  width: 300px;
+  align-items: center;
+  gap: 9px;
+  padding-bottom: 0;
+  background-color: var(--leaf);
+  border: 4px solid var(--edge);
+  border-radius: 9px;
+  box-shadow: var(--shadow-float);
+  overflow: hidden;
+}
+.boot-stripes {
+  align-self: stretch;
+  height: 18px;
+  background-image: url("assets/ui/hazard.png");
+  background-size: 12px 12px;
+  background-repeat: repeat;
+}
+.boot-stripes:first-child { border-bottom: 4px solid var(--edge); }
+.boot-stripes:last-child { border-top: 4px solid var(--edge); }
+.boot-title {
+  font-family: "PressStart";
+  font-size: 24px;
+  line-height: 28px;
+  color: var(--ink);
+}
+.boot-sub {
+  font-family: "Jersey";
+  font-size: 20px;
+  line-height: 21px;
+  letter-spacing: 1.5px;
+  color: var(--ink);
+}
+.boot-pill {
+  padding: 4px 12px;
+  background-color: var(--edge);
+  border-radius: 6px;
+}
+.boot-pill-text {
+  font-family: "Silkscreen";
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  color: var(--white-pure);
+}
+
+/* ---- pokemon detail ------------------------------------------------------------- */
+
+.back-btn {
+  padding: 3px 9px;
+  gap: 0;
+  border-radius: 0;
+  background-color: var(--white-pure);
+}
+.back-btn:pressed {
+  transform: translate(2px, 2px);
+  box-shadow: var(--shadow-pressed);
+  opacity: 1;
+}
+
+.sum-panel .panel-body,
+.stat-panel .panel-body { padding: 8px 11px 11px 8px; gap: 8px; }
+
+.sum-card { flex-direction: row; align-items: center; gap: 6px; padding: 4px 9px 4px 2px; }
+.sprite-xl { width: 76px; height: 72px; }
+.sprite-xl .sprite { width: 80px; height: 80px; }
+.dex-no { font-size: 9px; line-height: 11px; }
+.sum-name { font-size: 24px; line-height: 22px; text-overflow: ellipsis; }
+
+.meter { gap: 4px; }
+.meter-key {
+  font-family: "Jersey";
+  font-size: 16px;
+  line-height: 16px;
+  color: var(--white-pure);
+}
+.meter-val { font-size: 9px; line-height: 11px; color: var(--white-pure); }
+.meter .hp-big { color: var(--white-pure); }
+.exp {
+  height: 11px;
+  background-color: var(--track);
+  border: 2px solid var(--edge);
+  border-radius: 3px;
+  accent-color: var(--lake);
+  transition: width 400ms ease-out;
+}
+
+.info {
+  flex: 1;
+  justify-content: space-evenly;
+  padding: 2px 9px;
+  background-color: var(--card-paper);
+  border: 3px solid var(--edge);
+  border-radius: 9px;
+  box-shadow: 3px 3px 0 #06120E;
+}
+.info-row { flex-direction: row; align-items: center; gap: 6px; }
+.info-key {
+  font-family: "Jersey";
+  font-size: 16px;
+  line-height: 17px;
+  color: var(--disabled);
+}
+.info-val {
+  font-family: "Jersey";
+  font-size: 19px;
+  line-height: 19px;
+  color: var(--ink);
+}
+.info-icon { width: 24px; height: 24px; }
+
+.dstat-list { gap: 4px; }
+.dstat {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  padding: 0 8px;
+  background-color: var(--card-paper);
+  border: 2px solid var(--edge);
+  border-radius: 5px;
+}
+.dstat-name {
+  width: 40px;
+  font-family: "Jersey";
+  font-size: 17px;
+  line-height: 17px;
+  color: var(--ink);
+}
+.dstat.up { background-color: var(--fern); }
+.dstat.down { background-color: var(--berry); }
+.dstat.down .dstat-name,
+.dstat.down .dstat-val { color: var(--white-pure); }
+.dstat-bar {
+  flex: 1;
+  height: 9px;
+  background-color: var(--track);
+  border: 2px solid var(--edge);
+  border-radius: 3px;
+  accent-color: var(--leaf);
+  transition: width 400ms ease-out;
+}
+.dstat-val { width: 66px; text-align: right; font-size: 10.5px; line-height: 12px; color: var(--ink); }
+
+.sub-label {
+  font-family: "Jersey";
+  font-size: 18px;
+  line-height: 16px;
+  letter-spacing: 1px;
+  color: var(--white-pure);
+}
+.move-grid {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 6px;
+  padding: 0 3px 3px 0;
+}
+.move {
+  justify-content: center;
+  gap: 1px;
+  padding: 2px 6px;
+  background-color: var(--card-paper);
+  border: 2px solid var(--edge);
+  border-radius: 5px;
+  box-shadow: 2px 2px 0 #06120E;
+}
+.move .type-img { width: 32px; height: 12px; }
+.move-top { flex-direction: row; align-items: center; }
+.move-name {
+  font-family: "Jersey";
+  font-size: 17px;
+  line-height: 16px;
+  color: var(--ink);
+  text-overflow: ellipsis;
+}
+.move-pp { font-size: 7.5px; line-height: 9px; color: var(--disabled); }
+.meter .hp-num { color: var(--white-pure); }
