@@ -1,0 +1,645 @@
+{
+  "type": "box",
+  "id": "screen",
+  "children": [
+    {
+      "type": "box",
+      "class": "waiting",
+      "visibleIf": "$waiting",
+      "children": [
+        {
+          "type": "box",
+          "class": "boot",
+          "children": [
+            {
+              "type": "box",
+              "class": "boot-band",
+              "children": []
+            },
+            {
+              "type": "box",
+              "class": "boot-body",
+              "children": [
+                {
+                  "type": "text",
+                  "class": "boot-title",
+                  "text": "GOLDEN SUN"
+                },
+                {
+                  "type": "text",
+                  "class": "boot-sub",
+                  "text": "PARTY LINK"
+                },
+                {
+                  "type": "box",
+                  "class": "boot-dots",
+                  "children": [
+                    {
+                      "type": "box",
+                      "class": "boot-dot venus",
+                      "children": []
+                    },
+                    {
+                      "type": "box",
+                      "class": "boot-dot mercury",
+                      "children": []
+                    },
+                    {
+                      "type": "box",
+                      "class": "boot-dot mars",
+                      "children": []
+                    },
+                    {
+                      "type": "box",
+                      "class": "boot-dot jupiter",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "type": "box",
+                  "class": "boot-pill",
+                  "children": [
+                    {
+                      "type": "text",
+                      "class": "boot-pill-text",
+                      "text": "AWAITING YOUR PARTY..."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "class": "boot-band",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "box",
+      "class": "main",
+      "visibleIf": "$ready",
+      "children": [
+        {
+          "type": "pages",
+          "class": "stage",
+          "state": "page",
+          "initial": "party",
+          "pages": [
+            {
+              "name": "party",
+              "child": {
+                "type": "box",
+                "class": "page party-page",
+                "children": [
+                  {
+                    "type": "list",
+                    "class": "roster panel",
+                    "items": "$members",
+                    "template": {
+                      "type": "box",
+                      "class": "rcard",
+                      "classIf": {
+                        "on": "$active",
+                        "down": "$down"
+                      },
+                      "bindStyle": {
+                        "--c": "{color}"
+                      },
+                      "onClick": [
+                        {
+                          "set": {
+                            "member": "{@index}",
+                            "item": 0
+                          }
+                        }
+                      ],
+                      "children": [
+                        {
+                          "type": "box",
+                          "class": "rcard-top",
+                          "children": [
+                            {
+                              "type": "text",
+                              "class": "rcard-name",
+                              "text": "{name}"
+                            },
+                            {
+                              "type": "text",
+                              "class": "rcard-lv",
+                              "text": "L{level}"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "bar",
+                          "class": "hp mini",
+                          "classIf": {
+                            "low": "$low"
+                          },
+                          "value": "$hp",
+                          "maxKey": "$maxHp"
+                        },
+                        {
+                          "type": "text",
+                          "class": "rcard-hp",
+                          "text": "{hp}/{maxHp}"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "box",
+                    "class": "detail",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "hero",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "portrait",
+                            "bindStyle": {
+                              "--c": "{m.color}"
+                            },
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "portrait-letter",
+                                "text": "{m.initial}"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "hero-main",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "hero-top",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "hero-name",
+                                    "text": "{m.name}"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "hero-lv",
+                                    "text": "L {m.level}"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "hero-class",
+                                    "text": "{m.sub}"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "gauges",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "gauge",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "gauge-head",
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "class": "gauge-key",
+                                            "text": "HP"
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "gauge-val",
+                                            "text": "{m.hp}/{m.maxHp}"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "bar",
+                                        "class": "hp",
+                                        "classIf": {
+                                          "low": "$m.low"
+                                        },
+                                        "value": "$m.hp",
+                                        "maxKey": "$m.maxHp"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "gauge",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "gauge-head",
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "class": "gauge-key",
+                                            "text": "PP"
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "gauge-val",
+                                            "text": "{m.pp}/{m.maxPp}"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "bar",
+                                        "class": "pp",
+                                        "value": "$m.pp",
+                                        "maxKey": "$m.maxPp"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "body",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "panel stats",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "panel-title",
+                                "text": "STATS"
+                              },
+                              {
+                                "type": "box",
+                                "class": "stat-row",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "stat-key",
+                                    "text": "Attack"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "stat-val",
+                                    "text": "{m.atk}"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "stat-row",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "stat-key",
+                                    "text": "Defense"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "stat-val",
+                                    "text": "{m.def}"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "stat-row",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "stat-key",
+                                    "text": "Agility"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "stat-val",
+                                    "text": "{m.agi}"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "stat-row",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "stat-key",
+                                    "text": "Luck"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "stat-val",
+                                    "text": "{m.lck}"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "stat-row",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "stat-key",
+                                    "text": "Exp"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "stat-val",
+                                    "text": "{m.exp}"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "stat-row last",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "stat-key",
+                                    "text": "Coins"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "stat-val gold",
+                                    "text": "{coins}"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "right",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "panel inventory",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "panel-title",
+                                    "text": "ITEMS"
+                                  },
+                                  {
+                                    "type": "list",
+                                    "class": "item-list",
+                                    "items": "$m.items",
+                                    "empty": "No items",
+                                    "template": {
+                                      "type": "box",
+                                      "class": "item-row",
+                                      "classIf": {
+                                        "sel": "$selected",
+                                        "broken": "$broken"
+                                      },
+                                      "onClick": [
+                                        {
+                                          "set": {
+                                            "item": "{@index}"
+                                          }
+                                        }
+                                      ],
+                                      "children": [
+                                        {
+                                          "type": "box",
+                                          "class": "item-icon",
+                                          "classIf": {
+                                            "eq": "$equipped"
+                                          }
+                                        },
+                                        {
+                                          "type": "text",
+                                          "class": "item-name",
+                                          "text": "{name}"
+                                        },
+                                        {
+                                          "type": "text",
+                                          "class": "item-qty",
+                                          "text": "{qty}"
+                                        },
+                                        {
+                                          "type": "text",
+                                          "class": "item-eq",
+                                          "text": "E",
+                                          "visibleIf": "$equipped"
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "djinn",
+              "child": {
+                "type": "box",
+                "class": "page",
+                "children": [
+                  {
+                    "type": "box",
+                    "class": "hero slim",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "hero-main",
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "hero-name",
+                            "text": "Djinn"
+                          },
+                          {
+                            "type": "text",
+                            "class": "hero-class",
+                            "text": "Collection tracking is not mapped yet"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "list",
+                    "class": "djinn-cols",
+                    "items": "$djinnCols",
+                    "template": {
+                      "type": "box",
+                      "class": "panel djinn-col",
+                      "bindStyle": {
+                        "--c": "{color}"
+                      },
+                      "children": [
+                        {
+                          "type": "text",
+                          "class": "djinn-title",
+                          "text": "{element}"
+                        },
+                        {
+                          "type": "list",
+                          "class": "djinn-list",
+                          "items": "$djinn",
+                          "template": {
+                            "type": "box",
+                            "class": "djinn-row",
+                            "classIf": {
+                              "locked": "$locked"
+                            },
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "djinn-dot"
+                              },
+                              {
+                                "type": "text",
+                                "class": "djinn-name",
+                                "text": "{name}"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "psynergy",
+              "child": {
+                "type": "box",
+                "class": "page",
+                "children": [
+                  {
+                    "type": "box",
+                    "class": "hero slim",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "hero-main",
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "hero-name",
+                            "text": "Psynergy"
+                          },
+                          {
+                            "type": "text",
+                            "class": "hero-class",
+                            "text": "Spell lists are not mapped yet"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "panel fill",
+                    "children": [
+                      {
+                        "type": "text",
+                        "class": "panel-title",
+                        "text": "COMING NEXT"
+                      },
+                      {
+                        "type": "text",
+                        "class": "note",
+                        "text": "Each character's learned Psynergy and PP cost will appear here."
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "box",
+          "class": "nav",
+          "children": [
+            {
+              "type": "box",
+              "class": "nav-btn",
+              "classIf": {
+                "on": "$navParty"
+              },
+              "onClick": [
+                {
+                  "set": {
+                    "page": "party"
+                  }
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "class": "nav-text",
+                  "text": "Party"
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "class": "nav-btn",
+              "classIf": {
+                "on": "$navDjinn"
+              },
+              "onClick": [
+                {
+                  "set": {
+                    "page": "djinn"
+                  }
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "class": "nav-text",
+                  "text": "Djinn"
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "class": "nav-btn",
+              "classIf": {
+                "on": "$navPsynergy"
+              },
+              "onClick": [
+                {
+                  "set": {
+                    "page": "psynergy"
+                  }
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "class": "nav-text",
+                  "text": "Psynergy"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

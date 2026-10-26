@@ -1,0 +1,163 @@
+/* Golden Sun companion: the game's own window style.
+   Colors sampled from the game's save list screen (Continue):
+   black ground, silver/white window frames, steel-blue panels shaded from
+   #1D4951 (top) through #296188 to #3A82B8 (bottom), pink #AD86A3-#DC9FBC
+   selection bar, blue #0000F4 title tab, white pixel text on a black shadow.
+   Screen is ~538x468dp landscape. */
+@font-face { font-family: "Jersey"; src: url("assets/fonts/Jersey10-Regular.ttf"); }
+@font-face { font-family: "Silk"; src: url("assets/fonts/Silkscreen-Bold.ttf"); font-weight: 700; }
+
+:root {
+  --ground: #000000;
+  --frame: #FFFFFF;
+  --frame-dim: #A5A5A5;
+  --frame-shadow: #525252;
+  --win-top: #1D4951;
+  --win: #296188;
+  --win-low: #3A82B8;
+  --line-dark: #1D4951;
+  --line-light: #3A82B8;
+  --pink-a: #AD86A3;
+  --pink-b: #BD8EAB;
+  --pink-c: #DC9FBC;
+  --tab: #0000F4;
+  --tab-hi: #5FE0F0;
+  --text: #FFFFFF;
+  --muted: #A9D2EE;
+  --gold: #F8D060;
+  --hp: #A5E36B;
+  --pp: #6FC3FF;
+  background: #000000;
+}
+
+#screen { background: #000000; padding: 0; }
+text { font-family: "Jersey"; color: #FFFFFF; text-shadow: 1px 1px 0 #000000; white-space: nowrap; }
+
+/* ---- Window (the game's framed blue panel) ---- */
+.panel, .hero, .boot, .nav {
+  background: linear-gradient(180deg, #1D4951 0%, #296188 22%, #296188 78%, #3A82B8 100%);
+  border: 3px solid #FFFFFF;
+  border-radius: 3px;
+  box-shadow: 0 2px 0 #525252;
+}
+
+/* ---- Waiting (boot window) ---- */
+.waiting { flex: 1; align-items: center; justify-content: center; }
+.boot { width: 330px; }
+.boot-band { height: 0; }
+.boot-body { align-items: center; gap: 8px; padding: 22px 16px; }
+.boot-title { color: #FFFFFF; font-size: 40px; letter-spacing: 3px; text-shadow: 2px 2px 0 #000000; }
+.boot-sub { font-family: "Silk"; font-weight: 700; color: #F8D060; font-size: 13px; letter-spacing: 4px; }
+.boot-dots { flex-direction: row; gap: 12px; padding: 4px 0; }
+.boot-dot { width: 14px; height: 14px; border-radius: 7px; border: 2px solid #FFFFFF; }
+.boot-dot.venus { background: #C98B3C; }
+.boot-dot.mercury { background: #4AA3E0; }
+.boot-dot.mars { background: #E5584B; }
+.boot-dot.jupiter { background: #B58CE0; }
+.boot-pill { padding: 3px 12px; border-radius: 0; background: linear-gradient(180deg, #AD86A3 0%, #DC9FBC 100%); }
+.boot-pill-text { font-size: 20px; color: #FFFFFF; letter-spacing: 1px; }
+
+/* ---- Frame ---- */
+.main { position: relative; width: 100%; height: 100%; }
+.stage { position: absolute; top: 8px; left: 8px; right: 8px; bottom: 60px; }
+.page { gap: 8px; flex: 1; height: 100%; }
+.fill { flex: 1; }
+.note { font-size: 22px; color: #A9D2EE; padding: 4px 12px; }
+
+/* The blue title tab, like "Continue" */
+.panel-title { align-self: flex-start; margin: -10px 0 4px 6px; padding: 0 5px;
+               font-family: "Silk"; font-weight: 700; font-size: 10px; letter-spacing: 0; color: #FFFFFF;
+               background: linear-gradient(180deg, #5FE0F0 0%, #0000F4 45%, #0000F4 100%);
+               border: 2px solid #FFFFFF; border-radius: 3px; }
+
+/* ---- Hero window: name, level, gauges, party chips ---- */
+.hero { flex-direction: row; align-items: center; gap: 12px; padding: 8px 12px; }
+.hero.slim { padding: 12px 14px; }
+.portrait { width: 64px; height: 64px; background: #1D4951; border: 3px solid #A5A5A5; border-radius: 2px;
+            align-items: center; justify-content: center; }
+.portrait-letter { font-size: 52px; color: var(--c, #F8D060); text-shadow: 2px 2px 0 #000000; }
+.hero-main { flex: 1; gap: 4px; }
+.hero-top { flex-direction: row; align-items: center; gap: 12px; }
+.hero-name { font-size: 32px; color: #FFFFFF; text-shadow: 2px 2px 0 #000000; }
+.hero-lv { font-size: 26px; color: #FFFFFF; }
+.hero-class { font-size: 22px; color: #A9D2EE; }
+.gauges { flex-direction: row; gap: 14px; }
+.gauge { flex: 1; gap: 2px; }
+.gauge-head { flex-direction: row; justify-content: space-between; }
+.gauge-key { font-size: 22px; color: #F8D060; }
+.gauge-val { font-size: 24px; color: #FFFFFF; }
+bar { height: 8px; border-radius: 0; background: #1D4951; border: 1px solid #000000; overflow: hidden; }
+bar.hp > fill { background: #A5E36B; }
+bar.hp.low > fill { background: #F06858; }
+bar.pp > fill { background: #6FC3FF; }
+
+/* party chips: the pink bar marks the selected member */
+/* roster: one card per party member down the left, the selected one in pink */
+.party-page { flex-direction: row; gap: 8px; }
+.roster { width: 118px; gap: 6px; padding: 8px 6px; }
+.rcard { padding: 6px 8px; gap: 2px; border: 2px solid #1D4951; border-radius: 2px; background: #1D4951; }
+.rcard.on { border-color: #FFFFFF; background: linear-gradient(180deg, #AD86A3 0%, #BD8EAB 50%, #DC9FBC 100%); }
+.rcard.down { opacity: .55; }
+.rcard-top { flex-direction: row; align-items: center; justify-content: space-between; }
+.rcard-name { font-size: 26px; color: #A9D2EE; }
+.rcard-lv { font-size: 20px; color: #A9D2EE; }
+.rcard.on > .rcard-top > .rcard-name, .rcard.on > .rcard-top > .rcard-lv { color: #FFFFFF; }
+.rcard-hp { font-size: 20px; color: #FFFFFF; }
+bar.mini { height: 6px; }
+.detail { flex: 1; gap: 8px; }
+
+/* ---- Body grid ---- */
+.body { flex: 1; flex-direction: row; gap: 8px; }
+.stats { width: 122px; }
+.elems { width: 90px; }
+.right { flex: 1; gap: 8px; }
+
+.stat-row { flex-direction: row; justify-content: space-between; align-items: center; padding: 3px 12px;
+            border-top: 1px solid #3A82B8; border-bottom: 1px solid #1D4951; }
+.stat-row.last { border-bottom-width: 0; }
+.stat-key { font-size: 22px; color: #A9D2EE; }
+.stat-val { font-size: 28px; color: #FFFFFF; }
+.stat-val.gold { color: #F8D060; }
+
+.elem-row { flex-direction: row; align-items: center; gap: 8px; padding: 6px 12px;
+            border-top: 1px solid #3A82B8; border-bottom: 1px solid #1D4951; }
+.elem-dot { width: 14px; height: 14px; border-radius: 7px; background: var(--c, #8A9BB2); border: 2px solid #FFFFFF; }
+.elem-pow { font-size: 26px; color: #FFFFFF; }
+
+.inventory { flex: 1; min-height: 0; }
+.item-row { flex-direction: row; align-items: center; gap: 10px; padding: 3px 12px;
+            border-top: 1px solid #3A82B8; border-bottom: 1px solid #1D4951; }
+.item-row.sel { background: linear-gradient(180deg, #AD86A3 0%, #BD8EAB 50%, #DC9FBC 100%); border-top-color: #DC9FBC; border-bottom-color: #AD86A3; }
+.item-row.broken { opacity: .5; }
+.item-icon { width: 16px; height: 16px; background: #1D4951; border: 2px solid #A5A5A5; border-radius: 2px; }
+.item-icon.eq { border-color: #F8D060; }
+.item-name { flex: 1; font-size: 24px; color: #FFFFFF; }
+.item-qty { font-size: 22px; color: #A9D2EE; }
+.item-eq { font-family: "Silk"; font-weight: 700; font-size: 10px; color: #F8D060; }
+list > empty { font-size: 22px; color: #A9D2EE; padding: 8px 12px; }
+
+.inspector { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 6px; padding: 4px 12px; }
+.cell { gap: 0; }
+.cell-key { font-size: 17px; color: #F8D060; }
+.cell-val { font-size: 21px; color: #FFFFFF; }
+
+/* ---- Djinn ---- */
+.djinn-cols { flex: 1; flex-direction: row; gap: 8px; }
+.djinn-col { flex: 1; padding-bottom: 6px; }
+.djinn-title { font-family: "Silk"; font-weight: 700; font-size: 10px; letter-spacing: 0; color: #FFFFFF;
+               align-self: flex-start; margin: -10px 0 4px 6px; padding: 0 5px;
+               background: linear-gradient(180deg, #5FE0F0 0%, #0000F4 45%, #0000F4 100%);
+               border: 2px solid #FFFFFF; border-radius: 3px; }
+.djinn-row { flex-direction: row; align-items: center; gap: 8px; padding: 3px 12px;
+             border-top: 1px solid #3A82B8; border-bottom: 1px solid #1D4951; }
+.djinn-row.locked { opacity: .45; }
+.djinn-dot { width: 12px; height: 12px; border-radius: 6px; background: var(--c, #8A9BB2); border: 2px solid #FFFFFF; }
+.djinn-name { font-size: 23px; color: #FFFFFF; }
+
+/* ---- Navigation: the pink bar marks the open page ---- */
+.nav { position: absolute; left: 8px; right: 8px; bottom: 8px; height: 44px; flex-direction: row; padding: 3px; gap: 3px; }
+.nav-btn { flex: 1; align-items: center; justify-content: center; border-radius: 2px; }
+.nav-btn.on { background: linear-gradient(180deg, #AD86A3 0%, #BD8EAB 50%, #DC9FBC 100%); }
+.nav-btn:pressed { background: #1D4951; }
+.nav-text { font-size: 26px; color: #A9D2EE; }
+.nav-btn.on > .nav-text { color: #FFFFFF; }

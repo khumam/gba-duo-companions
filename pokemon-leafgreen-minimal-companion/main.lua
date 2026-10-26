@@ -81,13 +81,12 @@ local byte = function(v, n) return (v >> (n * 8)) & 0xFF end
 local TYPES = { [0] = "normal", "fighting", "flying", "poison", "ground", "rock", "bug", "ghost", "steel",
   "unknown", "fire", "water", "grass", "electric", "psychic", "ice", "dragon", "dark" }
 
--- Card colour per primary type: soft tints, all read with the same dark ink.
-local TONE = { fire = "#F6CDB0", water = "#BFD8F2", grass = "#C6E5BF", bug = "#D3E6B0",
-  electric = "#F5E5A6", psychic = "#E3CBEA", poison = "#D9C6E8", ghost = "#CFC8E6", dragon = "#C9CDEF",
-  fighting = "#EFC0BC" }
-local DEFAULT_TONE = "#E6E3E1"
-local FAINTED_TONE = "#D4D1CF"
-local INK = "#2E2A2A"
+-- Card colour as in the game's party screen: the light-blue slot, red once fainted.
+-- (The type tints of the earlier look are gone; the type chip still shows the type.)
+local TONE = {}
+local DEFAULT_TONE = "#91D4EC"
+local FAINTED_TONE = "#F2A8A0"
+local INK = "#FFFFFF"
 
 local NATURES = { [0] = "Hardy", "Lonely", "Brave", "Adamant", "Naughty", "Bold", "Docile", "Relaxed",
   "Impish", "Lax", "Timid", "Hasty", "Serious", "Jolly", "Naive", "Modest", "Mild", "Quiet", "Bashful",
@@ -96,8 +95,8 @@ local NATURES = { [0] = "Hardy", "Lonely", "Brave", "Adamant", "Naughty", "Bold"
 local NATURE_STATS = { [0] = "ATK", "DEF", "SPE", "SP.A", "SP.D" }
 
 local STATUS = { -- name, chip colour (the text is always INK)
-  SLP = "#D9D6D3", PSN = "#D9C6E8", BRN = "#F3BDB6", FRZ = "#BFE3F5", PAR = "#F5E5A6", TOX = "#D9C6E8",
-  FNT = "#CFCBC8",
+  SLP = "#8C9AAE", PSN = "#A878D0", BRN = "#E8683C", FRZ = "#58B8E0", PAR = "#D8B020", TOX = "#A878D0",
+  FNT = "#D05A4E",
 }
 local function statusTag(status)
   if status & 0x7 ~= 0 then return "SLP" end
@@ -177,7 +176,7 @@ local function dress(mon, t1, statusBits)
   mon.fainted = mon.hp == 0
   local tag = mon.fainted and "FNT" or statusTag(statusBits)
   mon.status, mon.hasStatus = tag, tag ~= ""
-  mon.statusColor = STATUS[tag] or "#D9D6D3"
+  mon.statusColor = STATUS[tag] or "#8C9AAE"
   mon.statusInk = INK
   mon.tone = mon.fainted and FAINTED_TONE or (TONE[key] or DEFAULT_TONE)
   mon.ink = INK

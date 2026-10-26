@@ -118,8 +118,8 @@
 			"recommendedAppVersion": "0.1.7",
 			"canModifyGame": false,
 			"screenshots": [
-				{ "src": "pokemon-firered-minimal-companion/screenshoots/firered-minimal.png", "alt": "FireRed minimal map page in soft red" },
-				{ "src": "pokemon-firered-minimal-companion/screenshoots/firered-minimal-2.png", "alt": "FireRed minimal party page in soft red" }
+				{ "src": "pokemon-firered-minimal-companion/screenshoots/firered-minimal.png", "alt": "FireRed minimal map page in the Bag window style" },
+				{ "src": "pokemon-firered-minimal-companion/screenshoots/firered-minimal-2.png", "alt": "FireRed minimal party page in the Bag window style" }
 			]
 		},
 		{
@@ -142,8 +142,8 @@
 			"recommendedAppVersion": "0.1.7",
 			"canModifyGame": false,
 			"screenshots": [
-				{ "src": "pokemon-leafgreen-minimal-companion/screenshoots/leafgreen-minimal.png", "alt": "LeafGreen minimal map page in soft green" },
-				{ "src": "pokemon-leafgreen-minimal-companion/screenshoots/leafgreen-minimal-2.png", "alt": "LeafGreen minimal party page in soft green" }
+				{ "src": "pokemon-leafgreen-minimal-companion/screenshoots/leafgreen-minimal.png", "alt": "LeafGreen minimal map page in the Bag window style" },
+				{ "src": "pokemon-leafgreen-minimal-companion/screenshoots/leafgreen-minimal-2.png", "alt": "LeafGreen minimal party page in the Bag window style" }
 			]
 		},
 		{

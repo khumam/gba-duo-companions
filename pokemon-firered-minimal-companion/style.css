@@ -1,36 +1,41 @@
 /*
- * FireRed minimal (soft red): one hue, flat fills and a single solid border.
- * No shadows, stripes or gradients; Barlow Semi Condensed for every word and number.
- * Only the colour tokens below differ from the other minimal pack; a type tint
- * on the Pokemon cards comes from main.lua.
+ * FireRed minimal, in the game's own window style (sampled from the Bag screen):
+ * striped teal ground, a tan window frame with a grey outline, cream list panels, an
+ * orange title bar and a blue footer bar for the dock. Pixel font (Jersey 10) in place
+ * of Barlow; sizes were scaled up ~1.3x to suit it.
  *
- * Sizes follow the vertical pack: the screen is ~538 x 468dp, borders are 2px
- * (1px for list rows), radius 8px (5-6px for small boxes), dock 96px wide.
+ * Sizes follow the vertical pack: the screen is ~538 x 468dp, borders are 2-3px,
+ * radius 3px, dock 96px wide.
  */
 
 :root {
-  --bg: #FBF3F1;
-  --surface: #FFFFFF;
-  --surface-2: #F7E9E6;
-  --line: #D9A29C;
-  --line-strong: #C9625A;
-  --line-soft: #EFD3CF;
-  --accent: #F2B1AB;
-  --accent-soft: #FADAD6;
-  --accent-strong: #D9726B;
-  --ink: #3A2624;
-  --ink-2: #7C5F5B;
-  --ok: #CDE8CF;
-  --bad: #F5C2BD;
-  --info: #CFE0F3;
-  --ok-bar: #6FB584;
-  --warn-bar: #E0B050;
-  --bad-bar: #D9645C;
-  --info-bar: #6C9BD1;
+  --bg: #64B2A5;
+  --surface: #FFFFD3;
+  --surface-2: #F3EDBD;
+  --line: #D0B662;
+  --line-strong: #6B6B6B;
+  --line-soft: #EDE7B3;
+  --accent: #F0CF80;
+  --accent-soft: #F6E7A5;
+  --accent-strong: #D28F56;
+  --ink: #404040;
+  --ink-2: #6B6B6B;
+  --ok: #CBEBB5;
+  --bad: #F5BDB0;
+  --info: #C3DDF3;
+  --ok-bar: #99FCB4;
+  --warn-bar: #F8E070;
+  --bad-bar: #F8A090;
+  --info-bar: #40A8F8;
+  --frame: #F0CF80;
+  --outline: #6B6B6B;
+  --foot: #3579C0;
+  --foot-hi: #4FAAD9;
+  --foot-lo: #215170;
 }
 
-@font-face { font-family: "Barlow"; src: url("assets/fonts/BarlowSemiCondensed-Medium.ttf"); }
-@font-face { font-family: "BarlowBold"; src: url("assets/fonts/BarlowSemiCondensed-Bold.ttf"); }
+@font-face { font-family: "Barlow"; src: url("assets/fonts/Jersey10-Regular.ttf"); }
+@font-face { font-family: "BarlowBold"; src: url("assets/fonts/Jersey10-Regular.ttf"); }
 
 image { image-rendering: pixelated; }
 text { white-space: nowrap; }
@@ -42,8 +47,11 @@ text { white-space: nowrap; }
   height: 100%;
   padding: 6px;
   background-color: var(--bg);
+  background-image: url("assets/ui/ground.png");
+  background-repeat: repeat;
+  background-size: 5.2px 5.2px;
   font-family: "Barlow";
-  font-size: 17px;
+  font-size: 22px;
   color: var(--ink);
 }
 
@@ -52,8 +60,8 @@ text { white-space: nowrap; }
 /* Numbers: the bold face, so values stand out from labels. */
 .num {
   font-family: "BarlowBold";
-  font-size: 14px;
-  line-height: 16px;
+  font-size: 18px;
+  line-height: 19px;
   white-space: nowrap;
 }
 
@@ -66,10 +74,10 @@ text { white-space: nowrap; }
 .header {
   flex-direction: row;
   flex-shrink: 0;
-  height: 40px;
-  background-color: var(--accent-soft);
-  border: 2px solid var(--line);
-  border-radius: 8px;
+  height: 44px;
+  background-color: var(--frame);
+  border: 2px solid var(--outline);
+  border-radius: 3px;
   overflow: hidden;
 }
 
@@ -87,13 +95,13 @@ text { white-space: nowrap; }
   gap: 6px;
   padding: 2px 10px;
   background-color: var(--surface);
-  border: 2px solid var(--line);
-  border-radius: 6px;
+  border: 3px solid var(--line);
+  border-radius: 2px;
 }
 .loc-text {
   font-family: "BarlowBold";
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 21px;
+  line-height: 24px;
   letter-spacing: 1px;
   text-transform: uppercase;
   color: var(--ink);
@@ -114,7 +122,7 @@ text { white-space: nowrap; }
   column-gap: 10px;
 }
 /* Keep the Town Map at its native preview size beside the sidebar. */
-.map-cols { grid-template-columns: 246px 1fr; }
+.map-single { display: stack; place-items: stretch; }
 .trainer-cols { grid-template-columns: 1fr 1fr; }
 
 /* Navigation dock: a right-hand sidebar, one plain button per tab */
@@ -130,13 +138,14 @@ text { white-space: nowrap; }
   min-height: 0;
   padding: 0;
   gap: 0;
-  background-color: var(--surface);
-  border: 2px solid var(--line);
-  border-radius: 8px;
+  background-color: var(--foot);
+  border: 2px solid var(--foot-lo);
+  border-top-color: var(--foot-hi);
+  border-radius: 3px;
   align-items: stretch;
 }
-.dock-btn.on { background-color: var(--accent); border-color: var(--line-strong); }
-.dock-btn:pressed { background-color: var(--accent-soft); }
+.dock-btn.on { background-color: var(--frame); border-color: var(--outline); }
+.dock-btn:pressed { background-color: var(--foot-hi); }
 
 .dock-inner {
   flex: 1;
@@ -147,32 +156,41 @@ text { white-space: nowrap; }
 
 .dock-label {
   font-family: "BarlowBold";
-  font-size: 17px;
-  line-height: 20px;
+  font-size: 22px;
+  line-height: 24px;
   letter-spacing: 1.5px;
-  color: var(--ink-2);
+  color: #FFFFFF;
+  text-shadow: 1px 1px 0 var(--foot-lo);
   white-space: nowrap;
 }
-.dock-btn.on .dock-label { color: var(--ink); }
+.dock-btn.on .dock-label { color: var(--ink); text-shadow: 1px 1px 0 var(--line-soft); }
 
 /* ---- panels --------------------------------------------------------------------- */
 
-.panel { min-height: 0; min-width: 0; }
+.panel {
+  min-height: 0;
+  min-width: 0;
+  padding: 0 5px 5px 5px;
+  background-color: var(--frame);
+  border: 2px solid var(--outline);
+  border-radius: 3px;
+}
 
 .panel-head {
   flex-direction: row;
   align-items: flex-end;
   flex-shrink: 0;
   gap: 6px;
-  padding: 0 4px 3px 4px;
+  padding: 3px 2px 3px 2px;
 }
-.panel-tab { padding: 0; }
+.panel-tab { padding: 0 10px; border-bottom: 4px solid var(--accent-strong); border-radius: 3px; }
 .panel-title {
   font-family: "BarlowBold";
-  font-size: 16px;
-  line-height: 20px;
-  letter-spacing: 2px;
-  color: var(--ink-2);
+  font-size: 21px;
+  line-height: 24px;
+  letter-spacing: 1px;
+  color: #FFFFFF;
+  text-shadow: 1px 1px 0 var(--outline);
   text-transform: uppercase;
 }
 
@@ -182,21 +200,21 @@ text { white-space: nowrap; }
   padding: 6px;
   gap: 6px;
   background-color: var(--surface);
-  border: 2px solid var(--line);
-  border-radius: 8px;
+  border: 3px solid var(--line);
+  border-radius: 2px;
 }
 
 .chip {
   margin-bottom: 3px;
   padding: 1px 9px;
   border: 2px solid var(--line);
-  border-radius: 5px;
+  border-radius: 2px;
   background-color: var(--surface);
 }
 .chip-text {
   font-family: "BarlowBold";
-  font-size: 14px;
-  line-height: 16px;
+  font-size: 18px;
+  line-height: 19px;
   color: var(--ink);
 }
 .chip-red { background-color: var(--bad); }
@@ -208,10 +226,13 @@ text { white-space: nowrap; }
 
 .card {
   position: relative;
-  border: 2px solid var(--line);
-  border-radius: 8px;
+  border: 2px solid #4A4A61;
+  border-top-color: #6ECBFA;
+  border-bottom: 3px solid #296190;
+  border-radius: 2px;
   color: var(--ink);
 }
+.card text { color: #FFFFFF; text-shadow: 1px 1px 0 #3E5A78; }
 /* Lead = selected focus: an inner ring in the accent colour. */
 .ring {
   position: absolute;
@@ -219,11 +240,11 @@ text { white-space: nowrap; }
   top: 0;
   right: 0;
   bottom: 0;
-  border: 2px solid var(--line-strong);
-  border-radius: 6px;
+  border: 3px solid #EE7B44;
+  border-radius: 2px;
 }
 /* Fainted = disabled: pale and crossed out. */
-.card.fainted { opacity: 0.6; background-color: var(--surface-2); }
+.card.fainted { opacity: 0.9; }
 .strike {
   position: absolute;
   left: 8px;
@@ -250,68 +271,55 @@ text { white-space: nowrap; }
   height: 64px;
   background-color: var(--surface);
   border: 2px solid var(--line);
-  border-radius: 6px;
+  border-radius: 3px;
 }
 .sprite-dex .sprite { width: 64px; height: 64px; }
 
 .name-row { flex-direction: row; align-items: center; gap: 6px; }
 .mon-name {
   font-family: "BarlowBold";
-  font-size: 17px;
-  line-height: 19px;
+  font-size: 22px;
+  line-height: 23px;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.lv { font-size: 12px; line-height: 14px; }
+.lv { font-size: 16px; line-height: 17px; }
 
 .status {
   flex-shrink: 0;
   padding: 0 5px;
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-radius: 2px;
 }
 .status-text {
   font-family: "BarlowBold";
-  font-size: 12px;
-  line-height: 14px;
+  font-size: 16px;
+  line-height: 17px;
 }
 
 .hp-row { flex-direction: row; align-items: center; gap: 5px; }
-.hp-tag { padding: 0; }
+.hp-tag { padding: 0 3px; background-color: #F4B859; border: 1px solid #525252; border-radius: 3px; }
 .hp-tag-text {
   font-family: "BarlowBold";
-  font-size: 12px;
-  line-height: 13px;
-  color: var(--ink-2);
+  font-size: 14px;
+  line-height: 14px;
+  color: #FFFFFF;
+  text-shadow: 1px 1px 0 #525252;
 }
 .hp {
   flex: 1;
-  height: 10px;
-  background-color: var(--surface);
-  border: 2px solid var(--line);
-  border-radius: 5px;
+  height: 12px;
+  padding: 2px;
+  background-color: #FFFFFF;
+  border: 2px solid #525252;
+  border-radius: 4px;
   accent-color: var(--ok-bar);
   transition: width 400ms ease-out;
 }
+.hp > fill { margin: 2px; border-radius: 2px; }
 .hp.mid { accent-color: var(--warn-bar); }
 .hp.low { accent-color: var(--bad-bar); }
-.hp-num { font-size: 12px; line-height: 14px; }
-
-/* quick party (map page) */
-.quick-panel .panel-body { padding: 6px 9px 6px 6px; }
-.qlist { flex: 1; min-height: 0; gap: 5px; overflow: auto; }
-.qcard {
-  flex-shrink: 0;
-  height: 42px;
-  flex-direction: row;
-  align-items: center;
-  gap: 6px;
-  padding: 2px 6px 2px 3px;
-}
-.qcard-body { flex: 1; min-width: 0; gap: 2px; }
-.qcard .mon-name { font-size: 16px; line-height: 16px; }
-/* The name needs the room: the status shows on the Party page. */
-.qcard .status { display: none; }
+.hp-num { font-size: 16px; line-height: 17px; }
 
 /* full party */
 .party-panel { flex: 1; }
@@ -331,86 +339,90 @@ text { white-space: nowrap; }
 .pcard { flex-direction: row; align-items: center; gap: 4px; padding: 5px 8px 5px 2px; }
 .pcard-body { flex: 1; min-width: 0; gap: 2px; }
 .hp-foot { flex-direction: row; }
-.hp-big { font-size: 13px; line-height: 15px; }
+.hp-big { font-size: 17px; line-height: 18px; }
 
 .type-row { flex-direction: row; gap: 4px; }
 .type-img { width: 48px; height: 18px; image-rendering: auto; }
 
 /* ---- radar map ------------------------------------------------------------------- */
 
-.radar-panel .panel-body { padding: 6px; align-items: center; justify-content: flex-start; gap: 6px; }
-/* The radar is as big as the Town Map picture, so the marker's % positions land on it. */
+/* Same 8px padding as the Party panel. The whole panel scrolls (overflow: auto) so the wild
+   list below the map gets all the room it needs. */
+.radar-panel .panel-body { padding: 8px; align-items: stretch; justify-content: flex-start; gap: 8px; overflow: auto; }
+/* The map fills the panel's width (401.5dp inside the body, less the 8px padding and the box's
+   2px border) at the Town Map's 168 x 136 shape: 381.5 x 308.8dp, about 5.2 device px per game
+   pixel. The markers' % positions are relative to this box. */
 .radar {
+  flex-shrink: 0;
   position: relative;
   overflow: hidden;
   background-color: #BBD3F5;
   border: 2px solid var(--line);
-  border-radius: 6px;
+  border-radius: 3px;
 }
-/* The game's Town Map (168 x 136) at 3 device px per pixel (1 device px = 0.4336dp). */
 .radar-img {
-  width: 218.53px;
-  height: 176.91px;
+  width: 381.5px;
+  height: 308.8px;
   object-fit: fill;
 }
 .pins { position: absolute; left: 0; top: 0; right: 0; bottom: 0; }
-.pin { position: absolute; width: 12px; height: 12px; }
+.pin { position: absolute; width: 21px; height: 21px; }
 
 /* Wild Pokemon: the method button (tap for the next one) stays put, the list beside it
    scrolls; one readable row per species. */
 .wild {
+  flex: none;
+  flex-shrink: 0;
   align-self: stretch;
-  flex: 1;
-  min-height: 0;
-  flex-direction: row;
+  flex-direction: column;
   align-items: stretch;
   gap: 6px;
 }
 .wild-method {
-  width: 76px;
-  flex-shrink: 0;
-  flex-direction: column;
-  padding: 4px;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 3px;
+  gap: 10px;
+  height: 34px;
+  padding: 0 8px;
   background-color: var(--accent-soft);
   border: 2px solid var(--line);
-  border-radius: 6px;
+  border-radius: 3px;
 }
 .wild-method:pressed { background-color: var(--accent); }
-.wild-label { font-family: "Barlow"; font-size: 12px; line-height: 13px; color: var(--ink-2); text-align: center; }
-.wild-method-text { align-self: stretch; font-family: "BarlowBold"; font-size: 17px; line-height: 18px; color: var(--ink); text-align: center; white-space: normal; }
-.wild-mons { flex: 1; min-height: 0; gap: 4px; overflow: auto; }
+.wild-label { font-family: "Barlow"; font-size: 16px; line-height: 18px; color: var(--ink-2); }
+.wild-method-text { font-family: "BarlowBold"; font-size: 21px; line-height: 22px; color: var(--ink); white-space: nowrap; }
+.wild-mons { flex: none; gap: 4px; }
 .wild-mon {
   flex-direction: row;
   flex-shrink: 0;
   align-items: center;
-  gap: 6px;
-  padding: 2px 6px 2px 2px;
+  gap: 8px;
+  height: 44px;
+  padding: 0 8px 0 4px;
   background-color: var(--surface-2);
   border: 1px solid var(--line);
-  border-radius: 5px;
+  border-radius: 2px;
 }
-.wild-sprite { width: 34px; height: 34px; flex-shrink: 0; }
+.wild-sprite { width: 38px; height: 38px; flex-shrink: 0; }
 .wild-info { flex: 1; min-width: 0; gap: 1px; }
-.wild-name { font-family: "BarlowBold"; font-size: 15px; line-height: 17px; color: var(--ink); white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
-.wild-level { font-family: "Barlow"; font-size: 13px; line-height: 14px; color: var(--ink-2); }
-.wild-chance { flex-shrink: 0; padding: 1px 6px; background-color: var(--surface); border: 1px solid var(--line); border-radius: 4px; }
-.wild-chance-text { font-family: "BarlowBold"; font-size: 13px; line-height: 15px; color: var(--ink); }
-.wild-none { justify-content: center; align-items: center; }
-.wild-none-text { font-family: "Barlow"; font-size: 16px; line-height: 20px; color: var(--ink-2); }
+.wild-name { font-family: "BarlowBold"; font-size: 20px; line-height: 20px; color: var(--ink); white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
+.wild-level { font-family: "Barlow"; font-size: 16px; line-height: 17px; color: var(--ink-2); }
+.wild-chance { flex-shrink: 0; padding: 1px 6px; background-color: var(--surface); border: 1px solid var(--line); border-radius: 2px; }
+.wild-chance-text { font-family: "BarlowBold"; font-size: 17px; line-height: 18px; color: var(--ink); }
+.wild-none { height: 40px; justify-content: center; align-items: center; }
+.wild-none-text { font-family: "Barlow"; font-size: 21px; line-height: 24px; color: var(--ink-2); }
 
 .cross-anchor {
   position: absolute;
   display: stack;
   place-items: center;
-  width: 50px;
-  height: 50px;
-  transform: translate(-25px, -25px);
+  width: 87px;
+  height: 87px;
+  transform: translate(-43.5px, -43.5px);
 }
-.crosshair { width: 50px; height: 50px; }
-.you { width: 16px; height: 16px; }
+.crosshair { width: 87px; height: 87px; }
+.you { width: 28px; height: 28px; }
 
 /* ---- bag --------------------------------------------------------------------------- */
 
@@ -421,10 +433,10 @@ text { white-space: nowrap; }
   padding: 3px 10px;
   background-color: var(--surface);
   border: 2px solid var(--line);
-  border-radius: 6px;
+  border-radius: 3px;
   font-family: "BarlowBold";
-  font-size: 15px;
-  line-height: 19px;
+  font-size: 20px;
+  line-height: 23px;
   color: var(--ink-2);
 }
 .pockets tab:active {
@@ -447,13 +459,13 @@ text { white-space: nowrap; }
   padding: 5px 9px;
   background-color: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 6px;
+  border-radius: 3px;
 }
 .item-icon { width: 30px; height: 30px; margin: -4px 0; }
 .item-name {
   font-family: "Barlow";
-  font-size: 17px;
-  line-height: 20px;
+  font-size: 22px;
+  line-height: 24px;
   color: var(--ink);
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -461,7 +473,7 @@ text { white-space: nowrap; }
 .item-count { color: var(--ink); text-align: right; }
 .item-grid empty {
   font-family: "Barlow";
-  font-size: 14px;
+  font-size: 18px;
   color: var(--ink-2);
   padding: 9px;
 }
@@ -474,28 +486,28 @@ text { white-space: nowrap; }
   justify-content: space-between;
   padding: 8px 10px;
   border: 2px solid var(--line);
-  border-radius: 8px;
+  border-radius: 3px;
 }
 .dex-stat.seen { background-color: var(--info); color: var(--ink); }
 .dex-stat.caught { background-color: var(--accent-soft); color: var(--ink); }
 .dex-stat-head { flex-direction: row; align-items: center; }
 .dex-label {
   font-family: "BarlowBold";
-  font-size: 16px;
-  line-height: 19px;
+  font-size: 21px;
+  line-height: 23px;
   letter-spacing: 1.5px;
 }
-.dex-of { font-size: 12px; }
+.dex-of { font-size: 16px; }
 .dex-num {
-  font-size: 26px;
-  line-height: 30px;
+  font-size: 34px;
+  line-height: 36px;
 }
 .dex-stat.caught .dex-num { color: var(--ink); }
 .dex-bar {
   height: 12px;
   background-color: var(--surface);
   border: 2px solid var(--line);
-  border-radius: 6px;
+  border-radius: 3px;
   accent-color: var(--info-bar);
   transition: width 400ms ease-out;
 }
@@ -508,13 +520,13 @@ text { white-space: nowrap; }
   gap: 6px;
   background-color: var(--surface-2);
   border: 2px solid var(--line);
-  border-radius: 8px;
+  border-radius: 3px;
 }
-.complete-num { font-size: 34px; line-height: 40px; color: var(--ink); }
+.complete-num { font-size: 44px; line-height: 48px; color: var(--ink); }
 .complete-sub {
   font-family: "Barlow";
-  font-size: 14px;
-  line-height: 16px;
+  font-size: 18px;
+  line-height: 19px;
   color: var(--ink-2);
 }
 .last {
@@ -522,22 +534,22 @@ text { white-space: nowrap; }
   padding: 8px 10px;
   background-color: var(--surface);
   border: 2px solid var(--line);
-  border-radius: 8px;
+  border-radius: 3px;
 }
 .last-label {
   font-family: "Barlow";
-  font-size: 13px;
-  line-height: 16px;
+  font-size: 17px;
+  line-height: 19px;
   letter-spacing: 1px;
   color: var(--ink-2);
 }
 .last-row { flex-direction: row; align-items: center; gap: 9px; }
 .last-id { gap: 4px; }
-.last-no { color: var(--ink-2); font-size: 12px; }
+.last-no { color: var(--ink-2); font-size: 16px; }
 .last-name {
   font-family: "BarlowBold";
-  font-size: 22px;
-  line-height: 25px;
+  font-size: 24px;
+  line-height: 27px;
   color: var(--ink);
 }
 
@@ -549,7 +561,7 @@ text { white-space: nowrap; }
   flex: 1;
   background-color: var(--surface);
   border: 2px solid var(--line);
-  border-radius: 8px;
+  border-radius: 3px;
   overflow: hidden;
 }
 .id-band {
@@ -561,8 +573,8 @@ text { white-space: nowrap; }
 }
 .id-band-text {
   font-family: "BarlowBold";
-  font-size: 17px;
-  line-height: 20px;
+  font-size: 22px;
+  line-height: 24px;
   letter-spacing: 1.5px;
   color: var(--ink);
 }
@@ -579,11 +591,11 @@ text { white-space: nowrap; }
 .id-row:last-child { border-bottom: 0 solid transparent; }
 .id-key {
   font-family: "Barlow";
-  font-size: 15px;
-  line-height: 18px;
+  font-size: 20px;
+  line-height: 22px;
   color: var(--ink-2);
 }
-.id-val { color: var(--ink); font-size: 13px; line-height: 15px; }
+.id-val { color: var(--ink); font-size: 17px; line-height: 18px; }
 
 .badge-grid {
   flex: 1;
@@ -599,7 +611,7 @@ text { white-space: nowrap; }
   gap: 5px;
   padding: 2px 5px;
   border: 2px solid var(--line);
-  border-radius: 6px;
+  border-radius: 3px;
 }
 .badge.earned { background-color: var(--surface); }
 .badge.locked { background-color: var(--surface-2); opacity: 0.55; }
@@ -607,8 +619,8 @@ text { white-space: nowrap; }
 .badge-lock { width: 18px; height: 18px; margin: 0 3px 0 2px; }
 .badge-name {
   font-family: "BarlowBold";
-  font-size: 12px;
-  line-height: 14px;
+  font-size: 13px;
+  line-height: 15px;
   color: var(--ink);
   white-space: nowrap;
 }
@@ -632,24 +644,24 @@ text { white-space: nowrap; }
   padding: 3px 4px 3px 9px;
   background-color: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 5px;
+  border-radius: 2px;
 }
 .stat-name {
   font-family: "BarlowBold";
-  font-size: 15px;
-  line-height: 18px;
+  font-size: 20px;
+  line-height: 22px;
   color: var(--ink);
 }
-.stat-val { color: var(--ink); font-size: 13px; line-height: 15px; }
+.stat-val { color: var(--ink); font-size: 17px; line-height: 18px; }
 .stage {
   width: 36px;
   align-items: center;
   padding: 1px 0;
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-radius: 2px;
   background-color: var(--surface-2);
 }
-.stage-text { font-size: 11px; line-height: 13px; color: var(--ink); }
+.stage-text { font-size: 14px; line-height: 16px; color: var(--ink); }
 .stat-row.up .stage { background-color: var(--ok); }
 .stat-row.down .stage { background-color: var(--bad); }
 
@@ -658,21 +670,21 @@ text { white-space: nowrap; }
   align-items: center;
   gap: 9px;
   padding: 18px 27px;
-  background-color: var(--surface);
-  border: 2px solid var(--line);
-  border-radius: 8px;
+  background-color: #FFFFFF;
+  border: 4px solid #66737A;
+  border-radius: 3px;
 }
 .no-battle-text {
   font-family: "BarlowBold";
-  font-size: 22px;
-  line-height: 26px;
+  font-size: 29px;
+  line-height: 31px;
   letter-spacing: 2px;
   color: var(--ink);
 }
 .no-battle-sub {
   font-family: "Barlow";
-  font-size: 14px;
-  line-height: 16px;
+  font-size: 18px;
+  line-height: 19px;
   color: var(--ink-2);
 }
 
@@ -684,22 +696,22 @@ text { white-space: nowrap; }
   align-items: center;
   gap: 9px;
   padding: 18px 0;
-  background-color: var(--surface);
-  border: 2px solid var(--line);
-  border-radius: 8px;
+  background-color: #FFFFFF;
+  border: 4px solid #66737A;
+  border-radius: 3px;
   overflow: hidden;
 }
 .boot-title {
   font-family: "BarlowBold";
-  font-size: 30px;
-  line-height: 34px;
+  font-size: 39px;
+  line-height: 41px;
   letter-spacing: 4px;
   color: var(--ink);
 }
 .boot-sub {
   font-family: "Barlow";
-  font-size: 18px;
-  line-height: 21px;
+  font-size: 23px;
+  line-height: 25px;
   letter-spacing: 2px;
   color: var(--ink-2);
 }
@@ -707,12 +719,12 @@ text { white-space: nowrap; }
   padding: 3px 12px;
   background-color: var(--accent-soft);
   border: 2px solid var(--line);
-  border-radius: 6px;
+  border-radius: 3px;
 }
 .boot-pill-text {
   font-family: "BarlowBold";
-  font-size: 12px;
-  line-height: 15px;
+  font-size: 16px;
+  line-height: 18px;
   letter-spacing: 1px;
   color: var(--ink);
 }
@@ -722,7 +734,7 @@ text { white-space: nowrap; }
 .back-btn {
   padding: 2px 10px;
   gap: 0;
-  border-radius: 6px;
+  border-radius: 3px;
   background-color: var(--surface);
 }
 .back-btn:pressed { background-color: var(--accent-soft); }
@@ -733,23 +745,23 @@ text { white-space: nowrap; }
 .sum-card { flex-direction: row; align-items: center; gap: 6px; padding: 4px 9px 4px 2px; }
 .sprite-xl { width: 76px; height: 72px; }
 .sprite-xl .sprite { width: 80px; height: 80px; }
-.dex-no { font-size: 11px; line-height: 13px; }
-.sum-name { font-size: 22px; line-height: 24px; text-overflow: ellipsis; }
+.dex-no { font-size: 14px; line-height: 16px; }
+.sum-name { font-size: 29px; line-height: 29px; text-overflow: ellipsis; }
 
 .meter { gap: 4px; }
 .meter-key {
   font-family: "BarlowBold";
-  font-size: 14px;
-  line-height: 16px;
+  font-size: 18px;
+  line-height: 19px;
   color: var(--ink-2);
 }
-.meter-val { font-size: 11px; line-height: 13px; color: var(--ink-2); }
+.meter-val { font-size: 14px; line-height: 16px; color: var(--ink-2); }
 .meter .hp-big { color: var(--ink); }
 .exp {
   height: 10px;
   background-color: var(--surface);
   border: 2px solid var(--line);
-  border-radius: 5px;
+  border-radius: 2px;
   accent-color: var(--info-bar);
   transition: width 400ms ease-out;
 }
@@ -760,19 +772,19 @@ text { white-space: nowrap; }
   padding: 2px 9px;
   background-color: var(--surface);
   border: 2px solid var(--line);
-  border-radius: 8px;
+  border-radius: 3px;
 }
 .info-row { flex-direction: row; align-items: center; gap: 6px; }
 .info-key {
   font-family: "Barlow";
-  font-size: 14px;
-  line-height: 17px;
+  font-size: 18px;
+  line-height: 20px;
   color: var(--ink-2);
 }
 .info-val {
   font-family: "BarlowBold";
-  font-size: 17px;
-  line-height: 20px;
+  font-size: 22px;
+  line-height: 24px;
   color: var(--ink);
 }
 .info-icon { width: 24px; height: 24px; }
@@ -785,13 +797,13 @@ text { white-space: nowrap; }
   padding: 0 8px;
   background-color: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 5px;
+  border-radius: 2px;
 }
 .dstat-name {
   width: 40px;
   font-family: "BarlowBold";
-  font-size: 15px;
-  line-height: 18px;
+  font-size: 20px;
+  line-height: 22px;
   color: var(--ink);
 }
 .dstat.up { background-color: var(--ok); }
@@ -801,16 +813,16 @@ text { white-space: nowrap; }
   height: 8px;
   background-color: var(--surface);
   border: 2px solid var(--line);
-  border-radius: 4px;
+  border-radius: 2px;
   accent-color: var(--info-bar);
   transition: width 400ms ease-out;
 }
-.dstat-val { width: 66px; text-align: right; font-size: 12px; line-height: 14px; color: var(--ink); }
+.dstat-val { width: 66px; text-align: right; font-size: 16px; line-height: 17px; color: var(--ink); }
 
 .sub-label {
   font-family: "BarlowBold";
-  font-size: 15px;
-  line-height: 18px;
+  font-size: 20px;
+  line-height: 22px;
   letter-spacing: 2px;
   color: var(--ink-2);
 }
@@ -828,16 +840,16 @@ text { white-space: nowrap; }
   padding: 2px 6px;
   background-color: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 5px;
+  border-radius: 2px;
 }
 .move .type-img { width: 40px; height: 15px; }
 .move-top { flex-direction: row; align-items: center; }
 .move-name {
   font-family: "BarlowBold";
-  font-size: 15px;
-  line-height: 17px;
+  font-size: 20px;
+  line-height: 20px;
   color: var(--ink);
   text-overflow: ellipsis;
 }
-.move-pp { font-size: 10px; line-height: 12px; color: var(--ink-2); }
+.move-pp { font-size: 13px; line-height: 14px; color: var(--ink-2); }
 .meter .hp-num { color: var(--ink); }
