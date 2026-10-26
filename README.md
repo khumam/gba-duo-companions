@@ -59,6 +59,16 @@ The same pages and data as the vertical-navigation packs, in a calm one-colour s
 red for FireRed (`BPRE`) and soft green for LeafGreen (`BPGE`), flat fills, a single solid
 border, no shadows or stripes, and a text-only dock on the right.
 
+### Golden Sun (early preview, v0.1.0) — `golden-sun-companion`
+
+For Golden Sun (`AGSE`, `AGSP`, `AGSJ`, `AGSI`), in the game's own blue window style.
+Unfinished: item names, Djinn ownership and Psynergy are not mapped yet.
+
+- **PARTY** - a roster down the left (name, level, HP) and, for the selected member, their
+  HP and PP, stats, Exp, coins and items.
+- **DJINN** - every Djinn by element (collection tracking comes later).
+- **PSYNERGY** - placeholder.
+
 ### Harvest Moon: Friends of Mineral Town — `harvest-moon-fomt-companion`
 
 For Harvest Moon: Friends of Mineral Town (EU `A4NP`, US `BHFE`). Checked on the EU cart.
