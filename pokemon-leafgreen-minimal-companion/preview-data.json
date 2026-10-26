@@ -1,0 +1,1639 @@
+{
+  "ready": true,
+  "waiting": false,
+  "location": "ROUTE 1",
+  "time": "06:42",
+  "money": "12,480",
+  "map": {
+    "x": 46,
+    "y": 42,
+    "town": "PALLET TOWN",
+    "pins": [
+      {
+        "x": 20,
+        "y": 22
+      },
+      {
+        "x": 74,
+        "y": 36
+      },
+      {
+        "x": 30,
+        "y": 52
+      }
+    ],
+    "image": "asset:ui/radar.png",
+    "region": "KANTO",
+    "onMap": true,
+    "wild": [
+      {
+        "sprite": "asset:pokemon/16.png",
+        "name": "PIDGEY",
+        "level": "Lv2-5",
+        "chance": "50%"
+      },
+      {
+        "sprite": "asset:pokemon/19.png",
+        "name": "RATTATA",
+        "level": "Lv2-5",
+        "chance": "50%"
+      }
+    ],
+    "wildMethod": "GRASS",
+    "hasWild": true,
+    "noWild": false
+  },
+  "partyCount": "12",
+  "party": [
+    {
+      "name": "Charmeleon",
+      "level": 24,
+      "dex": "005",
+      "sprite": "asset:pokemon/5.png",
+      "types": [
+        {
+          "name": "FIRE",
+          "src": "asset:types/fire.png"
+        }
+      ],
+      "hp": 61,
+      "maxHp": 65,
+      "hpPct": 0.938,
+      "hpHigh": true,
+      "hpMid": false,
+      "hpLow": false,
+      "fainted": false,
+      "lead": true,
+      "status": "",
+      "hasStatus": false,
+      "statusColor": "#D9D6D3",
+      "statusInk": "#2E2A2A",
+      "tone": "#F6CDB0",
+      "ink": "#2E2A2A",
+      "nature": "Adamant",
+      "ability": "Blaze",
+      "hasItem": false,
+      "item": "NONE",
+      "itemIcon": "",
+      "toNext": "657",
+      "expPct": 0.62,
+      "stats": [
+        {
+          "name": "HP",
+          "value": "61/65",
+          "pct": 0.813,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "ATK",
+          "value": "42",
+          "pct": 0.525,
+          "up": true,
+          "down": false
+        },
+        {
+          "name": "DEF",
+          "value": "36",
+          "pct": 0.45,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "SP.A",
+          "value": "42",
+          "pct": 0.525,
+          "up": false,
+          "down": true
+        },
+        {
+          "name": "SP.D",
+          "value": "39",
+          "pct": 0.487,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "SPE",
+          "value": "47",
+          "pct": 0.588,
+          "up": false,
+          "down": false
+        }
+      ],
+      "moves": [
+        {
+          "name": "Ember",
+          "type": "asset:types/fire.png",
+          "pp": "22/25"
+        },
+        {
+          "name": "Metal Claw",
+          "type": "asset:types/steel.png",
+          "pp": "30/35"
+        },
+        {
+          "name": "Smokescreen",
+          "type": "asset:types/normal.png",
+          "pp": "20/20"
+        },
+        {
+          "name": "Scratch",
+          "type": "asset:types/normal.png",
+          "pp": "35/35"
+        }
+      ]
+    },
+    {
+      "name": "Pidgeotto",
+      "level": 19,
+      "dex": "017",
+      "sprite": "asset:pokemon/17.png",
+      "types": [
+        {
+          "name": "NORMAL",
+          "src": "asset:types/normal.png"
+        },
+        {
+          "name": "FLYING",
+          "src": "asset:types/flying.png"
+        }
+      ],
+      "hp": 30,
+      "maxHp": 55,
+      "hpPct": 0.545,
+      "hpHigh": true,
+      "hpMid": false,
+      "hpLow": false,
+      "fainted": false,
+      "lead": false,
+      "status": "PAR",
+      "hasStatus": true,
+      "statusColor": "#F5E5A6",
+      "statusInk": "#2E2A2A",
+      "tone": "#E6E3E1",
+      "ink": "#2E2A2A",
+      "nature": "Jolly",
+      "ability": "Keen Eye",
+      "hasItem": false,
+      "item": "NONE",
+      "itemIcon": "",
+      "toNext": "888",
+      "expPct": 0.18,
+      "stats": [
+        {
+          "name": "HP",
+          "value": "30/55",
+          "pct": 0.688,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "ATK",
+          "value": "30",
+          "pct": 0.375,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "DEF",
+          "value": "28",
+          "pct": 0.35,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "SP.A",
+          "value": "23",
+          "pct": 0.287,
+          "up": false,
+          "down": true
+        },
+        {
+          "name": "SP.D",
+          "value": "26",
+          "pct": 0.325,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "SPE",
+          "value": "37",
+          "pct": 0.463,
+          "up": true,
+          "down": false
+        }
+      ],
+      "moves": [
+        {
+          "name": "Gust",
+          "type": "asset:types/flying.png",
+          "pp": "31/35"
+        },
+        {
+          "name": "Quick Attack",
+          "type": "asset:types/normal.png",
+          "pp": "30/30"
+        },
+        {
+          "name": "Sand-Attack",
+          "type": "asset:types/ground.png",
+          "pp": "15/15"
+        },
+        {
+          "name": "Tackle",
+          "type": "asset:types/normal.png",
+          "pp": "35/35"
+        }
+      ]
+    },
+    {
+      "name": "Pikachu",
+      "level": 17,
+      "dex": "025",
+      "sprite": "asset:pokemon/25.png",
+      "types": [
+        {
+          "name": "ELECTRIC",
+          "src": "asset:types/electric.png"
+        }
+      ],
+      "hp": 8,
+      "maxHp": 41,
+      "hpPct": 0.195,
+      "hpHigh": false,
+      "hpMid": false,
+      "hpLow": true,
+      "fainted": false,
+      "lead": false,
+      "status": "",
+      "hasStatus": false,
+      "statusColor": "#D9D6D3",
+      "statusInk": "#2E2A2A",
+      "tone": "#F5E5A6",
+      "ink": "#2E2A2A",
+      "nature": "Timid",
+      "ability": "Static",
+      "hasItem": true,
+      "item": "Oran Berry",
+      "itemIcon": "asset:items/139.png",
+      "toNext": "486",
+      "expPct": 0.44,
+      "stats": [
+        {
+          "name": "HP",
+          "value": "8/41",
+          "pct": 0.512,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "ATK",
+          "value": "23",
+          "pct": 0.287,
+          "up": false,
+          "down": true
+        },
+        {
+          "name": "DEF",
+          "value": "17",
+          "pct": 0.212,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "SP.A",
+          "value": "24",
+          "pct": 0.3,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "SP.D",
+          "value": "21",
+          "pct": 0.263,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "SPE",
+          "value": "41",
+          "pct": 0.512,
+          "up": true,
+          "down": false
+        }
+      ],
+      "moves": [
+        {
+          "name": "ThunderShock",
+          "type": "asset:types/electric.png",
+          "pp": "12/30"
+        },
+        {
+          "name": "Quick Attack",
+          "type": "asset:types/normal.png",
+          "pp": "30/30"
+        },
+        {
+          "name": "Thunder Wave",
+          "type": "asset:types/electric.png",
+          "pp": "20/20"
+        },
+        {
+          "name": "Growl",
+          "type": "asset:types/normal.png",
+          "pp": "40/40"
+        }
+      ]
+    },
+    {
+      "name": "Geodude",
+      "level": 15,
+      "dex": "074",
+      "sprite": "asset:pokemon/74.png",
+      "types": [
+        {
+          "name": "ROCK",
+          "src": "asset:types/rock.png"
+        },
+        {
+          "name": "GROUND",
+          "src": "asset:types/ground.png"
+        }
+      ],
+      "hp": 39,
+      "maxHp": 39,
+      "hpPct": 1,
+      "hpHigh": true,
+      "hpMid": false,
+      "hpLow": false,
+      "fainted": false,
+      "lead": false,
+      "status": "",
+      "hasStatus": false,
+      "statusColor": "#D9D6D3",
+      "statusInk": "#2E2A2A",
+      "tone": "#E6E3E1",
+      "ink": "#2E2A2A",
+      "nature": "Impish",
+      "ability": "Rock Head",
+      "hasItem": false,
+      "item": "NONE",
+      "itemIcon": "",
+      "toNext": "67",
+      "expPct": 0.9,
+      "stats": [
+        {
+          "name": "HP",
+          "value": "39/39",
+          "pct": 0.487,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "ATK",
+          "value": "31",
+          "pct": 0.388,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "DEF",
+          "value": "40",
+          "pct": 0.5,
+          "up": true,
+          "down": false
+        },
+        {
+          "name": "SP.A",
+          "value": "14",
+          "pct": 0.175,
+          "up": false,
+          "down": true
+        },
+        {
+          "name": "SP.D",
+          "value": "16",
+          "pct": 0.2,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "SPE",
+          "value": "13",
+          "pct": 0.163,
+          "up": false,
+          "down": false
+        }
+      ],
+      "moves": [
+        {
+          "name": "Rock Throw",
+          "type": "asset:types/rock.png",
+          "pp": "15/15"
+        },
+        {
+          "name": "Magnitude",
+          "type": "asset:types/ground.png",
+          "pp": "30/30"
+        },
+        {
+          "name": "Defense Curl",
+          "type": "asset:types/normal.png",
+          "pp": "40/40"
+        },
+        {
+          "name": "Tackle",
+          "type": "asset:types/normal.png",
+          "pp": "35/35"
+        }
+      ]
+    },
+    {
+      "name": "Oddish",
+      "level": 14,
+      "dex": "043",
+      "sprite": "asset:pokemon/43.png",
+      "types": [
+        {
+          "name": "GRASS",
+          "src": "asset:types/grass.png"
+        },
+        {
+          "name": "POISON",
+          "src": "asset:types/poison.png"
+        }
+      ],
+      "hp": 22,
+      "maxHp": 38,
+      "hpPct": 0.579,
+      "hpHigh": true,
+      "hpMid": false,
+      "hpLow": false,
+      "fainted": false,
+      "lead": false,
+      "status": "PSN",
+      "hasStatus": true,
+      "statusColor": "#D9C6E8",
+      "statusInk": "#2E2A2A",
+      "tone": "#C6E5BF",
+      "ink": "#2E2A2A",
+      "nature": "Modest",
+      "ability": "Chlorophyll",
+      "hasItem": false,
+      "item": "NONE",
+      "itemIcon": "",
+      "toNext": "406",
+      "expPct": 0.31,
+      "stats": [
+        {
+          "name": "HP",
+          "value": "22/38",
+          "pct": 0.475,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "ATK",
+          "value": "18",
+          "pct": 0.225,
+          "up": false,
+          "down": true
+        },
+        {
+          "name": "DEF",
+          "value": "22",
+          "pct": 0.275,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "SP.A",
+          "value": "30",
+          "pct": 0.375,
+          "up": true,
+          "down": false
+        },
+        {
+          "name": "SP.D",
+          "value": "25",
+          "pct": 0.313,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "SPE",
+          "value": "15",
+          "pct": 0.188,
+          "up": false,
+          "down": false
+        }
+      ],
+      "moves": [
+        {
+          "name": "Absorb",
+          "type": "asset:types/grass.png",
+          "pp": "20/25"
+        },
+        {
+          "name": "PoisonPowder",
+          "type": "asset:types/poison.png",
+          "pp": "35/35"
+        },
+        {
+          "name": "Sweet Scent",
+          "type": "asset:types/normal.png",
+          "pp": "20/20"
+        }
+      ]
+    },
+    {
+      "name": "Slowpoke",
+      "level": 16,
+      "dex": "079",
+      "sprite": "asset:pokemon/79.png",
+      "types": [
+        {
+          "name": "WATER",
+          "src": "asset:types/water.png"
+        },
+        {
+          "name": "PSYCHIC",
+          "src": "asset:types/psychic.png"
+        }
+      ],
+      "hp": 0,
+      "maxHp": 57,
+      "hpPct": 0,
+      "hpHigh": false,
+      "hpMid": false,
+      "hpLow": true,
+      "fainted": true,
+      "lead": false,
+      "status": "FNT",
+      "hasStatus": true,
+      "statusColor": "#CFCBC8",
+      "statusInk": "#2E2A2A",
+      "tone": "#D4D1CF",
+      "ink": "#2E2A2A",
+      "nature": "Relaxed",
+      "ability": "Oblivious",
+      "hasItem": false,
+      "item": "NONE",
+      "itemIcon": "",
+      "toNext": "730",
+      "expPct": 0.05,
+      "stats": [
+        {
+          "name": "HP",
+          "value": "0/57",
+          "pct": 0.713,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "ATK",
+          "value": "28",
+          "pct": 0.35,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "DEF",
+          "value": "30",
+          "pct": 0.375,
+          "up": true,
+          "down": false
+        },
+        {
+          "name": "SP.A",
+          "value": "20",
+          "pct": 0.25,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "SP.D",
+          "value": "20",
+          "pct": 0.25,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "SPE",
+          "value": "10",
+          "pct": 0.125,
+          "up": false,
+          "down": true
+        }
+      ],
+      "moves": [
+        {
+          "name": "Confusion",
+          "type": "asset:types/psychic.png",
+          "pp": "0/25"
+        },
+        {
+          "name": "Water Gun",
+          "type": "asset:types/water.png",
+          "pp": "25/25"
+        },
+        {
+          "name": "Disable",
+          "type": "asset:types/normal.png",
+          "pp": "20/20"
+        },
+        {
+          "name": "Tackle",
+          "type": "asset:types/normal.png",
+          "pp": "35/35"
+        }
+      ]
+    },
+    {
+      "name": "Nidorino",
+      "level": 18,
+      "dex": "033",
+      "sprite": "asset:pokemon/33.png",
+      "types": [
+        {
+          "name": "POISON",
+          "src": "asset:types/poison.png"
+        }
+      ],
+      "hp": 52,
+      "maxHp": 52,
+      "hpPct": 1,
+      "hpHigh": true,
+      "hpMid": false,
+      "hpLow": false,
+      "fainted": false,
+      "lead": false,
+      "status": "",
+      "hasStatus": false,
+      "statusColor": "#D9D6D3",
+      "statusInk": "#2E2A2A",
+      "tone": "#D9C6E8",
+      "ink": "#2E2A2A",
+      "nature": "Brave",
+      "ability": "Poison Point",
+      "hasItem": true,
+      "item": "Pecha Berry",
+      "itemIcon": "asset:items/135.png",
+      "toNext": "292",
+      "expPct": 0.7,
+      "stats": [
+        {
+          "name": "HP",
+          "value": "52/52",
+          "pct": 0.65,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "ATK",
+          "value": "36",
+          "pct": 0.45,
+          "up": true,
+          "down": false
+        },
+        {
+          "name": "DEF",
+          "value": "28",
+          "pct": 0.35,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "SP.A",
+          "value": "27",
+          "pct": 0.338,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "SP.D",
+          "value": "27",
+          "pct": 0.338,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "SPE",
+          "value": "27",
+          "pct": 0.338,
+          "up": false,
+          "down": true
+        }
+      ],
+      "moves": [
+        {
+          "name": "Double Kick",
+          "type": "asset:types/fighting.png",
+          "pp": "30/30"
+        },
+        {
+          "name": "Poison Sting",
+          "type": "asset:types/poison.png",
+          "pp": "35/35"
+        },
+        {
+          "name": "Horn Attack",
+          "type": "asset:types/normal.png",
+          "pp": "25/25"
+        },
+        {
+          "name": "Leer",
+          "type": "asset:types/normal.png",
+          "pp": "30/30"
+        }
+      ]
+    },
+    {
+      "name": "Mankey",
+      "level": 13,
+      "dex": "056",
+      "sprite": "asset:pokemon/56.png",
+      "types": [
+        {
+          "name": "FIGHTING",
+          "src": "asset:types/fighting.png"
+        }
+      ],
+      "hp": 35,
+      "maxHp": 35,
+      "hpPct": 1,
+      "hpHigh": true,
+      "hpMid": false,
+      "hpLow": false,
+      "fainted": false,
+      "lead": false,
+      "status": "",
+      "hasStatus": false,
+      "statusColor": "#D9D6D3",
+      "statusInk": "#2E2A2A",
+      "tone": "#EFC0BC",
+      "ink": "#2E2A2A",
+      "nature": "Adamant",
+      "ability": "Vital Spirit",
+      "hasItem": false,
+      "item": "NONE",
+      "itemIcon": "",
+      "toNext": "243",
+      "expPct": 0.52,
+      "stats": [
+        {
+          "name": "HP",
+          "value": "35/35",
+          "pct": 0.438,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "ATK",
+          "value": "29",
+          "pct": 0.362,
+          "up": true,
+          "down": false
+        },
+        {
+          "name": "DEF",
+          "value": "16",
+          "pct": 0.2,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "SP.A",
+          "value": "14",
+          "pct": 0.175,
+          "up": false,
+          "down": true
+        },
+        {
+          "name": "SP.D",
+          "value": "18",
+          "pct": 0.225,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "SPE",
+          "value": "25",
+          "pct": 0.313,
+          "up": false,
+          "down": false
+        }
+      ],
+      "moves": [
+        {
+          "name": "Karate Chop",
+          "type": "asset:types/fighting.png",
+          "pp": "25/25"
+        },
+        {
+          "name": "Low Kick",
+          "type": "asset:types/fighting.png",
+          "pp": "20/20"
+        },
+        {
+          "name": "Fury Swipes",
+          "type": "asset:types/normal.png",
+          "pp": "15/15"
+        },
+        {
+          "name": "Leer",
+          "type": "asset:types/normal.png",
+          "pp": "30/30"
+        }
+      ]
+    },
+    {
+      "name": "Abra",
+      "level": 12,
+      "dex": "063",
+      "sprite": "asset:pokemon/63.png",
+      "types": [
+        {
+          "name": "PSYCHIC",
+          "src": "asset:types/psychic.png"
+        }
+      ],
+      "hp": 29,
+      "maxHp": 29,
+      "hpPct": 1,
+      "hpHigh": true,
+      "hpMid": false,
+      "hpLow": false,
+      "fainted": false,
+      "lead": false,
+      "status": "SLP",
+      "hasStatus": true,
+      "statusColor": "#D9D6D3",
+      "statusInk": "#2E2A2A",
+      "tone": "#E3CBEA",
+      "ink": "#2E2A2A",
+      "nature": "Timid",
+      "ability": "Synchronize",
+      "hasItem": false,
+      "item": "NONE",
+      "itemIcon": "",
+      "toNext": "380",
+      "expPct": 0.12,
+      "stats": [
+        {
+          "name": "HP",
+          "value": "29/29",
+          "pct": 0.362,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "ATK",
+          "value": "9",
+          "pct": 0.113,
+          "up": false,
+          "down": true
+        },
+        {
+          "name": "DEF",
+          "value": "10",
+          "pct": 0.125,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "SP.A",
+          "value": "32",
+          "pct": 0.4,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "SP.D",
+          "value": "20",
+          "pct": 0.25,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "SPE",
+          "value": "30",
+          "pct": 0.375,
+          "up": true,
+          "down": false
+        }
+      ],
+      "moves": [
+        {
+          "name": "Teleport",
+          "type": "asset:types/psychic.png",
+          "pp": "20/20"
+        }
+      ]
+    },
+    {
+      "name": "Bellsprout",
+      "level": 13,
+      "dex": "069",
+      "sprite": "asset:pokemon/69.png",
+      "types": [
+        {
+          "name": "GRASS",
+          "src": "asset:types/grass.png"
+        },
+        {
+          "name": "POISON",
+          "src": "asset:types/poison.png"
+        }
+      ],
+      "hp": 37,
+      "maxHp": 37,
+      "hpPct": 1,
+      "hpHigh": true,
+      "hpMid": false,
+      "hpLow": false,
+      "fainted": false,
+      "lead": false,
+      "status": "",
+      "hasStatus": false,
+      "statusColor": "#D9D6D3",
+      "statusInk": "#2E2A2A",
+      "tone": "#C6E5BF",
+      "ink": "#2E2A2A",
+      "nature": "Careful",
+      "ability": "Chlorophyll",
+      "hasItem": false,
+      "item": "NONE",
+      "itemIcon": "",
+      "toNext": "314",
+      "expPct": 0.38,
+      "stats": [
+        {
+          "name": "HP",
+          "value": "37/37",
+          "pct": 0.463,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "ATK",
+          "value": "26",
+          "pct": 0.325,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "DEF",
+          "value": "16",
+          "pct": 0.2,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "SP.A",
+          "value": "22",
+          "pct": 0.275,
+          "up": false,
+          "down": true
+        },
+        {
+          "name": "SP.D",
+          "value": "15",
+          "pct": 0.188,
+          "up": true,
+          "down": false
+        },
+        {
+          "name": "SPE",
+          "value": "17",
+          "pct": 0.212,
+          "up": false,
+          "down": false
+        }
+      ],
+      "moves": [
+        {
+          "name": "Vine Whip",
+          "type": "asset:types/grass.png",
+          "pp": "10/10"
+        },
+        {
+          "name": "Growth",
+          "type": "asset:types/normal.png",
+          "pp": "40/40"
+        },
+        {
+          "name": "Wrap",
+          "type": "asset:types/normal.png",
+          "pp": "20/20"
+        }
+      ]
+    },
+    {
+      "name": "Magikarp",
+      "level": 10,
+      "dex": "129",
+      "sprite": "asset:pokemon/129.png",
+      "types": [
+        {
+          "name": "WATER",
+          "src": "asset:types/water.png"
+        }
+      ],
+      "hp": 25,
+      "maxHp": 25,
+      "hpPct": 1,
+      "hpHigh": true,
+      "hpMid": false,
+      "hpLow": false,
+      "fainted": false,
+      "lead": false,
+      "status": "",
+      "hasStatus": false,
+      "statusColor": "#D9D6D3",
+      "statusInk": "#2E2A2A",
+      "tone": "#BFD8F2",
+      "ink": "#2E2A2A",
+      "nature": "Naive",
+      "ability": "Swift Swim",
+      "hasItem": false,
+      "item": "NONE",
+      "itemIcon": "",
+      "toNext": "60",
+      "expPct": 0.8,
+      "stats": [
+        {
+          "name": "HP",
+          "value": "25/25",
+          "pct": 0.313,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "ATK",
+          "value": "8",
+          "pct": 0.1,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "DEF",
+          "value": "17",
+          "pct": 0.212,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "SP.A",
+          "value": "9",
+          "pct": 0.113,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "SP.D",
+          "value": "9",
+          "pct": 0.113,
+          "up": false,
+          "down": true
+        },
+        {
+          "name": "SPE",
+          "value": "24",
+          "pct": 0.3,
+          "up": true,
+          "down": false
+        }
+      ],
+      "moves": [
+        {
+          "name": "Splash",
+          "type": "asset:types/normal.png",
+          "pp": "40/40"
+        }
+      ]
+    },
+    {
+      "name": "Jigglypuff",
+      "level": 12,
+      "dex": "039",
+      "sprite": "asset:pokemon/39.png",
+      "types": [
+        {
+          "name": "NORMAL",
+          "src": "asset:types/normal.png"
+        }
+      ],
+      "hp": 51,
+      "maxHp": 51,
+      "hpPct": 1,
+      "hpHigh": true,
+      "hpMid": false,
+      "hpLow": false,
+      "fainted": false,
+      "lead": false,
+      "status": "",
+      "hasStatus": false,
+      "statusColor": "#D9D6D3",
+      "statusInk": "#2E2A2A",
+      "tone": "#E6E3E1",
+      "ink": "#2E2A2A",
+      "nature": "Calm",
+      "ability": "Cute Charm",
+      "hasItem": false,
+      "item": "NONE",
+      "itemIcon": "",
+      "toNext": "324",
+      "expPct": 0.25,
+      "stats": [
+        {
+          "name": "HP",
+          "value": "51/51",
+          "pct": 0.637,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "ATK",
+          "value": "15",
+          "pct": 0.188,
+          "up": false,
+          "down": true
+        },
+        {
+          "name": "DEF",
+          "value": "11",
+          "pct": 0.138,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "SP.A",
+          "value": "17",
+          "pct": 0.212,
+          "up": false,
+          "down": false
+        },
+        {
+          "name": "SP.D",
+          "value": "13",
+          "pct": 0.163,
+          "up": true,
+          "down": false
+        },
+        {
+          "name": "SPE",
+          "value": "11",
+          "pct": 0.138,
+          "up": false,
+          "down": false
+        }
+      ],
+      "moves": [
+        {
+          "name": "Sing",
+          "type": "asset:types/normal.png",
+          "pp": "15/15"
+        },
+        {
+          "name": "Pound",
+          "type": "asset:types/normal.png",
+          "pp": "35/35"
+        },
+        {
+          "name": "Defense Curl",
+          "type": "asset:types/normal.png",
+          "pp": "40/40"
+        }
+      ]
+    }
+  ],
+  "bag": {
+    "items": [
+      {
+        "name": "Potion",
+        "count": "x04",
+        "icon": "asset:items/13.png"
+      },
+      {
+        "name": "Super Potion",
+        "count": "x02",
+        "icon": "asset:items/22.png"
+      },
+      {
+        "name": "Antidote",
+        "count": "x03",
+        "icon": "asset:items/14.png"
+      },
+      {
+        "name": "Paralyze Heal",
+        "count": "x01",
+        "icon": "asset:items/18.png"
+      },
+      {
+        "name": "Escape Rope",
+        "count": "x01",
+        "icon": "asset:items/85.png"
+      },
+      {
+        "name": "Repel",
+        "count": "x05",
+        "icon": "asset:items/86.png"
+      },
+      {
+        "name": "Nugget",
+        "count": "x01",
+        "icon": "asset:items/110.png"
+      }
+    ],
+    "keyItems": [
+      {
+        "name": "Town Map",
+        "count": "x01",
+        "icon": "asset:items/361.png"
+      },
+      {
+        "name": "Bicycle",
+        "count": "x01",
+        "icon": "asset:items/360.png"
+      },
+      {
+        "name": "Old Rod",
+        "count": "x01",
+        "icon": "asset:items/262.png"
+      },
+      {
+        "name": "SS Ticket",
+        "count": "x01",
+        "icon": "asset:items/265.png"
+      }
+    ],
+    "balls": [
+      {
+        "name": "Poke Ball",
+        "count": "x11",
+        "icon": "asset:items/4.png"
+      },
+      {
+        "name": "Great Ball",
+        "count": "x03",
+        "icon": "asset:items/3.png"
+      }
+    ],
+    "tmHm": [
+      {
+        "name": "TM28 Dig",
+        "count": "x01",
+        "icon": "asset:items/tm.png"
+      },
+      {
+        "name": "TM39 Rock Tomb",
+        "count": "x01",
+        "icon": "asset:items/tm.png"
+      },
+      {
+        "name": "TM45 Attract",
+        "count": "x01",
+        "icon": "asset:items/tm.png"
+      },
+      {
+        "name": "HM01 Cut",
+        "count": "x01",
+        "icon": "asset:items/hm.png"
+      }
+    ],
+    "berries": [
+      {
+        "name": "Oran Berry",
+        "count": "x03",
+        "icon": "asset:items/139.png"
+      },
+      {
+        "name": "Pecha Berry",
+        "count": "x01",
+        "icon": "asset:items/135.png"
+      }
+    ],
+    "total": "19"
+  },
+  "dex": {
+    "seen": "041",
+    "caught": "023",
+    "total": "151",
+    "seenPct": 0.272,
+    "caughtPct": 0.152,
+    "completion": "15%",
+    "last": {
+      "name": "Oddish",
+      "no": "043",
+      "sprite": "asset:pokemon/43.png"
+    }
+  },
+  "trainer": {
+    "name": "RED",
+    "id": "24601",
+    "money": "12,480",
+    "time": "06:42",
+    "badges": "3/8",
+    "caught": "023",
+    "badgeList": [
+      {
+        "name": "BOULDER",
+        "earned": true,
+        "locked": false,
+        "src": "asset:badges/1.png"
+      },
+      {
+        "name": "CASCADE",
+        "earned": true,
+        "locked": false,
+        "src": "asset:badges/2.png"
+      },
+      {
+        "name": "THUNDER",
+        "earned": true,
+        "locked": false,
+        "src": "asset:badges/3.png"
+      },
+      {
+        "name": "RAINBOW",
+        "earned": false,
+        "locked": true,
+        "src": "asset:badges/4.png"
+      },
+      {
+        "name": "SOUL",
+        "earned": false,
+        "locked": true,
+        "src": "asset:badges/5.png"
+      },
+      {
+        "name": "MARSH",
+        "earned": false,
+        "locked": true,
+        "src": "asset:badges/6.png"
+      },
+      {
+        "name": "VOLCANO",
+        "earned": false,
+        "locked": true,
+        "src": "asset:badges/7.png"
+      },
+      {
+        "name": "EARTH",
+        "earned": false,
+        "locked": true,
+        "src": "asset:badges/8.png"
+      }
+    ]
+  },
+  "battle": {
+    "inBattle": true,
+    "noBattle": false,
+    "kind": "TRAINER BATTLE",
+    "turn": "TURN 03",
+    "you": {
+      "name": "Charmeleon",
+      "level": 24,
+      "hp": 61,
+      "maxHp": 72,
+      "hpPct": 0.847,
+      "hpHigh": true,
+      "hpMid": false,
+      "hpLow": false,
+      "fainted": false,
+      "lead": true,
+      "status": "",
+      "hasStatus": false,
+      "statusColor": "#D9D6D3",
+      "statusInk": "#2E2A2A",
+      "tone": "#F6CDB0",
+      "ink": "#2E2A2A",
+      "types": [
+        {
+          "name": "FIRE",
+          "src": "asset:types/fire.png"
+        }
+      ],
+      "side": "YOU",
+      "stats": [
+        {
+          "name": "ATK",
+          "value": " 49",
+          "stage": "+1",
+          "up": true,
+          "down": false,
+          "flat": false
+        },
+        {
+          "name": "DEF",
+          "value": " 44",
+          "stage": "±0",
+          "up": false,
+          "down": false,
+          "flat": true
+        },
+        {
+          "name": "SP.A",
+          "value": " 56",
+          "stage": "±0",
+          "up": false,
+          "down": false,
+          "flat": true
+        },
+        {
+          "name": "SP.D",
+          "value": " 47",
+          "stage": "±0",
+          "up": false,
+          "down": false,
+          "flat": true
+        },
+        {
+          "name": "SPE",
+          "value": " 60",
+          "stage": "-1",
+          "up": false,
+          "down": true,
+          "flat": false
+        }
+      ],
+      "dex": "005",
+      "sprite": "asset:pokemon/back/5.png"
+    },
+    "foe": {
+      "name": "Onix",
+      "level": 14,
+      "hp": 24,
+      "maxHp": 41,
+      "hpPct": 0.585,
+      "hpHigh": true,
+      "hpMid": false,
+      "hpLow": false,
+      "fainted": false,
+      "lead": false,
+      "status": "BRN",
+      "hasStatus": true,
+      "statusColor": "#F3BDB6",
+      "statusInk": "#2E2A2A",
+      "tone": "#E6E3E1",
+      "ink": "#2E2A2A",
+      "types": [
+        {
+          "name": "ROCK",
+          "src": "asset:types/rock.png"
+        },
+        {
+          "name": "GROUND",
+          "src": "asset:types/ground.png"
+        }
+      ],
+      "side": "FOE",
+      "stats": [
+        {
+          "name": "ATK",
+          "value": " 38",
+          "stage": "±0",
+          "up": false,
+          "down": false,
+          "flat": true
+        },
+        {
+          "name": "DEF",
+          "value": " 88",
+          "stage": "+2",
+          "up": true,
+          "down": false,
+          "flat": false
+        },
+        {
+          "name": "SP.A",
+          "value": " 24",
+          "stage": "±0",
+          "up": false,
+          "down": false,
+          "flat": true
+        },
+        {
+          "name": "SP.D",
+          "value": " 30",
+          "stage": "±0",
+          "up": false,
+          "down": false,
+          "flat": true
+        },
+        {
+          "name": "SPE",
+          "value": " 55",
+          "stage": "±0",
+          "up": false,
+          "down": false,
+          "flat": true
+        }
+      ],
+      "dex": "095",
+      "sprite": "asset:pokemon/95.png"
+    }
+  },
+  "ui": {
+    "name": "Charmeleon",
+    "level": 24,
+    "dex": "005",
+    "sprite": "asset:pokemon/5.png",
+    "types": [
+      {
+        "name": "FIRE",
+        "src": "asset:types/fire.png"
+      }
+    ],
+    "hp": 61,
+    "maxHp": 65,
+    "hpPct": 0.938,
+    "hpHigh": true,
+    "hpMid": false,
+    "hpLow": false,
+    "fainted": false,
+    "lead": true,
+    "status": "",
+    "hasStatus": false,
+    "statusColor": "#D9D6D3",
+    "statusInk": "#2E2A2A",
+    "tone": "#F6CDB0",
+    "ink": "#2E2A2A",
+    "nature": "Rash",
+    "ability": "Blaze",
+    "hasItem": true,
+    "item": "Potion",
+    "itemIcon": "asset:items/13.png",
+    "toNext": 34,
+    "expPct": 0.4,
+    "stats": [
+      {
+        "name": "HP",
+        "pct": 0.5416666666666666,
+        "value": "65",
+        "up": false,
+        "down": false
+      },
+      {
+        "name": "ATK",
+        "pct": 0.43333333333333335,
+        "value": "52",
+        "up": false,
+        "down": false
+      },
+      {
+        "name": "DEF",
+        "pct": 0.35833333333333334,
+        "value": "43",
+        "up": false,
+        "down": false
+      },
+      {
+        "name": "SP.A",
+        "pct": 0.5,
+        "value": "60",
+        "up": true,
+        "down": false
+      },
+      {
+        "name": "SP.D",
+        "pct": 0.4166666666666667,
+        "value": "50",
+        "up": false,
+        "down": true
+      },
+      {
+        "name": "SPE",
+        "pct": 0.5416666666666666,
+        "value": "65",
+        "up": false,
+        "down": false
+      }
+    ],
+    "moves": [
+      {
+        "type": "asset:types/fire.png",
+        "pp": "25/25",
+        "name": "EMBER"
+      },
+      {
+        "type": "asset:types/normal.png",
+        "pp": "35/35",
+        "name": "SCRATCH"
+      },
+      {
+        "type": "asset:types/normal.png",
+        "pp": "30/30",
+        "name": "GROWL"
+      },
+      {
+        "type": "asset:types/fire.png",
+        "pp": "15/15",
+        "name": "FLAME BURST"
+      }
+    ],
+    "page": "detail"
+  }
+}

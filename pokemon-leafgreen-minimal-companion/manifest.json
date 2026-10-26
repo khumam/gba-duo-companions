@@ -1,0 +1,20 @@
+{
+  "id": "pokemon-leafgreen-minimal-companion",
+  "name": "Pokemon LeafGreen Companion (Minimal Soft Green)",
+  "version": "1.0.0",
+  "author": "khumam",
+  "formatVersion": 2,
+  "match": {
+    "gameCode": [
+      "BPGE"
+    ],
+    "crc32": []
+  },
+  "tickHz": 4,
+  "layout": "layout.json",
+  "styles": [
+    "style.css"
+  ],
+  "script": "main.lua",
+  "values": {}
+}

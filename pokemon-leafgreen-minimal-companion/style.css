@@ -1,0 +1,843 @@
+/*
+ * LeafGreen minimal (soft green): one hue, flat fills and a single solid border.
+ * No shadows, stripes or gradients; Barlow Semi Condensed for every word and number.
+ * Only the colour tokens below differ from the other minimal pack; a type tint
+ * on the Pokemon cards comes from main.lua.
+ *
+ * Sizes follow the vertical pack: the screen is ~538 x 468dp, borders are 2px
+ * (1px for list rows), radius 8px (5-6px for small boxes), dock 96px wide.
+ */
+
+:root {
+  --bg: #F1F7EE;
+  --surface: #FFFFFF;
+  --surface-2: #E5F0E0;
+  --line: #9CC49A;
+  --line-strong: #4F9A58;
+  --line-soft: #D3E5CF;
+  --accent: #A9D8A4;
+  --accent-soft: #D6EDD2;
+  --accent-strong: #5BA866;
+  --ink: #1F3023;
+  --ink-2: #566B5A;
+  --ok: #C9E8CB;
+  --bad: #F2C6C0;
+  --info: #CFE0F3;
+  --ok-bar: #6FB584;
+  --warn-bar: #E0B050;
+  --bad-bar: #D9645C;
+  --info-bar: #6C9BD1;
+}
+
+@font-face { font-family: "Barlow"; src: url("assets/fonts/BarlowSemiCondensed-Medium.ttf"); }
+@font-face { font-family: "BarlowBold"; src: url("assets/fonts/BarlowSemiCondensed-Bold.ttf"); }
+
+image { image-rendering: pixelated; }
+text { white-space: nowrap; }
+
+/* ---- canvas ------------------------------------------------------------------ */
+
+#screen {
+  width: 100%;
+  height: 100%;
+  padding: 6px;
+  background-color: var(--bg);
+  font-family: "Barlow";
+  font-size: 17px;
+  color: var(--ink);
+}
+
+.grow { flex: 1; }
+
+/* Numbers: the bold face, so values stand out from labels. */
+.num {
+  font-family: "BarlowBold";
+  font-size: 14px;
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+.ic8 { width: 12px; height: 12px; flex-shrink: 0; }
+
+.shell { flex: 1 1 auto; min-height: 0; gap: 8px; }
+
+/* ---- header -------------------------------------------------------------------- */
+
+.header {
+  flex-direction: row;
+  flex-shrink: 0;
+  height: 40px;
+  background-color: var(--accent-soft);
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.header-body {
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  gap: 9px;
+  padding: 0 10px;
+}
+
+.loc-pill {
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 10px;
+  background-color: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 6px;
+}
+.loc-text {
+  font-family: "BarlowBold";
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.hstat { flex-direction: row; align-items: center; gap: 5px; }
+.hnum { color: var(--ink); }
+
+/* ---- pages + dock ---------------------------------------------------------------- */
+
+.page { flex: 1 1 auto; flex-direction: row; min-height: 0; gap: 10px; }
+
+.content { flex: 1; min-height: 0; min-width: 0; }
+.two-col {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 10px;
+}
+/* Keep the Town Map at its native preview size beside the sidebar. */
+.map-cols { grid-template-columns: 246px 1fr; }
+.trainer-cols { grid-template-columns: 1fr 1fr; }
+
+/* Navigation dock: a right-hand sidebar, one plain button per tab */
+.dock {
+  flex-direction: column;
+  flex-shrink: 0;
+  width: 96px;
+  gap: 6px;
+}
+
+.dock-btn {
+  flex: 1;
+  min-height: 0;
+  padding: 0;
+  gap: 0;
+  background-color: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  align-items: stretch;
+}
+.dock-btn.on { background-color: var(--accent); border-color: var(--line-strong); }
+.dock-btn:pressed { background-color: var(--accent-soft); }
+
+.dock-inner {
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.dock-label {
+  font-family: "BarlowBold";
+  font-size: 17px;
+  line-height: 20px;
+  letter-spacing: 1.5px;
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+.dock-btn.on .dock-label { color: var(--ink); }
+
+/* ---- panels --------------------------------------------------------------------- */
+
+.panel { min-height: 0; min-width: 0; }
+
+.panel-head {
+  flex-direction: row;
+  align-items: flex-end;
+  flex-shrink: 0;
+  gap: 6px;
+  padding: 0 4px 3px 4px;
+}
+.panel-tab { padding: 0; }
+.panel-title {
+  font-family: "BarlowBold";
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 2px;
+  color: var(--ink-2);
+  text-transform: uppercase;
+}
+
+.panel-body {
+  flex: 1;
+  min-height: 0;
+  padding: 6px;
+  gap: 6px;
+  background-color: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 8px;
+}
+
+.chip {
+  margin-bottom: 3px;
+  padding: 1px 9px;
+  border: 2px solid var(--line);
+  border-radius: 5px;
+  background-color: var(--surface);
+}
+.chip-text {
+  font-family: "BarlowBold";
+  font-size: 14px;
+  line-height: 16px;
+  color: var(--ink);
+}
+.chip-red { background-color: var(--bad); }
+.chip-green { background-color: var(--ok); }
+.chip-blue { background-color: var(--info); }
+.chip-yellow { background-color: var(--accent-soft); }
+
+/* ---- pokemon cards ---------------------------------------------------------------- */
+
+.card {
+  position: relative;
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+}
+/* Lead = selected focus: an inner ring in the accent colour. */
+.ring {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  border: 2px solid var(--line-strong);
+  border-radius: 6px;
+}
+/* Fainted = disabled: pale and crossed out. */
+.card.fainted { opacity: 0.6; background-color: var(--surface-2); }
+.strike {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  top: 45%;
+  height: 2px;
+  background-color: var(--line-strong);
+  transform: rotate(-4deg);
+}
+
+/* Game sprites are 64x64 with transparent margins: centre them in a smaller
+   slot and let them spill over the card edge. */
+.sprite-slot {
+  display: stack;
+  place-items: center;
+  flex-shrink: 0;
+}
+.sprite-s { width: 40px; height: 32px; }
+.sprite-s .sprite { width: 52px; height: 52px; }
+.sprite-l { width: 60px; height: 56px; }
+.sprite-l .sprite { width: 64px; height: 64px; }
+.sprite-dex {
+  width: 64px;
+  height: 64px;
+  background-color: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 6px;
+}
+.sprite-dex .sprite { width: 64px; height: 64px; }
+
+.name-row { flex-direction: row; align-items: center; gap: 6px; }
+.mon-name {
+  font-family: "BarlowBold";
+  font-size: 17px;
+  line-height: 19px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.lv { font-size: 12px; line-height: 14px; }
+
+.status {
+  flex-shrink: 0;
+  padding: 0 5px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+.status-text {
+  font-family: "BarlowBold";
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.hp-row { flex-direction: row; align-items: center; gap: 5px; }
+.hp-tag { padding: 0; }
+.hp-tag-text {
+  font-family: "BarlowBold";
+  font-size: 12px;
+  line-height: 13px;
+  color: var(--ink-2);
+}
+.hp {
+  flex: 1;
+  height: 10px;
+  background-color: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 5px;
+  accent-color: var(--ok-bar);
+  transition: width 400ms ease-out;
+}
+.hp.mid { accent-color: var(--warn-bar); }
+.hp.low { accent-color: var(--bad-bar); }
+.hp-num { font-size: 12px; line-height: 14px; }
+
+/* quick party (map page) */
+.quick-panel .panel-body { padding: 6px 9px 6px 6px; }
+.qlist { flex: 1; min-height: 0; gap: 5px; overflow: auto; }
+.qcard {
+  flex-shrink: 0;
+  height: 42px;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 6px 2px 3px;
+}
+.qcard-body { flex: 1; min-width: 0; gap: 2px; }
+.qcard .mon-name { font-size: 16px; line-height: 16px; }
+/* The name needs the room: the status shows on the Party page. */
+.qcard .status { display: none; }
+
+/* full party */
+.party-panel { flex: 1; }
+.party-panel .panel-body { padding: 8px; }
+/* Two columns that scroll: flex-wrap rather than grid, so any number of rows works. */
+.pgrid {
+  flex: 1;
+  min-height: 0;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: flex-start;
+  row-gap: 8px;
+  overflow: auto;
+}
+.pgrid .pcard { width: 49%; height: 86px; flex-shrink: 0; }
+.pcard { flex-direction: row; align-items: center; gap: 4px; padding: 5px 8px 5px 2px; }
+.pcard-body { flex: 1; min-width: 0; gap: 2px; }
+.hp-foot { flex-direction: row; }
+.hp-big { font-size: 13px; line-height: 15px; }
+
+.type-row { flex-direction: row; gap: 4px; }
+.type-img { width: 48px; height: 18px; image-rendering: auto; }
+
+/* ---- radar map ------------------------------------------------------------------- */
+
+.radar-panel .panel-body { padding: 6px; align-items: center; justify-content: flex-start; gap: 6px; }
+/* The radar is as big as the Town Map picture, so the marker's % positions land on it. */
+.radar {
+  position: relative;
+  overflow: hidden;
+  background-color: #BBD3F5;
+  border: 2px solid var(--line);
+  border-radius: 6px;
+}
+/* The game's Town Map (168 x 136) at 3 device px per pixel (1 device px = 0.4336dp). */
+.radar-img {
+  width: 218.53px;
+  height: 176.91px;
+  object-fit: fill;
+}
+.pins { position: absolute; left: 0; top: 0; right: 0; bottom: 0; }
+.pin { position: absolute; width: 12px; height: 12px; }
+
+/* Wild Pokemon: the method button (tap for the next one) stays put, the list beside it
+   scrolls; one readable row per species. */
+.wild {
+  align-self: stretch;
+  flex: 1;
+  min-height: 0;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 6px;
+}
+.wild-method {
+  width: 76px;
+  flex-shrink: 0;
+  flex-direction: column;
+  padding: 4px;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  background-color: var(--accent-soft);
+  border: 2px solid var(--line);
+  border-radius: 6px;
+}
+.wild-method:pressed { background-color: var(--accent); }
+.wild-label { font-family: "Barlow"; font-size: 12px; line-height: 13px; color: var(--ink-2); text-align: center; }
+.wild-method-text { align-self: stretch; font-family: "BarlowBold"; font-size: 17px; line-height: 18px; color: var(--ink); text-align: center; white-space: normal; }
+.wild-mons { flex: 1; min-height: 0; gap: 4px; overflow: auto; }
+.wild-mon {
+  flex-direction: row;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 6px 2px 2px;
+  background-color: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+}
+.wild-sprite { width: 34px; height: 34px; flex-shrink: 0; }
+.wild-info { flex: 1; min-width: 0; gap: 1px; }
+.wild-name { font-family: "BarlowBold"; font-size: 15px; line-height: 17px; color: var(--ink); white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
+.wild-level { font-family: "Barlow"; font-size: 13px; line-height: 14px; color: var(--ink-2); }
+.wild-chance { flex-shrink: 0; padding: 1px 6px; background-color: var(--surface); border: 1px solid var(--line); border-radius: 4px; }
+.wild-chance-text { font-family: "BarlowBold"; font-size: 13px; line-height: 15px; color: var(--ink); }
+.wild-none { justify-content: center; align-items: center; }
+.wild-none-text { font-family: "Barlow"; font-size: 16px; line-height: 20px; color: var(--ink-2); }
+
+.cross-anchor {
+  position: absolute;
+  display: stack;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+  transform: translate(-25px, -25px);
+}
+.crosshair { width: 50px; height: 50px; }
+.you { width: 16px; height: 16px; }
+
+/* ---- bag --------------------------------------------------------------------------- */
+
+.bag-panel { flex: 1; }
+.pockets { gap: 9px; }
+.pockets tab-bar { gap: 8px; }
+.pockets tab {
+  padding: 3px 10px;
+  background-color: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 6px;
+  font-family: "BarlowBold";
+  font-size: 15px;
+  line-height: 19px;
+  color: var(--ink-2);
+}
+.pockets tab:active {
+  background-color: var(--accent);
+  border-color: var(--line-strong);
+  color: var(--ink);
+}
+
+.item-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  align-content: start;
+  overflow: auto;
+}
+.item-row {
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 9px;
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+.item-icon { width: 30px; height: 30px; margin: -4px 0; }
+.item-name {
+  font-family: "Barlow";
+  font-size: 17px;
+  line-height: 20px;
+  color: var(--ink);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.item-count { color: var(--ink); text-align: right; }
+.item-grid empty {
+  font-family: "Barlow";
+  font-size: 14px;
+  color: var(--ink-2);
+  padding: 9px;
+}
+
+/* ---- dex --------------------------------------------------------------------------- */
+
+.dex-panel .panel-body { gap: 9px; padding: 8px; }
+.dex-stat {
+  flex: 1;
+  justify-content: space-between;
+  padding: 8px 10px;
+  border: 2px solid var(--line);
+  border-radius: 8px;
+}
+.dex-stat.seen { background-color: var(--info); color: var(--ink); }
+.dex-stat.caught { background-color: var(--accent-soft); color: var(--ink); }
+.dex-stat-head { flex-direction: row; align-items: center; }
+.dex-label {
+  font-family: "BarlowBold";
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: 1.5px;
+}
+.dex-of { font-size: 12px; }
+.dex-num {
+  font-size: 26px;
+  line-height: 30px;
+}
+.dex-stat.caught .dex-num { color: var(--ink); }
+.dex-bar {
+  height: 12px;
+  background-color: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 6px;
+  accent-color: var(--info-bar);
+  transition: width 400ms ease-out;
+}
+
+.dex-side .panel-body { gap: 9px; padding: 8px; }
+.complete {
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background-color: var(--surface-2);
+  border: 2px solid var(--line);
+  border-radius: 8px;
+}
+.complete-num { font-size: 34px; line-height: 40px; color: var(--ink); }
+.complete-sub {
+  font-family: "Barlow";
+  font-size: 14px;
+  line-height: 16px;
+  color: var(--ink-2);
+}
+.last {
+  gap: 6px;
+  padding: 8px 10px;
+  background-color: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 8px;
+}
+.last-label {
+  font-family: "Barlow";
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 1px;
+  color: var(--ink-2);
+}
+.last-row { flex-direction: row; align-items: center; gap: 9px; }
+.last-id { gap: 4px; }
+.last-no { color: var(--ink-2); font-size: 12px; }
+.last-name {
+  font-family: "BarlowBold";
+  font-size: 22px;
+  line-height: 25px;
+  color: var(--ink);
+}
+
+/* ---- trainer card ------------------------------------------------------------------ */
+
+.id-panel .panel-body,
+.badge-panel .panel-body { padding: 8px; }
+.id-card {
+  flex: 1;
+  background-color: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.id-band {
+  flex-direction: row;
+  align-items: center;
+  padding: 5px 9px;
+  background-color: var(--accent-soft);
+  border-bottom: 2px solid var(--line);
+}
+.id-band-text {
+  font-family: "BarlowBold";
+  font-size: 17px;
+  line-height: 20px;
+  letter-spacing: 1.5px;
+  color: var(--ink);
+}
+.id-no { color: var(--ink); }
+.id-main { flex: 1; flex-direction: row; gap: 9px; padding: 9px; }
+.id-rows { flex: 1; min-width: 0; justify-content: space-evenly; }
+.id-row {
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--line-soft);
+}
+.id-row:last-child { border-bottom: 0 solid transparent; }
+.id-key {
+  font-family: "Barlow";
+  font-size: 15px;
+  line-height: 18px;
+  color: var(--ink-2);
+}
+.id-val { color: var(--ink); font-size: 13px; line-height: 15px; }
+
+.badge-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 8px;
+}
+.badge {
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 5px;
+  border: 2px solid var(--line);
+  border-radius: 6px;
+}
+.badge.earned { background-color: var(--surface); }
+.badge.locked { background-color: var(--surface-2); opacity: 0.55; }
+.badge-img { width: 26px; height: 26px; image-rendering: auto; }
+.badge-lock { width: 18px; height: 18px; margin: 0 3px 0 2px; }
+.badge-name {
+  font-family: "BarlowBold";
+  font-size: 12px;
+  line-height: 14px;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+/* ---- battle ---------------------------------------------------------------------- */
+
+.battle-content { display: stack; place-items: stretch; }
+.battle-cols {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 10px;
+}
+.battle-side .panel-body { padding: 8px; gap: 8px; }
+.foe-side .panel-title { color: var(--accent-strong); }
+.stat-list { flex: 1; gap: 4px; justify-content: space-between; }
+.stat-row {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 4px 3px 9px;
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+}
+.stat-name {
+  font-family: "BarlowBold";
+  font-size: 15px;
+  line-height: 18px;
+  color: var(--ink);
+}
+.stat-val { color: var(--ink); font-size: 13px; line-height: 15px; }
+.stage {
+  width: 36px;
+  align-items: center;
+  padding: 1px 0;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background-color: var(--surface-2);
+}
+.stage-text { font-size: 11px; line-height: 13px; color: var(--ink); }
+.stat-row.up .stage { background-color: var(--ok); }
+.stat-row.down .stage { background-color: var(--bad); }
+
+.no-battle { align-items: center; justify-content: center; }
+.no-battle-card {
+  align-items: center;
+  gap: 9px;
+  padding: 18px 27px;
+  background-color: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 8px;
+}
+.no-battle-text {
+  font-family: "BarlowBold";
+  font-size: 22px;
+  line-height: 26px;
+  letter-spacing: 2px;
+  color: var(--ink);
+}
+.no-battle-sub {
+  font-family: "Barlow";
+  font-size: 14px;
+  line-height: 16px;
+  color: var(--ink-2);
+}
+
+/* ---- waiting (boot) screen ------------------------------------------------------- */
+
+.waiting { flex: 1 1 auto; align-items: center; justify-content: center; }
+.boot {
+  width: 300px;
+  align-items: center;
+  gap: 9px;
+  padding: 18px 0;
+  background-color: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.boot-title {
+  font-family: "BarlowBold";
+  font-size: 30px;
+  line-height: 34px;
+  letter-spacing: 4px;
+  color: var(--ink);
+}
+.boot-sub {
+  font-family: "Barlow";
+  font-size: 18px;
+  line-height: 21px;
+  letter-spacing: 2px;
+  color: var(--ink-2);
+}
+.boot-pill {
+  padding: 3px 12px;
+  background-color: var(--accent-soft);
+  border: 2px solid var(--line);
+  border-radius: 6px;
+}
+.boot-pill-text {
+  font-family: "BarlowBold";
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: 1px;
+  color: var(--ink);
+}
+
+/* ---- pokemon detail ------------------------------------------------------------- */
+
+.back-btn {
+  padding: 2px 10px;
+  gap: 0;
+  border-radius: 6px;
+  background-color: var(--surface);
+}
+.back-btn:pressed { background-color: var(--accent-soft); }
+
+.sum-panel .panel-body,
+.stat-panel .panel-body { padding: 8px; gap: 8px; }
+
+.sum-card { flex-direction: row; align-items: center; gap: 6px; padding: 4px 9px 4px 2px; }
+.sprite-xl { width: 76px; height: 72px; }
+.sprite-xl .sprite { width: 80px; height: 80px; }
+.dex-no { font-size: 11px; line-height: 13px; }
+.sum-name { font-size: 22px; line-height: 24px; text-overflow: ellipsis; }
+
+.meter { gap: 4px; }
+.meter-key {
+  font-family: "BarlowBold";
+  font-size: 14px;
+  line-height: 16px;
+  color: var(--ink-2);
+}
+.meter-val { font-size: 11px; line-height: 13px; color: var(--ink-2); }
+.meter .hp-big { color: var(--ink); }
+.exp {
+  height: 10px;
+  background-color: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 5px;
+  accent-color: var(--info-bar);
+  transition: width 400ms ease-out;
+}
+
+.info {
+  flex: 1;
+  justify-content: space-evenly;
+  padding: 2px 9px;
+  background-color: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 8px;
+}
+.info-row { flex-direction: row; align-items: center; gap: 6px; }
+.info-key {
+  font-family: "Barlow";
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--ink-2);
+}
+.info-val {
+  font-family: "BarlowBold";
+  font-size: 17px;
+  line-height: 20px;
+  color: var(--ink);
+}
+.info-icon { width: 24px; height: 24px; }
+
+.dstat-list { gap: 4px; }
+.dstat {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  padding: 0 8px;
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+}
+.dstat-name {
+  width: 40px;
+  font-family: "BarlowBold";
+  font-size: 15px;
+  line-height: 18px;
+  color: var(--ink);
+}
+.dstat.up { background-color: var(--ok); }
+.dstat.down { background-color: var(--bad); }
+.dstat-bar {
+  flex: 1;
+  height: 8px;
+  background-color: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 4px;
+  accent-color: var(--info-bar);
+  transition: width 400ms ease-out;
+}
+.dstat-val { width: 66px; text-align: right; font-size: 12px; line-height: 14px; color: var(--ink); }
+
+.sub-label {
+  font-family: "BarlowBold";
+  font-size: 15px;
+  line-height: 18px;
+  letter-spacing: 2px;
+  color: var(--ink-2);
+}
+.move-grid {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 6px;
+}
+.move {
+  justify-content: center;
+  gap: 1px;
+  padding: 2px 6px;
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+}
+.move .type-img { width: 40px; height: 15px; }
+.move-top { flex-direction: row; align-items: center; }
+.move-name {
+  font-family: "BarlowBold";
+  font-size: 15px;
+  line-height: 17px;
+  color: var(--ink);
+  text-overflow: ellipsis;
+}
+.move-pp { font-size: 10px; line-height: 12px; color: var(--ink-2); }
+.meter .hp-num { color: var(--ink); }

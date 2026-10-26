@@ -1,0 +1,3357 @@
+{
+  "type": "box",
+  "class": "screen-root",
+  "children": [
+    {
+      "type": "box",
+      "class": "waiting",
+      "children": [
+        {
+          "type": "box",
+          "class": "boot",
+          "children": [
+            {
+              "type": "text",
+              "class": "boot-title",
+              "text": "POKEMON"
+            },
+            {
+              "type": "text",
+              "class": "boot-sub",
+              "text": "LEAFGREEN LINK"
+            },
+            {
+              "type": "box",
+              "class": "boot-pill",
+              "children": [
+                {
+                  "type": "text",
+                  "class": "boot-pill-text",
+                  "text": "GBADUO COMPANION PACK"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "visibleIf": "$waiting"
+    },
+    {
+      "type": "box",
+      "class": "shell",
+      "children": [
+        {
+          "type": "box",
+          "class": "header",
+          "children": [
+            {
+              "type": "box",
+              "class": "header-body",
+              "children": [
+                {
+                  "type": "box",
+                  "class": "loc-pill",
+                  "children": [
+                    {
+                      "type": "image",
+                      "class": "ic8",
+                      "src": "asset:ui/ic-pin.png"
+                    },
+                    {
+                      "type": "text",
+                      "class": "loc-text",
+                      "text": "{location}"
+                    }
+                  ]
+                },
+                {
+                  "type": "box",
+                  "class": "grow",
+                  "children": []
+                },
+                {
+                  "type": "box",
+                  "class": "hstat",
+                  "children": [
+                    {
+                      "type": "image",
+                      "class": "ic8",
+                      "src": "asset:ui/ic-clock.png"
+                    },
+                    {
+                      "type": "text",
+                      "class": "num hnum",
+                      "text": "{time}"
+                    }
+                  ]
+                },
+                {
+                  "type": "box",
+                  "class": "hstat",
+                  "children": [
+                    {
+                      "type": "image",
+                      "class": "ic8",
+                      "src": "asset:ui/ic-coin.png"
+                    },
+                    {
+                      "type": "text",
+                      "class": "num hnum",
+                      "text": "{money}"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "pages",
+          "pages": [
+            {
+              "name": "map",
+              "child": {
+                "type": "box",
+                "class": "page page-map",
+                "children": [
+                  {
+                    "type": "box",
+                    "class": "content two-col map-cols",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "panel radar-panel",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "panel-head",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "panel-tab",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "panel-title",
+                                    "text": "RADAR MAP"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "grow",
+                                "children": []
+                              },
+                              {
+                                "type": "box",
+                                "class": "chip chip-red",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "chip-text",
+                                    "text": "{map.region}"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "panel-body",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "radar",
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "radar-img",
+                                    "src": "$map.image"
+                                  },
+                                  {
+                                    "type": "list",
+                                    "class": "pins",
+                                    "items": "$map.pins",
+                                    "template": {
+                                      "type": "image",
+                                      "class": "pin",
+                                      "src": "asset:ui/ic-pin.png",
+                                      "bindStyle": {
+                                        "left": "{x}%",
+                                        "top": "{y}%"
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "cross-anchor",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "crosshair",
+                                        "src": "asset:ui/crosshair.png"
+                                      },
+                                      {
+                                        "type": "image",
+                                        "class": "you",
+                                        "src": "asset:ui/ic-you.png"
+                                      }
+                                    ],
+                                    "bindStyle": {
+                                      "left": "{map.x}%",
+                                      "top": "{map.y}%"
+                                    },
+                                    "visibleIf": "$map.onMap"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "wild",
+                                "children": [
+                                  {
+                                    "type": "button",
+                                    "class": "wild-method",
+                                    "onClick": {
+                                      "call": "nextWild"
+                                    },
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "wild-label",
+                                        "text": "WILD HERE"
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "wild-method-text",
+                                        "text": "{map.wildMethod}"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "list",
+                                    "class": "wild-mons",
+                                    "items": "$map.wild",
+                                    "template": {
+                                      "type": "box",
+                                      "class": "wild-mon",
+                                      "children": [
+                                        {
+                                          "type": "image",
+                                          "class": "wild-sprite",
+                                          "src": "$sprite"
+                                        },
+                                        {
+                                          "type": "box",
+                                          "class": "wild-info",
+                                          "children": [
+                                            {
+                                              "type": "text",
+                                              "class": "wild-name",
+                                              "text": "{name}"
+                                            },
+                                            {
+                                              "type": "text",
+                                              "class": "wild-level",
+                                              "text": "{level}"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "box",
+                                          "class": "wild-chance",
+                                          "children": [
+                                            {
+                                              "type": "text",
+                                              "class": "wild-chance-text",
+                                              "text": "{chance}"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "visibleIf": "$map.hasWild"
+                              },
+                              {
+                                "type": "box",
+                                "class": "wild wild-none",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "wild-none-text",
+                                    "text": "NO WILD POKéMON HERE"
+                                  }
+                                ],
+                                "visibleIf": "$map.noWild"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "panel quick-panel",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "panel-head",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "panel-tab",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "panel-title",
+                                    "text": "PARTY"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "grow",
+                                "children": []
+                              },
+                              {
+                                "type": "box",
+                                "class": "chip chip-green",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "chip-text",
+                                    "text": "{partyCount} MON"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "panel-body",
+                            "children": [
+                              {
+                                "type": "list",
+                                "class": "qlist",
+                                "items": "$party",
+                                "empty": "NO POKéMON",
+                                "template": {
+                                  "type": "box",
+                                  "class": "card qcard",
+                                  "children": [
+                                    {
+                                      "type": "box",
+                                      "class": "ring",
+                                      "children": [],
+                                      "visibleIf": "$lead"
+                                    },
+                                    {
+                                      "type": "box",
+                                      "class": "sprite-slot sprite-s",
+                                      "children": [
+                                        {
+                                          "type": "image",
+                                          "class": "sprite",
+                                          "src": "$sprite"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "box",
+                                      "class": "qcard-body",
+                                      "children": [
+                                        {
+                                          "type": "box",
+                                          "class": "name-row",
+                                          "children": [
+                                            {
+                                              "type": "text",
+                                              "class": "mon-name",
+                                              "text": "{name}"
+                                            },
+                                            {
+                                              "type": "box",
+                                              "class": "status",
+                                              "children": [
+                                                {
+                                                  "type": "text",
+                                                  "class": "status-text",
+                                                  "text": "{status}"
+                                                }
+                                              ],
+                                              "visibleIf": "$hasStatus",
+                                              "bindStyle": {
+                                                "background-color": "{statusColor}",
+                                                "color": "{statusInk}"
+                                              }
+                                            },
+                                            {
+                                              "type": "box",
+                                              "class": "grow",
+                                              "children": []
+                                            },
+                                            {
+                                              "type": "text",
+                                              "class": "num lv",
+                                              "text": "Lv{level}"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "box",
+                                          "class": "hp-row",
+                                          "children": [
+                                            {
+                                              "type": "box",
+                                              "class": "hp-tag",
+                                              "children": [
+                                                {
+                                                  "type": "text",
+                                                  "class": "hp-tag-text",
+                                                  "text": "HP"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "type": "bar",
+                                              "class": "hp",
+                                              "classIf": {
+                                                "high": "$hpHigh",
+                                                "mid": "$hpMid",
+                                                "low": "$hpLow"
+                                              },
+                                              "value": "$hpPct",
+                                              "max": 1
+                                            },
+                                            {
+                                              "type": "text",
+                                              "class": "num hp-num",
+                                              "text": "{hp}/{maxHp}"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "box",
+                                      "class": "strike",
+                                      "children": [],
+                                      "visibleIf": "$fainted"
+                                    }
+                                  ],
+                                  "classIf": {
+                                    "lead": "$lead",
+                                    "fainted": "$fainted"
+                                  },
+                                  "bindStyle": {
+                                    "background-color": "{tone}",
+                                    "color": "{ink}"
+                                  },
+                                  "onClick": [
+                                    {
+                                      "set": {
+                                        "name": "{name}",
+                                        "level": "{level}",
+                                        "dex": "{dex}",
+                                        "sprite": "{sprite}",
+                                        "types": "{types}",
+                                        "hp": "{hp}",
+                                        "maxHp": "{maxHp}",
+                                        "hpPct": "{hpPct}",
+                                        "hpHigh": "{hpHigh}",
+                                        "hpMid": "{hpMid}",
+                                        "hpLow": "{hpLow}",
+                                        "fainted": "{fainted}",
+                                        "lead": "{lead}",
+                                        "status": "{status}",
+                                        "hasStatus": "{hasStatus}",
+                                        "statusColor": "{statusColor}",
+                                        "statusInk": "{statusInk}",
+                                        "tone": "{tone}",
+                                        "ink": "{ink}",
+                                        "nature": "{nature}",
+                                        "ability": "{ability}",
+                                        "item": "{item}",
+                                        "itemIcon": "{itemIcon}",
+                                        "hasItem": "{hasItem}",
+                                        "toNext": "{toNext}",
+                                        "expPct": "{expPct}",
+                                        "stats": "{stats}",
+                                        "moves": "{moves}"
+                                      }
+                                    },
+                                    {
+                                      "navigate": "detail"
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "dock",
+                    "children": [
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-map on",
+                        "onClick": [
+                          {
+                            "navigate": "map"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "MAP"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-party",
+                        "onClick": [
+                          {
+                            "navigate": "party"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "PARTY"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-bag",
+                        "onClick": [
+                          {
+                            "navigate": "bag"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "BAG"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-dex",
+                        "onClick": [
+                          {
+                            "navigate": "dex"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "DEX"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-trainer",
+                        "onClick": [
+                          {
+                            "navigate": "trainer"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "CARD"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-battle",
+                        "onClick": [
+                          {
+                            "navigate": "battle"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "BATTLE"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "party",
+              "child": {
+                "type": "box",
+                "class": "page page-party",
+                "children": [
+                  {
+                    "type": "box",
+                    "class": "content",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "panel party-panel",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "panel-head",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "panel-tab",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "panel-title",
+                                    "text": "PARTY"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "grow",
+                                "children": []
+                              },
+                              {
+                                "type": "box",
+                                "class": "chip chip-blue",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "chip-text",
+                                    "text": "{partyCount} MON"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "panel-body",
+                            "children": [
+                              {
+                                "type": "list",
+                                "class": "pgrid",
+                                "items": "$party",
+                                "empty": "NO POKéMON",
+                                "template": {
+                                  "type": "box",
+                                  "class": "card pcard",
+                                  "children": [
+                                    {
+                                      "type": "box",
+                                      "class": "ring",
+                                      "children": [],
+                                      "visibleIf": "$lead"
+                                    },
+                                    {
+                                      "type": "box",
+                                      "class": "sprite-slot sprite-l",
+                                      "children": [
+                                        {
+                                          "type": "image",
+                                          "class": "sprite",
+                                          "src": "$sprite"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "box",
+                                      "class": "pcard-body",
+                                      "children": [
+                                        {
+                                          "type": "box",
+                                          "class": "name-row",
+                                          "children": [
+                                            {
+                                              "type": "text",
+                                              "class": "mon-name",
+                                              "text": "{name}"
+                                            },
+                                            {
+                                              "type": "box",
+                                              "class": "grow",
+                                              "children": []
+                                            },
+                                            {
+                                              "type": "text",
+                                              "class": "num lv",
+                                              "text": "Lv{level}"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "box",
+                                          "class": "name-row",
+                                          "children": [
+                                            {
+                                              "type": "list",
+                                              "class": "type-row",
+                                              "items": "$types",
+                                              "template": {
+                                                "type": "image",
+                                                "class": "type-img",
+                                                "src": "$src"
+                                              }
+                                            },
+                                            {
+                                              "type": "box",
+                                              "class": "grow",
+                                              "children": []
+                                            },
+                                            {
+                                              "type": "box",
+                                              "class": "status",
+                                              "children": [
+                                                {
+                                                  "type": "text",
+                                                  "class": "status-text",
+                                                  "text": "{status}"
+                                                }
+                                              ],
+                                              "visibleIf": "$hasStatus",
+                                              "bindStyle": {
+                                                "background-color": "{statusColor}",
+                                                "color": "{statusInk}"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "box",
+                                          "class": "hp-row",
+                                          "children": [
+                                            {
+                                              "type": "box",
+                                              "class": "hp-tag",
+                                              "children": [
+                                                {
+                                                  "type": "text",
+                                                  "class": "hp-tag-text",
+                                                  "text": "HP"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "type": "bar",
+                                              "class": "hp",
+                                              "classIf": {
+                                                "high": "$hpHigh",
+                                                "mid": "$hpMid",
+                                                "low": "$hpLow"
+                                              },
+                                              "value": "$hpPct",
+                                              "max": 1
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "box",
+                                          "class": "hp-foot",
+                                          "children": [
+                                            {
+                                              "type": "box",
+                                              "class": "grow",
+                                              "children": []
+                                            },
+                                            {
+                                              "type": "text",
+                                              "class": "num hp-big",
+                                              "text": "{hp}/{maxHp}"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "box",
+                                      "class": "strike",
+                                      "children": [],
+                                      "visibleIf": "$fainted"
+                                    }
+                                  ],
+                                  "classIf": {
+                                    "lead": "$lead",
+                                    "fainted": "$fainted"
+                                  },
+                                  "bindStyle": {
+                                    "background-color": "{tone}",
+                                    "color": "{ink}"
+                                  },
+                                  "onClick": [
+                                    {
+                                      "set": {
+                                        "name": "{name}",
+                                        "level": "{level}",
+                                        "dex": "{dex}",
+                                        "sprite": "{sprite}",
+                                        "types": "{types}",
+                                        "hp": "{hp}",
+                                        "maxHp": "{maxHp}",
+                                        "hpPct": "{hpPct}",
+                                        "hpHigh": "{hpHigh}",
+                                        "hpMid": "{hpMid}",
+                                        "hpLow": "{hpLow}",
+                                        "fainted": "{fainted}",
+                                        "lead": "{lead}",
+                                        "status": "{status}",
+                                        "hasStatus": "{hasStatus}",
+                                        "statusColor": "{statusColor}",
+                                        "statusInk": "{statusInk}",
+                                        "tone": "{tone}",
+                                        "ink": "{ink}",
+                                        "nature": "{nature}",
+                                        "ability": "{ability}",
+                                        "item": "{item}",
+                                        "itemIcon": "{itemIcon}",
+                                        "hasItem": "{hasItem}",
+                                        "toNext": "{toNext}",
+                                        "expPct": "{expPct}",
+                                        "stats": "{stats}",
+                                        "moves": "{moves}"
+                                      }
+                                    },
+                                    {
+                                      "navigate": "detail"
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "dock",
+                    "children": [
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-map",
+                        "onClick": [
+                          {
+                            "navigate": "map"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "MAP"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-party on",
+                        "onClick": [
+                          {
+                            "navigate": "party"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "PARTY"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-bag",
+                        "onClick": [
+                          {
+                            "navigate": "bag"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "BAG"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-dex",
+                        "onClick": [
+                          {
+                            "navigate": "dex"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "DEX"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-trainer",
+                        "onClick": [
+                          {
+                            "navigate": "trainer"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "CARD"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-battle",
+                        "onClick": [
+                          {
+                            "navigate": "battle"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "BATTLE"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "detail",
+              "child": {
+                "type": "box",
+                "class": "page page-detail",
+                "children": [
+                  {
+                    "type": "box",
+                    "class": "content two-col",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "panel sum-panel",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "panel-head",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "panel-tab",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "panel-title",
+                                    "text": "SUMMARY"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "grow",
+                                "children": []
+                              },
+                              {
+                                "type": "button",
+                                "class": "chip back-btn",
+                                "onClick": "back",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "chip-text",
+                                    "text": "< BACK"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "panel-body",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "card sum-card",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "sprite-slot sprite-xl",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "sprite",
+                                        "src": "$ui.sprite"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "pcard-body",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "name-row",
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "class": "num dex-no",
+                                            "text": "No.{ui.dex}"
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "grow",
+                                            "children": []
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "num lv",
+                                            "text": "Lv{ui.level}"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "mon-name sum-name",
+                                        "text": "{ui.name}"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "name-row",
+                                        "children": [
+                                          {
+                                            "type": "list",
+                                            "class": "type-row",
+                                            "items": "$ui.types",
+                                            "template": {
+                                              "type": "image",
+                                              "class": "type-img",
+                                              "src": "$src"
+                                            }
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "grow",
+                                            "children": []
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "status",
+                                            "children": [
+                                              {
+                                                "type": "text",
+                                                "class": "status-text",
+                                                "text": "{ui.status}"
+                                              }
+                                            ],
+                                            "visibleIf": "$ui.hasStatus",
+                                            "bindStyle": {
+                                              "background-color": "{ui.statusColor}",
+                                              "color": "{ui.statusInk}"
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ],
+                                "bindStyle": {
+                                  "background-color": "{ui.tone}",
+                                  "color": "{ui.ink}"
+                                }
+                              },
+                              {
+                                "type": "box",
+                                "class": "meter",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "hp-row",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "hp-tag",
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "class": "hp-tag-text",
+                                            "text": "HP"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "bar",
+                                        "class": "hp",
+                                        "classIf": {
+                                          "high": "$ui.hpHigh",
+                                          "mid": "$ui.hpMid",
+                                          "low": "$ui.hpLow"
+                                        },
+                                        "value": "$ui.hpPct",
+                                        "max": 1
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "num hp-num",
+                                        "text": "{ui.hp}/{ui.maxHp}"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "hp-foot",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "meter-key",
+                                        "text": "EXP"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "grow",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "num meter-val",
+                                        "text": "{ui.toNext} TO NEXT"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "bar",
+                                    "class": "exp",
+                                    "value": "$ui.expPct",
+                                    "max": 1
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "info",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "info-row",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "info-key",
+                                        "text": "NATURE"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "grow",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "info-val",
+                                        "text": "{ui.nature}"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "info-row",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "info-key",
+                                        "text": "ABILITY"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "grow",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "info-val",
+                                        "text": "{ui.ability}"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "info-row",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "info-key",
+                                        "text": "ITEM"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "grow",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "image",
+                                        "class": "info-icon",
+                                        "src": "$ui.itemIcon",
+                                        "visibleIf": "$ui.hasItem"
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "info-val",
+                                        "text": "{ui.item}"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "panel stat-panel",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "panel-head",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "panel-tab",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "panel-title",
+                                    "text": "STATS"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "grow",
+                                "children": []
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "panel-body",
+                            "children": [
+                              {
+                                "type": "list",
+                                "class": "dstat-list",
+                                "items": "$ui.stats",
+                                "template": {
+                                  "type": "box",
+                                  "class": "dstat",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "class": "dstat-name",
+                                      "text": "{name}"
+                                    },
+                                    {
+                                      "type": "bar",
+                                      "class": "dstat-bar",
+                                      "value": "$pct",
+                                      "max": 1
+                                    },
+                                    {
+                                      "type": "text",
+                                      "class": "num dstat-val",
+                                      "text": "{value}"
+                                    }
+                                  ],
+                                  "classIf": {
+                                    "up": "$up",
+                                    "down": "$down"
+                                  }
+                                }
+                              },
+                              {
+                                "type": "text",
+                                "class": "sub-label",
+                                "text": "MOVES"
+                              },
+                              {
+                                "type": "list",
+                                "class": "move-grid",
+                                "items": "$ui.moves",
+                                "template": {
+                                  "type": "box",
+                                  "class": "move",
+                                  "children": [
+                                    {
+                                      "type": "box",
+                                      "class": "move-top",
+                                      "children": [
+                                        {
+                                          "type": "image",
+                                          "class": "type-img",
+                                          "src": "$type"
+                                        },
+                                        {
+                                          "type": "box",
+                                          "class": "grow",
+                                          "children": []
+                                        },
+                                        {
+                                          "type": "text",
+                                          "class": "num move-pp",
+                                          "text": "{pp}"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "text",
+                                      "class": "move-name",
+                                      "text": "{name}"
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "dock",
+                    "children": [
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-map",
+                        "onClick": [
+                          {
+                            "navigate": "map"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "MAP"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-party on",
+                        "onClick": [
+                          {
+                            "navigate": "party"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "PARTY"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-bag",
+                        "onClick": [
+                          {
+                            "navigate": "bag"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "BAG"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-dex",
+                        "onClick": [
+                          {
+                            "navigate": "dex"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "DEX"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-trainer",
+                        "onClick": [
+                          {
+                            "navigate": "trainer"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "CARD"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-battle",
+                        "onClick": [
+                          {
+                            "navigate": "battle"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "BATTLE"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "bag",
+              "child": {
+                "type": "box",
+                "class": "page page-bag",
+                "children": [
+                  {
+                    "type": "box",
+                    "class": "content",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "panel bag-panel",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "panel-head",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "panel-tab",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "panel-title",
+                                    "text": "BAG"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "grow",
+                                "children": []
+                              },
+                              {
+                                "type": "box",
+                                "class": "chip chip-yellow",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "chip-text",
+                                    "text": "{bag.total} ITEMS"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "panel-body",
+                            "children": [
+                              {
+                                "type": "tabs",
+                                "class": "pockets",
+                                "tabs": [
+                                  {
+                                    "title": "ITEMS",
+                                    "child": {
+                                      "type": "list",
+                                      "class": "item-grid",
+                                      "items": "$bag.items",
+                                      "empty": "EMPTY POCKET",
+                                      "template": {
+                                        "type": "box",
+                                        "class": "item-row",
+                                        "children": [
+                                          {
+                                            "type": "image",
+                                            "class": "item-icon",
+                                            "src": "$icon"
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "item-name",
+                                            "text": "{name}"
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "grow",
+                                            "children": []
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "num item-count",
+                                            "text": "{count}"
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "title": "KEY",
+                                    "child": {
+                                      "type": "list",
+                                      "class": "item-grid",
+                                      "items": "$bag.keyItems",
+                                      "empty": "EMPTY POCKET",
+                                      "template": {
+                                        "type": "box",
+                                        "class": "item-row",
+                                        "children": [
+                                          {
+                                            "type": "image",
+                                            "class": "item-icon",
+                                            "src": "$icon"
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "item-name",
+                                            "text": "{name}"
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "grow",
+                                            "children": []
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "num item-count",
+                                            "text": "{count}"
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "title": "BALLS",
+                                    "child": {
+                                      "type": "list",
+                                      "class": "item-grid",
+                                      "items": "$bag.balls",
+                                      "empty": "EMPTY POCKET",
+                                      "template": {
+                                        "type": "box",
+                                        "class": "item-row",
+                                        "children": [
+                                          {
+                                            "type": "image",
+                                            "class": "item-icon",
+                                            "src": "$icon"
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "item-name",
+                                            "text": "{name}"
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "grow",
+                                            "children": []
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "num item-count",
+                                            "text": "{count}"
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "title": "TM/HM",
+                                    "child": {
+                                      "type": "list",
+                                      "class": "item-grid",
+                                      "items": "$bag.tmHm",
+                                      "empty": "EMPTY POCKET",
+                                      "template": {
+                                        "type": "box",
+                                        "class": "item-row",
+                                        "children": [
+                                          {
+                                            "type": "image",
+                                            "class": "item-icon",
+                                            "src": "$icon"
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "item-name",
+                                            "text": "{name}"
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "grow",
+                                            "children": []
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "num item-count",
+                                            "text": "{count}"
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "title": "BERRY",
+                                    "child": {
+                                      "type": "list",
+                                      "class": "item-grid",
+                                      "items": "$bag.berries",
+                                      "empty": "EMPTY POCKET",
+                                      "template": {
+                                        "type": "box",
+                                        "class": "item-row",
+                                        "children": [
+                                          {
+                                            "type": "image",
+                                            "class": "item-icon",
+                                            "src": "$icon"
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "item-name",
+                                            "text": "{name}"
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "grow",
+                                            "children": []
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "num item-count",
+                                            "text": "{count}"
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "dock",
+                    "children": [
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-map",
+                        "onClick": [
+                          {
+                            "navigate": "map"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "MAP"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-party",
+                        "onClick": [
+                          {
+                            "navigate": "party"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "PARTY"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-bag on",
+                        "onClick": [
+                          {
+                            "navigate": "bag"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "BAG"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-dex",
+                        "onClick": [
+                          {
+                            "navigate": "dex"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "DEX"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-trainer",
+                        "onClick": [
+                          {
+                            "navigate": "trainer"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "CARD"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-battle",
+                        "onClick": [
+                          {
+                            "navigate": "battle"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "BATTLE"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "dex",
+              "child": {
+                "type": "box",
+                "class": "page page-dex",
+                "children": [
+                  {
+                    "type": "box",
+                    "class": "content two-col",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "panel dex-panel",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "panel-head",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "panel-tab",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "panel-title",
+                                    "text": "POKéDEX"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "grow",
+                                "children": []
+                              },
+                              {
+                                "type": "box",
+                                "class": "chip chip-green",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "chip-text",
+                                    "text": "KANTO"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "panel-body",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "dex-stat seen",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "dex-stat-head",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "dex-label",
+                                        "text": "SEEN"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "grow",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "num dex-of",
+                                        "text": "/{dex.total}"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "num dex-num",
+                                    "text": "{dex.seen}"
+                                  },
+                                  {
+                                    "type": "bar",
+                                    "class": "dex-bar",
+                                    "value": "$dex.seenPct",
+                                    "max": 1
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "dex-stat caught",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "dex-stat-head",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "dex-label",
+                                        "text": "CAUGHT"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "grow",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "num dex-of",
+                                        "text": "/{dex.total}"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "num dex-num",
+                                    "text": "{dex.caught}"
+                                  },
+                                  {
+                                    "type": "bar",
+                                    "class": "dex-bar",
+                                    "value": "$dex.caughtPct",
+                                    "max": 1
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "panel dex-side",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "panel-head",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "panel-tab",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "panel-title",
+                                    "text": "COMPLETION"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "grow",
+                                "children": []
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "panel-body",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "complete",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "num complete-num",
+                                    "text": "{dex.completion}"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "complete-sub",
+                                    "text": "OF KANTO REGISTERED"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "last",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "last-label",
+                                    "text": "HIGHEST No."
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "last-row",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "sprite-slot sprite-dex",
+                                        "children": [
+                                          {
+                                            "type": "image",
+                                            "class": "sprite",
+                                            "src": "$dex.last.sprite"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "last-id",
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "class": "num last-no",
+                                            "text": "No.{dex.last.no}"
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "last-name",
+                                            "text": "{dex.last.name}"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "dock",
+                    "children": [
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-map",
+                        "onClick": [
+                          {
+                            "navigate": "map"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "MAP"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-party",
+                        "onClick": [
+                          {
+                            "navigate": "party"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "PARTY"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-bag",
+                        "onClick": [
+                          {
+                            "navigate": "bag"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "BAG"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-dex on",
+                        "onClick": [
+                          {
+                            "navigate": "dex"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "DEX"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-trainer",
+                        "onClick": [
+                          {
+                            "navigate": "trainer"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "CARD"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-battle",
+                        "onClick": [
+                          {
+                            "navigate": "battle"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "BATTLE"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "trainer",
+              "child": {
+                "type": "box",
+                "class": "page page-trainer",
+                "children": [
+                  {
+                    "type": "box",
+                    "class": "content two-col trainer-cols",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "panel id-panel",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "panel-head",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "panel-tab",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "panel-title",
+                                    "text": "TRAINER CARD"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "grow",
+                                "children": []
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "panel-body",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "id-card",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "id-band",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "id-band-text",
+                                        "text": "IDNo."
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "grow",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "num id-no",
+                                        "text": "{trainer.id}"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "id-main",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "id-rows",
+                                        "children": [
+                                          {
+                                            "type": "box",
+                                            "class": "id-row",
+                                            "children": [
+                                              {
+                                                "type": "text",
+                                                "class": "id-key",
+                                                "text": "NAME"
+                                              },
+                                              {
+                                                "type": "box",
+                                                "class": "grow",
+                                                "children": []
+                                              },
+                                              {
+                                                "type": "text",
+                                                "class": "num id-val",
+                                                "text": "{trainer.name}"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "id-row",
+                                            "children": [
+                                              {
+                                                "type": "image",
+                                                "class": "ic8",
+                                                "src": "asset:ui/ic-coin.png"
+                                              },
+                                              {
+                                                "type": "text",
+                                                "class": "id-key",
+                                                "text": "MONEY"
+                                              },
+                                              {
+                                                "type": "box",
+                                                "class": "grow",
+                                                "children": []
+                                              },
+                                              {
+                                                "type": "text",
+                                                "class": "num id-val",
+                                                "text": "{trainer.money}"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "id-row",
+                                            "children": [
+                                              {
+                                                "type": "image",
+                                                "class": "ic8",
+                                                "src": "asset:ui/ic-clock.png"
+                                              },
+                                              {
+                                                "type": "text",
+                                                "class": "id-key",
+                                                "text": "TIME"
+                                              },
+                                              {
+                                                "type": "box",
+                                                "class": "grow",
+                                                "children": []
+                                              },
+                                              {
+                                                "type": "text",
+                                                "class": "num id-val",
+                                                "text": "{trainer.time}"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "id-row",
+                                            "children": [
+                                              {
+                                                "type": "text",
+                                                "class": "id-key",
+                                                "text": "DEX"
+                                              },
+                                              {
+                                                "type": "box",
+                                                "class": "grow",
+                                                "children": []
+                                              },
+                                              {
+                                                "type": "text",
+                                                "class": "num id-val",
+                                                "text": "{trainer.caught}"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "id-row",
+                                            "children": [
+                                              {
+                                                "type": "text",
+                                                "class": "id-key",
+                                                "text": "BADGES"
+                                              },
+                                              {
+                                                "type": "box",
+                                                "class": "grow",
+                                                "children": []
+                                              },
+                                              {
+                                                "type": "text",
+                                                "class": "num id-val",
+                                                "text": "{trainer.badges}"
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "panel badge-panel",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "panel-head",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "panel-tab",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "panel-title",
+                                    "text": "BADGES"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "grow",
+                                "children": []
+                              },
+                              {
+                                "type": "box",
+                                "class": "chip chip-yellow",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "chip-text",
+                                    "text": "{trainer.badges}"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "panel-body",
+                            "children": [
+                              {
+                                "type": "list",
+                                "class": "badge-grid",
+                                "items": "$trainer.badgeList",
+                                "template": {
+                                  "type": "box",
+                                  "class": "badge",
+                                  "children": [
+                                    {
+                                      "type": "image",
+                                      "class": "badge-img",
+                                      "src": "$src",
+                                      "visibleIf": "$earned"
+                                    },
+                                    {
+                                      "type": "image",
+                                      "class": "badge-lock",
+                                      "src": "asset:ui/ic-lock.png",
+                                      "visibleIf": "$locked"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "class": "badge-name",
+                                      "text": "{name}"
+                                    }
+                                  ],
+                                  "classIf": {
+                                    "earned": "$earned",
+                                    "locked": "$locked"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "dock",
+                    "children": [
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-map",
+                        "onClick": [
+                          {
+                            "navigate": "map"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "MAP"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-party",
+                        "onClick": [
+                          {
+                            "navigate": "party"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "PARTY"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-bag",
+                        "onClick": [
+                          {
+                            "navigate": "bag"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "BAG"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-dex",
+                        "onClick": [
+                          {
+                            "navigate": "dex"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "DEX"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-trainer on",
+                        "onClick": [
+                          {
+                            "navigate": "trainer"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "CARD"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-battle",
+                        "onClick": [
+                          {
+                            "navigate": "battle"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "BATTLE"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "battle",
+              "child": {
+                "type": "box",
+                "class": "page page-battle",
+                "children": [
+                  {
+                    "type": "box",
+                    "class": "content battle-content",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "battle-cols",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "panel battle-side you-side",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "panel-head",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "panel-tab",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "panel-title",
+                                        "text": "YOU"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "grow",
+                                    "children": []
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "panel-body",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "card pcard",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "ring",
+                                        "children": [],
+                                        "visibleIf": "$battle.you.lead"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "sprite-slot sprite-l",
+                                        "children": [
+                                          {
+                                            "type": "image",
+                                            "class": "sprite",
+                                            "src": "$battle.you.sprite"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "pcard-body",
+                                        "children": [
+                                          {
+                                            "type": "box",
+                                            "class": "name-row",
+                                            "children": [
+                                              {
+                                                "type": "text",
+                                                "class": "mon-name",
+                                                "text": "{battle.you.name}"
+                                              },
+                                              {
+                                                "type": "box",
+                                                "class": "grow",
+                                                "children": []
+                                              },
+                                              {
+                                                "type": "text",
+                                                "class": "num lv",
+                                                "text": "Lv{battle.you.level}"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "name-row",
+                                            "children": [
+                                              {
+                                                "type": "list",
+                                                "class": "type-row",
+                                                "items": "$battle.you.types",
+                                                "template": {
+                                                  "type": "image",
+                                                  "class": "type-img",
+                                                  "src": "$src"
+                                                }
+                                              },
+                                              {
+                                                "type": "box",
+                                                "class": "grow",
+                                                "children": []
+                                              },
+                                              {
+                                                "type": "box",
+                                                "class": "status",
+                                                "children": [
+                                                  {
+                                                    "type": "text",
+                                                    "class": "status-text",
+                                                    "text": "{battle.you.status}"
+                                                  }
+                                                ],
+                                                "visibleIf": "$battle.you.hasStatus",
+                                                "bindStyle": {
+                                                  "background-color": "{battle.you.statusColor}",
+                                                  "color": "{battle.you.statusInk}"
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "hp-row",
+                                            "children": [
+                                              {
+                                                "type": "box",
+                                                "class": "hp-tag",
+                                                "children": [
+                                                  {
+                                                    "type": "text",
+                                                    "class": "hp-tag-text",
+                                                    "text": "HP"
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "type": "bar",
+                                                "class": "hp",
+                                                "classIf": {
+                                                  "high": "$battle.you.hpHigh",
+                                                  "mid": "$battle.you.hpMid",
+                                                  "low": "$battle.you.hpLow"
+                                                },
+                                                "value": "$battle.you.hpPct",
+                                                "max": 1
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "hp-foot",
+                                            "children": [
+                                              {
+                                                "type": "box",
+                                                "class": "grow",
+                                                "children": []
+                                              },
+                                              {
+                                                "type": "text",
+                                                "class": "num hp-big",
+                                                "text": "{battle.you.hp}/{battle.you.maxHp}"
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "strike",
+                                        "children": [],
+                                        "visibleIf": "$battle.you.fainted"
+                                      }
+                                    ],
+                                    "classIf": {
+                                      "lead": "$battle.you.lead",
+                                      "fainted": "$battle.you.fainted"
+                                    },
+                                    "bindStyle": {
+                                      "background-color": "{battle.you.tone}",
+                                      "color": "{battle.you.ink}"
+                                    }
+                                  },
+                                  {
+                                    "type": "list",
+                                    "class": "stat-list",
+                                    "items": "$battle.you.stats",
+                                    "template": {
+                                      "type": "box",
+                                      "class": "stat-row",
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "class": "stat-name",
+                                          "text": "{name}"
+                                        },
+                                        {
+                                          "type": "box",
+                                          "class": "grow",
+                                          "children": []
+                                        },
+                                        {
+                                          "type": "text",
+                                          "class": "num stat-val",
+                                          "text": "{value}"
+                                        },
+                                        {
+                                          "type": "box",
+                                          "class": "stage",
+                                          "children": [
+                                            {
+                                              "type": "text",
+                                              "class": "num stage-text",
+                                              "text": "{stage}"
+                                            }
+                                          ]
+                                        }
+                                      ],
+                                      "classIf": {
+                                        "up": "$up",
+                                        "down": "$down",
+                                        "flat": "$flat"
+                                      }
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "panel battle-side foe-side",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "panel-head",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "panel-tab",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "panel-title",
+                                        "text": "FOE"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "grow",
+                                    "children": []
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "panel-body",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "card pcard",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "ring",
+                                        "children": [],
+                                        "visibleIf": "$battle.foe.lead"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "sprite-slot sprite-l",
+                                        "children": [
+                                          {
+                                            "type": "image",
+                                            "class": "sprite",
+                                            "src": "$battle.foe.sprite"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "pcard-body",
+                                        "children": [
+                                          {
+                                            "type": "box",
+                                            "class": "name-row",
+                                            "children": [
+                                              {
+                                                "type": "text",
+                                                "class": "mon-name",
+                                                "text": "{battle.foe.name}"
+                                              },
+                                              {
+                                                "type": "box",
+                                                "class": "grow",
+                                                "children": []
+                                              },
+                                              {
+                                                "type": "text",
+                                                "class": "num lv",
+                                                "text": "Lv{battle.foe.level}"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "name-row",
+                                            "children": [
+                                              {
+                                                "type": "list",
+                                                "class": "type-row",
+                                                "items": "$battle.foe.types",
+                                                "template": {
+                                                  "type": "image",
+                                                  "class": "type-img",
+                                                  "src": "$src"
+                                                }
+                                              },
+                                              {
+                                                "type": "box",
+                                                "class": "grow",
+                                                "children": []
+                                              },
+                                              {
+                                                "type": "box",
+                                                "class": "status",
+                                                "children": [
+                                                  {
+                                                    "type": "text",
+                                                    "class": "status-text",
+                                                    "text": "{battle.foe.status}"
+                                                  }
+                                                ],
+                                                "visibleIf": "$battle.foe.hasStatus",
+                                                "bindStyle": {
+                                                  "background-color": "{battle.foe.statusColor}",
+                                                  "color": "{battle.foe.statusInk}"
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "hp-row",
+                                            "children": [
+                                              {
+                                                "type": "box",
+                                                "class": "hp-tag",
+                                                "children": [
+                                                  {
+                                                    "type": "text",
+                                                    "class": "hp-tag-text",
+                                                    "text": "HP"
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "type": "bar",
+                                                "class": "hp",
+                                                "classIf": {
+                                                  "high": "$battle.foe.hpHigh",
+                                                  "mid": "$battle.foe.hpMid",
+                                                  "low": "$battle.foe.hpLow"
+                                                },
+                                                "value": "$battle.foe.hpPct",
+                                                "max": 1
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "hp-foot",
+                                            "children": [
+                                              {
+                                                "type": "box",
+                                                "class": "grow",
+                                                "children": []
+                                              },
+                                              {
+                                                "type": "text",
+                                                "class": "num hp-big",
+                                                "text": "{battle.foe.hp}/{battle.foe.maxHp}"
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "strike",
+                                        "children": [],
+                                        "visibleIf": "$battle.foe.fainted"
+                                      }
+                                    ],
+                                    "classIf": {
+                                      "lead": "$battle.foe.lead",
+                                      "fainted": "$battle.foe.fainted"
+                                    },
+                                    "bindStyle": {
+                                      "background-color": "{battle.foe.tone}",
+                                      "color": "{battle.foe.ink}"
+                                    }
+                                  },
+                                  {
+                                    "type": "list",
+                                    "class": "stat-list",
+                                    "items": "$battle.foe.stats",
+                                    "template": {
+                                      "type": "box",
+                                      "class": "stat-row",
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "class": "stat-name",
+                                          "text": "{name}"
+                                        },
+                                        {
+                                          "type": "box",
+                                          "class": "grow",
+                                          "children": []
+                                        },
+                                        {
+                                          "type": "text",
+                                          "class": "num stat-val",
+                                          "text": "{value}"
+                                        },
+                                        {
+                                          "type": "box",
+                                          "class": "stage",
+                                          "children": [
+                                            {
+                                              "type": "text",
+                                              "class": "num stage-text",
+                                              "text": "{stage}"
+                                            }
+                                          ]
+                                        }
+                                      ],
+                                      "classIf": {
+                                        "up": "$up",
+                                        "down": "$down",
+                                        "flat": "$flat"
+                                      }
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ],
+                        "visibleIf": "$battle.inBattle"
+                      },
+                      {
+                        "type": "box",
+                        "class": "no-battle",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "no-battle-card",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "no-battle-text",
+                                "text": "NO BATTLE"
+                              },
+                              {
+                                "type": "text",
+                                "class": "no-battle-sub",
+                                "text": "STATS APPEAR WHEN A FIGHT STARTS"
+                              }
+                            ]
+                          }
+                        ],
+                        "visibleIf": "$battle.noBattle"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "dock",
+                    "children": [
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-map",
+                        "onClick": [
+                          {
+                            "navigate": "map"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "MAP"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-party",
+                        "onClick": [
+                          {
+                            "navigate": "party"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "PARTY"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-bag",
+                        "onClick": [
+                          {
+                            "navigate": "bag"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "BAG"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-dex",
+                        "onClick": [
+                          {
+                            "navigate": "dex"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "DEX"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-trainer",
+                        "onClick": [
+                          {
+                            "navigate": "trainer"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "CARD"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "dock-btn dock-battle on",
+                        "onClick": [
+                          {
+                            "navigate": "battle"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-inner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dock-label",
+                                "text": "BATTLE"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "visibleIf": "$ready"
+    }
+  ],
+  "id": "screen"
+}
