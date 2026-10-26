@@ -53,6 +53,12 @@ interface with hazard-striped headers and a colour-coded dock.
 - **BATTLE** - opens by itself when a battle starts and goes back when it ends: both
   Pokémon with their types, HP and live stats, with stat changes (+1, -2…) marked.
 
+#### Minimal variants — `pokemon-firered-minimal-companion`, `pokemon-leafgreen-minimal-companion`
+
+The same pages and data as the vertical-navigation packs, in a calm one-colour skin: soft
+red for FireRed (`BPRE`) and soft green for LeafGreen (`BPGE`), flat fills, a single solid
+border, no shadows or stripes, and a text-only dock on the right.
+
 ### Harvest Moon: Friends of Mineral Town — `harvest-moon-fomt-companion`
 
 For Harvest Moon: Friends of Mineral Town (EU `A4NP`, US `BHFE`). Checked on the EU cart.
@@ -153,10 +159,10 @@ root of the zip) and import it in GBADuo.
 Each release has one zip per pack, named `<pack-id>-<version>.zip`, with the pack's files
 at the root of the zip. Bump `version` in the pack's `manifest.json` when it changes.
 `art/` holds the scripts that build a pack's images (and their sources); it stays out
-of the zip, along with `NOTES.md` and `preview-data.json`.
+of the zip, along with `screenshoots/`, `NOTES.md` and `preview-data.json`.
 
 ```sh
-cd my-pack && zip -rX ../my-pack-1.0.0.zip . -x '*.DS_Store' 'art/*' NOTES.md preview-data.json
+cd my-pack && zip -rX ../my-pack-1.0.0.zip . -x '*.DS_Store' 'art/*' 'screenshoots/*' NOTES.md preview-data.json
 ```
 
 </details>

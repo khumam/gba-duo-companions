@@ -99,6 +99,54 @@
 			]
 		},
 		{
+			"id": "pokemon-firered-minimal-companion",
+			"title": "Pokémon FireRed Companion (Minimal Soft Red)",
+			"description": "FireRed companion in a calm soft red skin: flat fills and a single solid border, with a right-side dock, live Town Map, party, bag, Pokédex, trainer card, and battle page.",
+			"version": "1.0.0",
+			"author": "khumam",
+			"official": true,
+			"repo": "khumam/gba-duo-companions",
+			"path": "pokemon-firered-minimal-companion",
+			"tag": "v1.6.0",
+			"url": "https://github.com/khumam/gba-duo-companions/tree/main/pokemon-firered-minimal-companion",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.6.0/pokemon-firered-minimal-companion-1.0.0.zip",
+			"games": [{ "title": "Pokémon FireRed", "region": "US", "gameCode": "BPRE" }],
+			"design": "Pokémon FireRed",
+			"pages": ["Map", "Party", "Bag", "Dex", "Card", "Battle"],
+			"tags": ["pokemon", "rpg", "map", "party", "battle", "vertical-navigation", "minimal", "rom-graphics"],
+			"minAppVersion": "0.1.3",
+			"recommendedAppVersion": "0.1.7",
+			"canModifyGame": false,
+			"screenshots": [
+				{ "src": "pokemon-firered-minimal-companion/screenshoots/firered-minimal.png", "alt": "FireRed minimal map page in soft red" },
+				{ "src": "pokemon-firered-minimal-companion/screenshoots/firered-minimal-2.png", "alt": "FireRed minimal party page in soft red" }
+			]
+		},
+		{
+			"id": "pokemon-leafgreen-minimal-companion",
+			"title": "Pokémon LeafGreen Companion (Minimal Soft Green)",
+			"description": "LeafGreen companion in a calm soft green skin: flat fills and a single solid border, with a right-side dock, live Town Map, party, bag, Pokédex, trainer card, and battle page.",
+			"version": "1.0.0",
+			"author": "khumam",
+			"official": true,
+			"repo": "khumam/gba-duo-companions",
+			"path": "pokemon-leafgreen-minimal-companion",
+			"tag": "v1.6.0",
+			"url": "https://github.com/khumam/gba-duo-companions/tree/main/pokemon-leafgreen-minimal-companion",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.6.0/pokemon-leafgreen-minimal-companion-1.0.0.zip",
+			"games": [{ "title": "Pokémon LeafGreen", "region": "US", "gameCode": "BPGE" }],
+			"design": "Pokémon LeafGreen",
+			"pages": ["Map", "Party", "Bag", "Dex", "Card", "Battle"],
+			"tags": ["pokemon", "rpg", "map", "party", "battle", "vertical-navigation", "minimal", "rom-graphics"],
+			"minAppVersion": "0.1.3",
+			"recommendedAppVersion": "0.1.7",
+			"canModifyGame": false,
+			"screenshots": [
+				{ "src": "pokemon-leafgreen-minimal-companion/screenshoots/leafgreen-minimal.png", "alt": "LeafGreen minimal map page in soft green" },
+				{ "src": "pokemon-leafgreen-minimal-companion/screenshoots/leafgreen-minimal-2.png", "alt": "LeafGreen minimal party page in soft green" }
+			]
+		},
+		{
 			"id": "zelda-minish-cap-companion",
 			"title": "The Legend of Zelda: The Minish Cap Companion",
 			"description": "World and dungeon maps with Link's spot, his hearts, items, kinstone fusions, and quest progress, drawn from your own ROM. Tap Ezlo for a hint.",
