@@ -1,233 +1,129 @@
 /*
- * Design: BSL Bio-Interface. The research station's HUD over SR388: dark
- * holographic glass panels with cyan corner brackets, hex plates for every
- * ability, and X parasites drifting in the backdrop. When energy runs low the
- * hero panel turns alarm red. Follows the enchanted-forest pack system
- * (skill/enchanted-forest-pack-design) with a sci-fi palette: brackets stand in
- * for leaf sprigs, the scan line for the vine divider.
+ * The game's own screens. main.lua draws the pause frame, the status screen's header,
+ * Samus and item windows from the player's ROM (gfx.tilemap); text is set in the game's
+ * font as glyph images (assets/font, from art/rom-font.py).
  *
- * Fonts: Audiowide (display numbers, titles), Chakra Petch (HUD text).
- * Art: art/build.mjs. Engine: background-size px/cover only, art images need
- * image-rendering: auto.
+ * One game pixel = 5 device px = 2.168dp, so one 8x8 tile = 17.34dp ("T" below). The
+ * Thor's second screen is 538dp wide; the status screen is 30 tiles = 520.2dp.
  */
 
 :root {
-  --void:     #02060E;
-  --glass:    rgba(6, 20, 32, 0.84);
-  --glass-hi: rgba(14, 42, 62, 0.86);
-  --cyan:     #4FE6FF;
-  --cyan-lo:  rgba(79, 230, 255, 0.45);
-  --text:     #DDF6FF;
-  --text-lo:  #7FA6BC;
-  --alarm:    #FF4A4A;
-  --missile:  #FF9A3A;
-  --bomb:     #FF5AC8;
-  --suit:     #6AF08A;
-  --here:     #FFD84A;
+  --navy: #20204A;
+  --lilac: #E0A0E8;
+  --green: #14502C;
+  --green-hi: #58E080;
+  --silver: #CBD6D3;
 }
 
-@font-face { font-family: "Audiowide"; src: url("assets/fonts/Audiowide-Regular.ttf"); }
-@font-face { font-family: "Chakra"; src: url("assets/fonts/ChakraPetch-Medium.ttf"); }
-@font-face { font-family: "ChakraBold"; src: url("assets/fonts/ChakraPetch-Bold.ttf"); }
+image { image-rendering: pixelated; }
+
+.grow { flex: 1; }
 
 #screen {
-  background-color: var(--void);
-  background-image: url("assets/img/bsl-space.png");
-  background-size: cover;
-  color: var(--text);
-  font-family: "Chakra", sans-serif;
-  padding: 10px 12px 0 12px;
-}
-
-/* ---- waiting ----------------------------------------------------------------------- */
-
-.waiting { align-items: center; justify-content: center; height: 100%; gap: 6px; }
-.core { width: 200px; height: 200px; image-rendering: auto; }
-.waiting-title {
-  font-family: "Audiowide", sans-serif;
-  font-size: 26px;
-  letter-spacing: 4px;
-  color: var(--cyan);
-  text-shadow: 0 0 12px rgba(79, 230, 255, 0.8);
-}
-
-/* ---- tabs: holo plates (110x36, px only) ------------------------------------------------ */
-
-tab-bar { gap: 0; justify-content: space-between; margin-bottom: 2px; }
-
-tab {
-  width: 110px;
-  height: 36px;
-  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 8px 8px 0 8px;
+  background-color: #000000;
   align-items: center;
-  text-align: center;
-  font-family: "Audiowide", sans-serif;
-  font-size: 11px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--text-lo);
-  background-image: url("assets/img/tab-holo.png");
-  background-size: 110px 36px;
-  padding: 8px 0 0 0;
-  transition: color 200ms ease-out, transform 150ms ease-out;
 }
+#screen.alert { background-color: #2A0A12; }
 
-tab:active {
-  color: #03202E;
-  background-image: url("assets/img/tab-holo-active.png");
+.shell, .pages, .page { width: 520.2px; }
+
+/* ---- glyph text -------------------------------------------------------------------------- */
+
+.g { width: 17.34px; height: 17.34px; }
+.line { flex-direction: row; height: 17.34px; }
+
+/* ---- nav: plain rounded rectangles ---------------------------------------------------------- */
+
+.nav { flex-direction: row; gap: 8px; height: 31px; margin-top: 6px; }
+
+.tab {
+  flex: 1;
+  height: 31px;
+  align-items: center;
+  justify-content: center;
+  background-color: #0E3A20;
+  border: 2px solid #0A2416;
+  border-radius: 6px;
+  opacity: 0.6;
 }
+.tab.on { background-color: var(--green); border-color: var(--silver); opacity: 1; }
 
-tab:pressed { transform: scale(0.95); }
-tab-content { padding-top: 0; }
+/* ---- STATUS ------------------------------------------------------------------------------ */
 
-.tab-page { gap: 10px; overflow: auto; padding: 14px 2px 24px 2px; }
+.stage { position: relative; width: 520.2px; height: 416.16px; background-color: var(--navy); }
 
-/* ---- panels ------------------------------------------------------------------------------ */
+.hdr { position: relative; width: 520.2px; height: 86.7px; }
+.header { width: 520.2px; height: 86.7px; }
 
-.panel {
-  position: relative;
-  background: linear-gradient(160deg, var(--glass-hi), var(--glass));
-  border: 1px solid var(--cyan-lo);
-  border-radius: 4px 14px 4px 14px;
-  padding: 10px 12px;
-  box-shadow: 0 0 14px rgba(79, 230, 255, 0.12);
-  gap: 4px;
+.num { position: absolute; flex-direction: row; top: 52.02px; height: 17.34px; }
+.n-energy-now { left: 34.68px; }
+.n-energy-max { left: 121.38px; }
+.n-missile-now { left: 225.42px; }
+.n-missile-max { left: 294.78px; }
+.n-bomb-now { left: 398.82px; }
+.n-bomb-max { left: 450.84px; }
+
+.body { flex-direction: row; height: 260.1px; }
+.frame { width: 17.34px; height: 260.1px; }
+.center { width: 190.74px; height: 260.1px; }
+.side { background-color: var(--navy); padding-top: 6px; }
+.side-left { width: 138.72px; padding-left: 4px; }
+.side-right { width: 156.06px; padding-left: 10px; }
+
+/* ---- ARMS ---------------------------------------------------------------------------------- */
+
+.arms { position: relative; width: 520.2px; height: 190.74px; }
+.arms-info { flex: 1; padding: 8px 0 0 17.34px; }
+
+.win { position: absolute; }
+.w-beam { left: 17.34px; top: 0; width: 138.72px; }
+.w-missile { left: 156.06px; top: 0; width: 138.72px; }
+.w-suit { left: 329.46px; top: 0; width: 173.4px; }
+.w-misc { left: 329.46px; top: 69.36px; width: 173.4px; }
+.w-bomb { left: 17.34px; top: 121.38px; width: 173.4px; }
+
+.w-beam .w-title, .w-beam .w-row, .w-beam .w-foot,
+.w-missile .w-title, .w-missile .w-row, .w-missile .w-foot { width: 138.72px; height: 17.34px; }
+.w-suit .w-title, .w-suit .w-row, .w-suit .w-foot,
+.w-misc .w-title, .w-misc .w-row, .w-misc .w-foot,
+.w-bomb .w-title, .w-bomb .w-row, .w-bomb .w-foot { width: 173.4px; height: 17.34px; }
+
+.w-row { opacity: 0.3; }
+.w-row.owned { opacity: 1; }
+
+/* ---- MAP ----------------------------------------------------------------------------------- */
+
+.map { position: relative; width: 520.2px; height: 346.8px; }
+.outline { width: 520.2px; height: 346.8px; }
+
+.plate { position: absolute; left: 216.75px; top: 2px; flex-direction: row; height: 17.34px; }
+
+
+/* ---- waiting ------------------------------------------------------------------------------- */
+
+.waiting { flex: 1; justify-content: center; align-items: center; }
+.wait { align-items: center; gap: 6px; }
+
+/* ---- status: closing rows ------------------------------------------------------------------ */
+
+.info { flex-direction: row; height: 34.68px; }
+.frame2 { width: 17.34px; height: 34.68px; }
+.info-text { width: 485.52px; padding-left: 8px; background-color: var(--navy); }
+.botbar { width: 520.2px; height: 34.68px; }
+
+/* ---- map: the live minimap inside the frame ---------------------------------------------------- */
+
+.minimap { position: absolute; left: 34.68px; top: 52.02px; width: 450.84px; height: 260.1px; }
+.marker {
+  position: absolute;
+  left: calc(34.68px + var(--mx));
+  top: calc(52.02px + var(--my));
+  width: 17.34px;
+  height: 17.34px;
+  border: 2px solid #FFFF39;
+  border-radius: 3px;
 }
-
-.panel.hero {
-  border: 1px solid var(--cyan);
-  border-radius: 6px 20px 6px 20px;
-  padding: 14px 16px 12px 16px;
-  box-shadow: 0 0 18px rgba(79, 230, 255, 0.25);
-  gap: 8px;
-}
-
-.panel.hero.slim { padding: 12px 16px; }
-
-.panel.hero.alert {
-  border-color: var(--alarm);
-  background: linear-gradient(160deg, rgba(70, 10, 14, 0.9), rgba(20, 4, 8, 0.88));
-  box-shadow: 0 0 22px rgba(255, 74, 74, 0.45);
-}
-
-.bracket { position: absolute; width: 38px; height: 38px; image-rendering: auto; }
-.bracket-l { top: -5px; left: -5px; }
-.bracket-r { top: -5px; right: -5px; }
-
-.col { gap: 0; }
-.right { align-items: flex-end; }
-.grow { flex: 1; }
-.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
-
-.label { font-family: "ChakraBold", sans-serif; font-size: 10px; letter-spacing: 2px; color: var(--cyan); }
-.fine { font-size: 11px; color: var(--text-lo); }
-.icon { width: 22px; height: 22px; image-rendering: auto; }
-.icon-small { width: 18px; height: 18px; image-rendering: auto; }
-.dim { opacity: 0.2; }
-.dim.on { opacity: 1; }
-
-.scan-title { flex-direction: row; align-items: center; justify-content: center; gap: 6px; margin-top: 2px; }
-.scan { width: 80px; height: 10px; image-rendering: auto; }
-.scan-text {
-  font-family: "Audiowide", sans-serif;
-  font-size: 11px;
-  letter-spacing: 2px;
-  color: var(--cyan);
-  text-shadow: 0 0 8px rgba(79, 230, 255, 0.7);
-}
-
-.gauge {
-  height: 6px;
-  border-radius: 1px;
-  background-color: rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(79, 230, 255, 0.25);
-}
-.gauge > fill { border-radius: 1px; transition: width 400ms ease-out; }
-.energy-gauge > fill  { background: linear-gradient(90deg, #1AA8D8, #9AF6FF); }
-.energy-gauge.alert > fill { background: linear-gradient(90deg, #8E1010, var(--alarm)); }
-.missile-gauge > fill { background: linear-gradient(90deg, #B85A10, var(--missile)); }
-.bomb-gauge > fill    { background: linear-gradient(90deg, #A01A7A, var(--bomb)); }
-.sector-gauge > fill  { background: linear-gradient(90deg, #1AA8D8, var(--suit)); }
-
-/* ---- status ------------------------------------------------------------------------------ */
-
-.energy-row { flex-direction: row; justify-content: space-between; align-items: center; }
-
-.energy-num {
-  font-family: "Audiowide", sans-serif;
-  font-size: 46px;
-  line-height: 48px;
-  color: var(--text);
-  text-shadow: 0 0 14px rgba(79, 230, 255, 0.8);
-}
-
-.energy-num.alert { color: #FFB0B0; text-shadow: 0 0 14px rgba(255, 74, 74, 0.9); }
-
-.alarm {
-  font-family: "Audiowide", sans-serif;
-  font-size: 11px;
-  letter-spacing: 2px;
-  color: #FFFFFF;
-  background-color: var(--alarm);
-  border-radius: 2px;
-  padding: 1px 6px;
-  margin-bottom: 2px;
-}
-
-.tank-row { flex-direction: row; flex-wrap: wrap; gap: 3px; }
-.tank { width: 16px; height: 16px; image-rendering: auto; }
-
-.stat { gap: 4px; }
-.stat-head { flex-direction: row; align-items: center; gap: 6px; }
-.count-row { flex-direction: row; align-items: flex-end; gap: 4px; }
-.count { font-family: "Audiowide", sans-serif; font-size: 24px; line-height: 26px; }
-.missile-num { color: var(--missile); }
-.bomb-num { color: var(--bomb); }
-
-.value { font-family: "Audiowide", sans-serif; font-size: 16px; color: var(--text); }
-.value.time { font-size: 20px; }
-
-.location { flex-direction: row; align-items: center; gap: 10px; }
-.emblem { width: 40px; height: 40px; image-rendering: auto; }
-.place { font-family: "ChakraBold", sans-serif; font-size: 16px; color: var(--text); }
-.icon-here { width: 26px; height: 26px; image-rendering: auto; }
-
-.pip-row { flex-direction: row; gap: 4px; margin-top: 2px; }
-.pip { width: 26px; height: 7px; border-radius: 1px; opacity: 0.45; }
-.pip.open { opacity: 1; }
-
-/* ---- abilities ------------------------------------------------------------------------------ */
-
-.title { font-family: "Audiowide", sans-serif; font-size: 18px; letter-spacing: 3px; color: var(--cyan); }
-.title-count { font-family: "Audiowide", sans-serif; font-size: 22px; color: var(--text); }
-
-.groups { gap: 10px; }
-.group { gap: 6px; padding: 8px 8px 10px 8px; }
-
-.ability-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
-
-.ability { align-items: center; gap: 1px; }
-.ability-img { width: 48px; height: 48px; image-rendering: auto; }
-
-.ability-name {
-  font-family: "ChakraBold", sans-serif;
-  font-size: 9px;
-  letter-spacing: 0.5px;
-  text-align: center;
-  text-transform: uppercase;
-  color: #3A5A72;
-  text-shadow: 0 1px 3px #000000;
-}
-
-.ability.owned .ability-name { color: var(--text); }
-
-/* ---- sectors ------------------------------------------------------------------------------- */
-
-.sector-list { gap: 8px; }
-
-.sector { flex-direction: row; align-items: center; gap: 10px; }
-.sector.here { border: 1px solid var(--here); box-shadow: 0 0 16px rgba(255, 216, 74, 0.3); }
-
-.sector-head { flex-direction: row; align-items: center; gap: 6px; margin-bottom: 3px; }
-.sector-code { font-family: "Audiowide", sans-serif; font-size: 15px; color: var(--text); }
-.pct { font-family: "Audiowide", sans-serif; font-size: 13px; color: var(--suit); }
+.map-info { padding: 8px 0 0 34.68px; }

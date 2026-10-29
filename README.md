@@ -110,11 +110,12 @@ for what's verified on the device and what isn't yet.
 
 ### Metroid Fusion — `metroid-fusion-companion`
 
-For Metroid Fusion (US `AMTE`, EU `AMTP`, JP `AMTJ`). Design: *BSL Bio-Interface*, the
-station's HUD over SR388 with X parasites drifting past.
+For Metroid Fusion (US `AMTE`, EU `AMTP`, JP `AMTJ`). Design: the game's own map screen, a silver
+frame around navy grid windows with green tab plates and the L1-L4 hatch list.
 
-- **STATUS** - energy with its tanks (the panel turns red when energy is low), missiles,
-  power bombs, where you are, security level and mission time.
+- **STATUS** - energy with its tanks (the window turns red when energy is low), missiles,
+  power bombs once you have them, where you are, mission time and the security hatches
+  (L1-L4, OPEN or LOCK).
 - **ABILITIES** - every beam, missile, bomb, suit and move upgrade, lit once you have it.
 - **SECTORS** - Main Deck and Sectors 1-6 with their percentage, downloaded maps and
   where you are.
@@ -146,9 +147,9 @@ The guides live in the app repo:
 - [Styling the companion](https://github.com/khumam/gba-duo/blob/main/docs-packs/companion-styling.md) - layout widgets, CSS selectors and properties, fonts.
 - [Pages and buttons](https://github.com/khumam/gba-duo/blob/main/docs-packs/companion-pages.md) - `onClick`, pages, and switching pages from `update()`.
 - [Examples](https://github.com/khumam/gba-duo/tree/main/docs-packs/examples).
-- [`skill/enchanted-forest-pack-design`](skill/enchanted-forest-pack-design) - the design
-  system behind these packs (art kit, base stylesheet, layout snippets, preview renderer),
-  packaged as a Claude Code skill.
+- [`skill/`](skill) - how the packs are built and styled, and where their sprites come from
+  (shipped PNGs, the player's ROM at runtime, or art drawn in code), plus the forest art kit
+  and a preview renderer, packaged as a Claude Code skill (`skill/SKILL.md`).
 
 <details>
 <summary><strong>Preview while you build</strong></summary>
@@ -172,7 +173,7 @@ at the root of the zip. Bump `version` in the pack's `manifest.json` when it cha
 of the zip, along with `screenshoots/`, `NOTES.md` and `preview-data.json`.
 
 ```sh
-cd my-pack && zip -rX ../my-pack-1.0.0.zip . -x '*.DS_Store' 'art/*' 'screenshoots/*' NOTES.md preview-data.json
+cd my-pack && zip -rX ../my-pack-1.0.0.zip . -x '*.DS_Store' 'art/*' 'screenshoots/*' 'preview/*' NOTES.md preview-data.json
 ```
 
 </details>

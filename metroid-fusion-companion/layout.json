@@ -1,291 +1,746 @@
 {
   "type": "box",
-  "id": "screen",
-  "classIf": { "alert": "$lowHealth" },
+  "class": "screen",
   "children": [
     {
       "type": "box",
       "class": "waiting",
-      "visibleIf": "$waiting",
       "children": [
-        { "type": "image", "class": "core", "src": "asset:img/x-core.png" },
-        { "type": "text", "class": "waiting-title", "text": "BSL STATION" },
         {
-          "type": "box",
-          "class": "scan-title",
-          "children": [
-            { "type": "image", "class": "scan", "src": "asset:img/scan-left.png" },
-            { "type": "text", "class": "scan-text", "text": "AWAITING BIO-LINK" },
-            { "type": "image", "class": "scan", "src": "asset:img/scan-right.png" }
-          ]
+          "type": "list",
+          "class": "wait",
+          "items": "$wait",
+          "template": {
+            "type": "list",
+            "class": "line",
+            "items": "$g",
+            "template": {
+              "type": "image",
+              "class": "g",
+              "src": "$src"
+            }
+          }
         }
-      ]
+      ],
+      "visibleIf": "$waiting"
     },
     {
-      "type": "tabs",
-      "visibleIf": "$ready",
-      "tabs": [
+      "type": "box",
+      "class": "shell",
+      "children": [
         {
-          "title": "Status",
-          "child": {
-            "type": "box",
-            "class": "tab-page",
-            "children": [
-              {
+          "type": "pages",
+          "pages": [
+            {
+              "name": "status",
+              "child": {
                 "type": "box",
-                "class": "panel hero",
-                "classIf": { "alert": "$lowHealth" },
+                "class": "page page-status",
                 "children": [
-                  { "type": "image", "class": "bracket bracket-l", "src": "asset:img/bracket-l.png" },
-                  { "type": "image", "class": "bracket bracket-r", "src": "asset:img/bracket-r.png" },
                   {
                     "type": "box",
-                    "class": "energy-row",
+                    "class": "stage",
                     "children": [
                       {
                         "type": "box",
-                        "class": "col",
+                        "class": "hdr",
                         "children": [
-                          { "type": "text", "class": "label", "text": "ENERGY" },
-                          { "type": "text", "class": "energy-num", "classIf": { "alert": "$lowHealth" }, "text": "{energy}" }
+                          {
+                            "type": "image",
+                            "class": "header",
+                            "src": "$art.header"
+                          },
+                          {
+                            "type": "list",
+                            "class": "num n-energy-now",
+                            "items": "$energyNow",
+                            "template": {
+                              "type": "image",
+                              "class": "g",
+                              "src": "$src"
+                            }
+                          },
+                          {
+                            "type": "list",
+                            "class": "num n-energy-max",
+                            "items": "$energyMax",
+                            "template": {
+                              "type": "image",
+                              "class": "g",
+                              "src": "$src"
+                            }
+                          },
+                          {
+                            "type": "list",
+                            "class": "num n-missile-now",
+                            "items": "$missileNow",
+                            "template": {
+                              "type": "image",
+                              "class": "g",
+                              "src": "$src"
+                            }
+                          },
+                          {
+                            "type": "list",
+                            "class": "num n-missile-max",
+                            "items": "$missileMax",
+                            "template": {
+                              "type": "image",
+                              "class": "g",
+                              "src": "$src"
+                            }
+                          },
+                          {
+                            "type": "list",
+                            "class": "num n-bomb-now",
+                            "items": "$bombNow",
+                            "template": {
+                              "type": "image",
+                              "class": "g",
+                              "src": "$src"
+                            }
+                          },
+                          {
+                            "type": "list",
+                            "class": "num n-bomb-max",
+                            "items": "$bombMax",
+                            "template": {
+                              "type": "image",
+                              "class": "g",
+                              "src": "$src"
+                            }
+                          }
                         ]
                       },
                       {
                         "type": "box",
-                        "class": "col right",
+                        "class": "body",
                         "children": [
-                          { "type": "text", "class": "alarm", "visibleIf": "$lowHealth", "text": "LOW ENERGY" },
-                          { "type": "text", "class": "fine", "text": "{energyRaw} / {maxEnergy}" },
-                          { "type": "text", "class": "fine", "text": "{fullTanks} of {tankCount} tanks" }
+                          {
+                            "type": "image",
+                            "class": "frame",
+                            "src": "$art.frameL"
+                          },
+                          {
+                            "type": "list",
+                            "class": "side side-left",
+                            "items": "$left",
+                            "template": {
+                              "type": "list",
+                              "class": "line",
+                              "items": "$g",
+                              "template": {
+                                "type": "image",
+                                "class": "g",
+                                "src": "$src"
+                              }
+                            }
+                          },
+                          {
+                            "type": "image",
+                            "class": "center",
+                            "src": "$art.center"
+                          },
+                          {
+                            "type": "list",
+                            "class": "side side-right",
+                            "items": "$right",
+                            "template": {
+                              "type": "list",
+                              "class": "line",
+                              "items": "$g",
+                              "template": {
+                                "type": "image",
+                                "class": "g",
+                                "src": "$src"
+                              }
+                            }
+                          },
+                          {
+                            "type": "image",
+                            "class": "frame",
+                            "src": "$art.frameR"
+                          }
                         ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "info",
+                        "children": [
+                          {
+                            "type": "image",
+                            "class": "frame2",
+                            "src": "$art.sideL"
+                          },
+                          {
+                            "type": "list",
+                            "class": "info-text",
+                            "items": "$hatchRows",
+                            "template": {
+                              "type": "list",
+                              "class": "line",
+                              "items": "$g",
+                              "template": {
+                                "type": "image",
+                                "class": "g",
+                                "src": "$src"
+                              }
+                            }
+                          },
+                          {
+                            "type": "image",
+                            "class": "frame2",
+                            "src": "$art.sideR"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "image",
+                        "class": "botbar",
+                        "src": "$art.botbar"
                       }
                     ]
                   },
                   {
-                    "type": "list",
-                    "class": "tank-row",
-                    "items": "$tanks",
-                    "template": { "type": "image", "class": "tank", "src": "$src" }
-                  },
-                  { "type": "bar", "class": "gauge energy-gauge", "classIf": { "alert": "$lowHealth" }, "value": "$energyPct", "max": 1 }
-                ]
-              },
-              {
-                "type": "box",
-                "class": "grid-2",
-                "children": [
-                  {
                     "type": "box",
-                    "class": "panel stat",
-                    "visibleIf": "$hasMissiles",
+                    "class": "nav",
                     "children": [
                       {
-                        "type": "box",
-                        "class": "stat-head",
+                        "type": "button",
+                        "class": "tab on",
+                        "onClick": [
+                          {
+                            "navigate": "status"
+                          }
+                        ],
                         "children": [
-                          { "type": "image", "class": "icon", "src": "asset:img/icon-missile.png" },
-                          { "type": "text", "class": "label grow", "text": "MISSILES" }
+                          {
+                            "type": "list",
+                            "class": "line",
+                            "items": "$nav.status",
+                            "template": {
+                              "type": "image",
+                              "class": "g",
+                              "src": "$src"
+                            }
+                          }
                         ]
                       },
                       {
-                        "type": "box",
-                        "class": "count-row",
+                        "type": "button",
+                        "class": "tab",
+                        "onClick": [
+                          {
+                            "navigate": "arms"
+                          }
+                        ],
                         "children": [
-                          { "type": "text", "class": "count missile-num", "text": "{missiles}" },
-                          { "type": "text", "class": "fine", "text": "/ {maxMissiles}" }
-                        ]
-                      },
-                      { "type": "bar", "class": "gauge missile-gauge", "value": "$missilePct", "max": 1 }
-                    ]
-                  },
-                  {
-                    "type": "box",
-                    "class": "panel stat",
-                    "visibleIf": "$hasBombs",
-                    "children": [
-                      {
-                        "type": "box",
-                        "class": "stat-head",
-                        "children": [
-                          { "type": "image", "class": "icon", "src": "asset:img/icon-powerbomb.png" },
-                          { "type": "text", "class": "label grow", "text": "POWER BOMBS" }
+                          {
+                            "type": "list",
+                            "class": "line",
+                            "items": "$nav.arms",
+                            "template": {
+                              "type": "image",
+                              "class": "g",
+                              "src": "$src"
+                            }
+                          }
                         ]
                       },
                       {
-                        "type": "box",
-                        "class": "count-row",
+                        "type": "button",
+                        "class": "tab",
+                        "onClick": [
+                          {
+                            "navigate": "map"
+                          }
+                        ],
                         "children": [
-                          { "type": "text", "class": "count bomb-num", "text": "{powerBombs}" },
-                          { "type": "text", "class": "fine", "text": "/ {maxPowerBombs}" }
+                          {
+                            "type": "list",
+                            "class": "line",
+                            "items": "$nav.map",
+                            "template": {
+                              "type": "image",
+                              "class": "g",
+                              "src": "$src"
+                            }
+                          }
                         ]
-                      },
-                      { "type": "bar", "class": "gauge bomb-gauge", "value": "$bombPct", "max": 1 }
+                      }
                     ]
                   }
                 ]
-              },
-              {
+              }
+            },
+            {
+              "name": "arms",
+              "child": {
                 "type": "box",
-                "class": "panel location",
-                "children": [
-                  { "type": "image", "class": "emblem", "src": "$sectorEmblem" },
-                  {
-                    "type": "box",
-                    "class": "col grow",
-                    "children": [
-                      { "type": "text", "class": "label", "text": "LOCATION" },
-                      { "type": "text", "class": "place", "text": "{sector} · {sectorCode}" },
-                      { "type": "text", "class": "fine", "text": "Room {room}" }
-                    ]
-                  },
-                  { "type": "image", "class": "icon-here", "src": "asset:img/icon-here.png" }
-                ]
-              },
-              {
-                "type": "box",
-                "class": "grid-2",
+                "class": "page page-arms",
                 "children": [
                   {
                     "type": "box",
-                    "class": "panel stat",
+                    "class": "stage",
                     "children": [
                       {
                         "type": "box",
-                        "class": "stat-head",
+                        "class": "hdr",
                         "children": [
-                          { "type": "image", "class": "icon", "src": "asset:img/icon-lock.png" },
-                          { "type": "text", "class": "label grow", "text": "SECURITY" }
+                          {
+                            "type": "image",
+                            "class": "header",
+                            "src": "$art.header"
+                          },
+                          {
+                            "type": "list",
+                            "class": "num n-energy-now",
+                            "items": "$energyNow",
+                            "template": {
+                              "type": "image",
+                              "class": "g",
+                              "src": "$src"
+                            }
+                          },
+                          {
+                            "type": "list",
+                            "class": "num n-energy-max",
+                            "items": "$energyMax",
+                            "template": {
+                              "type": "image",
+                              "class": "g",
+                              "src": "$src"
+                            }
+                          },
+                          {
+                            "type": "list",
+                            "class": "num n-missile-now",
+                            "items": "$missileNow",
+                            "template": {
+                              "type": "image",
+                              "class": "g",
+                              "src": "$src"
+                            }
+                          },
+                          {
+                            "type": "list",
+                            "class": "num n-missile-max",
+                            "items": "$missileMax",
+                            "template": {
+                              "type": "image",
+                              "class": "g",
+                              "src": "$src"
+                            }
+                          },
+                          {
+                            "type": "list",
+                            "class": "num n-bomb-now",
+                            "items": "$bombNow",
+                            "template": {
+                              "type": "image",
+                              "class": "g",
+                              "src": "$src"
+                            }
+                          },
+                          {
+                            "type": "list",
+                            "class": "num n-bomb-max",
+                            "items": "$bombMax",
+                            "template": {
+                              "type": "image",
+                              "class": "g",
+                              "src": "$src"
+                            }
+                          }
                         ]
                       },
-                      { "type": "text", "class": "value", "text": "{securityText}" },
+                      {
+                        "type": "box",
+                        "class": "arms",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "win w-beam",
+                            "children": [
+                              {
+                                "type": "image",
+                                "class": "w-title",
+                                "src": "$windows.beam.title"
+                              },
+                              {
+                                "type": "list",
+                                "class": "w-rows",
+                                "items": "$windows.beam.rows",
+                                "template": {
+                                  "type": "image",
+                                  "class": "w-row",
+                                  "src": "$src",
+                                  "classIf": {
+                                    "owned": "$owned"
+                                  }
+                                }
+                              },
+                              {
+                                "type": "image",
+                                "class": "w-foot",
+                                "src": "$windows.beam.footer"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "win w-missile",
+                            "children": [
+                              {
+                                "type": "image",
+                                "class": "w-title",
+                                "src": "$windows.missile.title"
+                              },
+                              {
+                                "type": "list",
+                                "class": "w-rows",
+                                "items": "$windows.missile.rows",
+                                "template": {
+                                  "type": "image",
+                                  "class": "w-row",
+                                  "src": "$src",
+                                  "classIf": {
+                                    "owned": "$owned"
+                                  }
+                                }
+                              },
+                              {
+                                "type": "image",
+                                "class": "w-foot",
+                                "src": "$windows.missile.footer"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "win w-suit",
+                            "children": [
+                              {
+                                "type": "image",
+                                "class": "w-title",
+                                "src": "$windows.suit.title"
+                              },
+                              {
+                                "type": "list",
+                                "class": "w-rows",
+                                "items": "$windows.suit.rows",
+                                "template": {
+                                  "type": "image",
+                                  "class": "w-row",
+                                  "src": "$src",
+                                  "classIf": {
+                                    "owned": "$owned"
+                                  }
+                                }
+                              },
+                              {
+                                "type": "image",
+                                "class": "w-foot",
+                                "src": "$windows.suit.footer"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "win w-misc",
+                            "children": [
+                              {
+                                "type": "image",
+                                "class": "w-title",
+                                "src": "$windows.misc.title"
+                              },
+                              {
+                                "type": "list",
+                                "class": "w-rows",
+                                "items": "$windows.misc.rows",
+                                "template": {
+                                  "type": "image",
+                                  "class": "w-row",
+                                  "src": "$src",
+                                  "classIf": {
+                                    "owned": "$owned"
+                                  }
+                                }
+                              },
+                              {
+                                "type": "image",
+                                "class": "w-foot",
+                                "src": "$windows.misc.footer"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "win w-bomb",
+                            "children": [
+                              {
+                                "type": "image",
+                                "class": "w-title",
+                                "src": "$windows.bomb.title"
+                              },
+                              {
+                                "type": "list",
+                                "class": "w-rows",
+                                "items": "$windows.bomb.rows",
+                                "template": {
+                                  "type": "image",
+                                  "class": "w-row",
+                                  "src": "$src",
+                                  "classIf": {
+                                    "owned": "$owned"
+                                  }
+                                }
+                              },
+                              {
+                                "type": "image",
+                                "class": "w-foot",
+                                "src": "$windows.bomb.footer"
+                              }
+                            ]
+                          }
+                        ]
+                      },
                       {
                         "type": "list",
-                        "class": "pip-row",
-                        "items": "$security",
-                        "template": { "type": "box", "class": "pip", "classIf": { "open": "$open" }, "bindStyle": { "background-color": "{color}" }, "children": [] }
+                        "class": "arms-info",
+                        "items": "$armsInfo",
+                        "template": {
+                          "type": "list",
+                          "class": "line",
+                          "items": "$g",
+                          "template": {
+                            "type": "image",
+                            "class": "g",
+                            "src": "$src"
+                          }
+                        }
+                      },
+                      {
+                        "type": "image",
+                        "class": "botbar",
+                        "src": "$art.botbar"
                       }
                     ]
                   },
                   {
                     "type": "box",
-                    "class": "panel stat",
+                    "class": "nav",
+                    "children": [
+                      {
+                        "type": "button",
+                        "class": "tab",
+                        "onClick": [
+                          {
+                            "navigate": "status"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "list",
+                            "class": "line",
+                            "items": "$nav.status",
+                            "template": {
+                              "type": "image",
+                              "class": "g",
+                              "src": "$src"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "tab on",
+                        "onClick": [
+                          {
+                            "navigate": "arms"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "list",
+                            "class": "line",
+                            "items": "$nav.arms",
+                            "template": {
+                              "type": "image",
+                              "class": "g",
+                              "src": "$src"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "tab",
+                        "onClick": [
+                          {
+                            "navigate": "map"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "list",
+                            "class": "line",
+                            "items": "$nav.map",
+                            "template": {
+                              "type": "image",
+                              "class": "g",
+                              "src": "$src"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "map",
+              "child": {
+                "type": "box",
+                "class": "page page-map",
+                "children": [
+                  {
+                    "type": "box",
+                    "class": "stage",
                     "children": [
                       {
                         "type": "box",
-                        "class": "stat-head",
+                        "class": "map",
                         "children": [
-                          { "type": "image", "class": "icon", "src": "asset:img/icon-timer.png" },
-                          { "type": "text", "class": "label grow", "text": "MISSION TIME" }
+                          {
+                            "type": "image",
+                            "class": "outline",
+                            "src": "$art.outline"
+                          },
+                          {
+                            "type": "image",
+                            "class": "minimap",
+                            "src": "$art.map"
+                          },
+                          {
+                            "type": "box",
+                            "class": "marker",
+                            "children": [],
+                            "bindStyle": {
+                              "--mx": "{markCol}px",
+                              "--my": "{markRow}px"
+                            }
+                          },
+                          {
+                            "type": "list",
+                            "class": "plate",
+                            "items": "$sectorName",
+                            "template": {
+                              "type": "image",
+                              "class": "g",
+                              "src": "$src"
+                            }
+                          }
                         ]
                       },
-                      { "type": "text", "class": "value time", "text": "{time}" }
+                      {
+                        "type": "list",
+                        "class": "map-info",
+                        "items": "$sectorRows",
+                        "template": {
+                          "type": "list",
+                          "class": "line",
+                          "items": "$g",
+                          "template": {
+                            "type": "image",
+                            "class": "g",
+                            "src": "$src"
+                          }
+                        }
+                      }
                     ]
-                  }
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "title": "Abilities",
-          "child": {
-            "type": "box",
-            "class": "tab-page",
-            "children": [
-              {
-                "type": "box",
-                "class": "panel hero slim",
-                "children": [
-                  { "type": "image", "class": "bracket bracket-l", "src": "asset:img/bracket-l.png" },
-                  { "type": "image", "class": "bracket bracket-r", "src": "asset:img/bracket-r.png" },
+                  },
                   {
                     "type": "box",
-                    "class": "energy-row",
+                    "class": "nav",
                     "children": [
-                      { "type": "text", "class": "title", "text": "ABILITIES" },
-                      { "type": "text", "class": "title-count", "text": "{abilityCount}/{abilityTotal}" }
+                      {
+                        "type": "button",
+                        "class": "tab",
+                        "onClick": [
+                          {
+                            "navigate": "status"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "list",
+                            "class": "line",
+                            "items": "$nav.status",
+                            "template": {
+                              "type": "image",
+                              "class": "g",
+                              "src": "$src"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "tab",
+                        "onClick": [
+                          {
+                            "navigate": "arms"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "list",
+                            "class": "line",
+                            "items": "$nav.arms",
+                            "template": {
+                              "type": "image",
+                              "class": "g",
+                              "src": "$src"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "tab on",
+                        "onClick": [
+                          {
+                            "navigate": "map"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "list",
+                            "class": "line",
+                            "items": "$nav.map",
+                            "template": {
+                              "type": "image",
+                              "class": "g",
+                              "src": "$src"
+                            }
+                          }
+                        ]
+                      }
                     ]
                   }
                 ]
-              },
-              {
-                "type": "list",
-                "class": "groups",
-                "items": "$abilities",
-                "template": {
-                  "type": "box",
-                  "class": "panel group",
-                  "children": [
-                    {
-                      "type": "box",
-                      "class": "scan-title",
-                      "children": [
-                        { "type": "image", "class": "scan", "src": "asset:img/scan-left.png" },
-                        { "type": "text", "class": "scan-text", "text": "{title}" },
-                        { "type": "image", "class": "scan", "src": "asset:img/scan-right.png" }
-                      ]
-                    },
-                    {
-                      "type": "list",
-                      "class": "ability-grid",
-                      "items": "$items",
-                      "template": {
-                        "type": "box",
-                        "class": "ability",
-                        "classIf": { "owned": "$owned" },
-                        "children": [
-                          { "type": "image", "class": "ability-img", "src": "$icon" },
-                          { "type": "text", "class": "ability-name", "text": "{name}" }
-                        ]
-                      }
-                    }
-                  ]
-                }
               }
-            ]
-          }
-        },
-        {
-          "title": "Sectors",
-          "child": {
-            "type": "box",
-            "class": "tab-page",
-            "children": [
-              {
-                "type": "list",
-                "class": "sector-list",
-                "items": "$sectors",
-                "template": {
-                  "type": "box",
-                  "class": "panel sector",
-                  "classIf": { "here": "$here" },
-                  "children": [
-                    { "type": "image", "class": "emblem", "src": "$emblem" },
-                    {
-                      "type": "box",
-                      "class": "col grow",
-                      "children": [
-                        {
-                          "type": "box",
-                          "class": "sector-head",
-                          "children": [
-                            { "type": "text", "class": "sector-code", "text": "{code}" },
-                            { "type": "text", "class": "fine grow", "text": "{name}" },
-                            { "type": "image", "class": "icon-small", "visibleIf": "$here", "src": "asset:img/icon-here.png" },
-                            { "type": "image", "class": "icon-small dim", "classIf": { "on": "$mapped" }, "src": "asset:img/icon-map.png" },
-                            { "type": "text", "class": "pct", "text": "{percent}%" }
-                          ]
-                        },
-                        { "type": "bar", "class": "gauge sector-gauge", "value": "$pct", "max": 1 }
-                      ]
-                    }
-                  ]
-                }
-              }
-            ]
-          }
+            }
+          ]
         }
-      ]
+      ],
+      "visibleIf": "$ready"
     }
-  ]
+  ],
+  "id": "screen",
+  "classIf": {
+    "alert": "$lowHealth"
+  }
 }
