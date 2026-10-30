@@ -1,0 +1,13 @@
+{
+  "id": "zelda-oracle-of-ages-companion",
+  "name": "Zelda: Oracle of Ages Companion",
+  "version": "0.1.0",
+  "author": "khumam",
+  "formatVersion": 2,
+  "match": { "gameCode": ["CGB-AZ8E", "CGB-AZ8P", "CGB-AZ8J"], "crc32": [] },
+  "tickHz": 4,
+  "layout": "layout.json",
+  "styles": ["style.css"],
+  "script": "main.lua",
+  "values": {}
+}

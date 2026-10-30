@@ -1,0 +1,162 @@
+/*
+ * Oracle of Ages' own look: the pause subscreen's mauve brick window around an off-white panel,
+ * the peach HUD strip above it, black bracket cursors and pixel text.
+ *
+ * One game pixel = 7 device px = 3.035dp ("u"). The window is 160u x 128u = 485.6 x 388.48dp with a
+ * thin brick frame (4u at the sides, 3u top and bottom); the panel inside is 152u x 107u
+ * (461.32 x 324.75dp) at (4u, 3u). Frame art is baked at 7 device px per art pixel, icons at
+ * 80 px (34.69dp) and hearts at 56 px (24.28dp), so everything draws at a whole scale.
+ */
+
+@font-face { font-family: "Silk"; src: url("assets/fonts/Silkscreen-Regular.ttf"); }
+@font-face { font-family: "SilkBold"; src: url("assets/fonts/Silkscreen-Bold.ttf"); }
+@font-face { font-family: "Press"; src: url("assets/fonts/PressStart2P-Regular.ttf"); }
+
+:root {
+  --dark: #251C27;
+  --wall: #452F48;
+  --brick: #98596F;
+  --panel: #EDEDE9;
+  --ink: #251C27;
+  --soft: #8A7C8C;
+  --peach: #E6C8A4;
+  --pink: #C8587A;
+  --gold: #B5832B;
+}
+
+image { image-rendering: pixelated; }
+text { white-space: nowrap; color: var(--ink); }
+
+#screen {
+  width: 100%;
+  height: 100%;
+  background-color: var(--dark);
+}
+
+.shell { width: 100%; height: 100%; }
+
+/* ---- waiting ---------------------------------------------------------------------------------- */
+
+.waiting { flex: 1; justify-content: center; align-items: center; }
+.wait { align-items: center; gap: 14px; }
+.wait-title { font-family: "Press"; font-size: 18px; color: #FFFFFB; }
+.wait-sub { font-family: "SilkBold"; font-size: 13px; color: var(--brick); letter-spacing: 2px; }
+
+/* ---- HUD ---------------------------------------------------------------------------------------- */
+
+.hud { position: relative; flex-direction: row; width: 100%; height: 48.56px; background-color: var(--peach); align-items: center; }
+.hslot { flex-direction: row; align-items: center; width: 128px; gap: 3px; padding-left: 4px; }
+.hkey { font-family: "Press"; font-size: 14px; }
+.hicon { width: 34.69px; height: 34.69px; }
+.hname-box { gap: 2px; }
+.hname { font-family: "SilkBold"; font-size: 11px; letter-spacing: 0; }
+.hlevel { font-family: "Silk"; font-size: 11px; color: #6A5A6C; }
+.hrupees { flex-direction: row; align-items: center; width: 92px; gap: 4px; }
+.hnum { font-family: "Press"; font-size: 14px; }
+.hhearts { flex: 1; gap: 0; padding: 6px 0 0 4px; justify-content: center; }
+.hrow { flex-direction: row; height: 24.28px; }
+.heart { width: 24.28px; height: 24.28px; margin-right: -3px; }
+
+/* ---- window ---------------------------------------------------------------------------------------- */
+
+.win { position: relative; width: 100%; flex: 1; }
+.band { position: absolute; left: 0; right: 0; height: 9.11px; background-image: url("assets/ui/brick-h.png"); background-size: 24.28px 9.11px; background-repeat: repeat-x; }
+.band-top { top: 0; }
+.band-mid { bottom: 45.53px; }
+.band-bottom { bottom: 0; }
+.col { position: absolute; top: 0; bottom: 0; width: 12.14px; background-image: url("assets/ui/brick-v.png"); background-size: 12.14px 24.28px; background-repeat: repeat-y; }
+.col-l { left: 0; }
+.col-r { right: 0; }
+.panel-bg { position: absolute; left: 12.14px; right: 12.14px; top: 9.11px; bottom: 54.64px; background-color: var(--panel); }
+.strip-bg { position: absolute; left: 12.14px; right: 12.14px; bottom: 9.11px; height: 36.42px; background-color: var(--panel); }
+.panel { position: absolute; left: 12.14px; right: 12.14px; top: 9.11px; bottom: 54.64px; }
+.page { width: 100%; height: 100%; padding: 8px 10px; }
+
+.nav { position: absolute; left: 12.14px; right: 12.14px; bottom: 9.11px; height: 36.42px; flex-direction: row; align-items: center; }
+.tab { flex: 1; flex-direction: row; justify-content: center; align-items: center; gap: 1px; height: 36.42px; }
+.tab-label { font-family: "SilkBold"; font-size: 11px; letter-spacing: 0; color: var(--soft); }
+.br { font-family: "SilkBold"; font-size: 12px; color: var(--ink); opacity: 0; }
+.tab.on .tab-label { color: var(--ink); }
+.tab.on .br { opacity: 1; }
+
+.title { font-family: "SilkBold"; font-size: 13px; letter-spacing: 2px; color: var(--pink); margin: 0 0 6px 0; }
+
+/* ---- ITEMS: a 4 x 4 grid, icons at 1x (160 px drawn at 34.69dp) --------------------------------------------- */
+
+.page-items { padding: 6px; }
+.slots { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(4, 1fr); width: 100%; height: 100%; }
+.cell { align-items: center; justify-content: center; gap: 4px; }
+.cell-top { position: relative; width: 34.69px; height: 34.69px; }
+.cicon { width: 34.69px; height: 34.69px; }
+.tag { position: absolute; left: -20px; top: 0; font-family: "Press"; font-size: 16px; color: var(--pink); z-index: 2; }
+.clevel { font-family: "SilkBold"; font-size: 14px; color: #6A5A6C; height: 16px; }
+.cell.empty .cicon { opacity: 0; }
+
+/* ---- MAP: the map fills the panel (1008 x 812 px = 437 x 352dp) ----------------------------------------- */
+
+.page-map { flex-direction: row; align-items: center; padding: 0; }
+.map-fill { flex: 1; height: 100%; background-image: url("assets/ui/brick-fill.png"); background-size: 24.28px 24.28px; background-repeat: repeat; }
+.map-stack { position: relative; width: 437.04px; height: 352.12px; }
+.map-img { position: absolute; left: 0; top: 0; width: 437.04px; height: 352.12px; }
+.map-rows { position: absolute; left: 0; top: 0; }
+.map-row { flex-direction: row; }
+.mcell { width: 31.22px; height: 25.15px; }
+.mcell.unseen { background-color: rgba(37, 28, 39, 0.68); }
+.mcell.here { border: 3px solid #FFFFFB; background-color: rgba(200, 88, 122, 0.45); }
+.era-badge { position: absolute; left: 8px; top: 8px; padding: 5px 10px; background-color: #251C27; border: 2px solid #FFFFFB; }
+.era-text { font-family: "SilkBold"; font-size: 14px; letter-spacing: 2px; color: #FFFFFB; }
+
+/* ---- SEEDS ---------------------------------------------------------------------------------------- */
+
+.page-seeds { gap: 14px; padding: 12px; }
+.seed-row { flex: 3; flex-direction: row; gap: 8px; }
+.seed { flex: 1; align-items: center; justify-content: center; gap: 8px; }
+.seed.picked { background-color: #E2E0DC; }
+.seed.picked .seed-name { color: var(--pink); }
+.seed-icon { width: 34.69px; height: 34.69px; }
+.seed-count { font-family: "Press"; font-size: 22px; }
+.seed-name { font-family: "SilkBold"; font-size: 12px; color: var(--soft); }
+.seed-tag { font-family: "SilkBold"; font-size: 10px; color: var(--pink); height: 12px; }
+.supply-row { flex: 2; flex-direction: row; gap: 12px; }
+.supply { flex: 1; flex-direction: row; align-items: center; justify-content: center; gap: 14px; background-color: #E2E0DC; }
+.supply-icon { width: 34.69px; height: 34.69px; }
+.supply-text { gap: 6px; }
+.supply-value { font-family: "Press"; font-size: 20px; }
+.supply-label { font-family: "SilkBold"; font-size: 12px; color: var(--soft); }
+
+/* ---- RINGS ---------------------------------------------------------------------------------------- */
+
+.page-rings { flex-direction: row; gap: 18px; padding: 12px; }
+.ring-side { width: 200px; gap: 4px; }
+.worn { flex-direction: row; align-items: center; gap: 10px; margin-bottom: 14px; }
+.worn-icon { width: 34.69px; height: 34.69px; }
+.worn-name { font-family: "SilkBold"; font-size: 14px; white-space: normal; flex: 1; }
+.box-col { flex: 1; gap: 6px; }
+.box-slot { flex: 1; flex-direction: row; align-items: center; gap: 8px; padding-left: 8px; border: 3px solid #C8C4C8; }
+.box-icon { width: 34.69px; height: 34.69px; opacity: 0.25; }
+.box-slot.filled .box-icon { opacity: 1; }
+.box-slot.filled { border-color: var(--ink); }
+.box-name { font-family: "SilkBold"; font-size: 12px; color: #B8B2B8; }
+.box-slot.filled .box-name { color: var(--ink); }
+.ring-grid { flex: 1; align-items: center; justify-content: center; gap: 4px; }
+.dot-rows { gap: 2px; }
+.dot-row { flex-direction: row; gap: 2px; }
+.dot { width: 36px; height: 36px; align-items: center; justify-content: center; }
+.dot-img { width: 34.69px; height: 34.69px; opacity: 0.4; }
+.dot.on .dot-img { opacity: 1; }
+
+/* ---- STATUS ---------------------------------------------------------------------------------------- */
+
+.page-status { gap: 16px; padding: 14px; justify-content: space-between; }
+.life { flex-direction: row; align-items: center; gap: 14px; }
+.life-value { font-family: "Press"; font-size: 28px; }
+.life-hearts { flex: 1; flex-direction: row; flex-wrap: wrap; }
+.lheart { width: 24.28px; height: 24.28px; margin-right: -2px; }
+.pieces { flex-direction: row; }
+.piece { width: 24.28px; height: 24.28px; }
+.essences { flex-direction: row; justify-content: space-between; }
+.essence { width: 48.56px; height: 48.56px; }
+.facts { flex-direction: row; gap: 12px; }
+.fact { flex: 1; align-items: center; gap: 6px; padding: 12px 0; background-color: #E2E0DC; }
+.fact-value { font-family: "SilkBold"; font-size: 22px; }
+.fact-label { font-family: "SilkBold"; font-size: 11px; color: var(--soft); }

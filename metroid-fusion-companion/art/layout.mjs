@@ -11,16 +11,17 @@ const img = (cls, src, extra = {}) => ({ type: "image", class: cls, src, ...extr
 const list = (cls, items, template, extra = {}) => ({ type: "list", class: cls, items, template, ...extra });
 const button = (cls, onClick, children, extra = {}) => ({ type: "button", class: cls, onClick, children, ...extra });
 
-const glyph = () => img("g", "$src");
-const row = (items) => list("line", items, glyph());                 // one text line from a glyph array
-const lines = (cls, items) => list(cls, items, list("line", "$g", glyph())); // lines of such arrays
+const text = (cls, t, extra = {}) => ({ type: "text", class: cls, text: t, ...extra });
+const glyph = () => img("g", "$src");                                // the header's numbers stay in the game's own digits
+// A label over a value, from { label, value } items.
+const stats = (cls, items) => list(cls, items, box("stat", [text("stat-label", "{label}"), text("stat-value", "{value}")]));
 
 // ---- nav: plain rounded rectangles, at the bottom of every page ---------------------------------------------------
 
-const TABS = [["status", "$nav.status"], ["arms", "$nav.arms"], ["map", "$nav.map"]];
+const TABS = [["status", "STATUS"], ["arms", "ARMS"], ["map", "MAP"]];
 const nav = (active) =>
-  box("nav", TABS.map(([page, glyphs]) =>
-    button(`tab${page === active ? " on" : ""}`, [{ navigate: page }], [row(glyphs)]),
+  box("nav", TABS.map(([page, label]) =>
+    button(`tab${page === active ? " on" : ""}`, [{ navigate: page }], [text("tab-label", label)]),
   ));
 
 // ---- shared pieces ---------------------------------------------------------------------
@@ -37,7 +38,12 @@ const header = () =>
     list("num n-bomb-max", "$bombMax", glyph()),
   ]);
 
-const botbar = () => img("botbar", "$art.botbar");
+// The bottom bar: the lace goes on down both sides and the map frame's steel runs between.
+const botbar = () => box("botbar", [img("frame2", "$art.sideL"), img("botmid", "$art.botmid"), img("frame2", "$art.sideR")]);
+
+// The status lace for pages that have no body of their own, from under the header to the bottom bar.
+const lace = (side) =>
+  box(`lace lace-${side}`, [img("frame", `$art.frame${side === "l" ? "L" : "R"}`), img("frame2", `$art.side${side === "l" ? "L" : "R"}`)]);
 
 // ---- STATUS ------------------------------------------------------------------------------
 
@@ -45,12 +51,16 @@ const status = box("stage", [
   header(),
   box("body", [
     img("frame", "$art.frameL"),
-    lines("side side-left", "$left"),
+    stats("side side-left", "$left"),
     img("center", "$art.center"),
-    lines("side side-right", "$right"),
+    stats("side side-right", "$right"),
     img("frame", "$art.frameR"),
   ]),
-  box("info", [img("frame2", "$art.sideL"), lines("info-text", "$hatchRows"), img("frame2", "$art.sideR")]),
+  box("info", [
+    img("frame2", "$art.sideL"),
+    list("info-text", "$hatches", box("hatch", [text("hatch-name", "{name}"), text("hatch-state", "{state}")], { classIf: { open: "$open" } })),
+    img("frame2", "$art.sideR"),
+  ]),
   botbar(),
 ]);
 
@@ -66,7 +76,8 @@ const win = (id) =>
 const arms = box("stage", [
   header(),
   box("arms", ["beam", "missile", "suit", "misc", "bomb"].map(win)),
-  lines("arms-info", "$armsInfo"),
+  lace("l"),
+  lace("r"),
   botbar(),
 ]);
 
@@ -75,11 +86,16 @@ const arms = box("stage", [
 const map = box("stage", [
   box("map", [
     img("outline", "$art.outline"),
+    box("cover cover-l", []),
+    box("cover cover-r", []),
     img("minimap", "$art.map"),
     box("marker", [], { bindStyle: { "--mx": "{markCol}px", "--my": "{markRow}px" } }),
-    list("plate", "$sectorName", glyph()),
+    text("plate", "{sectorName}"),
   ]),
-  lines("map-info", "$sectorRows"),
+  list("map-info", "$sectorRows", box("sector", [
+    text("sector-name", "{name}"),
+    text("sector-pct", "{pct}"),
+  ], { classIf: { here: "$here", mapped: "$mapped" } })),
 ]);
 
 // ---- screen --------------------------------------------------------------------------------------------
@@ -87,7 +103,11 @@ const map = box("stage", [
 const page = (name, content) => ({ name, child: box(`page page-${name}`, [content, nav(name)]) });
 
 const layout = box("screen", [
-  box("waiting", [lines("wait", "$wait")], { visibleIf: "$waiting" }),
+  box("waiting", [box("wait", [
+    img("wait-logo", "$waitLogo", { visibleIf: "$hasLogo" }),
+    text("wait-title", "{waitTitle}", { visibleIf: "$noLogo" }),
+    text("wait-sub", "{waitSub}"),
+  ])], { visibleIf: "$waiting" }),
   box("shell", [{ type: "pages", pages: [page("status", status), page("arms", arms), page("map", map)] }], { visibleIf: "$ready" }),
 ], { id: "screen", classIf: { alert: "$lowHealth" } });
 

@@ -1,0 +1,716 @@
+{
+  "type": "box",
+  "class": "screen",
+  "children": [
+    {
+      "type": "box",
+      "class": "waiting",
+      "children": [
+        {
+          "type": "box",
+          "class": "wait",
+          "children": [
+            {
+              "type": "text",
+              "class": "wait-title",
+              "text": "ORACLE OF AGES"
+            },
+            {
+              "type": "text",
+              "class": "wait-sub",
+              "text": "{waitSub}"
+            }
+          ]
+        }
+      ],
+      "visibleIf": "$waiting"
+    },
+    {
+      "type": "box",
+      "class": "shell",
+      "children": [
+        {
+          "type": "box",
+          "class": "hud",
+          "children": [
+            {
+              "type": "box",
+              "class": "hslot hslot-b",
+              "children": [
+                {
+                  "type": "text",
+                  "class": "hkey",
+                  "text": "B"
+                },
+                {
+                  "type": "image",
+                  "class": "hicon",
+                  "src": "$hud.bIcon"
+                },
+                {
+                  "type": "box",
+                  "class": "hname-box",
+                  "children": [
+                    {
+                      "type": "text",
+                      "class": "hname",
+                      "text": "{hud.bName}"
+                    },
+                    {
+                      "type": "text",
+                      "class": "hlevel",
+                      "text": "{hud.bLevel}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "class": "hslot hslot-a",
+              "children": [
+                {
+                  "type": "text",
+                  "class": "hkey",
+                  "text": "A"
+                },
+                {
+                  "type": "image",
+                  "class": "hicon",
+                  "src": "$hud.aIcon"
+                },
+                {
+                  "type": "box",
+                  "class": "hname-box",
+                  "children": [
+                    {
+                      "type": "text",
+                      "class": "hname",
+                      "text": "{hud.aName}"
+                    },
+                    {
+                      "type": "text",
+                      "class": "hlevel",
+                      "text": "{hud.aLevel}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "class": "hrupees",
+              "children": [
+                {
+                  "type": "image",
+                  "class": "hicon",
+                  "src": "asset:ui/rupee.png"
+                },
+                {
+                  "type": "text",
+                  "class": "hnum",
+                  "text": "{rupees}"
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "class": "hhearts",
+              "children": [
+                {
+                  "type": "list",
+                  "class": "hrow",
+                  "items": "$heartsTop",
+                  "template": {
+                    "type": "image",
+                    "class": "heart",
+                    "src": "$src"
+                  }
+                },
+                {
+                  "type": "list",
+                  "class": "hrow",
+                  "items": "$heartsBottom",
+                  "template": {
+                    "type": "image",
+                    "class": "heart",
+                    "src": "$src"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "box",
+          "class": "win",
+          "children": [
+            {
+              "type": "box",
+              "class": "panel-bg",
+              "children": []
+            },
+            {
+              "type": "box",
+              "class": "strip-bg",
+              "children": []
+            },
+            {
+              "type": "box",
+              "class": "band band-top",
+              "children": []
+            },
+            {
+              "type": "box",
+              "class": "band band-mid",
+              "children": []
+            },
+            {
+              "type": "box",
+              "class": "band band-bottom",
+              "children": []
+            },
+            {
+              "type": "box",
+              "class": "col col-l",
+              "children": []
+            },
+            {
+              "type": "box",
+              "class": "col col-r",
+              "children": []
+            },
+            {
+              "type": "box",
+              "class": "panel",
+              "children": [
+                {
+                  "type": "pages",
+                  "state": "page",
+                  "initial": "items",
+                  "pages": [
+                    {
+                      "name": "items",
+                      "child": {
+                        "type": "box",
+                        "class": "page page-items",
+                        "children": [
+                          {
+                            "type": "list",
+                            "class": "slots",
+                            "items": "$slots",
+                            "template": {
+                              "type": "box",
+                              "class": "cell",
+                              "children": [
+                                {
+                                  "type": "box",
+                                  "class": "cell-top",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "class": "tag",
+                                      "text": "{tag}"
+                                    },
+                                    {
+                                      "type": "image",
+                                      "class": "cicon",
+                                      "src": "$icon"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "class": "clevel",
+                                  "text": "{level}"
+                                }
+                              ],
+                              "classIf": {
+                                "empty": "$empty"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "map",
+                      "child": {
+                        "type": "box",
+                        "class": "page page-map",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "map-fill",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "map-stack",
+                            "children": [
+                              {
+                                "type": "image",
+                                "class": "map-img",
+                                "src": "asset:ui/map-present.png",
+                                "visibleIf": "$map.present"
+                              },
+                              {
+                                "type": "image",
+                                "class": "map-img",
+                                "src": "asset:ui/map-past.png",
+                                "visibleIf": "$map.past"
+                              },
+                              {
+                                "type": "list",
+                                "class": "map-rows",
+                                "items": "$map.rows",
+                                "template": {
+                                  "type": "list",
+                                  "class": "map-row",
+                                  "items": "$cells",
+                                  "template": {
+                                    "type": "box",
+                                    "class": "mcell",
+                                    "children": [],
+                                    "classIf": {
+                                      "unseen": "$unseen",
+                                      "here": "$here"
+                                    }
+                                  }
+                                }
+                              },
+                              {
+                                "type": "box",
+                                "class": "era-badge",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "era-text",
+                                    "text": "{map.era}"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "map-fill",
+                            "children": []
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "seeds",
+                      "child": {
+                        "type": "box",
+                        "class": "page page-seeds",
+                        "children": [
+                          {
+                            "type": "list",
+                            "class": "seed-row",
+                            "items": "$seeds",
+                            "template": {
+                              "type": "box",
+                              "class": "seed",
+                              "children": [
+                                {
+                                  "type": "image",
+                                  "class": "seed-icon",
+                                  "src": "$icon"
+                                },
+                                {
+                                  "type": "text",
+                                  "class": "seed-count",
+                                  "text": "{count}"
+                                },
+                                {
+                                  "type": "text",
+                                  "class": "seed-name",
+                                  "text": "{name}"
+                                },
+                                {
+                                  "type": "text",
+                                  "class": "seed-tag",
+                                  "text": "{tag}"
+                                }
+                              ],
+                              "classIf": {
+                                "picked": "$picked"
+                              }
+                            }
+                          },
+                          {
+                            "type": "list",
+                            "class": "supply-row",
+                            "items": "$supplies",
+                            "template": {
+                              "type": "box",
+                              "class": "supply",
+                              "children": [
+                                {
+                                  "type": "image",
+                                  "class": "supply-icon",
+                                  "src": "$icon"
+                                },
+                                {
+                                  "type": "box",
+                                  "class": "supply-text",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "class": "supply-value",
+                                      "text": "{value}"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "class": "supply-label",
+                                      "text": "{label}"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "rings",
+                      "child": {
+                        "type": "box",
+                        "class": "page page-rings",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "ring-side",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "title",
+                                "text": "WORN"
+                              },
+                              {
+                                "type": "box",
+                                "class": "worn",
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "worn-icon",
+                                    "src": "$ring.wornIcon"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "worn-name",
+                                    "text": "{ring.worn}"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "text",
+                                "class": "title",
+                                "text": "RING BOX {ring.boxLevel}"
+                              },
+                              {
+                                "type": "list",
+                                "class": "box-col",
+                                "items": "$ring.box",
+                                "template": {
+                                  "type": "box",
+                                  "class": "box-slot",
+                                  "children": [
+                                    {
+                                      "type": "image",
+                                      "class": "box-icon",
+                                      "src": "$icon"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "class": "box-name",
+                                      "text": "{name}"
+                                    }
+                                  ],
+                                  "classIf": {
+                                    "filled": "$filled"
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "ring-grid",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "title",
+                                "text": "COLLECTION {ring.count} / 64"
+                              },
+                              {
+                                "type": "list",
+                                "class": "dot-rows",
+                                "items": "$ring.dotRows",
+                                "template": {
+                                  "type": "list",
+                                  "class": "dot-row",
+                                  "items": "$cells",
+                                  "template": {
+                                    "type": "box",
+                                    "class": "dot",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "dot-img",
+                                        "src": "$src"
+                                      }
+                                    ],
+                                    "classIf": {
+                                      "on": "$on"
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "status",
+                      "child": {
+                        "type": "box",
+                        "class": "page page-status",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "life",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "life-value",
+                                "text": "{status.hearts}"
+                              },
+                              {
+                                "type": "list",
+                                "class": "life-hearts",
+                                "items": "$status.lifeHearts",
+                                "template": {
+                                  "type": "image",
+                                  "class": "lheart",
+                                  "src": "$src"
+                                }
+                              },
+                              {
+                                "type": "list",
+                                "class": "pieces",
+                                "items": "$status.pieces",
+                                "template": {
+                                  "type": "image",
+                                  "class": "piece",
+                                  "src": "$src"
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "class": "title",
+                            "text": "ESSENCES {status.essenceCount} / 8"
+                          },
+                          {
+                            "type": "list",
+                            "class": "essences",
+                            "items": "$status.essences",
+                            "template": {
+                              "type": "image",
+                              "class": "essence",
+                              "src": "$src"
+                            }
+                          },
+                          {
+                            "type": "list",
+                            "class": "facts",
+                            "items": "$status.facts",
+                            "template": {
+                              "type": "box",
+                              "class": "fact",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "class": "fact-value",
+                                  "text": "{value}"
+                                },
+                                {
+                                  "type": "text",
+                                  "class": "fact-label",
+                                  "text": "{label}"
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "class": "nav",
+              "children": [
+                {
+                  "type": "button",
+                  "class": "tab",
+                  "onClick": [
+                    {
+                      "navigate": "items"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "class": "br",
+                      "text": "["
+                    },
+                    {
+                      "type": "text",
+                      "class": "tab-label",
+                      "text": "ITEMS"
+                    },
+                    {
+                      "type": "text",
+                      "class": "br",
+                      "text": "]"
+                    }
+                  ],
+                  "classIf": {
+                    "on": "$navItems"
+                  }
+                },
+                {
+                  "type": "button",
+                  "class": "tab",
+                  "onClick": [
+                    {
+                      "navigate": "map"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "class": "br",
+                      "text": "["
+                    },
+                    {
+                      "type": "text",
+                      "class": "tab-label",
+                      "text": "MAP"
+                    },
+                    {
+                      "type": "text",
+                      "class": "br",
+                      "text": "]"
+                    }
+                  ],
+                  "classIf": {
+                    "on": "$navMap"
+                  }
+                },
+                {
+                  "type": "button",
+                  "class": "tab",
+                  "onClick": [
+                    {
+                      "navigate": "seeds"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "class": "br",
+                      "text": "["
+                    },
+                    {
+                      "type": "text",
+                      "class": "tab-label",
+                      "text": "SEEDS"
+                    },
+                    {
+                      "type": "text",
+                      "class": "br",
+                      "text": "]"
+                    }
+                  ],
+                  "classIf": {
+                    "on": "$navSeeds"
+                  }
+                },
+                {
+                  "type": "button",
+                  "class": "tab",
+                  "onClick": [
+                    {
+                      "navigate": "rings"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "class": "br",
+                      "text": "["
+                    },
+                    {
+                      "type": "text",
+                      "class": "tab-label",
+                      "text": "RINGS"
+                    },
+                    {
+                      "type": "text",
+                      "class": "br",
+                      "text": "]"
+                    }
+                  ],
+                  "classIf": {
+                    "on": "$navRings"
+                  }
+                },
+                {
+                  "type": "button",
+                  "class": "tab",
+                  "onClick": [
+                    {
+                      "navigate": "status"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "class": "br",
+                      "text": "["
+                    },
+                    {
+                      "type": "text",
+                      "class": "tab-label",
+                      "text": "STATUS"
+                    },
+                    {
+                      "type": "text",
+                      "class": "br",
+                      "text": "]"
+                    }
+                  ],
+                  "classIf": {
+                    "on": "$navStatus"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "visibleIf": "$ready"
+    }
+  ],
+  "id": "screen"
+}

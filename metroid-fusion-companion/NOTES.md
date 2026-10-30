@@ -32,9 +32,12 @@ Look: the game's own pause screens. `main.lua` draws them from the player's ROM 
   by the game) drawn with the raw minimap tiles at ROM `0x08561FA8`. gfx images are cached
   by their arguments, so each change draws from another EWRAM/ROM mirror (144 keys cycle).
   It shows the current area only; Samus's cell is `gMinimapX/Y` (`0x03000031/32`).
-- Text is set in the game's font as glyph PNGs (`assets/font`, from `art/rom-font.py`; the
-  only game graphics the zip carries). Digit rows are opaque so they cover the placeholder
-  numbers baked into the status tilemap.
+- Only the header counters use the game's font, as glyph PNGs (`assets/font`, from
+  `art/rom-font.py`; the only game graphics the zip carries); they are opaque so they cover the
+  placeholder numbers baked into the status tilemap. Every other word is Silkscreen Bold text
+  (`assets/fonts`): the menu font's 0/1/7 read as box/I/L on a companion, and real text allows
+  labels, "MAIN DECK" and tappable-size hatch/sector rows. Sizes are 13px labels, 17.34px values.
+- The waiting screen draws the title-screen logo from the ROM (gfx `0x08593274`, tilemap `0x085963B8`, palette `0x08596D0C`, tiles 1-28 x 1-14), over "GBADUO COMPANION PACK"; non-US ROMs get text only.
 - `node art/layout.mjs` writes `layout.json`. Previews can't render ROM art: use the device.
 - Map colours are the raw palette (magenta/green/grey); the game blends them toward lilac.
 

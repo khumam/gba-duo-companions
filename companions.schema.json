@@ -35,7 +35,7 @@
 						"properties": {
 							"title": { "type": "string" },
 							"region": { "enum": ["US", "EU", "JP", "AU", "KR", "CN", "World"] },
-							"gameCode": { "type": "string", "pattern": "^[A-Z0-9]{4}$" }
+							"gameCode": { "type": "string", "pattern": "^((CGB|DMG)-)?[A-Z0-9]{4}$", "description": "The code the app shows for the game. Game Boy and Game Boy Color games carry a CGB- or DMG- prefix." }
 						},
 						"additionalProperties": false
 					}

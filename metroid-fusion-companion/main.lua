@@ -41,6 +41,8 @@ local TOTAL_UPGRADES = 18 -- every row of the status windows, plus missiles and 
 local TILES, PALETTE = 0x0856A254, 0x085657A8
 local MAP_OUTLINE, MAP_STATUS = 0x085740FC, 0x085748AC
 local FONT = "asset:font/"
+-- The title screen's logo (decomp: sTitleScreenLogoGfx / TileTable / Pal): 32x32 tilemap, logo in tiles 1-28 x 1-14.
+local LOGO_TILES, LOGO_MAP, LOGO_PAL = 0x08593274, 0x085963B8, 0x08596D0C
 
 local function crop(map, x, y, w, h)
   return gfx.tilemap{ tiles = TILES, map = map, palette = PALETTE, x = x, y = y, width = w * 8, height = h * 8, lz77 = true }
@@ -73,9 +75,10 @@ local function buildArt()
     frameL = crop(MAP_STATUS, 0, 5, 1, 15),
     frameR = crop(MAP_STATUS, 29, 5, 1, 15),
     outline = crop(MAP_OUTLINE, 0, 0, 30, 20),
-    botbar = crop(MAP_OUTLINE, 0, 18, 30, 2),
+    botmid = crop(MAP_OUTLINE, 1, 18, 28, 2), -- the map frame's bottom bar without its corners, so the status lace runs into it
     sideL = crop(MAP_STATUS, 0, 10, 1, 2),
     sideR = crop(MAP_STATUS, 29, 10, 1, 2),
+    logo = gfx.tilemap{ tiles = LOGO_TILES, map = LOGO_MAP, palette = LOGO_PAL, x = 1, y = 1, width = 28 * 8, height = 14 * 8, lz77 = true },
     windows = {},
   }
   for _, w in ipairs(WINDOWS) do
@@ -91,24 +94,9 @@ end
 local ok, built = pcall(buildArt)
 ART = ok and built or false
 
--- ---- The game's font, as glyph images ---------------------------------------------------
--- variant "c" is the colour of a current amount, "m" of a maximum (palette rows 6 and 3).
-local function glyphs(str, variant)
-  local out = {}
-  for ch in str:upper():gmatch(".") do
-    local name
-    if ch:match("[A-Z0-9]") then name = ch
-    elseif ch == "/" then name = "slash"
-    elseif ch == ":" then name = "semi"
-    elseif ch == "." then name = "dot"
-    elseif ch == ">" then name = "play" end
-    out[#out + 1] = { src = FONT .. (name and (variant .. "-" .. name) or "space") .. ".png" }
-  end
-  return out
-end
-
-local function line(text, variant) return { g = glyphs(text, variant) } end
-
+-- ---- Numbers in the header ---------------------------------------------------------------
+-- The header's counters are the game's own digits as glyph images ("c" current, "m" maximum:
+-- palette rows 6 and 3); everything else is set as text in Silkscreen (style.css).
 -- A number right-aligned in `cells` digit cells that cover the header's placeholder digits.
 local function digits(value, cells, variant)
   local text = tostring(math.max(0, math.min(value, 10 ^ cells - 1)))
@@ -161,29 +149,17 @@ local SECTORS = {
   { "Sector 4", "AQA" }, { "Sector 5", "ARC" }, { "Sector 6", "NOC" },
 }
 
+-- Seven cells: the game's code for the sector, its completion, and whether Samus is there or
+-- has downloaded its map.
 local function readSectorRows(area)
-  local out = {}
-  for i, s in ipairs(SECTORS) do
-    local pct = math.min(100, mem.u8(SECTOR_PERCENT + i - 1))
-    local row = (i - 1) // 3 + 1
-    out[row] = out[row] or { text = "" }
-    out[row].text = out[row].text .. string.format("%-4s%3d%s", s[2], pct, area == i - 1 and ">" or " ")
-  end
-  for i, r in ipairs(out) do out[i] = { g = glyphs(r.text, "c") } end
-  return out
-end
-
-local function readSectors(area)
   local maps = mem.u8(DOWNLOADED_MAPS)
   local out = {}
   for i, s in ipairs(SECTORS) do
-    local pct = math.min(100, mem.u8(SECTOR_PERCENT + i - 1))
-    out[#out + 1] = {
+    out[i] = {
+      name = s[2],
+      pct = string.format("%d", math.min(100, mem.u8(SECTOR_PERCENT + i - 1))),
       here = area == i - 1,
       mapped = (maps >> (i - 1)) & 1 == 1,
-      pct = pct / 100,
-      g = glyphs(string.format("%-4s%3d", s[2], pct), area == i - 1 and "c" or "m"),
-      mark = glyphs((area == i - 1) and ">" or ((maps >> (i - 1)) & 1 == 1 and "M" or ""), area == i - 1 and "c" or "m"),
     }
   end
   return out
@@ -213,11 +189,15 @@ function update()
   local validEnergy = maxEnergy >= STARTING_ENERGY and maxEnergy <= STARTING_ENERGY + 20 * TANK
     and (maxEnergy - STARTING_ENERGY) % TANK == 0
   if not LIVE_MODES[mem.u8(MAIN_GAME_MODE)] or not validEnergy or not ART then
+    local noRom = ART == false
     return {
       ready = false,
       waiting = true,
-      wait = ART == false and { line("US ROM ONLY", "c"), line("AMTE", "m") }
-        or { line("METROID FUSION", "c"), line("AWAITING SAVE", "m") },
+      waitLogo = ART and ART.logo or nil,
+      hasLogo = ART ~= false,
+      noLogo = ART == false,
+      waitTitle = noRom and "US ROM ONLY" or "",
+      waitSub = noRom and "NEEDS GAME CODE AMTE" or "GBADUO COMPANION PACK",
     }
   end
 
@@ -239,7 +219,7 @@ function update()
   local hatches = {}
   for i = 1, 4 do
     local open = level ~= 0xFF and level >= i
-    hatches[i] = { text = string.format("L%d %s", i, open and "OPEN" or "LOCK"), open = open }
+    hatches[i] = { name = "L" .. i, state = open and "OPEN" or "LOCKED", open = open }
   end
 
   return {
@@ -249,7 +229,7 @@ function update()
 
     art = {
       header = ART.header, center = ART.center, frameL = ART.frameL, frameR = ART.frameR, outline = ART.outline,
-      botbar = ART.botbar, sideL = ART.sideL, sideR = ART.sideR, map = mapKey,
+      botmid = ART.botmid, sideL = ART.sideL, sideR = ART.sideR, map = mapKey,
     },
     markCol = markCol * 17.34,
     markRow = markRow * 17.34,
@@ -261,29 +241,20 @@ function update()
     bombNow = digits(hasBombs and bombs or 0, 2, "c"),
     bombMax = digits(hasBombs and maxBombs or 0, 2, "m"),
 
-    sectorName = glyphs(sector and sector[2] or "?", "c"),
+    sectorName = sector and sector[2] or "?",
     left = {
-      line("SECTOR", "m"), line(sector and sector[2] or "?", "c"), line("", "m"),
-      line("ROOM", "m"), line(tostring(mem.u8(CURRENT_ROOM)), "c"), line("", "m"),
-      line("TIME", "m"), line(string.format("%d:%02d:%02d", mem.u8(t), mem.u8(t + 1), mem.u8(t + 2)), "c"),
+      { label = "LOCATION", value = sector and sector[1]:upper() or "?" },
+      { label = "ROOM", value = tostring(mem.u8(CURRENT_ROOM)) },
+      { label = "TIME", value = string.format("%d:%02d:%02d", mem.u8(t), mem.u8(t + 1), mem.u8(t + 2)) },
     },
     right = {
-      line("UPGRADES", "m"), line(string.format("%d/%d", owned, TOTAL_UPGRADES), "c"), line("", "m"),
-      line("TANKS", "m"), line(tostring(tanks), "c"), line("", "m"),
-      line("SECURITY", "m"), line("LEVEL " .. (level == 0xFF and "-" or tostring(level)), "c"),
+      { label = "UPGRADES", value = owned .. " / " .. TOTAL_UPGRADES },
+      { label = "TANKS", value = tostring(tanks) },
+      { label = "SECURITY", value = level == 0xFF and "NONE" or ("LEVEL " .. level) },
     },
-    hatchRows = {
-      { g = glyphs(string.format("%-14s%s", hatches[1].text, hatches[2].text), hatches[1].open and "c" or "m") },
-      { g = glyphs(string.format("%-14s%s", hatches[3].text, hatches[4].text), hatches[3].open and "c" or "m") },
-    },
-    armsInfo = {
-      line("UPGRADES " .. owned .. "/" .. TOTAL_UPGRADES, "c"),
-      line("ENERGY TANKS " .. tanks, "c"),
-      line("SECTOR " .. (sector and sector[2] or "?") .. "  ROOM " .. mem.u8(CURRENT_ROOM), "m"),
-    },
+    hatches = hatches,
 
     windows = windows,
     sectorRows = readSectorRows(area),
-    nav = { status = glyphs("STATUS", "c"), arms = glyphs("ARMS", "c"), map = glyphs("MAP", "c") },
   }
 end

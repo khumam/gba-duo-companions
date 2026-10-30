@@ -1,0 +1,66 @@
+Names of Oracle Rings:
+
+A1: Friendship Ring
+A2: Power Ring L-1
+A3: Power Ring L-2
+A4: Power Ring L-3
+A5: Armor Ring L-1
+A6: Armor Ring L-2
+A7: Armor Ring L-3
+A8: Red Ring
+B1: Blue Ring
+B2: Green Ring
+B3: Cursed Ring
+B4: Expert's Ring
+B5: Blast Ring
+B6: Rang Ring L-1
+B7: GBA Time Ring
+B8: Maple's Ring
+C1: Steadfast Ring
+C2: Pegasus Ring
+C3: Toss Ring
+C4: Heart Ring L-1
+C5: Heart Ring L-2
+C6: Swimmer's Ring
+C7: Charge Ring Spin
+C8: Light Ring L-1
+D1: Light Ring L-2
+D2: Bomber's Ring
+D3: Green Luck Ring
+D4: Blue Luck Ring
+D5: Gold Luck Ring
+D6: Red Luck Ring
+D7: Green Holy Ring
+D8: Blue Holy Ring
+E1: Red Holy Ring
+E2: Snowshoe Ring
+E3: Roc's Ring
+E4: Quicksand Ring
+E5: Red Joy Ring
+E6: Blue Joy Ring
+E7: Gold Joy Ring
+E8: Green Joy Ring
+F1: Discovery Ring
+F2: Rang Ring L-2
+F3: Octo Ring
+F4: Moblin Ring
+F5: Like Like Ring
+F6: Subrosian Ring
+F7: First Gen Ring
+F8: Spin Ring
+G1: Bombproof Ring
+G2: Energy Ring
+G3: Double Edge Ring
+G4: GBA Nature Ring
+G5: Slayer's Ring
+G6: Rupee Ring
+G7: Victory Ring
+G8: Sign Ring
+H1: 100th Ring
+H2: Whisp Ring
+H3: Gasha Ring
+H4: Peace Ring
+H5: Zora Ring
+H6: Fist Ring
+H7: Whimsical Ring
+H8: Protection Ring

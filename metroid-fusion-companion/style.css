@@ -1,7 +1,8 @@
 /*
  * The game's own screens. main.lua draws the pause frame, the status screen's header,
- * Samus and item windows from the player's ROM (gfx.tilemap); text is set in the game's
- * font as glyph images (assets/font, from art/rom-font.py).
+ * Samus and item windows from the player's ROM (gfx.tilemap). The header's numbers are the
+ * game's digits as glyph images (assets/font, from art/rom-font.py); every other word is
+ * Silkscreen text, because the menu font's 0, 1 and 7 are too easy to misread.
  *
  * One game pixel = 5 device px = 2.168dp, so one 8x8 tile = 17.34dp ("T" below). The
  * Thor's second screen is 538dp wide; the status screen is 30 tiles = 520.2dp.
@@ -13,9 +14,16 @@
   --green: #14502C;
   --green-hi: #58E080;
   --silver: #CBD6D3;
+  --label: #58E080;
+  --value: #FFFF39;
+  --dim: #7AA88A;
+  --lock: #F0709C;
 }
 
+@font-face { font-family: "Silk"; font-weight: 700; src: url("assets/fonts/Silkscreen-Bold.ttf"); }
+
 image { image-rendering: pixelated; }
+text { font-family: "Silk"; font-weight: 700; white-space: nowrap; }
 
 .grow { flex: 1; }
 
@@ -30,10 +38,13 @@ image { image-rendering: pixelated; }
 
 .shell, .pages, .page { width: 520.2px; }
 
-/* ---- glyph text -------------------------------------------------------------------------- */
+/* ---- text --------------------------------------------------------------------------------- */
 
 .g { width: 17.34px; height: 17.34px; }
-.line { flex-direction: row; height: 17.34px; }
+
+.stat { margin-bottom: 14px; }
+.stat-label { font-size: 13px; color: var(--label); letter-spacing: 1px; }
+.stat-value { font-size: 17.34px; color: var(--value); margin-top: 4px; }
 
 /* ---- nav: plain rounded rectangles ---------------------------------------------------------- */
 
@@ -42,14 +53,14 @@ image { image-rendering: pixelated; }
 .tab {
   flex: 1;
   height: 31px;
-  align-items: center;
-  justify-content: center;
+  padding-top: 3px;
   background-color: #0E3A20;
   border: 2px solid #0A2416;
   border-radius: 6px;
-  opacity: 0.6;
 }
-.tab.on { background-color: var(--green); border-color: var(--silver); opacity: 1; }
+.tab.on { background-color: var(--green); border-color: var(--silver); }
+.tab-label { width: 100%; height: 22px; text-align: center; font-size: 17.34px; color: var(--dim); letter-spacing: 2px; }
+.tab.on .tab-label { color: var(--value); }
 
 /* ---- STATUS ------------------------------------------------------------------------------ */
 
@@ -69,21 +80,20 @@ image { image-rendering: pixelated; }
 .body { flex-direction: row; height: 260.1px; }
 .frame { width: 17.34px; height: 260.1px; }
 .center { width: 190.74px; height: 260.1px; }
-.side { background-color: var(--navy); padding-top: 6px; }
+.side { background-color: var(--navy); padding-top: 14px; }
 .side-left { width: 138.72px; padding-left: 4px; }
 .side-right { width: 156.06px; padding-left: 10px; }
 
 /* ---- ARMS ---------------------------------------------------------------------------------- */
 
-.arms { position: relative; width: 520.2px; height: 190.74px; }
-.arms-info { flex: 1; padding: 8px 0 0 17.34px; }
+.arms { position: relative; width: 520.2px; height: 294.78px; }
 
 .win { position: absolute; }
-.w-beam { left: 17.34px; top: 0; width: 138.72px; }
-.w-missile { left: 156.06px; top: 0; width: 138.72px; }
-.w-suit { left: 329.46px; top: 0; width: 173.4px; }
-.w-misc { left: 329.46px; top: 69.36px; width: 173.4px; }
-.w-bomb { left: 17.34px; top: 121.38px; width: 173.4px; }
+.w-beam { left: 17.34px; top: 24px; width: 138.72px; }
+.w-missile { left: 173.4px; top: 24px; width: 138.72px; }
+.w-suit { left: 329.46px; top: 24px; width: 173.4px; }
+.w-misc { left: 329.46px; top: 129.36px; width: 173.4px; }
+.w-bomb { left: 17.34px; top: 181.38px; width: 173.4px; }
 
 .w-beam .w-title, .w-beam .w-row, .w-beam .w-foot,
 .w-missile .w-title, .w-missile .w-row, .w-missile .w-foot { width: 138.72px; height: 17.34px; }
@@ -91,7 +101,7 @@ image { image-rendering: pixelated; }
 .w-misc .w-title, .w-misc .w-row, .w-misc .w-foot,
 .w-bomb .w-title, .w-bomb .w-row, .w-bomb .w-foot { width: 173.4px; height: 17.34px; }
 
-.w-row { opacity: 0.3; }
+.w-row { opacity: 0.4; }
 .w-row.owned { opacity: 1; }
 
 /* ---- MAP ----------------------------------------------------------------------------------- */
@@ -99,20 +109,34 @@ image { image-rendering: pixelated; }
 .map { position: relative; width: 520.2px; height: 346.8px; }
 .outline { width: 520.2px; height: 346.8px; }
 
-.plate { position: absolute; left: 216.75px; top: 2px; flex-direction: row; height: 17.34px; }
+.cover { position: absolute; top: 4.6px; height: 15.2px; background-color: #2D6736; }
+.cover-l { left: 7.6px; width: 74.6px; }
+.cover-r { left: 438.9px; width: 73.7px; }
 
+.plate { position: absolute; left: 0; top: 1.3px; height: 13px; line-height: 13px; width: 520.2px; text-align: center; font-size: 13px; color: var(--value); letter-spacing: 2px; }
 
 /* ---- waiting ------------------------------------------------------------------------------- */
 
 .waiting { flex: 1; justify-content: center; align-items: center; }
-.wait { align-items: center; gap: 6px; }
+.wait { align-items: center; gap: 14px; }
+.wait-logo { width: 485.52px; height: 242.76px; }
+.wait-title { font-size: 26px; color: var(--value); letter-spacing: 2px; }
+.wait-sub { font-size: 13px; color: var(--label); letter-spacing: 2px; }
 
 /* ---- status: closing rows ------------------------------------------------------------------ */
 
 .info { flex-direction: row; height: 34.68px; }
 .frame2 { width: 17.34px; height: 34.68px; }
-.info-text { width: 485.52px; padding-left: 8px; background-color: var(--navy); }
-.botbar { width: 520.2px; height: 34.68px; }
+.info-text { width: 485.52px; flex-direction: row; align-items: center; padding: 0 4px; background-color: var(--navy); }
+.hatch { flex: 1; flex-direction: row; align-items: center; gap: 6px; }
+.hatch-name { font-size: 17.34px; color: var(--silver); }
+.hatch-state { font-size: 13px; color: var(--lock); }
+.hatch.open .hatch-state { color: var(--label); }
+.botbar { flex-direction: row; width: 520.2px; height: 34.68px; }
+.botmid { width: 485.52px; height: 34.68px; }
+.lace { position: absolute; top: 86.7px; width: 17.34px; height: 294.78px; }
+.lace-l { left: 0; }
+.lace-r { left: 502.86px; }
 
 /* ---- map: the live minimap inside the frame ---------------------------------------------------- */
 
@@ -126,4 +150,9 @@ image { image-rendering: pixelated; }
   border: 2px solid #FFFF39;
   border-radius: 3px;
 }
-.map-info { padding: 8px 0 0 34.68px; }
+.map-info { flex-direction: row; padding: 6px 0 0 0; background-color: var(--navy); height: 50px; }
+.sector { width: 74px; align-items: center; padding: 3px 0; border: 2px solid var(--navy); opacity: 0.5; }
+.sector.mapped { opacity: 1; }
+.sector.here { opacity: 1; border-color: var(--value); }
+.sector-name { font-size: 13px; color: var(--label); letter-spacing: 1px; }
+.sector-pct { font-size: 17.34px; color: var(--value); margin-top: 3px; }

@@ -7,19 +7,27 @@
       "class": "waiting",
       "children": [
         {
-          "type": "list",
+          "type": "box",
           "class": "wait",
-          "items": "$wait",
-          "template": {
-            "type": "list",
-            "class": "line",
-            "items": "$g",
-            "template": {
+          "children": [
+            {
               "type": "image",
-              "class": "g",
-              "src": "$src"
+              "class": "wait-logo",
+              "src": "$waitLogo",
+              "visibleIf": "$hasLogo"
+            },
+            {
+              "type": "text",
+              "class": "wait-title",
+              "text": "{waitTitle}",
+              "visibleIf": "$noLogo"
+            },
+            {
+              "type": "text",
+              "class": "wait-sub",
+              "text": "{waitSub}"
             }
-          }
+          ]
         }
       ],
       "visibleIf": "$waiting"
@@ -126,14 +134,20 @@
                             "class": "side side-left",
                             "items": "$left",
                             "template": {
-                              "type": "list",
-                              "class": "line",
-                              "items": "$g",
-                              "template": {
-                                "type": "image",
-                                "class": "g",
-                                "src": "$src"
-                              }
+                              "type": "box",
+                              "class": "stat",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "class": "stat-label",
+                                  "text": "{label}"
+                                },
+                                {
+                                  "type": "text",
+                                  "class": "stat-value",
+                                  "text": "{value}"
+                                }
+                              ]
                             }
                           },
                           {
@@ -146,14 +160,20 @@
                             "class": "side side-right",
                             "items": "$right",
                             "template": {
-                              "type": "list",
-                              "class": "line",
-                              "items": "$g",
-                              "template": {
-                                "type": "image",
-                                "class": "g",
-                                "src": "$src"
-                              }
+                              "type": "box",
+                              "class": "stat",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "class": "stat-label",
+                                  "text": "{label}"
+                                },
+                                {
+                                  "type": "text",
+                                  "class": "stat-value",
+                                  "text": "{value}"
+                                }
+                              ]
                             }
                           },
                           {
@@ -175,15 +195,24 @@
                           {
                             "type": "list",
                             "class": "info-text",
-                            "items": "$hatchRows",
+                            "items": "$hatches",
                             "template": {
-                              "type": "list",
-                              "class": "line",
-                              "items": "$g",
-                              "template": {
-                                "type": "image",
-                                "class": "g",
-                                "src": "$src"
+                              "type": "box",
+                              "class": "hatch",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "class": "hatch-name",
+                                  "text": "{name}"
+                                },
+                                {
+                                  "type": "text",
+                                  "class": "hatch-state",
+                                  "text": "{state}"
+                                }
+                              ],
+                              "classIf": {
+                                "open": "$open"
                               }
                             }
                           },
@@ -195,9 +224,25 @@
                         ]
                       },
                       {
-                        "type": "image",
+                        "type": "box",
                         "class": "botbar",
-                        "src": "$art.botbar"
+                        "children": [
+                          {
+                            "type": "image",
+                            "class": "frame2",
+                            "src": "$art.sideL"
+                          },
+                          {
+                            "type": "image",
+                            "class": "botmid",
+                            "src": "$art.botmid"
+                          },
+                          {
+                            "type": "image",
+                            "class": "frame2",
+                            "src": "$art.sideR"
+                          }
+                        ]
                       }
                     ]
                   },
@@ -215,14 +260,9 @@
                         ],
                         "children": [
                           {
-                            "type": "list",
-                            "class": "line",
-                            "items": "$nav.status",
-                            "template": {
-                              "type": "image",
-                              "class": "g",
-                              "src": "$src"
-                            }
+                            "type": "text",
+                            "class": "tab-label",
+                            "text": "STATUS"
                           }
                         ]
                       },
@@ -236,14 +276,9 @@
                         ],
                         "children": [
                           {
-                            "type": "list",
-                            "class": "line",
-                            "items": "$nav.arms",
-                            "template": {
-                              "type": "image",
-                              "class": "g",
-                              "src": "$src"
-                            }
+                            "type": "text",
+                            "class": "tab-label",
+                            "text": "ARMS"
                           }
                         ]
                       },
@@ -257,14 +292,9 @@
                         ],
                         "children": [
                           {
-                            "type": "list",
-                            "class": "line",
-                            "items": "$nav.map",
-                            "template": {
-                              "type": "image",
-                              "class": "g",
-                              "src": "$src"
-                            }
+                            "type": "text",
+                            "class": "tab-label",
+                            "text": "MAP"
                           }
                         ]
                       }
@@ -506,24 +536,57 @@
                         ]
                       },
                       {
-                        "type": "list",
-                        "class": "arms-info",
-                        "items": "$armsInfo",
-                        "template": {
-                          "type": "list",
-                          "class": "line",
-                          "items": "$g",
-                          "template": {
+                        "type": "box",
+                        "class": "lace lace-l",
+                        "children": [
+                          {
                             "type": "image",
-                            "class": "g",
-                            "src": "$src"
+                            "class": "frame",
+                            "src": "$art.frameL"
+                          },
+                          {
+                            "type": "image",
+                            "class": "frame2",
+                            "src": "$art.sideL"
                           }
-                        }
+                        ]
                       },
                       {
-                        "type": "image",
+                        "type": "box",
+                        "class": "lace lace-r",
+                        "children": [
+                          {
+                            "type": "image",
+                            "class": "frame",
+                            "src": "$art.frameR"
+                          },
+                          {
+                            "type": "image",
+                            "class": "frame2",
+                            "src": "$art.sideR"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
                         "class": "botbar",
-                        "src": "$art.botbar"
+                        "children": [
+                          {
+                            "type": "image",
+                            "class": "frame2",
+                            "src": "$art.sideL"
+                          },
+                          {
+                            "type": "image",
+                            "class": "botmid",
+                            "src": "$art.botmid"
+                          },
+                          {
+                            "type": "image",
+                            "class": "frame2",
+                            "src": "$art.sideR"
+                          }
+                        ]
                       }
                     ]
                   },
@@ -541,14 +604,9 @@
                         ],
                         "children": [
                           {
-                            "type": "list",
-                            "class": "line",
-                            "items": "$nav.status",
-                            "template": {
-                              "type": "image",
-                              "class": "g",
-                              "src": "$src"
-                            }
+                            "type": "text",
+                            "class": "tab-label",
+                            "text": "STATUS"
                           }
                         ]
                       },
@@ -562,14 +620,9 @@
                         ],
                         "children": [
                           {
-                            "type": "list",
-                            "class": "line",
-                            "items": "$nav.arms",
-                            "template": {
-                              "type": "image",
-                              "class": "g",
-                              "src": "$src"
-                            }
+                            "type": "text",
+                            "class": "tab-label",
+                            "text": "ARMS"
                           }
                         ]
                       },
@@ -583,14 +636,9 @@
                         ],
                         "children": [
                           {
-                            "type": "list",
-                            "class": "line",
-                            "items": "$nav.map",
-                            "template": {
-                              "type": "image",
-                              "class": "g",
-                              "src": "$src"
-                            }
+                            "type": "text",
+                            "class": "tab-label",
+                            "text": "MAP"
                           }
                         ]
                       }
@@ -619,6 +667,16 @@
                             "src": "$art.outline"
                           },
                           {
+                            "type": "box",
+                            "class": "cover cover-l",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "cover cover-r",
+                            "children": []
+                          },
+                          {
                             "type": "image",
                             "class": "minimap",
                             "src": "$art.map"
@@ -633,14 +691,9 @@
                             }
                           },
                           {
-                            "type": "list",
+                            "type": "text",
                             "class": "plate",
-                            "items": "$sectorName",
-                            "template": {
-                              "type": "image",
-                              "class": "g",
-                              "src": "$src"
-                            }
+                            "text": "{sectorName}"
                           }
                         ]
                       },
@@ -649,13 +702,23 @@
                         "class": "map-info",
                         "items": "$sectorRows",
                         "template": {
-                          "type": "list",
-                          "class": "line",
-                          "items": "$g",
-                          "template": {
-                            "type": "image",
-                            "class": "g",
-                            "src": "$src"
+                          "type": "box",
+                          "class": "sector",
+                          "children": [
+                            {
+                              "type": "text",
+                              "class": "sector-name",
+                              "text": "{name}"
+                            },
+                            {
+                              "type": "text",
+                              "class": "sector-pct",
+                              "text": "{pct}"
+                            }
+                          ],
+                          "classIf": {
+                            "here": "$here",
+                            "mapped": "$mapped"
                           }
                         }
                       }
@@ -675,14 +738,9 @@
                         ],
                         "children": [
                           {
-                            "type": "list",
-                            "class": "line",
-                            "items": "$nav.status",
-                            "template": {
-                              "type": "image",
-                              "class": "g",
-                              "src": "$src"
-                            }
+                            "type": "text",
+                            "class": "tab-label",
+                            "text": "STATUS"
                           }
                         ]
                       },
@@ -696,14 +754,9 @@
                         ],
                         "children": [
                           {
-                            "type": "list",
-                            "class": "line",
-                            "items": "$nav.arms",
-                            "template": {
-                              "type": "image",
-                              "class": "g",
-                              "src": "$src"
-                            }
+                            "type": "text",
+                            "class": "tab-label",
+                            "text": "ARMS"
                           }
                         ]
                       },
@@ -717,14 +770,9 @@
                         ],
                         "children": [
                           {
-                            "type": "list",
-                            "class": "line",
-                            "items": "$nav.map",
-                            "template": {
-                              "type": "image",
-                              "class": "g",
-                              "src": "$src"
-                            }
+                            "type": "text",
+                            "class": "tab-label",
+                            "text": "MAP"
                           }
                         ]
                       }

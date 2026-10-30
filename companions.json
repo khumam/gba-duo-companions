@@ -203,6 +203,63 @@
 				{ "src": "zelda-the-minish-cap-companion/screenshoots/zelda2.png", "alt": "Items page: the item pouch, bombs, arrows, charm, shells and heart pieces" },
 				{ "src": "zelda-the-minish-cap-companion/screenshoots/zelda3.png", "alt": "Kinstone page: the fusion bag and fusions done out of 100" }
 			]
+		},
+		{
+			"id": "metroid-fusion-companion",
+			"title": "Metroid Fusion Companion",
+			"description": "The game's own pause screens on the second screen: live energy, missiles and power bombs, ability windows lit by what Samus has, security hatches, and the area map drawn from your ROM.",
+			"version": "1.1.0",
+			"author": "khumam",
+			"official": true,
+			"repo": "khumam/gba-duo-companions",
+			"path": "metroid-fusion-companion",
+			"tag": "v1.7.0",
+			"url": "https://github.com/khumam/gba-duo-companions/tree/main/metroid-fusion-companion",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.7.0/metroid-fusion-companion-1.1.0.zip",
+			"games": [
+				{ "title": "Metroid Fusion", "region": "US", "gameCode": "AMTE" },
+				{ "title": "Metroid Fusion", "region": "EU", "gameCode": "AMTP" },
+				{ "title": "Metroid Fusion", "region": "JP", "gameCode": "AMTJ" }
+			],
+			"design": "Metroid Fusion",
+			"pages": ["Status", "Arms", "Map"],
+			"tags": ["metroid", "action", "map", "abilities", "rom-graphics"],
+			"minAppVersion": "0.1.8",
+			"canModifyGame": false,
+			"screenshots": [
+				{ "src": "metroid-fusion-companion/screenshoots/metroid-fusion-status.png", "alt": "Status page: energy, missiles and power bombs in the header, Samus, location, room, time and the four security hatches" },
+				{ "src": "metroid-fusion-companion/screenshoots/metroid-fusion-arms.png", "alt": "Arms page: the beam, missile, bomb, suit and misc. windows, dimmed until Samus has the upgrade" },
+				{ "src": "metroid-fusion-companion/screenshoots/metroid-fusion-map.png", "alt": "Map page: the live Main Deck minimap with Samus's room marked, and each sector's completion" }
+			]
+		},
+		{
+			"id": "zelda-oracle-of-ages-companion",
+			"title": "The Legend of Zelda: Oracle of Ages Companion",
+			"description": "A brick-window subscreen with your items, a Lynna and Labrynna map that dims unvisited rooms, seeds, the 64-ring collection, hearts and essences. Menu art follows the game.",
+			"version": "0.1.0",
+			"author": "khumam",
+			"official": true,
+			"repo": "khumam/gba-duo-companions",
+			"path": "zelda-oracle-of-ages-companion",
+			"tag": "v1.7.0",
+			"url": "https://github.com/khumam/gba-duo-companions/tree/main/zelda-oracle-of-ages-companion",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.7.0/zelda-oracle-of-ages-companion-0.1.0.zip",
+			"games": [
+				{ "title": "The Legend of Zelda: Oracle of Ages", "region": "US", "gameCode": "CGB-AZ8E" },
+				{ "title": "The Legend of Zelda: Oracle of Ages", "region": "EU", "gameCode": "CGB-AZ8P" },
+				{ "title": "The Legend of Zelda: Oracle of Ages", "region": "JP", "gameCode": "CGB-AZ8J" }
+			],
+			"design": "The Legend of Zelda: Oracle of Ages",
+			"pages": ["Items", "Map", "Seeds", "Rings", "Status"],
+			"tags": ["zelda", "adventure", "map", "items", "rings"],
+			"minAppVersion": "0.1.8",
+			"canModifyGame": false,
+			"screenshots": [
+				{ "src": "zelda-oracle-of-ages-companion/screenshoots/oracle-of-ages-map.png", "alt": "Map page: the past overworld with the rooms Link hasn't visited dimmed and his room outlined" },
+				{ "src": "zelda-oracle-of-ages-companion/screenshoots/oracle-of-ages-rings.png", "alt": "Rings page: the ring box and the 64-ring collection, with the owned Friendship ring in colour" },
+				{ "src": "zelda-oracle-of-ages-companion/screenshoots/oracle-of-ages-seeds.png", "alt": "Seeds page: the five seeds with the satchel's selection marked, and bombs, bombchus and gasha seeds" },
+				{ "src": "zelda-oracle-of-ages-companion/screenshoots/oracle-of-ages-status.png", "alt": "Status page: hearts and heart pieces, the eight essences, and era, harp song and room" }
+			]
 		}
 	]
 }
