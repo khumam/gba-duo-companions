@@ -32,115 +32,44 @@ game's memory as you play. This repo holds the packs, one folder each.
 3. Start the game. The companion shows on the bottom screen.
 
 Each game remembers its pack; change it any time from the same **⋮** menu.
-The packs need GBADuo **v0.1.3** or newer.
+Most packs need GBADuo **v0.1.3** or newer; the Metroid and Oracle of Ages packs need **v0.1.8**.
 
 ## Packs
 
-### Pokémon FireRed — `pokemon-firered-companion`
+Each pack is a folder; the zip name is `<pack>-<version>.zip` on the
+[latest release](https://github.com/khumam/gba-duo-companions/releases/latest).
 
-For Pokémon FireRed (US v1.0, game code `BPRE`). Design: *Pocket-OS*, a chunky handheld
-interface with hazard-striped headers and a colour-coded dock.
+### Pokémon
 
-- **MAP** - the game's own Town Map, read from your ROM, with a crosshair on where you
-  are (it moves along a route as you walk it). Under it, the wild Pokémon on your
-  current map with levels and chances: tap the button for grass, surfing, Rock Smash
-  or each fishing rod. Beside it, your party at a glance.
-- **PARTY** - your team with types, levels, HP and status; tap a Pokémon for its stats,
-  moves, ability, nature, held item and EXP to the next level.
-- **BAG** - every pocket: items, key items, Poké Balls, TMs & HMs, berries.
-- **DEX** - Pokédex seen and caught, and the latest catch.
-- **CARD** - your trainer card (name, ID, money, play time) and the eight badges.
-- **BATTLE** - opens by itself when a battle starts and goes back when it ends: both
-  Pokémon with their types, HP and live stats, with stat changes (+1, -2…) marked.
+| Pack | Game | Game codes | Pages | Version | Notes |
+|---|---|---|---|---|---|
+| [`pokemon-firered-companion`](pokemon-firered-companion) | Pokémon FireRed | `BPRE` | Map, Party, Bag, Dex, Card, Battle | 2.0.0 | *Pocket-OS*: a chunky handheld interface with hazard-striped headers. The Town Map is read from your ROM; the Battle page opens by itself when a battle starts. |
+| [`pokemon-firered-v-companion`](pokemon-firered-v-companion) | Pokémon FireRed | `BPRE` | Map, Party, Bag, Dex, Card, Battle | 1.0.0 | Same pages with a vertical dock on the right. |
+| [`pokemon-firered-minimal-companion`](pokemon-firered-minimal-companion) | Pokémon FireRed | `BPRE` | Map, Party, Bag, Dex, Card, Battle | 1.0.0 | Calm one-colour skin in soft red: flat fills, no shadows, a text-only dock. |
+| [`pokemon-leafgreen-companion`](pokemon-leafgreen-companion) | Pokémon LeafGreen | `BPGE` | Map, Party, Bag, Dex, Card, Battle | 1.0.0 | The FireRed pack for LeafGreen, with horizontal navigation. |
+| [`pokemon-leafgreen-v-companion`](pokemon-leafgreen-v-companion) | Pokémon LeafGreen | `BPGE` | Map, Party, Bag, Dex, Card, Battle | 1.0.0 | Same pages with a vertical dock on the right. |
+| [`pokemon-leafgreen-minimal-companion`](pokemon-leafgreen-minimal-companion) | Pokémon LeafGreen | `BPGE` | Map, Party, Bag, Dex, Card, Battle | 1.0.0 | Calm one-colour skin in soft green. |
 
-#### Minimal variants — `pokemon-firered-minimal-companion`, `pokemon-leafgreen-minimal-companion`
+### Metroid
 
-The same pages and data as the vertical-navigation packs, in a calm one-colour skin: soft
-red for FireRed (`BPRE`) and soft green for LeafGreen (`BPGE`), flat fills, a single solid
-border, no shadows or stripes, and a text-only dock on the right.
+| Pack | Game | Game codes | Pages | Version | Notes |
+|---|---|---|---|---|---|
+| [`metroid-zero-mission-companion`](metroid-zero-mission-companion) | Metroid: Zero Mission | `BMXE` `BMXP` `BMXJ` | Map, Status, Sectors, Log | 1.0.0 | The game's pause screen. Your explored map centered on Samus, her suit with the beams and gear you own (tap one to switch it on or off), area progress, boss targets and recovered tanks. Needs **GBADuo v0.1.8** and, for the switches, **Settings > Packs can change games**. See [NOTES](metroid-zero-mission-companion/NOTES.md). |
+| [`metroid-fusion-companion`](metroid-fusion-companion) | Metroid Fusion | `AMTE` `AMTP` `AMTJ` | Map, Status, Arms, Sectors, Mission | 2.0.0 | The game's pause screen. Live map, Samus on her grid, every upgrade, sector progress, bosses, security hatches and your next objective. Game art is drawn from the US ROM; other regions show a text-only waiting screen. Needs **GBADuo v0.1.8**. See [NOTES](metroid-fusion-companion/NOTES.md). |
 
-### Golden Sun (early preview, v0.1.0) — `golden-sun-companion`
+### Zelda
 
-For Golden Sun (`AGSE`, `AGSP`, `AGSJ`, `AGSI`), in the game's own blue window style.
-Unfinished: item names, Djinn ownership and Psynergy are not mapped yet.
+| Pack | Game | Game codes | Pages | Version | Notes |
+|---|---|---|---|---|---|
+| [`zelda-minish-cap-companion`](zelda-the-minish-cap-companion) | The Minish Cap | `BZME` `BZMP` `BZMJ` | Map, Items, Kinstone, Quest | 3.0.1 | *Minish-OS*: wood and leather panels with stone item sockets. The world map, item icons, Link and the title logo are drawn from your ROM. Tap Ezlo for a hint. See [NOTES](zelda-the-minish-cap-companion/NOTES.md). |
+| [`zelda-oracle-of-ages-companion`](zelda-oracle-of-ages-companion) | Oracle of Ages | `CGB-AZ8E` `CGB-AZ8P` `CGB-AZ8J` | Items, Map, Seeds, Rings, Status | 0.1.0 | Early version in the game's own subscreen style. Era maps that dim unvisited rooms, seeds, all 64 rings, hearts and essences. Needs **GBADuo v0.1.8**. See [NOTES](zelda-oracle-of-ages-companion/NOTES.md). |
 
-- **PARTY** - a roster down the left (name, level, HP) and, for the selected member, their
-  HP and PP, stats, Exp, coins and items.
-- **DJINN** - every Djinn by element (collection tracking comes later).
-- **PSYNERGY** - placeholder.
+### Other games
 
-### Harvest Moon: Friends of Mineral Town — `harvest-moon-fomt-companion`
-
-For Harvest Moon: Friends of Mineral Town (EU `A4NP`, US `BHFE`). Checked on the EU cart.
-Design: *The Mineral Town Almanac*, a storybook farm whose backdrop follows the in-game
-season and darkens to a starry sky at night.
-
-- **FARM** - date and time, today's and tomorrow's weather, gold, the tool in your hand,
-  stamina and fatigue, and records.
-- **BAG** - your rucksack: tools (the one in your hand first) and items.
-- **LOVE** - the bachelorettes with their heart colour, and every villager's friendship.
-- **SPRITES** - each Harvest Sprite's friendship, today's job and work experience
-  (harvesting, watering, animals).
-
-See [`harvest-moon-fomt-companion/NOTES.md`](harvest-moon-fomt-companion/NOTES.md) for
-what's verified on the device and what isn't yet.
-
-### The Legend of Zelda: The Minish Cap — `zelda-minish-cap-companion`
-
-For The Minish Cap (US `BZME`, EU `BZMP`, JP `BZMJ`). Folder:
-[`zelda-the-minish-cap-companion`](zelda-the-minish-cap-companion). Design: *Minish-OS*,
-wood and leather panels with pixel leaves and stone item sockets.
-
-The game's own graphics (the world map, item icons, Link, his hearts, Ezlo and the title
-logo) are drawn at runtime from your ROM, so the pack ships none of them.
-
-- **MAP** - the world map with Link's spot (live while he's outdoors) and where he is,
-  the A and B items, and Link with his heart containers, filled to his health. In a
-  dungeon, WORLD / DUNGEON tabs: the dungeon's floors (Link's, and the boss's once you
-  have the compass), its map, compass and big key, and your small keys.
-- **ITEMS** - your gear as icons (tap one to see its name), bombs and arrows, the active
-  charm, shells and heart pieces.
-- **KINSTONE** - fusions done out of 100, and the pieces in the bag by colour.
-- **QUEST** - the four elements, the dungeons cleared and the next one, side-quest
-  items, figurines, tiger scrolls, heart pieces and shells.
-- **Ezlo** - tap him in the header for a hint: low health, ammo, or where to go next.
-
-See [`zelda-the-minish-cap-companion/NOTES.md`](zelda-the-minish-cap-companion/NOTES.md)
-for what's verified on the device and what isn't yet.
-
-### Metroid Fusion — `metroid-fusion-companion`
-
-For Metroid Fusion (US `AMTE`, EU `AMTP`, JP `AMTJ`). Design: the game's own pause screens, drawn
-from your ROM (US build; other regions show a text-only waiting screen) with readable Silkscreen text
-for everything else.
-
-- **STATUS** - energy, missiles and power bombs in the game's header, Samus, where you are,
-  the room, mission time, tanks, security level and the four hatches (OPEN or LOCKED).
-- **ARMS** - the beam, missile, bomb, suit and misc. windows from the status screen, lit once
-  Samus has the upgrade.
-- **MAP** - the live minimap for the current area in the map-screen frame, with Samus's room
-  marked, and every sector's completion with downloaded maps and where you are.
-
-See [`metroid-fusion-companion/NOTES.md`](metroid-fusion-companion/NOTES.md) for
-what's verified on the device and what isn't yet.
-
-### The Legend of Zelda: Oracle of Ages (early, v0.1.0) — `zelda-oracle-of-ages-companion`
-
-For Oracle of Ages (US `CGB-AZ8E`, EU `CGB-AZ8P`, JP `CGB-AZ8J`; checked on the European
-build). Design: the game's own subscreen, a mauve brick window around an off-white panel, under the HUD
-strip with your B and A items, rupees and hearts. The icons and maps are the game's own graphics.
-
-- **ITEMS** - your inventory in the game's slot order, with the B and A items tagged, and
-  each item's level or count.
-- **MAP** - the overworld of the era you're in (Lynna in the present, Labrynna in the past)
-  with the rooms you haven't visited dimmed and your room outlined. It's drawn from the game's data
-  ahead of time, since Game Boy Color games can't draw ROM art at runtime.
-- **SEEDS** - the five seeds with the satchel's selection marked, plus bombs, bombchus and gasha seeds.
-- **RINGS** - the worn ring, the ring box, and all 64 rings with the ones you own in colour.
-- **STATUS** - hearts and heart pieces, the eight essences, the era, the harp song and the room.
-
-See [`zelda-oracle-of-ages-companion/NOTES.md`](zelda-oracle-of-ages-companion/NOTES.md) for
-what's verified on the device and what isn't yet (only an early save has been checked).
+| Pack | Game | Game codes | Pages | Version | Notes |
+|---|---|---|---|---|---|
+| [`harvest-moon-fomt-companion`](harvest-moon-fomt-companion) | Harvest Moon: Friends of Mineral Town | `A4NP` `BHFE` | Farm, Bag, Love, Sprites | 1.1.0 | *The Mineral Town Almanac*: a storybook farm whose backdrop follows the season and turns to a starry sky at night. Checked on the EU cart. See [NOTES](harvest-moon-fomt-companion/NOTES.md). |
+| [`golden-sun-companion`](golden-sun-companion) | Golden Sun | `AGSE` `AGSP` `AGSJ` `AGSI` | Party, Djinn, Psynergy | 0.1.0 | Early preview in the game's blue window style. Item names, Djinn ownership and Psynergy aren't mapped yet. |
 
 Want a pack for another game? [Open an issue](https://github.com/khumam/gba-duo-companions/issues).
 
@@ -210,6 +139,9 @@ cd my-pack && zip -rX ../my-pack-1.0.0.zip . -x '*.DS_Store' 'art/*' 'screenshoo
   samurai goroh's code guide.
 - Metroid Fusion: [Data Crystal's RAM map](https://datacrystal.tcrf.net/wiki/Metroid_Fusion/RAM_map)
   and the [metroidret](https://github.com/metroidret/mf) mf decompilation.
+- Metroid: Zero Mission: [Data Crystal's RAM map](https://datacrystal.tcrf.net/wiki/Metroid_Zero_Mission:RAM_map)
+  and the [metroidret](https://github.com/metroidret/mzm) mzm decompilation (RAM layout, event flags and the
+  ROM offsets of the title logo and map tiles).
 - Oracle of Ages: the [oracles-disasm](https://github.com/Stewmath/oracles-disasm) disassembly
   (memory map, rooms, tilesets and item sprites). The 64 ring icons are cut from a community
   sprite sheet of the game's rings.
@@ -232,9 +164,10 @@ cd my-pack && zip -rX ../my-pack-1.0.0.zip . -x '*.DS_Store' 'art/*' 'screenshoo
   [PokeAPI sprites](https://github.com/PokeAPI/sprites) repository; they belong to
   Nintendo, Game Freak and Creatures. Its Town Map, and all of the Minish Cap pack's game
   graphics, are read from the player's own ROM at runtime and not included. The Metroid
-  Fusion pack draws its frames and maps from your ROM too and ships only the game's menu
-  digits; the Oracle of Ages pack ships its item, seed, ring and map graphics, which come from
-  the game's own data.
+  Fusion pack draws its Samus, map and logo from your ROM and ships no game graphics. The Zero
+  Mission pack draws its logo and map from your ROM too, but ships two small images of Samus's
+  suit cut from the game's status screen (`art/samus.py`). The Oracle of Ages pack ships its item,
+  seed, ring and map graphics, which come from the game's own data.
 
 </details>
 
@@ -247,5 +180,6 @@ legally dumped ROMs. The FireRed pack includes Pokémon, item, type and badge sp
 a non-commercial fan project; they remain the property of Nintendo, Game Freak and
 Creatures and will be removed on request. The Oracle of Ages pack likewise includes the
 game's item, seed, ring and map graphics for a non-commercial fan project; they remain the
-property of Nintendo and will be removed on request. The Minish Cap pack includes none of the
-game's graphics: it draws them from your ROM.
+property of Nintendo and will be removed on request. The Zero Mission pack likewise includes two small images of Samus's suit from the game's status
+screen; they remain the property of Nintendo and will be removed on request. The Minish Cap and
+Metroid Fusion packs include none of the game's graphics: they draw them from your ROM.

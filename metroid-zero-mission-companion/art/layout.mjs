@@ -183,7 +183,7 @@ const layout = box("screen-root", [
       pages: [
         page(0, "map", mapPage, "{map.status}"),
         page(1, "status", statusPage, "{armory.status}"),
-        page(2, "sectors", sectorsPage, "Tap L or R to change screens."),
+        page(2, "sectors", sectorsPage, "Tap the tabs at the top to change screens."),
         page(3, "log", logPage, "{log.status}"),
       ],
     },

@@ -14,16 +14,42 @@
 			"tag": "v1.4.1",
 			"url": "https://github.com/khumam/gba-duo-companions/tree/main/pokemon-firered-companion",
 			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.4.1/pokemon-firered-companion-2.0.0.zip",
-			"games": [{ "title": "Pokémon FireRed", "region": "US", "gameCode": "BPRE" }],
+			"games": [
+				{
+					"title": "Pokémon FireRed",
+					"region": "US",
+					"gameCode": "BPRE"
+				}
+			],
 			"design": "Pokémon FireRed",
-			"pages": ["Map", "Party", "Bag", "Dex", "Card", "Battle"],
-			"tags": ["pokemon", "rpg", "map", "party", "battle", "rom-graphics"],
+			"pages": [
+				"Map",
+				"Party",
+				"Bag",
+				"Dex",
+				"Card",
+				"Battle"
+			],
+			"tags": [
+				"pokemon",
+				"rpg",
+				"map",
+				"party",
+				"battle",
+				"rom-graphics"
+			],
 			"minAppVersion": "0.1.3",
 			"recommendedAppVersion": "0.1.7",
 			"canModifyGame": false,
 			"screenshots": [
-				{ "src": "pokemon-firered-companion/screenshoots/pokemon2.png", "alt": "Map page: the Kanto Town Map with your spot, and a quick look at your party" },
-				{ "src": "pokemon-firered-companion/screenshoots/pokemon1.png", "alt": "Party page: Bulbasaur with its types, level and HP" }
+				{
+					"src": "pokemon-firered-companion/screenshoots/pokemon2.png",
+					"alt": "Map page: the Kanto Town Map with your spot, and a quick look at your party"
+				},
+				{
+					"src": "pokemon-firered-companion/screenshoots/pokemon1.png",
+					"alt": "Party page: Bulbasaur with its types, level and HP"
+				}
 			]
 		},
 		{
@@ -38,16 +64,43 @@
 			"tag": "v1.6.0",
 			"url": "https://github.com/khumam/gba-duo-companions/tree/main/pokemon-firered-v-companion",
 			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.6.0/pokemon-firered-v-companion-1.0.0.zip",
-			"games": [{ "title": "Pokémon FireRed", "region": "US", "gameCode": "BPRE" }],
+			"games": [
+				{
+					"title": "Pokémon FireRed",
+					"region": "US",
+					"gameCode": "BPRE"
+				}
+			],
 			"design": "Pokémon FireRed",
-			"pages": ["Map", "Party", "Bag", "Dex", "Card", "Battle"],
-			"tags": ["pokemon", "rpg", "map", "party", "battle", "vertical-navigation", "rom-graphics"],
+			"pages": [
+				"Map",
+				"Party",
+				"Bag",
+				"Dex",
+				"Card",
+				"Battle"
+			],
+			"tags": [
+				"pokemon",
+				"rpg",
+				"map",
+				"party",
+				"battle",
+				"vertical-navigation",
+				"rom-graphics"
+			],
 			"minAppVersion": "0.1.3",
 			"recommendedAppVersion": "0.1.7",
 			"canModifyGame": false,
 			"screenshots": [
-				{ "src": "pokemon-firered-v-companion/screenshoots/firered-vertical.png", "alt": "FireRed map page with vertical navigation dock" },
-				{ "src": "pokemon-firered-v-companion/screenshoots/firered-vertical-2.png", "alt": "FireRed party page with vertical navigation dock" }
+				{
+					"src": "pokemon-firered-v-companion/screenshoots/firered-vertical.png",
+					"alt": "FireRed map page with vertical navigation dock"
+				},
+				{
+					"src": "pokemon-firered-v-companion/screenshoots/firered-vertical-2.png",
+					"alt": "FireRed party page with vertical navigation dock"
+				}
 			]
 		},
 		{
@@ -62,16 +115,43 @@
 			"tag": "v1.6.0",
 			"url": "https://github.com/khumam/gba-duo-companions/tree/main/pokemon-leafgreen-companion",
 			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.6.0/pokemon-leafgreen-companion-1.0.0.zip",
-			"games": [{ "title": "Pokémon LeafGreen", "region": "US", "gameCode": "BPGE" }],
+			"games": [
+				{
+					"title": "Pokémon LeafGreen",
+					"region": "US",
+					"gameCode": "BPGE"
+				}
+			],
 			"design": "Pokémon LeafGreen",
-			"pages": ["Map", "Party", "Bag", "Dex", "Card", "Battle"],
-			"tags": ["pokemon", "rpg", "map", "party", "battle", "horizontal-navigation", "rom-graphics"],
+			"pages": [
+				"Map",
+				"Party",
+				"Bag",
+				"Dex",
+				"Card",
+				"Battle"
+			],
+			"tags": [
+				"pokemon",
+				"rpg",
+				"map",
+				"party",
+				"battle",
+				"horizontal-navigation",
+				"rom-graphics"
+			],
 			"minAppVersion": "0.1.3",
 			"recommendedAppVersion": "0.1.7",
 			"canModifyGame": false,
 			"screenshots": [
-				{ "src": "pokemon-leafgreen-companion/screenshoots/leafgreen-horizontal.png", "alt": "LeafGreen map page with horizontal navigation dock" },
-				{ "src": "pokemon-leafgreen-companion/screenshoots/leafgreen-horizontal-2.png", "alt": "LeafGreen party page with horizontal navigation dock" }
+				{
+					"src": "pokemon-leafgreen-companion/screenshoots/leafgreen-horizontal.png",
+					"alt": "LeafGreen map page with horizontal navigation dock"
+				},
+				{
+					"src": "pokemon-leafgreen-companion/screenshoots/leafgreen-horizontal-2.png",
+					"alt": "LeafGreen party page with horizontal navigation dock"
+				}
 			]
 		},
 		{
@@ -86,16 +166,43 @@
 			"tag": "v1.6.0",
 			"url": "https://github.com/khumam/gba-duo-companions/tree/main/pokemon-leafgreen-v-companion",
 			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.6.0/pokemon-leafgreen-v-companion-1.0.0.zip",
-			"games": [{ "title": "Pokémon LeafGreen", "region": "US", "gameCode": "BPGE" }],
+			"games": [
+				{
+					"title": "Pokémon LeafGreen",
+					"region": "US",
+					"gameCode": "BPGE"
+				}
+			],
 			"design": "Pokémon LeafGreen",
-			"pages": ["Map", "Party", "Bag", "Dex", "Card", "Battle"],
-			"tags": ["pokemon", "rpg", "map", "party", "battle", "vertical-navigation", "rom-graphics"],
+			"pages": [
+				"Map",
+				"Party",
+				"Bag",
+				"Dex",
+				"Card",
+				"Battle"
+			],
+			"tags": [
+				"pokemon",
+				"rpg",
+				"map",
+				"party",
+				"battle",
+				"vertical-navigation",
+				"rom-graphics"
+			],
 			"minAppVersion": "0.1.3",
 			"recommendedAppVersion": "0.1.7",
 			"canModifyGame": false,
 			"screenshots": [
-				{ "src": "pokemon-leafgreen-v-companion/screenshoots/leafgreen-vertical.png", "alt": "LeafGreen map page with vertical navigation dock" },
-				{ "src": "pokemon-leafgreen-v-companion/screenshoots/leafgreen-vertical-2.png", "alt": "LeafGreen party page with vertical navigation dock" }
+				{
+					"src": "pokemon-leafgreen-v-companion/screenshoots/leafgreen-vertical.png",
+					"alt": "LeafGreen map page with vertical navigation dock"
+				},
+				{
+					"src": "pokemon-leafgreen-v-companion/screenshoots/leafgreen-vertical-2.png",
+					"alt": "LeafGreen party page with vertical navigation dock"
+				}
 			]
 		},
 		{
@@ -110,16 +217,44 @@
 			"tag": "v1.6.0",
 			"url": "https://github.com/khumam/gba-duo-companions/tree/main/pokemon-firered-minimal-companion",
 			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.6.0/pokemon-firered-minimal-companion-1.0.0.zip",
-			"games": [{ "title": "Pokémon FireRed", "region": "US", "gameCode": "BPRE" }],
+			"games": [
+				{
+					"title": "Pokémon FireRed",
+					"region": "US",
+					"gameCode": "BPRE"
+				}
+			],
 			"design": "Pokémon FireRed",
-			"pages": ["Map", "Party", "Bag", "Dex", "Card", "Battle"],
-			"tags": ["pokemon", "rpg", "map", "party", "battle", "vertical-navigation", "minimal", "rom-graphics"],
+			"pages": [
+				"Map",
+				"Party",
+				"Bag",
+				"Dex",
+				"Card",
+				"Battle"
+			],
+			"tags": [
+				"pokemon",
+				"rpg",
+				"map",
+				"party",
+				"battle",
+				"vertical-navigation",
+				"minimal",
+				"rom-graphics"
+			],
 			"minAppVersion": "0.1.3",
 			"recommendedAppVersion": "0.1.7",
 			"canModifyGame": false,
 			"screenshots": [
-				{ "src": "pokemon-firered-minimal-companion/screenshoots/firered-minimal.png", "alt": "FireRed minimal map page in the Bag window style" },
-				{ "src": "pokemon-firered-minimal-companion/screenshoots/firered-minimal-2.png", "alt": "FireRed minimal party page in the Bag window style" }
+				{
+					"src": "pokemon-firered-minimal-companion/screenshoots/firered-minimal.png",
+					"alt": "FireRed minimal map page in the Bag window style"
+				},
+				{
+					"src": "pokemon-firered-minimal-companion/screenshoots/firered-minimal-2.png",
+					"alt": "FireRed minimal party page in the Bag window style"
+				}
 			]
 		},
 		{
@@ -134,16 +269,44 @@
 			"tag": "v1.6.0",
 			"url": "https://github.com/khumam/gba-duo-companions/tree/main/pokemon-leafgreen-minimal-companion",
 			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.6.0/pokemon-leafgreen-minimal-companion-1.0.0.zip",
-			"games": [{ "title": "Pokémon LeafGreen", "region": "US", "gameCode": "BPGE" }],
+			"games": [
+				{
+					"title": "Pokémon LeafGreen",
+					"region": "US",
+					"gameCode": "BPGE"
+				}
+			],
 			"design": "Pokémon LeafGreen",
-			"pages": ["Map", "Party", "Bag", "Dex", "Card", "Battle"],
-			"tags": ["pokemon", "rpg", "map", "party", "battle", "vertical-navigation", "minimal", "rom-graphics"],
+			"pages": [
+				"Map",
+				"Party",
+				"Bag",
+				"Dex",
+				"Card",
+				"Battle"
+			],
+			"tags": [
+				"pokemon",
+				"rpg",
+				"map",
+				"party",
+				"battle",
+				"vertical-navigation",
+				"minimal",
+				"rom-graphics"
+			],
 			"minAppVersion": "0.1.3",
 			"recommendedAppVersion": "0.1.7",
 			"canModifyGame": false,
 			"screenshots": [
-				{ "src": "pokemon-leafgreen-minimal-companion/screenshoots/leafgreen-minimal.png", "alt": "LeafGreen minimal map page in the Bag window style" },
-				{ "src": "pokemon-leafgreen-minimal-companion/screenshoots/leafgreen-minimal-2.png", "alt": "LeafGreen minimal party page in the Bag window style" }
+				{
+					"src": "pokemon-leafgreen-minimal-companion/screenshoots/leafgreen-minimal.png",
+					"alt": "LeafGreen minimal map page in the Bag window style"
+				},
+				{
+					"src": "pokemon-leafgreen-minimal-companion/screenshoots/leafgreen-minimal-2.png",
+					"alt": "LeafGreen minimal party page in the Bag window style"
+				}
 			]
 		},
 		{
@@ -159,20 +322,51 @@
 			"url": "https://github.com/khumam/gba-duo-companions/tree/main/golden-sun-companion",
 			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.6.0/golden-sun-companion-0.1.0.zip",
 			"games": [
-				{ "title": "Golden Sun", "region": "US", "gameCode": "AGSE" },
-				{ "title": "Golden Sun", "region": "EU", "gameCode": "AGSP" },
-				{ "title": "Golden Sun", "region": "JP", "gameCode": "AGSJ" },
-				{ "title": "Golden Sun", "region": "IT", "gameCode": "AGSI" }
+				{
+					"title": "Golden Sun",
+					"region": "US",
+					"gameCode": "AGSE"
+				},
+				{
+					"title": "Golden Sun",
+					"region": "EU",
+					"gameCode": "AGSP"
+				},
+				{
+					"title": "Golden Sun",
+					"region": "JP",
+					"gameCode": "AGSJ"
+				},
+				{
+					"title": "Golden Sun",
+					"region": "IT",
+					"gameCode": "AGSI"
+				}
 			],
 			"design": "Golden Sun",
-			"pages": ["Party", "Djinn", "Psynergy"],
-			"tags": ["golden-sun", "rpg", "party", "preview"],
+			"pages": [
+				"Party",
+				"Djinn",
+				"Psynergy"
+			],
+			"tags": [
+				"golden-sun",
+				"rpg",
+				"party",
+				"preview"
+			],
 			"minAppVersion": "0.1.3",
 			"recommendedAppVersion": "0.1.7",
 			"canModifyGame": false,
 			"screenshots": [
-				{ "src": "golden-sun-companion/screenshoots/golden-sun-party.png", "alt": "Golden Sun party page with the roster on the left" },
-				{ "src": "golden-sun-companion/screenshoots/golden-sun-djinn.png", "alt": "Golden Sun Djinn page listing all four elements" }
+				{
+					"src": "golden-sun-companion/screenshoots/golden-sun-party.png",
+					"alt": "Golden Sun party page with the roster on the left"
+				},
+				{
+					"src": "golden-sun-companion/screenshoots/golden-sun-djinn.png",
+					"alt": "Golden Sun Djinn page listing all four elements"
+				}
 			]
 		},
 		{
@@ -188,48 +382,188 @@
 			"url": "https://github.com/khumam/gba-duo-companions/tree/main/zelda-the-minish-cap-companion",
 			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.4.1/zelda-minish-cap-companion-3.0.0.zip",
 			"games": [
-				{ "title": "The Legend of Zelda: The Minish Cap", "region": "US", "gameCode": "BZME" },
-				{ "title": "The Legend of Zelda: The Minish Cap", "region": "EU", "gameCode": "BZMP" },
-				{ "title": "The Legend of Zelda: The Minish Cap", "region": "JP", "gameCode": "BZMJ" }
+				{
+					"title": "The Legend of Zelda: The Minish Cap",
+					"region": "US",
+					"gameCode": "BZME"
+				},
+				{
+					"title": "The Legend of Zelda: The Minish Cap",
+					"region": "EU",
+					"gameCode": "BZMP"
+				},
+				{
+					"title": "The Legend of Zelda: The Minish Cap",
+					"region": "JP",
+					"gameCode": "BZMJ"
+				}
 			],
 			"design": "The Legend of Zelda: The Minish Cap",
-			"pages": ["Map", "Items", "Kinstone", "Quest"],
-			"tags": ["zelda", "adventure", "map", "dungeon", "hints", "rom-graphics"],
+			"pages": [
+				"Map",
+				"Items",
+				"Kinstone",
+				"Quest"
+			],
+			"tags": [
+				"zelda",
+				"adventure",
+				"map",
+				"dungeon",
+				"hints",
+				"rom-graphics"
+			],
 			"minAppVersion": "0.1.3",
 			"recommendedAppVersion": "0.1.7",
 			"canModifyGame": false,
 			"screenshots": [
-				{ "src": "zelda-the-minish-cap-companion/screenshoots/zelda1.png", "alt": "Map page in Deepwood Shrine: dungeon floors, map, compass, big key, and Link with his A and B items and hearts" },
-				{ "src": "zelda-the-minish-cap-companion/screenshoots/zelda2.png", "alt": "Items page: the item pouch, bombs, arrows, charm, shells and heart pieces" },
-				{ "src": "zelda-the-minish-cap-companion/screenshoots/zelda3.png", "alt": "Kinstone page: the fusion bag and fusions done out of 100" }
+				{
+					"src": "zelda-the-minish-cap-companion/screenshoots/zelda1.png",
+					"alt": "Map page in Deepwood Shrine: dungeon floors, map, compass, big key, and Link with his A and B items and hearts"
+				},
+				{
+					"src": "zelda-the-minish-cap-companion/screenshoots/zelda2.png",
+					"alt": "Items page: the item pouch, bombs, arrows, charm, shells and heart pieces"
+				},
+				{
+					"src": "zelda-the-minish-cap-companion/screenshoots/zelda3.png",
+					"alt": "Kinstone page: the fusion bag and fusions done out of 100"
+				}
 			]
 		},
 		{
 			"id": "metroid-fusion-companion",
 			"title": "Metroid Fusion Companion",
-			"description": "The game's own pause screens on the second screen: live energy, missiles and power bombs, ability windows lit by what Samus has, security hatches, and the area map drawn from your ROM.",
-			"version": "1.1.0",
+			"description": "The game's pause screen on the second screen: live energy and ammo, Samus on her grid, every upgrade, the area map, sector progress, bosses, security hatches and your next objective.",
+			"version": "2.0.0",
 			"author": "khumam",
 			"official": true,
 			"repo": "khumam/gba-duo-companions",
 			"path": "metroid-fusion-companion",
-			"tag": "v1.7.0",
+			"tag": "v1.8.0",
 			"url": "https://github.com/khumam/gba-duo-companions/tree/main/metroid-fusion-companion",
-			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.7.0/metroid-fusion-companion-1.1.0.zip",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.8.0/metroid-fusion-companion-2.0.0.zip",
 			"games": [
-				{ "title": "Metroid Fusion", "region": "US", "gameCode": "AMTE" },
-				{ "title": "Metroid Fusion", "region": "EU", "gameCode": "AMTP" },
-				{ "title": "Metroid Fusion", "region": "JP", "gameCode": "AMTJ" }
+				{
+					"title": "Metroid Fusion",
+					"region": "US",
+					"gameCode": "AMTE"
+				},
+				{
+					"title": "Metroid Fusion",
+					"region": "EU",
+					"gameCode": "AMTP"
+				},
+				{
+					"title": "Metroid Fusion",
+					"region": "JP",
+					"gameCode": "AMTJ"
+				}
 			],
 			"design": "Metroid Fusion",
-			"pages": ["Status", "Arms", "Map"],
-			"tags": ["metroid", "action", "map", "abilities", "rom-graphics"],
+			"pages": [
+				"Map",
+				"Status",
+				"Arms",
+				"Sectors",
+				"Mission"
+			],
+			"tags": [
+				"metroid",
+				"action",
+				"map",
+				"abilities",
+				"bosses",
+				"rom-graphics"
+			],
 			"minAppVersion": "0.1.8",
 			"canModifyGame": false,
 			"screenshots": [
-				{ "src": "metroid-fusion-companion/screenshoots/metroid-fusion-status.png", "alt": "Status page: energy, missiles and power bombs in the header, Samus, location, room, time and the four security hatches" },
-				{ "src": "metroid-fusion-companion/screenshoots/metroid-fusion-arms.png", "alt": "Arms page: the beam, missile, bomb, suit and misc. windows, dimmed until Samus has the upgrade" },
-				{ "src": "metroid-fusion-companion/screenshoots/metroid-fusion-map.png", "alt": "Map page: the live Main Deck minimap with Samus's room marked, and each sector's completion" }
+				{
+					"src": "metroid-fusion-companion/screenshoots/metroid-fusion-map.png",
+					"alt": "Map page: the live Main Deck map centered on Samus, with the four security hatches below"
+				},
+				{
+					"src": "metroid-fusion-companion/screenshoots/metroid-fusion-status.png",
+					"alt": "Status page: Samus on her grid with location, room, time, completion, maps, upgrades, tanks, security, mission progress and suit"
+				},
+				{
+					"src": "metroid-fusion-companion/screenshoots/metroid-fusion-arms.png",
+					"alt": "Arms page: the beam, missile, bomb, suit and misc. upgrades, lit once Samus has them"
+				},
+				{
+					"src": "metroid-fusion-companion/screenshoots/metroid-fusion-sectors.png",
+					"alt": "Sectors page: each sector's completion and whether its map is downloaded"
+				},
+				{
+					"src": "metroid-fusion-companion/screenshoots/metroid-fusion-mission.png",
+					"alt": "Mission page: the bosses, security levels, story progress and the next objective"
+				}
+			]
+		},
+		{
+			"id": "metroid-zero-mission-companion",
+			"title": "Metroid: Zero Mission Companion",
+			"description": "The game's pause screen on the second screen: live energy and ammo, your explored map, Samus's suit with beams and gear you can switch on and off, sector progress and boss targets.",
+			"version": "1.0.0",
+			"author": "khumam",
+			"official": true,
+			"repo": "khumam/gba-duo-companions",
+			"path": "metroid-zero-mission-companion",
+			"tag": "v1.8.0",
+			"url": "https://github.com/khumam/gba-duo-companions/tree/main/metroid-zero-mission-companion",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.8.0/metroid-zero-mission-companion-1.0.0.zip",
+			"games": [
+				{
+					"title": "Metroid: Zero Mission",
+					"region": "US",
+					"gameCode": "BMXE"
+				},
+				{
+					"title": "Metroid: Zero Mission",
+					"region": "EU",
+					"gameCode": "BMXP"
+				},
+				{
+					"title": "Metroid: Zero Mission",
+					"region": "JP",
+					"gameCode": "BMXJ"
+				}
+			],
+			"design": "Metroid: Zero Mission",
+			"pages": [
+				"Map",
+				"Status",
+				"Sectors",
+				"Log"
+			],
+			"tags": [
+				"metroid",
+				"action",
+				"map",
+				"abilities",
+				"bosses",
+				"rom-graphics"
+			],
+			"minAppVersion": "0.1.8",
+			"canModifyGame": true,
+			"screenshots": [
+				{
+					"src": "metroid-zero-mission-companion/screenshoots/metroid-zero-mission-map.png",
+					"alt": "Map page: your explored Brinstar map centered on Samus, drawn from the game's own map tiles"
+				},
+				{
+					"src": "metroid-zero-mission-companion/screenshoots/metroid-zero-mission-status.png",
+					"alt": "Status page: Samus's suit with the beams and gear she has, tap one to switch it on or off"
+				},
+				{
+					"src": "metroid-zero-mission-companion/screenshoots/metroid-zero-mission-sectors.png",
+					"alt": "Sectors page: how much of each area you have explored"
+				},
+				{
+					"src": "metroid-zero-mission-companion/screenshoots/metroid-zero-mission-log.png",
+					"alt": "Log page: the eight boss targets and the recovered energy, missile, super and power bomb tanks"
+				}
 			]
 		},
 		{
@@ -245,20 +579,56 @@
 			"url": "https://github.com/khumam/gba-duo-companions/tree/main/zelda-oracle-of-ages-companion",
 			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.7.0/zelda-oracle-of-ages-companion-0.1.0.zip",
 			"games": [
-				{ "title": "The Legend of Zelda: Oracle of Ages", "region": "US", "gameCode": "CGB-AZ8E" },
-				{ "title": "The Legend of Zelda: Oracle of Ages", "region": "EU", "gameCode": "CGB-AZ8P" },
-				{ "title": "The Legend of Zelda: Oracle of Ages", "region": "JP", "gameCode": "CGB-AZ8J" }
+				{
+					"title": "The Legend of Zelda: Oracle of Ages",
+					"region": "US",
+					"gameCode": "CGB-AZ8E"
+				},
+				{
+					"title": "The Legend of Zelda: Oracle of Ages",
+					"region": "EU",
+					"gameCode": "CGB-AZ8P"
+				},
+				{
+					"title": "The Legend of Zelda: Oracle of Ages",
+					"region": "JP",
+					"gameCode": "CGB-AZ8J"
+				}
 			],
 			"design": "The Legend of Zelda: Oracle of Ages",
-			"pages": ["Items", "Map", "Seeds", "Rings", "Status"],
-			"tags": ["zelda", "adventure", "map", "items", "rings"],
+			"pages": [
+				"Items",
+				"Map",
+				"Seeds",
+				"Rings",
+				"Status"
+			],
+			"tags": [
+				"zelda",
+				"adventure",
+				"map",
+				"items",
+				"rings"
+			],
 			"minAppVersion": "0.1.8",
 			"canModifyGame": false,
 			"screenshots": [
-				{ "src": "zelda-oracle-of-ages-companion/screenshoots/oracle-of-ages-map.png", "alt": "Map page: the past overworld with the rooms Link hasn't visited dimmed and his room outlined" },
-				{ "src": "zelda-oracle-of-ages-companion/screenshoots/oracle-of-ages-rings.png", "alt": "Rings page: the ring box and the 64-ring collection, with the owned Friendship ring in colour" },
-				{ "src": "zelda-oracle-of-ages-companion/screenshoots/oracle-of-ages-seeds.png", "alt": "Seeds page: the five seeds with the satchel's selection marked, and bombs, bombchus and gasha seeds" },
-				{ "src": "zelda-oracle-of-ages-companion/screenshoots/oracle-of-ages-status.png", "alt": "Status page: hearts and heart pieces, the eight essences, and era, harp song and room" }
+				{
+					"src": "zelda-oracle-of-ages-companion/screenshoots/oracle-of-ages-map.png",
+					"alt": "Map page: the past overworld with the rooms Link hasn't visited dimmed and his room outlined"
+				},
+				{
+					"src": "zelda-oracle-of-ages-companion/screenshoots/oracle-of-ages-rings.png",
+					"alt": "Rings page: the ring box and the 64-ring collection, with the owned Friendship ring in colour"
+				},
+				{
+					"src": "zelda-oracle-of-ages-companion/screenshoots/oracle-of-ages-seeds.png",
+					"alt": "Seeds page: the five seeds with the satchel's selection marked, and bombs, bombchus and gasha seeds"
+				},
+				{
+					"src": "zelda-oracle-of-ages-companion/screenshoots/oracle-of-ages-status.png",
+					"alt": "Status page: hearts and heart pieces, the eight essences, and era, harp song and room"
+				}
 			]
 		}
 	]
