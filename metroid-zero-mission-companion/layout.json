@@ -1,0 +1,1422 @@
+{
+  "type": "box",
+  "class": "screen-root",
+  "children": [
+    {
+      "type": "box",
+      "class": "waiting",
+      "children": [
+        {
+          "type": "box",
+          "class": "page page-waiting",
+          "children": [
+            {
+              "type": "box",
+              "class": "topbar",
+              "children": []
+            },
+            {
+              "type": "box",
+              "class": "boot",
+              "children": [
+                {
+                  "type": "box",
+                  "class": "boot-logo",
+                  "children": [
+                    {
+                      "type": "image",
+                      "class": "logo-top",
+                      "src": "$logoTop"
+                    },
+                    {
+                      "type": "image",
+                      "class": "logo-body",
+                      "src": "$logo"
+                    }
+                  ],
+                  "visibleIf": "$hasLogo"
+                },
+                {
+                  "type": "box",
+                  "class": "boot-plate",
+                  "children": [
+                    {
+                      "type": "text",
+                      "class": "boot-title",
+                      "text": "ZERO MISSION"
+                    }
+                  ],
+                  "visibleIf": "$noLogo"
+                },
+                {
+                  "type": "text",
+                  "class": "boot-sub",
+                  "text": "Load a save to wake the visor."
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "class": "strip",
+              "children": [
+                {
+                  "type": "text",
+                  "class": "strip-text",
+                  "text": "Waiting for a loaded save."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "visibleIf": "$waiting"
+    },
+    {
+      "type": "box",
+      "class": "shell",
+      "children": [
+        {
+          "type": "pages",
+          "pages": [
+            {
+              "name": "map",
+              "child": {
+                "type": "box",
+                "class": "page page-map",
+                "children": [
+                  {
+                    "type": "box",
+                    "class": "topbar",
+                    "children": [
+                      {
+                        "type": "button",
+                        "class": "tab tab-l",
+                        "onClick": [
+                          {
+                            "navigate": "log"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "key key-l",
+                            "text": "L"
+                          },
+                          {
+                            "type": "text",
+                            "class": "tab-name",
+                            "text": "LOG"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "plate",
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "plate-text",
+                            "text": "{sector}"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "tab tab-r",
+                        "onClick": [
+                          {
+                            "navigate": "status"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "key key-r",
+                            "text": "R"
+                          },
+                          {
+                            "type": "text",
+                            "class": "tab-name",
+                            "text": "STATUS"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "hud",
+                    "children": [
+                      {
+                        "type": "image",
+                        "class": "cube",
+                        "src": "asset:ui/cube.png"
+                      },
+                      {
+                        "type": "box",
+                        "class": "energy",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "banner banner-energy",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "banner-text",
+                                "text": "ENERGY"
+                              },
+                              {
+                                "type": "box",
+                                "class": "grow",
+                                "children": []
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "energy-tray",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "energy-num",
+                                "text": "{energy}"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "list",
+                        "class": "tanks",
+                        "items": "$tanks",
+                        "template": {
+                          "type": "box",
+                          "class": "tank",
+                          "children": [],
+                          "classIf": {
+                            "full": "$full"
+                          }
+                        }
+                      },
+                      {
+                        "type": "box",
+                        "class": "grow",
+                        "children": []
+                      },
+                      {
+                        "type": "box",
+                        "class": "ammo ammo-m",
+                        "children": [
+                          {
+                            "type": "image",
+                            "class": "ammo-icon",
+                            "src": "asset:ui/ic-missile.png"
+                          },
+                          {
+                            "type": "text",
+                            "class": "ammo-num",
+                            "text": "{missiles}"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "ammo ammo-sm",
+                        "children": [
+                          {
+                            "type": "image",
+                            "class": "ammo-icon",
+                            "src": "asset:ui/ic-super.png"
+                          },
+                          {
+                            "type": "text",
+                            "class": "ammo-num",
+                            "text": "{supers}"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "ammo ammo-pb",
+                        "children": [
+                          {
+                            "type": "image",
+                            "class": "ammo-icon",
+                            "src": "asset:ui/ic-pbomb.png"
+                          },
+                          {
+                            "type": "text",
+                            "class": "ammo-num",
+                            "text": "{pbombs}"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "content content-map",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "banner",
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "banner-text",
+                            "text": "{map.items}"
+                          },
+                          {
+                            "type": "box",
+                            "class": "grow",
+                            "children": []
+                          },
+                          {
+                            "type": "text",
+                            "class": "banner-text banner-room",
+                            "text": "{map.coords}"
+                          },
+                          {
+                            "type": "image",
+                            "class": "banner-end",
+                            "src": "asset:ui/banner-end.png"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "map-frame",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "map-pan",
+                            "children": [
+                              {
+                                "type": "image",
+                                "class": "map-img",
+                                "src": "$map.image"
+                              },
+                              {
+                                "type": "box",
+                                "class": "samus-anchor",
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "crosshair",
+                                    "src": "asset:ui/crosshair.png"
+                                  }
+                                ],
+                                "bindStyle": {
+                                  "left": "{map.x}px",
+                                  "top": "{map.y}px"
+                                },
+                                "visibleIf": "$map.onMap"
+                              }
+                            ],
+                            "visibleIf": "$map.has"
+                          },
+                          {
+                            "type": "box",
+                            "class": "map-empty",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "map-empty-text",
+                                "text": "{map.status}"
+                              }
+                            ],
+                            "visibleIf": "$map.none"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "strip",
+                    "children": [
+                      {
+                        "type": "text",
+                        "class": "strip-text",
+                        "text": "{map.status}"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "status",
+              "child": {
+                "type": "box",
+                "class": "page page-status",
+                "children": [
+                  {
+                    "type": "box",
+                    "class": "topbar",
+                    "children": [
+                      {
+                        "type": "button",
+                        "class": "tab tab-l",
+                        "onClick": [
+                          {
+                            "navigate": "map"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "key key-l",
+                            "text": "L"
+                          },
+                          {
+                            "type": "text",
+                            "class": "tab-name",
+                            "text": "MAP"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "plate",
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "plate-text",
+                            "text": "{sector}"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "tab tab-r",
+                        "onClick": [
+                          {
+                            "navigate": "sectors"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "key key-r",
+                            "text": "R"
+                          },
+                          {
+                            "type": "text",
+                            "class": "tab-name",
+                            "text": "SECTORS"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "hud",
+                    "children": [
+                      {
+                        "type": "image",
+                        "class": "cube",
+                        "src": "asset:ui/cube.png"
+                      },
+                      {
+                        "type": "box",
+                        "class": "energy",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "banner banner-energy",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "banner-text",
+                                "text": "ENERGY"
+                              },
+                              {
+                                "type": "box",
+                                "class": "grow",
+                                "children": []
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "energy-tray",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "energy-num",
+                                "text": "{energy}"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "list",
+                        "class": "tanks",
+                        "items": "$tanks",
+                        "template": {
+                          "type": "box",
+                          "class": "tank",
+                          "children": [],
+                          "classIf": {
+                            "full": "$full"
+                          }
+                        }
+                      },
+                      {
+                        "type": "box",
+                        "class": "grow",
+                        "children": []
+                      },
+                      {
+                        "type": "box",
+                        "class": "ammo ammo-m",
+                        "children": [
+                          {
+                            "type": "image",
+                            "class": "ammo-icon",
+                            "src": "asset:ui/ic-missile.png"
+                          },
+                          {
+                            "type": "text",
+                            "class": "ammo-num",
+                            "text": "{missiles}"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "ammo ammo-sm",
+                        "children": [
+                          {
+                            "type": "image",
+                            "class": "ammo-icon",
+                            "src": "asset:ui/ic-super.png"
+                          },
+                          {
+                            "type": "text",
+                            "class": "ammo-num",
+                            "text": "{supers}"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "ammo ammo-pb",
+                        "children": [
+                          {
+                            "type": "image",
+                            "class": "ammo-icon",
+                            "src": "asset:ui/ic-pbomb.png"
+                          },
+                          {
+                            "type": "text",
+                            "class": "ammo-num",
+                            "text": "{pbombs}"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "content content-status",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "col col-beam",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "banner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "banner-text",
+                                "text": "BEAM"
+                              },
+                              {
+                                "type": "box",
+                                "class": "grow",
+                                "children": []
+                              },
+                              {
+                                "type": "image",
+                                "class": "banner-end",
+                                "src": "asset:ui/banner-end.png"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "list",
+                            "class": "toggles",
+                            "items": "$armory.beams",
+                            "template": {
+                              "type": "box",
+                              "class": "toggle",
+                              "children": [
+                                {
+                                  "type": "image",
+                                  "class": "node-img",
+                                  "src": "asset:ui/node-on.png",
+                                  "visibleIf": "$on"
+                                },
+                                {
+                                  "type": "image",
+                                  "class": "node-img",
+                                  "src": "asset:ui/node-off.png",
+                                  "visibleIf": "$off"
+                                },
+                                {
+                                  "type": "image",
+                                  "class": "node-img",
+                                  "src": "asset:ui/node-lock.png",
+                                  "visibleIf": "$locked"
+                                },
+                                {
+                                  "type": "text",
+                                  "class": "toggle-name",
+                                  "text": "{name}"
+                                }
+                              ],
+                              "classIf": {
+                                "on": "$on",
+                                "off": "$off",
+                                "locked": "$locked"
+                              },
+                              "onClick": [
+                                {
+                                  "call": "toggle",
+                                  "args": [
+                                    "{id}"
+                                  ]
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "type": "box",
+                            "class": "banner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "banner-text",
+                                "text": "MAX"
+                              },
+                              {
+                                "type": "box",
+                                "class": "grow",
+                                "children": []
+                              },
+                              {
+                                "type": "image",
+                                "class": "banner-end",
+                                "src": "asset:ui/banner-end.png"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "toggles",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "cap",
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "cap-icon cap-ic-missile",
+                                    "src": "asset:ui/ic-missile.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "cap-num",
+                                    "text": "{missilesMax}"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "cap",
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "cap-icon cap-ic-super",
+                                    "src": "asset:ui/ic-super.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "cap-num",
+                                    "text": "{supersMax}"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "cap",
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "cap-icon cap-ic-pbomb",
+                                    "src": "asset:ui/ic-pbomb.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "cap-num",
+                                    "text": "{pbombsMax}"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "suit-stage",
+                        "children": [
+                          {
+                            "type": "image",
+                            "class": "lattice",
+                            "src": "asset:ui/lattice.png"
+                          },
+                          {
+                            "type": "image",
+                            "class": "suit",
+                            "src": "$armory.suit"
+                          },
+                          {
+                            "type": "box",
+                            "class": "wire wire-lh",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "wire wire-lv",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "wire wire-rh",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "wire wire-rv",
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "col col-gear",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "banner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "banner-text",
+                                "text": "SUIT / MISC."
+                              },
+                              {
+                                "type": "box",
+                                "class": "grow",
+                                "children": []
+                              },
+                              {
+                                "type": "image",
+                                "class": "banner-end",
+                                "src": "asset:ui/banner-end.png"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "list",
+                            "class": "toggles",
+                            "items": "$armory.gear",
+                            "template": {
+                              "type": "box",
+                              "class": "toggle",
+                              "children": [
+                                {
+                                  "type": "image",
+                                  "class": "node-img",
+                                  "src": "asset:ui/node-on.png",
+                                  "visibleIf": "$on"
+                                },
+                                {
+                                  "type": "image",
+                                  "class": "node-img",
+                                  "src": "asset:ui/node-off.png",
+                                  "visibleIf": "$off"
+                                },
+                                {
+                                  "type": "image",
+                                  "class": "node-img",
+                                  "src": "asset:ui/node-lock.png",
+                                  "visibleIf": "$locked"
+                                },
+                                {
+                                  "type": "text",
+                                  "class": "toggle-name",
+                                  "text": "{name}"
+                                }
+                              ],
+                              "classIf": {
+                                "on": "$on",
+                                "off": "$off",
+                                "locked": "$locked"
+                              },
+                              "onClick": [
+                                {
+                                  "call": "toggle",
+                                  "args": [
+                                    "{id}"
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "strip",
+                    "children": [
+                      {
+                        "type": "text",
+                        "class": "strip-text",
+                        "text": "{armory.status}"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "sectors",
+              "child": {
+                "type": "box",
+                "class": "page page-sectors",
+                "children": [
+                  {
+                    "type": "box",
+                    "class": "topbar",
+                    "children": [
+                      {
+                        "type": "button",
+                        "class": "tab tab-l",
+                        "onClick": [
+                          {
+                            "navigate": "status"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "key key-l",
+                            "text": "L"
+                          },
+                          {
+                            "type": "text",
+                            "class": "tab-name",
+                            "text": "STATUS"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "plate",
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "plate-text",
+                            "text": "{sector}"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "tab tab-r",
+                        "onClick": [
+                          {
+                            "navigate": "log"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "key key-r",
+                            "text": "R"
+                          },
+                          {
+                            "type": "text",
+                            "class": "tab-name",
+                            "text": "LOG"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "hud",
+                    "children": [
+                      {
+                        "type": "image",
+                        "class": "cube",
+                        "src": "asset:ui/cube.png"
+                      },
+                      {
+                        "type": "box",
+                        "class": "energy",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "banner banner-energy",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "banner-text",
+                                "text": "ENERGY"
+                              },
+                              {
+                                "type": "box",
+                                "class": "grow",
+                                "children": []
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "energy-tray",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "energy-num",
+                                "text": "{energy}"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "list",
+                        "class": "tanks",
+                        "items": "$tanks",
+                        "template": {
+                          "type": "box",
+                          "class": "tank",
+                          "children": [],
+                          "classIf": {
+                            "full": "$full"
+                          }
+                        }
+                      },
+                      {
+                        "type": "box",
+                        "class": "grow",
+                        "children": []
+                      },
+                      {
+                        "type": "box",
+                        "class": "ammo ammo-m",
+                        "children": [
+                          {
+                            "type": "image",
+                            "class": "ammo-icon",
+                            "src": "asset:ui/ic-missile.png"
+                          },
+                          {
+                            "type": "text",
+                            "class": "ammo-num",
+                            "text": "{missiles}"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "ammo ammo-sm",
+                        "children": [
+                          {
+                            "type": "image",
+                            "class": "ammo-icon",
+                            "src": "asset:ui/ic-super.png"
+                          },
+                          {
+                            "type": "text",
+                            "class": "ammo-num",
+                            "text": "{supers}"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "ammo ammo-pb",
+                        "children": [
+                          {
+                            "type": "image",
+                            "class": "ammo-icon",
+                            "src": "asset:ui/ic-pbomb.png"
+                          },
+                          {
+                            "type": "text",
+                            "class": "ammo-num",
+                            "text": "{pbombs}"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "content content-sectors",
+                    "children": [
+                      {
+                        "type": "list",
+                        "class": "sector-list",
+                        "items": "$sectors",
+                        "template": {
+                          "type": "box",
+                          "class": "sector-row",
+                          "children": [
+                            {
+                              "type": "box",
+                              "class": "hex",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "class": "hex-letter",
+                                  "text": "{tag}"
+                                }
+                              ],
+                              "classIf": {
+                                "here": "$here"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "class": "sector-name",
+                              "text": "{name}"
+                            },
+                            {
+                              "type": "bar",
+                              "class": "sector-bar",
+                              "value": "$pct",
+                              "max": 1
+                            },
+                            {
+                              "type": "text",
+                              "class": "sector-pct",
+                              "text": "{pctText}"
+                            }
+                          ],
+                          "classIf": {
+                            "here": "$here"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "strip",
+                    "children": [
+                      {
+                        "type": "text",
+                        "class": "strip-text",
+                        "text": "Tap L or R to change screens."
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "log",
+              "child": {
+                "type": "box",
+                "class": "page page-log",
+                "children": [
+                  {
+                    "type": "box",
+                    "class": "topbar",
+                    "children": [
+                      {
+                        "type": "button",
+                        "class": "tab tab-l",
+                        "onClick": [
+                          {
+                            "navigate": "sectors"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "key key-l",
+                            "text": "L"
+                          },
+                          {
+                            "type": "text",
+                            "class": "tab-name",
+                            "text": "SECTORS"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "plate",
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "plate-text",
+                            "text": "{sector}"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "tab tab-r",
+                        "onClick": [
+                          {
+                            "navigate": "map"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "key key-r",
+                            "text": "R"
+                          },
+                          {
+                            "type": "text",
+                            "class": "tab-name",
+                            "text": "MAP"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "hud",
+                    "children": [
+                      {
+                        "type": "image",
+                        "class": "cube",
+                        "src": "asset:ui/cube.png"
+                      },
+                      {
+                        "type": "box",
+                        "class": "energy",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "banner banner-energy",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "banner-text",
+                                "text": "ENERGY"
+                              },
+                              {
+                                "type": "box",
+                                "class": "grow",
+                                "children": []
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "energy-tray",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "energy-num",
+                                "text": "{energy}"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "list",
+                        "class": "tanks",
+                        "items": "$tanks",
+                        "template": {
+                          "type": "box",
+                          "class": "tank",
+                          "children": [],
+                          "classIf": {
+                            "full": "$full"
+                          }
+                        }
+                      },
+                      {
+                        "type": "box",
+                        "class": "grow",
+                        "children": []
+                      },
+                      {
+                        "type": "box",
+                        "class": "ammo ammo-m",
+                        "children": [
+                          {
+                            "type": "image",
+                            "class": "ammo-icon",
+                            "src": "asset:ui/ic-missile.png"
+                          },
+                          {
+                            "type": "text",
+                            "class": "ammo-num",
+                            "text": "{missiles}"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "ammo ammo-sm",
+                        "children": [
+                          {
+                            "type": "image",
+                            "class": "ammo-icon",
+                            "src": "asset:ui/ic-super.png"
+                          },
+                          {
+                            "type": "text",
+                            "class": "ammo-num",
+                            "text": "{supers}"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "ammo ammo-pb",
+                        "children": [
+                          {
+                            "type": "image",
+                            "class": "ammo-icon",
+                            "src": "asset:ui/ic-pbomb.png"
+                          },
+                          {
+                            "type": "text",
+                            "class": "ammo-num",
+                            "text": "{pbombs}"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "content content-log",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "col col-boss",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "banner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "banner-text",
+                                "text": "TARGETS"
+                              },
+                              {
+                                "type": "box",
+                                "class": "grow",
+                                "children": []
+                              },
+                              {
+                                "type": "image",
+                                "class": "banner-end",
+                                "src": "asset:ui/banner-end.png"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "list",
+                            "class": "boss-list",
+                            "items": "$log.bosses",
+                            "template": {
+                              "type": "box",
+                              "class": "boss",
+                              "children": [
+                                {
+                                  "type": "image",
+                                  "class": "node-img",
+                                  "src": "asset:ui/node-on.png",
+                                  "visibleIf": "$done"
+                                },
+                                {
+                                  "type": "image",
+                                  "class": "node-img",
+                                  "src": "asset:ui/node-off.png",
+                                  "visibleIf": "$alive"
+                                },
+                                {
+                                  "type": "text",
+                                  "class": "boss-name",
+                                  "text": "{name}"
+                                }
+                              ],
+                              "classIf": {
+                                "done": "$done",
+                                "alive": "$alive"
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "col col-items",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "banner",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "banner-text",
+                                "text": "RECOVERED"
+                              },
+                              {
+                                "type": "box",
+                                "class": "grow",
+                                "children": []
+                              },
+                              {
+                                "type": "image",
+                                "class": "banner-end",
+                                "src": "asset:ui/banner-end.png"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "list",
+                            "class": "item-list",
+                            "items": "$log.items",
+                            "template": {
+                              "type": "box",
+                              "class": "item",
+                              "children": [
+                                {
+                                  "type": "box",
+                                  "class": "item-head",
+                                  "children": [
+                                    {
+                                      "type": "box",
+                                      "class": "item-slot",
+                                      "children": [
+                                        {
+                                          "type": "image",
+                                          "class": "item-icon",
+                                          "src": "$icon"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "text",
+                                      "class": "item-name",
+                                      "text": "{name}"
+                                    },
+                                    {
+                                      "type": "box",
+                                      "class": "grow",
+                                      "children": []
+                                    },
+                                    {
+                                      "type": "text",
+                                      "class": "item-count",
+                                      "text": "{got}/{max}"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "bar",
+                                  "class": "item-bar",
+                                  "value": "$pct",
+                                  "max": 1
+                                }
+                              ],
+                              "classIf": {
+                                "kind-tank": "$tank",
+                                "kind-missile": "$missile",
+                                "kind-super": "$super",
+                                "kind-pbomb": "$pbomb"
+                              }
+                            }
+                          },
+                          {
+                            "type": "box",
+                            "class": "stat-row",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "stat",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "stat-label",
+                                    "text": "DONE"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "stat-num",
+                                    "text": "{log.completion}"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "stat",
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "stat-icon",
+                                    "src": "asset:ui/ic-clock.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "stat-num",
+                                    "text": "{log.time}"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "strip",
+                    "children": [
+                      {
+                        "type": "text",
+                        "class": "strip-text",
+                        "text": "{log.status}"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "visibleIf": "$ready"
+    }
+  ],
+  "id": "screen"
+}

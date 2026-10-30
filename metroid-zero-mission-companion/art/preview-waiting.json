@@ -1,0 +1,8 @@
+{
+  "waiting": true,
+  "ready": false,
+  "hasLogo": true,
+  "noLogo": false,
+  "logo": "asset:_preview/logo-body.png",
+  "logoTop": "asset:_preview/logo-top.png"
+}

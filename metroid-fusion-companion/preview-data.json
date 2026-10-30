@@ -1,0 +1,353 @@
+{
+  "ready": true,
+  "waiting": false,
+  "sector": "MAIN DECK",
+  "energy": "87/99",
+  "tanks": [
+    {
+      "full": true
+    },
+    {
+      "full": false
+    },
+    {
+      "full": false
+    },
+    {
+      "full": false
+    }
+  ],
+  "missiles": "15/15",
+  "bombs": "0/0",
+  "map": {
+    "has": true,
+    "none": false,
+    "image": "asset:_preview/map.png",
+    "onMap": true,
+    "x": 0,
+    "y": 0,
+    "title": "DECK 0%",
+    "room": "ROOM 37",
+    "status": "Main deck, room 37."
+  },
+  "hatches": [
+    {
+      "name": "L1",
+      "icon": "asset:ui/door-1.png",
+      "open": true,
+      "locked": false,
+      "state": "OPEN"
+    },
+    {
+      "name": "L2",
+      "icon": "asset:ui/door-2.png",
+      "open": false,
+      "locked": true,
+      "state": "LOCK"
+    },
+    {
+      "name": "L3",
+      "icon": "asset:ui/door-3.png",
+      "open": false,
+      "locked": true,
+      "state": "LOCK"
+    },
+    {
+      "name": "L4",
+      "icon": "asset:ui/door-4.png",
+      "open": false,
+      "locked": true,
+      "state": "LOCK"
+    }
+  ],
+  "status": {
+    "samus": "asset:_preview/samus.png",
+    "hasSamus": true,
+    "noSamus": false,
+    "left": [
+      {
+        "label": "LOCATION",
+        "value": "MAIN DECK"
+      },
+      {
+        "label": "ROOM",
+        "value": "37"
+      },
+      {
+        "label": "TIME",
+        "value": "0:06:04"
+      },
+      {
+        "label": "COMPLETE",
+        "value": "0%"
+      },
+      {
+        "label": "MAPS",
+        "value": "1 / 7"
+      }
+    ],
+    "right": [
+      {
+        "label": "UPGRADES",
+        "value": "1 / 18"
+      },
+      {
+        "label": "TANKS",
+        "value": "0 / 20"
+      },
+      {
+        "label": "SECURITY",
+        "value": "LEVEL 0"
+      },
+      {
+        "label": "MISSION",
+        "value": "3%"
+      },
+      {
+        "label": "SUIT",
+        "value": "BASE SUIT"
+      }
+    ],
+    "msg": "Mission time 0:06:04."
+  },
+  "arms": {
+    "msg": "1 of 18 upgrades found.",
+    "count": "1 / 18",
+    "beam": [
+      {
+        "name": "CHARGE",
+        "on": true,
+        "off": false
+      },
+      {
+        "name": "WIDE",
+        "on": false,
+        "off": true
+      },
+      {
+        "name": "PLASMA",
+        "on": false,
+        "off": true
+      },
+      {
+        "name": "WAVE",
+        "on": false,
+        "off": true
+      },
+      {
+        "name": "ICE",
+        "on": false,
+        "off": true
+      }
+    ],
+    "missile": [
+      {
+        "name": "SUPER",
+        "on": false,
+        "off": true
+      },
+      {
+        "name": "ICE",
+        "on": false,
+        "off": true
+      },
+      {
+        "name": "DIFFUSION",
+        "on": false,
+        "off": true
+      }
+    ],
+    "bomb": [
+      {
+        "name": "POWER",
+        "on": false,
+        "off": true
+      }
+    ],
+    "suit": [
+      {
+        "name": "VARIA",
+        "on": false,
+        "off": true
+      },
+      {
+        "name": "GRAVITY",
+        "on": false,
+        "off": true
+      }
+    ],
+    "misc": [
+      {
+        "name": "MORPH BALL",
+        "on": true,
+        "off": false
+      },
+      {
+        "name": "HI-JUMP",
+        "on": false,
+        "off": true
+      },
+      {
+        "name": "SPEED BOOSTER",
+        "on": false,
+        "off": true
+      },
+      {
+        "name": "SPACE JUMP",
+        "on": false,
+        "off": true
+      },
+      {
+        "name": "SCREW ATTACK",
+        "on": false,
+        "off": true
+      }
+    ]
+  },
+  "sectors": [
+    {
+      "name": "MAIN DECK",
+      "code": "DECK",
+      "tag": "D",
+      "pct": 0.12,
+      "pctText": "12%",
+      "here": true,
+      "mapped": true,
+      "unmapped": false
+    },
+    {
+      "name": "SECTOR 1",
+      "code": "SRX",
+      "tag": "1",
+      "pct": 0.0,
+      "pctText": "0%",
+      "here": false,
+      "mapped": false,
+      "unmapped": true
+    },
+    {
+      "name": "SECTOR 2",
+      "code": "TRO",
+      "tag": "2",
+      "pct": 0.0,
+      "pctText": "0%",
+      "here": false,
+      "mapped": false,
+      "unmapped": true
+    },
+    {
+      "name": "SECTOR 3",
+      "code": "PYR",
+      "tag": "3",
+      "pct": 0.0,
+      "pctText": "0%",
+      "here": false,
+      "mapped": false,
+      "unmapped": true
+    },
+    {
+      "name": "SECTOR 4",
+      "code": "AQA",
+      "tag": "4",
+      "pct": 0.0,
+      "pctText": "0%",
+      "here": false,
+      "mapped": false,
+      "unmapped": true
+    },
+    {
+      "name": "SECTOR 5",
+      "code": "ARC",
+      "tag": "5",
+      "pct": 0.0,
+      "pctText": "0%",
+      "here": false,
+      "mapped": false,
+      "unmapped": true
+    },
+    {
+      "name": "SECTOR 6",
+      "code": "NOC",
+      "tag": "6",
+      "pct": 0.0,
+      "pctText": "0%",
+      "here": false,
+      "mapped": false,
+      "unmapped": true
+    }
+  ],
+  "sectorsMsg": "1 of 7 sector maps downloaded.",
+  "mission": {
+    "bosses": [
+      {
+        "name": "ARACHNUS",
+        "done": true,
+        "alive": false
+      },
+      {
+        "name": "SERRIS",
+        "done": false,
+        "alive": true
+      },
+      {
+        "name": "B.O.X.",
+        "done": false,
+        "alive": true
+      },
+      {
+        "name": "YAKUZA",
+        "done": false,
+        "alive": true
+      },
+      {
+        "name": "NIGHTMARE",
+        "done": false,
+        "alive": true
+      },
+      {
+        "name": "SA-X",
+        "done": false,
+        "alive": true
+      },
+      {
+        "name": "OMEGA METROID",
+        "done": false,
+        "alive": true
+      }
+    ],
+    "security": [
+      {
+        "name": "LEVEL 1",
+        "icon": "asset:ui/door-1.png",
+        "open": true,
+        "locked": false,
+        "state": "OPEN"
+      },
+      {
+        "name": "LEVEL 2",
+        "icon": "asset:ui/door-2.png",
+        "open": false,
+        "locked": true,
+        "state": "LOCK"
+      },
+      {
+        "name": "LEVEL 3",
+        "icon": "asset:ui/door-3.png",
+        "open": false,
+        "locked": true,
+        "state": "LOCK"
+      },
+      {
+        "name": "LEVEL 4",
+        "icon": "asset:ui/door-4.png",
+        "open": false,
+        "locked": true,
+        "state": "LOCK"
+      }
+    ],
+    "pct": "3%",
+    "frac": 0.03,
+    "next": "MISSILE DATA",
+    "msg": "1 of 7 bosses down. Story step 3 of 109."
+  }
+}

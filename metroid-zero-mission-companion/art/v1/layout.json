@@ -1,0 +1,1636 @@
+{
+  "type": "box",
+  "class": "screen-root",
+  "children": [
+    {
+      "type": "box",
+      "class": "waiting",
+      "children": [
+        {
+          "type": "box",
+          "class": "boot",
+          "children": [
+            {
+              "type": "box",
+              "class": "boot-band",
+              "children": []
+            },
+            {
+              "type": "box",
+              "class": "boot-body",
+              "children": [
+                {
+                  "type": "text",
+                  "class": "boot-title",
+                  "text": "ZERO-OS"
+                },
+                {
+                  "type": "text",
+                  "class": "boot-sub",
+                  "text": "METROID: ZERO MISSION"
+                },
+                {
+                  "type": "box",
+                  "class": "boot-pill",
+                  "children": [
+                    {
+                      "type": "text",
+                      "class": "boot-pill-text",
+                      "text": "AWAITING SUIT SIGNAL..."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "class": "boot-band",
+              "children": []
+            }
+          ]
+        }
+      ],
+      "visibleIf": "$waiting"
+    },
+    {
+      "type": "box",
+      "class": "shell",
+      "children": [
+        {
+          "type": "box",
+          "class": "header",
+          "children": [
+            {
+              "type": "box",
+              "class": "hazard-band",
+              "children": [
+                {
+                  "type": "box",
+                  "class": "band-cap",
+                  "children": [
+                    {
+                      "type": "text",
+                      "class": "band-text",
+                      "text": "ZERO-OS // VISOR LINK"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "class": "header-body",
+              "children": [
+                {
+                  "type": "box",
+                  "class": "sector",
+                  "children": [
+                    {
+                      "type": "image",
+                      "class": "bracket-node node-l",
+                      "src": "asset:ui/node.png"
+                    },
+                    {
+                      "type": "text",
+                      "class": "sector-label",
+                      "text": "SECTOR:"
+                    },
+                    {
+                      "type": "text",
+                      "class": "sector-name",
+                      "text": "{sector}"
+                    }
+                  ]
+                },
+                {
+                  "type": "box",
+                  "class": "energy",
+                  "children": [
+                    {
+                      "type": "box",
+                      "class": "energy-read",
+                      "children": [
+                        {
+                          "type": "text",
+                          "class": "energy-label",
+                          "text": "ENERGY"
+                        },
+                        {
+                          "type": "text",
+                          "class": "num energy-num",
+                          "text": "{energy}"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "box",
+                      "class": "battery",
+                      "children": [
+                        {
+                          "type": "list",
+                          "class": "tanks",
+                          "items": "$tanks",
+                          "template": {
+                            "type": "box",
+                            "class": "tank",
+                            "children": [],
+                            "classIf": {
+                              "full": "$full"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "box",
+                  "class": "ammo ammo-m",
+                  "children": [
+                    {
+                      "type": "box",
+                      "class": "ammo-head",
+                      "children": [
+                        {
+                          "type": "image",
+                          "class": "ammo-icon",
+                          "src": "asset:ui/ic-missile.png"
+                        },
+                        {
+                          "type": "text",
+                          "class": "ammo-label",
+                          "text": "M"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "class": "num ammo-num",
+                      "text": "{missiles}/{missilesMax}"
+                    }
+                  ]
+                },
+                {
+                  "type": "box",
+                  "class": "ammo ammo-sm",
+                  "children": [
+                    {
+                      "type": "box",
+                      "class": "ammo-head",
+                      "children": [
+                        {
+                          "type": "image",
+                          "class": "ammo-icon",
+                          "src": "asset:ui/ic-super.png"
+                        },
+                        {
+                          "type": "text",
+                          "class": "ammo-label",
+                          "text": "S-M"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "class": "num ammo-num",
+                      "text": "{supers}/{supersMax}"
+                    }
+                  ]
+                },
+                {
+                  "type": "box",
+                  "class": "ammo ammo-pb",
+                  "children": [
+                    {
+                      "type": "box",
+                      "class": "ammo-head",
+                      "children": [
+                        {
+                          "type": "image",
+                          "class": "ammo-icon",
+                          "src": "asset:ui/ic-pbomb.png"
+                        },
+                        {
+                          "type": "text",
+                          "class": "ammo-label",
+                          "text": "P-B"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "class": "num ammo-num",
+                      "text": "{pbombs}/{pbombsMax}"
+                    }
+                  ]
+                },
+                {
+                  "type": "box",
+                  "class": "status-icons",
+                  "children": [
+                    {
+                      "type": "image",
+                      "class": "ic-signal",
+                      "src": "asset:ui/ic-signal.png"
+                    },
+                    {
+                      "type": "image",
+                      "class": "ic-battery",
+                      "src": "asset:ui/ic-battery.png"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "pages",
+          "pages": [
+            {
+              "name": "armory",
+              "child": {
+                "type": "box",
+                "class": "page page-armory",
+                "children": [
+                  {
+                    "type": "box",
+                    "class": "content cols-armory",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "panel map-panel",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "banner",
+                            "children": [
+                              {
+                                "type": "image",
+                                "class": "banner-node",
+                                "src": "asset:ui/node.png"
+                              },
+                              {
+                                "type": "text",
+                                "class": "banner-text",
+                                "text": "INTERACTIVE MAP"
+                              },
+                              {
+                                "type": "box",
+                                "class": "grow",
+                                "children": []
+                              },
+                              {
+                                "type": "box",
+                                "class": "chip chip-cyan",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "chip-text",
+                                    "text": "{map.area}"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "panel-body",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "viewport",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "map-pan",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "map-img",
+                                        "src": "$map.image"
+                                      },
+                                      {
+                                        "type": "list",
+                                        "class": "marks",
+                                        "items": "$map.marks",
+                                        "template": {
+                                          "type": "image",
+                                          "class": "mark",
+                                          "src": "$icon",
+                                          "bindStyle": {
+                                            "left": "{x}%",
+                                            "top": "{y}%"
+                                          }
+                                        }
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "samus-anchor",
+                                        "children": [
+                                          {
+                                            "type": "image",
+                                            "class": "crosshair",
+                                            "src": "asset:ui/crosshair.png"
+                                          },
+                                          {
+                                            "type": "image",
+                                            "class": "samus",
+                                            "src": "asset:ui/mk-samus.png"
+                                          }
+                                        ],
+                                        "bindStyle": {
+                                          "left": "{map.x}%",
+                                          "top": "{map.y}%"
+                                        },
+                                        "visibleIf": "$map.onMap"
+                                      }
+                                    ],
+                                    "bindStyle": {
+                                      "left": "{map.panX}px",
+                                      "top": "{map.panY}px"
+                                    }
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "coords",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "coords-text",
+                                        "text": "{map.coords}"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "pills",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "pill-hand",
+                                        "src": "asset:ui/hand.png"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "pill-stack",
+                                        "children": [
+                                          {
+                                            "type": "box",
+                                            "class": "pill",
+                                            "children": [
+                                              {
+                                                "type": "text",
+                                                "class": "pill-text",
+                                                "text": "STYLUS PAN MAP"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "pill",
+                                            "children": [
+                                              {
+                                                "type": "text",
+                                                "class": "pill-text",
+                                                "text": "TAP & DRAG"
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "image",
+                            "class": "rivet rivet-tl",
+                            "src": "asset:ui/rivet.png"
+                          },
+                          {
+                            "type": "image",
+                            "class": "rivet rivet-tr",
+                            "src": "asset:ui/rivet.png"
+                          },
+                          {
+                            "type": "image",
+                            "class": "rivet rivet-bl",
+                            "src": "asset:ui/rivet.png"
+                          },
+                          {
+                            "type": "image",
+                            "class": "rivet rivet-br",
+                            "src": "asset:ui/rivet.png"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "panel armory-panel",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "banner",
+                            "children": [
+                              {
+                                "type": "image",
+                                "class": "banner-node",
+                                "src": "asset:ui/node.png"
+                              },
+                              {
+                                "type": "text",
+                                "class": "banner-text",
+                                "text": "SUIT ARMORY MATRIX"
+                              },
+                              {
+                                "type": "box",
+                                "class": "grow",
+                                "children": []
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "panel-body",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "section",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "section-text",
+                                    "text": "[BEAMS]"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "section-rule",
+                                    "children": []
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "list",
+                                "class": "toggle-grid",
+                                "items": "$armory.beams",
+                                "template": {
+                                  "type": "box",
+                                  "class": "toggle",
+                                  "children": [
+                                    {
+                                      "type": "image",
+                                      "class": "node-img node-on",
+                                      "src": "asset:ui/node-on.png",
+                                      "visibleIf": "$on"
+                                    },
+                                    {
+                                      "type": "image",
+                                      "class": "node-img",
+                                      "src": "asset:ui/node-off.png",
+                                      "visibleIf": "$off"
+                                    },
+                                    {
+                                      "type": "image",
+                                      "class": "node-img",
+                                      "src": "asset:ui/node-lock.png",
+                                      "visibleIf": "$locked"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "class": "toggle-label",
+                                      "text": "{name}"
+                                    }
+                                  ],
+                                  "classIf": {
+                                    "on": "$on",
+                                    "off": "$off",
+                                    "locked": "$locked"
+                                  },
+                                  "onClick": [
+                                    {
+                                      "call": "toggle",
+                                      "args": [
+                                        "{id}"
+                                      ]
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "type": "box",
+                                "class": "section",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "section-text",
+                                    "text": "[SUIT / GEAR]"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "section-rule",
+                                    "children": []
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "list",
+                                "class": "toggle-grid",
+                                "items": "$armory.gear",
+                                "template": {
+                                  "type": "box",
+                                  "class": "toggle",
+                                  "children": [
+                                    {
+                                      "type": "image",
+                                      "class": "node-img node-on",
+                                      "src": "asset:ui/node-on.png",
+                                      "visibleIf": "$on"
+                                    },
+                                    {
+                                      "type": "image",
+                                      "class": "node-img",
+                                      "src": "asset:ui/node-off.png",
+                                      "visibleIf": "$off"
+                                    },
+                                    {
+                                      "type": "image",
+                                      "class": "node-img",
+                                      "src": "asset:ui/node-lock.png",
+                                      "visibleIf": "$locked"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "class": "toggle-label",
+                                      "text": "{name}"
+                                    }
+                                  ],
+                                  "classIf": {
+                                    "on": "$on",
+                                    "off": "$off",
+                                    "locked": "$locked"
+                                  },
+                                  "onClick": [
+                                    {
+                                      "call": "toggle",
+                                      "args": [
+                                        "{id}"
+                                      ]
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "type": "box",
+                                "class": "grow",
+                                "children": []
+                              },
+                              {
+                                "type": "box",
+                                "class": "readout",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "readout-caret",
+                                    "text": ">"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "readout-text",
+                                    "text": "{armory.status}"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "image",
+                            "class": "rivet rivet-tl",
+                            "src": "asset:ui/rivet.png"
+                          },
+                          {
+                            "type": "image",
+                            "class": "rivet rivet-tr",
+                            "src": "asset:ui/rivet.png"
+                          },
+                          {
+                            "type": "image",
+                            "class": "rivet rivet-bl",
+                            "src": "asset:ui/rivet.png"
+                          },
+                          {
+                            "type": "image",
+                            "class": "rivet rivet-br",
+                            "src": "asset:ui/rivet.png"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "dock",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "dock-title-row",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-rule",
+                            "children": []
+                          },
+                          {
+                            "type": "text",
+                            "class": "dock-title",
+                            "text": "SUIT COMMAND DOCK"
+                          },
+                          {
+                            "type": "box",
+                            "class": "dock-rule",
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "dock-row",
+                        "children": [
+                          {
+                            "type": "button",
+                            "class": "dock-btn dock-map",
+                            "onClick": [
+                              {
+                                "navigate": "map"
+                              }
+                            ],
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "dock-inner",
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "dock-icon",
+                                    "src": "asset:ui/dock-map.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "dock-label",
+                                    "text": "[ FULL MAP ]"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "button",
+                            "class": "dock-btn dock-armory on",
+                            "onClick": [
+                              {
+                                "navigate": "armory"
+                              }
+                            ],
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "dock-inner",
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "dock-icon",
+                                    "src": "asset:ui/dock-armory.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "dock-label",
+                                    "text": "[ ARMORY ]"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "tap-badge",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "tap-text",
+                                    "text": "TAP!"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "image",
+                                "class": "tap-hand",
+                                "src": "asset:ui/hand.png"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "button",
+                            "class": "dock-btn dock-log",
+                            "onClick": [
+                              {
+                                "navigate": "log"
+                              }
+                            ],
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "dock-inner",
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "dock-icon",
+                                    "src": "asset:ui/dock-log.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "dock-label",
+                                    "text": "[ LOGBOOK ]"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "map",
+              "child": {
+                "type": "box",
+                "class": "page page-map",
+                "children": [
+                  {
+                    "type": "box",
+                    "class": "content cols-map",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "panel full-panel",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "banner",
+                            "children": [
+                              {
+                                "type": "image",
+                                "class": "banner-node",
+                                "src": "asset:ui/node.png"
+                              },
+                              {
+                                "type": "text",
+                                "class": "banner-text",
+                                "text": "SECTOR MAP"
+                              },
+                              {
+                                "type": "box",
+                                "class": "grow",
+                                "children": []
+                              },
+                              {
+                                "type": "box",
+                                "class": "chip chip-yellow",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "chip-text",
+                                    "text": "{map.items}"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "panel-body",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "viewport viewport-full",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "map-pan pan-full",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "map-img",
+                                        "src": "$map.image"
+                                      },
+                                      {
+                                        "type": "list",
+                                        "class": "marks",
+                                        "items": "$map.marks",
+                                        "template": {
+                                          "type": "image",
+                                          "class": "mark",
+                                          "src": "$icon",
+                                          "bindStyle": {
+                                            "left": "{x}%",
+                                            "top": "{y}%"
+                                          }
+                                        }
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "samus-anchor",
+                                        "children": [
+                                          {
+                                            "type": "image",
+                                            "class": "crosshair",
+                                            "src": "asset:ui/crosshair.png"
+                                          },
+                                          {
+                                            "type": "image",
+                                            "class": "samus",
+                                            "src": "asset:ui/mk-samus.png"
+                                          }
+                                        ],
+                                        "bindStyle": {
+                                          "left": "{map.x}%",
+                                          "top": "{map.y}%"
+                                        },
+                                        "visibleIf": "$map.onMap"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "legend",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "legend-item",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "legend-icon",
+                                        "src": "asset:ui/lg-save.png"
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "legend-text",
+                                        "text": "SAVE"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "legend-item",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "legend-icon",
+                                        "src": "asset:ui/lg-door.png"
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "legend-text",
+                                        "text": "HATCH"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "legend-item",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "legend-icon",
+                                        "src": "asset:ui/lg-item.png"
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "legend-text",
+                                        "text": "ITEM"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "legend-item",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "legend-icon",
+                                        "src": "asset:ui/lg-hazard.png"
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "legend-text",
+                                        "text": "HAZARD"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "legend-item",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "legend-icon",
+                                        "src": "asset:ui/lg-boss.png"
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "legend-text",
+                                        "text": "BOSS"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "readout",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "readout-caret",
+                                    "text": ">"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "readout-text",
+                                    "text": "{map.status}"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "image",
+                            "class": "rivet rivet-tl",
+                            "src": "asset:ui/rivet.png"
+                          },
+                          {
+                            "type": "image",
+                            "class": "rivet rivet-tr",
+                            "src": "asset:ui/rivet.png"
+                          },
+                          {
+                            "type": "image",
+                            "class": "rivet rivet-bl",
+                            "src": "asset:ui/rivet.png"
+                          },
+                          {
+                            "type": "image",
+                            "class": "rivet rivet-br",
+                            "src": "asset:ui/rivet.png"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "panel sector-panel",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "banner",
+                            "children": [
+                              {
+                                "type": "image",
+                                "class": "banner-node",
+                                "src": "asset:ui/node.png"
+                              },
+                              {
+                                "type": "text",
+                                "class": "banner-text",
+                                "text": "SECTORS"
+                              },
+                              {
+                                "type": "box",
+                                "class": "grow",
+                                "children": []
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "panel-body",
+                            "children": [
+                              {
+                                "type": "list",
+                                "class": "sector-list",
+                                "items": "$sectors",
+                                "template": {
+                                  "type": "box",
+                                  "class": "sector-row",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "class": "sector-row-name",
+                                      "text": "{name}"
+                                    },
+                                    {
+                                      "type": "box",
+                                      "class": "sector-row-foot",
+                                      "children": [
+                                        {
+                                          "type": "bar",
+                                          "class": "sector-bar",
+                                          "value": "$pct",
+                                          "max": 1
+                                        },
+                                        {
+                                          "type": "text",
+                                          "class": "num sector-pct",
+                                          "text": "{pctText}"
+                                        }
+                                      ]
+                                    }
+                                  ],
+                                  "classIf": {
+                                    "here": "$here"
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "type": "image",
+                            "class": "rivet rivet-tl",
+                            "src": "asset:ui/rivet.png"
+                          },
+                          {
+                            "type": "image",
+                            "class": "rivet rivet-tr",
+                            "src": "asset:ui/rivet.png"
+                          },
+                          {
+                            "type": "image",
+                            "class": "rivet rivet-bl",
+                            "src": "asset:ui/rivet.png"
+                          },
+                          {
+                            "type": "image",
+                            "class": "rivet rivet-br",
+                            "src": "asset:ui/rivet.png"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "dock",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "dock-title-row",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-rule",
+                            "children": []
+                          },
+                          {
+                            "type": "text",
+                            "class": "dock-title",
+                            "text": "SUIT COMMAND DOCK"
+                          },
+                          {
+                            "type": "box",
+                            "class": "dock-rule",
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "dock-row",
+                        "children": [
+                          {
+                            "type": "button",
+                            "class": "dock-btn dock-map on",
+                            "onClick": [
+                              {
+                                "navigate": "map"
+                              }
+                            ],
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "dock-inner",
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "dock-icon",
+                                    "src": "asset:ui/dock-map.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "dock-label",
+                                    "text": "[ FULL MAP ]"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "tap-badge",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "tap-text",
+                                    "text": "TAP!"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "image",
+                                "class": "tap-hand",
+                                "src": "asset:ui/hand.png"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "button",
+                            "class": "dock-btn dock-armory",
+                            "onClick": [
+                              {
+                                "navigate": "armory"
+                              }
+                            ],
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "dock-inner",
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "dock-icon",
+                                    "src": "asset:ui/dock-armory.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "dock-label",
+                                    "text": "[ ARMORY ]"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "button",
+                            "class": "dock-btn dock-log",
+                            "onClick": [
+                              {
+                                "navigate": "log"
+                              }
+                            ],
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "dock-inner",
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "dock-icon",
+                                    "src": "asset:ui/dock-log.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "dock-label",
+                                    "text": "[ LOGBOOK ]"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "log",
+              "child": {
+                "type": "box",
+                "class": "page page-log",
+                "children": [
+                  {
+                    "type": "box",
+                    "class": "content cols-log",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "panel boss-panel",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "banner",
+                            "children": [
+                              {
+                                "type": "image",
+                                "class": "banner-node",
+                                "src": "asset:ui/node.png"
+                              },
+                              {
+                                "type": "text",
+                                "class": "banner-text",
+                                "text": "TARGET LOG"
+                              },
+                              {
+                                "type": "box",
+                                "class": "grow",
+                                "children": []
+                              },
+                              {
+                                "type": "box",
+                                "class": "chip chip-magenta",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "chip-text",
+                                    "text": "{log.bossCount}"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "panel-body",
+                            "children": [
+                              {
+                                "type": "list",
+                                "class": "boss-list",
+                                "items": "$log.bosses",
+                                "template": {
+                                  "type": "box",
+                                  "class": "boss",
+                                  "children": [
+                                    {
+                                      "type": "image",
+                                      "class": "boss-icon",
+                                      "src": "asset:ui/ic-skull.png"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "class": "boss-name",
+                                      "text": "{name}"
+                                    },
+                                    {
+                                      "type": "box",
+                                      "class": "grow",
+                                      "children": []
+                                    },
+                                    {
+                                      "type": "text",
+                                      "class": "boss-area",
+                                      "text": "{area}"
+                                    },
+                                    {
+                                      "type": "box",
+                                      "class": "boss-state",
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "class": "boss-state-text",
+                                          "text": "{state}"
+                                        }
+                                      ]
+                                    }
+                                  ],
+                                  "classIf": {
+                                    "done": "$done",
+                                    "alive": "$alive"
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "type": "image",
+                            "class": "rivet rivet-tl",
+                            "src": "asset:ui/rivet.png"
+                          },
+                          {
+                            "type": "image",
+                            "class": "rivet rivet-tr",
+                            "src": "asset:ui/rivet.png"
+                          },
+                          {
+                            "type": "image",
+                            "class": "rivet rivet-bl",
+                            "src": "asset:ui/rivet.png"
+                          },
+                          {
+                            "type": "image",
+                            "class": "rivet rivet-br",
+                            "src": "asset:ui/rivet.png"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "log-side",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "panel item-panel",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "banner",
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "banner-node",
+                                    "src": "asset:ui/node.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "banner-text",
+                                    "text": "ITEM RECOVERY"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "grow",
+                                    "children": []
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "panel-body",
+                                "children": [
+                                  {
+                                    "type": "list",
+                                    "class": "item-list",
+                                    "items": "$log.items",
+                                    "template": {
+                                      "type": "box",
+                                      "class": "item",
+                                      "children": [
+                                        {
+                                          "type": "box",
+                                          "class": "item-head",
+                                          "children": [
+                                            {
+                                              "type": "image",
+                                              "class": "item-icon",
+                                              "src": "$icon"
+                                            },
+                                            {
+                                              "type": "text",
+                                              "class": "item-name",
+                                              "text": "{name}"
+                                            },
+                                            {
+                                              "type": "box",
+                                              "class": "grow",
+                                              "children": []
+                                            },
+                                            {
+                                              "type": "text",
+                                              "class": "num item-count",
+                                              "text": "{got}/{max}"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "bar",
+                                          "class": "item-bar",
+                                          "value": "$pct",
+                                          "max": 1
+                                        }
+                                      ],
+                                      "classIf": {
+                                        "kind-tank": "$tank",
+                                        "kind-missile": "$missile",
+                                        "kind-super": "$super",
+                                        "kind-pbomb": "$pbomb"
+                                      }
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "image",
+                                "class": "rivet rivet-tl",
+                                "src": "asset:ui/rivet.png"
+                              },
+                              {
+                                "type": "image",
+                                "class": "rivet rivet-tr",
+                                "src": "asset:ui/rivet.png"
+                              },
+                              {
+                                "type": "image",
+                                "class": "rivet rivet-bl",
+                                "src": "asset:ui/rivet.png"
+                              },
+                              {
+                                "type": "image",
+                                "class": "rivet rivet-br",
+                                "src": "asset:ui/rivet.png"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "stat-row",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "stat stat-pct",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "stat-label",
+                                    "text": "COMPLETION"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "num stat-num",
+                                    "text": "{log.completion}"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "stat stat-time",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "stat-head",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "stat-icon",
+                                        "src": "asset:ui/ic-clock.png"
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "stat-label",
+                                        "text": "MISSION TIME"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "num stat-num",
+                                    "text": "{log.time}"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "dock",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "dock-title-row",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dock-rule",
+                            "children": []
+                          },
+                          {
+                            "type": "text",
+                            "class": "dock-title",
+                            "text": "SUIT COMMAND DOCK"
+                          },
+                          {
+                            "type": "box",
+                            "class": "dock-rule",
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "dock-row",
+                        "children": [
+                          {
+                            "type": "button",
+                            "class": "dock-btn dock-map",
+                            "onClick": [
+                              {
+                                "navigate": "map"
+                              }
+                            ],
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "dock-inner",
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "dock-icon",
+                                    "src": "asset:ui/dock-map.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "dock-label",
+                                    "text": "[ FULL MAP ]"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "button",
+                            "class": "dock-btn dock-armory",
+                            "onClick": [
+                              {
+                                "navigate": "armory"
+                              }
+                            ],
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "dock-inner",
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "dock-icon",
+                                    "src": "asset:ui/dock-armory.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "dock-label",
+                                    "text": "[ ARMORY ]"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "button",
+                            "class": "dock-btn dock-log on",
+                            "onClick": [
+                              {
+                                "navigate": "log"
+                              }
+                            ],
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "dock-inner",
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "dock-icon",
+                                    "src": "asset:ui/dock-log.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "dock-label",
+                                    "text": "[ LOGBOOK ]"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "tap-badge",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "tap-text",
+                                    "text": "TAP!"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "image",
+                                "class": "tap-hand",
+                                "src": "asset:ui/hand.png"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "visibleIf": "$ready"
+    }
+  ],
+  "id": "screen"
+}

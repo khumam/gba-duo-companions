@@ -1,158 +1,367 @@
 /*
- * The game's own screens. main.lua draws the pause frame, the status screen's header,
- * Samus and item windows from the player's ROM (gfx.tilemap). The header's numbers are the
- * game's digits as glyph images (assets/font, from art/rom-font.py); every other word is
- * Silkscreen text, because the menu font's 0, 1 and 7 are too easy to misread.
+ * Fusion companion: the game's own pause screen, rebuilt for the second screen. Silver frame with
+ * teal L / R tabs and a green sector plate, dark navy grid, green counter panels, cyan banners, the
+ * blue "owned" bar and the four hatch colours. Colours are sampled from art/ref/*.
  *
- * One game pixel = 5 device px = 2.168dp, so one 8x8 tile = 17.34dp ("T" below). The
- * Thor's second screen is 538dp wide; the status screen is 30 tiles = 520.2dp.
+ * Lengths are written in art pixels (`17.344px`); `python3 art/css.py` expands them to px
+ * (2.168px = 2.168px = 5 device px on the Thor, 248 x 216 ap), so pixel art stays crisp. Edit this
+ * file, not style.css. The pixel fonts are 8 units tall: 17.344px makes one font pixel one art pixel.
  */
 
 :root {
-  --navy: #20204A;
-  --lilac: #E0A0E8;
-  --green: #14502C;
-  --green-hi: #58E080;
-  --silver: #CBD6D3;
-  --label: #58E080;
-  --value: #FFFF39;
-  --dim: #7AA88A;
-  --lock: #F0709C;
+  --navy: #161f2c;
+  --grid: #1d3050;
+  --ink: #0a1018;
+  --cyan: #8de4da;
+  --cyan-dk: #5c97a2;
+  --blue: #3e73a3;
+  --blue-dk: #2b5e92;
+  --blue-dd: #1e4975;
+  --blue-ddd: #12233a;
+  --green: #568351;
+  --green-lt: #84c980;
+  --green-dk: #314a2e;
+  --yellow: #ebd48c;
+  --white: #f0f0ed;
+  --silver: #d3e2d8;
+  --silver-dk: #9daaa2;
+  --l1: #58a8f0;
+  --l2: #58c868;
+  --l3: #f09838;
+  --l4: #e8506a;
 }
 
-@font-face { font-family: "Silk"; font-weight: 700; src: url("assets/fonts/Silkscreen-Bold.ttf"); }
+@font-face { font-family: "Silkscreen"; src: url("assets/fonts/Silkscreen-Regular.ttf"); font-weight: 400; }
+@font-face { font-family: "Silkscreen"; src: url("assets/fonts/Silkscreen-Bold.ttf"); font-weight: 700; }
+@font-face { font-family: "Jersey"; src: url("assets/fonts/Jersey10-Regular.ttf"); }
 
 image { image-rendering: pixelated; }
-text { font-family: "Silk"; font-weight: 700; white-space: nowrap; }
-
+text { white-space: nowrap; }
 .grow { flex: 1; }
 
 #screen {
   width: 100%;
   height: 100%;
-  padding: 8px 8px 0 8px;
-  background-color: #000000;
-  align-items: center;
+  overflow: hidden;
+  background-color: var(--navy);
+  font-family: "Silkscreen";
+  font-size: 17.344px;
+  color: var(--cyan);
 }
-#screen.alert { background-color: #2A0A12; }
-
-.shell, .pages, .page { width: 520.2px; }
-
-/* ---- text --------------------------------------------------------------------------------- */
-
-.g { width: 17.34px; height: 17.34px; }
-
-.stat { margin-bottom: 14px; }
-.stat-label { font-size: 13px; color: var(--label); letter-spacing: 1px; }
-.stat-value { font-size: 17.34px; color: var(--value); margin-top: 4px; }
-
-/* ---- nav: plain rounded rectangles ---------------------------------------------------------- */
-
-.nav { flex-direction: row; gap: 8px; height: 31px; margin-top: 6px; }
-
-.tab {
+.shell { flex: 1; min-height: 0; }
+.pages { flex: 1; min-height: 0; }
+.page {
   flex: 1;
-  height: 31px;
-  padding-top: 3px;
-  background-color: #0E3A20;
-  border: 2px solid #0A2416;
-  border-radius: 6px;
+  min-height: 0;
+  background-color: var(--navy);
+  background-image: url("assets/ui/bg-navy.png");
+  background-size: 17.344px 17.344px;
+  background-repeat: repeat;
 }
-.tab.on { background-color: var(--green); border-color: var(--silver); }
-.tab-label { width: 100%; height: 22px; text-align: center; font-size: 17.34px; color: var(--dim); letter-spacing: 2px; }
-.tab.on .tab-label { color: var(--value); }
+.content { flex: 1; min-height: 0; padding: 6.504px 8.672px 0; }
 
-/* ---- STATUS ------------------------------------------------------------------------------ */
+/* ---- frame: silver bar, L / R tabs, sector plate -------------------------------------- */
 
-.stage { position: relative; width: 520.2px; height: 416.16px; background-color: var(--navy); }
-
-.hdr { position: relative; width: 520.2px; height: 86.7px; }
-.header { width: 520.2px; height: 86.7px; }
-
-.num { position: absolute; flex-direction: row; top: 52.02px; height: 17.34px; }
-.n-energy-now { left: 34.68px; }
-.n-energy-max { left: 121.38px; }
-.n-missile-now { left: 225.42px; }
-.n-missile-max { left: 294.78px; }
-.n-bomb-now { left: 398.82px; }
-.n-bomb-max { left: 450.84px; }
-
-.body { flex-direction: row; height: 260.1px; }
-.frame { width: 17.34px; height: 260.1px; }
-.center { width: 190.74px; height: 260.1px; }
-.side { background-color: var(--navy); padding-top: 14px; }
-.side-left { width: 138.72px; padding-left: 4px; }
-.side-right { width: 156.06px; padding-left: 10px; }
-
-/* ---- ARMS ---------------------------------------------------------------------------------- */
-
-.arms { position: relative; width: 520.2px; height: 294.78px; }
-
-.win { position: absolute; }
-.w-beam { left: 17.34px; top: 24px; width: 138.72px; }
-.w-missile { left: 173.4px; top: 24px; width: 138.72px; }
-.w-suit { left: 329.46px; top: 24px; width: 173.4px; }
-.w-misc { left: 329.46px; top: 129.36px; width: 173.4px; }
-.w-bomb { left: 17.34px; top: 181.38px; width: 173.4px; }
-
-.w-beam .w-title, .w-beam .w-row, .w-beam .w-foot,
-.w-missile .w-title, .w-missile .w-row, .w-missile .w-foot { width: 138.72px; height: 17.34px; }
-.w-suit .w-title, .w-suit .w-row, .w-suit .w-foot,
-.w-misc .w-title, .w-misc .w-row, .w-misc .w-foot,
-.w-bomb .w-title, .w-bomb .w-row, .w-bomb .w-foot { width: 173.4px; height: 17.34px; }
-
-.w-row { opacity: 0.4; }
-.w-row.owned { opacity: 1; }
-
-/* ---- MAP ----------------------------------------------------------------------------------- */
-
-.map { position: relative; width: 520.2px; height: 346.8px; }
-.outline { width: 520.2px; height: 346.8px; }
-
-.cover { position: absolute; top: 4.6px; height: 15.2px; background-color: #2D6736; }
-.cover-l { left: 7.6px; width: 74.6px; }
-.cover-r { left: 438.9px; width: 73.7px; }
-
-.plate { position: absolute; left: 0; top: 1.3px; height: 13px; line-height: 13px; width: 520.2px; text-align: center; font-size: 13px; color: var(--value); letter-spacing: 2px; }
-
-/* ---- waiting ------------------------------------------------------------------------------- */
-
-.waiting { flex: 1; justify-content: center; align-items: center; }
-.wait { align-items: center; gap: 14px; }
-.wait-logo { width: 485.52px; height: 242.76px; }
-.wait-title { font-size: 26px; color: var(--value); letter-spacing: 2px; }
-.wait-sub { font-size: 13px; color: var(--label); letter-spacing: 2px; }
-
-/* ---- status: closing rows ------------------------------------------------------------------ */
-
-.info { flex-direction: row; height: 34.68px; }
-.frame2 { width: 17.34px; height: 34.68px; }
-.info-text { width: 485.52px; flex-direction: row; align-items: center; padding: 0 4px; background-color: var(--navy); }
-.hatch { flex: 1; flex-direction: row; align-items: center; gap: 6px; }
-.hatch-name { font-size: 17.34px; color: var(--silver); }
-.hatch-state { font-size: 13px; color: var(--lock); }
-.hatch.open .hatch-state { color: var(--label); }
-.botbar { flex-direction: row; width: 520.2px; height: 34.68px; }
-.botmid { width: 485.52px; height: 34.68px; }
-.lace { position: absolute; top: 86.7px; width: 17.34px; height: 294.78px; }
-.lace-l { left: 0; }
-.lace-r { left: 502.86px; }
-
-/* ---- map: the live minimap inside the frame ---------------------------------------------------- */
-
-.minimap { position: absolute; left: 34.68px; top: 52.02px; width: 450.84px; height: 260.1px; }
-.marker {
+.topbar {
+  position: relative;
+  flex-shrink: 0;
+  height: 47.696px;
+  background-image: url("assets/ui/topbar.png");
+  background-size: 537.664px 47.696px;
+  background-repeat: no-repeat;
+}
+.tab {
   position: absolute;
-  left: calc(34.68px + var(--mx));
-  top: calc(52.02px + var(--my));
-  width: 17.34px;
-  height: 17.34px;
-  border: 2px solid #FFFF39;
-  border-radius: 3px;
+  top: 4.336px;
+  width: 166.936px;
+  height: 32.52px;
+  background-size: 166.936px 32.52px;
+  background-repeat: no-repeat;
 }
-.map-info { flex-direction: row; padding: 6px 0 0 0; background-color: var(--navy); height: 50px; }
-.sector { width: 74px; align-items: center; padding: 3px 0; border: 2px solid var(--navy); opacity: 0.5; }
-.sector.mapped { opacity: 1; }
-.sector.here { opacity: 1; border-color: var(--value); }
-.sector-name { font-size: 13px; color: var(--label); letter-spacing: 1px; }
-.sector-pct { font-size: 17.34px; color: var(--value); margin-top: 3px; }
+.tab-l { left: 6.504px; background-image: url("assets/ui/tab-l.png"); }
+.tab-r { right: 6.504px; background-image: url("assets/ui/tab-r.png"); }
+.tab:pressed { top: 6.504px; }
+.key {
+  position: absolute;
+  top: 6.504px;
+  width: 19.512px;
+  text-align: center;
+  color: var(--white);
+}
+.key-l { left: 6.504px; }
+.key-r { left: 140.92px; }
+.tab-name {
+  position: absolute;
+  top: 6.504px;
+  color: var(--cyan);
+  text-shadow: 2.168px 2.168px 0 var(--ink);
+}
+.tab-l .tab-name { left: 34.688px; }
+.tab-r .tab-name { left: 39.024px; }
+
+.plate {
+  position: absolute;
+  left: 190.784px;
+  top: 0;
+  width: 156.096px;
+  height: 41.192px;
+  align-items: center;
+  background-image: url("assets/ui/plate.png");
+  background-size: 156.096px 41.192px;
+  background-repeat: no-repeat;
+}
+.plate-text {
+  margin-top: 4.336px;
+  color: var(--yellow);
+  text-shadow: 2.168px 2.168px 0 var(--green-dk);
+}
+
+/* ---- counters: green label bar over a dark tray, like the game's header ----------------- */
+
+.hud {
+  flex-shrink: 0;
+  height: 47.696px;
+  padding: 4.336px 8.672px 0;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 6.504px;
+}
+.counter { height: 41.192px; }
+.counter-energy { width: 216.8px; }
+.counter-missile { width: 143.088px; }
+.counter-bomb { width: 143.088px; }
+.counter-head {
+  height: 21.68px;
+  padding: 0 4.336px;
+  flex-direction: row;
+  align-items: center;
+  gap: 4.336px;
+  background-color: var(--green);
+  border: 2.168px solid var(--ink);
+}
+.counter-icon { width: 17.344px; height: 17.344px; }
+.counter-bomb .counter-icon, .counter-missile .counter-icon { width: 26.016px; height: 17.344px; }
+.counter-bomb .counter-icon { width: 17.344px; }
+.counter-label { color: var(--silver); line-height: 15.176px; margin-top: -4.336px; text-shadow: 2.168px 2.168px 0 var(--green-dk); }
+.counter-tray {
+  height: 19.512px;
+  padding: 0 6.504px;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--ink);
+  border: 2.168px solid var(--blue-dd);
+}
+.counter-num { color: var(--yellow); line-height: 15.176px; margin-top: -2.168px; }
+.tanks { width: 95.392px; flex-direction: row; flex-wrap: wrap; justify-content: flex-end; gap: 2.168px; }
+.tank { width: 6.504px; height: 6.504px; background-color: var(--green-dk); }
+.tank.full { background-color: #e8a060; }
+
+/* ---- message strip ------------------------------------------------------------------------ */
+
+.strip {
+  flex-shrink: 0;
+  height: 54.2px;
+  padding: 13.008px 17.344px 0;
+  background-image: url("assets/ui/strip.png");
+  background-size: 537.664px 54.2px;
+  background-repeat: no-repeat;
+}
+.strip-text {
+  width: 100%;
+  text-align: center;
+  font-family: "Jersey";
+  font-size: 23.848px;
+  line-height: 26.016px;
+  color: var(--white);
+  text-overflow: ellipsis;
+}
+
+/* ---- shared: cyan banners, bars, owned / missing rows -------------------------------------- */
+
+.banner {
+  position: relative;
+  height: 21.68px;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 6.504px;
+  background-color: var(--cyan);
+  border: 2.168px solid var(--ink);
+  box-shadow: 2.168px 2.168px 0 var(--ink);
+  color: var(--ink);
+}
+.banner-text { color: var(--ink); line-height: 15.176px; margin-top: -4.336px; text-shadow: 2.168px 2.168px 0 var(--silver); }
+.banner-end { width: 21.68px; height: 10.84px; align-self: flex-end; }
+.col { gap: 4.336px; }
+.toggles { gap: 2.168px; }
+.toggle {
+  height: 21.68px;
+  padding: 0 4.336px;
+  flex-direction: row;
+  align-items: center;
+  gap: 6.504px;
+  background-color: var(--blue-ddd);
+  border: 2.168px solid var(--ink);
+  color: var(--cyan-dk);
+}
+.toggle.on { background-color: var(--blue-dk); border-color: var(--blue-dd); color: var(--white); }
+.node-img { width: 19.512px; height: 19.512px; }
+.toggle-name { color: inherit; line-height: 15.176px; margin-top: -2.168px; }
+.stat {
+  height: 26.016px;
+  padding: 0 6.504px;
+  flex-direction: row;
+  align-items: center;
+  gap: 6.504px;
+  background-color: var(--ink);
+  border: 2.168px solid var(--blue-dd);
+}
+.stat-label { color: var(--cyan-dk); line-height: 15.176px; margin-top: -2.168px; }
+.stat-num { color: var(--yellow); line-height: 15.176px; margin-top: -2.168px; }
+
+bar {
+  height: 10.84px;
+  background-color: var(--ink);
+  border: 2.168px solid var(--blue-dd);
+  accent-color: var(--green-lt);
+}
+
+/* ---- map ------------------------------------------------------------------------------------- */
+
+.content-map { gap: 6.504px; }
+.banner-room { margin-right: 8.672px; }
+.map-frame {
+  position: relative;
+  align-self: center;
+  width: 499.5px;
+  height: 249.75px;
+  border: 2.168px solid var(--silver-dk);
+  box-shadow: 2.168px 2.168px 0 var(--ink);
+  background-color: #184066;
+}
+.map-pan { position: absolute; left: 0; top: 0; width: 499.5px; height: 249.75px; }
+.map-img { position: absolute; left: 0; top: 0; width: 499.5px; height: 249.75px; }
+.map-dim { position: absolute; left: 0; top: 0; width: 499.5px; height: 249.75px; background-color: #161f2c78; }
+.samus-anchor { position: absolute; width: 0; height: 0; }
+.crosshair { position: absolute; left: -16.26px; top: -16.26px; width: 32.52px; height: 32.52px; }
+.map-empty { position: absolute; left: 0; top: 0; right: 0; bottom: 0; align-items: center; justify-content: center; }
+.map-empty-text { font-family: "Jersey"; font-size: 23.848px; color: var(--cyan); }
+.hatches { flex-direction: row; gap: 6.504px; }
+.hatch {
+  flex: 1;
+  height: 26.016px;
+  padding: 0 4.336px;
+  flex-direction: row;
+  align-items: center;
+  gap: 4.336px;
+  background-color: var(--ink);
+  border: 2.168px solid var(--blue-dd);
+  color: var(--cyan-dk);
+}
+.hatch.open { border-color: var(--green-lt); color: var(--white); }
+.hatch-icon { width: 19.512px; height: 17.344px; }
+.hatch-state { color: inherit; line-height: 15.176px; margin-top: -2.168px; }
+.hatch-name { line-height: 15.176px; margin-top: -2.168px; }
+
+/* ---- status ------------------------------------------------------------------------------------ */
+
+.content-status { flex-direction: row; gap: 6.504px; }
+.facts { width: 156.096px; gap: 4.336px; }
+.fact {
+  height: 52.032px;
+  padding: 4.336px 6.504px 0;
+  gap: 6.504px;
+  background-color: var(--ink);
+  border: 2.168px solid var(--blue-dd);
+}
+.fact-label { color: var(--cyan-dk); line-height: 15.176px; margin-top: -2.168px; }
+.fact-value { color: var(--yellow); line-height: 15.176px; margin-top: -2.168px; }
+.samus { width: 190.784px; height: 260.16px; margin-top: 4.336px; }
+.samus-missing { width: 190.784px; height: 260.16px; align-items: center; justify-content: center; }
+
+/* ---- arms ---------------------------------------------------------------------------------------- */
+
+.content-arms { flex-direction: row; gap: 8.672px; }
+.content-arms .col { flex: 1; }
+
+/* ---- sectors: save-slot rows ------------------------------------------------------------------ */
+
+.content-sectors { padding-top: 4.336px; }
+.sector-list { gap: 0; }
+.sector-row {
+  height: 43.36px;
+  padding: 0 8.672px 0 4.336px;
+  flex-direction: row;
+  align-items: center;
+  gap: 8.672px;
+  border-bottom: 2.168px solid var(--blue-dd);
+}
+.sector-row.here { background-color: var(--blue-dd); }
+.hex {
+  width: 30.352px;
+  height: 26.016px;
+  align-items: center;
+  justify-content: center;
+  background-image: url("assets/ui/hex-off.png");
+  background-size: 30.352px 26.016px;
+  background-repeat: no-repeat;
+}
+.hex.here { background-image: url("assets/ui/hex-on.png"); }
+.hex-letter { margin-top: 2.168px; color: var(--white); text-shadow: 2.168px 2.168px 0 var(--ink); }
+.sector-name { width: 112.736px; color: var(--cyan); }
+.sector-code { width: 43.36px; color: var(--cyan-dk); }
+.sector-bar { flex: 1; height: 10.84px; }
+.sector-pct { width: 47.696px; text-align: right; color: var(--yellow); }
+.sector-row.here .sector-bar { accent-color: var(--yellow); }
+
+/* ---- mission ----------------------------------------------------------------------------------- */
+
+.content-mission { flex-direction: row; gap: 8.672px; }
+.col-boss { width: 234.144px; }
+.col-progress { flex: 1; }
+.rows { gap: 4.336px; }
+.row {
+  height: 26.016px;
+  padding: 0 4.336px;
+  flex-direction: row;
+  align-items: center;
+  gap: 6.504px;
+  background-color: var(--blue-ddd);
+  border: 2.168px solid var(--ink);
+  color: var(--cyan-dk);
+}
+.row.done { background-color: var(--blue-dk); border-color: var(--blue-dd); color: var(--white); }
+.row-recent { background-color: var(--blue-dk); border-color: var(--blue-dd); color: var(--white); }
+.row-name { color: inherit; line-height: 15.176px; margin-top: -2.168px; }
+.row-door { width: 19.512px; height: 17.344px; }
+.row-state { color: inherit; line-height: 15.176px; margin-top: -2.168px; }
+.progress {
+  padding: 6.504px 6.504px 6.504px;
+  gap: 6.504px;
+  background-color: var(--ink);
+  border: 2.168px solid var(--blue-dd);
+}
+.progress-num { color: var(--yellow); line-height: 15.176px; }
+.progress-bar { height: 10.84px; }
+.next {
+  height: 43.36px;
+  padding: 6.504px 6.504px 0;
+  background-color: var(--ink);
+  border: 2.168px solid var(--blue-dd);
+}
+.next-text { color: var(--white); white-space: normal; font-family: "Jersey"; font-size: 23.848px; line-height: 23.848px; }
+
+/* ---- waiting ------------------------------------------------------------------------------------ */
+
+.waiting { flex: 1; }
+.page-waiting { flex: 1; }
+.boot { flex: 1; align-items: center; justify-content: center; gap: 21.68px; padding-bottom: 17.344px; }
+.boot-logo { width: 485.632px; height: 242.816px; }
+.logo-img { width: 485.632px; height: 242.816px; }
+.boot-plate {
+  padding: 10.84px 30.352px;
+  background-color: var(--green);
+  border: 4.336px solid var(--ink);
+  box-shadow: 4.336px 4.336px 0 var(--silver-dk);
+}
+.boot-title { color: var(--yellow); font-size: 34.688px; text-shadow: 2.168px 2.168px 0 var(--green-dk); }
+.boot-sub { font-family: "Jersey"; font-size: 23.848px; color: var(--cyan); }

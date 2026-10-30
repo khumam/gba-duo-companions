@@ -1,0 +1,611 @@
+/*
+ * Zero-OS: Samus's visor as a GBA-era cyber terminal. Void-black hull, riveted
+ * slate modules, amber hazard stripes, neon cyan readouts.
+ *
+ * The guide is drawn for a 320 x 240 screen; the Thor's second screen is
+ * ~538 x 468 dp, so lengths are scaled about x1.5 (borders 2 -> 3, header
+ * 28 -> 48, dock 56 -> 74) and the extra height goes to the modules.
+ *
+ * Pixel art is drawn at 3 device px per art px: 1 art px = 1.3008dp
+ * (1 device px = 0.4336dp), so an 8x8 map cell is 10.4064dp.
+ */
+
+:root {
+  --cyan: #00F0FF;
+  --cyan-dim: #0094A8;
+  --cyan-ink: #4FB8C4;
+  --yellow: #FFE600;
+  --amber: #FFB800;
+  --orange: #FF5500;
+  --magenta: #FF0077;
+  --frame: #1B232E;
+  --frame-hi: #2E3A4A;
+  --dock-slate: #161E2E;
+  --void: #0B0E14;
+  --text: #EDF2F7;
+  --steel: #8A97A8;
+  --steel-dk: #56637A;
+  --map-wall: #9DB4FF;
+  --black: #000000;
+}
+
+@font-face { font-family: "Silkscreen"; src: url("assets/fonts/Silkscreen-Regular.ttf"); font-weight: 400; }
+@font-face { font-family: "Silkscreen"; src: url("assets/fonts/Silkscreen-Bold.ttf"); font-weight: 700; }
+@font-face { font-family: "Jersey"; src: url("assets/fonts/Jersey10-Regular.ttf"); }
+@font-face { font-family: "PressStart"; src: url("assets/fonts/PressStart2P-Regular.ttf"); }
+
+image { image-rendering: pixelated; }
+text { white-space: nowrap; }
+
+.grow { flex: 1; }
+.num { font-family: "PressStart"; font-size: 10px; line-height: 12px; color: var(--text); }
+
+/* ---- canvas ------------------------------------------------------------------------ */
+
+#screen {
+  width: 100%;
+  height: 100%;
+  padding: 6px;
+  background-color: var(--void);
+  background-image: url("assets/ui/plate.png");
+  background-size: 41.63px 41.63px;
+  background-repeat: repeat;
+  font-family: "Jersey";
+  font-size: 18px;
+  color: var(--text);
+}
+
+.shell { flex: 1 1 auto; min-height: 0; gap: 6px; }
+.pages { flex: 1; min-height: 0; }
+.page { flex: 1 1 auto; min-height: 0; gap: 6px; }
+.content { flex: 1; min-height: 0; }
+
+/* ---- header: hazard band over the diagnostic readouts --------------------------------- */
+
+.header {
+  flex-shrink: 0;
+  border: 3px solid var(--black);
+  border-radius: 4px;
+  background-color: var(--frame);
+  overflow: hidden;
+}
+.hazard-band {
+  height: 11px;
+  align-items: center;
+  justify-content: center;
+  background-image: url("assets/ui/hazard.png");
+  background-size: 10.41px 10.41px;
+  background-repeat: repeat;
+  border-bottom: 2px solid var(--black);
+}
+.band-cap {
+  padding: 0 8px;
+  height: 11px;
+  justify-content: center;
+  background-color: var(--black);
+}
+.band-text {
+  font-family: "Silkscreen";
+  font-weight: 700;
+  font-size: 7.5px;
+  line-height: 9px;
+  letter-spacing: 1px;
+  color: var(--amber);
+}
+
+.header-body {
+  height: 38px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 7px;
+  background-image: linear-gradient(180deg, #232D3B 0%, #121821 100%);
+}
+
+/* Sector: a bracketed cyan nameplate. */
+.sector {
+  position: relative;
+  padding: 2px 8px 2px 8px;
+  background-color: var(--void);
+  border: 2px solid var(--cyan-dim);
+  border-radius: 2px;
+}
+.node-l { position: absolute; left: -4px; top: -4px; width: 6.5px; height: 6.5px; }
+.sector-label {
+  font-family: "Silkscreen";
+  font-size: 7.5px;
+  line-height: 8px;
+  color: var(--cyan-ink);
+}
+.sector-name {
+  font-family: "Jersey";
+  font-size: 22px;
+  line-height: 19px;
+  letter-spacing: 1px;
+  color: var(--cyan);
+}
+
+/* Energy: the number, then the reserve tanks in a battery bracket (2 rows of 6). */
+.energy { flex-direction: row; align-items: center; gap: 6px; }
+.energy-read { gap: 2px; }
+.energy-label {
+  font-family: "Silkscreen";
+  font-weight: 700;
+  font-size: 7.5px;
+  line-height: 8px;
+  color: var(--text);
+}
+.energy-num { font-size: 15px; line-height: 16px; color: var(--text); }
+.battery {
+  padding: 2px;
+  background-color: var(--void);
+  border: 2px solid var(--yellow);
+  border-radius: 2px;
+}
+.tanks { width: 63px; flex-direction: row; flex-wrap: wrap; gap: 2px; }
+.tank {
+  width: 8.67px;
+  height: 7px;
+  background-color: #2E2A08;
+  border: 1px solid #5C5210;
+}
+.tank.full { background-color: var(--yellow); border-color: #FFF59A; }
+
+/* Ammo: icon + label over a monospaced count. */
+.ammo { gap: 3px; }
+.ammo-head { flex-direction: row; align-items: center; gap: 3px; }
+.ammo-icon { width: 14.31px; height: 9.11px; }
+.ammo-pb .ammo-icon { width: 9.11px; height: 9.11px; }
+.ammo-label {
+  font-family: "Silkscreen";
+  font-weight: 700;
+  font-size: 7.5px;
+  line-height: 8px;
+}
+.ammo-m .ammo-label { color: var(--orange); }
+.ammo-sm .ammo-label { color: var(--magenta); }
+.ammo-pb .ammo-label { color: var(--yellow); }
+.ammo-num { font-size: 10px; line-height: 11px; }
+
+.status-icons { align-items: flex-end; gap: 4px; }
+.ic-signal { width: 10.41px; height: 10.41px; }
+.ic-battery { width: 13.01px; height: 6.5px; }
+
+/* ---- panels: riveted slate modules with a metal banner ------------------------------- */
+
+.panel {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  background-color: var(--frame);
+  border: 3px solid var(--black);
+  border-radius: 4px;
+  box-shadow: 3px 3px 0 #000000;
+}
+.banner {
+  flex-shrink: 0;
+  height: 22px;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  padding: 0 14px 0 14px;
+  background-image: linear-gradient(180deg, #56677F 0%, #34425A 45%, #222C3C 100%);
+  border-bottom: 2px solid var(--black);
+}
+.banner-node { width: 6.5px; height: 6.5px; }
+.banner-text {
+  font-family: "Jersey";
+  font-size: 18px;
+  line-height: 16px;
+  letter-spacing: 1px;
+  color: var(--text);
+  text-shadow: 1px 1px 0 #000000;
+}
+.panel-body {
+  flex: 1;
+  min-height: 0;
+  margin: 3px;
+  padding: 5px;
+  gap: 5px;
+  border: 2px solid var(--frame-hi);
+  border-radius: 2px;
+}
+.rivet { position: absolute; width: 6.5px; height: 6.5px; }
+.rivet-tl { left: 3px; top: 3px; }
+.rivet-tr { right: 3px; top: 3px; }
+.rivet-bl { left: 3px; bottom: 3px; }
+.rivet-br { right: 3px; bottom: 3px; }
+
+.chip { padding: 1px 5px; border: 2px solid var(--black); border-radius: 2px; }
+.chip-text {
+  font-family: "Silkscreen";
+  font-weight: 700;
+  font-size: 7.5px;
+  line-height: 9px;
+  color: var(--void);
+}
+.chip-cyan { background-color: var(--cyan); }
+.chip-yellow { background-color: var(--yellow); }
+.chip-magenta { background-color: var(--magenta); }
+.chip-magenta .chip-text { color: var(--text); }
+
+/* ---- area map ---------------------------------------------------------------------- */
+
+.viewport {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  overflow: hidden;
+  background-color: #080C14;
+  background-image: url("assets/ui/grid.png");
+  background-size: 10.41px 10.41px;
+  background-repeat: repeat;
+  border: 2px solid var(--black);
+}
+/* The map image (36 x 22 cells) and everything placed on it, moved as one. */
+.map-pan { position: absolute; left: 0; top: 0; width: 374.63px; height: 228.94px; }
+.map-img { position: absolute; left: 0; top: 0; width: 374.63px; height: 228.94px; }
+.marks { position: absolute; left: 0; top: 0; right: 0; bottom: 0; }
+.mark { position: absolute; width: 10.41px; height: 10.41px; transform: translate(-5.2px, -5.2px); }
+.samus-anchor {
+  position: absolute;
+  display: stack;
+  place-items: center;
+  width: 22.11px;
+  height: 22.11px;
+  transform: translate(-11.06px, -11.06px);
+}
+.crosshair { width: 22.11px; height: 22.11px; }
+.samus { width: 10.41px; height: 10.41px; }
+
+.coords {
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  padding: 1px 4px;
+  background-color: var(--void);
+  border: 1px solid var(--cyan-dim);
+}
+.coords-text {
+  font-family: "Silkscreen";
+  font-size: 7.5px;
+  line-height: 9px;
+  color: var(--cyan);
+}
+
+/* Stylus hint: a hand beside two glowing pill tags. */
+.pills {
+  position: absolute;
+  left: 5px;
+  bottom: 5px;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 3px;
+}
+.pill-hand { width: 15.61px; height: 18.21px; }
+.pill-stack { gap: 3px; }
+.pill {
+  padding: 1px 6px;
+  background-color: #062A30;
+  border: 1.5px solid var(--cyan);
+  border-radius: 8px;
+  box-shadow: 0 0 4px #00F0FF;
+}
+.pill-text {
+  font-family: "Silkscreen";
+  font-weight: 700;
+  font-size: 7.5px;
+  line-height: 9px;
+  color: var(--cyan);
+}
+
+/* ---- armory page --------------------------------------------------------------------- */
+
+.cols-armory {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1.25fr 1fr;
+  column-gap: 9px;
+  padding: 0 3px 3px 0;
+}
+
+.section { flex-direction: row; align-items: center; gap: 5px; flex-shrink: 0; }
+.section-text {
+  font-family: "Silkscreen";
+  font-weight: 700;
+  font-size: 9px;
+  line-height: 10px;
+  color: var(--yellow);
+}
+.section-rule { flex: 1; height: 2px; background-color: var(--frame-hi); }
+
+.toggle-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px;
+}
+.toggle {
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  height: 22px;
+  padding: 0 5px;
+  background-color: var(--void);
+  border: 1.5px solid var(--frame-hi);
+  border-radius: 2px;
+}
+.node-img { width: 11.71px; height: 11.71px; flex-shrink: 0; }
+.toggle-label {
+  font-family: "Jersey";
+  font-size: 16px;
+  line-height: 15px;
+  letter-spacing: 0.5px;
+  color: var(--cyan-ink);
+  text-overflow: ellipsis;
+}
+.toggle.on { border-color: var(--cyan); background-color: #06242A; }
+.toggle.on .toggle-label { color: var(--text); }
+.toggle.locked { opacity: 0.45; }
+.toggle.locked .toggle-label { color: var(--steel); }
+/* A tap flashes the row white. */
+.toggle:pressed { background-color: var(--text); opacity: 1; }
+.toggle:pressed .toggle-label { color: var(--void); }
+
+.readout {
+  flex-shrink: 0;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 6px;
+  background-color: var(--void);
+  border: 1.5px solid var(--cyan-dim);
+}
+.readout-caret { font-family: "PressStart"; font-size: 7.5px; line-height: 9px; color: var(--cyan); }
+.readout-text {
+  flex: 1;
+  font-family: "Silkscreen";
+  font-size: 7.5px;
+  line-height: 9px;
+  color: var(--text);
+  text-overflow: ellipsis;
+}
+
+/* ---- full map page ------------------------------------------------------------------- */
+
+.cols-map { flex-direction: row; gap: 9px; padding: 0 3px 3px 0; }
+.full-panel { flex-shrink: 0; }
+.full-panel .panel-body { justify-content: space-between; }
+.viewport-full { flex: 0 0 auto; width: 378.63px; height: 232.94px; }
+.legend { flex-direction: row; align-items: center; justify-content: center; gap: 10px; flex-shrink: 0; }
+.legend-item { flex-direction: row; align-items: center; gap: 4px; }
+.legend-icon { width: 10.41px; height: 10.41px; }
+.legend-text {
+  font-family: "Silkscreen";
+  font-size: 7.5px;
+  line-height: 9px;
+  color: var(--steel);
+}
+
+.sector-panel { flex: 1; }
+.sector-list { flex: 1; min-height: 0; justify-content: space-between; }
+.sector-row {
+  flex-shrink: 0;
+  gap: 3px;
+  padding: 3px 5px 4px 5px;
+  background-color: var(--void);
+  border: 1.5px solid var(--frame-hi);
+  border-radius: 2px;
+}
+.sector-row-foot { flex-direction: row; align-items: center; gap: 4px; }
+.sector-row-name {
+  font-family: "Jersey";
+  font-size: 16px;
+  line-height: 14px;
+  color: var(--cyan-ink);
+}
+.sector-pct { font-size: 7.5px; line-height: 9px; color: var(--steel); }
+.sector-bar {
+  flex: 1;
+  height: 6px;
+  background-color: var(--dock-slate);
+  border: 1px solid var(--black);
+  accent-color: var(--cyan-dim);
+}
+.sector-row.here { border-color: var(--cyan); background-color: #06242A; }
+.sector-row.here .sector-row-name { color: var(--cyan); }
+.sector-row.here .sector-pct { color: var(--text); }
+.sector-row.here .sector-bar { accent-color: var(--cyan); }
+
+/* ---- logbook page ---------------------------------------------------------------------- */
+
+.cols-log {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 9px;
+  padding: 0 3px 3px 0;
+}
+
+.boss-list { flex: 1; min-height: 0; justify-content: space-between; }
+.boss {
+  flex-shrink: 0;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  height: 26px;
+  padding: 0 5px;
+  background-color: var(--void);
+  border: 1.5px solid var(--frame-hi);
+  border-radius: 2px;
+}
+.boss-icon { width: 11.71px; height: 11.71px; }
+.boss-name { font-family: "Jersey"; font-size: 17px; line-height: 15px; color: var(--text); }
+.boss-area {
+  font-family: "Silkscreen";
+  font-size: 6.5px;
+  line-height: 7px;
+  color: var(--steel-dk);
+}
+.boss-state { padding: 1px 4px; border: 1.5px solid var(--black); }
+.boss-state-text {
+  font-family: "Silkscreen";
+  font-weight: 700;
+  font-size: 6.5px;
+  line-height: 8px;
+}
+.boss.done .boss-icon { opacity: 0.35; }
+.boss.done .boss-name { color: var(--steel); }
+.boss.done .boss-state { background-color: var(--cyan); }
+.boss.done .boss-state-text { color: var(--void); }
+.boss.alive { border-color: #5A0A30; }
+.boss.alive .boss-state { background-color: var(--magenta); }
+.boss.alive .boss-state-text { color: var(--text); }
+
+.log-side { min-width: 0; min-height: 0; gap: 8px; }
+.item-panel { flex: 1; }
+.item-list { flex: 1; min-height: 0; justify-content: space-between; }
+.item { gap: 5px; }
+.item-head { flex-direction: row; align-items: center; gap: 5px; }
+.item-icon { width: 14.31px; height: 9.11px; }
+.item.kind-tank .item-icon { width: 11.71px; height: 10.41px; }
+.item.kind-pbomb .item-icon { width: 9.11px; height: 9.11px; }
+.item-name { font-family: "Jersey"; font-size: 18px; line-height: 16px; color: var(--text); }
+.item-count { font-size: 9px; line-height: 10px; }
+.item-bar {
+  height: 12px;
+  background-color: var(--dock-slate);
+  border: 1.5px solid var(--black);
+  accent-color: var(--cyan);
+}
+.item.kind-tank .item-bar { accent-color: var(--yellow); }
+.item.kind-missile .item-bar { accent-color: var(--orange); }
+.item.kind-super .item-bar { accent-color: var(--magenta); }
+.item.kind-pbomb .item-bar { accent-color: var(--amber); }
+
+.stat-row { flex-shrink: 0; flex-direction: row; gap: 8px; padding: 0 3px 3px 0; }
+.stat {
+  flex: 1;
+  gap: 4px;
+  padding: 5px 8px;
+  background-color: var(--frame);
+  border: 3px solid var(--black);
+  border-radius: 4px;
+  box-shadow: 3px 3px 0 #000000;
+}
+.stat-head { flex-direction: row; align-items: center; gap: 4px; }
+.stat-icon { width: 11.71px; height: 11.71px; }
+.stat-label {
+  font-family: "Silkscreen";
+  font-weight: 700;
+  font-size: 7.5px;
+  line-height: 9px;
+  color: var(--steel);
+}
+.stat-num { font-size: 14px; line-height: 16px; }
+.stat-pct .stat-num { color: var(--yellow); }
+.stat-time .stat-num { color: var(--cyan); }
+
+/* ---- suit command dock ------------------------------------------------------------------- */
+
+.dock { flex-shrink: 0; gap: 3px; }
+.dock-title-row { flex-direction: row; align-items: center; gap: 8px; }
+.dock-rule { flex: 1; height: 2px; background-color: var(--frame-hi); }
+.dock-title {
+  font-family: "Silkscreen";
+  font-weight: 700;
+  font-size: 7.5px;
+  line-height: 9px;
+  letter-spacing: 1.5px;
+  color: var(--steel-dk);
+}
+.dock-row { flex-direction: row; gap: 10px; padding: 0 3px 3px 0; }
+
+.dock-btn {
+  flex: 1;
+  min-width: 0;
+  height: 52px;
+  padding: 0;
+  position: relative;
+  align-items: stretch;
+  background-image: linear-gradient(180deg, #2A364C 0%, #161E2E 60%, #10161F 100%);
+  border: 3px solid var(--black);
+  border-radius: 4px;
+  box-shadow: 3px 3px 0 #000000;
+  transition: transform 60ms linear;
+}
+.dock-inner {
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin: 3px;
+  border: 2px solid var(--cyan-dim);
+  border-radius: 2px;
+}
+.dock-map .dock-inner { border-color: var(--map-wall); }
+.dock-icon { width: 18.21px; height: 15.61px; }
+.dock-armory .dock-icon { width: 18.21px; height: 13.01px; }
+.dock-log .dock-icon { width: 15.61px; height: 14.31px; }
+.dock-label {
+  font-family: "Jersey";
+  font-size: 19px;
+  line-height: 17px;
+  letter-spacing: 0.5px;
+  color: var(--text);
+}
+
+/* Active: pushed down 3px, cyan glow ring. */
+.dock-btn.on,
+.dock-btn:pressed {
+  transform: translate(0, 3px);
+  border-color: var(--cyan);
+  box-shadow: 0 0 8px #00F0FF;
+  opacity: 1;
+}
+.dock-btn.on { z-index: 2; }
+.dock-btn.on .dock-inner { border-color: var(--cyan); background-color: #0A3038; }
+.dock-btn.on .dock-label { color: var(--cyan); }
+
+.tap-badge {
+  position: absolute;
+  right: 6px;
+  top: -5px;
+  padding: 1px 4px;
+  background-color: var(--text);
+  border: 2px solid var(--black);
+  border-radius: 3px;
+}
+.tap-text {
+  font-family: "Silkscreen";
+  font-weight: 700;
+  font-size: 7.5px;
+  line-height: 9px;
+  color: var(--void);
+}
+.tap-hand { position: absolute; right: 28px; bottom: -6px; width: 15.61px; height: 18.21px; }
+
+/* ---- waiting (boot) screen ------------------------------------------------------------------ */
+
+.waiting { flex: 1 1 auto; align-items: center; justify-content: center; }
+.boot {
+  width: 320px;
+  background-color: var(--frame);
+  border: 3px solid var(--black);
+  border-radius: 4px;
+  box-shadow: 0 0 10px #00F0FF;
+  overflow: hidden;
+}
+.boot-band {
+  height: 14px;
+  background-image: url("assets/ui/hazard.png");
+  background-size: 10.41px 10.41px;
+  background-repeat: repeat;
+}
+.boot-band:first-child { border-bottom: 2px solid var(--black); }
+.boot-band:last-child { border-top: 2px solid var(--black); }
+.boot-body { align-items: center; gap: 8px; padding: 16px 12px; }
+.boot-title { font-family: "PressStart"; font-size: 24px; line-height: 28px; color: var(--cyan); text-shadow: 2px 2px 0 #000000; }
+.boot-sub { font-family: "Jersey"; font-size: 20px; line-height: 20px; letter-spacing: 1px; color: var(--text); }
+.boot-pill { padding: 3px 10px; background-color: var(--void); border: 1.5px solid var(--cyan); border-radius: 8px; }
+.boot-pill-text { font-family: "Silkscreen"; font-weight: 700; font-size: 9px; line-height: 11px; color: var(--cyan); }

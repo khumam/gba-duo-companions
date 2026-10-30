@@ -10,8 +10,11 @@ local SECURITY_LEVEL = 0x0300001C   -- gSecurityHatchLevel: 0-4, 0xFF = no hatch
 local CURRENT_AREA = 0x0300002C     -- gCurrentArea: 0 Main Deck, 1-6 Sectors 1-6
 local CURRENT_ROOM = 0x0300002D
 local SECTOR_PERCENT = 0x0300003B   -- 7 bytes: Main Deck, then Sectors 1-6
+local MINIMAP_X = 0x03000031        -- gMinimapX / gMinimapY: Samus's cell on the area map
+local MINIMAP_Y = 0x03000032
 local IN_GAME_TIMER = 0x03000138    -- gInGameTimer: hours, minutes, seconds, frames
-local MAIN_GAME_MODE = 0x03000BDE   -- gMainGameMode, see GAME_MODE_* below
+local EVENT_COUNTER = 0x03000B87    -- gEventCounter: the story step, 0 .. 109 (EventSet in the US ROM stores it here)
+local MAIN_GAME_MODE = 0x03000BDE   -- gMainGameMode, see LIVE_MODES
 
 -- struct Equipment gEquipment (0x10 bytes)
 local EQUIPMENT = 0x03001310
@@ -25,179 +28,156 @@ local BEAM_STATUS = EQUIPMENT + 0xA    -- BF_*
 local WEAPONS_STATUS = EQUIPMENT + 0xB -- MBF_*
 local SUIT_STATUS = EQUIPMENT + 0xC    -- SMF_*
 local DOWNLOADED_MAPS = EQUIPMENT + 0xE
-local LOW_HEALTH = EQUIPMENT + 0xF
+
+-- ---- Globals (EWRAM) ------------------------------------------------------------
+local MINIMAP_RAM = 0x02034000      -- gMinimapData_Visited: 32 x 32 u16 map entries of the current area
 
 -- GAME_MODE_IN_GAME, _MAP_SCREEN (pause), _CUTSCENE and _SA_X_CLOSE_UP all have a
 -- loaded save behind them; the title, file select, demos and credits don't.
 local LIVE_MODES = { [1] = true, [3] = true, [4] = true, [5] = true }
 
 local STARTING_ENERGY, TANK = 99, 100
-local TOTAL_UPGRADES = 18 -- every row of the status windows, plus missiles and bombs
+local MAX_TANKS = 20
+local TOTAL_UPGRADES = 18 -- every row of the arms page, plus missiles and bombs
+local TOTAL_EVENTS = 109
 
 -- ---- The game's own art, drawn from the player's ROM (US build, AMTE) ------------------
--- bg.gfx.lz holds the pause screen's tiles; the tilemaps below are the map and status
--- screens. PALRAM rows 0-2 (minimap palette) and 3-15 (bg palette) are contiguous in the
--- ROM, so one palette address serves every tilemap entry's bank (decomp: pause_screen.c).
+-- bg.gfx.lz holds the pause screen's tiles; the tilemaps are the status screen and the title logo.
+-- PALRAM rows 0-2 (minimap palette) and 3-15 (bg palette) are contiguous in the ROM, so one palette
+-- address serves every tilemap entry's bank (decomp: pause_screen.c).
 local TILES, PALETTE = 0x0856A254, 0x085657A8
-local MAP_OUTLINE, MAP_STATUS = 0x085740FC, 0x085748AC
-local FONT = "asset:font/"
+local MAP_STATUS = 0x085748AC
+local MINIMAP_TILES = 0x08561FA8
 -- The title screen's logo (decomp: sTitleScreenLogoGfx / TileTable / Pal): 32x32 tilemap, logo in tiles 1-28 x 1-14.
 local LOGO_TILES, LOGO_MAP, LOGO_PAL = 0x08593274, 0x085963B8, 0x08596D0C
-
-local function crop(map, x, y, w, h)
-  return gfx.tilemap{ tiles = TILES, map = map, palette = PALETTE, x = x, y = y, width = w * 8, height = h * 8, lz77 = true }
-end
-
--- Status-screen windows (tile coords of the bottom half of sStatusScreenTilemap): the
--- title row, one row per upgrade, and the closing row. { name, status byte, bit }.
-local WINDOWS = {
-  { id = "beam", x = 1, w = 8, title = 21, footer = 27, rows = {
-    { "CHARGE", BEAM_STATUS, 0x01 }, { "WIDE", BEAM_STATUS, 0x02 }, { "PLASMA", BEAM_STATUS, 0x04 },
-    { "WAVE", BEAM_STATUS, 0x08 }, { "ICE", BEAM_STATUS, 0x10 } } },
-  { id = "missile", x = 9, w = 8, title = 21, footer = 25, rows = {
-    { "SUPER", WEAPONS_STATUS, 0x02 }, { "ICE", WEAPONS_STATUS, 0x04 }, { "DIFFUSION", WEAPONS_STATUS, 0x08 } } },
-  { id = "suit", x = 19, w = 10, title = 21, footer = 24, rows = {
-    { "VARIA", SUIT_STATUS, 0x10 }, { "GRAVITY", SUIT_STATUS, 0x20 } } },
-  { id = "misc", x = 19, w = 10, title = 25, footer = 31, rows = {
-    { "MORPH BALL", SUIT_STATUS, 0x40 }, { "HI-JUMP", SUIT_STATUS, 0x01 }, { "SPEED BOOSTER", SUIT_STATUS, 0x02 },
-    { "SPACE JUMP", SUIT_STATUS, 0x04 }, { "SCREW ATTACK", SUIT_STATUS, 0x08 } } },
-  { id = "bomb", x = 1, w = 10, title = 28, footer = 30, rows = { { "POWER", WEAPONS_STATUS, 0x20 } } },
-}
 
 local ART -- built once; false when this ROM isn't the US build or a draw failed
 
 local function buildArt()
   local code = string.char(mem.u8(0x080000AC), mem.u8(0x080000AD), mem.u8(0x080000AE), mem.u8(0x080000AF))
   if code ~= "AMTE" then return false end
-  local art = {
-    header = crop(MAP_STATUS, 0, 0, 30, 5),
-    center = crop(MAP_STATUS, 9, 5, 11, 15),
-    frameL = crop(MAP_STATUS, 0, 5, 1, 15),
-    frameR = crop(MAP_STATUS, 29, 5, 1, 15),
-    outline = crop(MAP_OUTLINE, 0, 0, 30, 20),
-    botmid = crop(MAP_OUTLINE, 1, 18, 28, 2), -- the map frame's bottom bar without its corners, so the status lace runs into it
-    sideL = crop(MAP_STATUS, 0, 10, 1, 2),
-    sideR = crop(MAP_STATUS, 29, 10, 1, 2),
+  return {
+    -- Samus on her grid, from the status screen's tilemap (11 x 15 tiles)
+    samus = gfx.tilemap{ tiles = TILES, map = MAP_STATUS, palette = PALETTE, x = 9, y = 5, width = 88, height = 120, lz77 = true },
     logo = gfx.tilemap{ tiles = LOGO_TILES, map = LOGO_MAP, palette = LOGO_PAL, x = 1, y = 1, width = 28 * 8, height = 14 * 8, lz77 = true },
-    windows = {},
   }
-  for _, w in ipairs(WINDOWS) do
-    local rows = {}
-    for i, r in ipairs(w.rows) do
-      rows[i] = { key = crop(MAP_STATUS, w.x, w.title + i, w.w, 1), name = r[1], status = r[2], bit = r[3] }
-    end
-    art.windows[w.id] = { title = crop(MAP_STATUS, w.x, w.title, w.w, 1), rows = rows, footer = crop(MAP_STATUS, w.x, w.footer, w.w, 1) }
-  end
-  return art
 end
 
 local ok, built = pcall(buildArt)
 ART = ok and built or false
 
--- ---- Numbers in the header ---------------------------------------------------------------
--- The header's counters are the game's own digits as glyph images ("c" current, "m" maximum:
--- palette rows 6 and 3); everything else is set as text in Silkscreen (style.css).
--- A number right-aligned in `cells` digit cells that cover the header's placeholder digits.
-local function digits(value, cells, variant)
-  local text = tostring(math.max(0, math.min(value, 10 ^ cells - 1)))
-  local out = {}
-  for i = 1, cells do
-    local ch = text:sub(i - cells + #text, i - cells + #text)
-    local blank = i <= cells - #text
-    out[i] = { src = FONT .. (blank and "ob" or ("o" .. variant .. "-" .. ch)) .. ".png" }
-  end
-  return out
-end
-
 -- ---- The live minimap --------------------------------------------------------------------
--- gMinimapData_Visited (EWRAM 0x02034000) is the current area's 32x32 tilemap with the
--- explored/hidden flags the game keeps up to date; its tiles are sMinimapTilesGfx, raw in
--- the ROM. A gfx image is cached by its arguments, so each change of the map is drawn from
--- a different mirror of the same memory (EWRAM and the ROM repeat) to get a fresh key.
-local MINIMAP_RAM, MINIMAP_TILES = 0x02034000, 0x08561FA8
-local MINIMAP_X, MINIMAP_Y = 0x03000031, 0x03000032
-local MAP_COLS, MAP_ROWS = 26, 15 -- tiles shown, the frame's window
-local mapHash, mapVersion = nil, 0
+-- gMinimapData_Visited is the current area's 32x32 tilemap with the explored / hidden flags the game
+-- keeps up to date; its tiles are sMinimapTilesGfx, raw in the ROM. The map page shows a window of it
+-- centred on Samus, each map pixel 8 device px (3.4688dp) wide. A gfx image is cached by its
+-- arguments, not its contents, so when the map changes it's read through the next 256 KB EWRAM mirror:
+-- same memory, new cache key.
+local MAP_COLS, MAP_ROWS = 18, 9
+local PX = 3.4688
+local mapSeen, mapVersion = nil, 0
 
-local function minimap()
-  local h = 0
-  for i = 0, 1023 do h = (h * 31 + mem.u16(MINIMAP_RAM + i * 2)) & 0xFFFFFF end
-  local mx, my = mem.u8(MINIMAP_X), mem.u8(MINIMAP_Y)
-  local cx = math.max(0, math.min(32 - MAP_COLS, mx - MAP_COLS // 2))
-  local cy = math.max(0, math.min(32 - MAP_ROWS, my - MAP_ROWS // 2))
-  local sig = h * 4096 + cx * 64 + cy
-  if sig ~= mapHash then mapHash, mapVersion = sig, mapVersion + 1 end
-  local v = mapVersion % 144
-  local rom = ({ 0x08000000, 0x0A000000, 0x0C000000 })
-  local key = gfx.tilemap{
-    tiles = MINIMAP_TILES - 0x08000000 + rom[v // 48 + 1],
-    map = MINIMAP_RAM + (v % 16) * 0x40000,
-    palette = PALETTE - 0x08000000 + rom[(v // 16) % 3 + 1],
-    x = cx, y = cy, width = MAP_COLS * 8, height = MAP_ROWS * 8, opaque = true,
-  }
-  return key, mx - cx, my - cy
-end
+local function clamp(v, lo, hi) return math.max(lo, math.min(hi, v)) end
 
-local function fraction(value, max)
-  if max <= 0 then return 0 end
-  return math.max(0, math.min(1, value / max))
+local function liveMap()
+  local seen = mem.read(MINIMAP_RAM, 2048)
+  if seen ~= mapSeen then mapSeen = seen; mapVersion = mapVersion + 1 end
+  local sx, sy = mem.u8(MINIMAP_X), mem.u8(MINIMAP_Y)
+  local onMap = sx < 32 and sy < 32
+  local x0 = clamp((onMap and sx or 16) - MAP_COLS // 2, 0, 32 - MAP_COLS)
+  local y0 = clamp((onMap and sy or 8) - MAP_ROWS // 2, 0, 32 - MAP_ROWS)
+  local ok2, key = pcall(gfx.tilemap, {
+    tiles = MINIMAP_TILES, palette = PALETTE, map = MINIMAP_RAM + (mapVersion % 64) * 0x40000,
+    x = x0, y = y0, width = MAP_COLS * 8, height = MAP_ROWS * 8, opaque = true,
+  })
+  if not ok2 then return nil end
+  return { image = key, onMap = onMap, x = ((sx - x0) * 8 + 4) * PX, y = ((sy - y0) * 8 + 4) * PX }
 end
 
 -- ---- Sectors -------------------------------------------------------------------------
+-- { plate name, sector code, badge letter }
 local SECTORS = {
-  { "Main Deck", "DECK" }, { "Sector 1", "SRX" }, { "Sector 2", "TRO" }, { "Sector 3", "PYR" },
-  { "Sector 4", "AQA" }, { "Sector 5", "ARC" }, { "Sector 6", "NOC" },
+  { "MAIN DECK", "DECK", "D" }, { "SECTOR 1", "SRX", "1" }, { "SECTOR 2", "TRO", "2" }, { "SECTOR 3", "PYR", "3" },
+  { "SECTOR 4", "AQA", "4" }, { "SECTOR 5", "ARC", "5" }, { "SECTOR 6", "NOC", "6" },
 }
 
--- Seven cells: the game's code for the sector, its completion, and whether Samus is there or
--- has downloaded its map.
-local function readSectorRows(area)
-  local maps = mem.u8(DOWNLOADED_MAPS)
-  local out = {}
-  for i, s in ipairs(SECTORS) do
-    out[i] = {
-      name = s[2],
-      pct = string.format("%d", math.min(100, mem.u8(SECTOR_PERCENT + i - 1))),
-      here = area == i - 1,
-      mapped = (maps >> (i - 1)) & 1 == 1,
-    }
-  end
-  return out
-end
+-- ---- Arms ----------------------------------------------------------------------------
+-- { name, status byte, bit } per group, in the game's order
+local ARMS = {
+  beam = { { "CHARGE", BEAM_STATUS, 0x01 }, { "WIDE", BEAM_STATUS, 0x02 }, { "PLASMA", BEAM_STATUS, 0x04 },
+    { "WAVE", BEAM_STATUS, 0x08 }, { "ICE", BEAM_STATUS, 0x10 } },
+  missile = { { "SUPER", WEAPONS_STATUS, 0x02 }, { "ICE", WEAPONS_STATUS, 0x04 }, { "DIFFUSION", WEAPONS_STATUS, 0x08 } },
+  bomb = { { "POWER", WEAPONS_STATUS, 0x20 } },
+  suit = { { "VARIA", SUIT_STATUS, 0x10 }, { "GRAVITY", SUIT_STATUS, 0x20 } },
+  misc = { { "MORPH BALL", SUIT_STATUS, 0x40 }, { "HI-JUMP", SUIT_STATUS, 0x01 }, { "SPEED BOOSTER", SUIT_STATUS, 0x02 },
+    { "SPACE JUMP", SUIT_STATUS, 0x04 }, { "SCREW ATTACK", SUIT_STATUS, 0x08 } },
+}
 
--- The status windows with each row lit or dimmed by what Samus has.
-local function readWindows()
+local function armRows(group)
   local out, owned = {}, 0
-  for id, w in pairs(ART.windows) do
-    local rows = {}
-    for i, r in ipairs(w.rows) do
-      local has = mem.u8(r.status) & r.bit ~= 0
-      if has then owned = owned + 1 end
-      rows[i] = { src = r.key, owned = has }
-    end
-    out[id] = { title = w.title, footer = w.footer, rows = rows }
-  end
-  -- missiles, bombs and the beam's base level count as upgrades too
-  for _, a in ipairs({ { WEAPONS_STATUS, 0x01 }, { WEAPONS_STATUS, 0x10 } }) do
-    if mem.u8(a[1]) & a[2] ~= 0 then owned = owned + 1 end
+  for i, r in ipairs(group) do
+    local has = mem.u8(r[2]) & r[3] ~= 0
+    if has then owned = owned + 1 end
+    out[i] = { name = r[1], on = has, off = not has }
   end
   return out, owned
 end
 
+-- ---- The mission -----------------------------------------------------------------------
+-- gEventCounter steps through include/constants/event.h in the metroidret/mf decomp; EventSet(n)
+-- stores n when event n happens, so "counter >= n" means it has. Bosses are read from the events they
+-- hand over: Arachnus drops the Charge Beam, Serris the Speed Booster, Yakuza the Space Jump, Nightmare
+-- the Gravity Suit; B.O.X., SA-X and the Omega Metroid have events of their own.
+local BOSSES = {
+  { "ARACHNUS", 15 }, { "SERRIS", 29 }, { "B.O.X.", 40 }, { "YAKUZA", 73 },
+  { "NIGHTMARE", 81 }, { "SA-X", 102 }, { "OMEGA METROID", 108 },
+}
+
+-- Milestones the game announces, for the "next" line: { event, what happens }
+local MILESTONES = {
+  { 7, "MISSILE DATA" }, { 10, "MORPH BALL" }, { 15, "CHARGE BEAM" }, { 19, "SECURITY LEVEL 1" },
+  { 22, "BOMB DATA" }, { 25, "HI-JUMP" }, { 29, "SPEED BOOSTER" }, { 35, "SECURITY LEVEL 2" },
+  { 38, "SUPER MISSILE DATA" }, { 40, "B.O.X. DEFEATED" }, { 51, "VARIA SUIT" }, { 55, "SECURITY LEVEL 3" },
+  { 58, "ICE MISSILE DATA" }, { 60, "WIDE BEAM" }, { 66, "POWER BOMB DATA" }, { 73, "SPACE JUMP" },
+  { 78, "PLASMA BEAM" }, { 81, "GRAVITY SUIT" }, { 83, "SECURITY LEVEL 4" }, { 86, "DIFFUSION MISSILE DATA" },
+  { 91, "WAVE BEAM" }, { 96, "SCREW ATTACK" }, { 102, "SA-X DEFEATED" }, { 107, "ICE BEAM" },
+  { 108, "OMEGA METROID DEFEATED" },
+}
+
+local function nextMilestone(counter)
+  for _, m in ipairs(MILESTONES) do
+    if m[1] > counter then return m[2] end
+  end
+  return "ESCAPE THE STATION"
+end
+
+local function hatchRows(level)
+  local rows = {}
+  for i = 1, 4 do
+    local open = level ~= 0xFF and level >= i
+    rows[i] = {
+      name = "L" .. i, icon = "asset:ui/door-" .. i .. ".png", open = open, locked = not open,
+      state = open and "OPEN" or "LOCK",
+    }
+  end
+  return rows
+end
+
+-- ---- update ----------------------------------------------------------------------------
+
 function update()
   local maxEnergy = mem.u16(MAX_ENERGY)
-  local validEnergy = maxEnergy >= STARTING_ENERGY and maxEnergy <= STARTING_ENERGY + 20 * TANK
+  local validEnergy = maxEnergy >= STARTING_ENERGY and maxEnergy <= STARTING_ENERGY + MAX_TANKS * TANK
     and (maxEnergy - STARTING_ENERGY) % TANK == 0
   if not LIVE_MODES[mem.u8(MAIN_GAME_MODE)] or not validEnergy or not ART then
     local noRom = ART == false
     return {
       ready = false,
       waiting = true,
-      waitLogo = ART and ART.logo or nil,
+      logo = ART and ART.logo or "",
       hasLogo = ART ~= false,
       noLogo = ART == false,
       waitTitle = noRom and "US ROM ONLY" or "",
-      waitSub = noRom and "NEEDS GAME CODE AMTE" or "GBADUO COMPANION PACK",
+      waitSub = noRom and "Needs game code AMTE." or "Load a save to wake the visor.",
     }
   end
 
@@ -209,52 +189,111 @@ function update()
   local missiles, maxMissiles = mem.u16(MISSILES), mem.u16(MAX_MISSILES)
   local bombs, maxBombs = mem.u8(POWER_BOMBS), mem.u8(MAX_POWER_BOMBS)
   local area = mem.u8(CURRENT_AREA)
-  local sector = SECTORS[area + 1]
-  local windows, owned = readWindows()
-  local mapKey, markCol, markRow = minimap()
+  local sector = SECTORS[area + 1] or { "UNKNOWN", "?", "?" }
+  local owned = 0
+  local arms = { msg = "" }
+  for id, group in pairs(ARMS) do
+    local rows, n = armRows(group)
+    arms[id] = rows
+    owned = owned + n
+  end
+  -- missiles and bombs count as upgrades too
+  for _, a in ipairs({ { WEAPONS_STATUS, 0x01 }, { WEAPONS_STATUS, 0x10 } }) do
+    if mem.u8(a[1]) & a[2] ~= 0 then owned = owned + 1 end
+  end
+  arms.count = owned .. " / " .. TOTAL_UPGRADES
+  arms.msg = string.format("%d of %d upgrades found.", owned, TOTAL_UPGRADES)
+
   local tanks = (maxEnergy - STARTING_ENERGY) // TANK
+  local fullTanks = energy // TANK
+  local tankRows = {}
+  for i = 1, tanks do tankRows[i] = { full = i <= fullTanks } end
+
   local level = mem.u8(SECURITY_LEVEL)
   local t = IN_GAME_TIMER
-
-  local hatches = {}
-  for i = 1, 4 do
-    local open = level ~= 0xFF and level >= i
-    hatches[i] = { name = "L" .. i, state = open and "OPEN" or "LOCKED", open = open }
+  local time = string.format("%d:%02d:%02d", mem.u8(t), mem.u8(t + 1), mem.u8(t + 2))
+  local room = mem.u8(CURRENT_ROOM)
+  local pct = math.min(100, mem.u8(SECTOR_PERCENT + area))
+  local maps = mem.u8(DOWNLOADED_MAPS)
+  local mapCount = 0
+  local sectors = {}
+  for i, s in ipairs(SECTORS) do
+    local p = math.min(100, mem.u8(SECTOR_PERCENT + i - 1))
+    local mapped = (maps >> (i - 1)) & 1 == 1
+    if mapped then mapCount = mapCount + 1 end
+    sectors[i] = {
+      name = s[1], code = s[2], tag = s[3], pct = p / 100, pctText = p .. "%",
+      here = area == i - 1, mapped = mapped, unmapped = not mapped,
+    }
   end
+
+  local counter = mem.u8(EVENT_COUNTER)
+  local bosses, bossesDown = {}, 0
+  for i, b in ipairs(BOSSES) do
+    local done = counter >= b[2]
+    if done then bossesDown = bossesDown + 1 end
+    bosses[i] = { name = b[1], done = done, alive = not done }
+  end
+  local security = hatchRows(level)
+  for _, h in ipairs(security) do h.name = "LEVEL " .. h.name:sub(2) end
+  local progress = math.min(1, counter / TOTAL_EVENTS)
+
+  local live = liveMap()
+  local suit = mem.u8(SUIT_STATUS)
+  local suitName = suit & 0x20 ~= 0 and "GRAVITY" or (suit & 0x10 ~= 0 and "VARIA" or "BASE SUIT")
 
   return {
     ready = true,
     waiting = false,
-    lowHealth = mem.u8(LOW_HEALTH) ~= 0,
+    sector = sector[1],
+    energy = string.format("%d/%d", energy, maxEnergy),
+    tanks = tankRows,
+    missiles = string.format("%d/%d", hasMissiles and missiles or 0, hasMissiles and maxMissiles or 0),
+    bombs = string.format("%d/%d", hasBombs and bombs or 0, hasBombs and maxBombs or 0),
 
-    art = {
-      header = ART.header, center = ART.center, frameL = ART.frameL, frameR = ART.frameR, outline = ART.outline,
-      botmid = ART.botmid, sideL = ART.sideL, sideR = ART.sideR, map = mapKey,
+    map = {
+      has = live ~= nil,
+      none = live == nil,
+      image = live and live.image or "",
+      onMap = live ~= nil and live.onMap,
+      x = live and live.x or 0,
+      y = live and live.y or 0,
+      title = string.format("%s %d%%", sector[2], pct),
+      room = string.format("ROOM %d", room),
+      status = live and string.format("%s, room %d.", sector[1]:lower():gsub("^%l", string.upper), room) or "No area map available.",
     },
-    markCol = markCol * 17.34,
-    markRow = markRow * 17.34,
+    hatches = hatchRows(level),
 
-    energyNow = digits(energy, 4, "c"),
-    energyMax = digits(maxEnergy, 4, "m"),
-    missileNow = digits(hasMissiles and missiles or 0, 3, "c"),
-    missileMax = digits(hasMissiles and maxMissiles or 0, 3, "m"),
-    bombNow = digits(hasBombs and bombs or 0, 2, "c"),
-    bombMax = digits(hasBombs and maxBombs or 0, 2, "m"),
-
-    sectorName = sector and sector[2] or "?",
-    left = {
-      { label = "LOCATION", value = sector and sector[1]:upper() or "?" },
-      { label = "ROOM", value = tostring(mem.u8(CURRENT_ROOM)) },
-      { label = "TIME", value = string.format("%d:%02d:%02d", mem.u8(t), mem.u8(t + 1), mem.u8(t + 2)) },
+    status = {
+      samus = ART.samus,
+      hasSamus = true,
+      noSamus = false,
+      left = {
+        { label = "LOCATION", value = sector[1] },
+        { label = "ROOM", value = tostring(room) },
+        { label = "TIME", value = time },
+        { label = "COMPLETE", value = pct .. "%" },
+        { label = "MAPS", value = mapCount .. " / 7" },
+      },
+      right = {
+        { label = "UPGRADES", value = owned .. " / " .. TOTAL_UPGRADES },
+        { label = "TANKS", value = tanks .. " / " .. MAX_TANKS },
+        { label = "SECURITY", value = level == 0xFF and "NONE" or ("LEVEL " .. level) },
+        { label = "MISSION", value = math.floor(progress * 100) .. "%" },
+        { label = "SUIT", value = suitName },
+      },
+      msg = string.format("Mission time %s.", time),
     },
-    right = {
-      { label = "UPGRADES", value = owned .. " / " .. TOTAL_UPGRADES },
-      { label = "TANKS", value = tostring(tanks) },
-      { label = "SECURITY", value = level == 0xFF and "NONE" or ("LEVEL " .. level) },
+    arms = arms,
+    sectors = sectors,
+    sectorsMsg = string.format("%d of 7 sector maps downloaded.", mapCount),
+    mission = {
+      bosses = bosses,
+      security = security,
+      pct = math.floor(progress * 100) .. "%",
+      frac = progress,
+      next = nextMilestone(counter),
+      msg = string.format("%d of %d bosses down. Story step %d of %d.", bossesDown, #BOSSES, counter, TOTAL_EVENTS),
     },
-    hatches = hatches,
-
-    windows = windows,
-    sectorRows = readSectorRows(area),
   }
 end

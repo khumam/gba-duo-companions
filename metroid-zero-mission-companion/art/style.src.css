@@ -1,0 +1,352 @@
+/*
+ * Zero Mission companion: the game's own pause screen, rebuilt for the second screen.
+ * Steel frame with lavender tabs and plate, teal grid, mint banners, the blue
+ * "equipped" bar, olive save-slot rules. Colours are sampled from art/ref/*.
+ *
+ * Lengths are written in art pixels (`8ap`); `python3 art/css.py` expands them to
+ * px (1ap = 2.168px = 5 device px on the Thor, 248 x 216 ap), so pixel art stays
+ * crisp. Edit this file, not style.css. The pixel fonts are 8 units tall: 8ap makes
+ * one font pixel one art pixel.
+ */
+
+:root {
+  --void: #14252c;
+  --grid: #263b32;
+  --mint: #86bc90;
+  --mint-lt: #bfe1c9;
+  --teal: #578c87;
+  --teal-dk: #37584d;
+  --teal-dd: #1d3a3a;
+  --lav: #d39ad6;
+  --lav-dd: #3d2a4a;
+  --tan: #ebd389;
+  --tan-dk: #b8964a;
+  --white: #f0f0ed;
+  --steel: #7f867b;
+  --steel-dk: #4f554b;
+  --ink: #0a1008;
+  --blue: #387ec8;
+  --blue-dk: #1f4a80;
+  --rose: #d9566a;
+  --orange: #e8a060;
+  --olive: #bec87e;
+  --olive-dk: #7b8346;
+  --key: #e8785a;
+}
+
+@font-face { font-family: "Silkscreen"; src: url("assets/fonts/Silkscreen-Regular.ttf"); font-weight: 400; }
+@font-face { font-family: "Silkscreen"; src: url("assets/fonts/Silkscreen-Bold.ttf"); font-weight: 700; }
+@font-face { font-family: "Jersey"; src: url("assets/fonts/Jersey10-Regular.ttf"); }
+@font-face { font-family: "PressStart"; src: url("assets/fonts/PressStart2P-Regular.ttf"); }
+
+image { image-rendering: pixelated; }
+text { white-space: nowrap; }
+.grow { flex: 1; }
+
+#screen {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--void);
+  font-family: "Silkscreen";
+  font-size: 8ap;
+  color: var(--tan);
+}
+.shell { flex: 1; min-height: 0; }
+.pages { flex: 1; min-height: 0; }
+.page {
+  flex: 1;
+  min-height: 0;
+  background-color: var(--void);
+  background-image: url("assets/ui/bg-teal.png");
+  background-size: 8ap 8ap;
+  background-repeat: repeat;
+}
+.content { flex: 1; min-height: 0; padding: 3ap 4ap 0; }
+
+/* ---- frame: steel bar, L / R tabs, sector plate ------------------------------------- */
+
+.topbar {
+  position: relative;
+  flex-shrink: 0;
+  height: 22ap;
+  background-image: url("assets/ui/topbar.png");
+  background-size: 248ap 22ap;
+  background-repeat: no-repeat;
+}
+.tab {
+  position: absolute;
+  top: 2ap;
+  width: 77ap;
+  height: 15ap;
+  background-size: 77ap 15ap;
+  background-repeat: no-repeat;
+}
+.tab-l { left: 3ap; background-image: url("assets/ui/tab-l.png"); }
+.tab-r { right: 3ap; background-image: url("assets/ui/tab-r.png"); }
+.tab:pressed { top: 3ap; }
+.key {
+  position: absolute;
+  top: 3ap;
+  width: 9ap;
+  text-align: center;
+  color: var(--key);
+}
+.key-l { left: 3ap; }
+.key-r { left: 65ap; }
+.tab-name {
+  position: absolute;
+  top: 3ap;
+  color: var(--tan);
+  text-shadow: 1ap 1ap 0 #8d5f9e;
+}
+.tab-l .tab-name { left: 16ap; }
+.tab-r .tab-name { left: 18ap; }
+
+.plate {
+  position: absolute;
+  left: 88ap;
+  top: 0;
+  width: 72ap;
+  height: 19ap;
+  align-items: center;
+  background-image: url("assets/ui/plate.png");
+  background-size: 72ap 19ap;
+  background-repeat: no-repeat;
+}
+.plate-text {
+  margin-top: 2ap;
+  color: var(--tan);
+  text-shadow: 1ap 1ap 0 #8d5f9e;
+}
+
+/* ---- energy and ammo ------------------------------------------------------------------ */
+
+.hud {
+  flex-shrink: 0;
+  height: 22ap;
+  padding: 2ap 4ap 0;
+  flex-direction: row;
+  align-items: center;
+  gap: 3ap;
+}
+.cube { width: 12ap; height: 12ap; }
+.energy { width: 44ap; gap: 0; }
+.energy .banner { padding-left: 3ap; }
+.banner {
+  position: relative;
+  height: 10ap;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 3ap;
+  background-color: var(--mint);
+  border: 1ap solid var(--ink);
+  box-shadow: 1ap 1ap 0 var(--ink);
+  color: var(--ink);
+}
+.banner-text { color: var(--ink); line-height: 7ap; margin-top: -2ap; text-shadow: 1ap 1ap 0 var(--mint-lt); }
+.banner-end { width: 10ap; height: 5ap; align-self: flex-end; }
+.energy-tray {
+  height: 9ap;
+  margin-top: 1ap;
+  padding: 0 3ap;
+  justify-content: center;
+  background-color: var(--ink);
+  border: 1ap solid var(--teal-dk);
+}
+.energy-num { font-family: "PressStart"; font-size: 8ap; line-height: 7ap; color: var(--white); }
+.tanks { width: 36ap; flex-direction: row; flex-wrap: wrap; gap: 1ap; }
+.tank { width: 5ap; height: 5ap; background-color: var(--teal-dd); border: 1ap solid var(--ink); }
+.tank.full { background-color: var(--orange); border-color: var(--tan-dk); }
+.ammo {
+  height: 12ap;
+  padding: 0 3ap;
+  flex-direction: row;
+  align-items: center;
+  gap: 2ap;
+  background-color: var(--ink);
+  border: 1ap solid var(--teal-dk);
+}
+.ammo-icon { width: 12ap; height: 8ap; }
+.ammo-pb .ammo-icon { width: 8ap; height: 8ap; }
+.ammo-num { color: var(--white); }
+
+/* ---- message strip ------------------------------------------------------------------------ */
+
+.strip {
+  flex-shrink: 0;
+  height: 25ap;
+  padding: 6ap 8ap 0;
+  background-image: url("assets/ui/strip.png");
+  background-size: 248ap 25ap;
+  background-repeat: no-repeat;
+}
+.strip-text {
+  width: 100%;
+  text-align: center;
+  font-family: "Jersey";
+  font-size: 11ap;
+  line-height: 12ap;
+  color: var(--white);
+  text-overflow: ellipsis;
+}
+
+/* ---- shared: mint banners, bars, toggles --------------------------------------------------- */
+
+.col { gap: 3ap; }
+.toggles { gap: 2ap; }
+.toggle {
+  height: 11ap;
+  padding: 0 2ap;
+  flex-direction: row;
+  align-items: center;
+  gap: 3ap;
+  background-color: var(--teal-dd);
+  border: 1ap solid var(--ink);
+  color: var(--teal);
+}
+.toggle.on { background-color: var(--blue); border-color: var(--blue-dk); color: var(--white); }
+.toggle.locked { background-color: #0f1d22; color: var(--teal-dk); }
+.node-img { width: 9ap; height: 9ap; }
+.toggle-name { color: inherit; }
+
+bar {
+  height: 5ap;
+  background-color: var(--ink);
+  border: 1ap solid var(--teal-dk);
+  accent-color: var(--mint);
+}
+
+/* ---- map ------------------------------------------------------------------------------------- */
+
+.content-map { gap: 3ap; }
+.banner-room { margin-right: 4ap; }
+.map-frame {
+  position: relative;
+  align-self: center;
+  width: 499.5px;
+  height: 277.5px;
+  border: 1ap solid var(--teal);
+  box-shadow: 1ap 1ap 0 var(--ink);
+  background-color: #212921;
+}
+.map-pan { position: absolute; left: 0; top: 0; width: 499.5px; height: 277.5px; }
+.map-img { position: absolute; left: 0; top: 0; width: 499.5px; height: 277.5px; }
+.samus-anchor { position: absolute; width: 0; height: 0; }
+.crosshair { position: absolute; left: -16.26px; top: -16.26px; width: 32.52px; height: 32.52px; }
+.map-empty { position: absolute; left: 0; top: 0; right: 0; bottom: 0; align-items: center; justify-content: center; }
+.map-empty-text { font-family: "Jersey"; font-size: 11ap; color: var(--mint-lt); }
+
+/* ---- status ---------------------------------------------------------------------------------- */
+
+.content-status { flex-direction: row; gap: 3ap; }
+.content-status .col { width: 84ap; }
+.suit-stage { position: relative; width: 62ap; margin-top: 8ap; }
+.lattice { position: absolute; left: 0; top: 0; width: 62ap; height: 92ap; }
+.suit { position: absolute; left: 7ap; top: 2ap; width: 48ap; height: 88ap; }
+.wire { position: absolute; background-color: var(--mint); }
+.wire-lh { left: -3ap; top: -4ap; width: 21ap; height: 1ap; }
+.wire-lv { left: 17ap; top: -4ap; width: 1ap; height: 36ap; }
+.wire-rh { right: -3ap; top: -4ap; width: 21ap; height: 1ap; }
+.wire-rv { right: 17ap; top: -4ap; width: 1ap; height: 36ap; }
+.cap {
+  height: 11ap;
+  padding: 0 2ap;
+  flex-direction: row;
+  align-items: center;
+  gap: 4ap;
+  background-color: var(--ink);
+  border: 1ap solid var(--teal-dk);
+}
+.cap-icon { width: 12ap; height: 8ap; }
+.cap-ic-pbomb { width: 8ap; height: 8ap; margin-right: 4ap; }
+.cap-num { color: var(--white); }
+
+/* ---- sectors: save-slot rows ------------------------------------------------------------------ */
+
+.content-sectors { padding-top: 2ap; }
+.sector-list { gap: 0; }
+.sector-row {
+  height: 20ap;
+  padding: 0 4ap 0 2ap;
+  flex-direction: row;
+  align-items: center;
+  gap: 4ap;
+  border-bottom: 1ap solid var(--olive);
+}
+.sector-row.here { background-color: var(--blue-dk); }
+.hex {
+  width: 14ap;
+  height: 12ap;
+  align-items: center;
+  justify-content: center;
+  background-image: url("assets/ui/hex-off.png");
+  background-size: 14ap 12ap;
+  background-repeat: no-repeat;
+}
+.hex.here { background-image: url("assets/ui/hex-on.png"); }
+.hex-letter { margin-top: 1ap; color: var(--white); text-shadow: 1ap 1ap 0 var(--ink); }
+.sector-name { width: 52ap; color: var(--tan); }
+.sector-bar { flex: 1; height: 5ap; }
+.sector-pct { width: 22ap; text-align: right; color: var(--white); }
+.sector-row.here .sector-bar { accent-color: var(--olive); }
+
+/* ---- log -------------------------------------------------------------------------------------- */
+
+.content-log { flex-direction: row; gap: 4ap; }
+.col-boss { width: 108ap; }
+.col-items { flex: 1; }
+.boss-list { gap: 2ap; }
+.boss {
+  height: 13ap;
+  padding: 0 2ap;
+  flex-direction: row;
+  align-items: center;
+  gap: 3ap;
+  background-color: var(--teal-dd);
+  border: 1ap solid var(--ink);
+  color: var(--teal);
+}
+.boss.done { background-color: var(--blue); border-color: var(--blue-dk); color: var(--white); }
+.boss-name { color: inherit; }
+.item-list { gap: 0; }
+.item { padding: 3ap 0 3ap; gap: 3ap; border-bottom: 1ap solid var(--olive-dk); }
+.item-head { flex-direction: row; align-items: center; gap: 3ap; }
+.item-slot { width: 12ap; height: 12ap; align-items: center; justify-content: center; }
+.item-icon { width: 12ap; height: 8ap; }
+.kind-tank .item-icon { width: 12ap; height: 12ap; }
+.kind-pbomb .item-icon { width: 8ap; height: 8ap; }
+.item-name { color: var(--tan); }
+.item-count { color: var(--white); }
+.item-bar { height: 3ap; }
+.stat-row { flex-direction: row; gap: 3ap; margin-top: 3ap; }
+.stat {
+  flex: 1;
+  height: 12ap;
+  padding: 0 3ap;
+  flex-direction: row;
+  align-items: center;
+  gap: 3ap;
+  background-color: var(--ink);
+  border: 1ap solid var(--teal-dk);
+}
+.stat-label { color: var(--teal); }
+.stat-num { color: var(--white); }
+.stat-icon { width: 9ap; height: 8ap; }
+
+/* ---- waiting ------------------------------------------------------------------------------------ */
+
+.waiting { flex: 1; }
+.page-waiting { flex: 1; }
+.boot { flex: 1; align-items: center; justify-content: center; gap: 10ap; padding-bottom: 8ap; }
+.boot-logo { width: 240ap; height: 56ap; }
+.logo-top { width: 224ap; height: 8ap; align-self: flex-start; }
+.logo-body { width: 240ap; height: 48ap; }
+.boot-plate {
+  padding: 5ap 14ap;
+  background-color: var(--lav);
+  border: 2ap solid var(--ink);
+  box-shadow: 2ap 2ap 0 var(--steel-dk);
+}
+.boot-title { color: var(--tan); font-size: 16ap; text-shadow: 1ap 1ap 0 #8d5f9e; }
+.boot-sub { font-family: "Jersey"; font-size: 11ap; color: var(--mint-lt); }

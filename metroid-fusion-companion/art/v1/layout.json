@@ -1,0 +1,794 @@
+{
+  "type": "box",
+  "class": "screen",
+  "children": [
+    {
+      "type": "box",
+      "class": "waiting",
+      "children": [
+        {
+          "type": "box",
+          "class": "wait",
+          "children": [
+            {
+              "type": "image",
+              "class": "wait-logo",
+              "src": "$waitLogo",
+              "visibleIf": "$hasLogo"
+            },
+            {
+              "type": "text",
+              "class": "wait-title",
+              "text": "{waitTitle}",
+              "visibleIf": "$noLogo"
+            },
+            {
+              "type": "text",
+              "class": "wait-sub",
+              "text": "{waitSub}"
+            }
+          ]
+        }
+      ],
+      "visibleIf": "$waiting"
+    },
+    {
+      "type": "box",
+      "class": "shell",
+      "children": [
+        {
+          "type": "pages",
+          "pages": [
+            {
+              "name": "status",
+              "child": {
+                "type": "box",
+                "class": "page page-status",
+                "children": [
+                  {
+                    "type": "box",
+                    "class": "stage",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "hdr",
+                        "children": [
+                          {
+                            "type": "image",
+                            "class": "header",
+                            "src": "$art.header"
+                          },
+                          {
+                            "type": "list",
+                            "class": "num n-energy-now",
+                            "items": "$energyNow",
+                            "template": {
+                              "type": "image",
+                              "class": "g",
+                              "src": "$src"
+                            }
+                          },
+                          {
+                            "type": "list",
+                            "class": "num n-energy-max",
+                            "items": "$energyMax",
+                            "template": {
+                              "type": "image",
+                              "class": "g",
+                              "src": "$src"
+                            }
+                          },
+                          {
+                            "type": "list",
+                            "class": "num n-missile-now",
+                            "items": "$missileNow",
+                            "template": {
+                              "type": "image",
+                              "class": "g",
+                              "src": "$src"
+                            }
+                          },
+                          {
+                            "type": "list",
+                            "class": "num n-missile-max",
+                            "items": "$missileMax",
+                            "template": {
+                              "type": "image",
+                              "class": "g",
+                              "src": "$src"
+                            }
+                          },
+                          {
+                            "type": "list",
+                            "class": "num n-bomb-now",
+                            "items": "$bombNow",
+                            "template": {
+                              "type": "image",
+                              "class": "g",
+                              "src": "$src"
+                            }
+                          },
+                          {
+                            "type": "list",
+                            "class": "num n-bomb-max",
+                            "items": "$bombMax",
+                            "template": {
+                              "type": "image",
+                              "class": "g",
+                              "src": "$src"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "body",
+                        "children": [
+                          {
+                            "type": "image",
+                            "class": "frame",
+                            "src": "$art.frameL"
+                          },
+                          {
+                            "type": "list",
+                            "class": "side side-left",
+                            "items": "$left",
+                            "template": {
+                              "type": "box",
+                              "class": "stat",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "class": "stat-label",
+                                  "text": "{label}"
+                                },
+                                {
+                                  "type": "text",
+                                  "class": "stat-value",
+                                  "text": "{value}"
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "type": "image",
+                            "class": "center",
+                            "src": "$art.center"
+                          },
+                          {
+                            "type": "list",
+                            "class": "side side-right",
+                            "items": "$right",
+                            "template": {
+                              "type": "box",
+                              "class": "stat",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "class": "stat-label",
+                                  "text": "{label}"
+                                },
+                                {
+                                  "type": "text",
+                                  "class": "stat-value",
+                                  "text": "{value}"
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "type": "image",
+                            "class": "frame",
+                            "src": "$art.frameR"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "info",
+                        "children": [
+                          {
+                            "type": "image",
+                            "class": "frame2",
+                            "src": "$art.sideL"
+                          },
+                          {
+                            "type": "list",
+                            "class": "info-text",
+                            "items": "$hatches",
+                            "template": {
+                              "type": "box",
+                              "class": "hatch",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "class": "hatch-name",
+                                  "text": "{name}"
+                                },
+                                {
+                                  "type": "text",
+                                  "class": "hatch-state",
+                                  "text": "{state}"
+                                }
+                              ],
+                              "classIf": {
+                                "open": "$open"
+                              }
+                            }
+                          },
+                          {
+                            "type": "image",
+                            "class": "frame2",
+                            "src": "$art.sideR"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "botbar",
+                        "children": [
+                          {
+                            "type": "image",
+                            "class": "frame2",
+                            "src": "$art.sideL"
+                          },
+                          {
+                            "type": "image",
+                            "class": "botmid",
+                            "src": "$art.botmid"
+                          },
+                          {
+                            "type": "image",
+                            "class": "frame2",
+                            "src": "$art.sideR"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "nav",
+                    "children": [
+                      {
+                        "type": "button",
+                        "class": "tab on",
+                        "onClick": [
+                          {
+                            "navigate": "status"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "tab-label",
+                            "text": "STATUS"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "tab",
+                        "onClick": [
+                          {
+                            "navigate": "arms"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "tab-label",
+                            "text": "ARMS"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "tab",
+                        "onClick": [
+                          {
+                            "navigate": "map"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "tab-label",
+                            "text": "MAP"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "arms",
+              "child": {
+                "type": "box",
+                "class": "page page-arms",
+                "children": [
+                  {
+                    "type": "box",
+                    "class": "stage",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "hdr",
+                        "children": [
+                          {
+                            "type": "image",
+                            "class": "header",
+                            "src": "$art.header"
+                          },
+                          {
+                            "type": "list",
+                            "class": "num n-energy-now",
+                            "items": "$energyNow",
+                            "template": {
+                              "type": "image",
+                              "class": "g",
+                              "src": "$src"
+                            }
+                          },
+                          {
+                            "type": "list",
+                            "class": "num n-energy-max",
+                            "items": "$energyMax",
+                            "template": {
+                              "type": "image",
+                              "class": "g",
+                              "src": "$src"
+                            }
+                          },
+                          {
+                            "type": "list",
+                            "class": "num n-missile-now",
+                            "items": "$missileNow",
+                            "template": {
+                              "type": "image",
+                              "class": "g",
+                              "src": "$src"
+                            }
+                          },
+                          {
+                            "type": "list",
+                            "class": "num n-missile-max",
+                            "items": "$missileMax",
+                            "template": {
+                              "type": "image",
+                              "class": "g",
+                              "src": "$src"
+                            }
+                          },
+                          {
+                            "type": "list",
+                            "class": "num n-bomb-now",
+                            "items": "$bombNow",
+                            "template": {
+                              "type": "image",
+                              "class": "g",
+                              "src": "$src"
+                            }
+                          },
+                          {
+                            "type": "list",
+                            "class": "num n-bomb-max",
+                            "items": "$bombMax",
+                            "template": {
+                              "type": "image",
+                              "class": "g",
+                              "src": "$src"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "arms",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "win w-beam",
+                            "children": [
+                              {
+                                "type": "image",
+                                "class": "w-title",
+                                "src": "$windows.beam.title"
+                              },
+                              {
+                                "type": "list",
+                                "class": "w-rows",
+                                "items": "$windows.beam.rows",
+                                "template": {
+                                  "type": "image",
+                                  "class": "w-row",
+                                  "src": "$src",
+                                  "classIf": {
+                                    "owned": "$owned"
+                                  }
+                                }
+                              },
+                              {
+                                "type": "image",
+                                "class": "w-foot",
+                                "src": "$windows.beam.footer"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "win w-missile",
+                            "children": [
+                              {
+                                "type": "image",
+                                "class": "w-title",
+                                "src": "$windows.missile.title"
+                              },
+                              {
+                                "type": "list",
+                                "class": "w-rows",
+                                "items": "$windows.missile.rows",
+                                "template": {
+                                  "type": "image",
+                                  "class": "w-row",
+                                  "src": "$src",
+                                  "classIf": {
+                                    "owned": "$owned"
+                                  }
+                                }
+                              },
+                              {
+                                "type": "image",
+                                "class": "w-foot",
+                                "src": "$windows.missile.footer"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "win w-suit",
+                            "children": [
+                              {
+                                "type": "image",
+                                "class": "w-title",
+                                "src": "$windows.suit.title"
+                              },
+                              {
+                                "type": "list",
+                                "class": "w-rows",
+                                "items": "$windows.suit.rows",
+                                "template": {
+                                  "type": "image",
+                                  "class": "w-row",
+                                  "src": "$src",
+                                  "classIf": {
+                                    "owned": "$owned"
+                                  }
+                                }
+                              },
+                              {
+                                "type": "image",
+                                "class": "w-foot",
+                                "src": "$windows.suit.footer"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "win w-misc",
+                            "children": [
+                              {
+                                "type": "image",
+                                "class": "w-title",
+                                "src": "$windows.misc.title"
+                              },
+                              {
+                                "type": "list",
+                                "class": "w-rows",
+                                "items": "$windows.misc.rows",
+                                "template": {
+                                  "type": "image",
+                                  "class": "w-row",
+                                  "src": "$src",
+                                  "classIf": {
+                                    "owned": "$owned"
+                                  }
+                                }
+                              },
+                              {
+                                "type": "image",
+                                "class": "w-foot",
+                                "src": "$windows.misc.footer"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "win w-bomb",
+                            "children": [
+                              {
+                                "type": "image",
+                                "class": "w-title",
+                                "src": "$windows.bomb.title"
+                              },
+                              {
+                                "type": "list",
+                                "class": "w-rows",
+                                "items": "$windows.bomb.rows",
+                                "template": {
+                                  "type": "image",
+                                  "class": "w-row",
+                                  "src": "$src",
+                                  "classIf": {
+                                    "owned": "$owned"
+                                  }
+                                }
+                              },
+                              {
+                                "type": "image",
+                                "class": "w-foot",
+                                "src": "$windows.bomb.footer"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "lace lace-l",
+                        "children": [
+                          {
+                            "type": "image",
+                            "class": "frame",
+                            "src": "$art.frameL"
+                          },
+                          {
+                            "type": "image",
+                            "class": "frame2",
+                            "src": "$art.sideL"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "lace lace-r",
+                        "children": [
+                          {
+                            "type": "image",
+                            "class": "frame",
+                            "src": "$art.frameR"
+                          },
+                          {
+                            "type": "image",
+                            "class": "frame2",
+                            "src": "$art.sideR"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "botbar",
+                        "children": [
+                          {
+                            "type": "image",
+                            "class": "frame2",
+                            "src": "$art.sideL"
+                          },
+                          {
+                            "type": "image",
+                            "class": "botmid",
+                            "src": "$art.botmid"
+                          },
+                          {
+                            "type": "image",
+                            "class": "frame2",
+                            "src": "$art.sideR"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "nav",
+                    "children": [
+                      {
+                        "type": "button",
+                        "class": "tab",
+                        "onClick": [
+                          {
+                            "navigate": "status"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "tab-label",
+                            "text": "STATUS"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "tab on",
+                        "onClick": [
+                          {
+                            "navigate": "arms"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "tab-label",
+                            "text": "ARMS"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "tab",
+                        "onClick": [
+                          {
+                            "navigate": "map"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "tab-label",
+                            "text": "MAP"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "map",
+              "child": {
+                "type": "box",
+                "class": "page page-map",
+                "children": [
+                  {
+                    "type": "box",
+                    "class": "stage",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "map",
+                        "children": [
+                          {
+                            "type": "image",
+                            "class": "outline",
+                            "src": "$art.outline"
+                          },
+                          {
+                            "type": "box",
+                            "class": "cover cover-l",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "cover cover-r",
+                            "children": []
+                          },
+                          {
+                            "type": "image",
+                            "class": "minimap",
+                            "src": "$art.map"
+                          },
+                          {
+                            "type": "box",
+                            "class": "marker",
+                            "children": [],
+                            "bindStyle": {
+                              "--mx": "{markCol}px",
+                              "--my": "{markRow}px"
+                            }
+                          },
+                          {
+                            "type": "text",
+                            "class": "plate",
+                            "text": "{sectorName}"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "list",
+                        "class": "map-info",
+                        "items": "$sectorRows",
+                        "template": {
+                          "type": "box",
+                          "class": "sector",
+                          "children": [
+                            {
+                              "type": "text",
+                              "class": "sector-name",
+                              "text": "{name}"
+                            },
+                            {
+                              "type": "text",
+                              "class": "sector-pct",
+                              "text": "{pct}"
+                            }
+                          ],
+                          "classIf": {
+                            "here": "$here",
+                            "mapped": "$mapped"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "nav",
+                    "children": [
+                      {
+                        "type": "button",
+                        "class": "tab",
+                        "onClick": [
+                          {
+                            "navigate": "status"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "tab-label",
+                            "text": "STATUS"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "tab",
+                        "onClick": [
+                          {
+                            "navigate": "arms"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "tab-label",
+                            "text": "ARMS"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "tab on",
+                        "onClick": [
+                          {
+                            "navigate": "map"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "tab-label",
+                            "text": "MAP"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "visibleIf": "$ready"
+    }
+  ],
+  "id": "screen",
+  "classIf": {
+    "alert": "$lowHealth"
+  }
+}

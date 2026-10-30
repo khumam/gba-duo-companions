@@ -21,29 +21,36 @@ Checked on a Thor (US `AMTE`, early Main Deck save, 2026-10-29): energy and max 
 missiles, mission time, area and room, security level 0 (matches the map screen's
 L1-L4 LOCK) and the Main Deck percentage all read correctly.
 
-Look: the game's own pause screens. `main.lua` draws them from the player's ROM with
-`gfx.tilemap` (US build only, `AMTE`; other regions show "US ROM ONLY"):
+## Look (v2, 2026-10-30)
 
-- bg tiles `0x0856A254` (LZ77), palette `0x085657A8` (minimap rows 0-2 then bg rows 3-15,
-  contiguous), status tilemap `0x085748AC`, map-screen frame `0x085740FC`.
-- Item windows are cropped one row at a time from the status tilemap's lower half, and
-  dimmed with opacity when the upgrade is missing.
-- The minimap is `gMinimapData_Visited` (EWRAM `0x02034000`, 32x32 tilemap kept up to date
-  by the game) drawn with the raw minimap tiles at ROM `0x08561FA8`. gfx images are cached
-  by their arguments, so each change draws from another EWRAM/ROM mirror (144 keys cycle).
-  It shows the current area only; Samus's cell is `gMinimapX/Y` (`0x03000031/32`).
-- Only the header counters use the game's font, as glyph PNGs (`assets/font`, from
-  `art/rom-font.py`; the only game graphics the zip carries); they are opaque so they cover the
-  placeholder numbers baked into the status tilemap. Every other word is Silkscreen Bold text
-  (`assets/fonts`): the menu font's 0/1/7 read as box/I/L on a companion, and real text allows
-  labels, "MAIN DECK" and tappable-size hatch/sector rows. Sizes are 13px labels, 17.34px values.
-- The waiting screen draws the title-screen logo from the ROM (gfx `0x08593274`, tilemap `0x085963B8`, palette `0x08596D0C`, tiles 1-28 x 1-14), over "GBADUO COMPANION PACK"; non-US ROMs get text only.
-- `node art/layout.mjs` writes `layout.json`. Previews can't render ROM art: use the device.
-- Map colours are the raw palette (magenta/green/grey); the game blends them toward lilac.
+Rebuilt like the Zero Mission pack from the game's own pause screens (`art/ref/*`, taken on the Thor
+with tilt-shift off): silver frame, teal L / R tabs, green sector plate and counter panels, cyan item
+banners, the blue "owned" bar, navy grid. Five pages that cycle with the tabs like the game's L / R:
+MAP, STATUS, ARMS, SECTORS, MISSION. The old v1 (the game's baked tilemaps with glyph digits) is in `art/v1/`.
 
-Not checked on a device yet:
+Build: `python3 art/fusion.py` draws the sprites into `assets/ui` (Pillow); `python3 art/css.py` expands
+`ap` units in `art/style.src.css` to `style.css` (1ap = 2.168px = 5 device px, screen 248 x 216 ap);
+`node art/layout.mjs` writes `layout.json`. Edit the sources, not the outputs.
 
-- **Ability bits, tanks, hatches 1-4:** needs a save past the first data rooms.
-- **Downloaded maps:** read as bit n = area n; the wiki only lists the bit values.
-- **EU/JP:** the decomp and the wiki describe the US build (`AMTE`); the pack also
-  matches `AMTP` and `AMTJ` on the assumption IWRAM is laid out the same.
+Drawn from the player's ROM (US build, `AMTE` only; other regions get "US ROM ONLY") with `gfx.tilemap`,
+so no Nintendo graphics ship: Samus on her grid (status tilemap `0x085748AC`, tiles 9-19 x 5-19), the title
+logo, and the live area map. The map is `gMinimapData_Visited` (EWRAM `0x02034000`) with the raw minimap
+tiles at ROM `0x08561FA8`: an 18x9 cell window centred on Samus (`gMinimapX/Y` = `0x03000031/32`), each map
+pixel 8 device px. gfx images are cached by arguments, not contents, so a changed map is read through the
+next 256 KB EWRAM mirror (same memory, new key). A navy overlay (`.map-dim`) tones the raw palette's
+glaring blue toward the game's own colours (the game blends them at runtime).
+
+Mission: `gEventCounter` = `0x03000B87` (found from `EventSet`, ROM `0x08074890`, and consistent on the
+Thor: step 9 after the first data room, "next: Morph Ball"). Event numbers are the order of `enum Event` in
+the decomp's `include/constants/event.h`; EventSet(n) stores n when event n happens, so counter >= n means
+it has. Bosses are read from the events they hand over (Arachnus: Charge Beam 15, Serris: Speed Booster 29,
+Yakuza: Space Jump 73, Nightmare: Gravity Suit 81) plus B.O.X. 40, SA-X 102, Omega Metroid 108. Those four
+drop-based ones are inferred from the game's story, not read from a boss flag: check them on a later save.
+Security levels come from `gSecurityHatchLevel` (0x0300001C); the "next" line walks `MILESTONES` in main.lua.
+
+Checked on the Thor (US, early Main Deck save, 2026-10-30): all five pages with live values, the waiting
+screen with the real logo, hatches L1-L4 locked (level 0), mission step 9 of 109.
+
+Not checked on a device yet: boss rows and security levels past the first data rooms, downloaded-map flags
+(read as bit n = area n), EU/JP (the decomp and the wiki describe the US build; the manifest also matches
+`AMTP` and `AMTJ`, but the ROM art offsets are US only).

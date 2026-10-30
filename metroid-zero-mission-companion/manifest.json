@@ -1,0 +1,25 @@
+{
+  "id": "metroid-zero-mission-companion",
+  "name": "Metroid: Zero Mission Companion",
+  "version": "1.0.0",
+  "author": "khumam",
+  "formatVersion": 3,
+  "match": {
+    "gameCode": [
+      "BMXE",
+      "BMXP",
+      "BMXJ"
+    ],
+    "crc32": []
+  },
+  "tickHz": 4,
+  "layout": "layout.json",
+  "styles": [
+    "style.css"
+  ],
+  "script": "main.lua",
+  "values": {},
+  "permissions": [
+    "memory-write"
+  ]
+}

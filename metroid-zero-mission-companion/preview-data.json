@@ -1,0 +1,307 @@
+{
+  "waiting": false,
+  "ready": true,
+  "sector": "BRINSTAR",
+  "energy": "99",
+  "tanks": [
+    {
+      "full": true
+    },
+    {
+      "full": true
+    },
+    {
+      "full": true
+    },
+    {
+      "full": true
+    },
+    {
+      "full": true
+    },
+    {
+      "full": false
+    },
+    {
+      "full": false
+    },
+    {
+      "full": false
+    },
+    {
+      "full": false
+    },
+    {
+      "full": false
+    },
+    {
+      "full": false
+    },
+    {
+      "full": false
+    }
+  ],
+  "missiles": "050",
+  "missilesMax": "050",
+  "supers": "05",
+  "supersMax": "05",
+  "pbombs": "00",
+  "pbombsMax": "00",
+  "map": {
+    "has": true,
+    "none": false,
+    "image": "asset:_preview/map.png",
+    "onMap": true,
+    "x": 319.13,
+    "y": 152.627,
+    "items": "BRINSTAR 1%",
+    "coords": "ROOM 36",
+    "status": "BRINSTAR, room 36."
+  },
+  "armory": {
+    "beams": [
+      {
+        "id": "long",
+        "name": "LONG",
+        "on": true,
+        "off": false,
+        "locked": false
+      },
+      {
+        "id": "charge",
+        "name": "CHARGE",
+        "on": false,
+        "off": true,
+        "locked": false
+      },
+      {
+        "id": "ice",
+        "name": "ICE",
+        "on": true,
+        "off": false,
+        "locked": false
+      },
+      {
+        "id": "wave",
+        "name": "WAVE",
+        "on": true,
+        "off": false,
+        "locked": false
+      },
+      {
+        "id": "plasma",
+        "name": "PLASMA",
+        "on": false,
+        "off": false,
+        "locked": true
+      }
+    ],
+    "gear": [
+      {
+        "id": "varia",
+        "name": "VARIA",
+        "on": true,
+        "off": false,
+        "locked": false
+      },
+      {
+        "id": "gravity",
+        "name": "GRAVITY",
+        "on": true,
+        "off": false,
+        "locked": false
+      },
+      {
+        "id": "morph",
+        "name": "MORPH",
+        "on": true,
+        "off": false,
+        "locked": false
+      },
+      {
+        "id": "bomb",
+        "name": "BOMB",
+        "on": true,
+        "off": false,
+        "locked": false
+      },
+      {
+        "id": "hi-jump",
+        "name": "HI-JUMP",
+        "on": true,
+        "off": false,
+        "locked": false
+      },
+      {
+        "id": "speed",
+        "name": "SPEED",
+        "on": true,
+        "off": false,
+        "locked": false
+      },
+      {
+        "id": "space",
+        "name": "SPACE",
+        "on": false,
+        "off": false,
+        "locked": true
+      },
+      {
+        "id": "screw",
+        "name": "SCREW",
+        "on": true,
+        "off": false,
+        "locked": false
+      },
+      {
+        "id": "p.grip",
+        "name": "P.GRIP",
+        "on": true,
+        "off": false,
+        "locked": false
+      },
+      {
+        "id": "p.bomb",
+        "name": "P.BOMB",
+        "on": false,
+        "off": false,
+        "locked": true
+      }
+    ],
+    "status": "ICE+WAVE ONLINE - 12/15 SYS",
+    "suit": "asset:ui/samus-power.png"
+  },
+  "sectors": [
+    {
+      "name": "BRINSTAR",
+      "pct": 0.62,
+      "pctText": "62%",
+      "here": true,
+      "tag": "B"
+    },
+    {
+      "name": "KRAID",
+      "pct": 0.31,
+      "pctText": "31%",
+      "here": false,
+      "tag": "K"
+    },
+    {
+      "name": "NORFAIR",
+      "pct": 0.18,
+      "pctText": "18%",
+      "here": false,
+      "tag": "N"
+    },
+    {
+      "name": "RIDLEY",
+      "pct": 0,
+      "pctText": "0%",
+      "here": false,
+      "tag": "R"
+    },
+    {
+      "name": "TOURIAN",
+      "pct": 0,
+      "pctText": "0%",
+      "here": false,
+      "tag": "T"
+    },
+    {
+      "name": "CRATERIA",
+      "pct": 0.4,
+      "pctText": "40%",
+      "here": false,
+      "tag": "C"
+    },
+    {
+      "name": "CHOZODIA",
+      "pct": 0,
+      "pctText": "0%",
+      "here": false,
+      "tag": "Z"
+    }
+  ],
+  "log": {
+    "items": [
+      {
+        "name": "E-TANKS",
+        "got": 5,
+        "max": 12,
+        "pct": 0.4166666666666667,
+        "icon": "asset:ui/cube.png",
+        "tank": true
+      },
+      {
+        "name": "MISSILES",
+        "got": 9,
+        "max": 50,
+        "pct": 0.18,
+        "icon": "asset:ui/ic-missile.png",
+        "missile": true
+      },
+      {
+        "name": "SUPERS",
+        "got": 1,
+        "max": 15,
+        "pct": 0.06666666666666667,
+        "icon": "asset:ui/ic-super.png",
+        "super": true
+      },
+      {
+        "name": "P-BOMBS",
+        "got": 0,
+        "max": 9,
+        "pct": 0,
+        "icon": "asset:ui/ic-pbomb.png",
+        "pbomb": true
+      }
+    ],
+    "completion": "31%",
+    "time": "1:24:07",
+    "status": "2 of 8 targets down, 26 of 81 tank upgrades found.",
+    "bosses": [
+      {
+        "name": "DEOREM",
+        "done": true,
+        "alive": false
+      },
+      {
+        "name": "ACID WORM",
+        "done": false,
+        "alive": true
+      },
+      {
+        "name": "KRAID",
+        "done": true,
+        "alive": false
+      },
+      {
+        "name": "IMAGO",
+        "done": false,
+        "alive": true
+      },
+      {
+        "name": "RIDLEY",
+        "done": false,
+        "alive": true
+      },
+      {
+        "name": "CROCOMIRE",
+        "done": false,
+        "alive": true
+      },
+      {
+        "name": "MOTHER BRAIN",
+        "done": false,
+        "alive": true
+      },
+      {
+        "name": "MECHA RIDLEY",
+        "done": false,
+        "alive": true
+      }
+    ],
+    "bossCount": "2/8"
+  }
+}
