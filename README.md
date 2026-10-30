@@ -110,18 +110,37 @@ for what's verified on the device and what isn't yet.
 
 ### Metroid Fusion — `metroid-fusion-companion`
 
-For Metroid Fusion (US `AMTE`, EU `AMTP`, JP `AMTJ`). Design: the game's own map screen, a silver
-frame around navy grid windows with green tab plates and the L1-L4 hatch list.
+For Metroid Fusion (US `AMTE`, EU `AMTP`, JP `AMTJ`). Design: the game's own pause screens, drawn
+from your ROM (US build; other regions show a text-only waiting screen) with readable Silkscreen text
+for everything else.
 
-- **STATUS** - energy with its tanks (the window turns red when energy is low), missiles,
-  power bombs once you have them, where you are, mission time and the security hatches
-  (L1-L4, OPEN or LOCK).
-- **ABILITIES** - every beam, missile, bomb, suit and move upgrade, lit once you have it.
-- **SECTORS** - Main Deck and Sectors 1-6 with their percentage, downloaded maps and
-  where you are.
+- **STATUS** - energy, missiles and power bombs in the game's header, Samus, where you are,
+  the room, mission time, tanks, security level and the four hatches (OPEN or LOCKED).
+- **ARMS** - the beam, missile, bomb, suit and misc. windows from the status screen, lit once
+  Samus has the upgrade.
+- **MAP** - the live minimap for the current area in the map-screen frame, with Samus's room
+  marked, and every sector's completion with downloaded maps and where you are.
 
 See [`metroid-fusion-companion/NOTES.md`](metroid-fusion-companion/NOTES.md) for
 what's verified on the device and what isn't yet.
+
+### The Legend of Zelda: Oracle of Ages (early, v0.1.0) — `zelda-oracle-of-ages-companion`
+
+For Oracle of Ages (US `CGB-AZ8E`, EU `CGB-AZ8P`, JP `CGB-AZ8J`; checked on the European
+build). Design: the game's own subscreen, a mauve brick window around an off-white panel, under the HUD
+strip with your B and A items, rupees and hearts. The icons and maps are the game's own graphics.
+
+- **ITEMS** - your inventory in the game's slot order, with the B and A items tagged, and
+  each item's level or count.
+- **MAP** - the overworld of the era you're in (Lynna in the present, Labrynna in the past)
+  with the rooms you haven't visited dimmed and your room outlined. It's drawn from the game's data
+  ahead of time, since Game Boy Color games can't draw ROM art at runtime.
+- **SEEDS** - the five seeds with the satchel's selection marked, plus bombs, bombchus and gasha seeds.
+- **RINGS** - the worn ring, the ring box, and all 64 rings with the ones you own in colour.
+- **STATUS** - hearts and heart pieces, the eight essences, the era, the harp song and the room.
+
+See [`zelda-oracle-of-ages-companion/NOTES.md`](zelda-oracle-of-ages-companion/NOTES.md) for
+what's verified on the device and what isn't yet (only an early save has been checked).
 
 Want a pack for another game? [Open an issue](https://github.com/khumam/gba-duo-companions/issues).
 
@@ -191,6 +210,9 @@ cd my-pack && zip -rX ../my-pack-1.0.0.zip . -x '*.DS_Store' 'art/*' 'screenshoo
   samurai goroh's code guide.
 - Metroid Fusion: [Data Crystal's RAM map](https://datacrystal.tcrf.net/wiki/Metroid_Fusion/RAM_map)
   and the [metroidret](https://github.com/metroidret/mf) mf decompilation.
+- Oracle of Ages: the [oracles-disasm](https://github.com/Stewmath/oracles-disasm) disassembly
+  (memory map, rooms, tilesets and item sprites). The 64 ring icons are cut from a community
+  sprite sheet of the game's rings.
 - Fonts: [Jersey 10](https://fonts.google.com/specimen/Jersey+10),
   [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P),
   [Silkscreen](https://fonts.google.com/specimen/Silkscreen),
@@ -209,7 +231,10 @@ cd my-pack && zip -rX ../my-pack-1.0.0.zip . -x '*.DS_Store' 'art/*' 'screenshoo
   The FireRed pack's Pokémon, item, type and badge sprites come from the
   [PokeAPI sprites](https://github.com/PokeAPI/sprites) repository; they belong to
   Nintendo, Game Freak and Creatures. Its Town Map, and all of the Minish Cap pack's game
-  graphics, are read from the player's own ROM at runtime and not included.
+  graphics, are read from the player's own ROM at runtime and not included. The Metroid
+  Fusion pack draws its frames and maps from your ROM too and ships only the game's menu
+  digits; the Oracle of Ages pack ships its item, seed, ring and map graphics, which come from
+  the game's own data.
 
 </details>
 
@@ -220,5 +245,7 @@ Creatures, The Pokémon Company or Marvelous. Pokémon, Harvest Moon, The Legend
 names are trademarks of their respective owners. No games are included: use your own
 legally dumped ROMs. The FireRed pack includes Pokémon, item, type and badge sprites for
 a non-commercial fan project; they remain the property of Nintendo, Game Freak and
-Creatures and will be removed on request. The Minish Cap pack includes none of the game's
-graphics: it draws them from your ROM.
+Creatures and will be removed on request. The Oracle of Ages pack likewise includes the
+game's item, seed, ring and map graphics for a non-commercial fan project; they remain the
+property of Nintendo and will be removed on request. The Minish Cap pack includes none of the
+game's graphics: it draws them from your ROM.
