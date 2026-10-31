@@ -75,6 +75,7 @@ text { font-family: "Jersey"; color: #FFFFFF; text-shadow: 1px 1px 0 #000000; wh
 .hero.slim { padding: 12px 14px; }
 .portrait { width: 64px; height: 64px; background: #1D4951; border: 3px solid #A5A5A5; border-radius: 2px;
             align-items: center; justify-content: center; }
+.portrait-img { width: 58px; height: 58px; image-rendering: pixelated; }
 .portrait-letter { font-size: 52px; color: var(--c, #F8D060); text-shadow: 2px 2px 0 #000000; }
 .hero-main { flex: 1; gap: 4px; }
 .hero-top { flex-direction: row; align-items: center; gap: 12px; }
@@ -129,8 +130,7 @@ bar.mini { height: 6px; }
             border-top: 1px solid #3A82B8; border-bottom: 1px solid #1D4951; }
 .item-row.sel { background: linear-gradient(180deg, #AD86A3 0%, #BD8EAB 50%, #DC9FBC 100%); border-top-color: #DC9FBC; border-bottom-color: #AD86A3; }
 .item-row.broken { opacity: .5; }
-.item-icon { width: 16px; height: 16px; background: #1D4951; border: 2px solid #A5A5A5; border-radius: 2px; }
-.item-icon.eq { border-color: #F8D060; }
+image.item-icon { width: 32px; height: 32px; image-rendering: pixelated; }
 .item-name { flex: 1; font-size: 24px; color: #FFFFFF; }
 .item-qty { font-size: 22px; color: #A9D2EE; }
 .item-eq { font-family: "Silk"; font-weight: 700; font-size: 10px; color: #F8D060; }

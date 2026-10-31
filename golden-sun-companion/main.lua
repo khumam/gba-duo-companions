@@ -4,6 +4,7 @@
 -- same layout, but the party blocks begin at 0x02000500, 0x20 lower than in TLA.
 local item_names = pack.require("item_names")
 local djinn_names = pack.require("djinn_names")
+local psynergy_names = pack.require("psynergy_names")
 
 -- ---- Save block (EWRAM) ---------------------------------------------------------
 local COINS = 0x02000014      -- u32
@@ -20,10 +21,21 @@ local ATK, DEF, AGI, LCK = 0x3C, 0x3E, 0x40, 0x42
 local ELEMENTS = 0x48         -- Venus, Mercury, Mars, Jupiter: power u16, resist u16
 local ITEMS = 0xD8            -- u16 each: 0x1FF id, 0x200 equipped, 0x400 broken, 0xF800 qty
 local ITEM_SLOTS = 15
+local SPELLS = 0x58           -- u32 each, 0 ends the list; low 15 bits are the Psynergy id
+local SPELL_SLOTS = 32
 local EXP = 0x124             -- u32, not checked on a device yet
 
 local ELEMENT_INFO = {
   { "Venus", "#C98B3C" }, { "Mercury", "#4AA3E0" }, { "Mars", "#E5584B" }, { "Jupiter", "#B58CE0" },
+}
+
+-- Face art cropped from the game's own status screen; only the members seen so far.
+local PORTRAITS = {
+  Isaac = "asset:img/portrait-isaac.png",
+  Garet = "asset:img/portrait-garet.png",
+  Ivan = "asset:img/portrait-ivan.png",
+  Mia = "asset:img/portrait-mia.png",
+  Jenna = "asset:img/portrait-jenna.png",
 }
 
 local function readName(base)
@@ -54,10 +66,11 @@ local function readItems(base, selected)
     local word = mem.u16(base + ITEMS + slot * 2)
     local id = word & 0x1FF
     if id ~= 0 then
-      local qty = (word >> 11) & 0x1F
+      local qty = ((word >> 11) & 0x1F) + 1 -- stored as count - 1 (Isaac's 3 Herbs read 2)
       items[#items + 1] = {
         name = item_names[id] or string.format("Item %02X", id),
         id = string.format("%02X", id),
+        icon = string.format("asset:img/items/%03x.png", id), hasIcon = item_names[id] ~= nil,
         qty = qty > 1 and ("×" .. qty) or "",
         equipped = (word & 0x200) ~= 0,
         broken = (word & 0x400) ~= 0,
@@ -66,6 +79,21 @@ local function readItems(base, selected)
     end
   end
   return items
+end
+
+local function readSpells(base)
+  local spells = {}
+  for slot = 0, SPELL_SLOTS - 1 do
+    local word = mem.u32(base + SPELLS + slot * 4)
+    if word == 0 then break end
+    local id = word & 0x7FFF
+    local info = psynergy_names[id]
+    spells[#spells + 1] = {
+      name = info and info[1] or ("Psynergy " .. id), pp = info and tostring(info[2]) or "—",
+      icon = string.format("asset:img/psy/%03d.png", id), hasIcon = info ~= nil,
+    }
+  end
+  return spells
 end
 
 local function fraction(value, max)
@@ -130,6 +158,7 @@ function update(ui)
   out.m = {
     name = p.name,
     initial = p.name:sub(1, 1):upper(),
+    portrait = PORTRAITS[p.name], hasPortrait = PORTRAITS[p.name] ~= nil, noPortrait = PORTRAITS[p.name] == nil,
     color = members[sel + 1].color,
     level = mem.u8(b + LEVEL),
     adept = adept,
@@ -140,6 +169,7 @@ function update(ui)
     atk = mem.u16(b + ATK), def = mem.u16(b + DEF), agi = mem.u16(b + AGI), lck = mem.u8(b + LCK),
     elements = elements,
     items = items,
+    spells = readSpells(b),
     low = hp > 0 and hp * 4 <= maxHp,
     down = hp == 0,
   }

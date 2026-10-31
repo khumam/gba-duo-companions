@@ -94,6 +94,23 @@
                 },
                 {
                   "type": "button",
+                  "class": "wide-btn",
+                  "onClick": {
+                    "call": "wideView",
+                    "args": [
+                      "toggle"
+                    ]
+                  },
+                  "children": [
+                    {
+                      "type": "text",
+                      "class": "wide-text",
+                      "text": "WIDE {_wideLabel}"
+                    }
+                  ]
+                },
+                {
+                  "type": "button",
                   "class": "ezlo-btn",
                   "onClick": [
                     {

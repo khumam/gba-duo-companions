@@ -167,9 +167,16 @@
                             },
                             "children": [
                               {
+                                "type": "image",
+                                "class": "portrait-img",
+                                "src": "$m.portrait",
+                                "visibleIf": "$m.hasPortrait"
+                              },
+                              {
                                 "type": "text",
                                 "class": "portrait-letter",
-                                "text": "{m.initial}"
+                                "text": "{m.initial}",
+                                "visibleIf": "$m.noPortrait"
                               }
                             ]
                           },
@@ -412,11 +419,10 @@
                                       ],
                                       "children": [
                                         {
-                                          "type": "box",
+                                          "type": "image",
                                           "class": "item-icon",
-                                          "classIf": {
-                                            "eq": "$equipped"
-                                          }
+                                          "src": "$icon",
+                                          "visibleIf": "$hasIcon"
                                         },
                                         {
                                           "type": "text",
@@ -525,43 +531,134 @@
               "name": "psynergy",
               "child": {
                 "type": "box",
-                "class": "page",
+                "class": "page party-page",
                 "children": [
                   {
-                    "type": "box",
-                    "class": "hero slim",
-                    "children": [
-                      {
-                        "type": "box",
-                        "class": "hero-main",
-                        "children": [
-                          {
-                            "type": "text",
-                            "class": "hero-name",
-                            "text": "Psynergy"
-                          },
-                          {
-                            "type": "text",
-                            "class": "hero-class",
-                            "text": "Spell lists are not mapped yet"
+                    "type": "list",
+                    "class": "roster panel",
+                    "items": "$members",
+                    "template": {
+                      "type": "box",
+                      "class": "rcard",
+                      "classIf": {
+                        "on": "$active",
+                        "down": "$down"
+                      },
+                      "bindStyle": {
+                        "--c": "{color}"
+                      },
+                      "onClick": [
+                        {
+                          "set": {
+                            "member": "{@index}",
+                            "item": 0
                           }
-                        ]
-                      }
-                    ]
+                        }
+                      ],
+                      "children": [
+                        {
+                          "type": "box",
+                          "class": "rcard-top",
+                          "children": [
+                            {
+                              "type": "text",
+                              "class": "rcard-name",
+                              "text": "{name}"
+                            },
+                            {
+                              "type": "text",
+                              "class": "rcard-lv",
+                              "text": "L{level}"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "bar",
+                          "class": "hp mini",
+                          "classIf": {
+                            "low": "$low"
+                          },
+                          "value": "$hp",
+                          "maxKey": "$maxHp"
+                        },
+                        {
+                          "type": "text",
+                          "class": "rcard-hp",
+                          "text": "{hp}/{maxHp}"
+                        }
+                      ]
+                    }
                   },
                   {
                     "type": "box",
-                    "class": "panel fill",
+                    "class": "detail",
                     "children": [
                       {
-                        "type": "text",
-                        "class": "panel-title",
-                        "text": "COMING NEXT"
+                        "type": "box",
+                        "class": "panel hero slim",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "hero-main",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "hero-top",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "hero-name",
+                                    "text": "{m.name}"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "hero-class",
+                                    "text": "{m.sub}"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
                       },
                       {
-                        "type": "text",
-                        "class": "note",
-                        "text": "Each character's learned Psynergy and PP cost will appear here."
+                        "type": "box",
+                        "class": "panel inventory",
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "panel-title",
+                            "text": "PSYNERGY"
+                          },
+                          {
+                            "type": "list",
+                            "class": "item-list",
+                            "items": "$m.spells",
+                            "empty": "No Psynergy learned",
+                            "template": {
+                              "type": "box",
+                              "class": "item-row",
+                              "children": [
+                                {
+                                  "type": "image",
+                                  "class": "item-icon",
+                                  "src": "$icon",
+                                  "visibleIf": "$hasIcon"
+                                },
+                                {
+                                  "type": "text",
+                                  "class": "item-name",
+                                  "text": "{name}"
+                                },
+                                {
+                                  "type": "text",
+                                  "class": "item-qty",
+                                  "text": "{pp}"
+                                }
+                              ]
+                            }
+                          }
+                        ]
                       }
                     ]
                   }

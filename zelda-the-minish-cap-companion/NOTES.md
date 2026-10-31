@@ -152,3 +152,21 @@ EU ROM with faked RAM, and the icons were rebuilt from that ROM.
   `0x08936CB0`, US `0x08939EE0`, JP `0x08939B80` inferred). Coloured with Link's palette
   (gPalette_0 + 14 * 32). The pause palette tables put a placeholder (magenta) palette in OBJ
   bank 7, so the colours here are picked, not read from the screen; check on the device.
+
+## 3.1.0, Wide view (`game.lua`)
+
+Addresses from zeldaret/tmc (`linker.ld`, `map.h`, `room.h`), the same in every build: `gRoomControls`
+`0x03000BF0` (origin +6/+8, scroll +0xA/+0xC, room size in px +0x1E/+0x20), `gMapTop` `0x0200B650`,
+`gMapBottom` `0x02025EB0` (`bgSettings*` +0, `mapData` +4 with a row stride of 64, `tileIndices`
++0x6004, `subTiles` +0x7004). Each layer's tile data sits at its BG's character base, read from
+`bgSettings->control`. World pixel of the screen = scroll - origin.
+
+Checked on the AYN Thor (EU ROM): outdoors by Deepwood Shrine the seam match is 0.999 (the wide margins
+are seamless). Indoors in the first Deepwood room it was 0.82: sprites (pots) on the frame's edge
+columns count as a mismatch, so the margins hide there. Not checked: dungeons, house interiors with
+a small room, room transitions, cave/dark rooms, minish-sized (shrunk) maps, the US and JP builds.
+
+Walking: the hardware BG scroll registers trail the game's own `gScreen.bgN` offsets (and the room scroll)
+by about a pixel while the camera moves, so `game.lua` adds that difference to the camera. Before it,
+the seam match fell to ~0.55 on most frames while Link walked and the margins flickered to black; after
+it, 15 isolated bad frames over a 48-step walk, none in a row (the gate needs 4).

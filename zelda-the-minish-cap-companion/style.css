@@ -94,6 +94,16 @@ text { white-space: nowrap; }
   box-shadow: 2px 2px 0 #18181B;
 }
 .ezlo-btn:pressed { transform: translate(2px, 2px); box-shadow: 0 0 0 #18181B; opacity: 1; }
+.wide-btn {
+  height: 33px;
+  padding: 0 9px;
+  background-color: var(--wood-dark);
+  border: 3px solid var(--border-dark);
+  border-radius: 6px;
+  box-shadow: 2px 2px 0 #18181B;
+}
+.wide-btn:pressed { transform: translate(2px, 2px); box-shadow: 0 0 0 #18181B; opacity: 1; }
+.wide-text { font-family: "PressStart"; font-size: 10px; line-height: 12px; color: var(--triforce-gold); }
 /* Ezlo's sprite from the ROM (29 x 28) at 2 device px per pixel (1 px = 0.4336dp) */
 .ezlo { width: 25.15px; height: 24.28px; }
 
