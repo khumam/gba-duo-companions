@@ -1,7 +1,7 @@
 {
   "id": "golden-sun-companion",
   "name": "Golden Sun Companion",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "khumam",
   "formatVersion": 2,
   "match": { "gameCode": ["AGSE", "AGSP", "AGSJ", "AGSI"], "crc32": [] },

@@ -32,7 +32,7 @@ game's memory as you play. This repo holds the packs, one folder each.
 3. Start the game. The companion shows on the bottom screen.
 
 Each game remembers its pack; change it any time from the same **⋮** menu.
-Most packs need GBADuo **v0.1.3** or newer; the Metroid and Oracle of Ages packs need **v0.1.8**.
+Most packs need GBADuo **v0.1.3** or newer; the Metroid and Oracle of Ages packs need **v0.1.8**. The **WIDE** button (Pokémon FireRed and LeafGreen, The Minish Cap) paints the game's world beside the picture and needs **v0.1.9**, or **v0.1.10** for The Minish Cap.
 
 ## Packs
 
@@ -43,12 +43,12 @@ Each pack is a folder; the zip name is `<pack>-<version>.zip` on the
 
 | Pack | Game | Game codes | Pages | Version | Notes |
 |---|---|---|---|---|---|
-| [`pokemon-firered-companion`](pokemon-firered-companion) | Pokémon FireRed | `BPRE` | Map, Party, Bag, Dex, Card, Battle | 2.0.0 | *Pocket-OS*: a chunky handheld interface with hazard-striped headers. The Town Map is read from your ROM; the Battle page opens by itself when a battle starts. |
-| [`pokemon-firered-v-companion`](pokemon-firered-v-companion) | Pokémon FireRed | `BPRE` | Map, Party, Bag, Dex, Card, Battle | 1.0.0 | Same pages with a vertical dock on the right. |
-| [`pokemon-firered-minimal-companion`](pokemon-firered-minimal-companion) | Pokémon FireRed | `BPRE` | Map, Party, Bag, Dex, Card, Battle | 1.0.0 | Calm one-colour skin in soft red: flat fills, no shadows, a text-only dock. |
-| [`pokemon-leafgreen-companion`](pokemon-leafgreen-companion) | Pokémon LeafGreen | `BPGE` | Map, Party, Bag, Dex, Card, Battle | 1.0.0 | The FireRed pack for LeafGreen, with horizontal navigation. |
-| [`pokemon-leafgreen-v-companion`](pokemon-leafgreen-v-companion) | Pokémon LeafGreen | `BPGE` | Map, Party, Bag, Dex, Card, Battle | 1.0.0 | Same pages with a vertical dock on the right. |
-| [`pokemon-leafgreen-minimal-companion`](pokemon-leafgreen-minimal-companion) | Pokémon LeafGreen | `BPGE` | Map, Party, Bag, Dex, Card, Battle | 1.0.0 | Calm one-colour skin in soft green. |
+| [`pokemon-firered-companion`](pokemon-firered-companion) | Pokémon FireRed | `BPRE` | Map, Party, Bag, Dex, Card, Battle | 2.1.0 | *Pocket-OS*: a chunky handheld interface with hazard-striped headers. The Town Map is read from your ROM; the Battle page opens by itself when a battle starts. |
+| [`pokemon-firered-v-companion`](pokemon-firered-v-companion) | Pokémon FireRed | `BPRE` | Map, Party, Bag, Dex, Card, Battle | 1.1.0 | Same pages with a vertical dock on the right. |
+| [`pokemon-firered-minimal-companion`](pokemon-firered-minimal-companion) | Pokémon FireRed | `BPRE` | Map, Party, Bag, Dex, Card, Battle | 1.1.0 | Calm one-colour skin in soft red: flat fills, no shadows, a text-only dock. |
+| [`pokemon-leafgreen-companion`](pokemon-leafgreen-companion) | Pokémon LeafGreen | `BPGE` | Map, Party, Bag, Dex, Card, Battle | 1.1.0 | The FireRed pack for LeafGreen, with horizontal navigation. |
+| [`pokemon-leafgreen-v-companion`](pokemon-leafgreen-v-companion) | Pokémon LeafGreen | `BPGE` | Map, Party, Bag, Dex, Card, Battle | 1.1.0 | Same pages with a vertical dock on the right. |
+| [`pokemon-leafgreen-minimal-companion`](pokemon-leafgreen-minimal-companion) | Pokémon LeafGreen | `BPGE` | Map, Party, Bag, Dex, Card, Battle | 1.1.0 | Calm one-colour skin in soft green. |
 
 ### Metroid
 
@@ -61,7 +61,7 @@ Each pack is a folder; the zip name is `<pack>-<version>.zip` on the
 
 | Pack | Game | Game codes | Pages | Version | Notes |
 |---|---|---|---|---|---|
-| [`zelda-minish-cap-companion`](zelda-the-minish-cap-companion) | The Minish Cap | `BZME` `BZMP` `BZMJ` | Map, Items, Kinstone, Quest | 3.0.1 | *Minish-OS*: wood and leather panels with stone item sockets. The world map, item icons, Link and the title logo are drawn from your ROM. Tap Ezlo for a hint. See [NOTES](zelda-the-minish-cap-companion/NOTES.md). |
+| [`zelda-minish-cap-companion`](zelda-the-minish-cap-companion) | The Minish Cap | `BZME` `BZMP` `BZMJ` | Map, Items, Kinstone, Quest | 3.1.0 | *Minish-OS*: wood and leather panels with stone item sockets. The world map, item icons, Link and the title logo are drawn from your ROM. Tap Ezlo for a hint. See [NOTES](zelda-the-minish-cap-companion/NOTES.md). |
 | [`zelda-oracle-of-ages-companion`](zelda-oracle-of-ages-companion) | Oracle of Ages | `CGB-AZ8E` `CGB-AZ8P` `CGB-AZ8J` | Items, Map, Seeds, Rings, Status | 0.1.0 | Early version in the game's own subscreen style. Era maps that dim unvisited rooms, seeds, all 64 rings, hearts and essences. Needs **GBADuo v0.1.8**. See [NOTES](zelda-oracle-of-ages-companion/NOTES.md). |
 
 ### Other games
@@ -69,7 +69,7 @@ Each pack is a folder; the zip name is `<pack>-<version>.zip` on the
 | Pack | Game | Game codes | Pages | Version | Notes |
 |---|---|---|---|---|---|
 | [`harvest-moon-fomt-companion`](harvest-moon-fomt-companion) | Harvest Moon: Friends of Mineral Town | `A4NP` `BHFE` | Farm, Bag, Love, Sprites | 1.1.0 | *The Mineral Town Almanac*: a storybook farm whose backdrop follows the season and turns to a starry sky at night. Checked on the EU cart. See [NOTES](harvest-moon-fomt-companion/NOTES.md). |
-| [`golden-sun-companion`](golden-sun-companion) | Golden Sun | `AGSE` `AGSP` `AGSJ` `AGSI` | Party, Djinn, Psynergy | 0.1.0 | Early preview in the game's blue window style. Item names, Djinn ownership and Psynergy aren't mapped yet. |
+| [`golden-sun-companion`](golden-sun-companion) | Golden Sun | `AGSE` `AGSP` `AGSJ` `AGSI` | Party, Djinn, Psynergy | 0.2.0 | Early preview in the game's blue window style. Item names, Djinn ownership and Psynergy aren't mapped yet. |
 
 Want a pack for another game? [Open an issue](https://github.com/khumam/gba-duo-companions/issues).
 

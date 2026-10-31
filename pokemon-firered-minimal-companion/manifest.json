@@ -1,7 +1,7 @@
 {
   "id": "pokemon-firered-minimal-companion",
   "name": "Pokemon FireRed Companion (Minimal Soft Red)",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "khumam",
   "formatVersion": 4,
   "gameScript": "game.lua",

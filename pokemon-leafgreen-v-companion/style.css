@@ -959,3 +959,17 @@ text { white-space: nowrap; }
 }
 .move-pp { font-size: 7.5px; line-height: 9px; color: var(--disabled); }
 .meter .hp-num { color: var(--white-pure); }
+
+.wide-pill {
+  padding: 3px 9px;
+  background-color: var(--edge);
+  border-radius: 6px;
+}
+.wide-text {
+  font-family: "Jersey";
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--leaf);
+}
