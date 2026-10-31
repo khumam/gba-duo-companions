@@ -3,7 +3,8 @@
   "name": "Pokemon FireRed Companion (Minimal Soft Red)",
   "version": "1.0.0",
   "author": "khumam",
-  "formatVersion": 2,
+  "formatVersion": 4,
+  "gameScript": "game.lua",
   "match": {
     "gameCode": [
       "BPRE"
