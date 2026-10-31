@@ -25,6 +25,81 @@ local SPELLS = 0x58           -- u32 each, 0 ends the list; low 15 bits are the 
 local SPELL_SLOTS = 32
 local EXP = 0x124             -- u32, not checked on a device yet
 
+-- ---- Area map (the same RAM map game.lua's wide view reads) ----------------------
+local MAP_GRID = 0x02010000      -- 128 x 128 u32 cells, the BG1..BG3 layers side by side
+local MAP_METATILES = 0x02020000 -- 4 u16 tile entries per metatile id
+local MAP_SHADOW = 0x03001AD0    -- the BG scroll the game shows next: x, y as u16 per BG, from BG0
+local LEADER = 0x02030EC4        -- the party leader's actor: x (16.16) at +0, z at +4, y at +8; screen y = y - z
+local MAP_SCALE = 2           -- 2 map px to a picture px
+local MAP_PIC_W, MAP_PIC_H = 256, 184 -- the picture: 512 x 368 map px, the card's shape (shown scaled up to fill it)
+local MAP_REDRAW = 12            -- ticks between redraws of an unchanged view (the tiles load a little late)
+
+local mapShot = { sig = nil, image = nil, age = 0 }
+
+local function clamp(v, lo, hi) return math.max(lo, math.min(hi, v)) end
+
+local function areaMap()
+  local dispcnt = mem.u16(0x04000000)
+  if dispcnt & 7 ~= 0 or dispcnt & 0x0E00 ~= 0x0E00 then return nil end
+  local bg = {}
+  for n = 1, 3 do
+    local control = mem.u16(0x04000008 + n * 2)
+    if control & 0x80 ~= 0 or (control >> 14) ~= 0 then return nil end
+    bg[n] = { n = n, priority = control & 3, tiles = 0x06000000 + ((control >> 2) & 3) * 0x4000,
+              hx = mem.u16(MAP_SHADOW + n * 4), hy = mem.u16(MAP_SHADOW + n * 4 + 2) }
+  end
+  local width = bg[2].hx - bg[3].hx
+  if width < 16 or width % 16 ~= 0 or width > 16 * 128 // 3 then return nil end
+  if bg[1].hx - bg[2].hx ~= width or bg[1].hy ~= bg[3].hy or bg[2].hy ~= bg[3].hy then return nil end
+  local cols = width // 16
+
+  -- the ground layer fills a whole area with its own metatile past the map's end: the map is the rows
+  -- above the last one that is mostly something else
+  local function cell(r, c) return mem.u32(MAP_GRID + (r * 128 + c) * 4) & 0xFFF end
+  local filler = cell(127, 0)
+  local rows = 0
+  for r = 127, 0, -1 do
+    local other = 0
+    for c = 0, cols - 1 do if cell(r, c) ~= filler then other = other + 1 end end
+    if other * 2 >= cols then rows = r + 1 break end
+  end
+  if rows < 10 then return nil end
+  local mapW, mapH = cols * 16, rows * 16
+
+  -- our character: the party leader's actor, in the same pixels as the map
+  local px = mem.u16(LEADER + 2)
+  local py = mem.u16(LEADER + 10) - mem.u16(LEADER + 6) - 16
+
+  -- the view follows him a tile at a time and stops at the map's edges (a map smaller than the view is centred)
+  local viewW, viewH = MAP_PIC_W * MAP_SCALE, MAP_PIC_H * MAP_SCALE
+  local x0 = mapW <= viewW and (mapW - viewW) // 2 or clamp((px - viewW // 2) // 16 * 16, 0, mapW - viewW)
+  local y0 = mapH <= viewH and (mapH - viewH) // 2 or clamp((py - viewH // 2) // 16 * 16, 0, mapH - viewH)
+
+  local sig = table.concat({ cols, rows, filler, x0, y0, cell(0, 0), cell(rows // 2, cols // 2), cell(rows - 1, cols - 1) }, ":")
+  mapShot.age = mapShot.age + 1
+  if sig ~= mapShot.sig or not mapShot.image or mapShot.age >= MAP_REDRAW then
+    local layers = {}
+    for n = 3, 1, -1 do
+      layers[#layers + 1] = { grid = MAP_GRID + (3 - n) * cols * 4, stride = 128, cellBytes = 4, gridW = cols, gridH = 128,
+                              idMask = 0xFFF, metatiles = MAP_METATILES, tiles = bg[n].tiles, priority = bg[n].priority, n = n }
+    end
+    table.sort(layers, function(a, b)
+      if a.priority ~= b.priority then return a.priority > b.priority end
+      return a.n > b.n
+    end)
+    mapShot.image = gfx.layers{ x = x0, y = y0, width = MAP_PIC_W, height = MAP_PIC_H, scale = MAP_SCALE,
+                                palette = 0x05000000, layers = layers }
+    mapShot.sig, mapShot.age = sig, 0
+  end
+
+  local fx, fy = (px - x0) / viewW, (py - y0) / viewH
+  return {
+    image = mapShot.image, ratio = string.format("%.4f", MAP_PIC_W / MAP_PIC_H),
+    inside = fx >= 0 and fx <= 1 and fy >= 0 and fy <= 1,
+    mx = string.format("%.2f%%", fx * 100), my = string.format("%.2f%%", fy * 100),
+  }
+end
+
 local ELEMENT_INFO = {
   { "Venus", "#C98B3C" }, { "Mercury", "#4AA3E0" }, { "Mars", "#E5584B" }, { "Jupiter", "#B58CE0" },
 }
@@ -124,7 +199,7 @@ function update(ui)
   local page = ui.page or "party"
   local out = {
     ready = false, waiting = true,
-    navParty = page == "party", navDjinn = page == "djinn", navPsynergy = page == "psynergy",
+    navParty = page == "party", navDjinn = page == "djinn", navPsynergy = page == "psynergy", navMaps = page == "maps",
   }
   if #party == 0 then return out end
 
@@ -181,5 +256,12 @@ function update(ui)
     slot = tostring(itemSel + 1),
   }
   out.djinnCols = djinn_names
+  out.map = { on = false, off = true, hasMe = false }
+  if page == "maps" then
+    local ok, area = pcall(areaMap)
+    if ok and area then
+      out.map = { on = true, off = false, hasMe = area.inside, image = area.image, ratio = area.ratio, mx = area.mx, my = area.my }
+    end
+  end
   return out
 end

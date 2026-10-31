@@ -664,6 +664,63 @@
                   }
                 ]
               }
+            },
+            {
+              "name": "maps",
+              "child": {
+                "type": "box",
+                "class": "page maps-page",
+                "children": [
+                  {
+                    "type": "box",
+                    "class": "panel map-panel",
+                    "children": [
+                      {
+                        "type": "text",
+                        "class": "panel-title",
+                        "text": "AREA MAP"
+                      },
+                      {
+                        "type": "box",
+                        "class": "map-stage",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "map-frame",
+                            "visibleIf": "$map.on",
+                            "bindStyle": {
+                              "aspect-ratio": "{map.ratio}"
+                            },
+                            "children": [
+                              {
+                                "type": "image",
+                                "class": "map-img",
+                                "src": "$map.image"
+                              },
+                              {
+                                "type": "box",
+                                "class": "map-me",
+                                "visibleIf": "$map.hasMe",
+                                "bindStyle": {
+                                  "left": "{map.mx}",
+                                  "top": "{map.my}"
+                                },
+                                "children": []
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "class": "map-off",
+                            "text": "No map here",
+                            "visibleIf": "$map.off"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
             }
           ]
         },
@@ -731,6 +788,47 @@
                   "type": "text",
                   "class": "nav-text",
                   "text": "Psynergy"
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "class": "nav-btn",
+              "classIf": {
+                "on": "$navMaps"
+              },
+              "onClick": [
+                {
+                  "set": {
+                    "page": "maps"
+                  }
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "class": "nav-text",
+                  "text": "Maps"
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "class": "nav-btn wide-btn",
+              "classIf": {
+                "on": "$_wide"
+              },
+              "onClick": {
+                "call": "wideView",
+                "args": [
+                  "toggle"
+                ]
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "class": "nav-text",
+                  "text": "Wide {_wideLabel}"
                 }
               ]
             }

@@ -1,13 +1,14 @@
 {
   "id": "golden-sun-companion",
   "name": "Golden Sun Companion",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": "khumam",
-  "formatVersion": 2,
+  "formatVersion": 4,
   "match": { "gameCode": ["AGSE", "AGSP", "AGSJ", "AGSI"], "crc32": [] },
   "tickHz": 4,
   "layout": "layout.json",
   "styles": ["style.css"],
   "script": "main.lua",
+  "gameScript": "game.lua",
   "values": {}
 }
