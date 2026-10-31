@@ -11,9 +11,9 @@
 			"official": true,
 			"repo": "khumam/gba-duo-companions",
 			"path": "pokemon-firered-companion",
-			"tag": "v1.9.0",
+			"tag": "v1.10.0",
 			"url": "https://github.com/khumam/gba-duo-companions/tree/main/pokemon-firered-companion",
-			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.9.0/pokemon-firered-companion-2.1.0.zip",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.10.0/pokemon-firered-companion-2.1.0.zip",
 			"games": [
 				{
 					"title": "Pokémon FireRed",
@@ -61,9 +61,9 @@
 			"official": true,
 			"repo": "khumam/gba-duo-companions",
 			"path": "pokemon-firered-v-companion",
-			"tag": "v1.9.0",
+			"tag": "v1.10.0",
 			"url": "https://github.com/khumam/gba-duo-companions/tree/main/pokemon-firered-v-companion",
-			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.9.0/pokemon-firered-v-companion-1.1.0.zip",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.10.0/pokemon-firered-v-companion-1.1.0.zip",
 			"games": [
 				{
 					"title": "Pokémon FireRed",
@@ -112,9 +112,9 @@
 			"official": true,
 			"repo": "khumam/gba-duo-companions",
 			"path": "pokemon-leafgreen-companion",
-			"tag": "v1.9.0",
+			"tag": "v1.10.0",
 			"url": "https://github.com/khumam/gba-duo-companions/tree/main/pokemon-leafgreen-companion",
-			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.9.0/pokemon-leafgreen-companion-1.1.0.zip",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.10.0/pokemon-leafgreen-companion-1.1.0.zip",
 			"games": [
 				{
 					"title": "Pokémon LeafGreen",
@@ -163,9 +163,9 @@
 			"official": true,
 			"repo": "khumam/gba-duo-companions",
 			"path": "pokemon-leafgreen-v-companion",
-			"tag": "v1.9.0",
+			"tag": "v1.10.0",
 			"url": "https://github.com/khumam/gba-duo-companions/tree/main/pokemon-leafgreen-v-companion",
-			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.9.0/pokemon-leafgreen-v-companion-1.1.0.zip",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.10.0/pokemon-leafgreen-v-companion-1.1.0.zip",
 			"games": [
 				{
 					"title": "Pokémon LeafGreen",
@@ -214,9 +214,9 @@
 			"official": true,
 			"repo": "khumam/gba-duo-companions",
 			"path": "pokemon-firered-minimal-companion",
-			"tag": "v1.9.0",
+			"tag": "v1.10.0",
 			"url": "https://github.com/khumam/gba-duo-companions/tree/main/pokemon-firered-minimal-companion",
-			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.9.0/pokemon-firered-minimal-companion-1.1.0.zip",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.10.0/pokemon-firered-minimal-companion-1.1.0.zip",
 			"games": [
 				{
 					"title": "Pokémon FireRed",
@@ -266,9 +266,9 @@
 			"official": true,
 			"repo": "khumam/gba-duo-companions",
 			"path": "pokemon-leafgreen-minimal-companion",
-			"tag": "v1.9.0",
+			"tag": "v1.10.0",
 			"url": "https://github.com/khumam/gba-duo-companions/tree/main/pokemon-leafgreen-minimal-companion",
-			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.9.0/pokemon-leafgreen-minimal-companion-1.1.0.zip",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.10.0/pokemon-leafgreen-minimal-companion-1.1.0.zip",
 			"games": [
 				{
 					"title": "Pokémon LeafGreen",
@@ -312,15 +312,15 @@
 		{
 			"id": "golden-sun-companion",
 			"title": "Golden Sun Companion (Early Preview)",
-			"description": "Early preview for Golden Sun, dressed in the game's own blue windows: a party roster with each member's HP, stats and items, plus a Djinn list. Item names, Djinn ownership and Psynergy are not mapped yet.",
-			"version": "0.2.0",
+			"description": "Early preview for Golden Sun, dressed in the game's own blue windows: a party roster with each member's HP, stats and items, a Djinn list, Psynergy, and an area Maps page that follows your character. The WIDE button paints the world beside the picture. Wide view and Maps are tested on the US ROM only; Djinn ownership is not mapped yet.",
+			"version": "0.3.0",
 			"author": "khumam",
 			"official": true,
 			"repo": "khumam/gba-duo-companions",
 			"path": "golden-sun-companion",
-			"tag": "v1.9.0",
+			"tag": "v1.10.0",
 			"url": "https://github.com/khumam/gba-duo-companions/tree/main/golden-sun-companion",
-			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.9.0/golden-sun-companion-0.2.0.zip",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.10.0/golden-sun-companion-0.3.0.zip",
 			"games": [
 				{
 					"title": "Golden Sun",
@@ -347,7 +347,8 @@
 			"pages": [
 				"Party",
 				"Djinn",
-				"Psynergy"
+				"Psynergy",
+				"Maps"
 			],
 			"tags": [
 				"golden-sun",
@@ -355,8 +356,8 @@
 				"party",
 				"preview"
 			],
-			"minAppVersion": "0.1.3",
-			"recommendedAppVersion": "0.1.7",
+			"minAppVersion": "0.1.11",
+			"recommendedAppVersion": "0.1.11",
 			"canModifyGame": false,
 			"screenshots": [
 				{
@@ -378,9 +379,9 @@
 			"official": true,
 			"repo": "khumam/gba-duo-companions",
 			"path": "zelda-the-minish-cap-companion",
-			"tag": "v1.9.0",
+			"tag": "v1.10.0",
 			"url": "https://github.com/khumam/gba-duo-companions/tree/main/zelda-the-minish-cap-companion",
-			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.9.0/zelda-minish-cap-companion-3.1.0.zip",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.10.0/zelda-minish-cap-companion-3.1.0.zip",
 			"games": [
 				{
 					"title": "The Legend of Zelda: The Minish Cap",
@@ -440,9 +441,9 @@
 			"official": true,
 			"repo": "khumam/gba-duo-companions",
 			"path": "metroid-fusion-companion",
-			"tag": "v1.9.0",
+			"tag": "v1.10.0",
 			"url": "https://github.com/khumam/gba-duo-companions/tree/main/metroid-fusion-companion",
-			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.9.0/metroid-fusion-companion-2.0.0.zip",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.10.0/metroid-fusion-companion-2.0.0.zip",
 			"games": [
 				{
 					"title": "Metroid Fusion",
@@ -510,9 +511,9 @@
 			"official": true,
 			"repo": "khumam/gba-duo-companions",
 			"path": "metroid-zero-mission-companion",
-			"tag": "v1.9.0",
+			"tag": "v1.10.0",
 			"url": "https://github.com/khumam/gba-duo-companions/tree/main/metroid-zero-mission-companion",
-			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.9.0/metroid-zero-mission-companion-1.0.0.zip",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.10.0/metroid-zero-mission-companion-1.0.0.zip",
 			"games": [
 				{
 					"title": "Metroid: Zero Mission",
@@ -575,9 +576,9 @@
 			"official": true,
 			"repo": "khumam/gba-duo-companions",
 			"path": "zelda-oracle-of-ages-companion",
-			"tag": "v1.9.0",
+			"tag": "v1.10.0",
 			"url": "https://github.com/khumam/gba-duo-companions/tree/main/zelda-oracle-of-ages-companion",
-			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.9.0/zelda-oracle-of-ages-companion-0.1.0.zip",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.10.0/zelda-oracle-of-ages-companion-0.1.0.zip",
 			"games": [
 				{
 					"title": "The Legend of Zelda: Oracle of Ages",

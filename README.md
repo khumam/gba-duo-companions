@@ -32,7 +32,7 @@ game's memory as you play. This repo holds the packs, one folder each.
 3. Start the game. The companion shows on the bottom screen.
 
 Each game remembers its pack; change it any time from the same **⋮** menu.
-Most packs need GBADuo **v0.1.3** or newer; the Metroid and Oracle of Ages packs need **v0.1.8**. The **WIDE** button (Pokémon FireRed and LeafGreen, The Minish Cap) paints the game's world beside the picture and needs **v0.1.9**, or **v0.1.10** for The Minish Cap.
+Most packs need GBADuo **v0.1.3** or newer; the Metroid and Oracle of Ages packs need **v0.1.8**. The **WIDE** button (Pokémon FireRed and LeafGreen, The Minish Cap, Golden Sun) paints the game's world beside the picture and needs **v0.1.9**, **v0.1.10** for The Minish Cap, or **v0.1.11** for Golden Sun.
 
 ## Packs
 
@@ -69,7 +69,7 @@ Each pack is a folder; the zip name is `<pack>-<version>.zip` on the
 | Pack | Game | Game codes | Pages | Version | Notes |
 |---|---|---|---|---|---|
 | [`harvest-moon-fomt-companion`](harvest-moon-fomt-companion) | Harvest Moon: Friends of Mineral Town | `A4NP` `BHFE` | Farm, Bag, Love, Sprites | 1.1.0 | *The Mineral Town Almanac*: a storybook farm whose backdrop follows the season and turns to a starry sky at night. Checked on the EU cart. See [NOTES](harvest-moon-fomt-companion/NOTES.md). |
-| [`golden-sun-companion`](golden-sun-companion) | Golden Sun | `AGSE` `AGSP` `AGSJ` `AGSI` | Party, Djinn, Psynergy | 0.2.0 | Early preview in the game's blue window style. Item names, Djinn ownership and Psynergy aren't mapped yet. |
+| [`golden-sun-companion`](golden-sun-companion) | Golden Sun | `AGSE` `AGSP` `AGSJ` `AGSI` | Party, Djinn, Psynergy, Maps | 0.3.0 | Early preview in the game's blue window style, with an area map that follows your character and a **WIDE** button (US ROM only). Djinn ownership isn't mapped yet. |
 
 Want a pack for another game? [Open an issue](https://github.com/khumam/gba-duo-companions/issues).
 
