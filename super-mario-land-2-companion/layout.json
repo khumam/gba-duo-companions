@@ -1,0 +1,577 @@
+{
+ "type": "column",
+ "class": "screen",
+ "children": [
+  {
+   "type": "pages",
+   "class": "content",
+   "state": "page",
+   "initial": "start",
+   "pages": [
+    {
+     "name": "start",
+     "child": {
+      "type": "column",
+      "class": "overview",
+      "children": []
+     }
+    },
+    {
+     "name": "title",
+     "child": {
+      "type": "column",
+      "class": "title-view",
+      "children": [
+       {
+        "type": "spacer",
+        "class": "grow"
+       },
+       {
+        "type": "box",
+        "class": "plate",
+        "children": [
+         {
+          "type": "text",
+          "class": "press",
+          "text": "PRESS START TO PLAY"
+         }
+        ]
+       },
+       {
+        "type": "spacer",
+        "class": "grow"
+       }
+      ]
+     }
+    },
+    {
+     "name": "save",
+     "child": {
+      "type": "column",
+      "class": "overview",
+      "children": [
+       {
+        "type": "row",
+        "class": "top",
+        "children": [
+         {
+          "type": "box",
+          "class": "plate",
+          "children": [
+           {
+            "type": "text",
+            "class": "headline",
+            "text": "CHOOSE SAVE"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "type": "list",
+        "class": "saves",
+        "items": "$saves",
+        "template": {
+         "type": "column",
+         "class": "save-card",
+         "classIf": {
+          "selected": "$selected"
+         },
+         "children": [
+          {
+           "type": "text",
+           "class": "save-name",
+           "text": "{name}"
+          },
+          {
+           "type": "text",
+           "class": "save-new",
+           "text": "NEW GAME",
+           "visibleIf": "$isNew"
+          },
+          {
+           "type": "column",
+           "class": "save-stats",
+           "visibleIf": "$used",
+           "children": [
+            {
+             "type": "row",
+             "class": "save-stat",
+             "children": [
+              {
+               "type": "image",
+               "class": "hud-icon",
+               "src": "asset:icons/flag.png"
+              },
+              {
+               "type": "text",
+               "class": "save-num",
+               "text": "{cleared}"
+              }
+             ]
+            },
+            {
+             "type": "row",
+             "class": "save-stat",
+             "children": [
+              {
+               "type": "image",
+               "class": "hud-icon",
+               "src": "asset:icons/coin.png"
+              },
+              {
+               "type": "text",
+               "class": "save-num",
+               "text": "{coins}"
+              }
+             ]
+            },
+            {
+             "type": "row",
+             "class": "save-stat",
+             "children": [
+              {
+               "type": "image",
+               "class": "hud-icon",
+               "src": "asset:icons/heart.png"
+              },
+              {
+               "type": "text",
+               "class": "save-num",
+               "text": "x{lives}"
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       },
+       {
+        "type": "row",
+        "class": "save-foot",
+        "children": [
+         {
+          "type": "text",
+          "class": "save-hint",
+          "text": "Pick a save in the game to start"
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "name": "overview",
+     "child": {
+      "type": "column",
+      "class": "overview",
+      "children": [
+       {
+        "type": "row",
+        "class": "top",
+        "children": [
+         {
+          "type": "box",
+          "class": "plate",
+          "children": [
+           {
+            "type": "text",
+            "class": "headline",
+            "text": "{title}"
+           }
+          ]
+         },
+         {
+          "type": "spacer",
+          "class": "grow"
+         },
+         {
+          "type": "row",
+          "class": "ribbon lives",
+          "children": [
+           {
+            "type": "image",
+            "class": "hud-icon",
+            "src": "asset:icons/heart.png"
+           },
+           {
+            "type": "text",
+            "class": "hud-num",
+            "text": "x{lives}"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "type": "column",
+        "class": "track-panel",
+        "children": [
+         {
+          "type": "box",
+          "class": "rail",
+          "children": [
+           {
+            "type": "bar",
+            "class": "line",
+            "value": "$progress",
+            "max": 100
+           },
+           {
+            "type": "image",
+            "class": "ticks",
+            "src": "asset:icons/ticks.png"
+           },
+           {
+            "type": "image",
+            "class": "start",
+            "src": "asset:icons/start.png"
+           },
+           {
+            "type": "image",
+            "class": "goal",
+            "src": "asset:icons/goal.png"
+           },
+           {
+            "type": "image",
+            "class": "pin",
+            "src": "asset:icons/pin.png",
+            "bindStyle": {
+             "left": "{markerLeft}"
+            }
+           },
+           {
+            "type": "text",
+            "class": "warning",
+            "text": "{warning}",
+            "visibleIf": "$warning"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "type": "row",
+        "class": "bottom",
+        "children": [
+         {
+          "type": "column",
+          "class": "left",
+          "children": [
+           {
+            "type": "row",
+            "class": "left-top",
+            "children": [
+             {
+              "type": "row",
+              "class": "ribbon coins-ribbon",
+              "children": [
+               {
+                "type": "image",
+                "class": "hud-icon",
+                "src": "asset:icons/coin.png"
+               },
+               {
+                "type": "text",
+                "class": "hud-num",
+                "text": "{coins}"
+               },
+               {
+                "type": "image",
+                "class": "hud-icon",
+                "src": "asset:icons/flag.png"
+               },
+               {
+                "type": "text",
+                "class": "hud-num",
+                "text": "{cleared}"
+               }
+              ]
+             },
+             {
+              "type": "image",
+              "class": "hud-icon",
+              "src": "asset:icons/star.png",
+              "visibleIf": "$star"
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "chain",
+            "children": [
+             {
+              "type": "list",
+              "class": "coins",
+              "items": "$zones",
+              "template": {
+               "type": "column",
+               "class": "slot",
+               "children": [
+                {
+                 "type": "box",
+                 "class": "disc",
+                 "children": [
+                  {
+                   "type": "image",
+                   "class": "disc-img",
+                   "src": "asset:icons/slot.png",
+                   "visibleIf": "$missing"
+                  },
+                  {
+                   "type": "text",
+                   "class": "initial",
+                   "text": "{initial}",
+                   "visibleIf": "$missing"
+                  },
+                  {
+                   "type": "image",
+                   "class": "disc-img",
+                   "src": "$coinIcon",
+                   "visibleIf": "$got"
+                  }
+                 ]
+                },
+                {
+                 "type": "text",
+                 "class": "slot-name",
+                 "text": "{name}"
+                }
+               ]
+              }
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "column",
+          "class": "right",
+          "children": [
+           {
+            "type": "box",
+            "class": "bubble",
+            "children": [
+             {
+              "type": "text",
+              "class": "bubble-text",
+              "text": "{powerLabel}"
+             }
+            ]
+           },
+           {
+            "type": "image",
+            "class": "tail",
+            "src": "asset:icons/tail.png"
+           },
+           {
+            "type": "box",
+            "class": "power",
+            "children": [
+             {
+              "type": "image",
+              "class": "power-ring",
+              "src": "asset:icons/ring.png"
+             },
+             {
+              "type": "image",
+              "class": "power-icon",
+              "src": "$powerIcon"
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "name": "map",
+     "child": {
+      "type": "column",
+      "class": "overview",
+      "children": [
+       {
+        "type": "row",
+        "class": "top",
+        "children": [
+         {
+          "type": "box",
+          "class": "plate",
+          "children": [
+           {
+            "type": "text",
+            "class": "headline",
+            "text": "WORLD MAP"
+           }
+          ]
+         },
+         {
+          "type": "spacer",
+          "class": "grow"
+         },
+         {
+          "type": "row",
+          "class": "ribbon lives",
+          "children": [
+           {
+            "type": "image",
+            "class": "hud-icon",
+            "src": "asset:icons/heart.png"
+           },
+           {
+            "type": "text",
+            "class": "hud-num",
+            "text": "x{lives}"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "type": "column",
+        "class": "zones-panel",
+        "children": [
+         {
+          "type": "row",
+          "class": "zones-head",
+          "children": [
+           {
+            "type": "text",
+            "class": "panel-title",
+            "text": "GOLDEN COINS"
+           },
+           {
+            "type": "spacer",
+            "class": "grow"
+           },
+           {
+            "type": "text",
+            "class": "panel-title",
+            "text": "{coinCount} / 6"
+           }
+          ]
+         },
+         {
+          "type": "list",
+          "class": "zones",
+          "items": "$zones",
+          "template": {
+           "type": "column",
+           "class": "map-slot",
+           "children": [
+            {
+             "type": "box",
+             "class": "map-disc",
+             "children": [
+              {
+               "type": "image",
+               "class": "map-disc-img",
+               "src": "asset:icons/slot.png",
+               "visibleIf": "$missing"
+              },
+              {
+               "type": "text",
+               "class": "initial",
+               "text": "{initial}",
+               "visibleIf": "$missing"
+              },
+              {
+               "type": "image",
+               "class": "map-disc-img",
+               "src": "$coinIcon",
+               "visibleIf": "$got"
+              }
+             ]
+            },
+            {
+             "type": "text",
+             "class": "slot-name",
+             "text": "{name}"
+            },
+            {
+             "type": "text",
+             "class": "slot-progress",
+             "text": "{progress}"
+            }
+           ]
+          }
+         }
+        ]
+       },
+       {
+        "type": "row",
+        "class": "map-foot",
+        "children": [
+         {
+          "type": "row",
+          "class": "ribbon coins-ribbon",
+          "children": [
+           {
+            "type": "image",
+            "class": "hud-icon",
+            "src": "asset:icons/coin.png"
+           },
+           {
+            "type": "text",
+            "class": "hud-num",
+            "text": "{coins}"
+           },
+           {
+            "type": "image",
+            "class": "hud-icon",
+            "src": "asset:icons/flag.png"
+           },
+           {
+            "type": "text",
+            "class": "hud-num",
+            "text": "{cleared}"
+           }
+          ]
+         },
+         {
+          "type": "spacer",
+          "class": "grow"
+         },
+         {
+          "type": "box",
+          "class": "bubble",
+          "children": [
+           {
+            "type": "text",
+            "class": "bubble-text",
+            "text": "{powerLabel}"
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "map-power",
+          "children": [
+           {
+            "type": "image",
+            "class": "map-power-ring",
+            "src": "asset:icons/ring.png"
+           },
+           {
+            "type": "image",
+            "class": "map-power-icon",
+            "src": "$powerIcon"
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ]
+  }
+ ],
+ "classIf": {
+  "on-title": "$onTitle"
+ }
+}

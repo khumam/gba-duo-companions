@@ -1,0 +1,145 @@
+/* Super Mario Land 2 Companion - 8-bit pixel style.
+   Layout: level plate and lives, a start-to-goal track panel, then golden coins and the power-up.
+   All art is original pixel art drawn for this pack; no game graphics are used. */
+
+@font-face { font-family: "Pixel"; src: url("assets/fonts/PressStart2P-Regular.ttf"); }
+
+:root {
+  --ink: #18141c;
+  --paper: #f8f0d8;
+  --plate: #a8a8a8;
+  --plate-dark: #606060;
+  --gold: #f8c828;
+  --orange: #e86820;
+  --muted: #6c5c40;
+  background: var(--ink);
+}
+
+* { font-family: "Pixel"; }
+image { image-rendering: pixelated; }
+
+.screen {
+  height: 100%;
+  padding: 12px 14px 8px;
+  background-image: url("assets/wall-bg.png");
+  background-size: cover;
+  background-position: center top;
+}
+.screen.on-title { background-image: url("assets/title-bg.png"); background-size: cover; background-position: center top; }
+.content { flex: 1; }
+.grow { flex: 1; }
+
+.overview { gap: 10px; height: 100%; }
+
+/* ---- Level plate and lives ---- */
+.top { align-items: center; }
+.plate {
+  padding: 12px 14px;
+  background: var(--plate);
+  border: 3px solid var(--plate-dark);
+  border-radius: 8px;
+}
+.headline { font-size: 18px; color: var(--gold); text-shadow: 2px 2px 0 var(--ink); }
+
+.ribbon { align-items: center; gap: 6px; background-size: cover; background-position: center; }
+.lives { width: 132px; height: 36px; padding-left: 26px; background-image: url("assets/icons/ribbon-lives.png"); }
+.coins-ribbon { width: 252px; height: 36px; padding-left: 24px; background-image: url("assets/icons/ribbon-coins.png"); }
+.hud-icon { width: 22px; height: 22px; }
+.hud-num { font-size: 14px; color: #ffffff; text-shadow: 2px 2px 0 var(--ink); }
+
+/* ---- Start-to-goal track ---- */
+.track-panel {
+  padding: 8px 42px 0 24px;
+  height: 136px;
+  background: var(--plate);
+  border: 3px solid var(--plate-dark);
+  border-radius: 8px;
+}
+.warning { position: absolute; top: 0; left: 0; font-size: 8px; color: var(--ink); }
+.rail { display: stack; height: 112px; place-items: end start; }
+.line {
+  width: 100%; height: 6px;
+  margin-bottom: 19px;
+  background: #283088;
+  border-radius: 0;
+}
+.line > fill { background: #283088; border-radius: 0; }
+.ticks { position: absolute; top: 83px; left: 0; width: 438px; height: 14px; }
+.start { position: absolute; top: 80px; left: 0; width: 24px; height: 24px; margin-left: -12px; }
+.goal { position: absolute; top: 32px; left: 100%; width: 72px; height: 72px; margin-left: -36px; }
+.pin { position: absolute; top: 36px; width: 40px; height: 50px; margin-left: -20px; }
+
+/* ---- Golden coins ---- */
+.bottom { flex: 1; gap: 10px; }
+.left { flex: 1; gap: 8px; }
+.left-top { align-items: center; gap: 6px; }
+
+.chain { display: stack; flex: 1; place-items: start stretch; }
+.coins { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px 0; }
+.slot { align-items: center; gap: 3px; }
+.disc { display: stack; width: 80px; height: 80px; place-items: center; }
+.disc-img { width: 80px; height: 80px; }
+.initial { font-size: 18px; color: var(--muted); }
+.slot-name { font-size: 7px; color: var(--ink); }
+
+/* ---- Current power-up ---- */
+.right { width: 164px; align-items: center; }
+.bubble {
+  padding: 7px 10px;
+  background: #ffffff;
+  border: 3px solid var(--orange);
+  border-radius: 8px;
+}
+.bubble-text { font-size: 13px; color: var(--orange); }
+.tail { width: 24px; height: 12px; margin-top: -2px; margin-bottom: 2px; }
+.power { display: stack; width: 164px; height: 164px; place-items: center; }
+.power-ring { width: 164px; height: 164px; }
+.power-icon { width: 106px; height: 106px; }
+
+/* ---- Title view ---- */
+.title-view { height: 100%; align-items: center; }
+.press { font-size: 16px; color: var(--gold); text-shadow: 2px 2px 0 var(--ink); }
+
+/* ---- Choose Save view ---- */
+.saves { flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 9px; }
+.save-card {
+  align-items: center; gap: 40px;
+  padding: 16px 6px;
+  background: var(--plate);
+  border: 3px solid var(--plate-dark);
+  border-radius: 8px;
+}
+.save-card.selected { background: var(--gold); border: 3px solid var(--ink); }
+.save-name { font-size: 15px; color: var(--ink); }
+.save-new { margin-top: 110px; font-size: 13px; color: var(--ink); }
+.save-stats { gap: 40px; }
+.save-stat .hud-icon { width: 32px; height: 32px; }
+.save-stat { align-items: center; gap: 8px; }
+.save-num { font-size: 20px; color: var(--ink); }
+.save-foot { width: 100%; align-items: center; }
+.save-hint { font-size: 8px; color: var(--ink); }
+
+/* ---- World map view ---- */
+.zones-panel {
+  flex: 1;
+  gap: 8px;
+  padding: 10px 12px;
+  background: var(--plate);
+  border: 3px solid var(--plate-dark);
+  border-radius: 8px;
+}
+.zones-head { align-items: center; }
+.zones { flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); align-content: space-around; gap: 4px 0; }
+.map-slot { align-items: center; gap: 3px; }
+.map-disc { display: stack; width: 86px; height: 86px; place-items: center; }
+.map-disc-img { width: 86px; height: 86px; }
+.slot-progress { font-size: 9px; color: var(--ink); }
+
+.map-slot .initial { font-size: 30px; }
+.map-slot .slot-name { font-size: 9px; }
+.map-foot { align-items: center; gap: 8px; }
+.map-power { display: stack; width: 104px; height: 104px; place-items: center; }
+.map-power-ring { width: 104px; height: 104px; }
+.map-power-icon { width: 68px; height: 68px; }
+
+.panel-title { font-size: 9px; color: var(--ink); }

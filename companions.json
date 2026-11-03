@@ -631,6 +631,57 @@
 					"alt": "Status page: hearts and heart pieces, the eight essences, and era, harp song and room"
 				}
 			]
+		},
+		{
+			"id": "mario-land-2-companion",
+			"title": "Super Mario Land 2 DX Companion",
+			"description": "For the colourized DX version. Level plate with a start-to-goal progress track, the six golden coins with per-zone clears, lives, coins and power-up. Follows the title, save and world map screens.",
+			"version": "1.1.1",
+			"author": "khumam",
+			"official": true,
+			"repo": "khumam/gba-duo-companions",
+			"path": "super-mario-land-2-companion",
+			"tag": "v1.11.0",
+			"url": "https://github.com/khumam/gba-duo-companions/tree/main/super-mario-land-2-companion",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.11.0/mario-land-2-companion-1.1.1.zip",
+			"games": [
+				{
+					"title": "Super Mario Land 2 DX: 6 Golden Coins",
+					"region": "World",
+					"gameCode": "CGB-????"
+				},
+				{
+					"title": "Super Mario Land 2: 6 Golden Coins",
+					"region": "World",
+					"gameCode": "DMG-????"
+				}
+			],
+			"design": "Super Mario Land 2 DX: 6 Golden Coins",
+			"pages": [
+				"Title",
+				"Save",
+				"Map",
+				"Level"
+			],
+			"tags": [
+				"mario",
+				"platformer",
+				"progress",
+				"collectibles",
+				"game-boy"
+			],
+			"minAppVersion": "0.1.8",
+			"canModifyGame": false,
+			"screenshots": [
+				{
+					"src": "super-mario-land-2-companion/screenshoots/mario-land-2-save.png",
+					"alt": "Save page: the three save files, with the one selected in the game highlighted"
+				},
+				{
+					"src": "super-mario-land-2-companion/screenshoots/mario-land-2-title.png",
+					"alt": "Title page: press start to play over a sky and hills"
+				}
+			]
 		}
 	]
 }

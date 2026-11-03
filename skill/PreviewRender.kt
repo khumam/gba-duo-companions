@@ -112,12 +112,13 @@ class PreviewRender {
             snapshot("$prefix-$i")
         }
         // Pages the script opens by itself (battle, detail): navigated the way update()'s
-        // `ui` entry does it. Reuses the same data, so put what the page shows in the data file.
+        // `ui` entry does it. Reuses the same data, so put what the page shows in the data file;
+        // a `ui` object there (e.g. {"set": {...}}) is kept and gets the navigate added.
         @Suppress("UNCHECKED_CAST")
         val dataMap = data as Map<String, Any?>
         for (page in extraPages) {
             val warnings = mutableListOf<String>()
-            compose.runOnUiThread { tree.updateFromScript(dataMap + ("ui" to mapOf("navigate" to page)), warnings) }
+            compose.runOnUiThread { tree.updateFromScript(dataMap + ("ui" to ((dataMap["ui"] as? Map<String, Any?> ?: emptyMap()) + ("navigate" to page))), warnings) }
             compose.waitForIdle()
             if (warnings.isNotEmpty()) note("UI WARN ($page): $warnings")
             snapshot("$prefix-$page")

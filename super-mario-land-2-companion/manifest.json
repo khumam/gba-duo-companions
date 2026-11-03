@@ -1,0 +1,26 @@
+{
+  "id": "mario-land-2-companion",
+  "name": "Super Mario Land 2 Companion",
+  "version": "1.1.1",
+  "author": "Edoardo",
+  "formatVersion": 2,
+  "match": {
+    "gameCode": [
+      "DMG-????",
+      "CGB-????"
+    ],
+    "crc32": [
+      "D5EC24E4",
+      "E6F886E5",
+      "635A9112",
+      "F0799017"
+    ]
+  },
+  "tickHz": 8,
+  "layout": "layout.json",
+  "styles": [
+    "style.css"
+  ],
+  "script": "main.lua",
+  "values": {}
+}
