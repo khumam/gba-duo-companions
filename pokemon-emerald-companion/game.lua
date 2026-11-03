@@ -100,7 +100,7 @@ function wide(view)
   return {
     x = worldX, y = worldY,
     grid = grid, gridW = gridW, gridH = gridH, idMask = 0x3FF,
-    border = mem.u32(layout + 8), borderW = mem.u8(layout + 0x18), borderH = mem.u8(layout + 0x19),
+    border = mem.u32(layout + 8), borderW = 2, borderH = 2,
     borderShift = MAP_OFFSET, undefinedId = MAPGRID_UNDEFINED, overscan = 120,
     metatiles = mem.u32(primary + 0x0C), metatiles2 = mem.u32(secondary + 0x0C),
     split = NUM_METATILES_IN_PRIMARY,
