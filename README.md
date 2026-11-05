@@ -43,33 +43,33 @@ Each pack is a folder; the zip name is `<pack>-<version>.zip` on the
 
 | Pack | Game | Game codes | Pages | Version | Notes |
 |---|---|---|---|---|---|
-| [`pokemon-firered-companion`](pokemon-firered-companion) | Pokémon FireRed | `BPRE` | Map, Party, Bag, Dex, Card, Battle | 2.1.0 | *Pocket-OS*: a chunky handheld interface with hazard-striped headers. The Town Map is read from your ROM; the Battle page opens by itself when a battle starts. |
-| [`pokemon-firered-v-companion`](pokemon-firered-v-companion) | Pokémon FireRed | `BPRE` | Map, Party, Bag, Dex, Card, Battle | 1.1.0 | Same pages with a vertical dock on the right. |
-| [`pokemon-firered-minimal-companion`](pokemon-firered-minimal-companion) | Pokémon FireRed | `BPRE` | Map, Party, Bag, Dex, Card, Battle | 1.1.0 | Calm one-colour skin in soft red: flat fills, no shadows, a text-only dock. |
-| [`pokemon-leafgreen-companion`](pokemon-leafgreen-companion) | Pokémon LeafGreen | `BPGE` | Map, Party, Bag, Dex, Card, Battle | 1.1.0 | The FireRed pack for LeafGreen, with horizontal navigation. |
-| [`pokemon-leafgreen-v-companion`](pokemon-leafgreen-v-companion) | Pokémon LeafGreen | `BPGE` | Map, Party, Bag, Dex, Card, Battle | 1.1.0 | Same pages with a vertical dock on the right. |
-| [`pokemon-leafgreen-minimal-companion`](pokemon-leafgreen-minimal-companion) | Pokémon LeafGreen | `BPGE` | Map, Party, Bag, Dex, Card, Battle | 1.1.0 | Calm one-colour skin in soft green. |
+| [`pokemon-firered-companion`](pokemon-firered-companion) | Pokémon FireRed | `BPRE` | Map, Party, Bag, Dex, Card, Battle | 2.2.0 | *Pocket-OS*: a chunky handheld interface with hazard-striped headers. The Town Map is read from your ROM; the Battle page opens by itself when a battle starts. |
+| [`pokemon-firered-v-companion`](pokemon-firered-v-companion) | Pokémon FireRed | `BPRE` | Map, Party, Bag, Dex, Card, Battle | 1.2.0 | Same pages with a vertical dock on the right. |
+| [`pokemon-firered-minimal-companion`](pokemon-firered-minimal-companion) | Pokémon FireRed | `BPRE` | Map, Party, Bag, Dex, Card, Battle | 1.2.0 | Calm one-colour skin in soft red: flat fills, no shadows, a text-only dock. |
+| [`pokemon-leafgreen-companion`](pokemon-leafgreen-companion) | Pokémon LeafGreen | `BPGE` | Map, Party, Bag, Dex, Card, Battle | 1.2.0 | The FireRed pack for LeafGreen, with horizontal navigation. |
+| [`pokemon-leafgreen-v-companion`](pokemon-leafgreen-v-companion) | Pokémon LeafGreen | `BPGE` | Map, Party, Bag, Dex, Card, Battle | 1.2.0 | Same pages with a vertical dock on the right. |
+| [`pokemon-leafgreen-minimal-companion`](pokemon-leafgreen-minimal-companion) | Pokémon LeafGreen | `BPGE` | Map, Party, Bag, Dex, Card, Battle | 1.2.0 | Calm one-colour skin in soft green. |
 
 ### Metroid
 
 | Pack | Game | Game codes | Pages | Version | Notes |
 |---|---|---|---|---|---|
-| [`metroid-zero-mission-companion`](metroid-zero-mission-companion) | Metroid: Zero Mission | `BMXE` `BMXP` `BMXJ` | Map, Status, Sectors, Log | 1.0.0 | The game's pause screen. Your explored map centered on Samus, her suit with the beams and gear you own (tap one to switch it on or off), area progress, boss targets and recovered tanks. Needs **GBADuo v0.1.8** and, for the switches, **Settings > Packs can change games**. See [NOTES](metroid-zero-mission-companion/NOTES.md). |
-| [`metroid-fusion-companion`](metroid-fusion-companion) | Metroid Fusion | `AMTE` `AMTP` `AMTJ` | Map, Status, Arms, Sectors, Mission | 2.0.0 | The game's pause screen. Live map, Samus on her grid, every upgrade, sector progress, bosses, security hatches and your next objective. Game art is drawn from the US ROM; other regions show a text-only waiting screen. Needs **GBADuo v0.1.8**. See [NOTES](metroid-fusion-companion/NOTES.md). |
+| [`metroid-zero-mission-companion`](metroid-zero-mission-companion) | Metroid: Zero Mission | `BMXE` `BMXP` `BMXJ` | Map, Status, Sectors, Log | 1.0.1 | The game's pause screen. Your explored map centered on Samus, her suit with the beams and gear you own (tap one to switch it on or off), area progress, boss targets and recovered tanks. Needs **GBADuo v0.1.8** and, for the switches, **Settings > Packs can change games**. See [NOTES](metroid-zero-mission-companion/NOTES.md). |
+| [`metroid-fusion-companion`](metroid-fusion-companion) | Metroid Fusion | `AMTE` `AMTP` `AMTJ` | Map, Status, Arms, Sectors, Mission | 2.0.1 | The game's pause screen. Live map, Samus on her grid, every upgrade, sector progress, bosses, security hatches and your next objective. Game art is drawn from the US ROM; other regions show a text-only waiting screen. Needs **GBADuo v0.1.8**. See [NOTES](metroid-fusion-companion/NOTES.md). |
 
 ### Zelda
 
 | Pack | Game | Game codes | Pages | Version | Notes |
 |---|---|---|---|---|---|
-| [`zelda-minish-cap-companion`](zelda-the-minish-cap-companion) | The Minish Cap | `BZME` `BZMP` `BZMJ` | Map, Items, Kinstone, Quest | 3.1.0 | *Minish-OS*: wood and leather panels with stone item sockets. The world map, item icons, Link and the title logo are drawn from your ROM. Tap Ezlo for a hint. See [NOTES](zelda-the-minish-cap-companion/NOTES.md). |
-| [`zelda-oracle-of-ages-companion`](zelda-oracle-of-ages-companion) | Oracle of Ages | `CGB-AZ8E` `CGB-AZ8P` `CGB-AZ8J` | Items, Map, Seeds, Rings, Status | 0.1.0 | Early version in the game's own subscreen style. Era maps that dim unvisited rooms, seeds, all 64 rings, hearts and essences. Needs **GBADuo v0.1.8**. See [NOTES](zelda-oracle-of-ages-companion/NOTES.md). |
+| [`zelda-minish-cap-companion`](zelda-the-minish-cap-companion) | The Minish Cap | `BZME` `BZMP` `BZMJ` | Map, Items, Kinstone, Quest | 3.1.1 | *Minish-OS*: wood and leather panels with stone item sockets. The world map, item icons, Link and the title logo are drawn from your ROM. Tap Ezlo for a hint. See [NOTES](zelda-the-minish-cap-companion/NOTES.md). |
+| [`zelda-oracle-of-ages-companion`](zelda-oracle-of-ages-companion) | Oracle of Ages | `CGB-AZ8E` `CGB-AZ8P` `CGB-AZ8J` | Items, Map, Seeds, Rings, Status | 0.1.1 | Early version in the game's own subscreen style. Era maps that dim unvisited rooms, seeds, all 64 rings, hearts and essences. Needs **GBADuo v0.1.8**. See [NOTES](zelda-oracle-of-ages-companion/NOTES.md). |
 
 ### Other games
 
 | Pack | Game | Game codes | Pages | Version | Notes |
 |---|---|---|---|---|---|
-| [`harvest-moon-fomt-companion`](harvest-moon-fomt-companion) | Harvest Moon: Friends of Mineral Town | `A4NP` `BHFE` | Farm, Bag, Love, Sprites | 1.1.0 | *The Mineral Town Almanac*: a storybook farm whose backdrop follows the season and turns to a starry sky at night. Checked on the EU cart. See [NOTES](harvest-moon-fomt-companion/NOTES.md). |
-| [`golden-sun-companion`](golden-sun-companion) | Golden Sun | `AGSE` `AGSP` `AGSJ` `AGSI` | Party, Djinn, Psynergy, Maps | 0.3.0 | Early preview in the game's blue window style, with an area map that follows your character and a **WIDE** button (US ROM only). Djinn ownership isn't mapped yet. |
+| [`harvest-moon-fomt-companion`](harvest-moon-fomt-companion) | Harvest Moon: Friends of Mineral Town | `A4NP` `BHFE` | Farm, Bag, Love, Sprites | 1.1.1 | *The Mineral Town Almanac*: a storybook farm whose backdrop follows the season and turns to a starry sky at night. Checked on the EU cart. See [NOTES](harvest-moon-fomt-companion/NOTES.md). |
+| [`golden-sun-companion`](golden-sun-companion) | Golden Sun | `AGSE` `AGSP` `AGSJ` `AGSI` | Party, Djinn, Psynergy, Maps | 0.3.1 | Early preview in the game's blue window style, with an area map that follows your character and a **WIDE** button (US ROM only). Djinn ownership isn't mapped yet. |
 
 Want a pack for another game? [Open an issue](https://github.com/khumam/gba-duo-companions/issues).
 

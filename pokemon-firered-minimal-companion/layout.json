@@ -83,6 +83,19 @@
                 },
                 {
                   "type": "box",
+                  "class": "wide-pill ambient-pill",
+                  "classIf": { "ambient-on": "$_ambient" },
+                  "onClick": { "call": "ambientView", "args": ["toggle"] },
+                  "children": [
+                    {
+                      "type": "text",
+                      "class": "wide-text",
+                      "text": "COLOR"
+                    }
+                  ]
+                },
+                {
+                  "type": "box",
                   "class": "hstat",
                   "children": [
                     {

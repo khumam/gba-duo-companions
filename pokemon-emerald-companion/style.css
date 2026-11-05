@@ -288,10 +288,10 @@ pages { flex: 1; }
 .badge-img.off { opacity: 0.2; }
 .badge-name { font-family: "Silk"; font-size: 7px; color: var(--muted); }
 .badge.earned .badge-name { color: var(--ink); font-weight: 700; }
-.set-win { flex-shrink: 0; height: 96px; }
+.set-win { flex-shrink: 0; height: 140px; }
 .about-win { flex: 1; }
 .insp-win, .list-win, .card-win { flex-shrink: 1; }
-.opt-btn { flex-direction: row; align-items: center; gap: 6px; height: 40px; padding: 0 10px; background: linear-gradient(180deg, #fffaf0, #efe6c4); border: 3px solid var(--navy); border-radius: 8px; }
+.opt-btn { flex-direction: row; align-items: center; gap: 6px; height: 40px; flex-shrink: 0; padding: 0 10px; background: linear-gradient(180deg, #fffaf0, #efe6c4); border: 3px solid var(--navy); border-radius: 8px; }
 .opt-btn:pressed { background: linear-gradient(180deg, #f0d0a0, #fffaf0); }
 .opt-label { font-family: "Silk"; font-weight: 700; font-size: 10px; color: var(--ink); }
 .opt-state { font-family: "Silk"; font-weight: 700; font-size: 11px; color: var(--white); padding: 1px 8px; background-color: var(--lilac-d); border-radius: 5px; }

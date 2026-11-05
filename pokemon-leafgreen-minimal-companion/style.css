@@ -90,6 +90,8 @@ text { white-space: nowrap; }
 }
 
 .loc-pill {
+  min-width: 0;
+  flex-shrink: 1;
   flex-direction: row;
   align-items: center;
   gap: 6px;
@@ -107,7 +109,13 @@ text { white-space: nowrap; }
   color: var(--ink);
 }
 
-.hstat { flex-direction: row; align-items: center; gap: 5px; }
+
+.ambient-pill { background-color: var(--surface-2); }
+.ambient-pill .wide-text { color: var(--ink-2); }
+.ambient-pill.ambient-on { background-color: var(--accent); border-color: var(--accent-strong); }
+.ambient-pill.ambient-on .wide-text { color: var(--ink); }
+
+.hstat { flex-direction: row; align-items: center; gap: 5px; flex-shrink: 0; }
 .hnum { color: var(--ink); }
 
 /* ---- pages + dock ---------------------------------------------------------------- */

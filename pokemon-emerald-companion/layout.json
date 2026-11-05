@@ -3099,6 +3099,33 @@
                                         "text": "{_wideLabel}"
                                       }
                                     ]
+                                  },
+                                  {
+                                    "type": "button",
+                                    "class": "opt-btn",
+                                    "onClick": {
+                                      "call": "ambientView",
+                                      "args": [
+                                        "toggle"
+                                      ]
+                                    },
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "opt-label",
+                                        "text": "AMBIENT"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "grow",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "opt-state",
+                                        "text": "{_ambientLabel}"
+                                      }
+                                    ]
                                   }
                                 ]
                               }

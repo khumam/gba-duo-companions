@@ -80,6 +80,16 @@ local function track(layout)
   return px, py, h, v
 end
 
+-- Markers for the wide margins: the NPCs, trainers, items and doors of the map (entities.lua). The app paints
+-- them over the margins only.
+local entities = pack.require("entities")
+local MAX_MARKERS = 64
+
+local function markers(view)
+  return entities.within(mem.u32(MAP_HEADER + 4), worldX - view.width, worldX + view.width,
+    worldY - view.height, worldY + view.height, MAX_MARKERS)
+end
+
 function wide(view)
   local layout = mem.u32(MAP_HEADER)
   if layout < 0x08000000 or layout >= 0x0A000000 then return nil end
@@ -105,5 +115,9 @@ function wide(view)
     metatiles = mem.u32(primary + 0x0C), metatiles2 = mem.u32(secondary + 0x0C),
     split = NUM_METATILES_IN_PRIMARY,
     tiles = 0x06000000, palette = 0x05000000,
+    markers = markers(view),
   }
 end
+
+-- The look of the game while Ambient is on (ambient.lua).
+ambient = pack.require("ambient").ambient
