@@ -678,7 +678,7 @@
 			"title": "Super Mario Land 2 DX Companion",
 			"description": "For the colourized DX version. Level plate with a start-to-goal progress track, the six golden coins with per-zone clears, lives, coins and power-up. Follows the title, save and world map screens.",
 			"version": "1.1.1",
-			"author": "khumam",
+			"author": "Edoardo",
 			"official": true,
 			"repo": "khumam/gba-duo-companions",
 			"path": "super-mario-land-2-companion",
