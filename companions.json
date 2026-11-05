@@ -310,6 +310,47 @@
 			]
 		},
 		{
+			"id": "pokemon-emerald-companion",
+			"title": "Pokémon Emerald Companion",
+			"description": "Dashboard built from the game's own menus: live area map with your spot, party with summary, skills, moves and contest condition, bag by pocket with ROM descriptions, Pokédex, trainer card with badges, and a battle page with type-effectiveness chips. Tap FIGHT, BAG, POKéMON or RUN to pick the action (needs Packs can change games). Has a WIDE button that paints the game's world beside the picture, and a COLOR button for a fuller look (GBADuo 0.1.12 or newer).",
+			"version": "0.4.0",
+			"author": "khumam",
+			"official": true,
+			"repo": "khumam/gba-duo-companions",
+			"path": "pokemon-emerald-companion",
+			"tag": "v1.11.0",
+			"url": "https://github.com/khumam/gba-duo-companions/tree/main/pokemon-emerald-companion",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.11.0/pokemon-emerald-companion-0.4.0.zip",
+			"games": [
+				{
+					"title": "Pokémon Emerald",
+					"region": "US",
+					"gameCode": "BPEE"
+				}
+			],
+			"design": "Pokémon Emerald",
+			"pages": [
+				"Bag",
+				"Map",
+				"Party",
+				"Detail",
+				"Dex",
+				"Options",
+				"Battle"
+			],
+			"tags": [
+				"pokemon",
+				"rpg",
+				"map",
+				"party",
+				"battle",
+				"rom-graphics"
+			],
+			"minAppVersion": "0.1.12",
+			"recommendedAppVersion": "0.1.12",
+			"canModifyGame": true
+		},
+		{
 			"id": "golden-sun-companion",
 			"title": "Golden Sun Companion (Early Preview)",
 			"description": "Early preview for Golden Sun, dressed in the game's own blue windows: a party roster with each member's HP, stats and items, a Djinn list, Psynergy, and an area Maps page that follows your character. The WIDE button paints the world beside the picture. Wide view and Maps are tested on the US ROM only; Djinn ownership is not mapped yet.",
