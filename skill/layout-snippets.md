@@ -145,3 +145,70 @@ every page (Pokémon), generate the JSON from a script (`art/layout.mjs`) instea
 ```
 
 `.map-view { position: relative }`, `.mark { position: absolute }` (Zelda pack; `linkX/linkY` are 0-100 from Lua).
+
+## Settings pills (WIDE / COLOR / GAME CHANGES)
+
+The app handles these actions itself; each snapshot carries the label. Put them in a header strip or
+on a last page. `classIf` lights the pill while the feature is on.
+
+```json
+{ "type": "row", "class": "opts", "children": [
+  { "type": "box", "class": "opt", "classIf": { "on": "$_wide" },
+    "onClick": { "call": "wideView", "args": ["toggle"] },
+    "children": [ { "type": "text", "text": "WIDE {_wideLabel}" } ] },
+  { "type": "box", "class": "opt", "classIf": { "on": "$_ambient" },
+    "onClick": { "call": "ambientView", "args": ["toggle"] },
+    "children": [ { "type": "text", "text": "COLOR {_ambientLabel}" } ] },
+  { "type": "box", "class": "opt", "classIf": { "on": "$_writePerm" },
+    "onClick": { "call": "writePermission" },
+    "children": [ { "type": "text", "text": "GAME CHANGES {_writePermLabel}" } ] }
+]}
+```
+
+```css
+.opt         { padding: 4px 10px; border-radius: 6px; background: var(--panel); opacity: .8; }
+.opt.on      { opacity: 1; border: 2px solid var(--accent); }
+.opt:pressed { transform: translate(1px, 1px); }
+```
+
+Show only the pills the pack supports: `_wideLabel` / `_ambientLabel` read `N/A` without `wide()` /
+`ambient()`.
+
+## Tap a tile, open a popup (equip, details)
+
+```json
+{ "type": "list", "class": "gear", "items": "$gear", "template":
+  { "type": "box", "class": "slot", "classIf": { "locked": "$locked" },
+    "onClick": { "set": { "menu": "{id}", "menuName": "{name}", "menuIcon": "{icon}" } },
+    "children": [ { "type": "image", "src": "{icon}" } ] } },
+{ "type": "box", "class": "sheet", "visibleIf": "$ui.menu", "children": [
+  { "type": "image", "class": "sheet-icon", "src": "$ui.menuIcon" },
+  { "type": "text", "class": "sheet-name", "text": "{ui.menuName}" },
+  { "type": "row", "children": [
+    { "type": "box", "class": "sheet-btn", "onClick": { "call": "equip", "args": ["A", "{ui.menu}"] },
+      "children": [ { "type": "text", "text": "A BUTTON" } ] },
+    { "type": "box", "class": "sheet-btn", "onClick": { "call": "equip", "args": ["B", "{ui.menu}"] },
+      "children": [ { "type": "text", "text": "B BUTTON" } ] } ] },
+  { "type": "box", "class": "sheet-btn", "onClick": { "set": { "menu": "" } },
+    "children": [ { "type": "text", "text": "CANCEL" } ] }
+]}
+```
+
+`.sheet { position: absolute; inset: 0; background: rgba(0,0,0,.6); }` with `position: relative`
+on the parent; the action returns `{ set = { menu = false, pick = "..." } }` to close it and toast.
+
+## Tap-through list to a detail page
+
+```json
+{ "type": "list", "items": "$party", "template": { "type": "row", "class": "mon",
+  "onClick": [ { "set": { "selected": "{@index}" } }, { "navigate": "detail" } ],
+  "children": [ { "type": "text", "text": "{name}" } ] } }
+{ "type": "button", "text": "‹ Back", "onClick": "back" }
+```
+
+## Adaptive grid
+
+```css
+.items { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 8px; }
+@media (orientation: portrait) { .main { flex-direction: column; } .dock { flex-direction: row; } }
+```

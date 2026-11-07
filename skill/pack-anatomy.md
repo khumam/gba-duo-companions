@@ -8,10 +8,12 @@ engine as the other five Pokémon variants), **Zelda: The Minish Cap**
 
 ```
 <pack>/
-  manifest.json        id, name, version, formatVersion 2, match.gameCode[], tickHz 4, layout/styles/script
+  manifest.json        id, name, version, formatVersion 2-4, match.gameCode[], tickHz 4, layout/styles/script/gameScript, permissions
   layout.json          widget tree (one root box id="screen")
   style.css            tokens, @font-face, rules
-  main.lua             update(ui) -> table of values for the layout
+  main.lua             update(ui) -> table of values for the layout; actions.* for taps
+  game.lua             (formatVersion 4) frame() / wide() / ambient(): works on the picture, not the screen
+  ambient.lua          the Ambient look tables, handed over by game.lua (pack.require)
   *_names.lua          lookup tables (species, items, areas, djinn), loaded with pack.require("x")
   game_data.lua        bulky static data (FireRed: 1383 lines of species/moves/encounters)
   rom_gfx.lua          (Zelda) ROM-drawn images, per-release address table
@@ -22,6 +24,18 @@ engine as the other five Pokémon variants), **Zelda: The Minish Cap**
   screenshoots/        device screenshots (excluded)
   NOTES.md             what's verified on the device, addresses, sources (excluded)
 ```
+
+### Manifest versions
+
+| `formatVersion` | Adds |
+|---|---|
+| 2 | `styles` (CSS), the default for new packs |
+| 3 | `"permissions": ["memory-write"]` (an unknown permission makes the manifest invalid) |
+| 4 | `"gameScript": "game.lua"` (an older app refuses the pack; set `minAppVersion` in the catalog) |
+
+`gameScript` and the permission list are part of the pack's fingerprint: changing `game.lua` asks the
+player again before it may write. Wide view needs app v0.1.9+ (Minish Cap v0.1.10, Golden Sun v0.1.11),
+Ambient / COLOR v0.1.13.
 
 `manifest.json` matches by 4-letter `gameCode` (Zelda lists `BZME/BZMP/BZMJ`, Golden Sun
 `AGSE/AGSP/AGSJ/AGSI`), `tickHz: 4` for all three. `values: {}` is unused.
@@ -53,6 +67,21 @@ mem.u8/u16/u32/read  ──▶ update(ui) ──▶ returned table ──▶ {bi
 Typical `update()` shape (Golden Sun): read party → build `members[]` → build the selected
 member's `m`, `item`, `elements[]` → `out.ready/out.waiting` → `out.navX` booleans for the
 nav's `classIf`.
+
+## Beyond the screen: game.lua
+
+The companion screen is one half of a pack; `game.lua` is the other. It runs in its own sandbox
+every emulated frame and never touches the companion screen if it breaks.
+
+| Hook | Result |
+|---|---|
+| `wide(view)` | the world around the game's frame (one grid, or `layers`) plus `markers`: the WIDE / XL margins |
+| `ambient()` | the colour grade and light (shadows, rim, bloom, clouds), switched by the COLOR pill |
+| `frame(view)` | optional RAM writes, e.g. hiding the HUD over the Wide picture (`memory-write`) |
+
+See `interactive-and-game-script.md` for the fields, the calibration advice and the reserved
+`wideView` / `ambientView` / `writePermission` actions that the settings pills call. Packs using it:
+Minish Cap, FireRed/LeafGreen, Emerald, Golden Sun, Mega Man Zero.
 
 ## Layout skeleton shared by all three
 

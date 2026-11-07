@@ -1,6 +1,6 @@
 ---
 name: gbaduo-companion-pack-design
-description: Use when creating, restyling or reviewing any GBADuo companion pack (manifest.json, layout.json, style.css, main.lua, assets) for a GBA/GBC game — choosing a visual style, building the screen layout, or deciding where sprites and icons come from (shipped PNGs, the player's ROM at runtime via gfx.*, or art drawn in code). Distilled from the Pokémon FireRed/LeafGreen, Zelda Minish Cap and Golden Sun packs.
+description: Use when creating, restyling or reviewing any GBADuo companion pack (manifest.json, layout.json, style.css, main.lua, assets) for a GBA/GBC game — choosing a visual style, building the screen layout, making it interactive (tap-to-detail, popups, equip, settings pills), adding Wide view / Ambient / markers through game.lua, fitting any screen size, or deciding where sprites and icons come from (shipped PNGs, the player's ROM at runtime via gfx.*, or art drawn in code). Distilled from the Pokémon, Zelda Minish Cap, Golden Sun and Mega Man Zero packs and the app's current engine docs.
 ---
 
 # GBADuo Companion Pack Design
@@ -9,8 +9,14 @@ description: Use when creating, restyling or reviewing any GBADuo companion pack
 
 A pack is a screen description for the Thor's second display (~538 × 468 dp, landscape).
 `layout.json` is structure, `style.css` is look, `main.lua` reads game memory and returns
-the values to show, `assets/` holds fonts and images. This skill is the general method;
-it was derived by reading three finished packs side by side.
+the values to show, `game.lua` (optional) improves the game's own picture (Wide view, Ambient
+colour, HUD hiding), `assets/` holds fonts and images. This skill is the general method; it was
+derived by reading the finished packs side by side and tracks the engine docs
+(`gbaduo/docs-packs/*.md`, the source of truth when they disagree).
+
+**A good pack is attractive, interactive and alive**: it looks like the game's own menu, every tile
+answers a tap, the numbers move, and the picture beside it can be widened and graded by the pack.
+Aim for all three, not just a read-only stat sheet.
 
 **Core principle: take the look from the game itself.** Every good pack copies one
 screen of its game (FireRed's Bag window, Golden Sun's save list, Minish Cap's pause
@@ -24,13 +30,14 @@ agree. Generic "dark dashboard" packs read as foreign next to the game.
 | `pack-anatomy.md` | Starting a pack: folder layout, manifest, the Lua → layout contract, build pipeline, per-pack comparison |
 | `sprites-and-assets.md` | Deciding where every image comes from and how to size/style it (the three strategies, CSS recipes, `gfx.*` API, fallbacks) |
 | `visual-styles.md` | Picking or analysing a look: palettes, fonts, frames, nav, per-game style recipes |
-| `layout-snippets.md` | Writing `layout.json`: skeleton, hero plaque, stat plaque, icon rows, owned/locked |
+| `layout-snippets.md` | Writing `layout.json`: skeleton, hero plaque, stat plaque, icon rows, owned/locked, settings pills, tap-to-popup |
+| `interactive-and-game-script.md` | Making it interactive and alive: detail pages, popups, equip, reserved actions (WIDE / COLOR / permission), `game.lua` (`wide`, `ambient`, markers, HUD), memory writes, responsive CSS, limits, plus lessons from the Golden Sun and Emerald packs |
 | `theme-forest.css`, `art-kit-forest.mjs` | The ornate fantasy-forest design system (parchment/gold/moss, SVG→PNG art kit) |
 | `preview-pack.sh`, `PreviewRender.kt` | Render every page with the app's real engine on this Mac (no device), then analyse the PNGs |
 
-Engine details (selectors, properties, units) live in the repo skill
-`.claude/skills/styling-the-companion-screen` and the app's `docs-packs/*.md`; don't
-duplicate them here.
+Engine details (selectors, properties, units, script limits) live in the app repo's
+`docs-packs/companion-styling.md`, `companion-pages.md` and `game-script.md`; read them when a
+property or hook isn't covered here, and don't duplicate them.
 
 ## Workflow
 
@@ -42,11 +49,19 @@ duplicate them here.
    per region. Return only display-ready values from `update()`, including asset keys.
 4. **Skeleton:** `#screen` → waiting box (`visibleIf $waiting`) + ready content
    (`visibleIf $ready`) → `pages` with one page per tab + a nav (dock / tab row).
-5. **Style in `style.css`** with tokens; legacy widget keys are only shorthand.
-6. **Preview on the Mac** with the app's real engine (see "Previewing" below), look at
-   every page, fix, repeat. The device is only for the final check (and ROM-drawn art).
-7. **Release:** bump `version`, zip without `art/`, `screenshoots/`, `NOTES.md`,
-   `preview-data.json` (see repo README, "Releasing packs").
+5. **Style in `style.css`** with tokens; legacy widget keys are only shorthand. Add `:pressed`
+   feedback, bar `transition`s and `@media` rules from the start, not as a last polish.
+6. **Make it interactive** (`interactive-and-game-script.md`): tap a tile → detail page or popup,
+   the game opens pages by itself (battle), a settings area with WIDE / COLOR (and GAME CHANGES when
+   the pack writes). Every tappable thing needs a visible pressed and selected state.
+7. **Improve the picture** when the game allows it: `game.lua` with `wide()` (world + markers),
+   `ambient()` (a light grade that follows the place), optional HUD hiding. `formatVersion` 4.
+8. **Preview on the Mac** with the app's real engine (see "Previewing" below), look at
+   every page, fix, repeat. The device is only for the final check (ROM-drawn art, Wide/Ambient,
+   writes: the preview can't show them).
+9. **Release:** bump `version`, zip without `art/`, `screenshoots/`, `NOTES.md`,
+   `preview-data.json` (see repo README, "Releasing packs"); set the catalog's `minAppVersion`
+   for any feature newer than the pack's oldest target.
 
 ## Previewing without the device
 
@@ -96,6 +111,14 @@ Open each PNG (Read tool, or compare with the Thor screenshot in `screenshoots/`
 
 ## Design rules that held across all packs
 
+- **Attractive first glance.** One focal hero per page (the map, the party leader, the equipped
+  items), a consistent frame/header height, and a clear accent colour for "current"/"owned".
+- **Every tile is tappable or obviously not.** If it looks like a button it opens something
+  (detail page, popup, equip) and has a `:pressed` style; static info uses a flat style.
+- **Offer the app's features.** If the pack has `wide()` it needs a WIDE pill; with `ambient()`,
+  a COLOR pill; with `memory-write`, a GAME CHANGES pill (reserved actions, no Lua needed).
+- **Adapt to the screen.** Grids with `repeat(auto-fill, minmax())`, sizes with `clamp()`, and an
+  `@media (orientation: portrait)` rule for the nav. Don't hard-code 538 px.
 - **One screen, 3–7 pages.** A persistent nav (bottom tab bar, right-side dock, or header
   tabs) switches pages; each page is one job (party, bag, map, quest).
 - **Waiting screen first.** `ready=false` until the save is loaded (title screens hold
@@ -123,11 +146,17 @@ Open each PNG (Read tool, or compare with the Thor screenshot in `screenshoots/`
 | `background-size: 100% 100%` falls back to bitmap size | fixed px size, or `cover`/`contain` |
 | `background-color` plus a gradient on `.hero` etc. | gradient goes in `background` / `background-image`; colour is the fallback |
 | `button` ignores a `text` attribute | give it a `text` child |
-| No `@keyframes`, filters, radial gradients, pseudo-elements, multiple shadows | bake into PNG, one `box-shadow` |
+| No `@keyframes`, filters, radial gradients, pseudo-elements, multiple shadows/backgrounds | bake into PNG, one `box-shadow`; move things with `transition` + a class from `classIf` |
+| `min(50%, 300px)` drops the declaration (can't mix `%` and px) | `calc()` or `clamp()` with px, or `min(50%, 80%)` |
+| `padding` in `%`, `grid-template-areas`, sibling combinators, attribute selectors | not supported: use px/`gap`, row-major grid, extra classes |
+| A tap on a hidden / `opacity: 0` box falls through | intended; fade popups with `opacity` + `pointer-events` |
+| Writes work only inside an `onClick` action (or `frame()` for HUD-style hooks) | do the write in `actions.*`; `update()` can't write |
+| A wrong `wide()` world just hides the margins | log `view.match` behind a `DEBUG` flag; calibrate camera lag |
 | Absolute-positioned ornaments land on the wrong box | parent needs `position: relative` |
 | Layout can't compare values | compute booleans/strings in Lua (`navParty`, `hasWild`, `low`) |
 | `gfx.*` result gone after cache eviction | call it every tick; keep only the args in Lua |
 | 8-digit hex in CSS | CSS order `#rrggbbaa`, not Android `#aarrggbb` |
+| `gameScript` / `memory-write` need newer manifests | `formatVersion` 4 for `gameScript`, 3 for `permissions`; older apps refuse the pack |
 
 ## Common mistakes
 
@@ -138,5 +167,9 @@ Open each PNG (Read tool, or compare with the Thor screenshot in `screenshoots/`
   (FireRed's PokeAPI sprites are the existing exception, credited in the README).
 - Guessing addresses for another region. EU/US/JP differ; keep a per-game-code table
   and fall back to drawn art for unknown codes.
+- A read-only pack with no detail pages, popups or settings: the player sees numbers they could
+  read in the game. Add at least one tap-through and the WIDE/COLOR pills if the pack supports them.
+- Adding `wide()` / `ambient()` but no button for it (the app has no menu entry for them).
+- Heavy `ambient()` grades (strong tint, vignette > 0.4) that fight the game's palette.
 - Writing `layout.json` by hand when it repeats (dock on every page): generate it from
   `art/layout.mjs`, as the Pokémon packs do.
