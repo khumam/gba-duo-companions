@@ -93,7 +93,7 @@ the sprite is not dominated by single-pixel lines. Use a different slot size per
 
 ## Strategy B: ROM-drawn graphics (`gfx.*`)
 
-API (app `docs-packs/companion-pages.md`, "Pictures from the game"). Each call returns an
+API (`docs/lua.md`, "Drawing the game's graphics", and `docs/pages.md`, "Pictures from the game"). Each call returns an
 image key; the result is cached by argument, so **call it every tick** and keep only the
 arguments in Lua.
 

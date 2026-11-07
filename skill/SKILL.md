@@ -12,7 +12,7 @@ A pack is a screen description for the Thor's second display (~538 × 468 dp, la
 the values to show, `game.lua` (optional) improves the game's own picture (Wide view, Ambient
 colour, HUD hiding), `assets/` holds fonts and images. This skill is the general method; it was
 derived by reading the finished packs side by side and tracks the engine docs
-(`gbaduo/docs-packs/*.md`, the source of truth when they disagree).
+(the GBA Duo app repo's `docs-packs/*.md`, the source of truth when they disagree).
 
 **A good pack is attractive, interactive and alive**: it looks like the game's own menu, every tile
 answers a tap, the numbers move, and the picture beside it can be widened and graded by the pack.
@@ -32,11 +32,14 @@ agree. Generic "dark dashboard" packs read as foreign next to the game.
 | `visual-styles.md` | Picking or analysing a look: palettes, fonts, frames, nav, per-game style recipes |
 | `layout-snippets.md` | Writing `layout.json`: skeleton, hero plaque, stat plaque, icon rows, owned/locked, settings pills, tap-to-popup |
 | `interactive-and-game-script.md` | Making it interactive and alive: detail pages, popups, equip, reserved actions (WIDE / COLOR / permission), `game.lua` (`wide`, `ambient`, markers, HUD), memory writes, responsive CSS, limits, plus lessons from the Golden Sun and Emerald packs |
+| `docs-site-and-simulator.md` | The public docs page map, the browser simulator vs `preview-pack.sh`, and details the docs state that are easy to miss (snapshot built-ins, sandbox, `values`, hardcore mode, version gates) |
+| `docs/*.md` | A copy of the public GBA Duo docs, bundled in this skill: `first-pack`, `layout`, `styling`, `pages`, `lua`, `game-script`, `wide-view`, `settings`, `install`, `games`, `import-packs`, `index`. The full engine reference; read the one matching the feature, don't load all |
 | `theme-forest.css`, `art-kit-forest.mjs` | The ornate fantasy-forest design system (parchment/gold/moss, SVG→PNG art kit) |
 | `preview-pack.sh`, `PreviewRender.kt` | Render every page with the app's real engine on this Mac (no device), then analyse the PNGs |
 
-Engine details (selectors, properties, units, script limits) live in the app repo's
-`docs-packs/companion-styling.md`, `companion-pages.md` and `game-script.md`; read them when a
+Engine details (selectors, properties, units, script limits) are in `docs/` (a bundled copy of the public docs; see
+`docs-site-and-simulator.md` for the page map) and in the GBA Duo app repo's
+`docs-packs/`; read them when a
 property or hook isn't covered here, and don't duplicate them.
 
 ## Workflow
@@ -56,7 +59,8 @@ property or hook isn't covered here, and don't duplicate them.
    the pack writes). Every tappable thing needs a visible pressed and selected state.
 7. **Improve the picture** when the game allows it: `game.lua` with `wide()` (world + markers),
    `ambient()` (a light grade that follows the place), optional HUD hiding. `formatVersion` 4.
-8. **Preview on the Mac** with the app's real engine (see "Previewing" below), look at
+8. **Preview**: the browser simulator (`/simulator`, live, no setup) while designing, then on the Mac
+   with the app's real engine (see "Previewing" below), look at
    every page, fix, repeat. The device is only for the final check (ROM-drawn art, Wide/Ambient,
    writes: the preview can't show them).
 9. **Release:** bump `version`, zip without `art/`, `screenshoots/`, `NOTES.md`,
@@ -68,8 +72,8 @@ property or hook isn't covered here, and don't duplicate them.
 `skill/preview-pack.sh <pack-dir>` runs the **actual** `gbaduo` engine (CssParser,
 StyleResolver, CompanionTree, CompanionScreen) under Robolectric at the Thor's size
 (1240 × 1080 px, 369 dpi = 538 × 468 dp; renders 1079 px tall from dp rounding), so layout, fonts, CSS
-and sprites look the way they do on the device. Needs JDK 17 and the app repo at
-`../gbaduo` (or `--app DIR` / `$GBADUO_APP_DIR`); ~25 s after the first run. It copies
+and sprites look the way they do on the device. Needs JDK 17 and a checkout of the
+[GBA Duo app repo](https://github.com/khumam/gba-duo) (`--app DIR` or `$GBADUO_APP_DIR`; the script's default is a sibling folder named `gbaduo`); ~25 s after the first run. It copies
 `PreviewRender.kt` into the app's tests for the run and deletes it again (app repo stays clean).
 
 ```sh

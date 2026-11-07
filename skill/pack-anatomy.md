@@ -38,7 +38,7 @@ player again before it may write. Wide view needs app v0.1.9+ (Minish Cap v0.1.1
 Ambient / COLOR v0.1.13.
 
 `manifest.json` matches by 4-letter `gameCode` (Zelda lists `BZME/BZMP/BZMJ`, Golden Sun
-`AGSE/AGSP/AGSJ/AGSI`), `tickHz: 4` for all three. `values: {}` is unused.
+`AGSE/AGSP/AGSJ/AGSI`), `tickHz: 4` for all three. `values: {}` is unused here; it is the no-script way to read fixed addresses (see `docs-site-and-simulator.md`).
 
 ## The contract: Lua returns, layout binds
 

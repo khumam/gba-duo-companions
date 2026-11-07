@@ -1,7 +1,7 @@
 # Interactive packs, game.lua and responsive CSS
 
 What turns a static stats screen into a companion people keep looking at. The engine docs are
-the contract (`gbaduo/docs-packs/companion-pages.md`, `companion-styling.md`, `game-script.md`);
+the contract (`docs/pages.md`, `docs/styling.md`, `docs/game-script.md`, `docs/lua.md` in this skill);
 this file is the design advice and the patterns that worked in the Minish Cap, FireRed, Emerald
 and Golden Sun packs. Read it before adding anything beyond a read-only display.
 
