@@ -30,7 +30,7 @@ const grow = () => box("grow", []);
 
 // The stitching is the inner box's own dashed border (an overlay would eat taps).
 const header = box("header", [box("header-in", [
-  box("hgroup", [img("hicon hicon-rupee", ui("rupee-green")), text("num rupees", "{rupees}"), text("num of", " / {walletMax}")]),
+  box("hgroup", [img("hicon hicon-rupee", ui("rupee-green")), text("num rupees", "{rupees}"), text("num of", "/{walletMax}")]),
   box("hgroup", [img("hicon", icon("kinstone-red")), text("num kin", "{kinstones}")]),
   grow(),
   button("ezlo-btn", [{ set: { hint: true } }], [img("ezlo", "$ezlo")]),
@@ -49,6 +49,18 @@ const hint = box(
   { visibleIf: "$ui.hint", onClick: [{ set: { hint: false } }] },
 );
 
+const equipBtn = (cls, label, button) =>
+  box(`menu-btn ${cls}`.trim(), [text("menu-btn-text", label)], { onClick: { call: "equip", args: [button, "{ui.menu}"] } });
+const equipMenu = box(
+  "equip-menu",
+  [
+    box("menu-head", [img("menu-icon", "$ui.menuIcon"), text("menu-name", "{ui.menuName}")]),
+    box("menu-row", [equipBtn("", "A BUTTON", "A"), equipBtn("", "B BUTTON", "B")]),
+    box("menu-btn menu-cancel", [text("menu-btn-text", "CANCEL")], { onClick: { set: { menu: "" } } }),
+  ],
+  { visibleIf: "$ui.menu" },
+);
+
 // ---- dock -------------------------------------------------------------------------
 
 const TABS = [
@@ -56,6 +68,7 @@ const TABS = [
   ["items", "ITEMS"],
   ["kinstone", "KINSTONE"],
   ["quest", "QUEST"],
+  ["options", "OPTIONS"],
 ];
 const bolts = ["tl", "tr", "bl", "br"].map((c) => img(`bolt bolt-${c}`, ui("bolt")));
 const dock = (active) =>
@@ -94,7 +107,7 @@ const card = (cls, title, body) =>
   box(`card ${cls}`, [...(title ? [text("card-title", title)] : []), ...body]);
 
 // An item slot; tapping copies it into $ui.pick*.
-const pick = [{ set: { pick: "{name}", pickIcon: "{icon}", picked: true } }];
+const pick = [{ set: { pick: "{name}", pickIcon: "{icon}", picked: true, menu: "{equipKey}", menuName: "{name}", menuIcon: "{icon}" } }];
 const slot = (cls = "") =>
   box(
     `slot ${cls}`.trim(),
@@ -292,12 +305,31 @@ const questPage = box("content cols-quest", [
       }),
       { empty: "NO ERRANDS RIGHT NOW" },
     ),
-    grow(),
     box("stats", [
       box("stat", [img("stat-icon", icon("figurines")), text("num stat-val", "{quest.figurines}")]),
       box("stat", [img("stat-icon", icon("tiger-scroll")), text("num stat-val", "{quest.skills}")]),
-      box("stat", [img("stat-icon", icon("heart-piece")), text("num stat-val", "{quest.heartPieces}")]),
-      box("stat", [img("stat-icon", icon("shell")), text("num stat-val", "{quest.shells}")]),
+    ]),
+  ]),
+]);
+
+// ---- options page -----------------------------------------------------------------------
+
+// One switch per row; the app handles both calls itself (wideView steps off > on > XL, ambientView toggles).
+const option = (title, desc, call, onKey, labelKey) =>
+  button(
+    "opt",
+    call === "writePermission" ? { call } : { call, args: ["toggle"] },
+    [
+      box("opt-text", [text("opt-title", title), text("opt-desc", desc)]),
+      box("opt-pill", [text("num opt-state", `{${labelKey}}`)], { classIf: { on: `$${onKey}` } }),
+    ],
+  );
+const optionsPage = box("content cols-options", [
+  panel("options-panel", "OPTIONS", [
+    box("opt-list", [
+    option("WIDE VIEW", "Paint the world beyond the game's frame. Tap again for extra wide.", "wideView", "_wide", "_wideLabel"),
+    option("COLOR AMBIENT", "A richer grade with soft shadows, sunlit edges and drifting clouds.", "ambientView", "_ambient", "_ambientLabel"),
+    option("GAME CHANGES", "Lets this pack hide the game's own HUD and equip items. Tap to be asked again.", "writePermission", "_writePerm", "_writePermLabel"),
     ]),
   ]),
 ]);
@@ -321,9 +353,10 @@ const layout = box(
       box("pages-wrap", [{
         type: "pages",
         class: "pages",
-        pages: [page("map", mapPage), page("items", itemsPage), page("kinstone", kinstonePage), page("quest", questPage)],
+        pages: [page("map", mapPage), page("items", itemsPage), page("kinstone", kinstonePage), page("quest", questPage), page("options", optionsPage)],
       }]),
       hint,
+      equipMenu,
     ], { visibleIf: "$ready" }),
   ],
   { id: "screen" },

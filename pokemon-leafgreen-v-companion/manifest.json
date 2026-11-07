@@ -1,7 +1,7 @@
 {
   "id": "pokemon-leafgreen-v-companion",
   "name": "Pokemon LeafGreen Companion (Vertical Navigation)",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": "khumam",
   "formatVersion": 4,
   "match": { "gameCode": ["BPGE"], "crc32": [] },

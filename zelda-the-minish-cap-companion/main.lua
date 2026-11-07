@@ -166,12 +166,15 @@ end
 -- ---- Slots ---------------------------------------------------------------------
 -- Every grid cell the layout draws: an item, or an empty well.
 
-local EMPTY = { name = "", icon = "", count = "", hasCount = false, owned = false, empty = true }
+local EMPTY = { equipKey = "", equipId = 0, canEquip = false, name = "", icon = "", count = "", hasCount = false, owned = false, empty = true }
 
-local function slot(name, count)
+local function slot(name, count, equipId)
   local icon = item_names.icon(name)
   if not icon then return nil end -- nothing to draw (Fire Rod, Grab, Butter)
   return {
+    equipId = equipId or 0,
+    equipKey = (equipId ~= nil and item_names.equip[equipId] ~= nil) and tostring(equipId) or "", -- "" = not equippable (falsy in a layout)
+    canEquip = equipId ~= nil and item_names.equip[equipId] ~= nil,
     name = name:upper(),
     icon = icon,
     count = count and ("x" .. count) or "",
@@ -203,7 +206,7 @@ local function readGear(bombs, arrows)
       local id, name = group[i][1], group[i][2]
       if hasItem(id) then
         local count = (group[1] == "Bombs" and bombs) or (group[1] == "Bow" and arrows) or nil
-        local s = slot(name, count)
+        local s = slot(name, count, id)
         if s then all[#all + 1] = s end
         break
       end
@@ -212,7 +215,8 @@ local function readGear(bombs, arrows)
   for i, bottleId in ipairs(item_names.bottles) do
     if hasItem(bottleId) then
       local name = item_names.bottle[mem.u8(BOTTLES + i - 1)] or "Empty"
-      all[#all + 1] = slot(name == "Empty" and "Bottle" or name) or slot("Bottle")
+      local equipId = bottleId -- the bottle slot ids 1C-1F are also what A/B hold
+      all[#all + 1] = slot(name == "Empty" and "Bottle" or name, nil, equipId) or slot("Bottle", nil, equipId)
     end
   end
   return padded(all, POUCH_SLOTS)
@@ -496,4 +500,28 @@ function update(ui)
       shells = tostring(mem.u16(SHELLS)),
     },
   }
+end
+
+-- ---- Equipping from the ITEMS page ---------------------------------------------------
+-- A tap on an item opens the A/B popup (layout: ui.menu); this writes the slot.
+-- Like the game's ForceEquipItem, an item can sit on one button only: picking one
+-- that the other button holds swaps the two.
+actions = actions or {}
+
+function actions.equip(button, itemId)
+  local id = tonumber(itemId)
+  local close = { set = { menu = false } }
+  if not id or not item_names.equip[id] or not saveLoaded() then return close end
+
+  local mine, other = EQUIPPED_A, EQUIPPED_B
+  if button == "B" then mine, other = EQUIPPED_B, EQUIPPED_A end
+  local old = mem.u8(mine)
+  local swap = mem.u8(other) == id and old ~= id
+
+  local ok, why = mem.write8(mine, id)
+  if ok and swap then ok, why = mem.write8(other, old) end
+  if not ok then
+    return { set = { menu = false, pick = "CAN'T CHANGE: " .. tostring(why), picked = true } }
+  end
+  return { set = { menu = false, pick = item_names.equip[id]:upper() .. " > " .. button, picked = true } }
 end

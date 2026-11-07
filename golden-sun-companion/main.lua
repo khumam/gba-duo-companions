@@ -23,6 +23,8 @@ local ITEMS = 0xD8            -- u16 each: 0x1FF id, 0x200 equipped, 0x400 broke
 local ITEM_SLOTS = 15
 local SPELLS = 0x58           -- u32 each, 0 ends the list; low 15 bits are the Psynergy id
 local SPELL_SLOTS = 32
+local DJINN = 0xF8        -- 4 x u32 (Venus, Mercury, Mars, Jupiter): the djinn this character holds, one bit each, in ROM order
+local DJINN_SET = 0x108   -- 4 x u32, same layout: the held djinn that are in Set (the others are on Standby)
 local EXP = 0x124             -- u32, not checked on a device yet
 
 -- ---- Area map (the same RAM map game.lua's wide view reads) ----------------------
@@ -156,19 +158,61 @@ local function readItems(base, selected)
   return items
 end
 
+-- Spells with an icon in assets/img/psy (16 x 16, cut from the game's battle Psynergy menu; 12 and 140-150 and 185
+-- from its field Psynergy menu). Ids without one show an empty slot.
+local PSY_ICONS = {}
+for _, id in ipairs({
+  3, 4, 5, 6, 7, 9, 10, 12, 24, 25, 26, 27, 28, 33, 45, 46, 47, 48, 49, 51, 52, 69, 70, 72, 73, 78, 79,
+  90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 106, 107, 108, 109, 110, 111, 120, 121,
+  140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 185, 192, 194,
+}) do
+  PSY_ICONS[id] = true
+end
+
 local function readSpells(base)
   local spells = {}
   for slot = 0, SPELL_SLOTS - 1 do
     local word = mem.u32(base + SPELLS + slot * 4)
     if word == 0 then break end
-    local id = word & 0x7FFF
+    local id = word & 0x3FFF -- 0x8000 and 0x4000 are flags (class Psynergy, granted by an item)
     local info = psynergy_names[id]
     spells[#spells + 1] = {
       name = info and info[1] or ("Psynergy " .. id), pp = info and tostring(info[2]) or "—",
-      icon = string.format("asset:img/psy/%03d.png", id), hasIcon = info ~= nil,
+      icon = string.format("asset:img/psy/%03d.png", id), hasIcon = PSY_ICONS[id] == true,
+      noIcon = PSY_ICONS[id] ~= true,
     }
   end
   return spells
+end
+
+-- Every djinn, per element column: who holds it and whether it is Set or on Standby. A djinn nobody holds isn't
+-- collected yet. Read off all eight character blocks, so a djinn held by someone outside the party still shows.
+local function readDjinn()
+  local holders = {}
+  for index = 0, 7 do
+    local base = PC_BASE + index * PC_SIZE
+    local name = readName(base)
+    if validName(name) then holders[#holders + 1] = { base = base, tag = name:sub(1, 2):upper() } end
+  end
+  local cols, total = {}, 0
+  for e, col in ipairs(djinn_names) do
+    local list = {}
+    for i, d in ipairs(col.djinn) do
+      local bit = 1 << (i - 1)
+      local owner, inSet
+      for _, h in ipairs(holders) do
+        if mem.u32(h.base + DJINN + (e - 1) * 4) & bit ~= 0 then
+          owner = h.tag
+          inSet = mem.u32(h.base + DJINN_SET + (e - 1) * 4) & bit ~= 0
+          break
+        end
+      end
+      if owner then total = total + 1 end
+      list[i] = { name = d.name, locked = owner == nil, standby = owner ~= nil and not inSet, holder = owner or "" }
+    end
+    cols[e] = { element = col.element, color = col.color, djinn = list }
+  end
+  return cols, total
 end
 
 local function fraction(value, max)
@@ -199,7 +243,7 @@ function update(ui)
   local page = ui.page or "party"
   local out = {
     ready = false, waiting = true,
-    navParty = page == "party", navDjinn = page == "djinn", navPsynergy = page == "psynergy", navMaps = page == "maps",
+    navParty = page == "party", navDjinn = page == "djinn", navPsynergy = page == "psynergy", navMaps = page == "maps", navOptions = page == "options",
   }
   if #party == 0 then return out end
 
@@ -255,7 +299,9 @@ function update(ui)
     broken = current.broken and "Yes" or "No",
     slot = tostring(itemSel + 1),
   }
-  out.djinnCols = djinn_names
+  local cols, owned = readDjinn()
+  out.djinnCols = cols
+  out.djinnNote = owned .. " of " .. (#djinn_names * 7) .. " collected"
   out.map = { on = false, off = true, hasMe = false }
   if page == "maps" then
     local ok, area = pcall(areaMap)

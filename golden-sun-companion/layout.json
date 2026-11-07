@@ -476,7 +476,7 @@
                           {
                             "type": "text",
                             "class": "hero-class",
-                            "text": "Collection tracking is not mapped yet"
+                            "text": "{djinnNote}"
                           }
                         ]
                       }
@@ -506,7 +506,8 @@
                             "type": "box",
                             "class": "djinn-row",
                             "classIf": {
-                              "locked": "$locked"
+                              "locked": "$locked",
+                              "standby": "$standby"
                             },
                             "children": [
                               {
@@ -517,6 +518,11 @@
                                 "type": "text",
                                 "class": "djinn-name",
                                 "text": "{name}"
+                              },
+                              {
+                                "type": "text",
+                                "class": "djinn-tag",
+                                "text": "{holder}"
                               }
                             ]
                           }
@@ -642,8 +648,7 @@
                                 {
                                   "type": "image",
                                   "class": "item-icon",
-                                  "src": "$icon",
-                                  "visibleIf": "$hasIcon"
+                                  "src": "$icon"
                                 },
                                 {
                                   "type": "text",
@@ -655,7 +660,10 @@
                                   "class": "item-qty",
                                   "text": "{pp}"
                                 }
-                              ]
+                              ],
+                              "classIf": {
+                                "noicon": "$noIcon"
+                              }
                             }
                           }
                         ]
@@ -716,6 +724,137 @@
                             "visibleIf": "$map.off"
                           }
                         ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "options",
+              "child": {
+                "type": "box",
+                "class": "page",
+                "children": [
+                  {
+                    "type": "box",
+                    "class": "hero slim",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "hero-main",
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "hero-name",
+                            "text": "Options"
+                          },
+                          {
+                            "type": "text",
+                            "class": "hero-class",
+                            "text": "Settings for this game"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "panel options",
+                    "children": [
+                      {
+                        "type": "text",
+                        "class": "panel-title",
+                        "text": "DISPLAY"
+                      },
+                      {
+                        "type": "box",
+                        "class": "opt-row",
+                        "onClick": {
+                          "call": "wideView",
+                          "args": [
+                            "toggle"
+                          ]
+                        },
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "opt-text",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "opt-title",
+                                "text": "Wide view"
+                              },
+                              {
+                                "type": "text",
+                                "class": "opt-desc",
+                                "text": "Paint the world beyond the frame. Tap again for extra wide."
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "opt-pill",
+                            "classIf": {
+                              "on": "$_wide"
+                            },
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "opt-state",
+                                "text": "{_wideLabel}"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "opt-row",
+                        "onClick": {
+                          "call": "ambientView",
+                          "args": [
+                            "toggle"
+                          ]
+                        },
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "opt-text",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "opt-title",
+                                "text": "Color ambient"
+                              },
+                              {
+                                "type": "text",
+                                "class": "opt-desc",
+                                "text": "Richer color with soft shadows, sunlit edges and drifting clouds."
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "opt-pill",
+                            "classIf": {
+                              "on": "$_ambient"
+                            },
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "opt-state",
+                                "text": "{_ambientLabel}"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "fill",
+                        "children": []
                       }
                     ]
                   }
@@ -814,21 +953,22 @@
             },
             {
               "type": "box",
-              "class": "nav-btn wide-btn",
+              "class": "nav-btn",
               "classIf": {
-                "on": "$_wide"
+                "on": "$navOptions"
               },
-              "onClick": {
-                "call": "wideView",
-                "args": [
-                  "toggle"
-                ]
-              },
+              "onClick": [
+                {
+                  "set": {
+                    "page": "options"
+                  }
+                }
+              ],
               "children": [
                 {
                   "type": "text",
                   "class": "nav-text",
-                  "text": "Wide {_wideLabel}"
+                  "text": "Options"
                 }
               ]
             }

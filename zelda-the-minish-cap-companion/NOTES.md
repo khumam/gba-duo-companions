@@ -170,3 +170,32 @@ Walking: the hardware BG scroll registers trail the game's own `gScreen.bgN` off
 by about a pixel while the camera moves, so `game.lua` adds that difference to the camera. Before it,
 the seam match fell to ~0.55 on most frames while Link walked and the margins flickered to black; after
 it, 15 isolated bad frames over a 48-step walk, none in a row (the gate needs 4).
+
+## 3.2.0, margin markers with sprites (`game.lua`)
+
+Enemies and NPCs outside the frame are drawn in the Wide view's margins. Source: zeldaret/tmc (`entity.h`,
+`asm/src/intr.s` `arm_DrawEntities`, `data/gfx/sprite_ptrs.s`).
+
+- **Entities.** `gEntities` is `0x03001160`, 80 slots of `0x88` bytes (slot 0 is `gPlayerEntity`): kind +8 (3 enemy,
+  7 NPC), position x/y/z in the high half of +0x2C/+0x30/+0x34, `spriteIndex` (s16 +0x12), `frameIndex` (+0x1E, 0xFF =
+  none), palette (+0x1A), `spriteVramOffset` (u16 +0x60), sprite offset (s8 +0x62/+0x63). Checked on the Thor: slot 0 is
+  Link and three kind-3 slots are the enemies below the first Hyrule Town field screen.
+- **Sprite.** `gFrameObjLists[spriteIndex][frame]` is a count byte then 5 bytes a piece (x, y, shape/size/flip, tile,
+  tile high), the same list the game turns into OAM. Pieces become markers: tiles at OBJ VRAM `0x06010000`, palette bank
+  from `0x05000200`. The frames are already in OBJ VRAM while the entity is loaded, so they read live off screen.
+- **ROM address.** `gFrameObjLists` is `0x082F3460` in the EU ROM (found from the literal pool of `arm_sub_080B27F4`,
+  header word 0x7FC); `0x082F3D74` is the decomp's (USA) address and is NOT checked on a device. The script checks the
+  header word and draws nothing for an unknown build (no diamond placeholders any more).
+- **Gotcha.** `spriteSettings.draw` (+0x18, 2 bits) is 0 while an entity is off screen: do not gate on it.
+- **NPCs are several parts.** `spriteAnimation[2]` (s8 +0x28) picks what an entity draws: 0 its own sprite, > 0 up to four
+  parts in `gUnk_020000C0 + n * 0x40` (0x10 bytes each, stop at the first one whose flags bit 0 is off: flags, frame +1,
+  sprite index u16 +2, flip +4, palette +5, x/y offset s8 +6/+7, tile offset +8; flags bit 1 = draw the entity at +0xC
+  instead, its own sprite only), < 0 a piece list at +0x64. Only drawing the entity's own sprite gave NPCs a head and no
+  body. The main-sprite path was compared with the game's OAM for Link (positions, sizes, tiles, palette bank all equal);
+  the parts path follows `arm_DrawEntities` but has not been seen on a real NPC yet.
+- **HUD hidden.** `frame()` writes `gHUD.hideFlags` (`0x0200AF01`, include/ui.h) = 0xDF while the Wide view shows a room,
+  so hearts, rupees, buttons and keys are not drawn over the picture (the spin attack charge bar stays). Needs
+  `"permissions": ["memory-write"]`, so the app asks once per pack and game (and again whenever `game.lua` changes).
+  Side effect: the game disables the Select-for-Ezlo hint while any hide flag is set. Writes only happen when wide() ran in
+  the last 3 frames (that RAM is something else on the title screen) and the value is put back to 0 when the view stops.
+- **Not done.** Vertical flip (the engine has none), objects (pots, signs) and doors, the other builds' addresses.

@@ -1,7 +1,7 @@
 {
   "id": "pokemon-firered-v-companion",
   "name": "Pokemon FireRed Companion (Vertical Navigation)",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": "khumam",
   "formatVersion": 4,
   "gameScript": "game.lua",

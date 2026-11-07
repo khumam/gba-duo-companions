@@ -1,5 +1,5 @@
 -- Djinn names, in the order the ROM stores them (plain text at 0x080E79E on the AGSI ROM).
--- Ownership isn't mapped yet, so every slot is shown as not collected.
+-- Ownership is read from the characters' blocks by main.lua (readDjinn); the bit order is this order.
 local function column(element, color, names)
   local list = {}
   for i, name in ipairs(names) do list[i] = { name = name, locked = true } end
