@@ -6,7 +6,8 @@ description: Install GBA Duo, add your games, import companion packs, and build 
 GBA Duo plays Game Boy Advance, Game Boy Color and Game Boy games on dual-screen
 Android handhelds. The game runs on the screen you open the app on, and the other
 screen shows a **companion**: a pack that reads the game's memory as you play and
-shows what matters, like your party, your bag, or the map.
+shows what matters, like your party, your bag, or the map. On a single-screen handheld the
+companion opens over the game instead, from the quick menu or a hotkey.
 
 ## Playing
 

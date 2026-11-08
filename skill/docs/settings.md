@@ -25,7 +25,7 @@ with the controller too: move with the D-pad, pick with A, go back with B.
   row, press a button, done. A button used elsewhere swaps places with it. **Reset to
   default** restores the table above.
 - **Hotkeys** has seven actions: open the quick menu, fast-forward (hold or toggle),
-  quick save state, quick load state, next and previous save slot, and exit game. Each
+  quick save state, quick load state, next and previous save slot, and exit game. On a device with only one screen there is an eighth, **Show or hide companion** (see [One screen](/docs/install#one-screen)). Each
   is one button, or the **hotkey button** plus a button. The hotkey button is none by
   default. While you hold it nothing reaches the game; a button it shares with a game
   button reaches the game when you let go. Exiting asks you first.

@@ -133,7 +133,8 @@ changes nothing, so a field left out is an effect left off:
 | `saturation`, `contrast`, `brightness` | 1 | the colour grade (0 to 3) |
 | `tint` | `{ 1, 1, 1 }` | a multiplier per channel, `{ r, g, b }`, each 0 to 2 |
 | `vignette`, `vignetteColor` | 0, `{ 0, 0, 0 }` | how far (0 to 1) the edges sink toward that multiplier |
-| `sunSlope` | 0 | the top left this much brighter than the bottom right (-1 to 1) |
+| `sunSlope` | 0 | the sun's side this much brighter than the opposite one (-1 to 1) |
+| `sunX` | -1 | where the sun leans horizontally, -1 to 1: -1 the top left (shadows fall to the bottom right), 0 straight above (shadows fall straight down, the top edges catch the light), 1 the top right |
 | `shadow`, `shadowLength`, `shadowColor` | 0, 8, `{ 1, 1, 1 }` | sprites throw shadows toward the bottom right, up to `shadowLength` game pixels (1 to 16); a full shadow multiplies the picture by `shadowColor` |
 | `rim`, `rimColor` | 0, `{ 1, 1, 1 }` | light added on the edges that face the sun |
 | `crease` | 0 | darkening where things meet the ground |
@@ -148,6 +149,15 @@ place: return another table indoors, in a cave, at night. Keep it in a file of i
 like `ambient = pack.require("ambient").ambient`; `pokemon-emerald-companion/ambient.lua` is the example (clouds only
 under an open sky, read from the map's type).
 
+### Choosing a look
+
+Keep the grade light and let the place decide the rest, so the picture stays the game's own:
+
+- A gentle grade (`saturation` 1.05 to 1.1, `contrast` about 1.05) and a soft, neutral `vignette` (0.2 to 0.3) instead of a strong tint.
+- Top-down games: `sunX = 0`, `shadow` around 0.5, a warm `rimColor`. Side views can lean the sun.
+- Return a different table indoors and in caves (no `clouds`, shorter and warmer shadows). Read one cheap value to tell: a map type (Emerald), an area flag (Minish Cap), or the display registers (Golden Sun).
+- `clouds` are shadows on the ground: use them only under an open sky, and keep them at 0.35 or below.
+
 ### Turning Ambient on and off
 
 Ambient has no switch in the app's menus: the pack offers it with a button, so a pack with `ambient()`
@@ -159,6 +169,24 @@ Every snapshot carries `_ambient` (1 or 0) and `_ambientLabel` (`ON`, `OFF`, or 
   "type": "box", "class": "wide-pill",
   "onClick": { "call": "ambientView", "args": ["toggle"] },
   "children": [ { "type": "text", "text": "COLOR {_ambientLabel}" } ]
+}
+```
+
+### Asking for permission again
+
+A pack with the `memory-write` permission asks the player once, per game, whether it may change the game, and the answer
+is kept for that version of the pack. A pack that does so should also offer a way to be asked again, on its own settings
+page, as with Wide and Ambient. The app handles the reserved action `writePermission` itself: the player is asked right
+then, whatever they answered before (a Yes also saves a restore point first). Every snapshot carries `_writePerm` (1 when
+allowed, else 0) and `_writePermLabel`: `ALLOWED`, `DENIED`, `NOT ASKED`, `OFF` (Settings or hardcore mode keep every pack
+from changing games; a tap then says so) or `N/A` (the pack has no `memory-write`).
+
+```json
+{
+  "type": "box", "class": "wide-pill",
+  "classIf": { "on": "$_writePerm" },
+  "onClick": { "call": "writePermission" },
+  "children": [ { "type": "text", "text": "GAME CHANGES {_writePermLabel}" } ]
 }
 ```
 

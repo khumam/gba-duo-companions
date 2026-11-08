@@ -366,11 +366,19 @@
 			"screenshots": [
 				{
 					"src": "golden-sun-companion/screenshoots/golden-sun-party.png",
-					"alt": "Golden Sun party page with the roster on the left"
+					"alt": "Golden Sun party page with the roster, stats and items"
 				},
 				{
 					"src": "golden-sun-companion/screenshoots/golden-sun-djinn.png",
-					"alt": "Golden Sun Djinn page listing all four elements"
+					"alt": "Golden Sun Djinn page listing all four elements and who holds each"
+				},
+				{
+					"src": "golden-sun-companion/screenshoots/golden-sun-psynergy.png",
+					"alt": "Golden Sun Psynergy page with each spell's icon and PP"
+				},
+				{
+					"src": "golden-sun-companion/screenshoots/golden-sun-options.png",
+					"alt": "Golden Sun Options page with Wide view and Color ambient"
 				}
 			]
 		},

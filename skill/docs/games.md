@@ -67,6 +67,7 @@ companion never takes it away.
 Press **L2** or **BACK** while playing to open the menu:
 
 - **Resume**
+- **Companion screen** (one-screen devices only): shows the [companion over the game](/docs/install#one-screen).
 - **Save state** / **Load state**: 9 slots per game, each showing when it was saved.
   **Before pack changes** appears under Load state once a pack has
   [changed the game](/docs/settings#packs-can-change-games).

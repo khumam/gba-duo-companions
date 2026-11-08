@@ -42,6 +42,16 @@ Open GBA Duo on either screen. The game plays on the screen you opened it on, an
 the companion takes the other one. On the AYN Thor that's usually the game on the top
 screen and the companion on the bottom.
 
+### One screen
+
+On a handheld with a single screen there is nowhere else for the companion to go, so GBA Duo
+shows it **over the game**. It stays hidden until you call it up from the **Companion screen**
+entry in the [quick menu](/docs/games#the-quick-menu), or with the **Show or hide companion**
+[hotkey](/docs/settings#controller). The game pauses while it is up and the picture dims around
+it. It keeps the shape of the Thor's second screen, so a pack looks the same. It takes touch only,
+and **Back**, the hotkey, or a tap on the dimmed game hides it. Packs, [Wide view](/docs/wide-view)
+and Ambient work the same on one screen.
+
 ## Privacy
 
 GBA Duo has no ads or analytics and needs no sign-up. It only goes online if you log in

@@ -34,14 +34,18 @@ line up. When that happens nothing breaks: the margins just stay black.
 
 - The margins show **the map**: ground, water, walls, roofs. People and monsters aren't
   part of it, so they don't appear out there; they pop in when they walk onto the real picture.
-  A pack can add small **markers** on top of the margins: in FireRed and LeafGreen, white
+  A pack can add **markers** on top of the margins: in FireRed, LeafGreen and Emerald, white
   dots for people, red for trainers, yellow for items and cyan for doors, hidden once an item
-  is picked up or a trainer is beaten.
+  is picked up or a trainer is beaten. The Minish Cap and Golden Sun draw nearby enemies and
+  people as their real sprites as they walk toward the picture.
 - Menus, battles and screens the pack doesn't describe keep black margins.
 - GBA Duo checks every frame that the pack's description matches what the game drew. If it
   stops matching, for example while the game fades or changes screen, the margins hide
   after a moment and come back once it matches again. A wrong guess looks like "no wide
   view", never like garbage.
+- The Minish Cap pack also hides the game's own hearts, rupees and buttons while the margins show, so
+  they aren't drawn over the picture. That is a change to the game's memory, so the pack asks first
+  (see [Packs can change games](/docs/settings#packs-can-change-games)).
 - Wide view costs a few percent of one CPU core.
 
 ## Ambient (COLOR)
