@@ -1,0 +1,2732 @@
+{
+ "ready": true,
+ "waiting": false,
+ "time": "12:41",
+ "money": "3,000",
+ "dexSeen": "5",
+ "dexCaught": "3",
+ "dexSeenPct": 0.013,
+ "dexCaughtPct": 0.008,
+ "badgeCount": "3",
+ "_wideLabel": "OFF",
+ "badges": [
+  {
+   "src": "asset:ui/badge1.png",
+   "locked": false,
+   "earned": true,
+   "name": "STONE"
+  },
+  {
+   "src": "asset:ui/badge2.png",
+   "locked": false,
+   "earned": true,
+   "name": "KNUCKLE"
+  },
+  {
+   "src": "asset:ui/badge3.png",
+   "locked": false,
+   "earned": true,
+   "name": "DYNAMO"
+  },
+  {
+   "src": "asset:ui/badge4.png",
+   "locked": true,
+   "earned": false,
+   "name": "HEAT"
+  },
+  {
+   "src": "asset:ui/badge5.png",
+   "locked": true,
+   "earned": false,
+   "name": "BALANCE"
+  },
+  {
+   "src": "asset:ui/badge6.png",
+   "locked": true,
+   "earned": false,
+   "name": "FEATHER"
+  },
+  {
+   "src": "asset:ui/badge7.png",
+   "locked": true,
+   "earned": false,
+   "name": "MIND"
+  },
+  {
+   "src": "asset:ui/badge8.png",
+   "locked": true,
+   "earned": false,
+   "name": "RAIN"
+  }
+ ],
+ "trainer": {
+  "name": "KIRA",
+  "id": "22447"
+ },
+ "partyCount": "6",
+ "party": [
+  {
+   "name": "MUDKIP",
+   "level": 12,
+   "dex": "258",
+   "sprite": "asset:pokemon/258.png",
+   "types": [
+    {
+     "name": "WATER",
+     "src": "asset:types/water.png"
+    }
+   ],
+   "hp": 31,
+   "maxHp": 36,
+   "lead": true,
+   "male": true,
+   "female": false,
+   "ot": "Kira",
+   "id": "22447",
+   "ability": "TORRENT",
+   "abilityText": "Ups WATER moves in a pinch.",
+   "nature": "NAUGHTY",
+   "metLevel": 12,
+   "metPlace": "ROUTE 101",
+   "item": "ORAN BERRY",
+   "hasHeld": true,
+   "heldIcon": "asset:items/139.png",
+   "hasStatus": false,
+   "status": "",
+   "expPct": 0.42,
+   "toNext": "27",
+   "exp": "152",
+   "friendship": "70",
+   "ribbon": "NONE",
+   "friendPct": 0.275,
+   "statRows": [
+    {
+     "label": "HP",
+     "value": "36",
+     "pct": 0.3,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    },
+    {
+     "label": "ATTACK",
+     "value": "22",
+     "pct": 0.183,
+     "up": true,
+     "down": false,
+     "ev": "EV 1"
+    },
+    {
+     "label": "DEFENSE",
+     "value": "18",
+     "pct": 0.15,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    },
+    {
+     "label": "SP. ATK",
+     "value": "16",
+     "pct": 0.133,
+     "up": false,
+     "down": true,
+     "ev": "EV 0"
+    },
+    {
+     "label": "SP. DEF",
+     "value": "16",
+     "pct": 0.133,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    },
+    {
+     "label": "SPEED",
+     "value": "15",
+     "pct": 0.125,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    }
+   ],
+   "condition": [
+    {
+     "label": "COOL",
+     "pct": 0.157,
+     "value": "40",
+     "color": "#d85040"
+    },
+    {
+     "label": "BEAUTY",
+     "pct": 0.098,
+     "value": "25",
+     "color": "#5088c0"
+    },
+    {
+     "label": "CUTE",
+     "pct": 0.235,
+     "value": "60",
+     "color": "#d85868"
+    },
+    {
+     "label": "SMART",
+     "pct": 0.039,
+     "value": "10",
+     "color": "#58a868"
+    },
+    {
+     "label": "TOUGH",
+     "pct": 0.137,
+     "value": "35",
+     "color": "#e8a050"
+    }
+   ],
+   "sheen": "0",
+   "sheenPct": 0,
+   "hpPct": 0.861,
+   "hpHigh": true,
+   "hpMid": false,
+   "hpLow": false,
+   "fainted": false,
+   "moves": [
+    {
+     "name": "TACKLE",
+     "type": "asset:types/normal.png",
+     "power": 35,
+     "acc": 95,
+     "pp": "35/35",
+     "ppPct": 1.0,
+     "ppLow": false,
+     "has": true,
+     "desc": "Charges the foe with a full-body tackle.",
+     "contest": "TOUGH",
+     "contestColor": "#e8a050",
+     "cdesc": "A highly appealing move.",
+     "info": "PWR 35  ACC 95"
+    },
+    {
+     "name": "GROWL",
+     "type": "asset:types/normal.png",
+     "power": "--",
+     "acc": 100,
+     "pp": "40/40",
+     "ppPct": 1.0,
+     "ppLow": false,
+     "has": true,
+     "desc": "Growls cutely to reduce the foe's ATTACK.",
+     "contest": "CUTE",
+     "contestColor": "#d85868",
+     "cdesc": "Excites the audience.",
+     "info": "PWR --  ACC 100"
+    },
+    {
+     "name": "MUD-SLAP",
+     "type": "asset:types/ground.png",
+     "power": 20,
+     "acc": 100,
+     "pp": "8/10",
+     "ppPct": 0.8,
+     "ppLow": false,
+     "has": true,
+     "desc": "Hurls mud in the foe's face to lower its accuracy.",
+     "contest": "SMART",
+     "contestColor": "#58a868",
+     "cdesc": "Startles the others.",
+     "info": "PWR 20  ACC 100"
+    },
+    {
+     "name": "WATER GUN",
+     "type": "asset:types/water.png",
+     "power": 40,
+     "acc": 100,
+     "pp": "25/25",
+     "ppPct": 1.0,
+     "ppLow": false,
+     "has": true,
+     "desc": "Squirts water to attack the foe.",
+     "contest": "BEAUTY",
+     "contestColor": "#5088c0",
+     "cdesc": "Appeals with water.",
+     "info": "PWR 40  ACC 100"
+    }
+   ],
+   "moveDesc": "Charges the foe with a full-body tackle.",
+   "contestDesc": "A highly appealing move."
+  },
+  {
+   "name": "ZIGZAGOON",
+   "level": 9,
+   "dex": "263",
+   "sprite": "asset:pokemon/263.png",
+   "types": [
+    {
+     "name": "NORMAL",
+     "src": "asset:types/normal.png"
+    }
+   ],
+   "hp": 12,
+   "maxHp": 29,
+   "lead": false,
+   "male": false,
+   "female": true,
+   "ot": "Kira",
+   "id": "22447",
+   "ability": "PICKUP",
+   "abilityText": "May pick up items.",
+   "nature": "JOLLY",
+   "metLevel": 9,
+   "metPlace": "ROUTE 101",
+   "item": "NONE",
+   "hasHeld": false,
+   "heldIcon": "",
+   "hasStatus": false,
+   "status": "",
+   "expPct": 0.42,
+   "toNext": "27",
+   "exp": "152",
+   "friendship": "70",
+   "ribbon": "NONE",
+   "friendPct": 0.275,
+   "statRows": [
+    {
+     "label": "HP",
+     "value": "29",
+     "pct": 0.242,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    },
+    {
+     "label": "ATTACK",
+     "value": "14",
+     "pct": 0.117,
+     "up": true,
+     "down": false,
+     "ev": "EV 1"
+    },
+    {
+     "label": "DEFENSE",
+     "value": "12",
+     "pct": 0.1,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    },
+    {
+     "label": "SP. ATK",
+     "value": "8",
+     "pct": 0.067,
+     "up": false,
+     "down": true,
+     "ev": "EV 0"
+    },
+    {
+     "label": "SP. DEF",
+     "value": "9",
+     "pct": 0.075,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    },
+    {
+     "label": "SPEED",
+     "value": "15",
+     "pct": 0.125,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    }
+   ],
+   "condition": [
+    {
+     "label": "COOL",
+     "pct": 0.157,
+     "value": "40",
+     "color": "#d85040"
+    },
+    {
+     "label": "BEAUTY",
+     "pct": 0.098,
+     "value": "25",
+     "color": "#5088c0"
+    },
+    {
+     "label": "CUTE",
+     "pct": 0.235,
+     "value": "60",
+     "color": "#d85868"
+    },
+    {
+     "label": "SMART",
+     "pct": 0.039,
+     "value": "10",
+     "color": "#58a868"
+    },
+    {
+     "label": "TOUGH",
+     "pct": 0.137,
+     "value": "35",
+     "color": "#e8a050"
+    }
+   ],
+   "sheen": "0",
+   "sheenPct": 0,
+   "hpPct": 0.414,
+   "hpHigh": false,
+   "hpMid": true,
+   "hpLow": false,
+   "fainted": false,
+   "moves": [
+    {
+     "name": "TACKLE",
+     "type": "asset:types/normal.png",
+     "power": 35,
+     "acc": 95,
+     "pp": "35/35",
+     "ppPct": 1.0,
+     "ppLow": false,
+     "has": true,
+     "desc": "Charges the foe with a full-body tackle.",
+     "contest": "TOUGH",
+     "contestColor": "#e8a050",
+     "cdesc": "A highly appealing move.",
+     "info": "PWR 35  ACC 95"
+    },
+    {
+     "name": "GROWL",
+     "type": "asset:types/normal.png",
+     "power": "--",
+     "acc": 100,
+     "pp": "40/40",
+     "ppPct": 1.0,
+     "ppLow": false,
+     "has": true,
+     "desc": "Growls cutely to reduce the foe's ATTACK.",
+     "contest": "CUTE",
+     "contestColor": "#d85868",
+     "cdesc": "Excites the audience.",
+     "info": "PWR --  ACC 100"
+    },
+    {
+     "name": "-",
+     "type": "",
+     "power": "--",
+     "acc": "--",
+     "pp": "--",
+     "ppPct": 0,
+     "ppLow": false,
+     "has": false,
+     "desc": "",
+     "contest": "",
+     "contestColor": "#ffffff",
+     "cdesc": "",
+     "info": ""
+    },
+    {
+     "name": "-",
+     "type": "",
+     "power": "--",
+     "acc": "--",
+     "pp": "--",
+     "ppPct": 0,
+     "ppLow": false,
+     "has": false,
+     "desc": "",
+     "contest": "",
+     "contestColor": "#ffffff",
+     "cdesc": "",
+     "info": ""
+    }
+   ],
+   "moveDesc": "Charges the foe with a full-body tackle.",
+   "contestDesc": "A highly appealing move."
+  },
+  {
+   "name": "POOCHYENA",
+   "level": 8,
+   "dex": "261",
+   "sprite": "asset:pokemon/261.png",
+   "types": [
+    {
+     "name": "DARK",
+     "src": "asset:types/dark.png"
+    }
+   ],
+   "hp": 4,
+   "maxHp": 27,
+   "lead": false,
+   "male": true,
+   "female": false,
+   "ot": "Kira",
+   "id": "22447",
+   "ability": "RUN AWAY",
+   "abilityText": "Makes escaping easier.",
+   "nature": "NAUGHTY",
+   "metLevel": 8,
+   "metPlace": "ROUTE 101",
+   "item": "NONE",
+   "hasHeld": false,
+   "heldIcon": "",
+   "hasStatus": true,
+   "status": "PSN",
+   "expPct": 0.42,
+   "toNext": "27",
+   "exp": "152",
+   "friendship": "70",
+   "ribbon": "NONE",
+   "friendPct": 0.275,
+   "statRows": [
+    {
+     "label": "HP",
+     "value": "27",
+     "pct": 0.225,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    },
+    {
+     "label": "ATTACK",
+     "value": "15",
+     "pct": 0.125,
+     "up": true,
+     "down": false,
+     "ev": "EV 1"
+    },
+    {
+     "label": "DEFENSE",
+     "value": "9",
+     "pct": 0.075,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    },
+    {
+     "label": "SP. ATK",
+     "value": "8",
+     "pct": 0.067,
+     "up": false,
+     "down": true,
+     "ev": "EV 0"
+    },
+    {
+     "label": "SP. DEF",
+     "value": "9",
+     "pct": 0.075,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    },
+    {
+     "label": "SPEED",
+     "value": "11",
+     "pct": 0.092,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    }
+   ],
+   "condition": [
+    {
+     "label": "COOL",
+     "pct": 0.157,
+     "value": "40",
+     "color": "#d85040"
+    },
+    {
+     "label": "BEAUTY",
+     "pct": 0.098,
+     "value": "25",
+     "color": "#5088c0"
+    },
+    {
+     "label": "CUTE",
+     "pct": 0.235,
+     "value": "60",
+     "color": "#d85868"
+    },
+    {
+     "label": "SMART",
+     "pct": 0.039,
+     "value": "10",
+     "color": "#58a868"
+    },
+    {
+     "label": "TOUGH",
+     "pct": 0.137,
+     "value": "35",
+     "color": "#e8a050"
+    }
+   ],
+   "sheen": "0",
+   "sheenPct": 0,
+   "hpPct": 0.148,
+   "hpHigh": false,
+   "hpMid": false,
+   "hpLow": true,
+   "fainted": false,
+   "moves": [
+    {
+     "name": "TACKLE",
+     "type": "asset:types/normal.png",
+     "power": 35,
+     "acc": 95,
+     "pp": "35/35",
+     "ppPct": 1.0,
+     "ppLow": false,
+     "has": true,
+     "desc": "Charges the foe with a full-body tackle.",
+     "contest": "TOUGH",
+     "contestColor": "#e8a050",
+     "cdesc": "A highly appealing move.",
+     "info": "PWR 35  ACC 95"
+    },
+    {
+     "name": "GROWL",
+     "type": "asset:types/normal.png",
+     "power": "--",
+     "acc": 100,
+     "pp": "40/40",
+     "ppPct": 1.0,
+     "ppLow": false,
+     "has": true,
+     "desc": "Growls cutely to reduce the foe's ATTACK.",
+     "contest": "CUTE",
+     "contestColor": "#d85868",
+     "cdesc": "Excites the audience.",
+     "info": "PWR --  ACC 100"
+    },
+    {
+     "name": "MUD-SLAP",
+     "type": "asset:types/ground.png",
+     "power": 20,
+     "acc": 100,
+     "pp": "8/10",
+     "ppPct": 0.8,
+     "ppLow": false,
+     "has": true,
+     "desc": "Hurls mud in the foe's face to lower its accuracy.",
+     "contest": "SMART",
+     "contestColor": "#58a868",
+     "cdesc": "Startles the others.",
+     "info": "PWR 20  ACC 100"
+    },
+    {
+     "name": "-",
+     "type": "",
+     "power": "--",
+     "acc": "--",
+     "pp": "--",
+     "ppPct": 0,
+     "ppLow": false,
+     "has": false,
+     "desc": "",
+     "contest": "",
+     "contestColor": "#ffffff",
+     "cdesc": "",
+     "info": ""
+    }
+   ],
+   "moveDesc": "Charges the foe with a full-body tackle.",
+   "contestDesc": "A highly appealing move."
+  },
+  {
+   "name": "WURMPLE",
+   "level": 5,
+   "dex": "265",
+   "sprite": "asset:pokemon/265.png",
+   "types": [
+    {
+     "name": "BUG",
+     "src": "asset:types/bug.png"
+    }
+   ],
+   "hp": 0,
+   "maxHp": 20,
+   "lead": false,
+   "male": false,
+   "female": true,
+   "ot": "Kira",
+   "id": "22447",
+   "ability": "SHIELD DUST",
+   "abilityText": "Prevents added effects.",
+   "nature": "NAUGHTY",
+   "metLevel": 5,
+   "metPlace": "ROUTE 101",
+   "item": "NONE",
+   "hasHeld": false,
+   "heldIcon": "",
+   "hasStatus": false,
+   "status": "",
+   "expPct": 0.42,
+   "toNext": "27",
+   "exp": "152",
+   "friendship": "70",
+   "ribbon": "NONE",
+   "friendPct": 0.275,
+   "statRows": [
+    {
+     "label": "HP",
+     "value": "20",
+     "pct": 0.167,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    },
+    {
+     "label": "ATTACK",
+     "value": "9",
+     "pct": 0.075,
+     "up": true,
+     "down": false,
+     "ev": "EV 1"
+    },
+    {
+     "label": "DEFENSE",
+     "value": "8",
+     "pct": 0.067,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    },
+    {
+     "label": "SP. ATK",
+     "value": "6",
+     "pct": 0.05,
+     "up": false,
+     "down": true,
+     "ev": "EV 0"
+    },
+    {
+     "label": "SP. DEF",
+     "value": "6",
+     "pct": 0.05,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    },
+    {
+     "label": "SPEED",
+     "value": "6",
+     "pct": 0.05,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    }
+   ],
+   "condition": [
+    {
+     "label": "COOL",
+     "pct": 0.157,
+     "value": "40",
+     "color": "#d85040"
+    },
+    {
+     "label": "BEAUTY",
+     "pct": 0.098,
+     "value": "25",
+     "color": "#5088c0"
+    },
+    {
+     "label": "CUTE",
+     "pct": 0.235,
+     "value": "60",
+     "color": "#d85868"
+    },
+    {
+     "label": "SMART",
+     "pct": 0.039,
+     "value": "10",
+     "color": "#58a868"
+    },
+    {
+     "label": "TOUGH",
+     "pct": 0.137,
+     "value": "35",
+     "color": "#e8a050"
+    }
+   ],
+   "sheen": "0",
+   "sheenPct": 0,
+   "hpPct": 0.0,
+   "hpHigh": false,
+   "hpMid": false,
+   "hpLow": true,
+   "fainted": true,
+   "moves": [
+    {
+     "name": "TACKLE",
+     "type": "asset:types/normal.png",
+     "power": 35,
+     "acc": 95,
+     "pp": "35/35",
+     "ppPct": 1.0,
+     "ppLow": false,
+     "has": true,
+     "desc": "Charges the foe with a full-body tackle.",
+     "contest": "TOUGH",
+     "contestColor": "#e8a050",
+     "cdesc": "A highly appealing move.",
+     "info": "PWR 35  ACC 95"
+    },
+    {
+     "name": "-",
+     "type": "",
+     "power": "--",
+     "acc": "--",
+     "pp": "--",
+     "ppPct": 0,
+     "ppLow": false,
+     "has": false,
+     "desc": "",
+     "contest": "",
+     "contestColor": "#ffffff",
+     "cdesc": "",
+     "info": ""
+    },
+    {
+     "name": "-",
+     "type": "",
+     "power": "--",
+     "acc": "--",
+     "pp": "--",
+     "ppPct": 0,
+     "ppLow": false,
+     "has": false,
+     "desc": "",
+     "contest": "",
+     "contestColor": "#ffffff",
+     "cdesc": "",
+     "info": ""
+    },
+    {
+     "name": "-",
+     "type": "",
+     "power": "--",
+     "acc": "--",
+     "pp": "--",
+     "ppPct": 0,
+     "ppLow": false,
+     "has": false,
+     "desc": "",
+     "contest": "",
+     "contestColor": "#ffffff",
+     "cdesc": "",
+     "info": ""
+    }
+   ],
+   "moveDesc": "Charges the foe with a full-body tackle.",
+   "contestDesc": "A highly appealing move."
+  },
+  {
+   "name": "TAILLOW",
+   "level": 10,
+   "dex": "276",
+   "sprite": "asset:pokemon/276.png",
+   "types": [
+    {
+     "name": "NORMAL",
+     "src": "asset:types/normal.png"
+    },
+    {
+     "name": "FLYING",
+     "src": "asset:types/flying.png"
+    }
+   ],
+   "hp": 33,
+   "maxHp": 33,
+   "lead": false,
+   "male": true,
+   "female": false,
+   "ot": "Kira",
+   "id": "22447",
+   "ability": "GUTS",
+   "abilityText": "Boosts ATTACK if suffering.",
+   "nature": "NAUGHTY",
+   "metLevel": 10,
+   "metPlace": "ROUTE 101",
+   "item": "POTION",
+   "hasHeld": true,
+   "heldIcon": "asset:items/13.png",
+   "hasStatus": false,
+   "status": "",
+   "expPct": 0.42,
+   "toNext": "27",
+   "exp": "152",
+   "friendship": "70",
+   "ribbon": "NONE",
+   "friendPct": 0.275,
+   "statRows": [
+    {
+     "label": "HP",
+     "value": "33",
+     "pct": 0.275,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    },
+    {
+     "label": "ATTACK",
+     "value": "18",
+     "pct": 0.15,
+     "up": true,
+     "down": false,
+     "ev": "EV 1"
+    },
+    {
+     "label": "DEFENSE",
+     "value": "12",
+     "pct": 0.1,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    },
+    {
+     "label": "SP. ATK",
+     "value": "12",
+     "pct": 0.1,
+     "up": false,
+     "down": true,
+     "ev": "EV 0"
+    },
+    {
+     "label": "SP. DEF",
+     "value": "11",
+     "pct": 0.092,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    },
+    {
+     "label": "SPEED",
+     "value": "22",
+     "pct": 0.183,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    }
+   ],
+   "condition": [
+    {
+     "label": "COOL",
+     "pct": 0.157,
+     "value": "40",
+     "color": "#d85040"
+    },
+    {
+     "label": "BEAUTY",
+     "pct": 0.098,
+     "value": "25",
+     "color": "#5088c0"
+    },
+    {
+     "label": "CUTE",
+     "pct": 0.235,
+     "value": "60",
+     "color": "#d85868"
+    },
+    {
+     "label": "SMART",
+     "pct": 0.039,
+     "value": "10",
+     "color": "#58a868"
+    },
+    {
+     "label": "TOUGH",
+     "pct": 0.137,
+     "value": "35",
+     "color": "#e8a050"
+    }
+   ],
+   "sheen": "0",
+   "sheenPct": 0,
+   "hpPct": 1.0,
+   "hpHigh": true,
+   "hpMid": false,
+   "hpLow": false,
+   "fainted": false,
+   "moves": [
+    {
+     "name": "TACKLE",
+     "type": "asset:types/normal.png",
+     "power": 35,
+     "acc": 95,
+     "pp": "35/35",
+     "ppPct": 1.0,
+     "ppLow": false,
+     "has": true,
+     "desc": "Charges the foe with a full-body tackle.",
+     "contest": "TOUGH",
+     "contestColor": "#e8a050",
+     "cdesc": "A highly appealing move.",
+     "info": "PWR 35  ACC 95"
+    },
+    {
+     "name": "GROWL",
+     "type": "asset:types/normal.png",
+     "power": "--",
+     "acc": 100,
+     "pp": "40/40",
+     "ppPct": 1.0,
+     "ppLow": false,
+     "has": true,
+     "desc": "Growls cutely to reduce the foe's ATTACK.",
+     "contest": "CUTE",
+     "contestColor": "#d85868",
+     "cdesc": "Excites the audience.",
+     "info": "PWR --  ACC 100"
+    },
+    {
+     "name": "MUD-SLAP",
+     "type": "asset:types/ground.png",
+     "power": 20,
+     "acc": 100,
+     "pp": "8/10",
+     "ppPct": 0.8,
+     "ppLow": false,
+     "has": true,
+     "desc": "Hurls mud in the foe's face to lower its accuracy.",
+     "contest": "SMART",
+     "contestColor": "#58a868",
+     "cdesc": "Startles the others.",
+     "info": "PWR 20  ACC 100"
+    },
+    {
+     "name": "WATER GUN",
+     "type": "asset:types/water.png",
+     "power": 40,
+     "acc": 100,
+     "pp": "25/25",
+     "ppPct": 1.0,
+     "ppLow": false,
+     "has": true,
+     "desc": "Squirts water to attack the foe.",
+     "contest": "BEAUTY",
+     "contestColor": "#5088c0",
+     "cdesc": "Appeals with water.",
+     "info": "PWR 40  ACC 100"
+    }
+   ],
+   "moveDesc": "Charges the foe with a full-body tackle.",
+   "contestDesc": "A highly appealing move."
+  },
+  {
+   "name": "RALTS",
+   "level": 7,
+   "dex": "280",
+   "sprite": "asset:pokemon/280.png",
+   "types": [
+    {
+     "name": "PSYCHIC",
+     "src": "asset:types/psychic.png"
+    }
+   ],
+   "hp": 17,
+   "maxHp": 21,
+   "lead": false,
+   "male": false,
+   "female": true,
+   "ot": "Kira",
+   "id": "22447",
+   "ability": "SYNCHRONIZE",
+   "abilityText": "Passes on status problems.",
+   "nature": "NAUGHTY",
+   "metLevel": 7,
+   "metPlace": "ROUTE 101",
+   "item": "NONE",
+   "hasHeld": false,
+   "heldIcon": "",
+   "hasStatus": false,
+   "status": "",
+   "expPct": 0.42,
+   "toNext": "27",
+   "exp": "152",
+   "friendship": "70",
+   "ribbon": "NONE",
+   "friendPct": 0.275,
+   "statRows": [
+    {
+     "label": "HP",
+     "value": "21",
+     "pct": 0.175,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    },
+    {
+     "label": "ATTACK",
+     "value": "8",
+     "pct": 0.067,
+     "up": true,
+     "down": false,
+     "ev": "EV 1"
+    },
+    {
+     "label": "DEFENSE",
+     "value": "8",
+     "pct": 0.067,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    },
+    {
+     "label": "SP. ATK",
+     "value": "14",
+     "pct": 0.117,
+     "up": false,
+     "down": true,
+     "ev": "EV 0"
+    },
+    {
+     "label": "SP. DEF",
+     "value": "12",
+     "pct": 0.1,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    },
+    {
+     "label": "SPEED",
+     "value": "10",
+     "pct": 0.083,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    }
+   ],
+   "condition": [
+    {
+     "label": "COOL",
+     "pct": 0.157,
+     "value": "40",
+     "color": "#d85040"
+    },
+    {
+     "label": "BEAUTY",
+     "pct": 0.098,
+     "value": "25",
+     "color": "#5088c0"
+    },
+    {
+     "label": "CUTE",
+     "pct": 0.235,
+     "value": "60",
+     "color": "#d85868"
+    },
+    {
+     "label": "SMART",
+     "pct": 0.039,
+     "value": "10",
+     "color": "#58a868"
+    },
+    {
+     "label": "TOUGH",
+     "pct": 0.137,
+     "value": "35",
+     "color": "#e8a050"
+    }
+   ],
+   "sheen": "0",
+   "sheenPct": 0,
+   "hpPct": 0.81,
+   "hpHigh": true,
+   "hpMid": false,
+   "hpLow": false,
+   "fainted": false,
+   "moves": [
+    {
+     "name": "TACKLE",
+     "type": "asset:types/normal.png",
+     "power": 35,
+     "acc": 95,
+     "pp": "35/35",
+     "ppPct": 1.0,
+     "ppLow": false,
+     "has": true,
+     "desc": "Charges the foe with a full-body tackle.",
+     "contest": "TOUGH",
+     "contestColor": "#e8a050",
+     "cdesc": "A highly appealing move.",
+     "info": "PWR 35  ACC 95"
+    },
+    {
+     "name": "GROWL",
+     "type": "asset:types/normal.png",
+     "power": "--",
+     "acc": 100,
+     "pp": "40/40",
+     "ppPct": 1.0,
+     "ppLow": false,
+     "has": true,
+     "desc": "Growls cutely to reduce the foe's ATTACK.",
+     "contest": "CUTE",
+     "contestColor": "#d85868",
+     "cdesc": "Excites the audience.",
+     "info": "PWR --  ACC 100"
+    },
+    {
+     "name": "-",
+     "type": "",
+     "power": "--",
+     "acc": "--",
+     "pp": "--",
+     "ppPct": 0,
+     "ppLow": false,
+     "has": false,
+     "desc": "",
+     "contest": "",
+     "contestColor": "#ffffff",
+     "cdesc": "",
+     "info": ""
+    },
+    {
+     "name": "-",
+     "type": "",
+     "power": "--",
+     "acc": "--",
+     "pp": "--",
+     "ppPct": 0,
+     "ppLow": false,
+     "has": false,
+     "desc": "",
+     "contest": "",
+     "contestColor": "#ffffff",
+     "cdesc": "",
+     "info": ""
+    }
+   ],
+   "moveDesc": "Charges the foe with a full-body tackle.",
+   "contestDesc": "A highly appealing move."
+  }
+ ],
+ "team": {
+  "hp": "97",
+  "maxHp": "166",
+  "hpPct": 0.584,
+  "hpHigh": true,
+  "hpMid": false,
+  "hpLow": false,
+  "avg": "8"
+ },
+ "bag": {
+  "items": [
+   {
+    "name": "POTION",
+    "count": "x5",
+    "icon": "asset:items/13.png",
+    "hasIcon": true,
+    "desc": "Restores the HP of one POK\u00e9MON by 20 points.",
+    "price": "300"
+   },
+   {
+    "name": "ANTIDOTE",
+    "count": "x2",
+    "icon": "asset:items/14.png",
+    "hasIcon": true,
+    "desc": "Heals one POK\u00e9MON of its poisoning.",
+    "price": "100"
+   },
+   {
+    "name": "REPEL",
+    "count": "x3",
+    "icon": "asset:items/86.png",
+    "hasIcon": true,
+    "desc": "Repels weak wild POK\u00e9MON for 100 steps.",
+    "price": "350"
+   },
+   {
+    "name": "ESCAPE ROPE",
+    "count": "x1",
+    "icon": "asset:items/85.png",
+    "hasIcon": true,
+    "desc": "Use to escape instantly from a cave or dungeon.",
+    "price": "550"
+   },
+   {
+    "name": "SUPER POTION",
+    "count": "x4",
+    "icon": "asset:items/22.png",
+    "hasIcon": true,
+    "desc": "Restores the HP of one POK\u00e9MON by 50 points.",
+    "price": "700"
+   },
+   {
+    "name": "AWAKENING",
+    "count": "x1",
+    "icon": "asset:items/17.png",
+    "hasIcon": true,
+    "desc": "Wakes up one sleeping POK\u00e9MON.",
+    "price": "250"
+   }
+  ],
+  "balls": [
+   {
+    "name": "POK\u00e9 BALL",
+    "count": "x12",
+    "icon": "asset:items/4.png",
+    "hasIcon": true,
+    "desc": "A tool used for catching wild POK\u00e9MON.",
+    "price": "200"
+   },
+   {
+    "name": "GREAT BALL",
+    "count": "x3",
+    "icon": "asset:items/3.png",
+    "hasIcon": true,
+    "desc": "A good, high-performance BALL.",
+    "price": "600"
+   }
+  ],
+  "tmHm": [
+   {
+    "name": "TM01 FOCUS PUNCH",
+    "count": "x1",
+    "icon": "asset:items/tm.png",
+    "hasIcon": true,
+    "desc": "Powerful, but may flinch.",
+    "price": "3000"
+   },
+   {
+    "name": "HM01 CUT",
+    "count": "x1",
+    "icon": "asset:items/tm.png",
+    "hasIcon": true,
+    "desc": "Cuts down thin trees.",
+    "price": "0"
+   }
+  ],
+  "berries": [
+   {
+    "name": "ORAN BERRY",
+    "count": "x6",
+    "icon": "asset:items/139.png",
+    "hasIcon": true,
+    "desc": "Restores 10 HP when held.",
+    "price": "20"
+   },
+   {
+    "name": "CHERI BERRY",
+    "count": "x2",
+    "icon": "asset:items/133.png",
+    "hasIcon": true,
+    "desc": "Heals paralysis when held.",
+    "price": "20"
+   }
+  ],
+  "keyItems": [
+   {
+    "name": "BIKE",
+    "count": "",
+    "icon": "asset:items/0.png",
+    "hasIcon": false,
+    "desc": "A folding bike that lets you travel faster.",
+    "price": "0"
+   }
+  ],
+  "total": "24",
+  "used": "12",
+  "capacity": "186",
+  "hasAny": true,
+  "isEmpty": false
+ },
+ "dex": {
+  "entries": [
+   {
+    "num": 252,
+    "no": "252",
+    "name": "TREECKO",
+    "sprite": "asset:pokemon/252.png",
+    "seen": true,
+    "unseen": false,
+    "own": false,
+    "sel": false
+   },
+   {
+    "num": 253,
+    "no": "253",
+    "name": "GROVYLE",
+    "sprite": "asset:pokemon/253.png",
+    "seen": true,
+    "unseen": false,
+    "own": false,
+    "sel": false
+   },
+   {
+    "num": 254,
+    "no": "254",
+    "name": "SCEPTILE",
+    "sprite": "asset:pokemon/254.png",
+    "seen": true,
+    "unseen": false,
+    "own": false,
+    "sel": false
+   },
+   {
+    "num": 255,
+    "no": "255",
+    "name": "TORCHIC",
+    "sprite": "asset:pokemon/255.png",
+    "seen": true,
+    "unseen": false,
+    "own": false,
+    "sel": false
+   },
+   {
+    "num": 256,
+    "no": "256",
+    "name": "COMBUSKEN",
+    "sprite": "asset:pokemon/256.png",
+    "seen": true,
+    "unseen": false,
+    "own": false,
+    "sel": false
+   },
+   {
+    "num": 257,
+    "no": "257",
+    "name": "BLAZIKEN",
+    "sprite": "asset:pokemon/257.png",
+    "seen": true,
+    "unseen": false,
+    "own": false,
+    "sel": false
+   },
+   {
+    "num": 258,
+    "no": "258",
+    "name": "MUDKIP",
+    "sprite": "asset:pokemon/258.png",
+    "seen": true,
+    "unseen": false,
+    "own": true,
+    "sel": true
+   },
+   {
+    "num": 259,
+    "no": "259",
+    "name": "MARSHTOMP",
+    "sprite": "asset:pokemon/259.png",
+    "seen": true,
+    "unseen": false,
+    "own": false,
+    "sel": false
+   },
+   {
+    "num": 260,
+    "no": "260",
+    "name": "SWAMPERT",
+    "sprite": "asset:pokemon/260.png",
+    "seen": true,
+    "unseen": false,
+    "own": false,
+    "sel": false
+   },
+   {
+    "num": 261,
+    "no": "261",
+    "name": "POOCHYENA",
+    "sprite": "asset:pokemon/261.png",
+    "seen": true,
+    "unseen": false,
+    "own": true,
+    "sel": false
+   },
+   {
+    "num": 262,
+    "no": "262",
+    "name": "-----",
+    "sprite": "",
+    "seen": false,
+    "unseen": true,
+    "own": false,
+    "sel": false
+   },
+   {
+    "num": 263,
+    "no": "263",
+    "name": "-----",
+    "sprite": "",
+    "seen": false,
+    "unseen": true,
+    "own": false,
+    "sel": false
+   },
+   {
+    "num": 264,
+    "no": "264",
+    "name": "-----",
+    "sprite": "",
+    "seen": false,
+    "unseen": true,
+    "own": false,
+    "sel": false
+   },
+   {
+    "num": 265,
+    "no": "265",
+    "name": "-----",
+    "sprite": "",
+    "seen": false,
+    "unseen": true,
+    "own": false,
+    "sel": false
+   },
+   {
+    "num": 266,
+    "no": "266",
+    "name": "-----",
+    "sprite": "",
+    "seen": false,
+    "unseen": true,
+    "own": false,
+    "sel": false
+   },
+   {
+    "num": 267,
+    "no": "267",
+    "name": "-----",
+    "sprite": "",
+    "seen": false,
+    "unseen": true,
+    "own": false,
+    "sel": false
+   },
+   {
+    "num": 268,
+    "no": "268",
+    "name": "-----",
+    "sprite": "",
+    "seen": false,
+    "unseen": true,
+    "own": false,
+    "sel": false
+   },
+   {
+    "num": 269,
+    "no": "269",
+    "name": "-----",
+    "sprite": "",
+    "seen": false,
+    "unseen": true,
+    "own": false,
+    "sel": false
+   },
+   {
+    "num": 270,
+    "no": "270",
+    "name": "-----",
+    "sprite": "",
+    "seen": false,
+    "unseen": true,
+    "own": false,
+    "sel": false
+   },
+   {
+    "num": 271,
+    "no": "271",
+    "name": "-----",
+    "sprite": "",
+    "seen": false,
+    "unseen": true,
+    "own": false,
+    "sel": false
+   },
+   {
+    "num": 272,
+    "no": "272",
+    "name": "-----",
+    "sprite": "",
+    "seen": false,
+    "unseen": true,
+    "own": false,
+    "sel": false
+   },
+   {
+    "num": 273,
+    "no": "273",
+    "name": "-----",
+    "sprite": "",
+    "seen": false,
+    "unseen": true,
+    "own": false,
+    "sel": false
+   },
+   {
+    "num": 274,
+    "no": "274",
+    "name": "-----",
+    "sprite": "",
+    "seen": false,
+    "unseen": true,
+    "own": false,
+    "sel": false
+   },
+   {
+    "num": 275,
+    "no": "275",
+    "name": "-----",
+    "sprite": "",
+    "seen": false,
+    "unseen": true,
+    "own": false,
+    "sel": false
+   }
+  ],
+  "range": "252-275",
+  "page": "11/17",
+  "sel": {
+   "no": "258",
+   "seen": true,
+   "unseen": false,
+   "own": true,
+   "name": "MUDKIP",
+   "sprite": "asset:pokemon/258.png",
+   "state": "OWNED",
+   "category": "MUD FISH POK\u00e9MON",
+   "height": "0.4m",
+   "weight": "7.6kg",
+   "abilities": "TORRENT",
+   "types": [
+    {
+     "name": "WATER",
+     "src": "asset:types/water.png"
+    }
+   ],
+   "desc": "The fin on MUDKIP's head acts as highly sensitive radar. Using this fin to sense movements of water and air, this POK\u00e9MON can determine what is taking place around it without using its eyes.",
+   "stats": [
+    {
+     "label": "HP",
+     "value": "50",
+     "pct": 0.333
+    },
+    {
+     "label": "ATTACK",
+     "value": "70",
+     "pct": 0.467
+    },
+    {
+     "label": "DEFENSE",
+     "value": "50",
+     "pct": 0.333
+    },
+    {
+     "label": "SP. ATK",
+     "value": "50",
+     "pct": 0.333
+    },
+    {
+     "label": "SP. DEF",
+     "value": "50",
+     "pct": 0.333
+    },
+    {
+     "label": "SPEED",
+     "value": "40",
+     "pct": 0.267
+    }
+   ]
+  }
+ },
+ "map": {
+  "image": "asset:ui/map.png",
+  "route": "LITTLEROOT TOWN",
+  "kind": "TOWN",
+  "px": "9",
+  "py": "8",
+  "live": true,
+  "off": false,
+  "hasMe": true,
+  "ratio": "1.9300",
+  "mx": "40.00%",
+  "my": "55.00%",
+  "showTown": true,
+  "showWorld": false,
+  "hasWorldMe": true,
+  "wx": "16%",
+  "wy": "74%",
+  "wild": [
+   {
+    "sprite": "asset:pokemon/261.png",
+    "name": "POOCHYENA",
+    "level": "Lv2-3",
+    "chance": "40%"
+   },
+   {
+    "sprite": "asset:pokemon/263.png",
+    "name": "ZIGZAGOON",
+    "level": "Lv2-3",
+    "chance": "40%"
+   },
+   {
+    "sprite": "asset:pokemon/265.png",
+    "name": "WURMPLE",
+    "level": "Lv2-3",
+    "chance": "20%"
+   }
+  ],
+  "wildMethod": "GRASS",
+  "hasWild": true,
+  "noWild": false
+ },
+ "battle": {
+  "inBattle": true,
+  "noBattle": false,
+  "balls": "12",
+  "bagText": "24 ITEMS",
+  "runText": "OK",
+  "best": "BEST: WATER GUN x2",
+  "actFight": true,
+  "actBag": false,
+  "actMon": false,
+  "actRun": false,
+  "you": {
+   "name": "MUDKIP",
+   "level": 12,
+   "dex": "258",
+   "sprite": "asset:pokemon/back/258.png",
+   "types": [
+    {
+     "name": "WATER",
+     "src": "asset:types/water.png"
+    }
+   ],
+   "hp": 31,
+   "maxHp": 36,
+   "lead": true,
+   "male": true,
+   "female": false,
+   "ot": "Kira",
+   "id": "22447",
+   "ability": "TORRENT",
+   "abilityText": "Ups WATER moves in a pinch.",
+   "nature": "NAUGHTY",
+   "metLevel": 12,
+   "metPlace": "ROUTE 101",
+   "item": "ORAN BERRY",
+   "hasHeld": true,
+   "heldIcon": "asset:items/139.png",
+   "hasStatus": false,
+   "status": "",
+   "expPct": 0.42,
+   "toNext": "27",
+   "exp": "152",
+   "friendship": "70",
+   "ribbon": "NONE",
+   "friendPct": 0.275,
+   "statRows": [
+    {
+     "label": "HP",
+     "value": "36",
+     "pct": 0.3,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    },
+    {
+     "label": "ATTACK",
+     "value": "22",
+     "pct": 0.183,
+     "up": true,
+     "down": false,
+     "ev": "EV 1"
+    },
+    {
+     "label": "DEFENSE",
+     "value": "18",
+     "pct": 0.15,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    },
+    {
+     "label": "SP. ATK",
+     "value": "16",
+     "pct": 0.133,
+     "up": false,
+     "down": true,
+     "ev": "EV 0"
+    },
+    {
+     "label": "SP. DEF",
+     "value": "16",
+     "pct": 0.133,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    },
+    {
+     "label": "SPEED",
+     "value": "15",
+     "pct": 0.125,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    }
+   ],
+   "condition": [
+    {
+     "label": "COOL",
+     "pct": 0.157,
+     "value": "40",
+     "color": "#d85040"
+    },
+    {
+     "label": "BEAUTY",
+     "pct": 0.098,
+     "value": "25",
+     "color": "#5088c0"
+    },
+    {
+     "label": "CUTE",
+     "pct": 0.235,
+     "value": "60",
+     "color": "#d85868"
+    },
+    {
+     "label": "SMART",
+     "pct": 0.039,
+     "value": "10",
+     "color": "#58a868"
+    },
+    {
+     "label": "TOUGH",
+     "pct": 0.137,
+     "value": "35",
+     "color": "#e8a050"
+    }
+   ],
+   "sheen": "0",
+   "sheenPct": 0,
+   "hpPct": 0.861,
+   "hpHigh": true,
+   "hpMid": false,
+   "hpLow": false,
+   "fainted": false,
+   "moves": [
+    {
+     "name": "TACKLE",
+     "type": "asset:types/normal.png",
+     "power": 35,
+     "acc": 95,
+     "pp": "35/35",
+     "ppPct": 1.0,
+     "ppLow": false,
+     "has": true,
+     "desc": "Charges the foe with a full-body tackle.",
+     "contest": "TOUGH",
+     "contestColor": "#e8a050",
+     "cdesc": "A highly appealing move.",
+     "info": "PWR 35  ACC 95"
+    },
+    {
+     "name": "GROWL",
+     "type": "asset:types/normal.png",
+     "power": "--",
+     "acc": 100,
+     "pp": "40/40",
+     "ppPct": 1.0,
+     "ppLow": false,
+     "has": true,
+     "desc": "Growls cutely to reduce the foe's ATTACK.",
+     "contest": "CUTE",
+     "contestColor": "#d85868",
+     "cdesc": "Excites the audience.",
+     "info": "PWR --  ACC 100"
+    },
+    {
+     "name": "MUD-SLAP",
+     "type": "asset:types/ground.png",
+     "power": 20,
+     "acc": 100,
+     "pp": "8/10",
+     "ppPct": 0.8,
+     "ppLow": false,
+     "has": true,
+     "desc": "Hurls mud in the foe's face to lower its accuracy.",
+     "contest": "SMART",
+     "contestColor": "#58a868",
+     "cdesc": "Startles the others.",
+     "info": "PWR 20  ACC 100"
+    },
+    {
+     "name": "WATER GUN",
+     "type": "asset:types/water.png",
+     "power": 40,
+     "acc": 100,
+     "pp": "25/25",
+     "ppPct": 1.0,
+     "ppLow": false,
+     "has": true,
+     "desc": "Squirts water to attack the foe.",
+     "contest": "BEAUTY",
+     "contestColor": "#5088c0",
+     "cdesc": "Appeals with water.",
+     "info": "PWR 40  ACC 100"
+    }
+   ],
+   "moveDesc": "Charges the foe with a full-body tackle.",
+   "contestDesc": "A highly appealing move.",
+   "stats": [
+    {
+     "name": "ATTACK",
+     "stage": "+1",
+     "up": true,
+     "down": false
+    }
+   ]
+  },
+  "foe": {
+   "name": "POOCHYENA",
+   "level": 3,
+   "dex": "261",
+   "sprite": "asset:pokemon/261.png",
+   "types": [
+    {
+     "name": "DARK",
+     "src": "asset:types/dark.png"
+    }
+   ],
+   "hp": 12,
+   "maxHp": 15,
+   "lead": false,
+   "male": true,
+   "female": false,
+   "ot": "Kira",
+   "id": "22447",
+   "ability": "TORRENT",
+   "abilityText": "Ups WATER moves in a pinch.",
+   "nature": "NAUGHTY",
+   "metLevel": 3,
+   "metPlace": "ROUTE 101",
+   "item": "NONE",
+   "hasHeld": false,
+   "heldIcon": "",
+   "hasStatus": false,
+   "status": "",
+   "expPct": 0.42,
+   "toNext": "27",
+   "exp": "152",
+   "friendship": "70",
+   "ribbon": "NONE",
+   "friendPct": 0.275,
+   "statRows": [
+    {
+     "label": "HP",
+     "value": "15",
+     "pct": 0.125,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    },
+    {
+     "label": "ATTACK",
+     "value": "13",
+     "pct": 0.108,
+     "up": true,
+     "down": false,
+     "ev": "EV 1"
+    },
+    {
+     "label": "DEFENSE",
+     "value": "11",
+     "pct": 0.092,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    },
+    {
+     "label": "SP. ATK",
+     "value": "10",
+     "pct": 0.083,
+     "up": false,
+     "down": true,
+     "ev": "EV 0"
+    },
+    {
+     "label": "SP. DEF",
+     "value": "9",
+     "pct": 0.075,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    },
+    {
+     "label": "SPEED",
+     "value": "9",
+     "pct": 0.075,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    }
+   ],
+   "condition": [
+    {
+     "label": "COOL",
+     "pct": 0.157,
+     "value": "40",
+     "color": "#d85040"
+    },
+    {
+     "label": "BEAUTY",
+     "pct": 0.098,
+     "value": "25",
+     "color": "#5088c0"
+    },
+    {
+     "label": "CUTE",
+     "pct": 0.235,
+     "value": "60",
+     "color": "#d85868"
+    },
+    {
+     "label": "SMART",
+     "pct": 0.039,
+     "value": "10",
+     "color": "#58a868"
+    },
+    {
+     "label": "TOUGH",
+     "pct": 0.137,
+     "value": "35",
+     "color": "#e8a050"
+    }
+   ],
+   "sheen": "0",
+   "sheenPct": 0,
+   "hpPct": 0.8,
+   "hpHigh": true,
+   "hpMid": false,
+   "hpLow": false,
+   "fainted": false,
+   "moves": [
+    {
+     "name": "-",
+     "type": "",
+     "power": "--",
+     "acc": "--",
+     "pp": "--",
+     "ppPct": 0,
+     "ppLow": false,
+     "has": false,
+     "desc": "",
+     "contest": "",
+     "contestColor": "#ffffff",
+     "cdesc": "",
+     "info": ""
+    },
+    {
+     "name": "-",
+     "type": "",
+     "power": "--",
+     "acc": "--",
+     "pp": "--",
+     "ppPct": 0,
+     "ppLow": false,
+     "has": false,
+     "desc": "",
+     "contest": "",
+     "contestColor": "#ffffff",
+     "cdesc": "",
+     "info": ""
+    },
+    {
+     "name": "-",
+     "type": "",
+     "power": "--",
+     "acc": "--",
+     "pp": "--",
+     "ppPct": 0,
+     "ppLow": false,
+     "has": false,
+     "desc": "",
+     "contest": "",
+     "contestColor": "#ffffff",
+     "cdesc": "",
+     "info": ""
+    },
+    {
+     "name": "-",
+     "type": "",
+     "power": "--",
+     "acc": "--",
+     "pp": "--",
+     "ppPct": 0,
+     "ppLow": false,
+     "has": false,
+     "desc": "",
+     "contest": "",
+     "contestColor": "#ffffff",
+     "cdesc": "",
+     "info": ""
+    }
+   ],
+   "moveDesc": "",
+   "contestDesc": "",
+   "stats": [
+    {
+     "name": "DEFENSE",
+     "stage": "-1",
+     "up": false,
+     "down": true
+    },
+    {
+     "name": "SPEED",
+     "stage": "-2",
+     "up": false,
+     "down": true
+    }
+   ]
+  },
+  "youMon": {
+   "name": "MUDKIP",
+   "level": 12,
+   "dex": "258",
+   "sprite": "asset:pokemon/258.png",
+   "types": [
+    {
+     "name": "WATER",
+     "src": "asset:types/water.png"
+    }
+   ],
+   "hp": 31,
+   "maxHp": 36,
+   "lead": true,
+   "male": true,
+   "female": false,
+   "ot": "Kira",
+   "id": "22447",
+   "ability": "TORRENT",
+   "abilityText": "Ups WATER moves in a pinch.",
+   "nature": "NAUGHTY",
+   "metLevel": 12,
+   "metPlace": "ROUTE 101",
+   "item": "ORAN BERRY",
+   "hasHeld": true,
+   "heldIcon": "asset:items/139.png",
+   "hasStatus": false,
+   "status": "",
+   "expPct": 0.42,
+   "toNext": "27",
+   "exp": "152",
+   "friendship": "70",
+   "ribbon": "NONE",
+   "friendPct": 0.275,
+   "statRows": [
+    {
+     "label": "HP",
+     "value": "36",
+     "pct": 0.3,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    },
+    {
+     "label": "ATTACK",
+     "value": "22",
+     "pct": 0.183,
+     "up": true,
+     "down": false,
+     "ev": "EV 1"
+    },
+    {
+     "label": "DEFENSE",
+     "value": "18",
+     "pct": 0.15,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    },
+    {
+     "label": "SP. ATK",
+     "value": "16",
+     "pct": 0.133,
+     "up": false,
+     "down": true,
+     "ev": "EV 0"
+    },
+    {
+     "label": "SP. DEF",
+     "value": "16",
+     "pct": 0.133,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    },
+    {
+     "label": "SPEED",
+     "value": "15",
+     "pct": 0.125,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    }
+   ],
+   "condition": [
+    {
+     "label": "COOL",
+     "pct": 0.157,
+     "value": "40",
+     "color": "#d85040"
+    },
+    {
+     "label": "BEAUTY",
+     "pct": 0.098,
+     "value": "25",
+     "color": "#5088c0"
+    },
+    {
+     "label": "CUTE",
+     "pct": 0.235,
+     "value": "60",
+     "color": "#d85868"
+    },
+    {
+     "label": "SMART",
+     "pct": 0.039,
+     "value": "10",
+     "color": "#58a868"
+    },
+    {
+     "label": "TOUGH",
+     "pct": 0.137,
+     "value": "35",
+     "color": "#e8a050"
+    }
+   ],
+   "sheen": "0",
+   "sheenPct": 0,
+   "hpPct": 0.861,
+   "hpHigh": true,
+   "hpMid": false,
+   "hpLow": false,
+   "fainted": false,
+   "moves": [
+    {
+     "name": "TACKLE",
+     "type": "asset:types/normal.png",
+     "power": 35,
+     "acc": 95,
+     "pp": "35/35",
+     "ppPct": 1.0,
+     "ppLow": false,
+     "has": true,
+     "desc": "Charges the foe with a full-body tackle.",
+     "contest": "TOUGH",
+     "contestColor": "#e8a050",
+     "cdesc": "A highly appealing move.",
+     "info": "PWR 35  ACC 95"
+    },
+    {
+     "name": "GROWL",
+     "type": "asset:types/normal.png",
+     "power": "--",
+     "acc": 100,
+     "pp": "40/40",
+     "ppPct": 1.0,
+     "ppLow": false,
+     "has": true,
+     "desc": "Growls cutely to reduce the foe's ATTACK.",
+     "contest": "CUTE",
+     "contestColor": "#d85868",
+     "cdesc": "Excites the audience.",
+     "info": "PWR --  ACC 100"
+    },
+    {
+     "name": "MUD-SLAP",
+     "type": "asset:types/ground.png",
+     "power": 20,
+     "acc": 100,
+     "pp": "8/10",
+     "ppPct": 0.8,
+     "ppLow": false,
+     "has": true,
+     "desc": "Hurls mud in the foe's face to lower its accuracy.",
+     "contest": "SMART",
+     "contestColor": "#58a868",
+     "cdesc": "Startles the others.",
+     "info": "PWR 20  ACC 100"
+    },
+    {
+     "name": "WATER GUN",
+     "type": "asset:types/water.png",
+     "power": 40,
+     "acc": 100,
+     "pp": "25/25",
+     "ppPct": 1.0,
+     "ppLow": false,
+     "has": true,
+     "desc": "Squirts water to attack the foe.",
+     "contest": "BEAUTY",
+     "contestColor": "#5088c0",
+     "cdesc": "Appeals with water.",
+     "info": "PWR 40  ACC 100"
+    }
+   ],
+   "moveDesc": "Charges the foe with a full-body tackle.",
+   "contestDesc": "A highly appealing move."
+  },
+  "foeMon": {
+   "name": "POOCHYENA",
+   "level": 3,
+   "dex": "261",
+   "sprite": "asset:pokemon/261.png",
+   "types": [
+    {
+     "name": "DARK",
+     "src": "asset:types/dark.png"
+    }
+   ],
+   "hp": 12,
+   "maxHp": 15,
+   "lead": false,
+   "male": true,
+   "female": false,
+   "ot": "Kira",
+   "id": "22447",
+   "ability": "RUN AWAY",
+   "abilityText": "Makes escaping easier.",
+   "nature": "NAUGHTY",
+   "metLevel": 3,
+   "metPlace": "ROUTE 101",
+   "item": "NONE",
+   "hasHeld": false,
+   "heldIcon": "",
+   "hasStatus": false,
+   "status": "",
+   "expPct": 0.42,
+   "toNext": "27",
+   "exp": "152",
+   "friendship": "70",
+   "ribbon": "NONE",
+   "friendPct": 0.275,
+   "statRows": [
+    {
+     "label": "HP",
+     "value": "15",
+     "pct": 0.125,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    },
+    {
+     "label": "ATTACK",
+     "value": "13",
+     "pct": 0.108,
+     "up": true,
+     "down": false,
+     "ev": "EV 1"
+    },
+    {
+     "label": "DEFENSE",
+     "value": "11",
+     "pct": 0.092,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    },
+    {
+     "label": "SP. ATK",
+     "value": "10",
+     "pct": 0.083,
+     "up": false,
+     "down": true,
+     "ev": "EV 0"
+    },
+    {
+     "label": "SP. DEF",
+     "value": "9",
+     "pct": 0.075,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    },
+    {
+     "label": "SPEED",
+     "value": "9",
+     "pct": 0.075,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    }
+   ],
+   "condition": [
+    {
+     "label": "COOL",
+     "pct": 0.157,
+     "value": "40",
+     "color": "#d85040"
+    },
+    {
+     "label": "BEAUTY",
+     "pct": 0.098,
+     "value": "25",
+     "color": "#5088c0"
+    },
+    {
+     "label": "CUTE",
+     "pct": 0.235,
+     "value": "60",
+     "color": "#d85868"
+    },
+    {
+     "label": "SMART",
+     "pct": 0.039,
+     "value": "10",
+     "color": "#58a868"
+    },
+    {
+     "label": "TOUGH",
+     "pct": 0.137,
+     "value": "35",
+     "color": "#e8a050"
+    }
+   ],
+   "sheen": "0",
+   "sheenPct": 0,
+   "hpPct": 0.8,
+   "hpHigh": true,
+   "hpMid": false,
+   "hpLow": false,
+   "fainted": false,
+   "moves": [
+    {
+     "name": "TACKLE",
+     "type": "asset:types/normal.png",
+     "power": 35,
+     "acc": 95,
+     "pp": "35/35",
+     "ppPct": 1.0,
+     "ppLow": false,
+     "has": true,
+     "desc": "Charges the foe with a full-body tackle.",
+     "contest": "TOUGH",
+     "contestColor": "#e8a050",
+     "cdesc": "A highly appealing move.",
+     "info": "PWR 35  ACC 95"
+    },
+    {
+     "name": "GROWL",
+     "type": "asset:types/normal.png",
+     "power": "--",
+     "acc": 100,
+     "pp": "40/40",
+     "ppPct": 1.0,
+     "ppLow": false,
+     "has": true,
+     "desc": "Growls cutely to reduce the foe's ATTACK.",
+     "contest": "CUTE",
+     "contestColor": "#d85868",
+     "cdesc": "Excites the audience.",
+     "info": "PWR --  ACC 100"
+    },
+    {
+     "name": "-",
+     "type": "",
+     "power": "--",
+     "acc": "--",
+     "pp": "--",
+     "ppPct": 0,
+     "ppLow": false,
+     "has": false,
+     "desc": "",
+     "contest": "",
+     "contestColor": "#ffffff",
+     "cdesc": "",
+     "info": ""
+    },
+    {
+     "name": "-",
+     "type": "",
+     "power": "--",
+     "acc": "--",
+     "pp": "--",
+     "ppPct": 0,
+     "ppLow": false,
+     "has": false,
+     "desc": "",
+     "contest": "",
+     "contestColor": "#ffffff",
+     "cdesc": "",
+     "info": ""
+    }
+   ],
+   "moveDesc": "Charges the foe with a full-body tackle.",
+   "contestDesc": "A highly appealing move."
+  },
+  "moves": [
+   {
+    "name": "TACKLE",
+    "type": "asset:types/normal.png",
+    "power": 35,
+    "acc": 95,
+    "pp": "35",
+    "ppPct": 1.0,
+    "ppLow": false,
+    "has": true,
+    "desc": "Charges the foe with a full-body tackle.",
+    "contest": "TOUGH",
+    "contestColor": "#e8a050",
+    "cdesc": "A highly appealing move.",
+    "info": "PWR 35  ACC 95",
+    "sel": false,
+    "eff": "x1",
+    "se": false,
+    "nve": false,
+    "imm": false
+   },
+   {
+    "name": "GROWL",
+    "type": "asset:types/normal.png",
+    "power": "--",
+    "acc": 100,
+    "pp": "40",
+    "ppPct": 1.0,
+    "ppLow": false,
+    "has": true,
+    "desc": "Growls cutely to reduce the foe's ATTACK.",
+    "contest": "CUTE",
+    "contestColor": "#d85868",
+    "cdesc": "Excites the audience.",
+    "info": "PWR --  ACC 100",
+    "sel": false,
+    "eff": "--",
+    "se": false,
+    "nve": false,
+    "imm": false
+   },
+   {
+    "name": "MUD-SLAP",
+    "type": "asset:types/ground.png",
+    "power": 20,
+    "acc": 100,
+    "pp": "8",
+    "ppPct": 0.8,
+    "ppLow": false,
+    "has": true,
+    "desc": "Hurls mud in the foe's face to lower its accuracy.",
+    "contest": "SMART",
+    "contestColor": "#58a868",
+    "cdesc": "Startles the others.",
+    "info": "PWR 20  ACC 100",
+    "sel": false,
+    "eff": "x1/2",
+    "se": false,
+    "nve": true,
+    "imm": false
+   },
+   {
+    "name": "WATER GUN",
+    "type": "asset:types/water.png",
+    "power": 40,
+    "acc": 100,
+    "pp": "25",
+    "ppPct": 1.0,
+    "ppLow": false,
+    "has": true,
+    "desc": "Squirts water to attack the foe.",
+    "contest": "BEAUTY",
+    "contestColor": "#5088c0",
+    "cdesc": "Appeals with water.",
+    "info": "PWR 40  ACC 100",
+    "sel": true,
+    "eff": "x2",
+    "se": true,
+    "nve": false,
+    "imm": false
+   }
+  ]
+ },
+ "ui": {
+  "set": {
+   "name": "MUDKIP",
+   "level": 12,
+   "dex": "258",
+   "sprite": "asset:pokemon/258.png",
+   "types": [
+    {
+     "name": "WATER",
+     "src": "asset:types/water.png"
+    }
+   ],
+   "hp": 31,
+   "maxHp": 36,
+   "hpPct": 0.861,
+   "hpHigh": true,
+   "hpMid": false,
+   "hpLow": false,
+   "male": true,
+   "female": false,
+   "ot": "Kira",
+   "id": "22447",
+   "ability": "TORRENT",
+   "abilityText": "Ups WATER moves in a pinch.",
+   "nature": "NAUGHTY",
+   "metLevel": 12,
+   "metPlace": "ROUTE 101",
+   "toNext": "27",
+   "expPct": 0.42,
+   "item": "ORAN BERRY",
+   "ribbon": "NONE",
+   "heldIcon": "asset:items/139.png",
+   "hasHeld": true,
+   "friendPct": 0.275,
+   "statRows": [
+    {
+     "label": "HP",
+     "value": "36",
+     "pct": 0.3,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    },
+    {
+     "label": "ATTACK",
+     "value": "22",
+     "pct": 0.183,
+     "up": true,
+     "down": false,
+     "ev": "EV 1"
+    },
+    {
+     "label": "DEFENSE",
+     "value": "18",
+     "pct": 0.15,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    },
+    {
+     "label": "SP. ATK",
+     "value": "16",
+     "pct": 0.133,
+     "up": false,
+     "down": true,
+     "ev": "EV 0"
+    },
+    {
+     "label": "SP. DEF",
+     "value": "16",
+     "pct": 0.133,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    },
+    {
+     "label": "SPEED",
+     "value": "15",
+     "pct": 0.125,
+     "up": false,
+     "down": false,
+     "ev": "EV 0"
+    }
+   ],
+   "exp": "152",
+   "friendship": "70",
+   "moves": [
+    {
+     "name": "TACKLE",
+     "type": "asset:types/normal.png",
+     "power": 35,
+     "acc": 95,
+     "pp": "35/35",
+     "ppPct": 1.0,
+     "ppLow": false,
+     "has": true,
+     "desc": "Charges the foe with a full-body tackle.",
+     "contest": "TOUGH",
+     "contestColor": "#e8a050",
+     "cdesc": "A highly appealing move.",
+     "info": "PWR 35  ACC 95"
+    },
+    {
+     "name": "GROWL",
+     "type": "asset:types/normal.png",
+     "power": "--",
+     "acc": 100,
+     "pp": "40/40",
+     "ppPct": 1.0,
+     "ppLow": false,
+     "has": true,
+     "desc": "Growls cutely to reduce the foe's ATTACK.",
+     "contest": "CUTE",
+     "contestColor": "#d85868",
+     "cdesc": "Excites the audience.",
+     "info": "PWR --  ACC 100"
+    },
+    {
+     "name": "MUD-SLAP",
+     "type": "asset:types/ground.png",
+     "power": 20,
+     "acc": 100,
+     "pp": "8/10",
+     "ppPct": 0.8,
+     "ppLow": false,
+     "has": true,
+     "desc": "Hurls mud in the foe's face to lower its accuracy.",
+     "contest": "SMART",
+     "contestColor": "#58a868",
+     "cdesc": "Startles the others.",
+     "info": "PWR 20  ACC 100"
+    },
+    {
+     "name": "WATER GUN",
+     "type": "asset:types/water.png",
+     "power": 40,
+     "acc": 100,
+     "pp": "25/25",
+     "ppPct": 1.0,
+     "ppLow": false,
+     "has": true,
+     "desc": "Squirts water to attack the foe.",
+     "contest": "BEAUTY",
+     "contestColor": "#5088c0",
+     "cdesc": "Appeals with water.",
+     "info": "PWR 40  ACC 100"
+    }
+   ],
+   "moveDesc": "Charges the foe with a full-body tackle.",
+   "contestDesc": "A highly appealing move.",
+   "condition": [
+    {
+     "label": "COOL",
+     "pct": 0.157,
+     "value": "40",
+     "color": "#d85040"
+    },
+    {
+     "label": "BEAUTY",
+     "pct": 0.098,
+     "value": "25",
+     "color": "#5088c0"
+    },
+    {
+     "label": "CUTE",
+     "pct": 0.235,
+     "value": "60",
+     "color": "#d85868"
+    },
+    {
+     "label": "SMART",
+     "pct": 0.039,
+     "value": "10",
+     "color": "#58a868"
+    },
+    {
+     "label": "TOUGH",
+     "pct": 0.137,
+     "value": "35",
+     "color": "#e8a050"
+    }
+   ],
+   "sheen": "0",
+   "sheenPct": 0,
+   "status": "",
+   "hasStatus": false,
+   "selName": "POTION",
+   "selDesc": "Restores the HP of one POK\u00e9MON by 20 points.",
+   "selIcon": "asset:items/13.png",
+   "selHasIcon": true,
+   "selQty": "x5",
+   "selPrice": "300"
+  }
+ }
+}

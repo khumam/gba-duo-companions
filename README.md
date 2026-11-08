@@ -43,8 +43,11 @@ Each pack is a folder; the zip name is `<pack>-<version>.zip` on the
 
 | Pack | Game | Game codes | Pages | Version | Notes |
 |---|---|---|---|---|---|
-| [`pokemon-firered-console-companion`](pokemon-firered-console-companion) | Pokémon FireRed | `BPRE` | Map, Party, Bag, Dex list, Card, Battle (with controls) | 1.0.0 | The Emerald companion's console layout in a soft red pastel palette: Pokédex list with entries, interactive battle buttons and move list, tap a Pokémon for its details. |
-| [`pokemon-leafgreen-console-companion`](pokemon-leafgreen-console-companion) | Pokémon LeafGreen | `BPGE` | Map, Party, Bag, Dex list, Card, Battle (with controls) | 1.0.0 | The same console layout in a soft green pastel palette. |
+| [`pokemon-firered-companion`](pokemon-firered-companion) | Pokémon FireRed | `BPRE` | Map, Party, Bag, Dex list, Card, Battle (with controls) | 3.0.0 | The Emerald companion's console layout in a soft red pastel palette: Pokédex list with entries, interactive battle buttons and move list, tap a Pokémon for its details. |
+| [`pokemon-leafgreen-companion`](pokemon-leafgreen-companion) | Pokémon LeafGreen | `BPGE` | Map, Party, Bag, Dex list, Card, Battle (with controls) | 2.0.0 | The same console layout in a soft green pastel palette. |
+| [`pokemon-emerald-companion`](pokemon-emerald-companion) | Pokémon Emerald | `BPEE` | Bag, Map, Party, Detail, Dex, Options, Battle | 1.0.0 | The trainer console: header band, windows, a bottom ring bar; Pokédex list, contest condition, interactive battle buttons. |
+| [`pokemon-ruby-companion`](pokemon-ruby-companion) | Pokémon Ruby | `AXVE` | Bag, Map, Party, Detail, Dex, Options, Battle | 1.0.0 | The Emerald console ported to Ruby (USA 1.0), in a red pastel palette. |
+| [`pokemon-sapphire-companion`](pokemon-sapphire-companion) | Pokémon Sapphire | `AXPE` | Bag, Map, Party, Detail, Dex, Options, Battle | 1.0.0 | The same console for Sapphire (USA 1.0), in a blue pastel palette. |
 
 ### Metroid
 

@@ -1,0 +1,24 @@
+{
+  "id": "pokemon-firered-companion",
+  "name": "Pokemon FireRed Companion",
+  "version": "3.0.0",
+  "author": "khumam",
+  "formatVersion": 4,
+  "gameScript": "game.lua",
+  "match": {
+    "gameCode": [
+      "BPRE"
+    ],
+    "crc32": []
+  },
+  "tickHz": 4,
+  "layout": "layout.json",
+  "styles": [
+    "style.css"
+  ],
+  "script": "main.lua",
+  "values": {},
+  "permissions": [
+    "memory-write"
+  ]
+}

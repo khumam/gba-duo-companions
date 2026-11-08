@@ -1,0 +1,24 @@
+{
+  "id": "pokemon-sapphire-companion",
+  "name": "Pokemon Sapphire Companion",
+  "version": "1.0.0",
+  "author": "khumam",
+  "formatVersion": 4,
+  "match": {
+    "gameCode": [
+      "AXPE"
+    ],
+    "crc32": []
+  },
+  "tickHz": 4,
+  "layout": "layout.json",
+  "styles": [
+    "style.css"
+  ],
+  "script": "main.lua",
+  "gameScript": "game.lua",
+  "values": {},
+  "permissions": [
+    "memory-write"
+  ]
+}

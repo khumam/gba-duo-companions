@@ -3,17 +3,17 @@
 	"formatVersion": 1,
 	"companions": [
 		{
-			"id": "pokemon-firered-console-companion",
-			"title": "Pokémon FireRed Companion (Console)",
-			"description": "FireRed companion in the console layout of the Emerald pack, in a soft red pastel palette: live Town Map with the wild Pokémon around you, party (tap a Pokémon for its stats and moves), bag by pocket, a Pokédex list with entries, trainer card, and a battle page with FIGHT, BAG, POKéMON and RUN buttons plus a move list with type effectiveness (the buttons need Packs can change games). Has a WIDE button that paints the game's world beside the picture, and a COLOR button for a fuller look (GBADuo 0.1.12 or newer).",
-			"version": "1.0.0",
+			"id": "pokemon-firered-companion",
+			"title": "Pokémon FireRed Companion",
+			"description": "FireRed companion in the console layout of the Emerald pack, in a soft red pastel palette: a Map page with a TOWN / WORLD switch (the live map of your area, or the Town Map with your spot) and the wild Pokémon around you, party (tap a Pokémon for its stats and moves), bag by pocket, a Pokédex list with entries, trainer card, and a battle page with FIGHT, BAG, POKéMON and RUN buttons plus a move list with type effectiveness (the buttons need Packs can change games). Has a WIDE button that paints the game's world beside the picture, and a COLOR button for a fuller look (GBADuo 0.1.12 or newer).",
+			"version": "3.0.0",
 			"author": "khumam",
 			"official": true,
 			"repo": "khumam/gba-duo-companions",
-			"path": "pokemon-firered-console-companion",
-			"tag": "v1.13.0",
-			"url": "https://github.com/khumam/gba-duo-companions/tree/main/pokemon-firered-console-companion",
-			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.13.0/pokemon-firered-console-companion-1.0.0.zip",
+			"path": "pokemon-firered-companion",
+			"tag": "v3.0.0",
+			"url": "https://github.com/khumam/gba-duo-companions/tree/main/pokemon-firered-companion",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v3.0.0/pokemon-firered-companion-3.0.0.zip",
 			"games": [
 				{
 					"title": "Pokémon FireRed",
@@ -37,7 +37,6 @@
 				"party",
 				"battle",
 				"pokedex",
-				"console",
 				"pastel",
 				"rom-graphics"
 			],
@@ -46,35 +45,35 @@
 			"canModifyGame": true,
 			"screenshots": [
 				{
-					"src": "pokemon-firered-console-companion/screenshoots/firered-console-map.png",
+					"src": "pokemon-firered-companion/screenshoots/firered-map.png",
 					"alt": "Map page: the Town Map with your spot and the wild Pokémon here"
 				},
 				{
-					"src": "pokemon-firered-console-companion/screenshoots/firered-console-party.png",
+					"src": "pokemon-firered-companion/screenshoots/firered-party.png",
 					"alt": "Party page: tap a card for that Pokémon's details"
 				},
 				{
-					"src": "pokemon-firered-console-companion/screenshoots/firered-console-dex.png",
+					"src": "pokemon-firered-companion/screenshoots/firered-dex.png",
 					"alt": "Pokédex list with the selected entry"
 				},
 				{
-					"src": "pokemon-firered-console-companion/screenshoots/firered-console-battle.png",
+					"src": "pokemon-firered-companion/screenshoots/firered-battle.png",
 					"alt": "Battle page with FIGHT, BAG, POKéMON and RUN buttons"
 				}
 			]
 		},
 		{
-			"id": "pokemon-leafgreen-console-companion",
-			"title": "Pokémon LeafGreen Companion (Console)",
-			"description": "LeafGreen companion in the console layout of the Emerald pack, in a soft green pastel palette: live Town Map with the wild Pokémon around you, party (tap a Pokémon for its stats and moves), bag by pocket, a Pokédex list with entries, trainer card, and a battle page with FIGHT, BAG, POKéMON and RUN buttons plus a move list with type effectiveness (the buttons need Packs can change games). Has a WIDE button that paints the game's world beside the picture, and a COLOR button for a fuller look (GBADuo 0.1.12 or newer).",
-			"version": "1.0.0",
+			"id": "pokemon-leafgreen-companion",
+			"title": "Pokémon LeafGreen Companion",
+			"description": "LeafGreen companion in the console layout of the Emerald pack, in a soft green pastel palette: a Map page with a TOWN / WORLD switch (the live map of your area, or the Town Map with your spot) and the wild Pokémon around you, party (tap a Pokémon for its stats and moves), bag by pocket, a Pokédex list with entries, trainer card, and a battle page with FIGHT, BAG, POKéMON and RUN buttons plus a move list with type effectiveness (the buttons need Packs can change games). Has a WIDE button that paints the game's world beside the picture, and a COLOR button for a fuller look (GBADuo 0.1.12 or newer).",
+			"version": "2.0.0",
 			"author": "khumam",
 			"official": true,
 			"repo": "khumam/gba-duo-companions",
-			"path": "pokemon-leafgreen-console-companion",
-			"tag": "v1.13.0",
-			"url": "https://github.com/khumam/gba-duo-companions/tree/main/pokemon-leafgreen-console-companion",
-			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.13.0/pokemon-leafgreen-console-companion-1.0.0.zip",
+			"path": "pokemon-leafgreen-companion",
+			"tag": "v3.0.0",
+			"url": "https://github.com/khumam/gba-duo-companions/tree/main/pokemon-leafgreen-companion",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v3.0.0/pokemon-leafgreen-companion-2.0.0.zip",
 			"games": [
 				{
 					"title": "Pokémon LeafGreen",
@@ -98,7 +97,6 @@
 				"party",
 				"battle",
 				"pokedex",
-				"console",
 				"pastel",
 				"rom-graphics"
 			],
@@ -107,19 +105,19 @@
 			"canModifyGame": true,
 			"screenshots": [
 				{
-					"src": "pokemon-leafgreen-console-companion/screenshoots/leafgreen-console-map.png",
+					"src": "pokemon-leafgreen-companion/screenshoots/leafgreen-map.png",
 					"alt": "Map page: the Town Map with your spot and the wild Pokémon here"
 				},
 				{
-					"src": "pokemon-leafgreen-console-companion/screenshoots/leafgreen-console-party.png",
+					"src": "pokemon-leafgreen-companion/screenshoots/leafgreen-party.png",
 					"alt": "Party page: tap a card for that Pokémon's details"
 				},
 				{
-					"src": "pokemon-leafgreen-console-companion/screenshoots/leafgreen-console-dex.png",
+					"src": "pokemon-leafgreen-companion/screenshoots/leafgreen-dex.png",
 					"alt": "Pokédex list with the selected entry"
 				},
 				{
-					"src": "pokemon-leafgreen-console-companion/screenshoots/leafgreen-console-battle.png",
+					"src": "pokemon-leafgreen-companion/screenshoots/leafgreen-battle.png",
 					"alt": "Battle page with FIGHT, BAG, POKéMON and RUN buttons"
 				}
 			]
@@ -127,15 +125,15 @@
 		{
 			"id": "pokemon-emerald-companion",
 			"title": "Pokémon Emerald Companion",
-			"description": "Dashboard built from the game's own menus: live area map with your spot, party with summary, skills, moves and contest condition, bag by pocket with ROM descriptions, Pokédex, trainer card with badges, and a battle page with type-effectiveness chips. Tap FIGHT, BAG, POKéMON or RUN to pick the action (needs Packs can change games). Has a WIDE button that paints the game's world beside the picture, and a COLOR button for a fuller look (GBADuo 0.1.12 or newer).",
-			"version": "0.4.1",
+			"description": "Dashboard built from the game's own menus: a Map page with a TOWN / WORLD switch (the live map of your area, or a Hoenn map with your spot) and the wild Pokémon here, party with summary, skills, moves and contest condition, bag by pocket with ROM descriptions, Pokédex, trainer card with badges, and a battle page with type-effectiveness chips. Tap FIGHT, BAG, POKéMON or RUN to pick the action (needs Packs can change games). Has a WIDE button that paints the game's world beside the picture, and a COLOR button for a fuller look (GBADuo 0.1.12 or newer).",
+			"version": "1.0.0",
 			"author": "khumam",
 			"official": true,
 			"repo": "khumam/gba-duo-companions",
 			"path": "pokemon-emerald-companion",
-			"tag": "v1.12.0",
+			"tag": "v3.0.0",
 			"url": "https://github.com/khumam/gba-duo-companions/tree/main/pokemon-emerald-companion",
-			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.12.0/pokemon-emerald-companion-0.4.1.zip",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v3.0.0/pokemon-emerald-companion-1.0.0.zip",
 			"games": [
 				{
 					"title": "Pokémon Emerald",
@@ -163,7 +161,157 @@
 			],
 			"minAppVersion": "0.1.12",
 			"recommendedAppVersion": "0.1.12",
-			"canModifyGame": true
+			"canModifyGame": true,
+			"screenshots": [
+				{
+					"src": "pokemon-emerald-companion/screenshoots/emerald-bag.png",
+					"alt": "Bag page: pockets, with the item's price and description"
+				},
+				{
+					"src": "pokemon-emerald-companion/screenshoots/emerald-map.png",
+					"alt": "Map page: the area you are in, drawn from the game"
+				},
+				{
+					"src": "pokemon-emerald-companion/screenshoots/emerald-party.png",
+					"alt": "Party page with HP bars and types"
+				},
+				{
+					"src": "pokemon-emerald-companion/screenshoots/emerald-dex.png",
+					"alt": "Pokédex list with the selected entry"
+				},
+				{
+					"src": "pokemon-emerald-companion/screenshoots/emerald-battle.png",
+					"alt": "Battle page with FIGHT, BAG, POKéMON and RUN buttons"
+				}
+			]
+		},
+		{
+			"id": "pokemon-ruby-companion",
+			"title": "Pokémon Ruby Companion",
+			"description": "The Emerald dashboard for Ruby, in a soft red pastel palette: a Map page with a TOWN / WORLD switch (the live map of your area, or a Hoenn map with your spot) and the wild Pokémon here, party with summary, skills, moves and contest condition, bag by pocket with ROM descriptions, Pokédex, trainer card with badges, and a battle page with type-effectiveness chips. Tap FIGHT, BAG, POKéMON or RUN to pick the action (needs Packs can change games). Has a WIDE button that paints the game's world beside the picture, and a COLOR button for a fuller look (GBADuo 0.1.12 or newer).",
+			"version": "1.0.0",
+			"author": "khumam",
+			"official": true,
+			"repo": "khumam/gba-duo-companions",
+			"path": "pokemon-ruby-companion",
+			"tag": "v3.0.0",
+			"url": "https://github.com/khumam/gba-duo-companions/tree/main/pokemon-ruby-companion",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v3.0.0/pokemon-ruby-companion-1.0.0.zip",
+			"games": [
+				{
+					"title": "Pokémon Ruby",
+					"region": "US",
+					"gameCode": "AXVE"
+				}
+			],
+			"design": "Pokémon Ruby",
+			"pages": [
+				"Bag",
+				"Map",
+				"Party",
+				"Detail",
+				"Dex",
+				"Options",
+				"Battle"
+			],
+			"tags": [
+				"pokemon",
+				"rpg",
+				"map",
+				"party",
+				"battle",
+				"rom-graphics",
+				"pastel"
+			],
+			"minAppVersion": "0.1.12",
+			"recommendedAppVersion": "0.1.12",
+			"canModifyGame": true,
+			"screenshots": [
+				{
+					"src": "pokemon-ruby-companion/screenshoots/ruby-bag.png",
+					"alt": "Bag page: pockets, with the item's price and description"
+				},
+				{
+					"src": "pokemon-ruby-companion/screenshoots/ruby-map.png",
+					"alt": "Map page: the area you are in, drawn from the game"
+				},
+				{
+					"src": "pokemon-ruby-companion/screenshoots/ruby-party.png",
+					"alt": "Party page with HP bars and types"
+				},
+				{
+					"src": "pokemon-ruby-companion/screenshoots/ruby-dex.png",
+					"alt": "Pokédex list with the selected entry"
+				},
+				{
+					"src": "pokemon-ruby-companion/screenshoots/ruby-battle.png",
+					"alt": "Battle page with FIGHT, BAG, POKéMON and RUN buttons"
+				}
+			]
+		},
+		{
+			"id": "pokemon-sapphire-companion",
+			"title": "Pokémon Sapphire Companion",
+			"description": "The Emerald dashboard for Sapphire, in a soft blue pastel palette: a Map page with a TOWN / WORLD switch (the live map of your area, or a Hoenn map with your spot) and the wild Pokémon here, party with summary, skills, moves and contest condition, bag by pocket with ROM descriptions, Pokédex, trainer card with badges, and a battle page with type-effectiveness chips. Tap FIGHT, BAG, POKéMON or RUN to pick the action (needs Packs can change games). Has a WIDE button that paints the game's world beside the picture, and a COLOR button for a fuller look (GBADuo 0.1.12 or newer).",
+			"version": "1.0.0",
+			"author": "khumam",
+			"official": true,
+			"repo": "khumam/gba-duo-companions",
+			"path": "pokemon-sapphire-companion",
+			"tag": "v3.0.0",
+			"url": "https://github.com/khumam/gba-duo-companions/tree/main/pokemon-sapphire-companion",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v3.0.0/pokemon-sapphire-companion-1.0.0.zip",
+			"games": [
+				{
+					"title": "Pokémon Sapphire",
+					"region": "US",
+					"gameCode": "AXPE"
+				}
+			],
+			"design": "Pokémon Sapphire",
+			"pages": [
+				"Bag",
+				"Map",
+				"Party",
+				"Detail",
+				"Dex",
+				"Options",
+				"Battle"
+			],
+			"tags": [
+				"pokemon",
+				"rpg",
+				"map",
+				"party",
+				"battle",
+				"rom-graphics",
+				"pastel"
+			],
+			"minAppVersion": "0.1.12",
+			"recommendedAppVersion": "0.1.12",
+			"canModifyGame": true,
+			"screenshots": [
+				{
+					"src": "pokemon-sapphire-companion/screenshoots/sapphire-bag.png",
+					"alt": "Bag page: pockets, with the item's price and description"
+				},
+				{
+					"src": "pokemon-sapphire-companion/screenshoots/sapphire-map.png",
+					"alt": "Map page: the area you are in, drawn from the game"
+				},
+				{
+					"src": "pokemon-sapphire-companion/screenshoots/sapphire-party.png",
+					"alt": "Party page with HP bars and types"
+				},
+				{
+					"src": "pokemon-sapphire-companion/screenshoots/sapphire-dex.png",
+					"alt": "Pokédex list with the selected entry"
+				},
+				{
+					"src": "pokemon-sapphire-companion/screenshoots/sapphire-battle.png",
+					"alt": "Battle page with FIGHT, BAG, POKéMON and RUN buttons"
+				}
+			]
 		},
 		{
 			"id": "golden-sun-companion",

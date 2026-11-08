@@ -606,17 +606,133 @@ local function areaPicture(draw)
     mx = string.format("%.2f%%", clamp(fx, 0, 1) * 100), my = string.format("%.2f%%", clamp(fy, 0, 1) * 100) }
 end
 
-local function readMap(sb1, draw)
+-- ---- Wild Pokemon --------------------------------------------------------------------
+-- gWildMonHeaders (ROM): 20 bytes per map { mapGroup, mapNum, pad[2], land, water, rockSmash, fishing } (pointers to
+-- { rate, pad, mons }), ended by mapGroup 0xFF. Each mon is { minLevel, maxLevel, species u16 }. The slot chances are
+-- the game's encounter rates; fishing's 10 slots are three rods. The player's map is SaveBlock1.location
+-- (+0 group, +1 number).
+local WILD_HEADERS_ADDR = 0x08552D48
+local LOCATION_OFFSET = 0x04
+local WILD_METHODS = {
+  { key = "land", label = "GRASS", field = 4, slots = { 20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1 } },
+  { key = "water", label = "SURF", field = 8, slots = { 60, 30, 5, 4, 1 } },
+  { key = "rock", label = "ROCK", field = 12, slots = { 60, 30, 5, 4, 1 } },
+  { key = "old", label = "OLD ROD", field = 16, slots = { 70, 30 } },
+  { key = "good", label = "GOOD ROD", field = 16, first = 2, slots = { 60, 20, 20 } },
+  { key = "super", label = "SUPER ROD", field = 16, first = 5, slots = { 40, 40, 15, 4, 1 } },
+}
+
+local wildHeaderCache = {}
+local function wildHeader(group, num)
+  local id = group * 256 + num
+  if wildHeaderCache[id] == nil then
+    wildHeaderCache[id] = false
+    for i = 0, 255 do
+      local e = WILD_HEADERS_ADDR + i * 20
+      local g = mem.u8(e)
+      if g == 0xFF then break end
+      if g == group and mem.u8(e + 1) == num then wildHeaderCache[id] = e break end
+    end
+  end
+  return wildHeaderCache[id] or nil
+end
+
+actions = actions or {}
+local wildChoice -- the method key the player picked (actions.nextWild)
+local wildAvailable = {}
+
+--- The method tag: show the map's next encounter method.
+function actions.nextWild()
+  if #wildAvailable < 2 then return end
+  local at = 1
+  for i, a in ipairs(wildAvailable) do if a.m.key == wildChoice then at = i end end
+  wildChoice = wildAvailable[at % #wildAvailable + 1].m.key
+end
+
+-- The current map's wild Pokemon for the picked method (or the first one it has).
+local function readWild(sb1)
+  local header = wildHeader(mem.u8(sb1 + LOCATION_OFFSET), mem.u8(sb1 + LOCATION_OFFSET + 1))
+  wildAvailable = {}
+  if not header then return nil end
+  for _, m in ipairs(WILD_METHODS) do
+    local info = mem.u32(header + m.field)
+    if info >= 0x08000000 and info < 0x0A000000 then wildAvailable[#wildAvailable + 1] = { m = m, info = info } end
+  end
+  if #wildAvailable == 0 then return nil end
+  local pick = wildAvailable[1]
+  for _, a in ipairs(wildAvailable) do if a.m.key == wildChoice then pick = a end end
+
+  local mons = mem.u32(pick.info + 4)
+  local bySpecies, order = {}, {}
+  for i, chance in ipairs(pick.m.slots) do
+    local e = mons + ((pick.m.first or 0) + i - 1) * 4
+    local species = mem.u16(e + 2)
+    if species > 0 and species <= MAX_SPECIES then
+      local entry = bySpecies[species]
+      if not entry then
+        entry = { species = species, min = 255, max = 0, chance = 0 }
+        bySpecies[species] = entry
+        order[#order + 1] = entry
+      end
+      entry.min = math.min(entry.min, mem.u8(e))
+      entry.max = math.max(entry.max, mem.u8(e + 1))
+      entry.chance = entry.chance + chance
+    end
+  end
+  table.sort(order, function(a, b) return a.chance > b.chance end)
+  local list = {}
+  for _, e in ipairs(order) do
+    list[#list + 1] = {
+      sprite = sprite(dexOf(e.species)), name = speciesName(e.species),
+      level = e.min == e.max and ("Lv" .. e.min) or ("Lv" .. e.min .. "-" .. e.max),
+      chance = e.chance .. "%",
+    }
+  end
+  return { method = pick.m.label, mons = list }
+end
+
+-- The WORLD view is assets/ui/hoenn.png (art/world-map.py): one square per cell of the region map's 28 x 15 grid.
+-- A map section is a rectangle of those cells (gRegionMapEntries: x, y, w, h); the player's spot inside it follows
+-- how far across the current map they are.
+local WORLD_COLS, WORLD_ROWS = 28, 15
+local OUTDOORS = { [1] = true, [2] = true, [3] = true, [6] = true }
+
+local function readMap(sb1, draw, mode)
   local mapsec = mem.u8(MAP_HEADER_ADDR + MAPSEC_OFFSET)
-  local name = placeName(mapsec)
+  local name, entry = placeName(mapsec)
   if name == "" then name = "HOENN" end
-  local kind = MAP_KINDS[mem.u8(MAP_HEADER_ADDR + MAPTYPE_OFFSET)] or "-"
+  local mapType = mem.u8(MAP_HEADER_ADDR + MAPTYPE_OFFSET)
+  local kind = MAP_KINDS[mapType] or "-"
+  local showTown = mode ~= "world"
+  local wild = readWild(sb1)
   local out = { route = name, kind = kind, px = tostring(mem.u16(sb1 + POS_OFFSET)), py = tostring(mem.u16(sb1 + POS_OFFSET + 2)),
-    live = false, off = true, hasMe = false, image = "", ratio = "1.0000", mx = "50%", my = "50%" }
-  local pic = areaPicture(draw and overworldOnScreen())
-  if pic then
-    out.live, out.off = true, false
-    out.image, out.ratio, out.mx, out.my, out.hasMe = pic.image, pic.ratio, pic.mx, pic.my, pic.hasMe
+    showTown = showTown, showWorld = not showTown,
+    -- TOWN: the live picture of the area
+    live = false, off = showTown, hasMe = false, image = "", ratio = "1.0000", mx = "50%", my = "50%",
+    -- WORLD: where the player is on the region map
+    hasWorldMe = false, wx = "50%", wy = "50%",
+    wild = wild and wild.mons or {}, wildMethod = wild and wild.method or "", hasWild = wild ~= nil, noWild = wild == nil }
+  if showTown then
+    local pic = areaPicture(draw and overworldOnScreen())
+    if pic then
+      out.live, out.off = true, false
+      out.image, out.ratio, out.mx, out.my, out.hasMe = pic.image, pic.ratio, pic.mx, pic.my, pic.hasMe
+    end
+  elseif entry then
+    local layout = mem.u32(MAP_HEADER_ADDR)
+    local mw, mh = 0, 0
+    if layout >= 0x02000000 and layout < 0x0A000000 then mw, mh = mem.u32(layout), mem.u32(layout + 4) end
+    local function across(v, size)
+      if size <= 0 or size > 1000 then return 0.5 end
+      return clamp((v + 0.5) / size, 0, 1)
+    end
+    local ex, ey, ew, eh = mem.u8(entry), mem.u8(entry + 1), math.max(1, mem.u8(entry + 2)), math.max(1, mem.u8(entry + 3))
+    local outdoors = OUTDOORS[mapType]
+    local fx = outdoors and across(mem.u16(PLAYER_OBJECT_ADDR + 0x10) - MAP_OFFSET, mw) or 0.5
+    local fy = outdoors and across(mem.u16(PLAYER_OBJECT_ADDR + 0x12) - MAP_OFFSET, mh) or 0.5
+    out.hasWorldMe = ex < WORLD_COLS and ey < WORLD_ROWS
+    out.wx = string.format("%.2f%%", (ex + ew * fx) / WORLD_COLS * 100)
+    out.wy = string.format("%.2f%%", (ey + eh * fy) / WORLD_ROWS * 100)
   end
   return out
 end
@@ -853,7 +969,8 @@ function update(ui)
 
   local party = readParty(partyCount)
   local battling = inBattle()
-  local map = readMap(sb1, currentPage == "map" and not battling)
+  local mapView = (ui and ui.mapView) == "world" and "world" or "town"
+  local map = readMap(sb1, currentPage == "map" and mapView == "town" and not battling, mapView)
   if currentPage == "dex" or not dexOut then dexOut = readDex(sb2) end
 
   if battling then learnRunCommand() end

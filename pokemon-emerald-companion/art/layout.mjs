@@ -123,18 +123,42 @@ const bagPage = box("bag-grid", [
 
 // ---- 2. map -------------------------------------------------------------------------------
 const tile = (k, v, icon) => box("mtile", [...(icon ? [img("hicon", ui(icon))] : []), box("mtile-body", [text("mtile-k", k), text("mtile-v", v)])]);
+const modeBtn = (label, mode, on) => ({
+  type: "button",
+  class: "map-mode",
+  classIf: { on },
+  onClick: [{ set: { mapView: mode } }],
+  children: [text("map-mode-text", label)],
+});
+const pinMark = (visibleIf, left, top) =>
+  box("cross-anchor", [box("halo", []), img("you", ui("pin"))], { visibleIf, bindStyle: { left, top } });
+// TOWN: the live map of the area around you (drawn from the game's data); WORLD: the region with your spot. The buttons
+// set $ui.mapView. Beside it, the wild Pokemon of this map: tap the method tag for the next method (grass, surf, rods).
 const mapPage = box("map-area", [
-  box("map-frame", [
+  win("map-win", "MAP", [
     box("map-stage", [
-      box("map-pic", [
-        img("map-img", "$map.image"),
-        box("cross-anchor", [box("halo", []), img("you", ui("pin"))], { visibleIf: "$map.hasMe", bindStyle: { left: "{map.mx}", top: "{map.my}" } }),
-      ], { visibleIf: "$map.live" }),
+      box("town-pic", [img("map-img", "$map.image"), pinMark("$map.hasMe", "{map.mx}", "{map.my}")], { visibleIf: "$map.live" }),
       box("map-off", [text("map-off-text", "THE MAP DRAWS WHEN YOU ARE OUT IN THE GAME")], { visibleIf: "$map.off" }),
+      box("world-pic", [img("world-img", ui("hoenn")), pinMark("$map.hasWorldMe", "{map.wx}", "{map.wy}")], { visibleIf: "$map.showWorld" }),
     ]),
-    box("map-label", [text("map-label-text", "AREA MAP")]),
+    box("map-where", [img("hicon", ui("pin")), text("map-where-text", "{map.route}"), grow, text("map-where-kind", "{map.kind}")]),
+  ], box("map-modes", [modeBtn("TOWN", "town", "$map.showTown"), modeBtn("WORLD", "world", "$map.showWorld")])),
+  win("wild-win", "WILD HERE", [
+    box("wild", [
+      {
+        type: "button",
+        class: "wild-method",
+        onClick: { call: "nextWild" },
+        children: [text("wild-label", "METHOD"), text("wild-method-text", "{map.wildMethod}")],
+      },
+      list("wild-mons", "$map.wild", box("wild-mon", [
+        img("wild-sprite", "$sprite"),
+        box("wild-info", [text("wild-name", "{name}"), text("wild-level", "{level}")]),
+        box("wild-chance", [text("wild-chance-text", "{chance}")]),
+      ])),
+    ], { visibleIf: "$map.hasWild" }),
+    box("wild wild-none", [text("wild-none-text", "NO WILD POKéMON HERE")], { visibleIf: "$map.noWild" }),
   ]),
-  box("mtiles", [tile("YOU ARE IN", "{map.route}", "pin"), tile("{map.kind}", "X{map.px}  Y{map.py}")]),
 ]);
 
 // ---- 3. pokemon ---------------------------------------------------------------------------

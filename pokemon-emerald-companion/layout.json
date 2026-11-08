@@ -792,67 +792,191 @@
                     "children": [
                       {
                         "type": "box",
-                        "class": "map-frame",
+                        "class": "win map-win",
                         "children": [
                           {
                             "type": "box",
-                            "class": "map-stage",
+                            "class": "wtop",
                             "children": [
                               {
                                 "type": "box",
-                                "class": "map-pic",
-                                "children": [
-                                  {
-                                    "type": "image",
-                                    "class": "map-img",
-                                    "src": "$map.image"
-                                  },
-                                  {
-                                    "type": "box",
-                                    "class": "cross-anchor",
-                                    "children": [
-                                      {
-                                        "type": "box",
-                                        "class": "halo",
-                                        "children": []
-                                      },
-                                      {
-                                        "type": "image",
-                                        "class": "you",
-                                        "src": "asset:ui/pin.png"
-                                      }
-                                    ],
-                                    "visibleIf": "$map.hasMe",
-                                    "bindStyle": {
-                                      "left": "{map.mx}",
-                                      "top": "{map.my}"
-                                    }
-                                  }
-                                ],
-                                "visibleIf": "$map.live"
-                              },
-                              {
-                                "type": "box",
-                                "class": "map-off",
+                                "class": "wtab",
                                 "children": [
                                   {
                                     "type": "text",
-                                    "class": "map-off-text",
-                                    "text": "THE MAP DRAWS WHEN YOU ARE OUT IN THE GAME"
+                                    "class": "wtab-text",
+                                    "text": "MAP"
                                   }
-                                ],
-                                "visibleIf": "$map.off"
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "grow",
+                                "children": []
+                              },
+                              {
+                                "type": "box",
+                                "class": "map-modes",
+                                "children": [
+                                  {
+                                    "type": "button",
+                                    "class": "map-mode",
+                                    "classIf": {
+                                      "on": "$map.showTown"
+                                    },
+                                    "onClick": [
+                                      {
+                                        "set": {
+                                          "mapView": "town"
+                                        }
+                                      }
+                                    ],
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "map-mode-text",
+                                        "text": "TOWN"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "button",
+                                    "class": "map-mode",
+                                    "classIf": {
+                                      "on": "$map.showWorld"
+                                    },
+                                    "onClick": [
+                                      {
+                                        "set": {
+                                          "mapView": "world"
+                                        }
+                                      }
+                                    ],
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "map-mode-text",
+                                        "text": "WORLD"
+                                      }
+                                    ]
+                                  }
+                                ]
                               }
                             ]
                           },
                           {
                             "type": "box",
-                            "class": "map-label",
+                            "class": "wbody",
                             "children": [
                               {
-                                "type": "text",
-                                "class": "map-label-text",
-                                "text": "AREA MAP"
+                                "type": "box",
+                                "class": "map-stage",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "town-pic",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "map-img",
+                                        "src": "$map.image"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "cross-anchor",
+                                        "children": [
+                                          {
+                                            "type": "box",
+                                            "class": "halo",
+                                            "children": []
+                                          },
+                                          {
+                                            "type": "image",
+                                            "class": "you",
+                                            "src": "asset:ui/pin.png"
+                                          }
+                                        ],
+                                        "visibleIf": "$map.hasMe",
+                                        "bindStyle": {
+                                          "left": "{map.mx}",
+                                          "top": "{map.my}"
+                                        }
+                                      }
+                                    ],
+                                    "visibleIf": "$map.live"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "map-off",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "map-off-text",
+                                        "text": "THE MAP DRAWS WHEN YOU ARE OUT IN THE GAME"
+                                      }
+                                    ],
+                                    "visibleIf": "$map.off"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "world-pic",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "world-img",
+                                        "src": "asset:ui/hoenn.png"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "cross-anchor",
+                                        "children": [
+                                          {
+                                            "type": "box",
+                                            "class": "halo",
+                                            "children": []
+                                          },
+                                          {
+                                            "type": "image",
+                                            "class": "you",
+                                            "src": "asset:ui/pin.png"
+                                          }
+                                        ],
+                                        "visibleIf": "$map.hasWorldMe",
+                                        "bindStyle": {
+                                          "left": "{map.wx}",
+                                          "top": "{map.wy}"
+                                        }
+                                      }
+                                    ],
+                                    "visibleIf": "$map.showWorld"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "map-where",
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "hicon",
+                                    "src": "asset:ui/pin.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "map-where-text",
+                                    "text": "{map.route}"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "grow",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "map-where-kind",
+                                    "text": "{map.kind}"
+                                  }
+                                ]
                               }
                             ]
                           }
@@ -860,54 +984,114 @@
                       },
                       {
                         "type": "box",
-                        "class": "mtiles",
+                        "class": "win wild-win",
                         "children": [
                           {
                             "type": "box",
-                            "class": "mtile",
+                            "class": "wtop",
                             "children": [
                               {
-                                "type": "image",
-                                "class": "hicon",
-                                "src": "asset:ui/pin.png"
-                              },
-                              {
                                 "type": "box",
-                                "class": "mtile-body",
+                                "class": "wtab",
                                 "children": [
                                   {
                                     "type": "text",
-                                    "class": "mtile-k",
-                                    "text": "YOU ARE IN"
-                                  },
-                                  {
-                                    "type": "text",
-                                    "class": "mtile-v",
-                                    "text": "{map.route}"
+                                    "class": "wtab-text",
+                                    "text": "WILD HERE"
                                   }
                                 ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "grow",
+                                "children": []
                               }
                             ]
                           },
                           {
                             "type": "box",
-                            "class": "mtile",
+                            "class": "wbody",
                             "children": [
                               {
                                 "type": "box",
-                                "class": "mtile-body",
+                                "class": "wild",
+                                "children": [
+                                  {
+                                    "type": "button",
+                                    "class": "wild-method",
+                                    "onClick": {
+                                      "call": "nextWild"
+                                    },
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "wild-label",
+                                        "text": "METHOD"
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "wild-method-text",
+                                        "text": "{map.wildMethod}"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "list",
+                                    "class": "wild-mons",
+                                    "items": "$map.wild",
+                                    "template": {
+                                      "type": "box",
+                                      "class": "wild-mon",
+                                      "children": [
+                                        {
+                                          "type": "image",
+                                          "class": "wild-sprite",
+                                          "src": "$sprite"
+                                        },
+                                        {
+                                          "type": "box",
+                                          "class": "wild-info",
+                                          "children": [
+                                            {
+                                              "type": "text",
+                                              "class": "wild-name",
+                                              "text": "{name}"
+                                            },
+                                            {
+                                              "type": "text",
+                                              "class": "wild-level",
+                                              "text": "{level}"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "box",
+                                          "class": "wild-chance",
+                                          "children": [
+                                            {
+                                              "type": "text",
+                                              "class": "wild-chance-text",
+                                              "text": "{chance}"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "visibleIf": "$map.hasWild"
+                              },
+                              {
+                                "type": "box",
+                                "class": "wild wild-none",
                                 "children": [
                                   {
                                     "type": "text",
-                                    "class": "mtile-k",
-                                    "text": "{map.kind}"
-                                  },
-                                  {
-                                    "type": "text",
-                                    "class": "mtile-v",
-                                    "text": "X{map.px}  Y{map.py}"
+                                    "class": "wild-none-text",
+                                    "text": "NO WILD POKéMON HERE"
                                   }
-                                ]
+                                ],
+                                "visibleIf": "$map.noWild"
                               }
                             ]
                           }
@@ -3097,33 +3281,6 @@
                                         "type": "text",
                                         "class": "opt-state",
                                         "text": "{_wideLabel}"
-                                      }
-                                    ]
-                                  },
-                                  {
-                                    "type": "button",
-                                    "class": "opt-btn",
-                                    "onClick": {
-                                      "call": "ambientView",
-                                      "args": [
-                                        "toggle"
-                                      ]
-                                    },
-                                    "children": [
-                                      {
-                                        "type": "text",
-                                        "class": "opt-label",
-                                        "text": "AMBIENT"
-                                      },
-                                      {
-                                        "type": "box",
-                                        "class": "grow",
-                                        "children": []
-                                      },
-                                      {
-                                        "type": "text",
-                                        "class": "opt-state",
-                                        "text": "{_ambientLabel}"
                                       }
                                     ]
                                   }

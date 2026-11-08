@@ -1214,7 +1214,7 @@
     "count": "x5",
     "icon": "asset:items/13.png",
     "hasIcon": true,
-    "desc": "Restores the HP of one POKéMON by 20 points.",
+    "desc": "Restores the HP of one POK\u00e9MON by 20 points.",
     "price": "300"
    },
    {
@@ -1222,7 +1222,7 @@
     "count": "x2",
     "icon": "asset:items/14.png",
     "hasIcon": true,
-    "desc": "Heals one POKéMON of its poisoning.",
+    "desc": "Heals one POK\u00e9MON of its poisoning.",
     "price": "100"
    },
    {
@@ -1230,7 +1230,7 @@
     "count": "x3",
     "icon": "asset:items/86.png",
     "hasIcon": true,
-    "desc": "Repels weak wild POKéMON for 100 steps.",
+    "desc": "Repels weak wild POK\u00e9MON for 100 steps.",
     "price": "350"
    },
    {
@@ -1246,7 +1246,7 @@
     "count": "x4",
     "icon": "asset:items/22.png",
     "hasIcon": true,
-    "desc": "Restores the HP of one POKéMON by 50 points.",
+    "desc": "Restores the HP of one POK\u00e9MON by 50 points.",
     "price": "700"
    },
    {
@@ -1254,17 +1254,17 @@
     "count": "x1",
     "icon": "asset:items/17.png",
     "hasIcon": true,
-    "desc": "Wakes up one sleeping POKéMON.",
+    "desc": "Wakes up one sleeping POK\u00e9MON.",
     "price": "250"
    }
   ],
   "balls": [
    {
-    "name": "POKé BALL",
+    "name": "POK\u00e9 BALL",
     "count": "x12",
     "icon": "asset:items/4.png",
     "hasIcon": true,
-    "desc": "A tool used for catching wild POKéMON.",
+    "desc": "A tool used for catching wild POK\u00e9MON.",
     "price": "200"
    },
    {
@@ -1581,7 +1581,7 @@
    "name": "MUDKIP",
    "sprite": "asset:pokemon/258.png",
    "state": "OWNED",
-   "category": "MUD FISH POKéMON",
+   "category": "MUD FISH POK\u00e9MON",
    "height": "0.4m",
    "weight": "7.6kg",
    "abilities": "TORRENT",
@@ -1591,7 +1591,7 @@
      "src": "asset:types/water.png"
     }
    ],
-   "desc": "The fin on MUDKIP's head acts as highly sensitive radar. Using this fin to sense movements of water and air, this POKéMON can determine what is taking place around it without using its eyes.",
+   "desc": "The fin on MUDKIP's head acts as highly sensitive radar. Using this fin to sense movements of water and air, this POK\u00e9MON can determine what is taking place around it without using its eyes.",
    "stats": [
     {
      "label": "HP",
@@ -1637,7 +1637,35 @@
   "hasMe": true,
   "ratio": "1.9300",
   "mx": "40.00%",
-  "my": "55.00%"
+  "my": "55.00%",
+  "showTown": true,
+  "showWorld": false,
+  "hasWorldMe": true,
+  "wx": "16%",
+  "wy": "74%",
+  "wild": [
+   {
+    "sprite": "asset:pokemon/261.png",
+    "name": "POOCHYENA",
+    "level": "Lv2-3",
+    "chance": "40%"
+   },
+   {
+    "sprite": "asset:pokemon/263.png",
+    "name": "ZIGZAGOON",
+    "level": "Lv2-3",
+    "chance": "40%"
+   },
+   {
+    "sprite": "asset:pokemon/265.png",
+    "name": "WURMPLE",
+    "level": "Lv2-3",
+    "chance": "20%"
+   }
+  ],
+  "wildMethod": "GRASS",
+  "hasWild": true,
+  "noWild": false
  },
  "battle": {
   "inBattle": true,
@@ -2694,7 +2722,7 @@
    "status": "",
    "hasStatus": false,
    "selName": "POTION",
-   "selDesc": "Restores the HP of one POKéMON by 20 points.",
+   "selDesc": "Restores the HP of one POK\u00e9MON by 20 points.",
    "selIcon": "asset:items/13.png",
    "selHasIcon": true,
    "selQty": "x5",
