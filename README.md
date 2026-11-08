@@ -43,12 +43,8 @@ Each pack is a folder; the zip name is `<pack>-<version>.zip` on the
 
 | Pack | Game | Game codes | Pages | Version | Notes |
 |---|---|---|---|---|---|
-| [`pokemon-firered-companion`](pokemon-firered-companion) | Pokémon FireRed | `BPRE` | Map, Party, Bag, Dex, Card, Battle | 2.2.1 | *Pocket-OS*: a chunky handheld interface with hazard-striped headers. The Town Map is read from your ROM; the Battle page opens by itself when a battle starts. |
-| [`pokemon-firered-v-companion`](pokemon-firered-v-companion) | Pokémon FireRed | `BPRE` | Map, Party, Bag, Dex, Card, Battle | 1.2.1 | Same pages with a vertical dock on the right. |
-| [`pokemon-firered-minimal-companion`](pokemon-firered-minimal-companion) | Pokémon FireRed | `BPRE` | Map, Party, Bag, Dex, Card, Battle | 1.2.1 | Calm one-colour skin in soft red: flat fills, no shadows, a text-only dock. |
-| [`pokemon-leafgreen-companion`](pokemon-leafgreen-companion) | Pokémon LeafGreen | `BPGE` | Map, Party, Bag, Dex, Card, Battle | 1.2.1 | The FireRed pack for LeafGreen, with horizontal navigation. |
-| [`pokemon-leafgreen-v-companion`](pokemon-leafgreen-v-companion) | Pokémon LeafGreen | `BPGE` | Map, Party, Bag, Dex, Card, Battle | 1.2.1 | Same pages with a vertical dock on the right. |
-| [`pokemon-leafgreen-minimal-companion`](pokemon-leafgreen-minimal-companion) | Pokémon LeafGreen | `BPGE` | Map, Party, Bag, Dex, Card, Battle | 1.2.1 | Calm one-colour skin in soft green. |
+| [`pokemon-firered-console-companion`](pokemon-firered-console-companion) | Pokémon FireRed | `BPRE` | Map, Party, Bag, Dex list, Card, Battle (with controls) | 1.0.0 | The Emerald companion's console layout in a soft red pastel palette: Pokédex list with entries, interactive battle buttons and move list, tap a Pokémon for its details. |
+| [`pokemon-leafgreen-console-companion`](pokemon-leafgreen-console-companion) | Pokémon LeafGreen | `BPGE` | Map, Party, Bag, Dex list, Card, Battle (with controls) | 1.0.0 | The same console layout in a soft green pastel palette. |
 
 ### Metroid
 

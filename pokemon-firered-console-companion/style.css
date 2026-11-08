@@ -1,0 +1,1082 @@
+/*
+ * FireRed console: the Emerald companion's frame (a header band with the page name and ring dots,
+ * rounded windows with a tab, a bottom bar with previous | current | next) in a soft red pastel palette (blush stripes, rose frames, coral capsules and footer buttons).
+ * Pixel font (Jersey 10). The screen is ~538 x 468dp.
+ */
+
+:root {
+  --bg: #E9A7A1;
+  --surface: #FFF2EE;
+  --surface-2: #F9DFD8;
+  --line: #DDA39A;
+  --line-strong: #8C6767;
+  --line-soft: #F3D4CD;
+  --accent: #F4B3A8;
+  --accent-soft: #F9D2CA;
+  --accent-strong: #D96B5F;
+  --ink: #4A3838;
+  --ink-2: #8A6A6A;
+  --ok: #CBEBB5;
+  --bad: #F2A196;
+  --info: #F3C6D0;
+  --ok-bar: #99FCB4;
+  --warn-bar: #F8E070;
+  --bad-bar: #F8A090;
+  --info-bar: #E8776B;
+  --frame: #F2B6AE;
+  --outline: #8E5E5E;
+  --foot: #D9645C;
+  --foot-hi: #EE8F85;
+  --foot-lo: #8C3B36;
+  --orange-hi: #F4A79C;
+  --orange-lo: #D4655A;
+  --orange-ink: #7A2A25;
+  --surface-hi: #FFF9F6;
+  --card-edge: #7A4A4A;
+  --card-hi: #F7B8AF;
+  --card-lo: #A04A44;
+  --card-ink: #8A4A48;
+  --ring: #E0574C;
+  --battle-hi: #E9857A;
+  --battle-lo: #B83F38;
+  --battle-ink: #5E1A16;
+}
+
+@font-face { font-family: "Barlow"; src: url("assets/fonts/Jersey10-Regular.ttf"); }
+@font-face { font-family: "BarlowBold"; src: url("assets/fonts/Jersey10-Regular.ttf"); }
+
+image { image-rendering: pixelated; }
+text { white-space: nowrap; }
+
+/* ---- canvas ------------------------------------------------------------------ */
+
+#screen {
+  width: 100%;
+  height: 100%;
+  padding: 8px;
+  background-color: var(--bg);
+  background-image: url("assets/ui/ground.png");
+  background-repeat: repeat;
+  background-size: 5.2px 5.2px;
+  font-family: "Barlow";
+  font-size: 22px;
+  color: var(--ink);
+}
+
+.grow { flex: 1; }
+
+/* Numbers: the bold face, so values stand out from labels. */
+.num {
+  font-family: "BarlowBold";
+  font-size: 18px;
+  line-height: 19px;
+  white-space: nowrap;
+}
+
+.ic8 { width: 12px; height: 12px; flex-shrink: 0; }
+
+.shell { flex: 1 1 auto; min-height: 0; }
+pages { flex: 1; min-height: 0; }
+
+/* ---- page frame: header band, content, bottom bar ----------------------------- */
+
+.page { flex: 1 1 auto; min-height: 0; gap: 8px; }
+.content { flex: 1; min-height: 0; min-width: 0; }
+.two-col {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 8px;
+}
+.map-cols { grid-template-columns: 322px 1fr; }
+.trainer-cols { grid-template-columns: 1fr 1fr; }
+
+/* header band: an orange capsule (page name + ring dots) and a cream tail with where you are,
+   the clock and your money */
+.hdr { flex-direction: row; height: 40px; flex-shrink: 0; }
+.hdr-title {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px 0 12px;
+  min-width: 150px;
+  background: linear-gradient(180deg, var(--orange-hi), var(--orange-lo));
+  border: 3px solid var(--outline);
+  border-radius: 10px;
+}
+.hdr-name {
+  font-family: "BarlowBold";
+  font-size: 22px;
+  line-height: 24px;
+  letter-spacing: 1px;
+  color: #FFFFFF;
+  text-shadow: 1px 1px 0 var(--orange-ink);
+}
+.hdr-dots { flex-direction: row; gap: 4px; }
+.dot { width: 7px; height: 7px; border-radius: 4px; background-color: var(--orange-ink); }
+.dot.on { background-color: #FFFFFF; }
+.hdr-tail {
+  flex: 1;
+  min-width: 0;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  margin-left: -8px;
+  padding: 0 12px 0 16px;
+  background: linear-gradient(180deg, var(--surface-hi), var(--surface-2));
+  border: 3px solid var(--outline);
+  border-radius: 10px;
+}
+.loc-pill { min-width: 0; flex-shrink: 1; flex-direction: row; align-items: center; gap: 6px; }
+.loc-text {
+  font-family: "BarlowBold";
+  font-size: 21px;
+  line-height: 24px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.hstat { flex-direction: row; align-items: center; gap: 5px; flex-shrink: 0; }
+.hnum { color: var(--ink); }
+.hdr-battle .hdr-title { background: linear-gradient(180deg, var(--battle-hi), var(--battle-lo)); }
+.hdr-battle .hdr-name { text-shadow: 1px 1px 0 var(--battle-ink); }
+.hdr-battle .dot { background-color: var(--battle-ink); }
+
+/* bottom bar: previous | current | next */
+.bar { flex-direction: row; justify-content: space-between; gap: 8px; height: 46px; flex-shrink: 0; }
+.bar-btn {
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 27%;
+  height: 46px;
+  padding: 0;
+  background: linear-gradient(180deg, var(--foot-hi), var(--foot));
+  border: 3px solid var(--foot-lo);
+  border-radius: 10px;
+}
+.bar-btn:pressed { background: linear-gradient(180deg, var(--foot), var(--foot-hi)); }
+.bar-label, .bar-chev {
+  font-family: "BarlowBold";
+  font-size: 22px;
+  line-height: 24px;
+  letter-spacing: 1.5px;
+  color: #FFFFFF;
+  text-shadow: 1px 1px 0 var(--foot-lo);
+  white-space: nowrap;
+}
+.bar-mid {
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, var(--accent-soft), var(--frame));
+  border: 3px solid var(--outline);
+  border-radius: 10px;
+}
+.bar-title {
+  font-family: "BarlowBold";
+  font-size: 24px;
+  line-height: 26px;
+  letter-spacing: 2px;
+  color: var(--ink);
+}
+
+/* ---- windows ----------------------------------------------------------------------- */
+
+.panel {
+  min-height: 0;
+  min-width: 0;
+  padding: 0 6px 6px 6px;
+  background-color: var(--frame);
+  border: 3px solid var(--outline);
+  border-radius: 10px;
+}
+
+.panel-head {
+  flex-direction: row;
+  align-items: center;
+  flex-shrink: 0;
+  height: 32px;
+  gap: 6px;
+  padding: 0 2px;
+}
+.panel-tab {
+  padding: 0 12px;
+  background: linear-gradient(180deg, var(--orange-hi), var(--orange-lo));
+  border: 2px solid var(--outline);
+  border-radius: 6px;
+}
+.panel-title {
+  font-family: "BarlowBold";
+  font-size: 20px;
+  line-height: 22px;
+  letter-spacing: 1px;
+  color: #FFFFFF;
+  text-shadow: 1px 1px 0 var(--orange-ink);
+  text-transform: uppercase;
+}
+
+.panel-body {
+  flex: 1;
+  min-height: 0;
+  padding: 6px;
+  gap: 6px;
+  background-color: var(--surface);
+  border: 3px solid var(--line);
+  border-radius: 6px;
+}
+
+.chip {
+  padding: 0 9px;
+  border: 2px solid var(--line);
+  border-radius: 6px;
+  background-color: var(--surface);
+}
+.chip-text {
+  font-family: "BarlowBold";
+  font-size: 18px;
+  line-height: 19px;
+  color: var(--ink);
+}
+.chip-red { background-color: var(--bad); }
+.chip-green { background-color: var(--ok); }
+.chip-blue { background-color: var(--info); }
+.chip-yellow { background-color: var(--accent-soft); }
+
+/* ---- pokemon cards ---------------------------------------------------------------- */
+
+.card {
+  position: relative;
+  border: 2px solid var(--card-edge);
+  border-top-color: var(--card-hi);
+  border-bottom: 3px solid var(--card-lo);
+  border-radius: 2px;
+  color: var(--ink);
+}
+.card text { color: #FFFFFF; text-shadow: 1px 1px 0 var(--card-ink); }
+/* Lead = selected focus: an inner ring in the accent colour. */
+.ring {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  border: 3px solid var(--ring);
+  border-radius: 2px;
+}
+/* Fainted = disabled: pale and crossed out. */
+.card.fainted { opacity: 0.9; }
+.strike {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  top: 45%;
+  height: 2px;
+  background-color: var(--line-strong);
+  transform: rotate(-4deg);
+}
+
+/* Game sprites are 64x64 with transparent margins: centre them in a smaller
+   slot and let them spill over the card edge. */
+.sprite-slot {
+  display: stack;
+  place-items: center;
+  flex-shrink: 0;
+}
+.sprite-s { width: 40px; height: 32px; }
+.sprite-s .sprite { width: 52px; height: 52px; }
+.sprite-l { width: 60px; height: 56px; }
+.sprite-l .sprite { width: 64px; height: 64px; }
+.sprite-dex {
+  width: 64px;
+  height: 64px;
+  background-color: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 3px;
+}
+.sprite-dex .sprite { width: 64px; height: 64px; }
+
+.name-row { flex-direction: row; align-items: center; gap: 6px; }
+.mon-name {
+  font-family: "BarlowBold";
+  font-size: 22px;
+  line-height: 23px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.lv { font-size: 16px; line-height: 17px; }
+
+.status {
+  flex-shrink: 0;
+  padding: 0 5px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+}
+.status-text {
+  font-family: "BarlowBold";
+  font-size: 16px;
+  line-height: 17px;
+}
+
+.hp-row { flex-direction: row; align-items: center; gap: 5px; }
+.hp-tag { padding: 0 3px; background-color: #F4B859; border: 1px solid #525252; border-radius: 3px; }
+.hp-tag-text {
+  font-family: "BarlowBold";
+  font-size: 14px;
+  line-height: 14px;
+  color: #FFFFFF;
+  text-shadow: 1px 1px 0 #525252;
+}
+.hp {
+  flex: 1;
+  height: 12px;
+  padding: 2px;
+  background-color: #FFFFFF;
+  border: 2px solid #525252;
+  border-radius: 4px;
+  accent-color: var(--ok-bar);
+  transition: width 400ms ease-out;
+}
+.hp > fill { margin: 2px; border-radius: 2px; }
+.hp.mid { accent-color: var(--warn-bar); }
+.hp.low { accent-color: var(--bad-bar); }
+.hp-num { font-size: 16px; line-height: 17px; }
+
+/* full party */
+.party-panel { flex: 1; }
+.party-panel .panel-body { padding: 8px; }
+/* Two columns that scroll: flex-wrap rather than grid, so any number of rows works. */
+.pgrid {
+  flex: 1;
+  min-height: 0;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: flex-start;
+  row-gap: 8px;
+  overflow: auto;
+}
+.pgrid .pcard { width: 49%; height: 86px; flex-shrink: 0; }
+.pcard { flex-direction: row; align-items: center; gap: 4px; padding: 5px 8px 5px 2px; }
+.pcard-body { flex: 1; min-width: 0; gap: 2px; }
+.hp-foot { flex-direction: row; }
+.hp-big { font-size: 17px; line-height: 18px; }
+
+.type-row { flex-direction: row; gap: 4px; }
+.type-img { width: 48px; height: 18px; image-rendering: auto; }
+
+/* ---- radar map ------------------------------------------------------------------- */
+
+/* The Town Map's 168 x 136 shape at 280 x 227dp; the markers'
+   % positions are relative to this box. */
+.radar-panel .panel-body { padding: 8px; align-items: center; justify-content: center; }
+.radar {
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  background-color: #BBD3F5;
+  border: 2px solid var(--line);
+  border-radius: 3px;
+}
+.radar-img {
+  width: 280px;
+  height: 227px;
+  object-fit: fill;
+}
+.pins { position: absolute; left: 0; top: 0; right: 0; bottom: 0; }
+.pin { position: absolute; width: 21px; height: 21px; }
+
+/* Wild Pokemon: the method button (tap for the next one) stays put, the list scrolls. */
+.wild-panel .panel-body { padding: 6px; }
+.wild {
+  flex: 1;
+  min-height: 0;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+}
+.wild-method {
+  flex-shrink: 0;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 34px;
+  padding: 0 8px;
+  background-color: var(--accent-soft);
+  border: 2px solid var(--line);
+  border-radius: 3px;
+}
+.wild-method:pressed { background-color: var(--accent); }
+.wild-label { font-family: "Barlow"; font-size: 14px; line-height: 18px; color: var(--ink-2); }
+.wild-method-text { font-family: "BarlowBold"; font-size: 21px; line-height: 22px; color: var(--ink); white-space: nowrap; }
+.wild-mons { flex: 1; min-height: 0; gap: 4px; overflow: auto; }
+.wild-mon {
+  flex-direction: row;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 6px 0 2px;
+  background-color: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+}
+.wild-sprite { width: 36px; height: 36px; flex-shrink: 0; }
+.wild-info { flex: 1; min-width: 0; gap: 1px; }
+.wild-name { font-family: "BarlowBold"; font-size: 19px; line-height: 20px; color: var(--ink); white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
+.wild-level { font-family: "Barlow"; font-size: 16px; line-height: 17px; color: var(--ink-2); }
+.wild-chance { flex-shrink: 0; padding: 0 4px; background-color: var(--surface); border: 1px solid var(--line); border-radius: 2px; }
+.wild-chance-text { font-family: "BarlowBold"; font-size: 17px; line-height: 18px; color: var(--ink); }
+.wild-none { height: 40px; justify-content: center; align-items: center; }
+.wild-none-text { font-family: "Barlow"; font-size: 21px; line-height: 24px; color: var(--ink-2); }
+
+.cross-anchor {
+  position: absolute;
+  display: stack;
+  place-items: center;
+  width: 87px;
+  height: 87px;
+  transform: translate(-43.5px, -43.5px);
+}
+.crosshair { width: 87px; height: 87px; }
+.you { width: 28px; height: 28px; }
+
+/* ---- bag --------------------------------------------------------------------------- */
+
+.bag-panel { flex: 1; }
+.pockets { gap: 9px; }
+.pockets tab-bar { gap: 8px; }
+.pockets tab {
+  padding: 3px 10px;
+  background-color: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 3px;
+  font-family: "BarlowBold";
+  font-size: 20px;
+  line-height: 23px;
+  color: var(--ink-2);
+}
+.pockets tab:active {
+  background-color: var(--accent);
+  border-color: var(--line-strong);
+  color: var(--ink);
+}
+
+.item-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  align-content: start;
+  overflow: auto;
+}
+.item-row {
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 9px;
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+}
+.item-icon { width: 30px; height: 30px; margin: -4px 0; }
+.item-name {
+  font-family: "Barlow";
+  font-size: 22px;
+  line-height: 24px;
+  color: var(--ink);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.item-count { color: var(--ink); text-align: right; }
+.item-grid empty {
+  font-family: "Barlow";
+  font-size: 18px;
+  color: var(--ink-2);
+  padding: 9px;
+}
+
+/* ---- dex --------------------------------------------------------------------------- */
+
+.dex-panel .panel-body { gap: 9px; padding: 8px; }
+.dex-stat {
+  flex: 1;
+  justify-content: space-between;
+  padding: 8px 10px;
+  border: 2px solid var(--line);
+  border-radius: 3px;
+}
+.dex-stat.seen { background-color: var(--info); color: var(--ink); }
+.dex-stat.caught { background-color: var(--accent-soft); color: var(--ink); }
+.dex-stat-head { flex-direction: row; align-items: center; }
+.dex-label {
+  font-family: "BarlowBold";
+  font-size: 21px;
+  line-height: 23px;
+  letter-spacing: 1.5px;
+}
+.dex-of { font-size: 16px; }
+.dex-num {
+  font-size: 34px;
+  line-height: 36px;
+}
+.dex-stat.caught .dex-num { color: var(--ink); }
+.dex-bar {
+  height: 12px;
+  background-color: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 3px;
+  accent-color: var(--info-bar);
+  transition: width 400ms ease-out;
+}
+
+.dex-side .panel-body { gap: 9px; padding: 8px; }
+.complete {
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background-color: var(--surface-2);
+  border: 2px solid var(--line);
+  border-radius: 3px;
+}
+.complete-num { font-size: 44px; line-height: 48px; color: var(--ink); }
+.complete-sub {
+  font-family: "Barlow";
+  font-size: 18px;
+  line-height: 19px;
+  color: var(--ink-2);
+}
+.last {
+  gap: 6px;
+  padding: 8px 10px;
+  background-color: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 3px;
+}
+.last-label {
+  font-family: "Barlow";
+  font-size: 17px;
+  line-height: 19px;
+  letter-spacing: 1px;
+  color: var(--ink-2);
+}
+.last-row { flex-direction: row; align-items: center; gap: 9px; }
+.last-id { gap: 4px; }
+.last-no { color: var(--ink-2); font-size: 16px; }
+.last-name {
+  font-family: "BarlowBold";
+  font-size: 24px;
+  line-height: 27px;
+  color: var(--ink);
+}
+
+/* ---- trainer card ------------------------------------------------------------------ */
+
+.id-panel .panel-body,
+.badge-panel .panel-body { padding: 8px; }
+.id-card {
+  flex: 1;
+  background-color: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.id-band {
+  flex-direction: row;
+  align-items: center;
+  padding: 5px 9px;
+  background-color: var(--accent-soft);
+  border-bottom: 2px solid var(--line);
+}
+.id-band-text {
+  font-family: "BarlowBold";
+  font-size: 22px;
+  line-height: 24px;
+  letter-spacing: 1.5px;
+  color: var(--ink);
+}
+.id-no { color: var(--ink); }
+.id-main { flex: 1; flex-direction: row; gap: 9px; padding: 9px; }
+.id-rows { flex: 1; min-width: 0; justify-content: space-evenly; }
+.id-row {
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--line-soft);
+}
+.id-row:last-child { border-bottom: 0 solid transparent; }
+.id-key {
+  font-family: "Barlow";
+  font-size: 20px;
+  line-height: 22px;
+  color: var(--ink-2);
+}
+.id-val { color: var(--ink); font-size: 17px; line-height: 18px; }
+
+.badge-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 8px;
+}
+.badge {
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 5px;
+  border: 2px solid var(--line);
+  border-radius: 3px;
+}
+.badge.earned { background-color: var(--surface); }
+.badge.locked { background-color: var(--surface-2); opacity: 0.55; }
+.badge-img { width: 26px; height: 26px; image-rendering: auto; }
+.badge-lock { width: 18px; height: 18px; margin: 0 3px 0 2px; }
+.badge-name {
+  font-family: "BarlowBold";
+  font-size: 13px;
+  line-height: 15px;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+/* ---- battle ---------------------------------------------------------------------- */
+
+.battle-content { display: stack; place-items: stretch; }
+.battle-cols {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 10px;
+}
+.battle-side .panel-body { padding: 8px; gap: 8px; }
+.stat-list { flex: 1; gap: 4px; justify-content: space-between; }
+.stat-row {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 4px 3px 9px;
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+}
+.stat-name {
+  font-family: "BarlowBold";
+  font-size: 20px;
+  line-height: 22px;
+  color: var(--ink);
+}
+.stat-val { color: var(--ink); font-size: 17px; line-height: 18px; }
+.stage {
+  width: 36px;
+  align-items: center;
+  padding: 1px 0;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background-color: var(--surface-2);
+}
+.stage-text { font-size: 14px; line-height: 16px; color: var(--ink); }
+.stat-row.up .stage { background-color: var(--ok); }
+.stat-row.down .stage { background-color: var(--bad); }
+
+.no-battle { align-items: center; justify-content: center; }
+.no-battle-card {
+  align-items: center;
+  gap: 9px;
+  padding: 18px 27px;
+  background-color: #FFFFFF;
+  border: 4px solid #66737A;
+  border-radius: 3px;
+}
+.no-battle-text {
+  font-family: "BarlowBold";
+  font-size: 29px;
+  line-height: 31px;
+  letter-spacing: 2px;
+  color: var(--ink);
+}
+.no-battle-sub {
+  font-family: "Barlow";
+  font-size: 18px;
+  line-height: 19px;
+  color: var(--ink-2);
+}
+
+/* ---- waiting (boot) screen ------------------------------------------------------- */
+
+.waiting { flex: 1 1 auto; align-items: center; justify-content: center; }
+.boot {
+  width: 300px;
+  align-items: center;
+  gap: 9px;
+  padding: 18px 0;
+  background-color: #FFFFFF;
+  border: 4px solid #66737A;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.boot-title {
+  font-family: "BarlowBold";
+  font-size: 39px;
+  line-height: 41px;
+  letter-spacing: 4px;
+  color: var(--ink);
+}
+.boot-sub {
+  font-family: "Barlow";
+  font-size: 23px;
+  line-height: 25px;
+  letter-spacing: 2px;
+  color: var(--ink-2);
+}
+.boot-pill {
+  padding: 3px 12px;
+  background-color: var(--accent-soft);
+  border: 2px solid var(--line);
+  border-radius: 3px;
+}
+.boot-pill-text {
+  font-family: "BarlowBold";
+  font-size: 16px;
+  line-height: 18px;
+  letter-spacing: 1px;
+  color: var(--ink);
+}
+
+/* ---- pokemon detail ------------------------------------------------------------- */
+
+.sum-panel .panel-body,
+.stat-panel .panel-body { padding: 8px; gap: 8px; }
+
+.sum-card { flex-direction: row; align-items: center; gap: 6px; padding: 4px 9px 4px 2px; }
+.sprite-xl { width: 76px; height: 72px; }
+.sprite-xl .sprite { width: 80px; height: 80px; }
+.dex-no { font-size: 14px; line-height: 16px; }
+.sum-name { font-size: 29px; line-height: 29px; text-overflow: ellipsis; }
+
+.meter { gap: 4px; }
+.meter-key {
+  font-family: "BarlowBold";
+  font-size: 18px;
+  line-height: 19px;
+  color: var(--ink-2);
+}
+.meter-val { font-size: 14px; line-height: 16px; color: var(--ink-2); }
+.meter .hp-big { color: var(--ink); }
+.exp {
+  height: 10px;
+  background-color: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 2px;
+  accent-color: var(--info-bar);
+  transition: width 400ms ease-out;
+}
+
+.info {
+  flex: 1;
+  justify-content: space-evenly;
+  padding: 2px 9px;
+  background-color: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 3px;
+}
+.info-row { flex-direction: row; align-items: center; gap: 6px; }
+.info-key {
+  font-family: "Barlow";
+  font-size: 18px;
+  line-height: 20px;
+  color: var(--ink-2);
+}
+.info-val {
+  font-family: "BarlowBold";
+  font-size: 22px;
+  line-height: 24px;
+  color: var(--ink);
+}
+.info-icon { width: 24px; height: 24px; }
+
+.dstat-list { gap: 4px; }
+.dstat {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  padding: 0 8px;
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+}
+.dstat-name {
+  width: 40px;
+  font-family: "BarlowBold";
+  font-size: 20px;
+  line-height: 22px;
+  color: var(--ink);
+}
+.dstat.up { background-color: var(--ok); }
+.dstat.down { background-color: var(--bad); }
+.dstat-bar {
+  flex: 1;
+  height: 8px;
+  background-color: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 2px;
+  accent-color: var(--info-bar);
+  transition: width 400ms ease-out;
+}
+.dstat-val { width: 66px; text-align: right; font-size: 16px; line-height: 17px; color: var(--ink); }
+
+.sub-label {
+  font-family: "BarlowBold";
+  font-size: 20px;
+  line-height: 22px;
+  letter-spacing: 2px;
+  color: var(--ink-2);
+}
+.move-grid {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 6px;
+}
+.move {
+  justify-content: center;
+  gap: 1px;
+  padding: 2px 6px;
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+}
+.move .type-img { width: 40px; height: 15px; }
+.move-top { flex-direction: row; align-items: center; }
+.move-name {
+  font-family: "BarlowBold";
+  font-size: 20px;
+  line-height: 20px;
+  color: var(--ink);
+  text-overflow: ellipsis;
+}
+.move-pp { font-size: 13px; line-height: 14px; color: var(--ink-2); }
+.meter .hp-num { color: var(--ink); }
+
+/* ---- settings (trainer page) ------------------------------------------------------ */
+
+.side-col { flex: 1; min-width: 0; min-height: 0; gap: 8px; }
+.set-panel { flex-shrink: 0; height: 128px; }
+.set-panel .panel-body { padding: 6px; gap: 6px; }
+.opt-btn {
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  padding: 0 8px;
+  background: linear-gradient(180deg, var(--surface-hi), var(--surface-2));
+  border: 2px solid var(--line);
+  border-radius: 6px;
+}
+.opt-btn:pressed { background: linear-gradient(180deg, var(--accent-soft), var(--accent)); }
+.opt-label { font-family: "BarlowBold"; font-size: 20px; line-height: 22px; letter-spacing: 1px; color: var(--ink); }
+.opt-state {
+  font-family: "BarlowBold";
+  font-size: 18px;
+  line-height: 19px;
+  padding: 0 8px;
+  color: #FFFFFF;
+  text-shadow: 1px 1px 0 var(--foot-lo);
+  background-color: var(--foot);
+  border: 2px solid var(--foot-lo);
+  border-radius: 5px;
+}
+.opt-btn.opt-on .opt-state { background-color: var(--orange-lo); border-color: var(--orange-ink); text-shadow: 1px 1px 0 var(--orange-ink); }
+.badge-panel { flex: 1; }
+
+/* ---- pokedex list -------------------------------------------------------------------- */
+
+.dex-cols { flex-direction: row; gap: 8px; }
+.dex-list-panel { flex: 2; }
+.dex-entry-panel { flex: 3; }
+.dex-list-panel .panel-body, .dex-entry-panel .panel-body { padding: 6px; gap: 6px; }
+.pager { flex-direction: row; align-items: center; gap: 6px; height: 36px; flex-shrink: 0; }
+.pg-btn {
+  width: 44px;
+  height: 36px;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, var(--foot-hi), var(--foot));
+  border: 2px solid var(--foot-lo);
+  border-radius: 6px;
+}
+.pg-btn:pressed { background: linear-gradient(180deg, var(--foot), var(--foot-hi)); }
+.pg-label { font-family: "BarlowBold"; font-size: 24px; line-height: 26px; color: #FFFFFF; text-shadow: 1px 1px 0 var(--foot-lo); }
+.pager-mid {
+  flex: 1;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--surface-2);
+  border: 2px solid var(--line);
+  border-radius: 6px;
+}
+.pager-text { font-family: "BarlowBold"; font-size: 19px; line-height: 20px; color: var(--ink); }
+.pager-sub { font-size: 13px; line-height: 13px; color: var(--ink-2); }
+.dex-list { flex: 1; min-height: 0; gap: 4px; overflow: auto; }
+.dex-row {
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  height: 42px;
+  flex-shrink: 0;
+  padding: 0 8px 0 2px;
+  background-color: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 6px;
+}
+.dex-row.sel { background-color: var(--accent-soft); border-color: var(--line-strong); }
+.dex-row.unseen { opacity: 0.6; }
+.dex-thumb { width: 38px; height: 38px; align-items: center; justify-content: center; flex-shrink: 0; overflow: visible; }
+.dex-img { width: 52px; height: 52px; }
+.dex-q { font-size: 26px; color: var(--ink-2); }
+.dex-info { flex: 1; min-width: 0; }
+.dex-row .dex-no { font-size: 13px; line-height: 14px; color: var(--ink-2); }
+.dex-name { font-family: "BarlowBold"; font-size: 20px; line-height: 21px; color: var(--ink); text-overflow: ellipsis; }
+.dex-own { width: 12px; height: 12px; flex-shrink: 0; background-color: var(--accent-strong); border: 2px solid var(--outline); border-radius: 6px; }
+
+.dex-hero { flex-direction: row; align-items: center; gap: 8px; flex-shrink: 0; }
+.dex-big {
+  width: 84px;
+  height: 84px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--surface-2);
+  border: 2px solid var(--line);
+  border-radius: 6px;
+}
+.dex-big-img { width: 80px; height: 80px; }
+.dex-big-q { font-size: 44px; color: var(--ink-2); }
+.dex-id { flex: 1; min-width: 0; gap: 2px; }
+.dex-sel-no { font-size: 14px; line-height: 15px; color: var(--ink-2); }
+.dex-sel-name { font-family: "BarlowBold"; font-size: 26px; line-height: 27px; color: var(--ink); text-overflow: ellipsis; }
+.dex-cat { font-size: 16px; line-height: 17px; color: var(--ink-2); }
+.dex-meas { flex-direction: row; gap: 6px; flex-shrink: 0; }
+.meas {
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 8px;
+  background-color: var(--surface-2);
+  border: 2px solid var(--line);
+  border-radius: 6px;
+}
+.meas.grow { min-width: 0; }
+.meas-k { font-size: 14px; line-height: 15px; color: var(--ink-2); }
+.meas-v { font-family: "BarlowBold"; font-size: 17px; line-height: 18px; color: var(--ink); text-overflow: ellipsis; }
+.dex-desc {
+  flex: 1;
+  min-height: 0;
+  padding: 4px 8px;
+  background-color: var(--surface-2);
+  border: 2px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.dex-desc-text { white-space: normal; font-size: 16px; line-height: 17px; color: var(--ink); }
+.dex-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3px 6px; flex-shrink: 0; }
+.dex-stats .dex-srow { height: 22px; padding: 0 6px; gap: 6px; }
+.dex-stats .dstat-name { width: 42px; font-size: 14px; line-height: 15px; }
+.dex-stats .dstat-bar { height: 8px; }
+.dex-stats .dstat-val { width: 28px; font-size: 14px; line-height: 15px; }
+
+/* ---- battle: controls ----------------------------------------------------------------- */
+
+.battle-main { flex: 1; min-height: 0; gap: 8px; }
+.combatants { flex-direction: row; gap: 8px; flex-shrink: 0; }
+.combatant { flex: 1; min-width: 0; }
+.combatant .pcard, .bside .pcard { width: 100%; height: 92px; flex-shrink: 0; }
+.combatant .sprite-l, .bside .sprite-l { width: 52px; height: 52px; }
+.combatant .sprite-l .sprite, .bside .sprite-l .sprite { width: 60px; height: 60px; }
+.combatant .type-img, .bside .type-img { width: 40px; height: 15px; }
+.combatant .mon-name, .bside .mon-name { font-size: 20px; line-height: 21px; }
+.fight-btn {
+  flex: 1;
+  min-height: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: linear-gradient(180deg, var(--orange-hi), var(--orange-lo));
+  border: 3px solid var(--outline);
+  border-radius: 10px;
+}
+.fight-btn:pressed { background: linear-gradient(180deg, var(--orange-lo), var(--orange-hi)); }
+.fight-label { font-family: "BarlowBold"; font-size: 38px; line-height: 40px; letter-spacing: 3px; color: #FFFFFF; text-shadow: 2px 2px 0 var(--orange-ink); }
+.fight-sub { font-family: "BarlowBold"; font-size: 17px; line-height: 18px; color: #FFFFFF; text-shadow: 1px 1px 0 var(--orange-ink); }
+.tiles { flex-direction: row; gap: 8px; height: 62px; flex-shrink: 0; }
+.tile {
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 0;
+  background: linear-gradient(180deg, var(--foot-hi), var(--foot));
+  border: 3px solid var(--foot-lo);
+  border-radius: 10px;
+}
+.tile:pressed { background: linear-gradient(180deg, var(--foot), var(--foot-hi)); }
+.tile-label { font-family: "BarlowBold"; font-size: 22px; line-height: 23px; letter-spacing: 1px; color: #FFFFFF; text-shadow: 1px 1px 0 var(--foot-lo); }
+.tile-sub { font-size: 15px; line-height: 16px; color: #FFFFFF; }
+.tile.on, .fight-btn.on { border-color: #FFFFFF; }
+.combatant:pressed, .bside:pressed { opacity: 0.85; }
+
+/* moves page */
+.battle-detail { gap: 8px; }
+.sides { flex-direction: row; gap: 8px; flex: 1; min-height: 0; }
+.bside { flex: 1; min-width: 0; gap: 4px; }
+.bside .stat-list { gap: 2px; justify-content: flex-start; }
+.bside .stat-row { padding: 0 4px 0 8px; gap: 6px; }
+.bside .stat-name { font-size: 17px; line-height: 19px; }
+.bside .stat-val { font-size: 15px; line-height: 16px; }
+.bside .stage { width: 32px; padding: 0; }
+.skills {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  padding: 6px;
+  height: 116px;
+  flex-shrink: 0;
+  background-color: var(--frame);
+  border: 3px solid var(--outline);
+  border-radius: 10px;
+}
+.skill {
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 6px;
+  background-color: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 6px;
+}
+.skill.se { background-color: var(--ok); }
+.skill.nve { background-color: var(--bad); }
+.skill.on { border-color: var(--accent-strong); }
+.skill:pressed { background-color: var(--accent-soft); }
+.skill .type-img { width: 40px; height: 15px; }
+.skill-main { flex: 1; min-width: 0; }
+.skill-name { font-family: "BarlowBold"; font-size: 19px; line-height: 20px; color: var(--ink); text-overflow: ellipsis; }
+.skill-sub { font-size: 13px; line-height: 14px; color: var(--ink-2); }
+.skill-right { align-items: flex-end; gap: 2px; }
+.eff { padding: 0 5px; background-color: var(--surface-2); border: 1px solid var(--line); border-radius: 4px; }
+.eff.se { background-color: #5DB86A; }
+.eff.nve { background-color: #D8796B; }
+.eff-text { font-family: "BarlowBold"; font-size: 14px; line-height: 15px; color: var(--ink); }
+.eff.se .eff-text, .eff.nve .eff-text { color: #FFFFFF; }
+.skill-pp { font-size: 14px; line-height: 15px; color: var(--ink-2); }
+.bar-full { width: 100%; }
