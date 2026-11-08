@@ -3,17 +3,17 @@
 	"formatVersion": 1,
 	"companions": [
 		{
-			"id": "pokemon-firered-companion",
-			"title": "Pokémon FireRed Companion",
-			"description": "Town Map with your spot and the wild Pokémon around you, party with stats and moves, bag, Pokédex, trainer card, and a live battle page. Has a WIDE button that paints the game's world beside the picture (GBADuo 0.1.9 or newer). A COLOR button gives the picture a fuller look with soft sprite shadows (GBADuo 0.1.12 or newer).",
-			"version": "2.2.1",
+			"id": "pokemon-firered-console-companion",
+			"title": "Pokémon FireRed Companion (Console)",
+			"description": "FireRed companion in the console layout of the Emerald pack, in a soft red pastel palette: live Town Map with the wild Pokémon around you, party (tap a Pokémon for its stats and moves), bag by pocket, a Pokédex list with entries, trainer card, and a battle page with FIGHT, BAG, POKéMON and RUN buttons plus a move list with type effectiveness (the buttons need Packs can change games). Has a WIDE button that paints the game's world beside the picture, and a COLOR button for a fuller look (GBADuo 0.1.12 or newer).",
+			"version": "1.0.0",
 			"author": "khumam",
 			"official": true,
 			"repo": "khumam/gba-duo-companions",
-			"path": "pokemon-firered-companion",
-			"tag": "v1.12.0",
-			"url": "https://github.com/khumam/gba-duo-companions/tree/main/pokemon-firered-companion",
-			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.12.0/pokemon-firered-companion-2.2.1.zip",
+			"path": "pokemon-firered-console-companion",
+			"tag": "v1.13.0",
+			"url": "https://github.com/khumam/gba-duo-companions/tree/main/pokemon-firered-console-companion",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.13.0/pokemon-firered-console-companion-1.0.0.zip",
 			"games": [
 				{
 					"title": "Pokémon FireRed",
@@ -36,85 +36,45 @@
 				"map",
 				"party",
 				"battle",
+				"pokedex",
+				"console",
+				"pastel",
 				"rom-graphics"
 			],
 			"minAppVersion": "0.1.12",
 			"recommendedAppVersion": "0.1.12",
-			"canModifyGame": false,
+			"canModifyGame": true,
 			"screenshots": [
 				{
-					"src": "pokemon-firered-companion/screenshoots/pokemon2.png",
-					"alt": "Map page: the Kanto Town Map with your spot, and a quick look at your party"
+					"src": "pokemon-firered-console-companion/screenshoots/firered-console-map.png",
+					"alt": "Map page: the Town Map with your spot and the wild Pokémon here"
 				},
 				{
-					"src": "pokemon-firered-companion/screenshoots/pokemon1.png",
-					"alt": "Party page: Bulbasaur with its types, level and HP"
+					"src": "pokemon-firered-console-companion/screenshoots/firered-console-party.png",
+					"alt": "Party page: tap a card for that Pokémon's details"
+				},
+				{
+					"src": "pokemon-firered-console-companion/screenshoots/firered-console-dex.png",
+					"alt": "Pokédex list with the selected entry"
+				},
+				{
+					"src": "pokemon-firered-console-companion/screenshoots/firered-console-battle.png",
+					"alt": "Battle page with FIGHT, BAG, POKéMON and RUN buttons"
 				}
 			]
 		},
 		{
-			"id": "pokemon-firered-v-companion",
-			"title": "Pokémon FireRed Companion (Vertical Navigation)",
-			"description": "FireRed companion with a right-side vertical dock, Town Map, party, bag, Pokédex, trainer card, and live battle page. Has a WIDE button that paints the game's world beside the picture (GBADuo 0.1.9 or newer). A COLOR button gives the picture a fuller look with soft sprite shadows (GBADuo 0.1.12 or newer).",
-			"version": "1.2.1",
+			"id": "pokemon-leafgreen-console-companion",
+			"title": "Pokémon LeafGreen Companion (Console)",
+			"description": "LeafGreen companion in the console layout of the Emerald pack, in a soft green pastel palette: live Town Map with the wild Pokémon around you, party (tap a Pokémon for its stats and moves), bag by pocket, a Pokédex list with entries, trainer card, and a battle page with FIGHT, BAG, POKéMON and RUN buttons plus a move list with type effectiveness (the buttons need Packs can change games). Has a WIDE button that paints the game's world beside the picture, and a COLOR button for a fuller look (GBADuo 0.1.12 or newer).",
+			"version": "1.0.0",
 			"author": "khumam",
 			"official": true,
 			"repo": "khumam/gba-duo-companions",
-			"path": "pokemon-firered-v-companion",
-			"tag": "v1.12.0",
-			"url": "https://github.com/khumam/gba-duo-companions/tree/main/pokemon-firered-v-companion",
-			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.12.0/pokemon-firered-v-companion-1.2.1.zip",
-			"games": [
-				{
-					"title": "Pokémon FireRed",
-					"region": "US",
-					"gameCode": "BPRE"
-				}
-			],
-			"design": "Pokémon FireRed",
-			"pages": [
-				"Map",
-				"Party",
-				"Bag",
-				"Dex",
-				"Card",
-				"Battle"
-			],
-			"tags": [
-				"pokemon",
-				"rpg",
-				"map",
-				"party",
-				"battle",
-				"vertical-navigation",
-				"rom-graphics"
-			],
-			"minAppVersion": "0.1.12",
-			"recommendedAppVersion": "0.1.12",
-			"canModifyGame": false,
-			"screenshots": [
-				{
-					"src": "pokemon-firered-v-companion/screenshoots/firered-vertical.png",
-					"alt": "FireRed map page with vertical navigation dock"
-				},
-				{
-					"src": "pokemon-firered-v-companion/screenshoots/firered-vertical-2.png",
-					"alt": "FireRed party page with vertical navigation dock"
-				}
-			]
-		},
-		{
-			"id": "pokemon-leafgreen-companion",
-			"title": "Pokémon LeafGreen Companion (Horizontal Navigation)",
-			"description": "LeafGreen companion with a bottom navigation dock, live Town Map, party, bag, Pokédex, trainer card, and battle page. Has a WIDE button that paints the game's world beside the picture (GBADuo 0.1.9 or newer). A COLOR button gives the picture a fuller look with soft sprite shadows (GBADuo 0.1.12 or newer).",
-			"version": "1.2.1",
-			"author": "khumam",
-			"official": true,
-			"repo": "khumam/gba-duo-companions",
-			"path": "pokemon-leafgreen-companion",
-			"tag": "v1.12.0",
-			"url": "https://github.com/khumam/gba-duo-companions/tree/main/pokemon-leafgreen-companion",
-			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.12.0/pokemon-leafgreen-companion-1.2.1.zip",
+			"path": "pokemon-leafgreen-console-companion",
+			"tag": "v1.13.0",
+			"url": "https://github.com/khumam/gba-duo-companions/tree/main/pokemon-leafgreen-console-companion",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.13.0/pokemon-leafgreen-console-companion-1.0.0.zip",
 			"games": [
 				{
 					"title": "Pokémon LeafGreen",
@@ -137,175 +97,30 @@
 				"map",
 				"party",
 				"battle",
-				"horizontal-navigation",
+				"pokedex",
+				"console",
+				"pastel",
 				"rom-graphics"
 			],
 			"minAppVersion": "0.1.12",
 			"recommendedAppVersion": "0.1.12",
-			"canModifyGame": false,
+			"canModifyGame": true,
 			"screenshots": [
 				{
-					"src": "pokemon-leafgreen-companion/screenshoots/leafgreen-horizontal.png",
-					"alt": "LeafGreen map page with horizontal navigation dock"
+					"src": "pokemon-leafgreen-console-companion/screenshoots/leafgreen-console-map.png",
+					"alt": "Map page: the Town Map with your spot and the wild Pokémon here"
 				},
 				{
-					"src": "pokemon-leafgreen-companion/screenshoots/leafgreen-horizontal-2.png",
-					"alt": "LeafGreen party page with horizontal navigation dock"
-				}
-			]
-		},
-		{
-			"id": "pokemon-leafgreen-v-companion",
-			"title": "Pokémon LeafGreen Companion (Vertical Navigation)",
-			"description": "LeafGreen companion with a right-side vertical dock, live Town Map, party, bag, Pokédex, trainer card, and battle page. Has a WIDE button that paints the game's world beside the picture (GBADuo 0.1.9 or newer). A COLOR button gives the picture a fuller look with soft sprite shadows (GBADuo 0.1.12 or newer).",
-			"version": "1.2.1",
-			"author": "khumam",
-			"official": true,
-			"repo": "khumam/gba-duo-companions",
-			"path": "pokemon-leafgreen-v-companion",
-			"tag": "v1.12.0",
-			"url": "https://github.com/khumam/gba-duo-companions/tree/main/pokemon-leafgreen-v-companion",
-			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.12.0/pokemon-leafgreen-v-companion-1.2.1.zip",
-			"games": [
-				{
-					"title": "Pokémon LeafGreen",
-					"region": "US",
-					"gameCode": "BPGE"
-				}
-			],
-			"design": "Pokémon LeafGreen",
-			"pages": [
-				"Map",
-				"Party",
-				"Bag",
-				"Dex",
-				"Card",
-				"Battle"
-			],
-			"tags": [
-				"pokemon",
-				"rpg",
-				"map",
-				"party",
-				"battle",
-				"vertical-navigation",
-				"rom-graphics"
-			],
-			"minAppVersion": "0.1.12",
-			"recommendedAppVersion": "0.1.12",
-			"canModifyGame": false,
-			"screenshots": [
-				{
-					"src": "pokemon-leafgreen-v-companion/screenshoots/leafgreen-vertical.png",
-					"alt": "LeafGreen map page with vertical navigation dock"
+					"src": "pokemon-leafgreen-console-companion/screenshoots/leafgreen-console-party.png",
+					"alt": "Party page: tap a card for that Pokémon's details"
 				},
 				{
-					"src": "pokemon-leafgreen-v-companion/screenshoots/leafgreen-vertical-2.png",
-					"alt": "LeafGreen party page with vertical navigation dock"
-				}
-			]
-		},
-		{
-			"id": "pokemon-firered-minimal-companion",
-			"title": "Pokémon FireRed Companion (Minimal Soft Red)",
-			"description": "FireRed companion in a calm soft red skin: flat fills and a single solid border, with a right-side dock, live Town Map, party, bag, Pokédex, trainer card, and battle page. Has a WIDE button that paints the game's world beside the picture (GBADuo 0.1.9 or newer). A COLOR button gives the picture a fuller look with soft sprite shadows (GBADuo 0.1.12 or newer).",
-			"version": "1.2.1",
-			"author": "khumam",
-			"official": true,
-			"repo": "khumam/gba-duo-companions",
-			"path": "pokemon-firered-minimal-companion",
-			"tag": "v1.12.0",
-			"url": "https://github.com/khumam/gba-duo-companions/tree/main/pokemon-firered-minimal-companion",
-			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.12.0/pokemon-firered-minimal-companion-1.2.1.zip",
-			"games": [
-				{
-					"title": "Pokémon FireRed",
-					"region": "US",
-					"gameCode": "BPRE"
-				}
-			],
-			"design": "Pokémon FireRed",
-			"pages": [
-				"Map",
-				"Party",
-				"Bag",
-				"Dex",
-				"Card",
-				"Battle"
-			],
-			"tags": [
-				"pokemon",
-				"rpg",
-				"map",
-				"party",
-				"battle",
-				"vertical-navigation",
-				"minimal",
-				"rom-graphics"
-			],
-			"minAppVersion": "0.1.12",
-			"recommendedAppVersion": "0.1.12",
-			"canModifyGame": false,
-			"screenshots": [
-				{
-					"src": "pokemon-firered-minimal-companion/screenshoots/firered-minimal.png",
-					"alt": "FireRed minimal map page in the Bag window style"
+					"src": "pokemon-leafgreen-console-companion/screenshoots/leafgreen-console-dex.png",
+					"alt": "Pokédex list with the selected entry"
 				},
 				{
-					"src": "pokemon-firered-minimal-companion/screenshoots/firered-minimal-2.png",
-					"alt": "FireRed minimal party page in the Bag window style"
-				}
-			]
-		},
-		{
-			"id": "pokemon-leafgreen-minimal-companion",
-			"title": "Pokémon LeafGreen Companion (Minimal Soft Green)",
-			"description": "LeafGreen companion in a calm soft green skin: flat fills and a single solid border, with a right-side dock, live Town Map, party, bag, Pokédex, trainer card, and battle page. Has a WIDE button that paints the game's world beside the picture (GBADuo 0.1.9 or newer). A COLOR button gives the picture a fuller look with soft sprite shadows (GBADuo 0.1.12 or newer).",
-			"version": "1.2.1",
-			"author": "khumam",
-			"official": true,
-			"repo": "khumam/gba-duo-companions",
-			"path": "pokemon-leafgreen-minimal-companion",
-			"tag": "v1.12.0",
-			"url": "https://github.com/khumam/gba-duo-companions/tree/main/pokemon-leafgreen-minimal-companion",
-			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v1.12.0/pokemon-leafgreen-minimal-companion-1.2.1.zip",
-			"games": [
-				{
-					"title": "Pokémon LeafGreen",
-					"region": "US",
-					"gameCode": "BPGE"
-				}
-			],
-			"design": "Pokémon LeafGreen",
-			"pages": [
-				"Map",
-				"Party",
-				"Bag",
-				"Dex",
-				"Card",
-				"Battle"
-			],
-			"tags": [
-				"pokemon",
-				"rpg",
-				"map",
-				"party",
-				"battle",
-				"vertical-navigation",
-				"minimal",
-				"rom-graphics"
-			],
-			"minAppVersion": "0.1.12",
-			"recommendedAppVersion": "0.1.12",
-			"canModifyGame": false,
-			"screenshots": [
-				{
-					"src": "pokemon-leafgreen-minimal-companion/screenshoots/leafgreen-minimal.png",
-					"alt": "LeafGreen minimal map page in the Bag window style"
-				},
-				{
-					"src": "pokemon-leafgreen-minimal-companion/screenshoots/leafgreen-minimal-2.png",
-					"alt": "LeafGreen minimal party page in the Bag window style"
+					"src": "pokemon-leafgreen-console-companion/screenshoots/leafgreen-console-battle.png",
+					"alt": "Battle page with FIGHT, BAG, POKéMON and RUN buttons"
 				}
 			]
 		},
