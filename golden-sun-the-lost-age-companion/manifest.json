@@ -1,0 +1,21 @@
+{
+  "id": "golden-sun-the-lost-age-companion",
+  "name": "Golden Sun: The Lost Age Companion",
+  "version": "0.1.0",
+  "author": "khumam",
+  "formatVersion": 4,
+  "match": {
+    "gameCode": [
+      "AGFE"
+    ],
+    "crc32": []
+  },
+  "tickHz": 4,
+  "layout": "layout.json",
+  "styles": [
+    "style.css"
+  ],
+  "script": "main.lua",
+  "gameScript": "game.lua",
+  "values": {}
+}

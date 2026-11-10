@@ -1,0 +1,22 @@
+{
+  "id": "megaman-zero-companion",
+  "name": "Mega Man Zero Companion",
+  "version": "0.4.1",
+  "author": "khumam",
+  "formatVersion": 4,
+  "match": {
+    "gameCode": [
+      "AZCE"
+    ],
+    "crc32": []
+  },
+  "tickHz": 4,
+  "layout": "layout.json",
+  "styles": [
+    "style.css"
+  ],
+  "script": "main.lua",
+  "values": {},
+  "permissions": [],
+  "gameScript": "game.lua"
+}
