@@ -1,15 +1,14 @@
 /*
- * Oracle of Ages' own look: the pause subscreen's mauve brick window around an off-white panel,
- * the peach HUD strip above it, black bracket cursors and pixel text.
+ * Oracle of Ages in the Minish Cap pack's frame, laid in brick: two brick pillars (rupees and the B item on the left,
+ * hearts and the A item on the right), a brick-rimmed window for the page between them, upright brick slabs on the pillars
+ * (one per page). The page itself keeps the pause screen's off-white panel.
  *
- * One game pixel = 7 device px = 3.035dp ("u"). The window is 160u x 128u = 485.6 x 388.48dp with a
- * thin brick frame (4u at the sides, 3u top and bottom); the panel inside is 152u x 107u
- * (461.32 x 324.75dp) at (4u, 3u). Frame art is baked at 7 device px per art pixel, icons at
- * 80 px (34.69dp) and hearts at 56 px (24.28dp), so everything draws at a whole scale.
+ * Sizes are dp for the Thor's ~538 x 468 screen. The brick art (assets/ui/brick-*.png, art/brick_ui.py) is drawn on
+ * a 2 dp grid; the game's icons are baked at 10 px per art pixel, so they are shown at whole device-pixel steps:
+ * 27.75dp (4 px per art pixel), 34.69dp (5) and 55.5dp (8). Jersey 10 sets the labels, Press Start 2P the numbers.
  */
 
-@font-face { font-family: "Silk"; src: url("assets/fonts/Silkscreen-Regular.ttf"); }
-@font-face { font-family: "SilkBold"; src: url("assets/fonts/Silkscreen-Bold.ttf"); }
+@font-face { font-family: "Jersey"; src: url("assets/fonts/Jersey10-Regular.ttf"); }
 @font-face { font-family: "Press"; src: url("assets/fonts/PressStart2P-Regular.ttf"); }
 
 :root {
@@ -18,145 +17,225 @@
   --brick: #98596F;
   --panel: #EDEDE9;
   --ink: #251C27;
-  --soft: #8A7C8C;
+  --soft: #6F6272;
   --peach: #E6C8A4;
   --pink: #C8587A;
   --gold: #B5832B;
+  --cream: #FFFFFB;
 }
 
 image { image-rendering: pixelated; }
-text { white-space: nowrap; color: var(--ink); }
+text { white-space: nowrap; color: var(--ink); font-family: "Jersey"; }
 
 #screen {
   width: 100%;
   height: 100%;
-  background-color: var(--dark);
+  background-color: var(--wall);
+  background-image: url("assets/ui/brick-wall.png");
+  background-size: 64px 64px;
+  background-repeat: repeat;
+  font-family: "Jersey";
 }
 
-.shell { width: 100%; height: 100%; }
+.shell { position: relative; width: 100%; height: 100%; }
+.pages-wrap { position: absolute; left: 0; top: 0; right: 0; bottom: 0; }
+pages { width: 100%; height: 100%; }
+.page { position: relative; width: 100%; height: 100%; }
+.fill { flex: 1; }
 
-/* ---- waiting ---------------------------------------------------------------------------------- */
+/* ---- waiting ------------------------------------------------------------------------------------ */
 
 .waiting { flex: 1; justify-content: center; align-items: center; }
-.wait { align-items: center; gap: 14px; }
-.wait-title { font-family: "Press"; font-size: 18px; color: #FFFFFB; }
-.wait-sub { font-family: "SilkBold"; font-size: 13px; color: var(--brick); letter-spacing: 2px; }
+.wait { align-items: center; gap: 14px; padding: 22px 30px; background-color: var(--panel); border: 4px solid var(--dark); }
+.wait-title { font-family: "Press"; font-size: 18px; color: var(--ink); }
+.wait-sub { font-size: 22px; color: var(--brick); letter-spacing: 2px; }
 
-/* ---- HUD ---------------------------------------------------------------------------------------- */
+/* ---- pillars -------------------------------------------------------------------------------------- */
 
-.hud { position: relative; flex-direction: row; width: 100%; height: 48.56px; background-color: var(--peach); align-items: center; }
-.hslot { flex-direction: row; align-items: center; width: 128px; gap: 3px; padding-left: 4px; }
-.hkey { font-family: "Press"; font-size: 14px; }
-.hicon { width: 34.69px; height: 34.69px; }
-.hname-box { gap: 2px; }
-.hname { font-family: "SilkBold"; font-size: 11px; letter-spacing: 0; }
-.hlevel { font-family: "Silk"; font-size: 11px; color: #6A5A6C; }
-.hrupees { flex-direction: row; align-items: center; width: 92px; gap: 4px; }
-.hnum { font-family: "Press"; font-size: 14px; }
-.hhearts { flex: 1; gap: 0; padding: 6px 0 0 4px; justify-content: center; }
-.hrow { flex-direction: row; height: 24.28px; }
-.heart { width: 24.28px; height: 24.28px; margin-right: -3px; }
+.pillar { position: absolute; top: 0; bottom: 0; width: 72px; background-size: 72px 48px; background-repeat: repeat-y; }
+.pillar-l { left: 0; background-image: url("assets/ui/brick-pillar-l.png"); }
+.pillar-r { right: 0; background-image: url("assets/ui/brick-pillar-r.png"); }
 
-/* ---- window ---------------------------------------------------------------------------------------- */
+.rail { position: absolute; top: 0; bottom: 0; width: 72px; padding-top: 10px; gap: 8px; align-items: center; z-index: 2; }
+.rail-l { left: 0; }
+.rail-r { right: 0; }
 
-.win { position: relative; width: 100%; flex: 1; }
-.band { position: absolute; left: 0; right: 0; height: 9.11px; background-image: url("assets/ui/brick-h.png"); background-size: 24.28px 9.11px; background-repeat: repeat-x; }
-.band-top { top: 0; }
-.band-mid { bottom: 45.53px; }
-.band-bottom { bottom: 0; }
-.col { position: absolute; top: 0; bottom: 0; width: 12.14px; background-image: url("assets/ui/brick-v.png"); background-size: 12.14px 24.28px; background-repeat: repeat-y; }
-.col-l { left: 0; }
-.col-r { right: 0; }
-.panel-bg { position: absolute; left: 12.14px; right: 12.14px; top: 9.11px; bottom: 54.64px; background-color: var(--panel); }
-.strip-bg { position: absolute; left: 12.14px; right: 12.14px; bottom: 9.11px; height: 36.42px; background-color: var(--panel); }
-.panel { position: absolute; left: 12.14px; right: 12.14px; top: 9.11px; bottom: 54.64px; }
-.page { width: 100%; height: 100%; padding: 8px 10px; }
+.plate {
+  width: 56px;
+  height: 60px;
+  padding-bottom: 2px;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  background-repeat: no-repeat;
+  background-size: 56px 60px;
+}
+.plate-gold { background-image: url("assets/ui/brick-plate-gold.png"); }
+.plate-pink { background-image: url("assets/ui/brick-plate-pink.png"); }
+.plate-icon { width: 20.8px; height: 20.8px; }
+.plate-heart { width: 24.28px; height: 24.28px; }
+.plate-num { font-family: "Press"; font-size: 12px; line-height: 14px; color: var(--cream); text-shadow: 1px 1px 0 var(--dark); }
+.plate-hearts { font-size: 10px; }
 
-.nav { position: absolute; left: 12.14px; right: 12.14px; bottom: 9.11px; height: 36.42px; flex-direction: row; align-items: center; }
-.tab { flex: 1; flex-direction: row; justify-content: center; align-items: center; gap: 1px; height: 36.42px; }
-.tab-label { font-family: "SilkBold"; font-size: 11px; letter-spacing: 0; color: var(--soft); }
-.br { font-family: "SilkBold"; font-size: 12px; color: var(--ink); opacity: 0; }
-.tab.on .tab-label { color: var(--ink); }
-.tab.on .br { opacity: 1; }
+.equip { align-items: center; gap: 1px; }
+.disc {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  align-items: center;
+  justify-content: center;
+  background-image: url("assets/ui/brick-disc.png");
+  background-size: 52px 52px;
+  background-repeat: no-repeat;
+}
+.equip-icon { width: 34.69px; height: 34.69px; }
+.equip-key {
+  position: absolute;
+  left: -10px;
+  top: -3px;
+  width: 28px;
+  height: 28px;
+  padding-top: 3px;
+  text-align: center;
+  font-family: "Press";
+  font-size: 13px;
+  line-height: 20px;
+  color: #FFE9A8;
+  background-image: url("assets/ui/brick-badge.png");
+  background-size: 28px 28px;
+  background-repeat: no-repeat;
+  text-shadow: 1px 1px 0 #1E1008;
+}
+.equip-name { width: 72px; overflow: hidden; text-align: center; text-overflow: ellipsis; font-size: 17px; line-height: 16px; color: var(--cream); text-shadow: 1px 1px 0 var(--dark); }
+.equip-level { width: 72px; text-align: center; font-size: 15px; line-height: 14px; color: var(--peach); text-shadow: 1px 1px 0 var(--dark); }
 
-.title { font-family: "SilkBold"; font-size: 13px; letter-spacing: 2px; color: var(--pink); margin: 0 0 6px 0; }
+/* ---- the window: a brick rim round the off-white panel -------------------------------------------- */
 
-/* ---- ITEMS: a 4 x 4 grid, icons at 1x (160 px drawn at 34.69dp) --------------------------------------------- */
+.window { position: absolute; left: 78px; right: 78px; top: 12px; bottom: 12px; }
+.panel { position: absolute; left: 12px; right: 12px; top: 12px; bottom: 12px; background-color: var(--panel); }
+.rim { position: absolute; z-index: 1; }
+.rim-t, .rim-b { left: 16px; right: 16px; height: 12px; background-size: 48px 12px; background-repeat: repeat-x; }
+.rim-t { top: 0; background-image: url("assets/ui/brick-rim-t.png"); }
+.rim-b { bottom: 0; background-image: url("assets/ui/brick-rim-b.png"); }
+.rim-l, .rim-r { top: 16px; bottom: 16px; width: 12px; background-size: 12px 48px; background-repeat: repeat-y; }
+.rim-l { left: 0; background-image: url("assets/ui/brick-rim-l.png"); }
+.rim-r { right: 0; background-image: url("assets/ui/brick-rim-r.png"); }
+.rim-tl, .rim-tr, .rim-bl, .rim-br { width: 16px; height: 16px; background-size: 16px 16px; background-repeat: no-repeat; }
+.rim-tl { left: 0; top: 0; background-image: url("assets/ui/brick-rim-tl.png"); }
+.rim-tr { right: 0; top: 0; background-image: url("assets/ui/brick-rim-tr.png"); }
+.rim-bl { left: 0; bottom: 0; background-image: url("assets/ui/brick-rim-bl.png"); }
+.rim-br { right: 0; bottom: 0; background-image: url("assets/ui/brick-rim-br.png"); }
 
-.page-items { padding: 6px; }
+.body { width: 100%; height: 100%; padding: 8px 10px; }
+.title { font-size: 22px; letter-spacing: 1px; color: var(--pink); margin: 0 0 4px 0; }
+
+/* ---- nav: one upright brick slab per page on the pillars (three left, two right and the era plate) ---------------- */
+
+.tabs { align-items: center; gap: 6px; margin-top: 6px; }
+.vslab {
+  position: relative;
+  flex: none;
+  width: 68px;
+  height: 80px;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  background-image: url("assets/ui/brick-vslab-side.png");
+  background-size: 68px 80px;
+  background-repeat: no-repeat;
+  border-width: 0;
+  box-shadow: none;
+}
+.vslab:pressed { background-image: url("assets/ui/brick-vslab-down.png"); transform: translate(1px, 1px); opacity: 1; }
+.vslab.on { background-image: url("assets/ui/brick-vslab-here.png"); }
+.vslab-label { font-size: 24px; line-height: 24px; color: var(--cream); text-shadow: 2px 2px 0 var(--dark); transform: rotate(-90deg); }
+.vslab.on .vslab-label { font-size: 26px; line-height: 26px; }
+.plate-dark { background-image: url("assets/ui/brick-plate-dark.png"); gap: 0; }
+.era-plate-label { font-size: 15px; line-height: 14px; color: var(--peach); text-shadow: 1px 1px 0 var(--dark); }
+.era-plate-text { font-size: 17px; line-height: 17px; color: var(--cream); text-shadow: 1px 1px 0 var(--dark); }
+
+/* ---- ITEMS: a 4 x 4 grid, icons at 8 device px per art pixel --------------------------------------------- */
+
+.body-items { padding: 4px; }
 .slots { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(4, 1fr); width: 100%; height: 100%; }
-.cell { align-items: center; justify-content: center; gap: 4px; }
-.cell-top { position: relative; width: 34.69px; height: 34.69px; }
-.cicon { width: 34.69px; height: 34.69px; }
-.tag { position: absolute; left: -20px; top: 0; font-family: "Press"; font-size: 16px; color: var(--pink); z-index: 2; }
-.clevel { font-family: "SilkBold"; font-size: 14px; color: #6A5A6C; height: 16px; }
+.cell { align-items: center; justify-content: center; gap: 1px; }
+.cell-top { position: relative; width: 55.5px; height: 55.5px; }
+.cicon { width: 55.5px; height: 55.5px; }
+.tag { position: absolute; left: -16px; top: 0; font-family: "Press"; font-size: 14px; color: var(--pink); z-index: 2; }
+.clevel { font-size: 18px; line-height: 16px; color: var(--soft); height: 16px; }
 .cell.empty .cicon { opacity: 0; }
 
-/* ---- MAP: the map fills the panel (1008 x 812 px = 437 x 352dp) ----------------------------------------- */
+/* ---- MAP: 14 x 14 rooms in the panel -------------------------------------------------------------------- */
 
-.page-map { flex-direction: row; align-items: center; padding: 0; }
-.map-fill { flex: 1; height: 100%; background-image: url("assets/ui/brick-fill.png"); background-size: 24.28px 24.28px; background-repeat: repeat; }
-.map-stack { position: relative; width: 437.04px; height: 352.12px; }
-.map-img { position: absolute; left: 0; top: 0; width: 437.04px; height: 352.12px; }
+.body-map { padding: 0; align-items: center; justify-content: center; background-color: var(--dark); }
+.map-stack { position: relative; width: 358px; height: 287.7px; }
+.map-img { position: absolute; left: 0; top: 0; width: 358px; height: 287.7px; }
 .map-rows { position: absolute; left: 0; top: 0; }
 .map-row { flex-direction: row; }
-.mcell { width: 31.22px; height: 25.15px; }
+.mcell { width: 25.57px; height: 20.55px; }
 .mcell.unseen { background-color: rgba(37, 28, 39, 0.68); }
 .mcell.here { border: 3px solid #FFFFFB; background-color: rgba(200, 88, 122, 0.45); }
-.era-badge { position: absolute; left: 8px; top: 8px; padding: 5px 10px; background-color: #251C27; border: 2px solid #FFFFFB; }
-.era-text { font-family: "SilkBold"; font-size: 14px; letter-spacing: 2px; color: #FFFFFB; }
+.era-badge { position: absolute; left: 6px; top: 6px; padding: 3px 10px; background-color: var(--dark); border: 2px solid #FFFFFB; }
+.era-text { font-size: 24px; line-height: 24px; letter-spacing: 2px; color: #FFFFFB; }
 
-/* ---- SEEDS ---------------------------------------------------------------------------------------- */
+/* ---- SEEDS ------------------------------------------------------------------------------------------ */
 
-.page-seeds { gap: 14px; padding: 12px; }
-.seed-row { flex: 3; flex-direction: row; gap: 8px; }
-.seed { flex: 1; align-items: center; justify-content: center; gap: 8px; }
-.seed.picked { background-color: #E2E0DC; }
+.body-seeds { gap: 12px; padding: 10px; }
+.seed-row { flex: 3; flex-direction: row; gap: 6px; }
+.seed { flex: 1; align-items: center; justify-content: center; gap: 4px; border: 3px solid #D8D4D8; }
+.seed.picked { background-color: #F6D9E2; border-color: var(--pink); }
+.seed-icon { width: 41.6px; height: 41.6px; }
+.seed-count { font-family: "Press"; font-size: 20px; }
+.seed-name { font-size: 17px; line-height: 16px; color: var(--soft); }
 .seed.picked .seed-name { color: var(--pink); }
-.seed-icon { width: 34.69px; height: 34.69px; }
-.seed-count { font-family: "Press"; font-size: 22px; }
-.seed-name { font-family: "SilkBold"; font-size: 12px; color: var(--soft); }
-.seed-tag { font-family: "SilkBold"; font-size: 10px; color: var(--pink); height: 12px; }
-.supply-row { flex: 2; flex-direction: row; gap: 12px; }
-.supply { flex: 1; flex-direction: row; align-items: center; justify-content: center; gap: 14px; background-color: #E2E0DC; }
+.seed-tag { font-size: 15px; line-height: 14px; color: var(--pink); height: 14px; }
+.supply-row { flex: 2; flex-direction: row; gap: 8px; }
+.supply { flex: 1; min-width: 0; align-items: center; justify-content: center; gap: 4px; background-color: #E2E0DC; border: 3px solid #D0CCD0; }
 .supply-icon { width: 34.69px; height: 34.69px; }
-.supply-text { gap: 6px; }
-.supply-value { font-family: "Press"; font-size: 20px; }
-.supply-label { font-family: "SilkBold"; font-size: 12px; color: var(--soft); }
+.supply-text { align-items: center; gap: 2px; }
+.supply-value { font-family: "Press"; font-size: 14px; }
+.supply-label { font-size: 18px; line-height: 16px; color: var(--soft); }
 
-/* ---- RINGS ---------------------------------------------------------------------------------------- */
+/* ---- RINGS: worn ring and ring box, then the 64 rings at 4 device px per art pixel -------------------------- */
 
-.page-rings { flex-direction: row; gap: 18px; padding: 12px; }
-.ring-side { width: 200px; gap: 4px; }
-.worn { flex-direction: row; align-items: center; gap: 10px; margin-bottom: 14px; }
-.worn-icon { width: 34.69px; height: 34.69px; }
-.worn-name { font-family: "SilkBold"; font-size: 14px; white-space: normal; flex: 1; }
-.box-col { flex: 1; gap: 6px; }
-.box-slot { flex: 1; flex-direction: row; align-items: center; gap: 8px; padding-left: 8px; border: 3px solid #C8C4C8; }
-.box-icon { width: 34.69px; height: 34.69px; opacity: 0.25; }
+.body-rings { flex-direction: row; gap: 8px; padding: 8px; }
+.ring-side { width: 112px; gap: 2px; }
+.worn { flex-direction: row; align-items: center; gap: 4px; margin-bottom: 6px; }
+.worn-icon { width: 27.75px; height: 27.75px; }
+.worn-name { font-size: 17px; line-height: 15px; white-space: normal; flex: 1; }
+.box-col { flex: 1; gap: 3px; }
+.box-slot { flex: 1; flex-direction: row; align-items: center; gap: 4px; padding-left: 3px; border: 2px solid #D0CCD0; }
+.box-icon { width: 27.75px; height: 27.75px; opacity: 0.25; }
 .box-slot.filled .box-icon { opacity: 1; }
 .box-slot.filled { border-color: var(--ink); }
-.box-name { font-family: "SilkBold"; font-size: 12px; color: #B8B2B8; }
+.box-name { font-size: 16px; line-height: 14px; color: #B0A8B2; }
 .box-slot.filled .box-name { color: var(--ink); }
-.ring-grid { flex: 1; align-items: center; justify-content: center; gap: 4px; }
-.dot-rows { gap: 2px; }
-.dot-row { flex-direction: row; gap: 2px; }
-.dot { width: 36px; height: 36px; align-items: center; justify-content: center; }
-.dot-img { width: 34.69px; height: 34.69px; opacity: 0.4; }
+.ring-grid { flex: 1; align-items: center; gap: 2px; }
+.dot-rows { gap: 1px; }
+.dot-row { flex-direction: row; gap: 1px; }
+.dot { width: 27.75px; height: 27.75px; align-items: center; justify-content: center; }
+.dot-img { width: 27.75px; height: 27.75px; opacity: 0.35; }
 .dot.on .dot-img { opacity: 1; }
 
-/* ---- STATUS ---------------------------------------------------------------------------------------- */
+/* ---- STATUS: hearts, the eight essences and the era, song and room ------------------------------------------ */
 
-.page-status { gap: 16px; padding: 14px; justify-content: space-between; }
-.life { flex-direction: row; align-items: center; gap: 14px; }
-.life-value { font-family: "Press"; font-size: 28px; }
-.life-hearts { flex: 1; flex-direction: row; flex-wrap: wrap; }
-.lheart { width: 24.28px; height: 24.28px; margin-right: -2px; }
-.pieces { flex-direction: row; }
+.body-status { gap: 8px; padding: 10px 12px; justify-content: space-between; }
+.life { gap: 6px; }
+.life-top { flex-direction: row; align-items: center; gap: 12px; }
+.life-value { font-family: "Press"; font-size: 24px; }
+.pieces { flex-direction: row; gap: 2px; }
 .piece { width: 24.28px; height: 24.28px; }
-.essences { flex-direction: row; justify-content: space-between; }
+.life-hearts { flex-direction: row; flex-wrap: wrap; }
+.lheart { width: 24.28px; height: 24.28px; margin-right: -2px; }
+.ess-head { flex-direction: row; align-items: center; }
+.count { color: var(--soft); }
+.essences { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(2, 1fr); gap: 4px; }
+.ess { align-items: center; justify-content: center; gap: 2px; opacity: 0.4; }
+.ess.on { opacity: 1; }
 .essence { width: 48.56px; height: 48.56px; }
-.facts { flex-direction: row; gap: 12px; }
-.fact { flex: 1; align-items: center; gap: 6px; padding: 12px 0; background-color: #E2E0DC; }
-.fact-value { font-family: "SilkBold"; font-size: 22px; }
-.fact-label { font-family: "SilkBold"; font-size: 11px; color: var(--soft); }
+.ess-name { font-size: 16px; line-height: 14px; color: var(--ink); }
+.facts { flex-direction: row; gap: 8px; }
+.fact { flex: 1; align-items: center; gap: 2px; padding: 6px 0; background-color: #E2E0DC; border: 3px solid #D0CCD0; }
+.fact-value { font-size: 30px; line-height: 28px; }
+.fact-label { font-size: 17px; line-height: 15px; color: var(--soft); }

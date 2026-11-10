@@ -463,6 +463,23 @@
     "keyIcon": "asset:ui/item-unknown.png"
   },
   "icons": {
-    "linkHead": "asset:ui/mark-link.png"
-  }
+    "linkHead": "asset:ui/mark-link.png",
+    "kinstoneRed": "asset:ui/kinstone-red.png",
+    "kinstoneBlue": "asset:ui/kinstone-blue.png",
+    "kinstoneGreen": "asset:ui/kinstone-green.png",
+    "kinstoneGold": "asset:ui/kinstone-gold.png",
+    "figurines": "asset:ui/figurine.png",
+    "tigerScroll": "asset:ui/item-unknown.png",
+    "heartPiece": "asset:ui/item-unknown.png",
+    "shell": "asset:ui/item-unknown.png",
+    "bombs": "asset:ui/item-unknown.png",
+    "quiver": "asset:ui/item-unknown.png",
+    "charm": "asset:ui/item-unknown.png"
+  },
+  "_wide": false,
+  "_wideLabel": "OFF",
+  "_ambient": true,
+  "_ambientLabel": "ON",
+  "_writePerm": true,
+  "_writePermLabel": "ALLOWED"
 }

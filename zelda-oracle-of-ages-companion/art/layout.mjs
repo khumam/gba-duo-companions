@@ -1,8 +1,7 @@
-// Writes layout.json for the Oracle of Ages pack: the game's HUD strip on top (B and A items,
-// rupees, hearts) and its subscreen below: a brick window with the pages in the panel and
-// the tab names in the lower text strip, where the game prints item descriptions.
-// 1u = one game pixel = 7 device px = 3.035dp (art/ages-os.mjs bakes the frame at that scale); the
-// window itself fills the whole screen, and every page spreads out over the panel.
+// Writes layout.json for the Oracle of Ages pack, laid in brick: two brick pillars and a brick-rimmed window for the
+// page between them. The pillars carry everything else: rupees and the B item on the left, hearts and the A item on the
+// right, and under the A and B buttons upright slabs, one per page (three on the left, two on the right with the era
+// plate below them), so every page is one tap away and the window takes the whole height.
 //
 //   node art/layout.mjs
 
@@ -15,63 +14,55 @@ const list = (cls, items, template, extra = {}) => ({ type: "list", class: cls, 
 const button = (cls, onClick, children, extra = {}) => ({ type: "button", class: cls, onClick, children, ...extra });
 const ui = (n) => `asset:ui/${n}.png`;
 
-// ---- HUD: B and A slots, rupees, hearts ---------------------------------------------------------
+// ---- pillars: rupees and hearts on plates, the B and A items on round buttons ---------------------------------
 
-const slot = (letter, key) =>
-  box(`hslot hslot-${letter.toLowerCase()}`, [
-    text("hkey", letter),
-    img("hicon", `$hud.${key}Icon`),
-    box("hname-box", [text("hname", `{hud.${key}Name}`), text("hlevel", `{hud.${key}Level}`)]),
+const equip = (letter, key) =>
+  box(`equip equip-${letter.toLowerCase()}`, [
+    box("disc", [img("equip-icon", `$hud.${key}Icon`), text("equip-key", letter)]),
+    text("equip-name", `{hud.${key}Name}`),
+    text("equip-level", `{hud.${key}Level}`),
   ]);
+const rail = (side, children) => box(`rail rail-${side}`, children);
+const rupeePlate = box("plate plate-gold", [img("plate-icon plate-rupee", ui("rupee")), text("plate-num", "{rupees}")]);
+const heartPlate = box("plate plate-pink", [img("plate-icon plate-heart", ui("heart-full")), text("plate-num plate-hearts", "{status.hearts}")]);
 
-const hud = box("hud", [
-  slot("B", "b"),
-  slot("A", "a"),
-  box("hrupees", [img("hicon", ui("rupee")), text("hnum", "{rupees}")]),
-  box("hhearts", [
-    list("hrow", "$heartsTop", img("heart", "$src")),
-    list("hrow", "$heartsBottom", img("heart", "$src")),
-  ]),
-]);
-
-// ---- the window: bricks around a panel and a text strip ---------------------------------------------
-
-// The frame is five strips that tile the brick art, so the window can take any width and height.
-const frame = [
-  box("band band-top", []), box("band band-mid", []), box("band band-bottom", []),
-  box("col col-l", []), box("col col-r", []),
-];
+// ---- the nav: one upright slab per page on the pillars ---------------------------------------------------------
 
 const TABS = [["items", "ITEMS", "navItems"], ["map", "MAP", "navMap"], ["seeds", "SEEDS", "navSeeds"], ["rings", "RINGS", "navRings"], ["status", "STATUS", "navStatus"]];
-const nav = box("nav", TABS.map(([page, label, flag]) =>
-  button("tab", [{ navigate: page }], [text("br", "["), text("tab-label", label), text("br", "]")], { classIf: { on: `$${flag}` } }),
-));
+const tab = ([page, label, flag]) =>
+  button("vslab", [{ navigate: page }], [text("vslab-label", label)], { classIf: { on: `$${flag}` } });
+const eraPlate = box("plate plate-dark", [text("era-plate-label", "ERA"), text("era-plate-text", "{map.era}")]);
+const rim = (part) => box(`rim rim-${part}`, []);
+const page = (name, content) => ({
+  name,
+  child: box(`page page-${name}`, [
+    box("window", [box("panel", [content]), rim("t"), rim("b"), rim("l"), rim("r"), rim("tl"), rim("tr"), rim("bl"), rim("br")]),
+  ]),
+});
 
-// ---- ITEMS: the 16 inventory slots in the game's order, icons at 2x -----------------------------------
+// ---- ITEMS: the 16 inventory slots in the game's order ---------------------------------------------------------
 
-const items = box("page page-items", [
+const items = box("body body-items", [
   list("slots", "$slots", box("cell", [
     box("cell-top", [text("tag", "{tag}"), img("cicon", "$icon")]),
     text("clevel", "{level}"),
   ], { classIf: { empty: "$empty" } })),
 ]);
 
-// ---- MAP: the overworld of the current era, rooms Link hasn't visited dimmed -----------------------------
+// ---- MAP: the overworld of the current era, rooms Link hasn't visited dimmed -------------------------------------
 
-const map = box("page page-map", [
-  box("map-fill", []),
+const map = box("body body-map", [
   box("map-stack", [
     img("map-img", ui("map-present"), { visibleIf: "$map.present" }),
     img("map-img", ui("map-past"), { visibleIf: "$map.past" }),
     list("map-rows", "$map.rows", list("map-row", "$cells", box("mcell", [], { classIf: { unseen: "$unseen", here: "$here" } }))),
     box("era-badge", [text("era-text", "{map.era}")]),
   ]),
-  box("map-fill", []),
 ]);
 
-// ---- SEEDS: the satchel, then the other supplies --------------------------------------------------------
+// ---- SEEDS: the satchel, then the other supplies -----------------------------------------------------------------
 
-const seeds = box("page page-seeds", [
+const seeds = box("body body-seeds", [
   list("seed-row", "$seeds", box("seed", [
     img("seed-icon", "$icon"),
     text("seed-count", "{count}"),
@@ -84,9 +75,9 @@ const seeds = box("page page-seeds", [
   ])),
 ]);
 
-// ---- RINGS: worn ring and ring box on the left, the 64 rings on the right ------------------------------------
+// ---- RINGS: worn ring and ring box on the left, the 64 rings on the right -------------------------------------------
 
-const rings = box("page page-rings", [
+const rings = box("body body-rings", [
   box("ring-side", [
     text("title", "WORN"),
     box("worn", [img("worn-icon", "$ring.wornIcon"), text("worn-name", "{ring.worn}")]),
@@ -99,35 +90,34 @@ const rings = box("page page-rings", [
   ]),
 ]);
 
-// ---- STATUS: hearts, essences and where Link is ----------------------------------------------------------------
+// ---- STATUS: hearts, the eight essences by name, and where Link is -------------------------------------------------
 
-const status = box("page page-status", [
+const status = box("body body-status", [
   box("life", [
-    text("life-value", "{status.hearts}"),
+    box("life-top", [
+      text("life-value", "{status.hearts}"),
+      list("pieces", "$status.pieces", img("piece", "$src")),
+    ]),
     list("life-hearts", "$status.lifeHearts", img("lheart", "$src")),
-    list("pieces", "$status.pieces", img("piece", "$src")),
   ]),
-  text("title", "ESSENCES {status.essenceCount} / 8"),
-  list("essences", "$status.essences", img("essence", "$src")),
+  box("ess-head", [text("title", "ESSENCES"), box("fill", []), text("title count", "{status.essenceCount} / 8")]),
+  list("essences", "$status.essences", box("ess", [img("essence", "$src"), text("ess-name", "{name}")], { classIf: { on: "$on" } })),
   list("facts", "$status.facts", box("fact", [text("fact-value", "{value}"), text("fact-label", "{label}")])),
 ]);
 
 const pages = { type: "pages", state: "page", initial: "items", pages: [
-  { name: "items", child: items }, { name: "map", child: map }, { name: "seeds", child: seeds },
-  { name: "rings", child: rings }, { name: "status", child: status },
+  page("items", items), page("map", map), page("seeds", seeds), page("rings", rings), page("status", status),
 ] };
-
-const win = box("win", [
-  box("panel-bg", []),
-  box("strip-bg", []),
-  ...frame,
-  box("panel", [pages]),
-  nav,
-]);
 
 const layout = box("screen", [
   box("waiting", [box("wait", [text("wait-title", "ORACLE OF AGES"), text("wait-sub", "{waitSub}")])], { visibleIf: "$waiting" }),
-  box("shell", [hud, win], { visibleIf: "$ready" }),
+  box("shell", [
+    box("pages-wrap", [pages]),
+    box("pillar pillar-l", []),
+    box("pillar pillar-r", []),
+    rail("l", [rupeePlate, equip("B", "b"), box("tabs", TABS.slice(0, 3).map(tab))]),
+    rail("r", [heartPlate, equip("A", "a"), box("tabs", TABS.slice(3).map(tab)), eraPlate]),
+  ], { visibleIf: "$ready" }),
 ], { id: "screen" });
 
 fs.writeFileSync(new URL("../layout.json", import.meta.url), JSON.stringify(layout, null, 2) + "\n");

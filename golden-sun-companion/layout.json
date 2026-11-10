@@ -462,23 +462,22 @@
                 "children": [
                   {
                     "type": "box",
-                    "class": "hero slim",
+                    "class": "hero djinn-head",
                     "children": [
                       {
+                        "type": "text",
+                        "class": "hero-name",
+                        "text": "Djinn"
+                      },
+                      {
                         "type": "box",
-                        "class": "hero-main",
-                        "children": [
-                          {
-                            "type": "text",
-                            "class": "hero-name",
-                            "text": "Djinn"
-                          },
-                          {
-                            "type": "text",
-                            "class": "hero-class",
-                            "text": "{djinnNote}"
-                          }
-                        ]
+                        "class": "fill",
+                        "children": []
+                      },
+                      {
+                        "type": "text",
+                        "class": "hero-class",
+                        "text": "{djinnNote}"
                       }
                     ]
                   },
@@ -494,9 +493,15 @@
                       },
                       "children": [
                         {
-                          "type": "text",
-                          "class": "djinn-title",
-                          "text": "{element}"
+                          "type": "box",
+                          "class": "djinn-top",
+                          "children": [
+                            {
+                              "type": "text",
+                              "class": "djinn-title",
+                              "text": "{element}"
+                            }
+                          ]
                         },
                         {
                           "type": "list",
@@ -526,6 +531,71 @@
                               }
                             ]
                           }
+                        },
+                        {
+                          "type": "box",
+                          "class": "fill",
+                          "children": []
+                        },
+                        {
+                          "type": "box",
+                          "class": "djinn-foot",
+                          "children": [
+                            {
+                              "type": "box",
+                              "class": "foot-cell found",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "class": "foot-key",
+                                  "text": "FOUND"
+                                },
+                                {
+                                  "type": "text",
+                                  "class": "foot-val",
+                                  "text": "{count}"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "box",
+                              "class": "foot-row",
+                              "children": [
+                                {
+                                  "type": "box",
+                                  "class": "foot-cell",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "class": "foot-key",
+                                      "text": "SET"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "class": "foot-val",
+                                      "text": "{setN}"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "box",
+                                  "class": "foot-cell standby",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "class": "foot-key",
+                                      "text": "STBY"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "class": "foot-val",
+                                      "text": "{standbyN}"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
                         }
                       ]
                     }

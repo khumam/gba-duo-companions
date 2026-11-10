@@ -68,6 +68,9 @@ local SEED_NAMES = {
   { "EMBER", "seed-ember" }, { "SCENT", "seed-scent" }, { "PEGASUS", "seed-pegasus" },
   { "GALE", "seed-gale" }, { "MYSTERY", "seed-mystery" },
 }
+-- The eight essences, one bit each, in dungeon order (the names are from the game's essence list; the bit order is
+-- the dungeon order and has not been checked against a save with more than one essence).
+local ESSENCE_NAMES = { "ETERNAL SPIRIT", "ANCIENT WOOD", "ECHOING HOWL", "BURNING FLAME", "SACRED SOIL", "LONELY PEAK", "ROLLING SEA", "FALLING STAR" }
 local SONGS = { [1] = "ECHOES", [2] = "CURRENTS", [3] = "AGES" }
 
 local lastEra = "PRESENT"
@@ -146,7 +149,7 @@ function update(ui)
   local picked = mem.u8(SATCHEL_SEED) & 7
   local seeds = {}
   for i, s in ipairs(SEED_NAMES) do
-    seeds[i] = { icon = ART .. s[2] .. ".png", name = s[1], count = bcd(mem.u8(SEEDS + i - 1)), picked = picked == i - 1, tag = picked == i - 1 and "IN SATCHEL" or "" }
+    seeds[i] = { icon = ART .. s[2] .. ".png", name = s[1], count = bcd(mem.u8(SEEDS + i - 1)), picked = picked == i - 1, tag = picked == i - 1 and "SATCHEL" or "" }
   end
 
   local essences, essenceCount = {}, 0
@@ -154,7 +157,7 @@ function update(ui)
   for i = 0, 7 do
     local on = (bits >> i) & 1 == 1
     if on then essenceCount = essenceCount + 1 end
-    essences[#essences + 1] = { src = ART .. (on and "essence-on" or "essence-off") .. ".png" }
+    essences[#essences + 1] = { src = ART .. (on and "essence-on" or "essence-off") .. ".png", name = ESSENCE_NAMES[i + 1], on = on }
   end
 
   local lifeHearts = {}
@@ -206,7 +209,7 @@ function update(ui)
     hearts = string.format("%d/%d", (health + 3) // 4, max // 4),
     pieces = pieces, essences = essences, essenceCount = essenceCount, lifeHearts = lifeHearts,
     facts = {
-      { label = "ERA", value = lastEra },
+      { label = "EXPLORED", value = tostring(seen) .. "/196" },
       { label = "SONG", value = SONGS[mem.u8(HARP_SONG)] or "-" },
       { label = "ROOM", value = string.format("%02X", mem.u8(ACTIVE_ROOM)) },
     },

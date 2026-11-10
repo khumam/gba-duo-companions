@@ -31,110 +31,689 @@
       "children": [
         {
           "type": "box",
-          "class": "hud",
+          "class": "pages-wrap",
           "children": [
             {
-              "type": "box",
-              "class": "hslot hslot-b",
-              "children": [
+              "type": "pages",
+              "state": "page",
+              "initial": "items",
+              "pages": [
                 {
-                  "type": "text",
-                  "class": "hkey",
-                  "text": "B"
-                },
-                {
-                  "type": "image",
-                  "class": "hicon",
-                  "src": "$hud.bIcon"
-                },
-                {
-                  "type": "box",
-                  "class": "hname-box",
-                  "children": [
-                    {
-                      "type": "text",
-                      "class": "hname",
-                      "text": "{hud.bName}"
-                    },
-                    {
-                      "type": "text",
-                      "class": "hlevel",
-                      "text": "{hud.bLevel}"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "box",
-              "class": "hslot hslot-a",
-              "children": [
-                {
-                  "type": "text",
-                  "class": "hkey",
-                  "text": "A"
-                },
-                {
-                  "type": "image",
-                  "class": "hicon",
-                  "src": "$hud.aIcon"
-                },
-                {
-                  "type": "box",
-                  "class": "hname-box",
-                  "children": [
-                    {
-                      "type": "text",
-                      "class": "hname",
-                      "text": "{hud.aName}"
-                    },
-                    {
-                      "type": "text",
-                      "class": "hlevel",
-                      "text": "{hud.aLevel}"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "box",
-              "class": "hrupees",
-              "children": [
-                {
-                  "type": "image",
-                  "class": "hicon",
-                  "src": "asset:ui/rupee.png"
-                },
-                {
-                  "type": "text",
-                  "class": "hnum",
-                  "text": "{rupees}"
-                }
-              ]
-            },
-            {
-              "type": "box",
-              "class": "hhearts",
-              "children": [
-                {
-                  "type": "list",
-                  "class": "hrow",
-                  "items": "$heartsTop",
-                  "template": {
-                    "type": "image",
-                    "class": "heart",
-                    "src": "$src"
+                  "name": "items",
+                  "child": {
+                    "type": "box",
+                    "class": "page page-items",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "window",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "panel",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "body body-items",
+                                "children": [
+                                  {
+                                    "type": "list",
+                                    "class": "slots",
+                                    "items": "$slots",
+                                    "template": {
+                                      "type": "box",
+                                      "class": "cell",
+                                      "children": [
+                                        {
+                                          "type": "box",
+                                          "class": "cell-top",
+                                          "children": [
+                                            {
+                                              "type": "text",
+                                              "class": "tag",
+                                              "text": "{tag}"
+                                            },
+                                            {
+                                              "type": "image",
+                                              "class": "cicon",
+                                              "src": "$icon"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "text",
+                                          "class": "clevel",
+                                          "text": "{level}"
+                                        }
+                                      ],
+                                      "classIf": {
+                                        "empty": "$empty"
+                                      }
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-t",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-b",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-l",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-r",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-tl",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-tr",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-bl",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-br",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
                   }
                 },
                 {
-                  "type": "list",
-                  "class": "hrow",
-                  "items": "$heartsBottom",
-                  "template": {
-                    "type": "image",
-                    "class": "heart",
-                    "src": "$src"
+                  "name": "map",
+                  "child": {
+                    "type": "box",
+                    "class": "page page-map",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "window",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "panel",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "body body-map",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "map-stack",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "map-img",
+                                        "src": "asset:ui/map-present.png",
+                                        "visibleIf": "$map.present"
+                                      },
+                                      {
+                                        "type": "image",
+                                        "class": "map-img",
+                                        "src": "asset:ui/map-past.png",
+                                        "visibleIf": "$map.past"
+                                      },
+                                      {
+                                        "type": "list",
+                                        "class": "map-rows",
+                                        "items": "$map.rows",
+                                        "template": {
+                                          "type": "list",
+                                          "class": "map-row",
+                                          "items": "$cells",
+                                          "template": {
+                                            "type": "box",
+                                            "class": "mcell",
+                                            "children": [],
+                                            "classIf": {
+                                              "unseen": "$unseen",
+                                              "here": "$here"
+                                            }
+                                          }
+                                        }
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "era-badge",
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "class": "era-text",
+                                            "text": "{map.era}"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-t",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-b",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-l",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-r",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-tl",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-tr",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-bl",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-br",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "seeds",
+                  "child": {
+                    "type": "box",
+                    "class": "page page-seeds",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "window",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "panel",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "body body-seeds",
+                                "children": [
+                                  {
+                                    "type": "list",
+                                    "class": "seed-row",
+                                    "items": "$seeds",
+                                    "template": {
+                                      "type": "box",
+                                      "class": "seed",
+                                      "children": [
+                                        {
+                                          "type": "image",
+                                          "class": "seed-icon",
+                                          "src": "$icon"
+                                        },
+                                        {
+                                          "type": "text",
+                                          "class": "seed-count",
+                                          "text": "{count}"
+                                        },
+                                        {
+                                          "type": "text",
+                                          "class": "seed-name",
+                                          "text": "{name}"
+                                        },
+                                        {
+                                          "type": "text",
+                                          "class": "seed-tag",
+                                          "text": "{tag}"
+                                        }
+                                      ],
+                                      "classIf": {
+                                        "picked": "$picked"
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "type": "list",
+                                    "class": "supply-row",
+                                    "items": "$supplies",
+                                    "template": {
+                                      "type": "box",
+                                      "class": "supply",
+                                      "children": [
+                                        {
+                                          "type": "image",
+                                          "class": "supply-icon",
+                                          "src": "$icon"
+                                        },
+                                        {
+                                          "type": "box",
+                                          "class": "supply-text",
+                                          "children": [
+                                            {
+                                              "type": "text",
+                                              "class": "supply-value",
+                                              "text": "{value}"
+                                            },
+                                            {
+                                              "type": "text",
+                                              "class": "supply-label",
+                                              "text": "{label}"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-t",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-b",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-l",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-r",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-tl",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-tr",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-bl",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-br",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "rings",
+                  "child": {
+                    "type": "box",
+                    "class": "page page-rings",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "window",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "panel",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "body body-rings",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "ring-side",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "title",
+                                        "text": "WORN"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "worn",
+                                        "children": [
+                                          {
+                                            "type": "image",
+                                            "class": "worn-icon",
+                                            "src": "$ring.wornIcon"
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "worn-name",
+                                            "text": "{ring.worn}"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "title",
+                                        "text": "RING BOX {ring.boxLevel}"
+                                      },
+                                      {
+                                        "type": "list",
+                                        "class": "box-col",
+                                        "items": "$ring.box",
+                                        "template": {
+                                          "type": "box",
+                                          "class": "box-slot",
+                                          "children": [
+                                            {
+                                              "type": "image",
+                                              "class": "box-icon",
+                                              "src": "$icon"
+                                            },
+                                            {
+                                              "type": "text",
+                                              "class": "box-name",
+                                              "text": "{name}"
+                                            }
+                                          ],
+                                          "classIf": {
+                                            "filled": "$filled"
+                                          }
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "ring-grid",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "title",
+                                        "text": "COLLECTION {ring.count} / 64"
+                                      },
+                                      {
+                                        "type": "list",
+                                        "class": "dot-rows",
+                                        "items": "$ring.dotRows",
+                                        "template": {
+                                          "type": "list",
+                                          "class": "dot-row",
+                                          "items": "$cells",
+                                          "template": {
+                                            "type": "box",
+                                            "class": "dot",
+                                            "children": [
+                                              {
+                                                "type": "image",
+                                                "class": "dot-img",
+                                                "src": "$src"
+                                              }
+                                            ],
+                                            "classIf": {
+                                              "on": "$on"
+                                            }
+                                          }
+                                        }
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-t",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-b",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-l",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-r",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-tl",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-tr",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-bl",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-br",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "status",
+                  "child": {
+                    "type": "box",
+                    "class": "page page-status",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "window",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "panel",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "body body-status",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "life",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "life-top",
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "class": "life-value",
+                                            "text": "{status.hearts}"
+                                          },
+                                          {
+                                            "type": "list",
+                                            "class": "pieces",
+                                            "items": "$status.pieces",
+                                            "template": {
+                                              "type": "image",
+                                              "class": "piece",
+                                              "src": "$src"
+                                            }
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "list",
+                                        "class": "life-hearts",
+                                        "items": "$status.lifeHearts",
+                                        "template": {
+                                          "type": "image",
+                                          "class": "lheart",
+                                          "src": "$src"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "ess-head",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "title",
+                                        "text": "ESSENCES"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "fill",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "title count",
+                                        "text": "{status.essenceCount} / 8"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "list",
+                                    "class": "essences",
+                                    "items": "$status.essences",
+                                    "template": {
+                                      "type": "box",
+                                      "class": "ess",
+                                      "children": [
+                                        {
+                                          "type": "image",
+                                          "class": "essence",
+                                          "src": "$src"
+                                        },
+                                        {
+                                          "type": "text",
+                                          "class": "ess-name",
+                                          "text": "{name}"
+                                        }
+                                      ],
+                                      "classIf": {
+                                        "on": "$on"
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "type": "list",
+                                    "class": "facts",
+                                    "items": "$status.facts",
+                                    "template": {
+                                      "type": "box",
+                                      "class": "fact",
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "class": "fact-value",
+                                          "text": "{value}"
+                                        },
+                                        {
+                                          "type": "text",
+                                          "class": "fact-label",
+                                          "text": "{label}"
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-t",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-b",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-l",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-r",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-tl",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-tr",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-bl",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-br",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
                   }
                 }
               ]
@@ -143,425 +722,73 @@
         },
         {
           "type": "box",
-          "class": "win",
+          "class": "pillar pillar-l",
+          "children": []
+        },
+        {
+          "type": "box",
+          "class": "pillar pillar-r",
+          "children": []
+        },
+        {
+          "type": "box",
+          "class": "rail rail-l",
           "children": [
             {
               "type": "box",
-              "class": "panel-bg",
-              "children": []
-            },
-            {
-              "type": "box",
-              "class": "strip-bg",
-              "children": []
-            },
-            {
-              "type": "box",
-              "class": "band band-top",
-              "children": []
-            },
-            {
-              "type": "box",
-              "class": "band band-mid",
-              "children": []
-            },
-            {
-              "type": "box",
-              "class": "band band-bottom",
-              "children": []
-            },
-            {
-              "type": "box",
-              "class": "col col-l",
-              "children": []
-            },
-            {
-              "type": "box",
-              "class": "col col-r",
-              "children": []
-            },
-            {
-              "type": "box",
-              "class": "panel",
+              "class": "plate plate-gold",
               "children": [
                 {
-                  "type": "pages",
-                  "state": "page",
-                  "initial": "items",
-                  "pages": [
-                    {
-                      "name": "items",
-                      "child": {
-                        "type": "box",
-                        "class": "page page-items",
-                        "children": [
-                          {
-                            "type": "list",
-                            "class": "slots",
-                            "items": "$slots",
-                            "template": {
-                              "type": "box",
-                              "class": "cell",
-                              "children": [
-                                {
-                                  "type": "box",
-                                  "class": "cell-top",
-                                  "children": [
-                                    {
-                                      "type": "text",
-                                      "class": "tag",
-                                      "text": "{tag}"
-                                    },
-                                    {
-                                      "type": "image",
-                                      "class": "cicon",
-                                      "src": "$icon"
-                                    }
-                                  ]
-                                },
-                                {
-                                  "type": "text",
-                                  "class": "clevel",
-                                  "text": "{level}"
-                                }
-                              ],
-                              "classIf": {
-                                "empty": "$empty"
-                              }
-                            }
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "name": "map",
-                      "child": {
-                        "type": "box",
-                        "class": "page page-map",
-                        "children": [
-                          {
-                            "type": "box",
-                            "class": "map-fill",
-                            "children": []
-                          },
-                          {
-                            "type": "box",
-                            "class": "map-stack",
-                            "children": [
-                              {
-                                "type": "image",
-                                "class": "map-img",
-                                "src": "asset:ui/map-present.png",
-                                "visibleIf": "$map.present"
-                              },
-                              {
-                                "type": "image",
-                                "class": "map-img",
-                                "src": "asset:ui/map-past.png",
-                                "visibleIf": "$map.past"
-                              },
-                              {
-                                "type": "list",
-                                "class": "map-rows",
-                                "items": "$map.rows",
-                                "template": {
-                                  "type": "list",
-                                  "class": "map-row",
-                                  "items": "$cells",
-                                  "template": {
-                                    "type": "box",
-                                    "class": "mcell",
-                                    "children": [],
-                                    "classIf": {
-                                      "unseen": "$unseen",
-                                      "here": "$here"
-                                    }
-                                  }
-                                }
-                              },
-                              {
-                                "type": "box",
-                                "class": "era-badge",
-                                "children": [
-                                  {
-                                    "type": "text",
-                                    "class": "era-text",
-                                    "text": "{map.era}"
-                                  }
-                                ]
-                              }
-                            ]
-                          },
-                          {
-                            "type": "box",
-                            "class": "map-fill",
-                            "children": []
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "name": "seeds",
-                      "child": {
-                        "type": "box",
-                        "class": "page page-seeds",
-                        "children": [
-                          {
-                            "type": "list",
-                            "class": "seed-row",
-                            "items": "$seeds",
-                            "template": {
-                              "type": "box",
-                              "class": "seed",
-                              "children": [
-                                {
-                                  "type": "image",
-                                  "class": "seed-icon",
-                                  "src": "$icon"
-                                },
-                                {
-                                  "type": "text",
-                                  "class": "seed-count",
-                                  "text": "{count}"
-                                },
-                                {
-                                  "type": "text",
-                                  "class": "seed-name",
-                                  "text": "{name}"
-                                },
-                                {
-                                  "type": "text",
-                                  "class": "seed-tag",
-                                  "text": "{tag}"
-                                }
-                              ],
-                              "classIf": {
-                                "picked": "$picked"
-                              }
-                            }
-                          },
-                          {
-                            "type": "list",
-                            "class": "supply-row",
-                            "items": "$supplies",
-                            "template": {
-                              "type": "box",
-                              "class": "supply",
-                              "children": [
-                                {
-                                  "type": "image",
-                                  "class": "supply-icon",
-                                  "src": "$icon"
-                                },
-                                {
-                                  "type": "box",
-                                  "class": "supply-text",
-                                  "children": [
-                                    {
-                                      "type": "text",
-                                      "class": "supply-value",
-                                      "text": "{value}"
-                                    },
-                                    {
-                                      "type": "text",
-                                      "class": "supply-label",
-                                      "text": "{label}"
-                                    }
-                                  ]
-                                }
-                              ]
-                            }
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "name": "rings",
-                      "child": {
-                        "type": "box",
-                        "class": "page page-rings",
-                        "children": [
-                          {
-                            "type": "box",
-                            "class": "ring-side",
-                            "children": [
-                              {
-                                "type": "text",
-                                "class": "title",
-                                "text": "WORN"
-                              },
-                              {
-                                "type": "box",
-                                "class": "worn",
-                                "children": [
-                                  {
-                                    "type": "image",
-                                    "class": "worn-icon",
-                                    "src": "$ring.wornIcon"
-                                  },
-                                  {
-                                    "type": "text",
-                                    "class": "worn-name",
-                                    "text": "{ring.worn}"
-                                  }
-                                ]
-                              },
-                              {
-                                "type": "text",
-                                "class": "title",
-                                "text": "RING BOX {ring.boxLevel}"
-                              },
-                              {
-                                "type": "list",
-                                "class": "box-col",
-                                "items": "$ring.box",
-                                "template": {
-                                  "type": "box",
-                                  "class": "box-slot",
-                                  "children": [
-                                    {
-                                      "type": "image",
-                                      "class": "box-icon",
-                                      "src": "$icon"
-                                    },
-                                    {
-                                      "type": "text",
-                                      "class": "box-name",
-                                      "text": "{name}"
-                                    }
-                                  ],
-                                  "classIf": {
-                                    "filled": "$filled"
-                                  }
-                                }
-                              }
-                            ]
-                          },
-                          {
-                            "type": "box",
-                            "class": "ring-grid",
-                            "children": [
-                              {
-                                "type": "text",
-                                "class": "title",
-                                "text": "COLLECTION {ring.count} / 64"
-                              },
-                              {
-                                "type": "list",
-                                "class": "dot-rows",
-                                "items": "$ring.dotRows",
-                                "template": {
-                                  "type": "list",
-                                  "class": "dot-row",
-                                  "items": "$cells",
-                                  "template": {
-                                    "type": "box",
-                                    "class": "dot",
-                                    "children": [
-                                      {
-                                        "type": "image",
-                                        "class": "dot-img",
-                                        "src": "$src"
-                                      }
-                                    ],
-                                    "classIf": {
-                                      "on": "$on"
-                                    }
-                                  }
-                                }
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "name": "status",
-                      "child": {
-                        "type": "box",
-                        "class": "page page-status",
-                        "children": [
-                          {
-                            "type": "box",
-                            "class": "life",
-                            "children": [
-                              {
-                                "type": "text",
-                                "class": "life-value",
-                                "text": "{status.hearts}"
-                              },
-                              {
-                                "type": "list",
-                                "class": "life-hearts",
-                                "items": "$status.lifeHearts",
-                                "template": {
-                                  "type": "image",
-                                  "class": "lheart",
-                                  "src": "$src"
-                                }
-                              },
-                              {
-                                "type": "list",
-                                "class": "pieces",
-                                "items": "$status.pieces",
-                                "template": {
-                                  "type": "image",
-                                  "class": "piece",
-                                  "src": "$src"
-                                }
-                              }
-                            ]
-                          },
-                          {
-                            "type": "text",
-                            "class": "title",
-                            "text": "ESSENCES {status.essenceCount} / 8"
-                          },
-                          {
-                            "type": "list",
-                            "class": "essences",
-                            "items": "$status.essences",
-                            "template": {
-                              "type": "image",
-                              "class": "essence",
-                              "src": "$src"
-                            }
-                          },
-                          {
-                            "type": "list",
-                            "class": "facts",
-                            "items": "$status.facts",
-                            "template": {
-                              "type": "box",
-                              "class": "fact",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "class": "fact-value",
-                                  "text": "{value}"
-                                },
-                                {
-                                  "type": "text",
-                                  "class": "fact-label",
-                                  "text": "{label}"
-                                }
-                              ]
-                            }
-                          }
-                        ]
-                      }
-                    }
-                  ]
+                  "type": "image",
+                  "class": "plate-icon plate-rupee",
+                  "src": "asset:ui/rupee.png"
+                },
+                {
+                  "type": "text",
+                  "class": "plate-num",
+                  "text": "{rupees}"
                 }
               ]
             },
             {
               "type": "box",
-              "class": "nav",
+              "class": "equip equip-b",
+              "children": [
+                {
+                  "type": "box",
+                  "class": "disc",
+                  "children": [
+                    {
+                      "type": "image",
+                      "class": "equip-icon",
+                      "src": "$hud.bIcon"
+                    },
+                    {
+                      "type": "text",
+                      "class": "equip-key",
+                      "text": "B"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "class": "equip-name",
+                  "text": "{hud.bName}"
+                },
+                {
+                  "type": "text",
+                  "class": "equip-level",
+                  "text": "{hud.bLevel}"
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "class": "tabs",
               "children": [
                 {
                   "type": "button",
-                  "class": "tab",
+                  "class": "vslab",
                   "onClick": [
                     {
                       "navigate": "items"
@@ -570,18 +797,8 @@
                   "children": [
                     {
                       "type": "text",
-                      "class": "br",
-                      "text": "["
-                    },
-                    {
-                      "type": "text",
-                      "class": "tab-label",
+                      "class": "vslab-label",
                       "text": "ITEMS"
-                    },
-                    {
-                      "type": "text",
-                      "class": "br",
-                      "text": "]"
                     }
                   ],
                   "classIf": {
@@ -590,7 +807,7 @@
                 },
                 {
                   "type": "button",
-                  "class": "tab",
+                  "class": "vslab",
                   "onClick": [
                     {
                       "navigate": "map"
@@ -599,18 +816,8 @@
                   "children": [
                     {
                       "type": "text",
-                      "class": "br",
-                      "text": "["
-                    },
-                    {
-                      "type": "text",
-                      "class": "tab-label",
+                      "class": "vslab-label",
                       "text": "MAP"
-                    },
-                    {
-                      "type": "text",
-                      "class": "br",
-                      "text": "]"
                     }
                   ],
                   "classIf": {
@@ -619,7 +826,7 @@
                 },
                 {
                   "type": "button",
-                  "class": "tab",
+                  "class": "vslab",
                   "onClick": [
                     {
                       "navigate": "seeds"
@@ -628,27 +835,77 @@
                   "children": [
                     {
                       "type": "text",
-                      "class": "br",
-                      "text": "["
-                    },
-                    {
-                      "type": "text",
-                      "class": "tab-label",
+                      "class": "vslab-label",
                       "text": "SEEDS"
-                    },
-                    {
-                      "type": "text",
-                      "class": "br",
-                      "text": "]"
                     }
                   ],
                   "classIf": {
                     "on": "$navSeeds"
                   }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "box",
+          "class": "rail rail-r",
+          "children": [
+            {
+              "type": "box",
+              "class": "plate plate-pink",
+              "children": [
+                {
+                  "type": "image",
+                  "class": "plate-icon plate-heart",
+                  "src": "asset:ui/heart-full.png"
                 },
                 {
+                  "type": "text",
+                  "class": "plate-num plate-hearts",
+                  "text": "{status.hearts}"
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "class": "equip equip-a",
+              "children": [
+                {
+                  "type": "box",
+                  "class": "disc",
+                  "children": [
+                    {
+                      "type": "image",
+                      "class": "equip-icon",
+                      "src": "$hud.aIcon"
+                    },
+                    {
+                      "type": "text",
+                      "class": "equip-key",
+                      "text": "A"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "class": "equip-name",
+                  "text": "{hud.aName}"
+                },
+                {
+                  "type": "text",
+                  "class": "equip-level",
+                  "text": "{hud.aLevel}"
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "class": "tabs",
+              "children": [
+                {
                   "type": "button",
-                  "class": "tab",
+                  "class": "vslab",
                   "onClick": [
                     {
                       "navigate": "rings"
@@ -657,18 +914,8 @@
                   "children": [
                     {
                       "type": "text",
-                      "class": "br",
-                      "text": "["
-                    },
-                    {
-                      "type": "text",
-                      "class": "tab-label",
+                      "class": "vslab-label",
                       "text": "RINGS"
-                    },
-                    {
-                      "type": "text",
-                      "class": "br",
-                      "text": "]"
                     }
                   ],
                   "classIf": {
@@ -677,7 +924,7 @@
                 },
                 {
                   "type": "button",
-                  "class": "tab",
+                  "class": "vslab",
                   "onClick": [
                     {
                       "navigate": "status"
@@ -686,23 +933,29 @@
                   "children": [
                     {
                       "type": "text",
-                      "class": "br",
-                      "text": "["
-                    },
-                    {
-                      "type": "text",
-                      "class": "tab-label",
+                      "class": "vslab-label",
                       "text": "STATUS"
-                    },
-                    {
-                      "type": "text",
-                      "class": "br",
-                      "text": "]"
                     }
                   ],
                   "classIf": {
                     "on": "$navStatus"
                   }
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "class": "plate plate-dark",
+              "children": [
+                {
+                  "type": "text",
+                  "class": "era-plate-label",
+                  "text": "ERA"
+                },
+                {
+                  "type": "text",
+                  "class": "era-plate-text",
+                  "text": "{map.era}"
                 }
               ]
             }

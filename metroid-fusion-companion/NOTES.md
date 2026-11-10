@@ -54,3 +54,11 @@ screen with the real logo, hatches L1-L4 locked (level 0), mission step 9 of 109
 Not checked on a device yet: boss rows and security levels past the first data rooms, downloaded-map flags
 (read as bit n = area n), EU/JP (the decomp and the wiki describe the US build; the manifest also matches
 `AMTP` and `AMTJ`, but the ROM art offsets are US only).
+
+## Bottom nav (not versioned yet, previewed only)
+
+The L / R tabs moved from the top bar to a steel bar at the bottom (`navbar`, art `assets/ui/navbar.png` = the top bar turned
+upside down), with the page's own name between them; the top bar now only names the sector. The message strip it replaced
+is gone (its text repeated what the page shows); the story-step line moved into the Mission page's PROGRESS panel.
+Not done: an item / tank tracker per sector, a whole-sector map with item markers, door levels per room. They need
+per-room item data (not in the decompilation as a table) and late-game saves to check against.

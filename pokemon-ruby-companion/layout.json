@@ -60,6 +60,11 @@
                         "class": "hdr-title",
                         "children": [
                           {
+                            "type": "image",
+                            "class": "hdr-emblem",
+                            "src": "asset:ui/px-emblem.png"
+                          },
+                          {
                             "type": "text",
                             "class": "hdr-name",
                             "text": "BAG"
@@ -696,6 +701,11 @@
                         "class": "hdr-title",
                         "children": [
                           {
+                            "type": "image",
+                            "class": "hdr-emblem",
+                            "src": "asset:ui/px-emblem.png"
+                          },
+                          {
                             "type": "text",
                             "class": "hdr-name",
                             "text": "MAP"
@@ -1176,6 +1186,11 @@
                         "class": "hdr-title",
                         "children": [
                           {
+                            "type": "image",
+                            "class": "hdr-emblem",
+                            "src": "asset:ui/px-emblem.png"
+                          },
+                          {
                             "type": "text",
                             "class": "hdr-name",
                             "text": "POKéMON"
@@ -1582,6 +1597,11 @@
                         "type": "box",
                         "class": "hdr-title",
                         "children": [
+                          {
+                            "type": "image",
+                            "class": "hdr-emblem",
+                            "src": "asset:ui/px-emblem.png"
+                          },
                           {
                             "type": "text",
                             "class": "hdr-name",
@@ -2390,6 +2410,11 @@
                         "class": "hdr-title",
                         "children": [
                           {
+                            "type": "image",
+                            "class": "hdr-emblem",
+                            "src": "asset:ui/px-emblem.png"
+                          },
+                          {
                             "type": "text",
                             "class": "hdr-name",
                             "text": "POKéDEX"
@@ -2527,6 +2552,36 @@
                             "children": [
                               {
                                 "type": "box",
+                                "class": "search-row",
+                                "children": [
+                                  {
+                                    "type": "input",
+                                    "class": "search-input",
+                                    "state": "dexQuery",
+                                    "placeholder": "NAME OR No.",
+                                    "maxLength": 14
+                                  },
+                                  {
+                                    "type": "button",
+                                    "class": "search-clear",
+                                    "onClick": {
+                                      "set": {
+                                        "dexQuery": ""
+                                      }
+                                    },
+                                    "visibleIf": "$ui.dexQuery",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "search-clear-x",
+                                        "text": "X"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
                                 "class": "pager",
                                 "children": [
                                   {
@@ -2583,7 +2638,20 @@
                                       }
                                     ]
                                   }
-                                ]
+                                ],
+                                "visibleIf": "$dex.notSearching"
+                              },
+                              {
+                                "type": "box",
+                                "class": "pager-found",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "pager-found-text",
+                                    "text": "{dex.found}"
+                                  }
+                                ],
+                                "visibleIf": "$dex.searching"
                               },
                               {
                                 "type": "list",
@@ -2646,7 +2714,8 @@
                                       ]
                                     }
                                   ]
-                                }
+                                },
+                                "empty": "NO MATCH"
                               }
                             ]
                           }
@@ -2939,6 +3008,11 @@
                         "type": "box",
                         "class": "hdr-title",
                         "children": [
+                          {
+                            "type": "image",
+                            "class": "hdr-emblem",
+                            "src": "asset:ui/px-emblem.png"
+                          },
                           {
                             "type": "text",
                             "class": "hdr-name",
@@ -3426,6 +3500,11 @@
                         "class": "hdr-title",
                         "children": [
                           {
+                            "type": "image",
+                            "class": "hdr-emblem",
+                            "src": "asset:ui/px-emblem.png"
+                          },
+                          {
                             "type": "text",
                             "class": "hdr-name",
                             "text": "BATTLE"
@@ -3849,29 +3928,78 @@
                         ]
                       },
                       {
-                        "type": "button",
-                        "class": "fight-btn",
-                        "classIf": {
-                          "on": "$battle.actFight"
-                        },
-                        "onClick": [
-                          {
-                            "call": "setAction",
-                            "args": [
-                              0
-                            ]
-                          }
-                        ],
+                        "type": "box",
+                        "class": "moves-preview",
                         "children": [
                           {
                             "type": "text",
-                            "class": "fight-label",
-                            "text": "FIGHT"
+                            "class": "moves-title",
+                            "text": "YOUR MOVES"
                           },
                           {
-                            "type": "text",
-                            "class": "fight-sub",
-                            "text": "{battle.best}"
+                            "type": "list",
+                            "class": "mvchips",
+                            "items": "$battle.moves",
+                            "template": {
+                              "type": "box",
+                              "class": "skill mv",
+                              "children": [
+                                {
+                                  "type": "image",
+                                  "class": "type-img",
+                                  "src": "$type",
+                                  "visibleIf": "$has"
+                                },
+                                {
+                                  "type": "box",
+                                  "class": "skill-main",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "class": "skill-name",
+                                      "text": "{name}"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "class": "skill-sub",
+                                      "text": "PP {pp}"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "box",
+                                  "class": "eff",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "class": "eff-text",
+                                      "text": "{eff}"
+                                    }
+                                  ],
+                                  "classIf": {
+                                    "se": "$se",
+                                    "nve": "$nve",
+                                    "imm": "$imm"
+                                  },
+                                  "visibleIf": "$has"
+                                }
+                              ],
+                              "classIf": {
+                                "se": "$se",
+                                "nve": "$nve",
+                                "imm": "$imm",
+                                "best": "$best"
+                              },
+                              "visibleIf": "$has",
+                              "onClick": [
+                                {
+                                  "call": "setAction",
+                                  "args": [
+                                    0
+                                  ]
+                                }
+                              ]
+                            }
                           }
                         ]
                       },
@@ -3879,6 +4007,33 @@
                         "type": "box",
                         "class": "tiles",
                         "children": [
+                          {
+                            "type": "button",
+                            "class": "fight-btn",
+                            "classIf": {
+                              "on": "$battle.actFight"
+                            },
+                            "onClick": [
+                              {
+                                "call": "setAction",
+                                "args": [
+                                  0
+                                ]
+                              }
+                            ],
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "fight-label",
+                                "text": "FIGHT"
+                              },
+                              {
+                                "type": "text",
+                                "class": "fight-sub",
+                                "text": "{battle.bestName}"
+                              }
+                            ]
+                          },
                           {
                             "type": "button",
                             "class": "tile t-bag",
@@ -4003,6 +4158,11 @@
                         "type": "box",
                         "class": "hdr-title",
                         "children": [
+                          {
+                            "type": "image",
+                            "class": "hdr-emblem",
+                            "src": "asset:ui/px-emblem.png"
+                          },
                           {
                             "type": "text",
                             "class": "hdr-name",

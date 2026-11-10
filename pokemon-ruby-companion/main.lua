@@ -475,7 +475,7 @@ end
 
 local function readBattleMoves(battler, foe)
   local base = BATTLE_MONS_ADDR + battler * BATTLE_MON_SIZE
-  local out, best, bestScore = {}, nil, 0
+  local out, best, bestScore, bestMove, bestShort = {}, nil, 0, nil, nil
   local cursor = mem.u8(MOVE_CURSOR_ADDR)
   for m = 0, 3 do
     local id = mem.u16(base + 0x0C + m * 2)
@@ -485,7 +485,7 @@ local function readBattleMoves(battler, foe)
       local eff = effectiveness(mtype, foe.t1, foe.t2)  -- 4 = neutral
       local label = power == 0 and "--" or (eff == 0 and "x0" or (eff == 4 and "x1" or (eff > 4 and ("x" .. (eff // 4)) or (eff == 2 and "x1/2" or "x1/4"))))
       local score = power * eff
-      if score > bestScore then bestScore, best = score, moveName(id) .. " " .. label end
+      if score > bestScore then bestScore, best, bestMove, bestShort = score, moveName(id) .. " " .. label, m, moveName(id) end
       out[#out + 1] = {
         name = moveName(id), pp = tostring(mem.u8(base + 0x24 + m)),
         type = "asset:types/" .. (TYPES[mtype] or "normal") .. ".png", has = true,
@@ -497,7 +497,8 @@ local function readBattleMoves(battler, foe)
       out[#out + 1] = { name = "-", pp = "--", type = "", has = false, info = "", eff = "", se = false, nve = false, imm = false, sel = false }
     end
   end
-  return out, best and ("BEST: " .. best) or "PICK A MOVE"
+  for i, mv in ipairs(out) do mv.best = mv.has and bestMove == i - 1 end
+  return out, best and ("BEST: " .. best) or "PICK A MOVE", bestShort and ("BEST: " .. bestShort) or "PICK A MOVE"
 end
 
 -- ---- Header / map -------------------------------------------------------------------------------
@@ -869,6 +870,7 @@ local DEX_ENTRIES = 0x083B1858
 local DEX_TOTAL, DEX_PAGE = 386, 24
 local dexState = { start = 1, sel = 1 }
 local dexOut = nil
+local lastDexQuery = nil
 local internalOf = nil
 local function internalId(national)
   if not internalOf then
@@ -893,6 +895,14 @@ function actions.dexSelect(n)
   if n and n >= 1 and n <= DEX_TOTAL then dexState.sel = n end
 end
 
+-- The search box's text (the layout's `input` writes ui.dexQuery): trimmed and lower-cased.
+local function normQuery(q)
+  q = tostring(q or ""):lower()
+  q = q:gsub("^%s+", "")
+  q = q:gsub("%s+$", "")
+  return q
+end
+
 local STAT_LABELS = { "HP", "ATTACK", "DEFENSE", "SP. ATK", "SP. DEF", "SPEED" }
 local STAT_ORDER = { 0, 1, 2, 4, 5, 3 } -- base stat bytes are hp, atk, def, spe, spa, spd
 local function readDex(sb2)
@@ -906,6 +916,30 @@ local function readDex(sb2)
       sprite = seen and sprite(n) or "", seen = seen, unseen = not seen, own = own, sel = n == dexState.sel }
   end
 
+  -- A search replaces the page with everything that matches: a name (seen Pokemon only, so nothing is spoiled) or a
+  -- number ("258" finds No.258). The selection moves to the first match when it isn't one.
+  local query = normQuery(ui and ui.dexQuery)
+  local searching = query ~= ""
+  local found = 0
+  if searching then
+    entries = {}
+    local firstMatch, selIsMatch = nil, false
+    for n = 1, DEX_TOTAL do
+      local sn, ow = dexBit(seenBase, n), dexBit(ownBase, n)
+      local nm = sn and speciesName(internalId(n)) or nil
+      local hit = (nm and nm:lower():find(query, 1, true) ~= nil)
+        or (query:match("^%d+$") ~= nil and tostring(n):sub(1, #query) == query)
+      if hit and found < 40 then
+        found = found + 1
+        firstMatch = firstMatch or n
+        if n == dexState.sel then selIsMatch = true end
+        entries[#entries + 1] = { num = n, no = string.format("%03d", n), name = nm or "-----",
+          sprite = sn and sprite(n) or "", seen = sn, unseen = not sn, own = ow, sel = false }
+      end
+    end
+    if firstMatch and not selIsMatch then dexState.sel = firstMatch end
+    for _, e in ipairs(entries) do e.sel = e.num == dexState.sel end
+  end
   local n = dexState.sel
   local seen, own = dexBit(seenBase, n), dexBit(ownBase, n)
   local internal = internalId(n)
@@ -932,7 +966,9 @@ local function readDex(sb2)
   end
   local pages = (DEX_TOTAL + DEX_PAGE - 1) // DEX_PAGE
   return { entries = entries, sel = sel, range = string.format("%03d-%03d", first, last),
-    page = ((first - 1) // DEX_PAGE + 1) .. "/" .. pages }
+    page = ((first - 1) // DEX_PAGE + 1) .. "/" .. pages,
+    searching = searching, notSearching = not searching, noMatch = searching and found == 0,
+    found = found .. (found == 1 and " MATCH" or " MATCHES") }
 end
 
 local wasInBattle, wasReady, lastState = false, false, "idle"
@@ -977,7 +1013,11 @@ function update(ui)
   local battling = inBattle()
   local mapView = (ui and ui.mapView) == "world" and "world" or "town"
   local map = readMap(sb1, currentPage == "map" and mapView == "town" and not battling, mapView)
-  if currentPage == "dex" or not dexOut then dexOut = readDex(sb2) end
+  local dexQuery = normQuery(ui and ui.dexQuery)
+  if currentPage == "dex" or not dexOut or dexQuery ~= lastDexQuery then
+    dexOut = readDex(sb2)
+    lastDexQuery = dexQuery
+  end
 
   if battling then learnRunCommand() end
   local state = battling and menuState() or "idle"
@@ -989,7 +1029,7 @@ function update(ui)
     local yi, fi = mem.u16(BATTLER_PARTY_INDEXES_ADDR), mem.u16(BATTLER_PARTY_INDEXES_ADDR + 2)
     if yi < 6 then battle.youMon = readMonAt(PARTY_ADDR + yi * POKEMON_SIZE, yi == 0) end
     if fi < 6 then battle.foeMon = readMonAt(ENEMY_PARTY_ADDR + fi * POKEMON_SIZE, false) end
-    battle.moves, battle.best = readBattleMoves(0, battle.foe)
+    battle.moves, battle.best, battle.bestName = readBattleMoves(0, battle.foe)
     battle.runText = (mem.u32(BATTLE_TYPE_FLAGS_ADDR) & BATTLE_TYPE_TRAINER ~= 0) and "NO" or "OK"
     local act = mem.u8(ACTION_CURSOR_ADDR)
     battle.actFight, battle.actBag, battle.actMon, battle.actRun = act == 0, act == 1, act == 2, act == 3

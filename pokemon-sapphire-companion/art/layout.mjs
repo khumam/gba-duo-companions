@@ -19,19 +19,19 @@ const gems = list("gems", "$badges", img("gem", "$src", { classIf: { off: "$lock
 const stat = (icon, value, cls = "") => box(`hstat ${cls}`.trim(), [img("hicon", ui(icon)), text("hval", value)]);
 const header = (title, active) =>
   box("hdr", [
-    box("hdr-title", [
+    box("hdr-title", [img("hdr-emblem", ui("px-emblem")),
       text("hdr-name", title),
       box("hdr-dots", RING.map((_, i) => box(`dot${i === active ? " on" : ""}`, []))),
     ]),
     box("hdr-tail", [stat("clock", "{time}"), stat("coin", "{money}", "money"), gems]),
   ]);
 const detailHeader = box("hdr", [
-  box("hdr-title", [text("hdr-name", "POKéMON INFO")]),
+  box("hdr-title", [img("hdr-emblem", ui("px-emblem")),text("hdr-name", "POKéMON INFO")]),
   box("hdr-tail", [stat("clock", "{time}"), stat("coin", "{money}", "money"), gems]),
 ]);
 const battleHeader = (title) =>
   box("hdr hdr-battle", [
-    box("hdr-title", [text("hdr-name", title)]),
+    box("hdr-title", [img("hdr-emblem", ui("px-emblem")),text("hdr-name", title)]),
     box("hdr-tail", [text("hdr-where", "{map.route}"), grow, stat("coin", "{money}", "money")]),
   ]);
 
@@ -88,6 +88,12 @@ const page = (name, content, bar, head) => ({ name, child: box(`page page-${name
 // ---- 1. bag -------------------------------------------------------------------------------
 const row = (k, v) => box("irow", [text("ikey", k), grow, text("ival", v)]);
 const selectItem = [{ set: { selName: "{name}", selDesc: "{desc}", selIcon: "{icon}", selHasIcon: "{hasIcon}", selQty: "{count}", selPrice: "{price}" } }];
+// A search box with a clear button; what is typed lands in ui.<state> (main.lua reads it).
+const searchRow = (state, placeholder) =>
+  box("search-row", [
+    { type: "input", class: "search-input", state, placeholder, maxLength: 14 },
+    { type: "button", class: "search-clear", onClick: { set: { [state]: "" } }, visibleIf: `$ui.${state}`, children: [text("search-clear-x", "X")] },
+  ]);
 const pocket = (title, path) => ({
   title,
   child: list(
@@ -270,8 +276,10 @@ const pager = (delta, side) => ({ type: "button", class: "pg-btn", onClick: [{ c
 const dexStat = box("dstat", [text("dstat-name", "{label}"), { type: "bar", class: "sbar", value: "$pct", max: 1 }, text("dstat-val", "{value}")]);
 const dexPage = box("dex-grid", [
   win("dex-list-win", "POKéDEX", [
-    box("pager", [pager(-1, "l"), box("pager-mid", [text("pager-text", "{dex.range}"), text("pager-sub", "PAGE {dex.page}")]), pager(1, "r")]),
-    list("dex-list", "$dex.entries", dexRow),
+    searchRow("dexQuery", "NAME OR No."),
+    box("pager", [pager(-1, "l"), box("pager-mid", [text("pager-text", "{dex.range}"), text("pager-sub", "PAGE {dex.page}")]), pager(1, "r")], { visibleIf: "$dex.notSearching" }),
+    box("pager-found", [text("pager-found-text", "{dex.found}")], { visibleIf: "$dex.searching" }),
+    list("dex-list", "$dex.entries", dexRow, { empty: "NO MATCH" }),
   ], chip("{dexCaught} OWN", "chip-peach")),
   win("dex-entry-win", "ENTRY", [
     box("dex-hero", [
@@ -328,16 +336,28 @@ const tileBtn = (cls, label, sub, idx, on) => ({
   onClick: [{ call: "setAction", args: [idx] }],
   children: [text("tile-label", label), text("tile-sub", sub)],
 });
+// A move at a glance: type, name, how well it hits the foe, PP; the best one is outlined. Tapping one presses FIGHT in
+// the game (the moves page opens by itself once the move menu is up).
+const moveChip = box(
+  "skill mv",
+  [
+    img("type-img", "$type", { visibleIf: "$has" }),
+    box("skill-main", [text("skill-name", "{name}"), text("skill-sub", "PP {pp}")]),
+    box("eff", [text("eff-text", "{eff}")], { classIf: { se: "$se", nve: "$nve", imm: "$imm" }, visibleIf: "$has" }),
+  ],
+  { classIf: { se: "$se", nve: "$nve", imm: "$imm", best: "$best" }, visibleIf: "$has", onClick: [{ call: "setAction", args: [0] }] },
+);
 const battlePage = box("battle-area", [
   box("combatants", [combatant("battle.you.", "c-you"), combatant("battle.foe.", "c-foe")]),
-  {
-    type: "button",
-    class: "fight-btn",
-    classIf: { on: "$battle.actFight" },
-    onClick: [{ call: "setAction", args: [0] }],
-    children: [text("fight-label", "FIGHT"), text("fight-sub", "{battle.best}")],
-  },
+  box("moves-preview", [text("moves-title", "YOUR MOVES"), list("mvchips", "$battle.moves", moveChip)]),
   box("tiles", [
+    {
+      type: "button",
+      class: "fight-btn",
+      classIf: { on: "$battle.actFight" },
+      onClick: [{ call: "setAction", args: [0] }],
+      children: [text("fight-label", "FIGHT"), text("fight-sub", "{battle.bestName}")],
+    },
     tileBtn("t-bag", "BAG", "{battle.bagText}", 1, "$battle.actBag"),
     tileBtn("t-mon", "POKéMON", "{partyCount} IN TEAM", 2, "$battle.actMon"),
     tileBtn("t-run", "RUN", "{battle.runText}", 3, "$battle.actRun"),

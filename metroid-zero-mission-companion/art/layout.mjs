@@ -1,6 +1,6 @@
 // Writes layout.json for the Zero Mission companion: the game's own pause screen,
 // rebuilt for the second screen. Every page repeats the frame (top bar with the
-// L / R tabs and the sector plate, the energy and ammo row, the message strip), so
+// sector plate, the L / R tabs in the bottom bar, the energy and ammo row, the message strip), so
 // edit it here, not by hand:
 //
 //   node art/layout.mjs
@@ -28,12 +28,16 @@ const PAGES = [
   ["log", "LOG"],
 ];
 
-const topbar = (i) => {
+// The top bar only names the sector; the L / R tabs sit at the bottom, where the thumbs are, with the page's own
+// name between them (a pause-screen steel bar like the top one).
+const topbar = box("topbar", [box("plate", [text("plate-text", "{sector}")])]);
+
+const navbar = (i) => {
   const [prevPage, prev] = PAGES[(i + PAGES.length - 1) % PAGES.length];
   const [nextPage, next] = PAGES[(i + 1) % PAGES.length];
-  return box("topbar", [
+  return box("navbar", [
     button("tab tab-l", [{ navigate: prevPage }], [text("key key-l", "L"), text("tab-name", prev)]),
-    box("plate", [text("plate-text", "{sector}")]),
+    box("plate nav-mid", [text("plate-text", PAGES[i][1])]),
     button("tab tab-r", [{ navigate: nextPage }], [text("key key-r", "R"), text("tab-name", next)]),
   ]);
 };
@@ -162,7 +166,7 @@ const logPage = box("content content-log", [
 
 const page = (i, name, content, msg) => ({
   name,
-  child: box(`page page-${name}`, [topbar(i), hud, content, strip(msg)]),
+  child: box(`page page-${name}`, [topbar, hud, content, navbar(i)]),
 });
 
 const layout = box("screen-root", [

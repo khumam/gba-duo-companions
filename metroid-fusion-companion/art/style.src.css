@@ -81,6 +81,8 @@ text { white-space: nowrap; }
 .tab-l { left: 3ap; background-image: url("assets/ui/tab-l.png"); }
 .tab-r { right: 3ap; background-image: url("assets/ui/tab-r.png"); }
 .tab:pressed { top: 3ap; }
+.navbar .tab { top: 5ap; }
+.navbar .tab:pressed { top: 6ap; }
 .key {
   position: absolute;
   top: 3ap;
@@ -342,6 +344,7 @@ bar {
 }
 .progress-num { color: var(--yellow); line-height: 7ap; }
 .progress-bar { height: 5ap; }
+.progress-note { margin-top: 2ap; font-family: "Jersey"; font-size: 9ap; line-height: 10ap; color: var(--white); white-space: normal; }
 .next {
   height: 20ap;
   padding: 3ap 3ap 0;
@@ -365,3 +368,17 @@ bar {
 }
 .boot-title { color: var(--yellow); font-size: 16ap; text-shadow: 1ap 1ap 0 var(--green-dk); }
 .boot-sub { font-family: "Jersey"; font-size: 11ap; color: var(--cyan); }
+
+/* ---- bottom nav: the L / R tabs and the page's name -------------------------------------------- */
+
+.navbar {
+  position: relative;
+  flex-shrink: 0;
+  height: 25ap;
+  background-image: url("assets/ui/navbar.png");
+  background-size: 248ap 25ap;
+  background-repeat: no-repeat;
+}
+.navbar .key { top: 4ap; }
+.navbar .tab-name { top: 4ap; }
+.nav-mid { top: 4ap; }

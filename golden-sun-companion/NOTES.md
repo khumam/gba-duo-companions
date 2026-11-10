@@ -1,5 +1,15 @@
 # Golden Sun companion: build notes
 
+## Pixel restyle and Djinn page (not versioned yet)
+
+- **Pixel pass:** flat fills in the game's blue and pink (no gradients), square corners, hard 3 px shadow under the windows,
+  one font (Jersey 10) at 20 px and up (the wide Silkscreen font is gone).
+- **Djinn page:** a one-line header; every column ends in FOUND n/7 and SET / STBY counts (read from the same holder and Set
+  masks as before, so they inherit the unverified Djinn bit order). Summons are not shown: their requirements are not in the pack.
+- **Previews:** `art/make_preview_data.lua [page [out.json]]` runs `update()` on fake RAM and writes `preview-data.json`
+  (the page sets the nav highlight). The Maps page can't render in the preview (no map data), it shows "No map here".
+  Not checked on a device.
+
 ## 0.4.0, margin markers (`game.lua`)
 
 NPCs and other actors that straddle the frame's edge are drawn in the Wide view's margins.

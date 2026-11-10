@@ -1,31 +1,36 @@
 /*
- * Minish-OS (Picori Pedestal), after zeldauinew.jpeg: deep-green backdrop in a
- * charcoal bezel, stitched leather header, copper-riveted panels crowned with
- * leafy title plaques, parchment cards, and a steel-framed wooden command dock.
+ * Old stone, after the wireframe zeldaa6.png: two carved pillars (triangles pointing right and
+ * left, one after the other) with the rupee plate and Ezlo on the left and the kinstone plate
+ * with the A and B items on the right; a brick-framed window between them holds the page; three
+ * stone slabs under it: the previous page, this page's name and the next page. Everything stone
+ * is lit from the top left: raised parts have a light top/left edge, carved parts the reverse.
  *
- * Guide lengths (3DS, 320 x 240) are scaled ~x1.5 for the Thor's ~538 x 468 dp
- * screen. Jersey 10 sets labels, Press Start 2P the tabular numbers.
+ * Sizes are dp for the Thor's ~538 x 468 screen (4 px border, 530 x 460 inside). The stone art
+ * (assets/ui/stone-*.png, art/stone_ui.py) is drawn on a 2 dp grid. Jersey 10 sets labels,
+ * Press Start 2P the tabular numbers.
  */
 
 :root {
   --link-green: #22C55E;
-  --ezlo-teal: #06B6D4;
   --triforce-gold: #EAB308;
   --kinstone-red: #EF4444;
   --kinstone-blue: #3B82F6;
-  --kinstone-green: #10B981;
 
-  --border-dark: #18181B;
-  --leather-brown: #78350F;
-  --wood-dark: #3A2312;
-  --wood-edge: #2B1408;
+  --field: #4D544B;
+  --cyan: #4EB4C6;
+  --cyan-pale: #C9ECEC;
+  --navy: #1B1BAA;
+  --edge: #4D2C69;
+  --stone-edge: #3B3B42;
+  --stone-band: #D8D8DC;
+  --slot: #A9A9AB;
+  --slot-edge: #8A8A90;
+  --ink: #1F1F33;
+  --bezel: #1B1D1A;
+
   --parchment-bg: #FEF3C7;
-  --parchment-dark: #E9C98A;
   --parchment-edge: #8A5A2B;
-  --forest: #1F4A34;
-  --bezel: #2A2D31;
-  --steel: #A3AAB3;
-  --cream: #F5E6C4;
+  --border-dark: #18181B;
 }
 
 @font-face { font-family: "Jersey"; src: url("assets/fonts/Jersey10-Regular.ttf"); }
@@ -37,91 +42,202 @@ text { white-space: nowrap; }
 .grow { flex: 1; }
 .num { font-family: "PressStart"; font-size: 12px; line-height: 14px; }
 
-/* ---- canvas: charcoal bezel around a deep-green field --------------------------------- */
+/* ---- canvas: the mossy wall behind everything ------------------------------------------ */
 
 #screen {
   width: 100%;
   height: 100%;
-  padding: 8px;
-  background-color: var(--forest);
-  background-image: url("assets/ui/canopy.png");
-  background-size: 48px 48px;
+  background-color: var(--field);
+  background-image: url("assets/ui/stone-wall.png");
+  background-size: 128px 128px;
   border: 4px solid var(--bezel);
-  border-radius: 14px;
+  border-bottom-width: 0;
+  border-radius: 0;
+  overflow: hidden;
   font-family: "Jersey";
   font-size: 16px;
-  color: var(--cream);
+  color: var(--ink);
 }
 
-.shell { flex: 1 1 auto; min-height: 0; gap: 8px; position: relative; }
+.shell { flex: 1 1 auto; min-height: 0; position: relative; }
+.pages-wrap { position: absolute; left: 0; top: 0; right: 0; bottom: 0; }
+.pages { width: 100%; height: 100%; }
+.page { position: relative; width: 100%; height: 100%; }
 
-/* ---- header: stitched leather strip --------------------------------------------------- */
+/* ---- pillars: the carved triangles are one 88 x 120 tile, four of them, repeated down ------- */
 
-.header {
-  flex-shrink: 0;
-  height: 56px;
-  padding: 4px;
-  background-color: #6B3A1F;
-  background-image: url("assets/ui/leather.png");
-  background-size: 16px 16px;
-  border: 3px solid var(--wood-edge);
-  border-radius: 8px;
-  box-shadow: 0 4px 0 #0F2A1D;
+.pillar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 88px;
+  background-size: 88px 120px;
+  background-repeat: repeat-y;
 }
-.header-in {
-  flex: 1;
-  flex-direction: row;
+.pillar-l { left: 0; background-image: url("assets/ui/stone-pillar-l.png"); }
+.pillar-r { right: 0; background-image: url("assets/ui/stone-pillar-r.png"); }
+
+/* moss and vines: pixel art on the same 2 dp grid as the stone */
+.vine { position: absolute; width: 96px; height: 190px; z-index: 1; image-rendering: pixelated; pointer-events: none; }
+.vine-tl { left: 0; top: 0; }
+.vine-tr { right: 0; top: 0; }
+.vine-bl { left: 0; bottom: 0; }
+.vine-br { right: 0; bottom: 0; }
+
+/* what sits on a pillar: the plate first, then the round buttons */
+.rail { position: absolute; top: 0; bottom: 0; width: 88px; padding-top: 17px; gap: 6px; align-items: center; z-index: 2; }
+.rail-l { left: 0; }
+.rail-r { right: 0; }
+
+/* rupees (left) and kinstones (right), set in a plate */
+.plate {
+  width: 72px;
+  height: 76px;
+  margin-bottom: 15px;
+  padding-bottom: 2px;
   align-items: center;
-  gap: 12px;
-  padding: 0 6px 0 12px;
-  border: 2px dashed #D9A066;
-  border-radius: 5px;
+  justify-content: center;
+  gap: 6px;
+  background-repeat: no-repeat;
+  background-size: 72px 76px;
 }
-.hgroup { flex-direction: row; align-items: center; gap: 6px; flex-shrink: 0; }
-.hgroup text { flex-shrink: 0; }
-.hicon { width: 30px; height: 30px; }
+.plate-green { background-image: url("assets/ui/stone-plate-green.png"); }
+.plate-red { background-image: url("assets/ui/stone-plate-red.png"); }
+.hicon { width: 26px; height: 26px; flex-shrink: 0; }
 .hicon-rupee { width: 18px; height: 25px; }
-.rupees { font-size: 18px; line-height: 20px; color: #4ADE80; text-shadow: 2px 2px 0 #18181B; }
-.of, .kin { font-size: 18px; line-height: 20px; color: #FFFFFF; text-shadow: 2px 2px 0 #18181B; }
+.rupees { font-size: 15px; line-height: 17px; color: #E8F7D0; text-shadow: 1px 1px 0 #1F3D12; }
+.kin { font-size: 15px; line-height: 17px; color: #FFE6E0; text-shadow: 1px 1px 0 #4A1210; }
 
-.ezlo-btn {
-  width: 48px;
-  height: 33px;
+/* Ezlo, A and B: raised stone discs */
+.ezlo-btn, .disc {
+  position: relative;
+  width: 58px;
+  height: 58px;
   padding: 0;
   gap: 0;
-  background-color: #F97316;
-  border: 3px solid var(--border-dark);
-  border-radius: 6px;
-  box-shadow: 2px 2px 0 #18181B;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  background-image: url("assets/ui/stone-disc.png");
+  background-size: 58px 58px;
+  background-repeat: no-repeat;
+  border-width: 0;
+  border-radius: 0;
+  box-shadow: none;
 }
-.ezlo-btn:pressed { transform: translate(2px, 2px); box-shadow: 0 0 0 #18181B; opacity: 1; }
-.wide-btn {
-  height: 33px;
-  padding: 0 9px;
-  background-color: var(--wood-dark);
-  border: 3px solid var(--border-dark);
-  border-radius: 6px;
-  box-shadow: 2px 2px 0 #18181B;
+.ezlo-btn:pressed { background-image: url("assets/ui/stone-disc-down.png"); opacity: 1; }
+.ezlo-btn:pressed .ezlo { transform: translate(1px, 1px); }
+/* Ezlo's sprite from the ROM (29 x 28) at 3 device px per pixel (1 px = 0.4336dp) */
+.ezlo { width: 37.72px; height: 36.42px; }
+
+.equip { align-items: center; gap: 1px; }
+.equip-icon { width: 28px; height: 28px; }
+/* the button's letter, on a small dark plate at the disc's top left */
+.equip-key {
+  position: absolute;
+  left: -12px;
+  top: -1px;
+  width: 28px;
+  height: 28px;
+  padding-top: 3px;
+  text-align: center;
+  font-family: "PressStart";
+  font-size: 13px;
+  line-height: 20px;
+  color: #FFE9A8;
+  background-color: transparent;
+  background-image: url("assets/ui/stone-badge.png");
+  background-size: 28px 28px;
+  background-repeat: no-repeat;
+  border-width: 0;
+  text-shadow: 1px 1px 0 #1E1008;
 }
-.wide-btn:pressed { transform: translate(2px, 2px); box-shadow: 0 0 0 #18181B; opacity: 1; }
-.wide-text { font-family: "PressStart"; font-size: 10px; line-height: 12px; color: var(--triforce-gold); }
-/* Ezlo's sprite from the ROM (29 x 28) at 2 device px per pixel (1 px = 0.4336dp) */
-.ezlo { width: 25.15px; height: 24.28px; }
+.equip-name { width: 84px; overflow: hidden; text-align: center; text-overflow: ellipsis; font-size: 14px; line-height: 13px; color: #EDEBDD; text-shadow: 1px 1px 0 #1B1D1A; }
+
+/* ---- the window: a raised, rounded stone rim round the page ------------------------------------ */
+
+.window {
+  position: absolute;
+  left: 96px;
+  right: 96px;
+  top: 15px;
+  bottom: 86px;
+  padding: 12px;
+}
+.rim { position: absolute; }
+.rim-t, .rim-b { left: 16px; right: 16px; height: 12px; background-size: 48px 12px; background-repeat: repeat-x; }
+.rim-t { top: 0; background-image: url("assets/ui/stone-rim-t.png"); }
+.rim-b { bottom: 0; background-image: url("assets/ui/stone-rim-b.png"); }
+.rim-l, .rim-r { top: 16px; bottom: 16px; width: 12px; background-size: 12px 48px; background-repeat: repeat-y; }
+.rim-l { left: 0; background-image: url("assets/ui/stone-rim-l.png"); }
+.rim-r { right: 0; background-image: url("assets/ui/stone-rim-r.png"); }
+.rim-tl, .rim-tr, .rim-bl, .rim-br { width: 16px; height: 16px; background-size: 16px 16px; background-repeat: no-repeat; }
+.rim-tl { left: 0; top: 0; background-image: url("assets/ui/stone-rim-tl.png"); }
+.rim-tr { right: 0; top: 0; background-image: url("assets/ui/stone-rim-tr.png"); }
+.rim-bl { left: 0; bottom: 0; background-image: url("assets/ui/stone-rim-bl.png"); }
+.rim-br { right: 0; bottom: 0; background-image: url("assets/ui/stone-rim-br.png"); }
+
+/* ---- nav: previous / this page / next, three stone slabs flush with the window and the screen bottom ---- */
+
+.nav {
+  position: absolute;
+  left: 96px;
+  width: 338px;
+  bottom: 0;
+  height: 76px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.slab {
+  position: relative;
+  flex: none;
+  width: 108px;
+  height: 76px;
+  padding: 0 0 5px 0;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: 108px 76px;
+  border-width: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.slab-l { background-image: url("assets/ui/stone-slab-blue.png"); }
+.slab-r { background-image: url("assets/ui/stone-slab-cyan.png"); }
+.slab-here { background-image: url("assets/ui/stone-slab-purple.png"); }
+.slab-l:pressed { background-image: url("assets/ui/stone-slab-blue-down.png"); opacity: 1; transform: translate(1px, 1px); }
+.slab-r:pressed { background-image: url("assets/ui/stone-slab-cyan-down.png"); opacity: 1; transform: translate(1px, 1px); }
+/* the names are pressed into the slab: a light lip below and to the right */
+.slab-label { width: 100%; text-align: center; letter-spacing: 0; color: #14226B; text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.7); }
+.slab-label.f5 { font-size: 31px; line-height: 31px; }
+.slab-label.f7 { font-size: 25px; line-height: 25px; }
+.slab-label.f8 { font-size: 22px; line-height: 22px; }
+.slab-label-here { color: #F6EEFF; text-shadow: 1px 1px 0 #2C1660; }
+.slab-label-here.f5 { font-size: 37px; line-height: 37px; }
+.slab-label-here.f7 { font-size: 32px; line-height: 32px; }
+.slab-label-here.f8 { font-size: 28px; line-height: 28px; }
+.slab-arrow { position: absolute; top: 28px; width: 8px; height: 12px; }
+.slab-arrow-l { left: 7px; }
+.slab-arrow-r { right: 7px; }
+.slab-alert { position: absolute; top: 6px; width: 18px; height: 18px; }
+.slab-alert-l { left: 8px; }
+.slab-alert-r { right: 8px; }
 
 /* Ezlo's hint bubble */
 .bubble {
   position: absolute;
-  top: 62px;
-  right: 0;
-  width: 320px;
+  top: 26px;
+  left: 104px;
+  right: 104px;
   z-index: 10;
   flex-direction: row;
   align-items: flex-start;
   gap: 8px;
   padding: 8px 10px;
-  background-color: var(--parchment-bg);
-  border: 3px solid var(--border-dark);
-  border-radius: 8px;
+  background-color: var(--parchment-bg); background-image: url("assets/ui/tex-parchment.png"); background-size: 48px 48px;
+  border: 3px solid var(--edge);
+  border-radius: 2px;
   box-shadow: 4px 4px 0 #18181B;
 }
 .bubble-ezlo { width: 37.72px; height: 36.42px; flex-shrink: 0; } /* 3 device px per pixel */
@@ -130,194 +246,117 @@ text { white-space: nowrap; }
 .bubble-text { white-space: normal; font-size: 18px; line-height: 17px; color: var(--border-dark); }
 .bubble-close { font-size: 13px; line-height: 13px; color: #A16207; text-align: right; }
 
-/* Assign-to-button popup (ITEMS page) */
-.equip-menu {
-  position: absolute;
-  top: 62px;
-  right: 0;
-  width: 250px;
-  z-index: 11;
-  gap: 8px;
-  padding: 8px 10px;
-  background-color: var(--parchment-bg);
-  border: 3px solid var(--border-dark);
-  border-radius: 8px;
-  box-shadow: 4px 4px 0 #18181B;
-}
-.menu-head { flex-direction: row; align-items: center; gap: 8px; }
-.menu-icon { width: 24px; height: 24px; }
-.menu-name { font-size: 18px; line-height: 17px; color: var(--border-dark); }
-.menu-row { flex-direction: row; gap: 8px; }
-.menu-btn {
+/* Dragging an item to A or B: the item lifts, the button it is over glows */
+.slot:dragging { transform: scale(1.35); opacity: 0.92; border-color: #FFD84A; }
+.equip:drop-over { transform: scale(1.12); }
+.equip:drop-over .disc { background-image: url("assets/ui/stone-disc-down.png"); }
+.equip:drop-over .equip-name { color: #FFD84A; }
+
+/* ---- content area -------------------------------------------------------------------- */
+
+/* The dark inset in the stone rim: its lip is shadowed above and left, lit below and right. */
+.content {
   flex: 1;
-  align-items: center;
-  justify-content: center;
-  padding: 6px 4px;
-  background-color: var(--wood-dark);
-  border: 3px solid var(--border-dark);
-  border-radius: 6px;
-  box-shadow: 2px 2px 0 #18181B;
-}
-.menu-btn:pressed { transform: translate(2px, 2px); box-shadow: 0 0 0 #18181B; }
-.menu-btn-text { font-size: 15px; line-height: 15px; color: var(--triforce-gold); }
-.menu-cancel { background-color: transparent; border-color: var(--parchment-edge); box-shadow: none; padding: 3px; }
-.menu-cancel .menu-btn-text { font-size: 13px; line-height: 13px; color: #A16207; }
-
-/* ---- pages -------------------------------------------------------------------------- */
-
-.pages-wrap { flex: 1; min-height: 0; width: 100%; }
-.pages { width: 100%; height: 100%; }
-.page { width: 100%; height: 100%; gap: 6px; }
-.content { flex: 1; min-height: 0; display: grid; grid-template-rows: 1fr; column-gap: 12px; }
-.cols-map { grid-template-columns: 1.08fr 1fr; }
-.cols-items { grid-template-columns: 1.35fr 1fr; }
-.cols-kin { grid-template-columns: 1.35fr 1fr; }
-.cols-quest { grid-template-columns: 1.15fr 1fr; }
-.cols-options { grid-template-columns: 1fr; }
-
-/* ---- panels: copper rim, rivets, leafy plaque ------------------------------------------ */
-
-.panel { position: relative; min-width: 0; min-height: 0; padding-top: 13px; }
-/* Copper rim: one bevelled gradient (no tiling, so every edge matches) with
-   rivets pinned at fixed, symmetric spots. */
-.panel-frame {
-  position: relative;
-  flex: 1;
-  min-height: 0;
-  padding: 10px;
-  background-color: #B4632D;
-  background-image: linear-gradient(160deg, #E8955A 0%, #B4632D 45%, #7A3B14 100%);
-  border: 3px solid var(--wood-edge);
-  border-radius: 8px;
-  box-shadow: 0 4px 0 #0F2A1D;
-}
-.rivet { position: absolute; width: 8px; height: 8px; }
-.rivet-tl { left: 1px; top: 1px; }
-.rivet-tr { right: 1px; top: 1px; }
-.rivet-bl { left: 1px; bottom: 1px; }
-.rivet-br { right: 1px; bottom: 1px; }
-.rivet-ml { left: 1px; top: 50%; transform: translate(0, -4px); }
-.rivet-mr { right: 1px; top: 50%; transform: translate(0, -4px); }
-.rivet-bm { left: 50%; bottom: 1px; transform: translate(-4px, 0); }
-.panel-inner {
-  flex: 1;
-  min-height: 0;
-  gap: 7px;
-  padding: 22px 8px 8px 8px;
-  background-color: var(--wood-dark);
-  background-image: url("assets/ui/wood.png");
-  background-size: 16px 16px;
-  border: 3px solid var(--wood-edge);
-  border-radius: 4px;
-}
-
-.plaque-row { position: absolute; left: 0; top: 0; right: 0; align-items: center; }
-.plaque {
-  position: relative;
-  padding: 2px 24px;
-  background-color: #4A2A14;
-  background-image: linear-gradient(180deg, #6B3E1E 0%, #4A2A14 55%, #331A0A 100%);
-  border: 3px solid var(--wood-edge);
-  border-radius: 6px;
-  box-shadow: 0 3px 0 #0F2A1D;
-}
-.plaque-text {
-  font-size: 23px;
-  line-height: 21px;
-  letter-spacing: 1px;
-  color: var(--cream);
-  text-shadow: 2px 2px 0 #18181B;
-}
-.plaque-leaf { position: absolute; top: 0px; width: 33px; height: 27px; }
-.plaque-leaf-l { left: -10px; }
-.plaque-leaf-r { right: -10px; }
-
-/* Parchment card set into a panel */
-.card {
   min-height: 0;
   gap: 6px;
-  padding: 6px 8px 8px 8px;
-  background-color: var(--parchment-bg);
-  background-image: url("assets/ui/parchment.png");
-  background-size: 16px 16px;
-  border: 3px solid var(--parchment-edge);
+  padding: 4px;
+  background-color: #3B413A; background-image: url("assets/ui/tex-dark.png"); background-size: 48px 48px;
+  border-top: 2px solid #14160F;
+  border-left: 2px solid #14160F;
+  border-right: 2px solid #7C8374;
+  border-bottom: 2px solid #7C8374;
   border-radius: 4px;
 }
-.card-head { display: stack; place-items: center; flex-shrink: 0; height: 20px; }
-.card-title { font-size: 18px; line-height: 17px; letter-spacing: 1px; color: #5A2609; }
-.picked {
-  flex-direction: row;
-  align-items: center;
-  justify-self: stretch;
-  align-self: stretch;
-  gap: 6px;
-  padding: 0 8px 0 4px;
-  background-color: var(--triforce-gold);
-  border: 2px solid var(--border-dark);
-  border-radius: 4px;
-}
-.picked-icon { width: 16px; height: 16px; }
-.picked-name { font-size: 17px; line-height: 15px; color: var(--border-dark); }
 
-/* Tan item slots */
+/* A curved stone panel: dark outline, a bevel just inside it */
+.pframe {
+  min-width: 0;
+  min-height: 0;
+  padding: 1px;
+  background-color: #A9A99A;
+  background-image: url("assets/ui/stone-card.png");
+  background-size: 96px 96px;
+  border: 2px solid var(--stone-edge);
+  border-radius: 8px;
+}
+.pinner {
+  flex: 1;
+  min-height: 0;
+  gap: 4px;
+  padding: 4px;
+  border-top: 2px solid rgba(0, 0, 0, 0.38);
+  border-left: 2px solid rgba(0, 0, 0, 0.3);
+  border-right: 2px solid rgba(255, 255, 255, 0.7);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 6px;
+}
+
+/* Grey slot cards, recessed: shadow on the top and left edges, light on the bottom and right
+   (no inset box-shadow in the engine, so the borders do the work; translucent so it also
+   works on the pastel and cyan cards). */
+.card, .slot, .opt, .element, .piece, .side, .tally-cell, .gear-row, .stat, .map-tag {
+  border-top: 3px solid rgba(0, 0, 0, 0.4);
+  border-left: 3px solid rgba(0, 0, 0, 0.32);
+  border-right: 3px solid rgba(255, 255, 255, 0.75);
+  border-bottom: 3px solid rgba(255, 255, 255, 0.85);
+}
+.piece, .side, .tally-cell, .element, .gear-row, .stat { border-width: 2px; }
+.card, .slot, .opt, .gear-row, .stat, .map-tag { background-color: var(--slot); background-image: url("assets/ui/tex-slot.png"); background-size: 48px 48px; }
+
+.card { min-height: 0; gap: 4px; padding: 4px 6px 6px 6px; border-radius: 6px; }
+.slot, .opt, .element, .tally-cell, .stat, .map-tag { border-radius: 4px; }
+.card-title { font-size: 16px; line-height: 15px; letter-spacing: 1px; text-align: center; color: var(--ink); }
+
+/* Item slots */
 .slot {
   position: relative;
   align-items: center;
   justify-content: center;
-  background-color: #D9B77E;
-  border: 3px solid var(--parchment-edge);
-  border-radius: 4px;
+  border-radius: 2px;
 }
-.slot:pressed { transform: translate(1px, 1px); border-color: var(--triforce-gold); }
-.slot.empty { background-color: #C9A46A; }
+.slot:pressed, .opt:pressed { background-color: var(--cyan-pale); background-image: url("assets/ui/tex-cyanpale.png"); background-size: 48px 48px; border-color: #F97316; }
+.slot.empty { background-color: #B2B2B5; background-image: url("assets/ui/tex-slotempty.png"); background-size: 48px 48px; }
 .slot-icon { width: 32px; height: 32px; }
-.slot-s .slot-icon { width: 28px; height: 28px; }
-.slot-count { position: absolute; right: 2px; bottom: 1px; }
-.count { font-size: 7.5px; line-height: 9px; color: #FFFFFF; text-shadow: 1px 1px 0 #18181B; }
+.slot-count { position: absolute; right: 1px; bottom: 0px; }
+.count { font-size: 8px; line-height: 9px; color: #FFFFFF; text-shadow: 1px 1px 0 #18181B; }
 
-/* ---- map panel ------------------------------------------------------------------------- */
+/* ---- map page ------------------------------------------------------------------------ */
 
+.p-map { flex: 1; }
+.p-map .pinner { gap: 4px; }
+.map-head { flex-shrink: 0; flex-direction: row; align-items: center; gap: 6px; height: 24px; }
 /* The world map's own 5:4 shape (160 x 128), so Link's marker lands on the right spot. */
 .map-view {
-  aspect-ratio: 5 / 4;
-  width: 100%;
+  width: 284px;
+  height: 227.2px;
+  flex-shrink: 0;
   position: relative;
   overflow: hidden;
   background-color: #D6B98A;
-  border: 3px solid var(--wood-edge);
-  border-radius: 3px;
+  border-radius: 4px;
 }
 .map-img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: fill; }
 .mark { position: absolute; }
 /* Link's head from the ROM (16 x 16) at 3 device px per pixel. */
 .mark-link { width: 20.81px; height: 20.81px; transform: translate(-10.4px, -10.4px); }
-/* The place's name, in a bar under the map. */
-.map-tag {
-  flex-shrink: 0;
-  align-items: center;
-  padding: 2px 6px;
-  background-color: var(--parchment-bg);
-  border: 2px solid var(--border-dark);
-  border-radius: 4px;
-}
-.map-tag-text { font-size: 18px; line-height: 17px; color: var(--border-dark); text-align: center; }
 
-/* WORLD / DUNGEON, above the map while Link is in a dungeon. */
-.map-tabs { flex-shrink: 0; flex-direction: row; gap: 6px; }
+.map-tag { flex: 1; min-width: 0; height: 24px; flex-direction: row; align-items: center; justify-content: center; padding: 0 8px; background-color: #34342D; background-image: url("assets/ui/tex-darkstone.png"); background-size: 48px 48px; }
+.map-tag-text { width: 100%; white-space: nowrap; text-align: center; font-size: 17px; line-height: 17px; color: #FFF3C4; text-shadow: 1px 1px 0 #0E0E0A; text-overflow: ellipsis; }
+.map-tabs { flex-shrink: 0; flex-direction: row; gap: 4px; }
 .map-tab {
-  flex: 1;
-  height: 22px;
+  width: 62px;
+  height: 24px;
   padding: 0;
   align-items: center;
   justify-content: center;
-  background-color: #C9A46A;
-  border: 2px solid var(--border-dark);
+  background-color: #EDEDEF; background-image: url("assets/ui/tex-pale.png"); background-size: 48px 48px;
+  border: 2px solid var(--cyan);
   border-radius: 4px;
-  box-shadow: 2px 2px 0 #18181B;
 }
-.map-tab:pressed { transform: translate(1px, 1px); box-shadow: 1px 1px 0 #18181B; opacity: 1; }
-.map-tab.on { background-color: var(--triforce-gold); }
-.map-tab-label { font-size: 17px; line-height: 15px; letter-spacing: 1px; color: var(--border-dark); }
+.map-tab:pressed { opacity: 0.8; }
+.map-tab.on { background-color: var(--cyan); background-image: url("assets/ui/tex-cyan.png"); background-size: 48px 48px; }
+.map-tab-label { font-size: 14px; line-height: 13px; color: #2F9DBB; }
+.map-tab.on .map-tab-label { color: #FFFFFF; }
 
 /* The dungeon view: covers the world map, same frame. */
 .dmap {
@@ -327,47 +366,45 @@ text { white-space: nowrap; }
   width: 100%;
   height: 100%;
   z-index: 1;
-  gap: 4px;
-  padding: 8px 8px 6px 8px;
-  background-color: #1E2A47;
+  gap: 6px;
+  padding: 8px;
+  background-color: #1E2A47; background-image: url("assets/ui/tex-navy.png"); background-size: 48px 48px;
 }
 .dmap-head { flex-shrink: 0; align-items: center; }
-.dmap-name { font-size: 18px; line-height: 17px; letter-spacing: 1px; color: var(--cream); text-shadow: 2px 2px 0 #0B1222; }
+.dmap-name { font-size: 20px; line-height: 19px; letter-spacing: 1px; color: #F5E6C4; text-shadow: 2px 2px 0 #0B1222; }
 .dmap-body { flex: 1; min-height: 0; flex-direction: row; gap: 8px; }
 
 /* Floors, top floor first, like the pause menu's floor column. */
-.dmap-floors { flex-shrink: 0; justify-content: center; gap: 3px; }
+.dmap-floors { flex-shrink: 0; justify-content: center; gap: 4px; }
 .dfloor {
   flex-direction: row;
   align-items: center;
-  gap: 2px;
-  padding: 1px 2px;
+  gap: 3px;
+  padding: 3px 4px;
   border: 2px solid transparent;
-  border-radius: 3px;
 }
-.dfloor.here { background-color: #33466F; border-color: var(--triforce-gold); }
-.dfloor-mark { width: 14px; height: 14px; align-items: center; justify-content: center; }
-.dfloor-link { width: 13.87px; height: 13.87px; } /* 2 device px per pixel */
-.dfloor-boss { width: 14px; height: 14px; }
-.dfloor-name { width: 26px; font-size: 9px; line-height: 11px; text-align: center; color: #8FA3C9; }
+.dfloor.here { background-color: #33466F; background-image: url("assets/ui/tex-navy2.png"); background-size: 48px 48px; border-color: var(--triforce-gold); }
+.dfloor-mark { width: 16px; height: 16px; align-items: center; justify-content: center; }
+.dfloor-link { width: 15.6px; height: 15.6px; } /* 2 device px per pixel */
+.dfloor-boss { width: 16px; height: 16px; }
+.dfloor-name { width: 28px; font-size: 12px; line-height: 13px; text-align: center; color: #8FA3C9; }
 .dfloor.here .dfloor-name { color: #FFFFFF; }
 
-.dmap-items { flex: 1; min-width: 0; justify-content: center; align-items: center; gap: 6px; }
-.ditem-row { flex-direction: row; justify-content: center; gap: 5px; }
+.dmap-items { flex: 1; min-width: 0; justify-content: center; align-items: center; gap: 5px; }
+.ditem-row { flex-direction: row; justify-content: center; gap: 6px; }
 .ditem { align-items: center; gap: 2px; }
 .ditem-slot {
-  width: 34px;
-  height: 34px;
+  width: 38px;
+  height: 38px;
   align-items: center;
   justify-content: center;
-  background-color: #D9B77E;
+  background-color: #D9B77E; background-image: url("assets/ui/tex-tan.png"); background-size: 48px 48px;
   border: 2px solid var(--parchment-edge);
-  border-radius: 4px;
 }
 /* The 16 x 16 sprites at 3 device px per pixel. */
-.ditem-icon { width: 20.81px; height: 20.81px; }
-.ditem-name { font-size: 13px; line-height: 12px; color: var(--cream); }
-.ditem.missing .ditem-slot { background-color: #3A4A6B; border-color: #2A3655; }
+.ditem-icon { width: 27.74px; height: 27.74px; }
+.ditem-name { font-size: 13px; line-height: 12px; color: #F5E6C4; }
+.ditem.missing .ditem-slot { background-color: #3A4A6B; background-image: url("assets/ui/tex-navy3.png"); background-size: 48px 48px; border-color: #2A3655; }
 .ditem.missing .ditem-icon { opacity: 0.25; }
 .ditem.missing .ditem-name { color: #6F80A6; }
 .dkeys {
@@ -375,292 +412,209 @@ text { white-space: nowrap; }
   align-items: center;
   gap: 4px;
   padding: 2px 8px;
-  background-color: #33466F;
-  border-radius: 4px;
+  background-color: #33466F; background-image: url("assets/ui/tex-navy2.png"); background-size: 48px 48px;
 }
 .dkey-icon { width: 10.41px; height: 20.81px; } /* 8 x 16 at 3 device px */
-.dkey-num { font-size: 10px; line-height: 12px; color: #FFFFFF; }
+.dkey-num { font-size: 12px; line-height: 14px; color: #FFFFFF; }
 
-/* ---- A / B equip rings ------------------------------------------------------------------ */
-
-.equips { flex-direction: row; justify-content: space-around; flex-shrink: 0; }
-.equip { align-items: center; gap: 3px; }
-/* Faceted gem in a notched gold bezel (assets/ui/gem-a|b.png) behind the item. */
-.equip-ring {
-  position: relative;
-  width: 72px;
-  height: 72px;
-  align-items: center;
-  justify-content: center;
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-}
-.equip-a .equip-ring { background-image: url("assets/ui/gem-a.png"); }
-.equip-b .equip-ring { background-image: url("assets/ui/gem-b.png"); }
-.equip-icon { width: 38px; height: 38px; }
-.equip-badge {
-  position: absolute;
-  left: 0px;
-  bottom: 0px;
-  width: 22px;
-  height: 22px;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid #FFFFFF;
-  border-radius: 999px;
-}
-.equip-a .equip-badge { background-color: #DC2626; }
-.equip-b .equip-badge { background-color: #2563EB; }
-.equip-key { font-size: 15px; line-height: 13px; color: #FFFFFF; }
-.equip-name { font-size: 18px; line-height: 16px; color: #FFFFFF; text-shadow: 2px 2px 0 #18181B; }
-
-/* Link and his hearts, from the ROM (1 device px = 0.4336dp): his 32 x 24 frame at 4 device
-   px per pixel, on top; the 8 x 8 hearts at 6, centred under him and wrapping onto more
-   rows as he gains containers. A leaf in each corner (the panel plaques' leaves; the top
-   pair turned over). */
-.link-card {
-  flex: 1;
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding: 12px 14px;
-  overflow: hidden;
-}
-.link-sprite { width: 55.50px; height: 41.63px; flex-shrink: 0; }
-.hearts {
-  flex-shrink: 0;
-  align-self: stretch;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2.17px;
-}
+/* Link and his hearts, from the ROM (1 device px = 0.4336dp): his 32 x 24 frame at 3 device px per pixel;
+   the 8 x 8 hearts at 6, ten to a row, so two rows hold all twenty containers. */
+.p-link { height: 52px; flex-shrink: 0; }
+.link-row { flex: 1; min-height: 0; flex-direction: row; align-items: center; justify-content: center; gap: 12px; }
+.link-sprite { width: 41.62px; height: 31.22px; flex-shrink: 0; }
+.hearts { width: 160px; flex-direction: row; flex-wrap: wrap; gap: 2.17px; }
 .heart { width: 13.87px; height: 13.87px; }
-.link-leaf { position: absolute; width: 33px; height: 27px; }
-.link-leaf-tl { left: -6px; top: -6px; transform: rotate(180deg); }
-.link-leaf-tr { right: -6px; top: -6px; transform: rotate(180deg); }
-.link-leaf-bl { left: -6px; bottom: -6px; }
-.link-leaf-br { right: -6px; bottom: -6px; }
 
-/* ---- items page ------------------------------------------------------------------------- */
+/* ---- items page ---------------------------------------------------------------------- */
 
-.pouch-card { flex: 1; }
+.p-pouch { flex: 1; }
+.pouch-head { flex-shrink: 0; flex-direction: row; align-items: center; justify-content: space-between; height: 22px; }
+.pouch-title { font-size: 17px; line-height: 16px; letter-spacing: 1px; color: var(--ink); }
+.picked {
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  height: 22px;
+  padding: 0 8px 0 4px;
+  background-color: var(--cyan-pale); background-image: url("assets/ui/tex-cyanpale.png"); background-size: 48px 48px;
+  border: 2px solid var(--cyan);
+  border-radius: 4px;
+}
+.picked-icon { width: 18px; height: 18px; }
+.picked-name { font-size: 16px; line-height: 14px; color: var(--ink); }
+/* six across, four down: big squares for the twenty items */
 .item-grid {
   flex: 1;
   min-height: 0;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(4, 1fr);
-  gap: 5px;
+  gap: 4px;
 }
 
-.gear-panel .panel-inner { justify-content: space-between; padding: 24px 10px 10px 10px; }
+.p-gear { height: 84px; flex-shrink: 0; }
+.gear-grid {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 4px;
+}
+.g3 { grid-column: span 3; }
+.g2 { grid-column: span 2; }
 .gear-row {
   flex-direction: row;
   align-items: center;
-  gap: 8px;
-  padding: 4px 8px 4px 4px;
-  background-color: rgba(24, 24, 27, 0.35);
-  border: 2px solid var(--border-dark);
-  border-radius: 6px;
+  gap: 6px;
+  padding: 1px 6px 1px 4px;
+  border-radius: 4px;
 }
-.gear-icon { width: 26px; height: 26px; }
-.gear-main { flex: 1; gap: 3px; }
-.gear-top { flex-direction: row; align-items: center; }
-.gear-name { font-size: 17px; line-height: 16px; color: var(--cream); }
-.gear-val { font-size: 9px; line-height: 11px; color: var(--triforce-gold); }
+.gear-icon { width: 24px; height: 24px; flex-shrink: 0; }
+.gear-main { flex: 1; min-width: 0; gap: 3px; }
+.gear-val { font-size: 10px; line-height: 12px; color: var(--navy); }
 .gear-bar {
-  height: 9px;
-  background-color: var(--wood-edge);
-  border: 2px solid var(--border-dark);
-  border-radius: 3px;
+  height: 7px;
+  background-color: #5E5E66; background-image: url("assets/ui/tex-barbg.png"); background-size: 48px 48px;
+  border: 2px solid var(--stone-edge);
   transition: width 400ms ease-out;
 }
 .gear-row.red .gear-bar { accent-color: var(--kinstone-red); }
 .gear-row.blue .gear-bar { accent-color: var(--kinstone-blue); }
 
-/* ---- kinstone page ---------------------------------------------------------------------- */
+/* ---- kinstone page ------------------------------------------------------------------- */
 
-.piece-card { flex: 1; padding: 6px; }
-.piece-grid {
-  flex: 1;
-  min-height: 0;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  gap: 6px;
-}
-.piece {
-  flex-direction: row;
-  align-items: center;
-  gap: 6px;
-  padding: 2px 6px 2px 3px;
-  border: 3px solid var(--parchment-edge);
-  border-radius: 4px;
-}
-.piece.red { background-color: #FECACA; }
-.piece.blue { background-color: #BFDBFE; }
-.piece.green { background-color: #A7F3D0; }
-.piece.gold { background-color: #FDE68A; }
-.piece-icon { width: 24px; height: 24px; flex-shrink: 0; }
-.piece-text { flex: 1; min-width: 0; gap: 3px; }
-.piece-foot { flex-direction: row; align-items: center; }
-.piece-name { font-size: 15px; line-height: 14px; color: var(--border-dark); text-overflow: ellipsis; }
-.piece-amt { font-size: 10.5px; line-height: 12px; color: var(--border-dark); }
-.piece-id { font-size: 7.5px; line-height: 9px; color: #78350F; }
-
-.fuse-panel .panel-inner { gap: 12px; padding: 30px 10px 12px 10px; }
-.fuse-count { flex-direction: row; align-items: flex-end; justify-content: center; gap: 4px; }
-.fuse-num { font-size: 27px; line-height: 28px; color: var(--triforce-gold); text-shadow: 2px 2px 0 #18181B; }
-.fuse-of { font-size: 12px; line-height: 16px; color: var(--parchment-dark); }
+/* the fusion count on top, then the bag fills the rest and scrolls past three rows */
+.p-fusion { flex-shrink: 0; }
+.p-fusion .pinner { gap: 6px; }
+.fuse-count { flex-direction: row; align-items: flex-end; gap: 4px; flex-shrink: 0; }
+.fuse-label { font-size: 20px; line-height: 19px; letter-spacing: 1px; color: var(--ink); }
+.fuse-num { font-size: 28px; line-height: 29px; color: var(--navy); }
+.fuse-of { font-size: 12px; line-height: 15px; color: var(--ink); }
 .fuse-bar {
-  height: 14px;
+  height: 16px;
   flex-shrink: 0;
-  background-color: var(--wood-edge);
-  border: 3px solid var(--border-dark);
+  background-color: #5E5E66; background-image: url("assets/ui/tex-barbg.png"); background-size: 48px 48px;
+  border: 3px solid var(--stone-edge);
   border-radius: 4px;
   accent-color: var(--link-green);
   transition: width 400ms ease-out;
 }
-.tally { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
+.tally { flex-direction: row; flex-shrink: 0; gap: 5px; }
 .tally-cell {
+  flex: 1;
+  height: 38px;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 3px 8px 3px 4px;
-  background-color: rgba(24, 24, 27, 0.35);
-  border: 2px solid var(--border-dark);
-  border-radius: 6px;
+  padding: 2px 8px 2px 4px;
+  background-color: #D8D8DC; background-image: url("assets/ui/tex-tally.png"); background-size: 48px 48px;
+  border-radius: 4px;
 }
-.tally-icon { width: 24px; height: 24px; }
-.tally-num { color: var(--cream); }
+.tally-icon { width: 26px; height: 26px; }
+.tally-num { font-size: 15px; line-height: 17px; color: var(--ink); }
 .alert {
   flex-shrink: 0;
   flex-direction: row;
   align-items: center;
   gap: 8px;
-  padding: 6px 8px;
-  background-color: var(--kinstone-red);
+  padding: 4px 8px;
+  background-color: var(--kinstone-red); background-image: url("assets/ui/tex-red.png"); background-size: 48px 48px;
   border: 3px solid var(--border-dark);
+  border-radius: 4px;
+}
+.alert-icon { width: 24px; height: 24px; flex-shrink: 0; }
+.alert-text { flex: 1; white-space: normal; font-size: 16px; line-height: 15px; color: #FFFFFF; text-shadow: 1px 1px 0 #18181B; }
+
+.p-pieces { flex: 1; }
+.piece-grid {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+}
+.piece {
+  height: 54px;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 8px 2px 6px;
   border-radius: 6px;
 }
-.alert-icon { width: 26px; height: 26px; flex-shrink: 0; }
-.alert-text { flex: 1; white-space: normal; font-size: 17px; line-height: 16px; color: #FFFFFF; text-shadow: 1px 1px 0 #18181B; }
+.piece.red { background-color: #FECACA; background-image: url("assets/ui/tex-p-red.png"); background-size: 48px 48px; }
+.piece.blue { background-color: #BFDBFE; background-image: url("assets/ui/tex-p-blue.png"); background-size: 48px 48px; }
+.piece.green { background-color: #A7F3D0; background-image: url("assets/ui/tex-p-green.png"); background-size: 48px 48px; }
+.piece.gold { background-color: #FDE68A; background-image: url("assets/ui/tex-p-gold.png"); background-size: 48px 48px; }
+.piece-icon { width: 32px; height: 32px; flex-shrink: 0; }
+.piece-text { flex: 1; min-width: 0; gap: 4px; }
+.piece-foot { flex-direction: row; align-items: center; }
+.piece-name { font-size: 15px; line-height: 15px; color: var(--ink); text-overflow: ellipsis; }
+.piece-amt { font-size: 12px; line-height: 14px; color: var(--ink); }
+.piece-id { font-size: 8px; line-height: 10px; color: #5A4A3A; }
 
-/* ---- quest page ------------------------------------------------------------------------- */
+/* ---- quest page ---------------------------------------------------------------------- */
 
-.element-row { flex-direction: row; gap: 7px; flex-shrink: 0; }
+.p-quest { flex: 1; }
+.p-quest .pinner { gap: 5px; }
+.quest-top { flex-shrink: 0; flex-direction: row; gap: 8px; height: 182px; }
+.quest-right { flex: 1; min-width: 0; gap: 6px; }
+
+.dungeon-card { width: 150px; flex-shrink: 0; }
+.dungeon-list { flex: 1; min-height: 0; justify-content: space-between; }
+.dungeon { flex-direction: row; align-items: center; gap: 5px; padding: 3px 4px 3px 2px; border: 2px solid transparent; border-radius: 4px; }
+.dungeon.here { background-color: var(--cyan-pale); background-image: url("assets/ui/tex-cyanpale.png"); background-size: 48px 48px; border-color: var(--cyan); }
+.dg-mark { width: 20px; height: 20px; display: stack; place-items: center; }
+.dg-check { width: 16px; height: 12px; }
+.dg-here { width: 16px; height: 16px; }
+.dg-name { font-size: 15px; line-height: 16px; color: #3F3F4E; }
+.dungeon.cleared .dg-name { color: #15803D; }
+.dungeon.here .dg-name { color: var(--ink); }
+
+.element-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 5px; flex-shrink: 0; }
 .element {
-  flex: 1;
+  height: 58px;
   align-items: center;
   gap: 2px;
   padding: 4px 0 2px 0;
-  background-color: #D9B77E;
-  border: 3px solid var(--parchment-edge);
-  border-radius: 4px;
+  background-color: var(--slot); background-image: url("assets/ui/tex-slot.png"); background-size: 48px 48px;
 }
-.element.owned { border-color: var(--triforce-gold); }
-.element.locked { opacity: 0.45; }
+.element.owned { background-color: var(--cyan-pale); background-image: url("assets/ui/tex-cyanpale.png"); background-size: 48px 48px; }
+.element.locked { opacity: 0.5; }
 .element-icon { width: 30px; height: 30px; }
-.element-name { font-size: 15px; line-height: 14px; color: var(--border-dark); }
+.element-name { font-size: 14px; line-height: 13px; color: var(--ink); }
 
-.dungeon-card { flex: 1; }
-.dungeon-list { flex: 1; min-height: 0; justify-content: space-between; }
-.dungeon { flex-direction: row; align-items: center; gap: 6px; padding: 0 6px 0 2px; border-radius: 4px; }
-.dungeon.here { background-color: #FDE68A; border: 2px solid var(--triforce-gold); }
-.dg-mark { width: 18px; height: 18px; display: stack; place-items: center; }
-.dg-check { width: 16px; height: 12px; }
-.dg-here { width: 16px; height: 16px; }
-.dg-name { font-size: 17px; line-height: 16px; color: #78350F; }
-.dungeon.cleared .dg-name { color: #15803D; }
-.dungeon.here .dg-name { color: var(--border-dark); }
+.stats { flex: 1; min-height: 0; gap: 4px; }
+.stat {
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px 0 4px;
+}
+.stat-icon { width: 22px; height: 22px; }
+.stat-val { flex-shrink: 0; font-size: 11px; line-height: 13px; color: var(--navy); }
 
-.side-panel .panel-inner { padding: 24px 10px 10px 10px; }
-.side-list { flex: 1; min-height: 0; overflow: auto; gap: 6px; }
+.side-caption { flex-shrink: 0; font-size: 17px; line-height: 16px; letter-spacing: 1px; color: var(--ink); }
+.side-list { flex: 1; min-height: 0; overflow: auto; gap: 4px; }
 .side {
   flex-direction: row;
   align-items: center;
   flex-shrink: 0;
+  height: 30px;
   gap: 6px;
-  padding: 3px 6px 3px 4px;
+  padding: 0 6px 0 4px;
   min-width: 0;
-  background-color: var(--parchment-bg);
-  border: 2px solid var(--parchment-edge);
+  background-color: #E4E4E8; background-image: url("assets/ui/tex-side.png"); background-size: 48px 48px;
   border-radius: 4px;
 }
-.side.done { background-color: var(--parchment-dark); opacity: 0.7; }
-.side-icon { width: 24px; height: 24px; flex-shrink: 0; }
-.side-name { flex: 1; min-width: 0; font-size: 18px; line-height: 17px; color: var(--border-dark); text-overflow: ellipsis; }
-.side-done { font-size: 14px; line-height: 13px; color: #15803D; }
-.stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
-.stat {
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding: 3px 8px 3px 4px;
-  background-color: rgba(24, 24, 27, 0.35);
-  border: 2px solid var(--border-dark);
-  border-radius: 6px;
-}
-.stat-icon { width: 20px; height: 20px; }
-.stat-val { flex-shrink: 0; font-size: 11px; line-height: 13px; }
-.stat-val { font-size: 9px; line-height: 11px; color: var(--triforce-gold); }
+.side.done { opacity: 0.6; }
+.side-icon { width: 22px; height: 22px; flex-shrink: 0; }
+.side-name { flex: 1; min-width: 0; font-size: 17px; line-height: 15px; color: var(--ink); text-overflow: ellipsis; }
+.side-done { font-size: 13px; line-height: 12px; color: #15803D; }
 
-/* ---- command dock: steel-framed wooden planks -------------------------------------------- */
-
-.dock {
-  position: relative;
-  flex-shrink: 0;
-  gap: 4px;
-  padding: 8px;
-  background-color: var(--wood-dark);
-  background-image: url("assets/ui/wood.png");
-  background-size: 16px 16px;
-  border: 3px solid var(--wood-edge);
-  border-radius: 8px;
-}
-.dock-leaves { position: absolute; top: -22px; width: 45px; height: 36px; }
-.dock-leaves-l { left: -10px; }
-.dock-leaves-r { right: -10px; }
-.tabs { flex-direction: row; gap: 8px; }
-.tab {
-  flex: 1;
-  height: 50px;
-  position: relative;
-  padding: 4px;
-  gap: 0;
-  align-items: stretch;
-  background-color: var(--steel);
-  background-image: linear-gradient(180deg, #D5DAE0 0%, #A3AAB3 50%, #6B7280 100%);
-  border: 2px solid var(--border-dark);
-  border-radius: 6px;
-  box-shadow: 2px 2px 0 #0F0A05;
-  transition: transform 60ms linear;
-}
-.tab:pressed { transform: translate(1px, 1px); box-shadow: 1px 1px 0 #0F0A05; opacity: 1; }
-.tab-plank {
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-  background-color: #6B4226;
-  background-image: url("assets/ui/wood.png");
-  background-size: 16px 16px;
-  border: 2px solid var(--wood-edge);
-  border-radius: 3px;
-}
-.tab-label { font-size: 21px; line-height: 19px; color: var(--cream); text-shadow: 2px 2px 0 #18181B; }
-.tab.on { background-image: linear-gradient(180deg, #FDE68A 0%, #EAB308 50%, #A16207 100%); box-shadow: 0 0 8px #FDE047; }
-.tab.on .tab-plank { background-color: #8A5A2B; }
-.tab.on .tab-label { color: #FDE68A; }
-.bolt { position: absolute; width: 7px; height: 7px; }
-.bolt-tl { left: 1px; top: 1px; }
-.bolt-tr { right: 1px; top: 1px; }
-.bolt-bl { left: 1px; bottom: 1px; }
-.bolt-br { right: 1px; bottom: 1px; }
-.tab-alert { position: absolute; top: -12px; right: 6px; width: 22px; height: 22px; }
-
-/* ---- waiting (boot) ---------------------------------------------------------------------- */
+/* ---- waiting (boot) ------------------------------------------------------------------ */
 
 .waiting { flex: 1 1 auto; align-items: center; justify-content: center; }
 .boot {
@@ -671,58 +625,52 @@ text { white-space: nowrap; }
   background-color: var(--parchment-bg);
   background-image: url("assets/ui/parchment.png");
   background-size: 16px 16px;
-  border: 4px solid #B4632D;
-  border-radius: 10px;
-  box-shadow: 5px 5px 0 #0F2A1D;
+  border: 4px solid var(--edge);
+  border-radius: 2px;
+  box-shadow: 5px 5px 0 #18181B;
 }
 /* The title screen's logo from the ROM (176 x 89) at 3 device px per pixel */
 .boot-emblem { width: 228.94px; height: 115.77px; }
-.boot-title { font-size: 28px; line-height: 28px; color: var(--triforce-gold); }
-.boot-pill { padding: 3px 12px; background-color: var(--wood-dark); border: 2px solid var(--border-dark); border-radius: 6px; }
-.boot-pill-text { font-size: 16px; line-height: 16px; color: var(--triforce-gold); }
+.boot-title { font-size: 28px; line-height: 28px; color: var(--navy); }
+.boot-pill { padding: 3px 12px; background-color: var(--cyan); background-image: url("assets/ui/tex-cyan.png"); background-size: 48px 48px; border: 2px solid var(--edge); }
+.boot-pill-text { font-size: 16px; line-height: 16px; color: #FFFFFF; }
 
-/* ---- empty lists ------------------------------------------------------------------------ */
+/* ---- empty lists --------------------------------------------------------------------- */
 
 .piece-grid empty,
 .side-list empty {
   align-self: center;
-  font-size: 18px;
-  line-height: 17px;
+  font-size: 17px;
+  line-height: 16px;
   letter-spacing: 1px;
+  color: #3F3F4E;
 }
-.piece-grid empty { color: #A16207; grid-column: span 2; justify-self: center; align-self: center; }
-.side-list empty { color: var(--parchment-dark); padding-top: 12px; }
+.piece-grid empty { grid-column: span 2; justify-self: center; align-self: center; }
 
-/* ---- options page ----------------------------------------------------------------------- */
+/* ---- options page -------------------------------------------------------------------- */
 
-.options-panel .panel-inner { padding: 28px 8px 10px 12px; }
 /* the rows scroll when they don't fit */
-.opt-list { flex: 1; min-height: 0; overflow: auto; gap: 10px; padding-right: 4px; }
+.p-options { flex: 1; }
+.opt-list { flex: 1; min-height: 0; overflow: auto; gap: 8px; }
 .opt {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   flex-shrink: 0;
-  gap: 10px;
-  padding: 10px 12px;
-  background-color: rgba(24, 24, 27, 0.35);
-  border: 2px solid var(--border-dark);
-  border-radius: 6px;
+  gap: 8px;
+  padding: 7px 8px;
 }
-.opt:pressed { background-color: rgba(24, 24, 27, 0.6); }
 .opt-text { flex: 1; min-width: 0; gap: 2px; }
-.opt-title { font-size: 22px; line-height: 20px; color: var(--cream); text-shadow: 2px 2px 0 #18181B; }
-.opt-desc { white-space: normal; font-size: 16px; line-height: 15px; color: var(--parchment-dark); }
+.opt-title { font-size: 20px; line-height: 18px; color: var(--ink); }
+.opt-desc { white-space: normal; font-size: 15px; line-height: 13px; color: #3F3F4E; }
+/* like the menu's SAVE button: white, cyan outline and lettering */
 .opt-pill {
-  min-width: 78px;
+  min-width: 66px;
   align-items: center;
-  padding: 5px 8px;
-  background-color: var(--wood-dark);
-  border: 3px solid var(--border-dark);
-  border-radius: 6px;
-  box-shadow: 2px 2px 0 #18181B;
+  padding: 5px 6px;
+  background-color: #EDEDEF; background-image: url("assets/ui/tex-pale.png"); background-size: 48px 48px;
+  border: 3px solid var(--cyan);
 }
-.opt-pill.on { background-color: #15803D; border-color: #14532D; }
-.opt-state { font-size: 12px; line-height: 14px; color: var(--cream); }
+.opt-pill.on { background-color: var(--cyan); background-image: url("assets/ui/tex-cyan.png"); background-size: 48px 48px; }
+.opt-state { font-size: 10px; line-height: 12px; color: #2F9DBB; }
 .opt-pill.on .opt-state { color: #FFFFFF; }
-.opt-note { font-size: 15px; line-height: 14px; color: var(--parchment-edge); text-align: center; }

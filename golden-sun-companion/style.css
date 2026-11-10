@@ -5,7 +5,6 @@
    selection bar, blue #0000F4 title tab, white pixel text on a black shadow.
    Screen is ~538x468dp landscape. */
 @font-face { font-family: "Jersey"; src: url("assets/fonts/Jersey10-Regular.ttf"); }
-@font-face { font-family: "Silk"; src: url("assets/fonts/Silkscreen-Bold.ttf"); font-weight: 700; }
 
 :root {
   --ground: #000000;
@@ -35,10 +34,10 @@ text { font-family: "Jersey"; color: #FFFFFF; text-shadow: 1px 1px 0 #000000; wh
 
 /* ---- Window (the game's framed blue panel) ---- */
 .panel, .hero, .boot, .nav {
-  background: linear-gradient(180deg, #1D4951 0%, #296188 22%, #296188 78%, #3A82B8 100%);
+  background: #296188;
   border: 3px solid #FFFFFF;
-  border-radius: 3px;
-  box-shadow: 0 2px 0 #525252;
+  border-radius: 0;
+  box-shadow: 0 3px 0 #525252;
 }
 
 /* ---- Waiting (boot window) ---- */
@@ -47,14 +46,14 @@ text { font-family: "Jersey"; color: #FFFFFF; text-shadow: 1px 1px 0 #000000; wh
 .boot-band { height: 0; }
 .boot-body { align-items: center; gap: 8px; padding: 22px 16px; }
 .boot-title { color: #FFFFFF; font-size: 40px; letter-spacing: 3px; text-shadow: 2px 2px 0 #000000; }
-.boot-sub { font-family: "Silk"; font-weight: 700; color: #F8D060; font-size: 13px; letter-spacing: 4px; }
+.boot-sub { color: #F8D060; font-size: 22px; letter-spacing: 3px; }
 .boot-dots { flex-direction: row; gap: 12px; padding: 4px 0; }
-.boot-dot { width: 14px; height: 14px; border-radius: 7px; border: 2px solid #FFFFFF; }
+.boot-dot { width: 14px; height: 14px; border-radius: 0; border: 2px solid #FFFFFF; }
 .boot-dot.venus { background: #C98B3C; }
 .boot-dot.mercury { background: #4AA3E0; }
 .boot-dot.mars { background: #E5584B; }
 .boot-dot.jupiter { background: #B58CE0; }
-.boot-pill { padding: 3px 12px; border-radius: 0; background: linear-gradient(180deg, #AD86A3 0%, #DC9FBC 100%); }
+.boot-pill { padding: 3px 12px; border-radius: 0; background: #C894B2; }
 .boot-pill-text { font-size: 20px; color: #FFFFFF; letter-spacing: 1px; }
 
 /* ---- Frame ---- */
@@ -66,14 +65,14 @@ text { font-family: "Jersey"; color: #FFFFFF; text-shadow: 1px 1px 0 #000000; wh
 
 /* The blue title tab, like "Continue" */
 .panel-title { align-self: flex-start; margin: -10px 0 4px 6px; padding: 0 5px;
-               font-family: "Silk"; font-weight: 700; font-size: 10px; letter-spacing: 0; color: #FFFFFF;
-               background: linear-gradient(180deg, #5FE0F0 0%, #0000F4 45%, #0000F4 100%);
-               border: 2px solid #FFFFFF; border-radius: 3px; }
+               font-size: 20px; line-height: 20px; letter-spacing: 1px; color: #FFFFFF;
+               background: #0000F4;
+               border: 2px solid #FFFFFF; border-radius: 0; }
 
 /* ---- Hero window: name, level, gauges, party chips ---- */
 .hero { flex-direction: row; align-items: center; gap: 12px; padding: 8px 12px; }
 .hero.slim { padding: 12px 14px; }
-.portrait { width: 64px; height: 64px; background: #1D4951; border: 3px solid #A5A5A5; border-radius: 2px;
+.portrait { width: 64px; height: 64px; background: #1D4951; border: 3px solid #A5A5A5; border-radius: 0;
             align-items: center; justify-content: center; }
 .portrait-img { width: 58px; height: 58px; image-rendering: pixelated; }
 .portrait-letter { font-size: 52px; color: var(--c, #F8D060); text-shadow: 2px 2px 0 #000000; }
@@ -96,8 +95,8 @@ bar.pp > fill { background: #6FC3FF; }
 /* roster: one card per party member down the left, the selected one in pink */
 .party-page { flex-direction: row; gap: 8px; }
 .roster { width: 118px; gap: 6px; padding: 8px 6px; }
-.rcard { padding: 6px 8px; gap: 2px; border: 2px solid #1D4951; border-radius: 2px; background: #1D4951; }
-.rcard.on { border-color: #FFFFFF; background: linear-gradient(180deg, #AD86A3 0%, #BD8EAB 50%, #DC9FBC 100%); }
+.rcard { padding: 6px 8px; gap: 2px; border: 2px solid #1D4951; border-radius: 0; background: #1D4951; }
+.rcard.on { border-color: #FFFFFF; background: #C894B2; }
 .rcard.down { opacity: .55; }
 .rcard-top { flex-direction: row; align-items: center; justify-content: space-between; }
 .rcard-name { font-size: 26px; color: #A9D2EE; }
@@ -122,20 +121,20 @@ bar.mini { height: 6px; }
 
 .elem-row { flex-direction: row; align-items: center; gap: 8px; padding: 6px 12px;
             border-top: 1px solid #3A82B8; border-bottom: 1px solid #1D4951; }
-.elem-dot { width: 14px; height: 14px; border-radius: 7px; background: var(--c, #8A9BB2); border: 2px solid #FFFFFF; }
+.elem-dot { width: 14px; height: 14px; border-radius: 0; background: var(--c, #8A9BB2); border: 2px solid #FFFFFF; }
 .elem-pow { font-size: 26px; color: #FFFFFF; }
 
 .inventory { flex: 1; min-height: 0; }
 .item-list { flex: 1; min-height: 0; overflow: auto; }
 .item-row { flex-shrink: 0; flex-direction: row; align-items: center; gap: 10px; padding: 3px 12px;
             border-top: 1px solid #3A82B8; border-bottom: 1px solid #1D4951; }
-.item-row.sel { background: linear-gradient(180deg, #AD86A3 0%, #BD8EAB 50%, #DC9FBC 100%); border-top-color: #DC9FBC; border-bottom-color: #AD86A3; }
+.item-row.sel { background: #C894B2; border-top-color: #DC9FBC; border-bottom-color: #AD86A3; }
 .item-row.broken { opacity: .5; }
 .item-row.noicon image.item-icon { visibility: hidden; }
 image.item-icon { width: 32px; height: 32px; flex-shrink: 0; image-rendering: pixelated; }
 .item-name { flex: 1; font-size: 24px; color: #FFFFFF; }
 .item-qty { font-size: 22px; color: #A9D2EE; }
-.item-eq { font-family: "Silk"; font-weight: 700; font-size: 10px; color: #F8D060; }
+.item-eq { font-size: 20px; color: #F8D060; }
 list > empty { font-size: 22px; color: #A9D2EE; padding: 8px 12px; }
 
 .inspector { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 6px; padding: 4px 12px; }
@@ -144,25 +143,33 @@ list > empty { font-size: 22px; color: #A9D2EE; padding: 8px 12px; }
 .cell-val { font-size: 21px; color: #FFFFFF; }
 
 /* ---- Djinn ---- */
+.djinn-head { padding: 8px 14px; }
 .djinn-cols { flex: 1; flex-direction: row; gap: 8px; }
 .djinn-col { flex: 1; padding-bottom: 6px; }
-.djinn-title { font-family: "Silk"; font-weight: 700; font-size: 10px; letter-spacing: 0; color: #FFFFFF;
-               align-self: flex-start; margin: -10px 0 4px 6px; padding: 0 5px;
-               background: linear-gradient(180deg, #5FE0F0 0%, #0000F4 45%, #0000F4 100%);
-               border: 2px solid #FFFFFF; border-radius: 3px; }
-.djinn-row { flex-direction: row; align-items: center; gap: 6px; padding: 3px 8px;
+.djinn-top { flex-direction: row; align-items: center; margin: -10px 6px 4px 6px; }
+.djinn-title { align-self: flex-start; margin: 0; padding: 0 6px; font-size: 20px; line-height: 20px; letter-spacing: 1px; color: #FFFFFF;
+               background: #0000F4; border: 2px solid #FFFFFF; border-radius: 0; }
+.djinn-row { flex-direction: row; align-items: center; gap: 6px; padding: 4px 8px;
              border-top: 1px solid #3A82B8; border-bottom: 1px solid #1D4951; }
 .djinn-row.locked { opacity: .45; }
-.djinn-dot { width: 12px; height: 12px; border-radius: 6px; background: var(--c, #8A9BB2); border: 2px solid #FFFFFF; }
-.djinn-name { flex: 1; min-width: 0; font-size: 21px; color: #FFFFFF; }
-.djinn-tag { font-family: "Silk"; font-weight: 700; font-size: 9px; color: #A9D2EE; flex-shrink: 0; }
+.djinn-dot { width: 12px; height: 12px; border-radius: 0; background: var(--c, #8A9BB2); border: 2px solid #FFFFFF; }
+.djinn-name { flex: 1; min-width: 0; font-size: 24px; color: #FFFFFF; }
+.djinn-tag { font-size: 20px; color: #A9D2EE; flex-shrink: 0; }
 .djinn-row.standby .djinn-tag { color: #F8D060; }
 .djinn-row.standby .djinn-name { color: #A9D2EE; }
+.djinn-foot { gap: 4px; padding: 6px 8px 0 8px; }
+.foot-row { flex-direction: row; gap: 4px; }
+.foot-cell.found .foot-val { color: #FFFFFF; }
+.foot-cell { flex: 1; min-width: 0; flex-direction: row; align-items: center; justify-content: space-between; gap: 2px; padding: 3px 4px; background: #1D4951; border: 2px solid #A5A5A5; }
+.foot-key { font-size: 16px; line-height: 18px; color: #A9D2EE; }
+.foot-val { font-size: 24px; line-height: 24px; color: #FFFFFF; }
+.foot-cell.standby { border-color: #F8D060; }
+.foot-cell.standby .foot-val { color: #F8D060; }
 
 /* ---- Navigation: the pink bar marks the open page ---- */
 .nav { position: absolute; left: 8px; right: 8px; bottom: 8px; height: 44px; flex-direction: row; padding: 3px; gap: 3px; }
-.nav-btn { flex: 1; align-items: center; justify-content: center; border-radius: 2px; }
-.nav-btn.on { background: linear-gradient(180deg, #AD86A3 0%, #BD8EAB 50%, #DC9FBC 100%); }
+.nav-btn { flex: 1; align-items: center; justify-content: center; border-radius: 0; }
+.nav-btn.on { background: #C894B2; }
 .nav-btn:pressed { background: #1D4951; }
 .nav-text { font-size: 24px; color: #A9D2EE; }
 .nav-btn.on > .nav-text { color: #FFFFFF; }
@@ -173,7 +180,7 @@ list > empty { font-size: 22px; color: #A9D2EE; padding: 8px 12px; }
 .map-stage { flex: 1; min-height: 0; width: 100%; align-items: center; justify-content: center; background: #0B1F26; border: 2px solid #1D4951; }
 .map-frame { height: 100%; position: relative; }
 .map-img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
-.map-me { position: absolute; width: 14px; height: 14px; margin-left: -10px; margin-top: -10px; border-radius: 10px;
+.map-me { position: absolute; width: 14px; height: 14px; margin-left: -10px; margin-top: -10px; border-radius: 0;
   background: #F8D060; border: 3px solid #FFFFFF; box-shadow: 0 2px 0 #000000; z-index: 2; }
 .map-off { font-size: 26px; color: #A9D2EE; }
 
@@ -185,7 +192,7 @@ list > empty { font-size: 22px; color: #A9D2EE; padding: 8px 12px; }
 .opt-text { flex: 1; min-width: 0; gap: 2px; }
 .opt-title { font-size: 28px; color: #FFFFFF; }
 .opt-desc { white-space: normal; font-size: 19px; line-height: 18px; color: #A9D2EE; }
-.opt-pill { min-width: 74px; align-items: center; padding: 4px 10px; border: 2px solid #1D4951; border-radius: 2px; background: #1D4951; }
-.opt-pill.on { border-color: #FFFFFF; background: linear-gradient(180deg, #AD86A3 0%, #BD8EAB 50%, #DC9FBC 100%); }
-.opt-state { font-family: "Silk"; font-weight: 700; font-size: 12px; color: #A9D2EE; }
+.opt-pill { min-width: 74px; align-items: center; padding: 4px 10px; border: 2px solid #1D4951; border-radius: 0; background: #1D4951; }
+.opt-pill.on { border-color: #FFFFFF; background: #C894B2; }
+.opt-state { font-size: 22px; color: #A9D2EE; }
 .opt-pill.on .opt-state { color: #FFFFFF; }

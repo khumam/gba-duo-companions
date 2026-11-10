@@ -85,6 +85,8 @@ text { white-space: nowrap; }
 .tab-l { left: 3ap; background-image: url("assets/ui/tab-l.png"); }
 .tab-r { right: 3ap; background-image: url("assets/ui/tab-r.png"); }
 .tab:pressed { top: 3ap; }
+.navbar .tab { top: 5ap; }
+.navbar .tab:pressed { top: 6ap; }
 .key {
   position: absolute;
   top: 3ap;
@@ -350,3 +352,17 @@ bar {
 }
 .boot-title { color: var(--tan); font-size: 16ap; text-shadow: 1ap 1ap 0 #8d5f9e; }
 .boot-sub { font-family: "Jersey"; font-size: 11ap; color: var(--mint-lt); }
+
+/* ---- bottom nav: the L / R tabs and the page's name -------------------------------------------- */
+
+.navbar {
+  position: relative;
+  flex-shrink: 0;
+  height: 25ap;
+  background-image: url("assets/ui/navbar.png");
+  background-size: 248ap 25ap;
+  background-repeat: no-repeat;
+}
+.navbar .key { top: 4ap; }
+.navbar .tab-name { top: 4ap; }
+.nav-mid { top: 4ap; }

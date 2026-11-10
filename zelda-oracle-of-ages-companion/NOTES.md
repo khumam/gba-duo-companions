@@ -1,5 +1,22 @@
 # Zelda: Oracle of Ages companion — build notes
 
+## Brick redesign on the Minish Cap frame (not versioned yet, not checked on a device)
+
+- **Frame:** two brick pillars and a brick-rimmed window with the pause screen's off-white panel. Everything else lives on the
+  pillars: rupees and the B item on the left, hearts and the A item on the right, and under A and B one upright brick slab per
+  page (three on the left, two on the right with an ERA plate below), so all five pages are one tap away and the window takes
+  the full height (this is what sets it apart from the Minish Cap pack, which has a bottom nav). The label is turned 90 degrees.
+  The game's own HUD strip is gone. Art: `python3 art/brick_ui.py` (reuses the Minish Cap pack's `art/stone_ui.py` helpers, so
+  that pack's folder must sit next to this one). Layout: `node art/layout.mjs`.
+- **Icons:** the item and seed icons sat in the left half (or top-left corner) of their 16 x 16 frames, off-centre in any slot;
+  `python3 art/center-icons.py` moves them to the middle. Icons are shown at whole device-pixel steps (27.75, 34.69, 55.5dp).
+- **Status page:** the era moved to the ERA plate, so the third fact is EXPLORED (rooms seen in this era, of 196). The eight essences now carry names (Eternal Spirit, Ancient Wood, Echoing Howl, Burning Flame, Sacred Soil,
+  Lonely Peak, Rolling Sea, Falling Star). The bit order is assumed to be the dungeon order; unverified on a save.
+- **Fonts:** Jersey 10 for labels, Press Start 2P for numbers; Silkscreen is gone.
+- **Previews:** `lua art/make_preview_data.lua [page [out.json]]` runs `update()` on fake RAM for `preview-pack.sh --data`.
+- **Not done:** drag and drop for A / B (needs the memory-write permission and an `equip` action), dungeon keys and maps,
+  ring names on tap. The original look is in `art/backup-before-brick-redesign.tar.gz`.
+
 Sources: the [oracles-disasm](https://github.com/Stewmath/oracles-disasm) project's `include/wram.s`
 (each Ages address is the first of the two it lists; the second is Seasons) and
 `constants/common/{treasure,rings}.s` for item and ring ids.

@@ -196,7 +196,7 @@ local function readDjinn()
   end
   local cols, total = {}, 0
   for e, col in ipairs(djinn_names) do
-    local list = {}
+    local list, found, setN, standbyN = {}, 0, 0, 0
     for i, d in ipairs(col.djinn) do
       local bit = 1 << (i - 1)
       local owner, inSet
@@ -207,10 +207,15 @@ local function readDjinn()
           break
         end
       end
-      if owner then total = total + 1 end
+      if owner then
+        total = total + 1
+        found = found + 1
+        if inSet then setN = setN + 1 else standbyN = standbyN + 1 end
+      end
       list[i] = { name = d.name, locked = owner == nil, standby = owner ~= nil and not inSet, holder = owner or "" }
     end
-    cols[e] = { element = col.element, color = col.color, djinn = list }
+    cols[e] = { element = col.element, color = col.color, djinn = list,
+      count = found .. "/" .. #col.djinn, setN = tostring(setN), standbyN = tostring(standbyN) }
   end
   return cols, total
 end

@@ -66,3 +66,11 @@ The decomp's `database.json` has US/EU/JP ROM offsets for every data blob; funct
 - Preview needs images the app draws at runtime: copy sample PNGs into `assets/_preview/` for the run
   (map: `asset:_preview/map.png`; waiting: `art/preview-waiting.json`), delete them after; they must
   not ship.
+
+## Bottom nav (not versioned yet, previewed only)
+
+The L / R tabs moved from the top bar to a steel bar at the bottom (`navbar`, art `assets/ui/navbar.png` = the top bar turned
+upside down), with the page's own name between them; the top bar now only names the sector. The message strip it replaced
+is gone (its text repeated what the page shows); the Log page already shows its counts.
+Not done: an item / tank tracker per sector, a whole-sector map with item markers, door levels per room. They need
+per-room item data (not in the decompilation as a table) and late-game saves to check against.

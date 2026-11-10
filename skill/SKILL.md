@@ -36,6 +36,7 @@ agree. Generic "dark dashboard" packs read as foreign next to the game.
 | `docs/*.md` | A copy of the public GBA Duo docs, bundled in this skill: `first-pack`, `layout`, `styling`, `pages`, `lua`, `game-script`, `wide-view`, `settings`, `install`, `games`, `import-packs`, `index`. The full engine reference; read the one matching the feature, don't load all |
 | `theme-forest.css`, `art-kit-forest.mjs` | The ornate fantasy-forest design system (parchment/gold/moss, SVG→PNG art kit) |
 | `preview-pack.sh`, `PreviewRender.kt` | Render every page with the app's real engine on this Mac (no device), then analyse the PNGs |
+| `overview-sheet.py` | Tile a pack's screenshots into one labelled overview PNG (how to make it: "Overview sheet" below) |
 
 Engine details (selectors, properties, units, script limits) are in `docs/` (a bundled copy of the public docs; see
 `docs-site-and-simulator.md` for the page map) and in the GBA Duo app repo's
@@ -100,6 +101,28 @@ Rules for a faithful preview:
 - Fonts and `asset:` images come from the pack folder, so this also catches 404ing `@font-face`
   paths and a wrong `src`.
 - Keep `preview/` out of the release zip (`-x 'preview/*'`).
+
+### Overview sheet (all pages on one image)
+
+For a review, give the person one sheet per pack instead of a pile of PNGs: every page as a labelled tile in a
+grid, 3 across, page name above each tile. `skill/overview-sheet.py` makes it.
+
+1. Render the pages you want. `--pages` takes the page names from the layout (`pages` widget), and the nav
+   auto-detect can miss, so list them. Render `--no-tall` unless you need the tall shots:
+   `skill/preview-pack.sh <pack> --out /tmp/<pack> --no-tall --pages map,party,detail,bag,dex,battle`
+2. Copy the PNGs into one folder named after the page, dropping `screen-`, skipping the numbered ones the kit
+   writes for the pager (`screen-0.png` ...): `screen-dex.png` becomes `shots/dex.png`.
+3. A state the kit can't reach by navigation (a typed search, a hint bubble, a popup) is a second render with a
+   copy of the data file: put the state in the data (the entries that match, `searching: true`) and set the UI keys
+   with `"ui": {"set": {"dexQuery": "mu"}}`, then `--data <that file> --pages dex` and save it as `dex-search.png`.
+   Note `ui` in a data file must be the `{"set": {...}}` form, or the page renders empty.
+4. `python3 skill/overview-sheet.py shots --out shots-overview.png`. Options: `--order a,b,c` (tile order,
+   default map, party, detail, bag, dex, dex-search, trainer, options, battle, battle-detail; pages not listed
+   are added alphabetically), `--cols 3`, `--tile 420x366` (keep the Thor's 1240:1080 ratio).
+
+Read the sheet before handing it over: a blank tile means the data file lacks what that page binds, not that the
+pack is broken (this caught an empty Summary page once). When removing the scratch renders, guard the variables
+(`rm -rf "${S:?}/${p:?}"`): Claude Code blocks an `rm -rf $VAR` that could expand to `/`.
 
 ### Analysing the render (checklist)
 

@@ -32,7 +32,7 @@ const tail = [
 ];
 const header = (title, active, cls = "") =>
   box(`hdr ${cls}`.trim(), [
-    box("hdr-title", [
+    box("hdr-title", [img("hdr-emblem", ui("px-emblem")),
       text("hdr-name", title),
       ...(active >= 0 ? [box("hdr-dots", RING.map((_, i) => box(`dot${i === active ? " on" : ""}`, [])))] : []),
     ]),
@@ -217,6 +217,19 @@ const partyPage = box("content", [
   ], [chip("{partyCount} MON", "chip-blue")]),
 ]);
 
+// A search box with a clear button; what is typed lands in ui.<state> (main.lua reads it).
+const searchRow = (state, placeholder) =>
+  box("search-row", [
+    { type: "input", class: "search-input", state, placeholder, maxLength: 14 },
+    {
+      type: "button",
+      class: "search-clear",
+      onClick: { set: { [state]: "" } },
+      visibleIf: `$ui.${state}`,
+      children: [text("search-clear-x", "X")],
+    },
+  ]);
+
 const pocket = (title, path) => ({
   title,
   child: {
@@ -266,8 +279,10 @@ const dexStat = box("dstat dex-srow", [
 ]);
 const dexPage = box("content dex-cols", [
   panel("dex-list-panel", "POKéDEX", [
-    box("pager", [pager(-1, "<"), box("pager-mid", [text("pager-text", "{dex.range}"), text("pager-sub", "PAGE {dex.page}")]), pager(1, ">")]),
-    { type: "list", class: "dex-list", items: "$dex.entries", template: dexRow },
+    searchRow("dexQuery", "NAME OR No."),
+    box("pager", [pager(-1, "<"), box("pager-mid", [text("pager-text", "{dex.range}"), text("pager-sub", "PAGE {dex.page}")]), pager(1, ">")], { visibleIf: "$dex.notSearching" }),
+    box("pager-found", [text("pager-found-text", "{dex.found}")], { visibleIf: "$dex.searching" }),
+    { type: "list", class: "dex-list", items: "$dex.entries", empty: "NO MATCH", template: dexRow },
   ], [chip("{dex.caught} OWN", "chip-yellow")]),
   panel("dex-entry-panel", "ENTRY", [
     box("dex-hero", [
@@ -353,22 +368,37 @@ const tileBtn = (cls, label, sub, idx, on) => ({
   onClick: [{ call: "setAction", args: [idx] }],
   children: [text("tile-label", label), text("tile-sub", sub)],
 });
-// The two Pokemon, FIGHT (opens the move menu in the game) and BAG / POKéMON / RUN: tapping one presses it
-// in the game; the cards open the full Pokemon pages.
+// A move at a glance: type, name, how well it hits the foe, PP. The best one is starred. Tapping one presses FIGHT in
+// the game (the moves page opens by itself once the move menu is up).
+const moveChip = box(
+  "mchip",
+  [
+    img("type-img", "$type", { visibleIf: "$has" }),
+    box("mchip-main", [text("mchip-name", "{name}"), text("num mchip-pp", "PP {pp}")]),
+    box("eff", [text("eff-text", "{eff}")], { classIf: { se: "$se", nve: "$nve", imm: "$imm" }, visibleIf: "$has" }),
+  ],
+  { classIf: { se: "$se", nve: "$nve", imm: "$imm", best: "$best" }, visibleIf: "$has", onClick: [{ call: "setAction", args: [0] }] },
+);
+// The two Pokemon, their moves, and the four menu buttons: tapping one presses it in the game; the cards open the
+// full Pokemon pages.
 const battlePage = box("content battle-content", [
   box("battle-main", [
     box("combatants", [
       box("combatant", [bigCard("battle.you.", openFrom("battle.youMon."))]),
       box("combatant", [bigCard("battle.foe.", openFrom("battle.foeMon."))]),
     ]),
-    {
-      type: "button",
-      class: "fight-btn",
-      classIf: { on: "$battle.actFight" },
-      onClick: [{ call: "setAction", args: [0] }],
-      children: [text("fight-label", "FIGHT"), text("fight-sub", "{battle.best}")],
-    },
+    box("moves-preview", [
+      text("moves-title", "YOUR MOVES"),
+      { type: "list", class: "mchips", items: "$battle.moves", template: moveChip },
+    ]),
     box("tiles", [
+      {
+        type: "button",
+        class: "tile t-fight",
+        classIf: { on: "$battle.actFight" },
+        onClick: [{ call: "setAction", args: [0] }],
+        children: [text("tile-label", "FIGHT"), text("tile-sub", "{battle.bestName}")],
+      },
       tileBtn("t-bag", "BAG", "{battle.bagText}", 1, "$battle.actBag"),
       tileBtn("t-mon", "POKéMON", "{partyCount} IN TEAM", 2, "$battle.actMon"),
       tileBtn("t-run", "RUN", "{battle.runText}", 3, "$battle.actRun"),

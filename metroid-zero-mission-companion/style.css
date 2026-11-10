@@ -85,6 +85,8 @@ text { white-space: nowrap; }
 .tab-l { left: 6.504px; background-image: url("assets/ui/tab-l.png"); }
 .tab-r { right: 6.504px; background-image: url("assets/ui/tab-r.png"); }
 .tab:pressed { top: 6.504px; }
+.navbar .tab { top: 10.84px; }
+.navbar .tab:pressed { top: 13.008px; }
 .key {
   position: absolute;
   top: 6.504px;
@@ -350,3 +352,17 @@ bar {
 }
 .boot-title { color: var(--tan); font-size: 34.688px; text-shadow: 2.168px 2.168px 0 #8d5f9e; }
 .boot-sub { font-family: "Jersey"; font-size: 23.848px; color: var(--mint-lt); }
+
+/* ---- bottom nav: the L / R tabs and the page's name -------------------------------------------- */
+
+.navbar {
+  position: relative;
+  flex-shrink: 0;
+  height: 54.2px;
+  background-image: url("assets/ui/navbar.png");
+  background-size: 537.664px 54.2px;
+  background-repeat: no-repeat;
+}
+.navbar .key { top: 8.672px; }
+.navbar .tab-name { top: 8.672px; }
+.nav-mid { top: 8.672px; }

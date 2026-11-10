@@ -84,27 +84,6 @@
                     "class": "topbar",
                     "children": [
                       {
-                        "type": "button",
-                        "class": "tab tab-l",
-                        "onClick": [
-                          {
-                            "navigate": "mission"
-                          }
-                        ],
-                        "children": [
-                          {
-                            "type": "text",
-                            "class": "key key-l",
-                            "text": "L"
-                          },
-                          {
-                            "type": "text",
-                            "class": "tab-name",
-                            "text": "MISSION"
-                          }
-                        ]
-                      },
-                      {
                         "type": "box",
                         "class": "plate",
                         "children": [
@@ -112,27 +91,6 @@
                             "type": "text",
                             "class": "plate-text",
                             "text": "{sector}"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "button",
-                        "class": "tab tab-r",
-                        "onClick": [
-                          {
-                            "navigate": "status"
-                          }
-                        ],
-                        "children": [
-                          {
-                            "type": "text",
-                            "class": "key key-r",
-                            "text": "R"
-                          },
-                          {
-                            "type": "text",
-                            "class": "tab-name",
-                            "text": "STATUS"
                           }
                         ]
                       }
@@ -390,12 +348,60 @@
                   },
                   {
                     "type": "box",
-                    "class": "strip",
+                    "class": "navbar",
                     "children": [
                       {
-                        "type": "text",
-                        "class": "strip-text",
-                        "text": "{map.status}"
+                        "type": "button",
+                        "class": "tab tab-l",
+                        "onClick": [
+                          {
+                            "navigate": "mission"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "key key-l",
+                            "text": "L"
+                          },
+                          {
+                            "type": "text",
+                            "class": "tab-name",
+                            "text": "MISSION"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "plate nav-mid",
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "plate-text",
+                            "text": "MAP"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "tab tab-r",
+                        "onClick": [
+                          {
+                            "navigate": "status"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "key key-r",
+                            "text": "R"
+                          },
+                          {
+                            "type": "text",
+                            "class": "tab-name",
+                            "text": "STATUS"
+                          }
+                        ]
                       }
                     ]
                   }
@@ -413,27 +419,6 @@
                     "class": "topbar",
                     "children": [
                       {
-                        "type": "button",
-                        "class": "tab tab-l",
-                        "onClick": [
-                          {
-                            "navigate": "map"
-                          }
-                        ],
-                        "children": [
-                          {
-                            "type": "text",
-                            "class": "key key-l",
-                            "text": "L"
-                          },
-                          {
-                            "type": "text",
-                            "class": "tab-name",
-                            "text": "MAP"
-                          }
-                        ]
-                      },
-                      {
                         "type": "box",
                         "class": "plate",
                         "children": [
@@ -441,27 +426,6 @@
                             "type": "text",
                             "class": "plate-text",
                             "text": "{sector}"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "button",
-                        "class": "tab tab-r",
-                        "onClick": [
-                          {
-                            "navigate": "arms"
-                          }
-                        ],
-                        "children": [
-                          {
-                            "type": "text",
-                            "class": "key key-r",
-                            "text": "R"
-                          },
-                          {
-                            "type": "text",
-                            "class": "tab-name",
-                            "text": "ARMS"
                           }
                         ]
                       }
@@ -668,12 +632,60 @@
                   },
                   {
                     "type": "box",
-                    "class": "strip",
+                    "class": "navbar",
                     "children": [
                       {
-                        "type": "text",
-                        "class": "strip-text",
-                        "text": "{status.msg}"
+                        "type": "button",
+                        "class": "tab tab-l",
+                        "onClick": [
+                          {
+                            "navigate": "map"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "key key-l",
+                            "text": "L"
+                          },
+                          {
+                            "type": "text",
+                            "class": "tab-name",
+                            "text": "MAP"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "plate nav-mid",
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "plate-text",
+                            "text": "STATUS"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "tab tab-r",
+                        "onClick": [
+                          {
+                            "navigate": "arms"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "key key-r",
+                            "text": "R"
+                          },
+                          {
+                            "type": "text",
+                            "class": "tab-name",
+                            "text": "ARMS"
+                          }
+                        ]
                       }
                     ]
                   }
@@ -691,27 +703,6 @@
                     "class": "topbar",
                     "children": [
                       {
-                        "type": "button",
-                        "class": "tab tab-l",
-                        "onClick": [
-                          {
-                            "navigate": "status"
-                          }
-                        ],
-                        "children": [
-                          {
-                            "type": "text",
-                            "class": "key key-l",
-                            "text": "L"
-                          },
-                          {
-                            "type": "text",
-                            "class": "tab-name",
-                            "text": "STATUS"
-                          }
-                        ]
-                      },
-                      {
                         "type": "box",
                         "class": "plate",
                         "children": [
@@ -719,27 +710,6 @@
                             "type": "text",
                             "class": "plate-text",
                             "text": "{sector}"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "button",
-                        "class": "tab tab-r",
-                        "onClick": [
-                          {
-                            "navigate": "sectors"
-                          }
-                        ],
-                        "children": [
-                          {
-                            "type": "text",
-                            "class": "key key-r",
-                            "text": "R"
-                          },
-                          {
-                            "type": "text",
-                            "class": "tab-name",
-                            "text": "SECTORS"
                           }
                         ]
                       }
@@ -1184,12 +1154,60 @@
                   },
                   {
                     "type": "box",
-                    "class": "strip",
+                    "class": "navbar",
                     "children": [
                       {
-                        "type": "text",
-                        "class": "strip-text",
-                        "text": "{arms.msg}"
+                        "type": "button",
+                        "class": "tab tab-l",
+                        "onClick": [
+                          {
+                            "navigate": "status"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "key key-l",
+                            "text": "L"
+                          },
+                          {
+                            "type": "text",
+                            "class": "tab-name",
+                            "text": "STATUS"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "plate nav-mid",
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "plate-text",
+                            "text": "ARMS"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "tab tab-r",
+                        "onClick": [
+                          {
+                            "navigate": "sectors"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "key key-r",
+                            "text": "R"
+                          },
+                          {
+                            "type": "text",
+                            "class": "tab-name",
+                            "text": "SECTORS"
+                          }
+                        ]
                       }
                     ]
                   }
@@ -1207,27 +1225,6 @@
                     "class": "topbar",
                     "children": [
                       {
-                        "type": "button",
-                        "class": "tab tab-l",
-                        "onClick": [
-                          {
-                            "navigate": "arms"
-                          }
-                        ],
-                        "children": [
-                          {
-                            "type": "text",
-                            "class": "key key-l",
-                            "text": "L"
-                          },
-                          {
-                            "type": "text",
-                            "class": "tab-name",
-                            "text": "ARMS"
-                          }
-                        ]
-                      },
-                      {
                         "type": "box",
                         "class": "plate",
                         "children": [
@@ -1235,27 +1232,6 @@
                             "type": "text",
                             "class": "plate-text",
                             "text": "{sector}"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "button",
-                        "class": "tab tab-r",
-                        "onClick": [
-                          {
-                            "navigate": "mission"
-                          }
-                        ],
-                        "children": [
-                          {
-                            "type": "text",
-                            "class": "key key-r",
-                            "text": "R"
-                          },
-                          {
-                            "type": "text",
-                            "class": "tab-name",
-                            "text": "MISSION"
                           }
                         ]
                       }
@@ -1463,12 +1439,60 @@
                   },
                   {
                     "type": "box",
-                    "class": "strip",
+                    "class": "navbar",
                     "children": [
                       {
-                        "type": "text",
-                        "class": "strip-text",
-                        "text": "{sectorsMsg}"
+                        "type": "button",
+                        "class": "tab tab-l",
+                        "onClick": [
+                          {
+                            "navigate": "arms"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "key key-l",
+                            "text": "L"
+                          },
+                          {
+                            "type": "text",
+                            "class": "tab-name",
+                            "text": "ARMS"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "plate nav-mid",
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "plate-text",
+                            "text": "SECTORS"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "tab tab-r",
+                        "onClick": [
+                          {
+                            "navigate": "mission"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "key key-r",
+                            "text": "R"
+                          },
+                          {
+                            "type": "text",
+                            "class": "tab-name",
+                            "text": "MISSION"
+                          }
+                        ]
                       }
                     ]
                   }
@@ -1486,27 +1510,6 @@
                     "class": "topbar",
                     "children": [
                       {
-                        "type": "button",
-                        "class": "tab tab-l",
-                        "onClick": [
-                          {
-                            "navigate": "sectors"
-                          }
-                        ],
-                        "children": [
-                          {
-                            "type": "text",
-                            "class": "key key-l",
-                            "text": "L"
-                          },
-                          {
-                            "type": "text",
-                            "class": "tab-name",
-                            "text": "SECTORS"
-                          }
-                        ]
-                      },
-                      {
                         "type": "box",
                         "class": "plate",
                         "children": [
@@ -1514,27 +1517,6 @@
                             "type": "text",
                             "class": "plate-text",
                             "text": "{sector}"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "button",
-                        "class": "tab tab-r",
-                        "onClick": [
-                          {
-                            "navigate": "map"
-                          }
-                        ],
-                        "children": [
-                          {
-                            "type": "text",
-                            "class": "key key-r",
-                            "text": "R"
-                          },
-                          {
-                            "type": "text",
-                            "class": "tab-name",
-                            "text": "MAP"
                           }
                         ]
                       }
@@ -1807,6 +1789,11 @@
                                 "class": "progress-bar",
                                 "value": "$mission.frac",
                                 "max": 1
+                              },
+                              {
+                                "type": "text",
+                                "class": "progress-note",
+                                "text": "{mission.msg}"
                               }
                             ]
                           },
@@ -1872,12 +1859,60 @@
                   },
                   {
                     "type": "box",
-                    "class": "strip",
+                    "class": "navbar",
                     "children": [
                       {
-                        "type": "text",
-                        "class": "strip-text",
-                        "text": "{mission.msg}"
+                        "type": "button",
+                        "class": "tab tab-l",
+                        "onClick": [
+                          {
+                            "navigate": "sectors"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "key key-l",
+                            "text": "L"
+                          },
+                          {
+                            "type": "text",
+                            "class": "tab-name",
+                            "text": "SECTORS"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "plate nav-mid",
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "plate-text",
+                            "text": "MISSION"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "tab tab-r",
+                        "onClick": [
+                          {
+                            "navigate": "map"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "key key-r",
+                            "text": "R"
+                          },
+                          {
+                            "type": "text",
+                            "class": "tab-name",
+                            "text": "MAP"
+                          }
+                        ]
                       }
                     ]
                   }
