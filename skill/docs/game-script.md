@@ -71,10 +71,12 @@ table, every field an integer (bus addresses are plain numbers):
 | `undefinedId` (optional, none) | a cell with this id is outside the map: use the border |
 | `finite` (optional, 0) | `1`: the grid is the whole world, like a layered world's: near its edge the wide picture stops scrolling and the game's frame moves toward the edge, so the margins never run past the grid, and what is outside it is black, not the border (a grid smaller than the picture stays still, the empty part split evenly). `0`: the border repeats forever |
 | `overscan` (optional, 0) | with `finite` 0: `> 0` limits the repeating border to this many px beyond the defined cells. The wide picture stops scrolling there and the game's frame moves toward the edge; farther out is black. `0`: the border repeats without limit |
-| `metatiles`, `metatiles2`, `split` | ids below `split` read from `metatiles`, the rest from `metatiles2` (16 bytes each) |
+| `metatiles`, `metatiles2`, `split` | ids below `split` read from `metatiles`, the rest from `metatiles2` (16 bytes each, 24 with `metatileLayers = 3`) |
+| `metatileLayers` (optional, 2) | `3`: a metatile is 12 u16 entries (24 bytes): bottom, middle, top layer (4 tile entries each), as pokeemerald-expansion's triple-layer metatiles; the top-most layer with a pixel wins. `2`: bottom and top only |
 | `tiles` | 4bpp tile data, 32 bytes a tile (normally VRAM `0x06000000`) |
 | `palette` | 16 banks of 16 BGR555 colours (normally `0x05000000`) |
-| `markers` (optional) | up to 64 icons painted over the margins, never over the game's own frame: `{ x, y, kind }` with `x`, `y` a world pixel (same space as the world's `x`, `y`) and `kind` 1 NPC (white), 2 trainer or enemy (red), 3 item (yellow) or 4 door/warp (cyan), drawn as a diamond centred on `x`, `y`. Add `tiles`, `palette`, `w`, `h` (and optionally `hflip`) to draw a sprite instead: `tiles` and `palette` are bus addresses of 4bpp tile data in the GBA's 1D order and of 16 BGR555 colours (index 0 clear), `w` x `h` the size in pixels (multiples of 8, 8 to 64), and `x`, `y` the sprite's top-left. A sprite made of several OAM pieces is several markers. Works for single-grid and layered worlds. A bad entry or more than 64 is an error like any other bad field |
+| `bounds` (optional) | `{ x, y, w, h }`: the map is this rectangle of world pixels, whatever the grids hold. The picture stops scrolling at its edge and the frame slides toward it, as with `finite` (and it replaces the grids' own extent, which can be bigger than the map: DBZ's chunk grid has half-empty edge chunks) |
+| `markers` (optional) | up to 64 icons painted over the margins, never over the game's own frame: `{ x, y, kind }` with `x`, `y` a world pixel (same space as the world's `x`, `y`) and `kind` 1 NPC (white), 2 trainer or enemy (red), 3 item (yellow) or 4 door/warp (cyan), drawn as a diamond centred on `x`, `y`. Add `tiles`, `palette`, `w`, `h` (and optionally `hflip`) to draw a sprite instead: `tiles` and `palette` are bus addresses of 4bpp tile data in the GBA's 1D order and of 16 BGR555 colours (index 0 clear), `w` x `h` the size in pixels (multiples of 8, 8 to 64), and `x`, `y` the sprite's top-left. `bpp = 8` makes the tiles 8bpp (64 bytes a tile, same 1D order) and `palette` 256 colours (the OBJ palette is `0x05000200`; index 0 still clear), and `vflip` mirrors top to bottom. A sprite made of several OAM pieces is several markers. Works for single-grid and layered worlds. A bad entry or more than 64 is an error like any other bad field |
 
 A metatile is 8 u16 tile entries: bottom layer TL, TR, BL, BR, then top layer TL, TR, BL, BR.
 A tile entry: bits 0-9 tile, 10 h-flip, 11 v-flip, 12-15 palette bank. A pixel is the top
@@ -90,8 +92,9 @@ bottom first). Each layer has its own grid, its own metatile table and its own t
 |---|---|
 | `grid`, `stride`, `gridW`, `gridH` | cells, row-major, `stride` cells a row, `gridW` x `gridH` of them in use |
 | `cellBytes` (optional, 2) | 2 for u16 cells, 4 for u32 cells (the id is the cell's low bits, see `idMask`) |
-| `idMask` | metatile id = cell & `idMask` |
-| `special` (optional, 0) | a u16 table: a u16 cell >= `0x4000` reads its id from `special[cell - 0x4000]` |
+| `idMask` | metatile id = cell & `idMask` (then shifted, see `idShift`) |
+| `idShift` (optional, 0) | 0 to 4: the id is `(cell & idMask) >> idShift`, for maps whose cells hold a scaled id (FE6 stores metatile × 4: `idShift = 2`) |
+| `special` (optional, 0) | a u16 table: a u16 cell >= `0x4000` reads its id from `special[cell - 0x4000]`, then `idMask` and `idShift` apply |
 | `metatiles` | 4 u16 tile entries (TL, TR, BL, BR) per id, 8 bytes each |
 | `tiles` | 4bpp tile data for this layer (its BG's character base) |
 
@@ -99,10 +102,48 @@ The top layer's pixel wins unless it is colour 0, then the bottom layer's, else 
 (`palette` colour 0). Beyond the grids the margins are black. `x`, `y` are relative to the grids' origin.
 
 The app checks your answer against the game: the 16 columns on the frame's edges (and, in XL, the 16 rows
-on its top and bottom edges) are predicted and compared with what the emulator drew (a colour within about
-40 per channel counts as the same, so the game's own shadows and fades don't hide the margins). Below 85% for four frames in a row the margins hide,
+on its top and bottom edges) are predicted and compared with what the emulator drew (a colour within about 40 per channel counts as
+the same, so the game's own shadows and fades don't hide the margins). They show after four frames in a row at 80% or better and hide after four below 55% (in between nothing changes, so a crowded edge does not flicker them),
 and they come back after four good ones. So a wrong world looks like "no wide view", not like
 garbage. NPCs and the player are not part of the world, so they don't appear in the margins.
+
+### Chunked 8bpp tilemap layers (`chunks`)
+
+A game that draws its map with plain 8bpp tile entries instead of metatiles (Webfoot's Dragon Ball Z: The Legacy of Goku II) puts
+`chunks` in a layer instead of `grid` / `metatiles`. The map is a rectangle of **chunks**, each 32x32 u16 tile entries (256x256 px),
+reached through a table of u32 bus addresses, one per chunk, row-major (a 0 pointer is an empty chunk):
+
+| Layer field | Meaning |
+|---|---|
+| `chunks` | bus address of the u32 chunk pointers |
+| `chunkW`, `chunkH` | the map's size in chunks (1 to 64) |
+| `chunkCodec` (optional, 0) | `0`: a chunk is 2048 bytes of entries at its pointer, read live. `1`: Webfoot's packed chunk (u32 kind, u32 size = 2048, then the data; kind 0 raw, 1 and 2 packed with the game's own bit-stream coder). GBADuo unpacks it itself, once per chunk, and keeps the result (the chunk is read-only ROM data; the copies are dropped when a game loads) |
+| `tiles` | **8bpp** tile data, 64 bytes a tile (the background's character base) |
+| `trimBounds` (optional, 0) | `1` on the bottom layer: the map is the bounding box of its non-empty tiles (tile 0 is empty), not its chunk grid: the picture stops at that edge, and a room smaller than the picture stays centred with black around it. The box is worked out once and kept |
+| `dx`, `dy` (optional, 0) | the layer's pixel is the world pixel plus (`dx`, `dy`): layers of a game that scroll them against each other, or sit at an offset |
+
+A tile entry is bits 0-9 tile, 10 h-flip, 11 v-flip (no palette banks: the colour is `palette[index]` of the world's 256-colour
+`palette`, index 0 clear). Layers go bottom first as before. The map's edge for Wide view's clamp is the bottom layer's chunks,
+`(-dx, -dy)` to `(chunkW * 256 - dx, chunkH * 256 - dy)`. A game that streams the map through a small window of VRAM
+(the usual 32x32 tile torus) usually keeps the whole map packed in ROM, so a chunk layer can show every part of it, not only what
+the game has loaded. `dragon-ball-z-legacy-of-goku-2-companion/game.lua` is the example: the game's layer objects and their ROM
+descriptors give the chunk tables, the camera and the BG scroll registers give `x`, `y` and each layer's `dx`, `dy`.
+
+### A blended background over the world (`overlay`)
+
+Some games draw a background over the picture with alpha blending (The Minish Cap's drifting cloud shadows are BG3 at
+4/16 over the ground). The world does not describe it, so the margins would lack it and the effect would stop at the
+frame's edge. Return `overlay` beside `layers` (or the single grid) and the margins get it too:
+
+| Field | Meaning |
+|---|---|
+| `map` | bus address of the background's screenblock: 32x32 u16 text entries (256x256 px, wrapping) |
+| `tiles` | bus address of its 4bpp tile data (the background's character base) |
+| `scrollX`, `scrollY` | the background's scroll registers; screen pixel (x, y) shows map pixel ((x + scrollX) & 255, (y + scrollY) & 255) |
+| `eva`, `evb` | 0 to 16: this much of the overlay plus this much of the ground (BLDALPHA); colour 0 is clear |
+
+Read the registers from `0x04000000` each frame (see `zelda-the-minish-cap-companion/game.lua`, `clouds()`), and return
+`nil` when the game is not blending that background (indoors).
 
 ### Turning Wide view on and off
 
@@ -193,9 +234,7 @@ from changing games; a tap then says so) or `N/A` (the pack has no `memory-write
 `zelda-the-minish-cap-companion/game.lua` is the two-layer example (camera and room origin from
 `gRoomControls`, layers from `gMapTop` / `gMapBottom`). `golden-sun-companion/game.lua` is the
 three-layer one with u32 cells: one grid in EWRAM holds the three BG layers side by side, so each
-layer's `grid` starts at its block of columns and all three share the same `x`, `y`. 
-
-Markers: `pokemon-firered-companion/game.lua` reads the map's NPCs from the ROM event table, `zelda-the-minish-cap-companion/game.lua` walks the game's entity array and draws each enemy and NPC as its real sprite (the OAM piece list from the ROM's frame table, tiles live from OBJ VRAM), and `golden-sun-companion/game.lua` walks the actor array and draws a sprite only while the game has the actor on screen (it reuses its OBJ tile slots), a diamond otherwise.
+layer's `grid` starts at its block of columns and all three share the same `x`, `y`. Markers: `pokemon-firered-companion/game.lua` reads the map's NPCs from the ROM event table, `zelda-the-minish-cap-companion/game.lua` walks the game's entity array and draws each enemy and NPC as its real sprite (the OAM piece list from the ROM's frame table, tiles live from OBJ VRAM), and `golden-sun-companion/game.lua` walks the actor array and draws a sprite only while the game has the actor on screen (it reuses its OBJ tile slots), a diamond otherwise.
 
 `pokemon-firered-companion/game.lua` is a worked example (FireRed 1.0, also `markers`: the map's NPCs, trainers, items and doors read from the ROM event table, hidden once their save flag is set): it reads the map the
 game keeps in RAM (`gBackupMapLayout`) and the tilesets from the ROM layout. It follows the camera
@@ -204,9 +243,3 @@ and keeps following across a map connection: the game rebases the tile coordinat
 player's current and previous tile, by the same whole number of tiles) while the scroll carries
 on, so the script recovers the rebase from where the camera sits between those two tiles. Set
 `DEBUG = true` at the top to log the frames where the prediction misses (`adb logcat -s GBADuoPack`).
-
-## Drawing the live map on the companion screen
-
-`gfx.layers{...}` (in `main.lua` too) draws the same layer description as a picture, so a pack
-can show the player an area map: see [`gfx.layers`](/docs/lua#gfxlayers). Golden Sun's Maps
-page uses it, with the player's marker placed on top by the layout.

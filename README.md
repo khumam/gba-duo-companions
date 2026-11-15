@@ -54,6 +54,9 @@ Each pack is a folder; the zip name is `<pack>-<version>.zip` on the
 | Pack | Game | Game codes | Pages | Version | Notes |
 |---|---|---|---|---|---|
 | [`metroid-zero-mission-companion`](metroid-zero-mission-companion) | Metroid: Zero Mission | `BMXE` `BMXP` `BMXJ` | Map, Status, Sectors, Log | 1.0.2 | The game's pause screen. Your explored map centered on Samus, her suit with the beams and gear you own (tap one to switch it on or off), area progress, boss targets and recovered tanks. Needs **GBADuo v0.1.8** and, for the switches, **Settings > Packs can change games**. See [NOTES](metroid-zero-mission-companion/NOTES.md). |
+| [`dragon-ball-z-legacy-of-goku-2-companion`](dragon-ball-z-legacy-of-goku-2-companion) | Dragon Ball Z: The Legacy of Goku II | `ALFE` | Journal, Status, Items | 0.1.0 (unreleased) | The game's pause menu. Your party with live HP, EP, STR / POW / END, level and EXP (tap a name or use the corner arrows), the items you carry with pictures and descriptions, and the quests you have finished. Active quests are not shown yet. See [NOTES](dragon-ball-z-legacy-of-goku-2-companion/NOTES.md). |
+| [`final-fantasy-vi-advance-companion`](final-fantasy-vi-advance-companion) | Final Fantasy VI Advance | `BZ6E` | Party, Items, Abilities, Equip, Relics, Status, Formation, Config | 0.2.0 (unreleased) | The game's whole pause menu in a loop (left / right buttons): your party, every item, Espers and Magic, gear, relics, base stats and commands, the party order (tap two to swap) and the Config settings (tap to change; needs **Packs can change games**). See [NOTES](final-fantasy-vi-advance-companion/NOTES.md). |
+| [`mario-luigi-superstar-saga-companion`](mario-luigi-superstar-saga-companion) | Mario & Luigi: Superstar Saga | `A88E` | Passports, Bros. Info, Items | 0.1.0 (unreleased) | The game's Select menu: both brothers' passports (level, HP, BP, coins, play time), Bros. Info (POW, DEF, SPEED, STACHE, EXP and what is left to the next level) and your items and beans with their descriptions. Equipment, key items and the map are not mirrored yet. See [NOTES](mario-luigi-superstar-saga-companion/NOTES.md). |
 | [`metroid-fusion-companion`](metroid-fusion-companion) | Metroid Fusion | `AMTE` `AMTP` `AMTJ` | Map, Status, Arms, Sectors, Mission | 2.0.2 | The game's pause screen. Live map, Samus on her grid, every upgrade, sector progress, bosses, security hatches and your next objective. Game art is drawn from the US ROM; other regions show a text-only waiting screen. Needs **GBADuo v0.1.8**. See [NOTES](metroid-fusion-companion/NOTES.md). |
 
 ### Zelda
@@ -166,7 +169,7 @@ cd my-pack && zip -rX ../my-pack-1.0.0.zip . -x '*.DS_Store' 'art/*' 'screenshoo
   Fusion pack draws its Samus, map and logo from your ROM and ships no game graphics. The Zero
   Mission pack draws its logo and map from your ROM too, but ships two small images of Samus's
   suit cut from the game's status screen (`art/samus.py`). The Oracle of Ages pack ships its item,
-  seed, ring and map graphics, which come from the game's own data.
+  seed, ring and map graphics, which come from the game's own data. The Dragon Ball Z: Legacy of Goku II pack ships the game's character portraits and item pictures (cut from its own menu by `art/extract.py`); its window chrome is original. The Final Fantasy VI Advance pack ships the 16 character portraits from the game's menu; its windows are original. The Mario & Luigi: Superstar Saga pack ships the two brothers' passport and round portraits from the game's menu; its look is all stylesheet. The Advance Wars pack ships small unit-type, army and menu icons cut from the game's own Unit list, menu and HUD (the other armies' colours are derived from the Orange Star ones); its panels are original. The Final Fantasy Tactics Advance pack ships no game graphics.
 
 </details>
 
@@ -181,4 +184,6 @@ Creatures and will be removed on request. The Oracle of Ages pack likewise inclu
 game's item, seed, ring and map graphics for a non-commercial fan project; they remain the
 property of Nintendo and will be removed on request. The Zero Mission pack likewise includes two small images of Samus's suit from the game's status
 screen; they remain the property of Nintendo and will be removed on request. The Minish Cap and
-Metroid Fusion packs include none of the game's graphics: they draw them from your ROM.
+Metroid Fusion packs include none of the game's graphics: they draw them from your ROM. The Mario & Luigi: Superstar Saga pack includes the two brothers' portraits from the game's menu; they remain the property of Nintendo and will be removed on request. The Final Fantasy VI Advance pack includes the game's 16 character portraits (cut from its main menu); they remain the property of Square Enix and will be removed on request. The Dragon Ball Z: The Legacy of Goku II pack includes its character portraits and item pictures from the game's menu; they remain the property of their owners (Bird Studios, Webfoot, Atari, Toei, Shueisha) and will be removed on request.
+
+The Advance Wars pack likewise includes small unit and menu icons from the game for a non-commercial fan project; they remain the property of Nintendo and Intelligent Systems and will be removed on request.

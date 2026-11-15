@@ -12,7 +12,7 @@
 	"$defs": {
 		"companion": {
 			"type": "object",
-			"required": ["id", "title", "description", "version", "author", "official", "repo", "tag", "url", "download", "games", "tags", "canModifyGame", "screenshots"],
+			"required": ["id", "title", "description", "version", "author", "official", "repo", "tag", "url", "download", "games", "tags", "canModifyGame", "overview"],
 			"properties": {
 				"id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$", "description": "Same as the pack's manifest.json id." },
 				"title": { "type": "string", "maxLength": 80 },
@@ -46,8 +46,11 @@
 				"minAppVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
 				"recommendedAppVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$", "description": "Version needed for every feature, when newer than minAppVersion." },
 				"canModifyGame": { "type": "boolean", "description": "true if main.lua writes to game memory." },
+				"overview": { "type": "string", "description": "One picture of every page of the pack, tiled: a path relative to the repo root (overview/<pack folder>-overview.png, made with skill/overview-sheet.py) served from the default branch, or a raw.githubusercontent.com URL. Keep it out of the release zip." },
 				"screenshots": {
 					"type": "array",
+					"deprecated": true,
+					"description": "No longer used: the catalog page shows the overview image. Accepted so older entries stay valid.",
 					"items": {
 						"type": "object",
 						"required": ["src", "alt"],

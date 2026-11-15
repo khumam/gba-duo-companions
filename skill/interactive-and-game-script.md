@@ -117,10 +117,11 @@ until the next game start.
 
 `wide()` returns the world around the game's 240×160 frame: `x, y` (world pixel of the screen's
 top-left), then either one grid (`grid, gridW, gridH, idMask, metatiles, tiles, palette, border…`,
-the Pokémon games) or `layers = { bottom, …, top }` (Minish Cap, Golden Sun). Return `nil` for
+the Pokémon games) or `layers = { bottom, …, top }` (Minish Cap, Golden Sun; a layer can also be a
+chunked 8bpp tilemap, `chunks`, for games like DBZ Legacy of Goku II, see the lessons below). Return `nil` for
 battle, menus or an unknown map: the margins stay black. The app compares the predicted edge columns
-(and, in XL, rows) with what the emulator drew, hides the margins below 85% for four frames and brings
-them back after four good ones, so a wrong world looks like "no wide view", not garbage.
+(and, in XL, rows) with what the emulator drew, hides the margins below 55% for four frames and shows
+them again after four frames at 80% or better, so a wrong world looks like "no wide view", not garbage.
 
 Design rules:
 
@@ -128,12 +129,18 @@ Design rules:
   (`adb logcat -s GBADuoPack`). Camera lag while walking and sprites on the edge columns are the
   usual culprits (Minish Cap adds the BG-register lag to the camera).
 - **Markers** make the margins useful: up to 64 `{x, y, kind}` (1 NPC white, 2 enemy red, 3 item
-  yellow, 4 door cyan), or real sprites with `tiles`, `palette`, `w`, `h`, `hflip`. Draw the actual
+  yellow, 4 door cyan), or real sprites with `tiles`, `palette`, `w`, `h`, `hflip`, `vflip` (and `bpp = 8` for
+  256-colour OBJ sprites, palette `0x05000200`). Draw the actual
   sprite when the OAM data is findable (Minish Cap walks the entity array); keep diamonds as the
   fallback only for Golden Sun-style off-screen actors. Never gate on a flag that is 0 off screen.
 - **Hide the HUD over the picture** when the margins repeat it: write the game's HUD-hide flag from
   `frame()` only while `wide()` ran in the last few frames, and restore it when the view stops
   (Minish Cap: `gHUD.hideFlags`).
+- **Give the clamp the real map.** `bounds = { x, y, w, h }` (world pixels), or `trimBounds = 1` on a
+  chunk layer, makes the picture stop scrolling at the map's edge and slide the frame toward it (Golden Sun
+  behaviour); a room smaller than the picture then stays centred with black around it. Never take the size
+  from a header field without checking it on a small room: DBZ's descriptors all say 1024 x 1024, rooms
+  included, which pinned the frame to the left of the picture indoors.
 - **Only describe what is the world.** The player, NPCs and the game's own blends (cloud shadows,
   fades) are not in the margins; the seam check tolerates ~40 per channel for those blends.
 - **Check every release.** Keep a per-game-code address table; return `nil` for an unknown one.
@@ -232,6 +239,34 @@ Worked examples to copy from (`golden-sun-companion/`, `pokemon-emerald-companio
   the predicted spot (it supplies size, palette, flip; accept rotation/scale-mode entries); otherwise
   draw nothing.
 - Say in `NOTES.md` which releases are checked; US-only is fine if unknown releases return `nil`.
+
+### Wide view of a chunked 8bpp map (Dragon Ball Z: Legacy of Goku II)
+
+Worked example: `dragon-ball-z-legacy-of-goku-2-companion/` (`game.lua`, `NOTES.md`). The method is worth copying for any
+game that draws its map through a small VRAM window:
+
+1. **Find who feeds VRAM.** `tools/gba-harness.c` logs every DMA with source and destination: the screenblock rows
+   came from shadow arrays in EWRAM, the shadows from decompressed 2 KB blocks DMA'd out of the stack. A BG that
+   moves only 16 px past the screen cannot give a wide margin, so the whole map has to come from somewhere bigger:
+   here ROM chunks (256x256 px, 32x32 u16 entries) reached through a descriptor's pointer table.
+2. **Read the game's own routine, then prove the port.** The chunks were packed with a bit-stream coder that the
+   game copies into IWRAM at boot (the ROM copy is the code to read). Port it, then compare with the chunks the
+   game holds in RAM (the layer object keeps a 2x2 window of unpacked chunks) and decode every chunk header in
+   the ROM: 5315 of 5315, both in Python and in the engine's C port. `chunkCodec = 1` makes the app unpack and
+   cache them, so `game.lua` stays small.
+3. **Positions.** The camera is 22.10 fixed point and leads the BG scroll registers by a frame. The picture on
+   screen was drawn with the registers, so take each layer's position from its own register (unwrap it against
+   camera + the layer offset in the descriptor) and name the world's origin from the bottom layer; otherwise the
+   margins sit a pixel off the frame. A layer's `dx`, `dy` are those offsets (64/128/192 px outdoors).
+4. **Verify offline before the device.** Take a snapshot (RAM, VRAM, palette, OAM, registers, screenshot) from the
+   headless harness, run the real `game.lua` on it with `script.c` + `wide.c` and a fake bus, and measure how
+   many frame pixels the world predicts exactly (here 88-96%, the rest being sprites and the HUD). Fake a camera
+   or an OAM entry in the snapshot to test edges and margin sprites.
+5. **Margin sprites from OAM.** Draw a sprite that sticks out of the frame whole (the hardware cuts it), from its
+   tiles in OBJ VRAM, in reverse OAM order. Off-screen actors have no tiles loaded, so nothing farther out can be
+   drawn; do not guess.
+6. **Put the setting on an Options page**, not in the chrome of every page: a `button` with
+   `{"call": "wideView", "args": ["toggle"]}` and `{_wideLabel}` as its value.
 
 ### Ambient: decide the place cheaply
 

@@ -1,6 +1,6 @@
 ---
 name: gbaduo-companion-pack-design
-description: Use when creating, restyling or reviewing any GBADuo companion pack (manifest.json, layout.json, style.css, main.lua, assets) for a GBA/GBC game — choosing a visual style, building the screen layout, making it interactive (tap-to-detail, popups, equip, settings pills), adding Wide view / Ambient / markers through game.lua, fitting any screen size, or deciding where sprites and icons come from (shipped PNGs, the player's ROM at runtime via gfx.*, or art drawn in code). Distilled from the Pokémon, Zelda Minish Cap, Golden Sun and Mega Man Zero packs and the app's current engine docs.
+description: Use when creating, restyling or reviewing any GBADuo companion pack (manifest.json, layout.json, style.css, main.lua, assets) for a GBA/GBC game — choosing a visual style, building the screen layout, making it interactive (tap-to-detail, popups, equip, settings pills), adding Wide view / Ambient / markers through game.lua (metatile, layered and chunked 8bpp worlds, map-edge clamp, margin sprites), fitting any screen size, or deciding where sprites and icons come from (shipped PNGs, the player's ROM at runtime via gfx.*, or art drawn in code). Distilled from the Pokémon, Zelda Minish Cap, Golden Sun and Mega Man Zero packs and the app's current engine docs.
 ---
 
 # GBADuo Companion Pack Design
@@ -37,6 +37,7 @@ agree. Generic "dark dashboard" packs read as foreign next to the game.
 | `theme-forest.css`, `art-kit-forest.mjs` | The ornate fantasy-forest design system (parchment/gold/moss, SVG→PNG art kit) |
 | `preview-pack.sh`, `PreviewRender.kt` | Render every page with the app's real engine on this Mac (no device), then analyse the PNGs |
 | `overview-sheet.py` | Tile a pack's screenshots into one labelled overview PNG (how to make it: "Overview sheet" below) |
+| `tools/` | `README.md` first: finding addresses (`log()`, `gba-harness.c`, `ramsearch.py`, store/DMA/BIOS tracing), and the generators run on finished packs: `navkit.py` / `navkit_pokemon.py` (movable nav + Options row), `pixel_theme.py` / `apply_pixel_css.py` (Pokémon pixel-art restyle) |
 
 Engine details (selectors, properties, units, script limits) are in `docs/` (a bundled copy of the public docs; see
 `docs-site-and-simulator.md` for the page map) and in the GBA Duo app repo's
@@ -50,7 +51,8 @@ property or hook isn't covered here, and don't duplicate them.
 2. **Decide the sprite strategy per asset class** (`sprites-and-assets.md`): shipped
    third-party PNGs, ROM-drawn at runtime, or original art drawn in code. Mixing is normal.
 3. **Find the memory map** (decompilation / Data Crystal) and verify addresses on a ROM
-   per region. Return only display-ready values from `update()`, including asset keys.
+   per region. No map exists? Search for it: `tools/README.md` (live `log()` of RAM and display registers, and a
+   Cheat Engine-style `ramsearch.py` over dumps). Return only display-ready values from `update()`, including asset keys.
 4. **Skeleton:** `#screen` → waiting box (`visibleIf $waiting`) + ready content
    (`visibleIf $ready`) → `pages` with one page per tab + a nav (dock / tab row).
 5. **Style in `style.css`** with tokens; legacy widget keys are only shorthand. Add `:pressed`

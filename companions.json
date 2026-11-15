@@ -5,7 +5,7 @@
 		{
 			"id": "pokemon-firered-companion",
 			"title": "Pokémon FireRed Companion",
-			"description": "FireRed companion in the console layout of the Emerald pack, in a soft red pastel palette: a Map page with a TOWN / WORLD switch (the live map of your area, or the Town Map with your spot) and the wild Pokémon around you, party (tap a Pokémon for its stats and moves), bag by pocket, a Pokédex list with entries, trainer card, and a battle page with FIGHT, BAG, POKéMON and RUN buttons plus a move list with type effectiveness (the buttons need Packs can change games). Has a WIDE button that paints the game's world beside the picture, and a COLOR button for a fuller look (GBADuo 0.1.12 or newer).",
+			"description": "Soft red pastel dashboard: Town Map with wild Pokémon, party, bag, Pokédex, trainer card and a live battle page. WIDE and COLOR buttons. Battle buttons need Packs can change games.",
 			"version": "3.0.1",
 			"author": "khumam",
 			"official": true,
@@ -43,29 +43,12 @@
 			"minAppVersion": "0.1.12",
 			"recommendedAppVersion": "0.1.12",
 			"canModifyGame": true,
-			"screenshots": [
-				{
-					"src": "pokemon-firered-companion/screenshoots/firered-map.png",
-					"alt": "Map page: the Town Map with your spot and the wild Pokémon here"
-				},
-				{
-					"src": "pokemon-firered-companion/screenshoots/firered-party.png",
-					"alt": "Party page: tap a card for that Pokémon's details"
-				},
-				{
-					"src": "pokemon-firered-companion/screenshoots/firered-dex.png",
-					"alt": "Pokédex list with the selected entry"
-				},
-				{
-					"src": "pokemon-firered-companion/screenshoots/firered-battle.png",
-					"alt": "Battle page with FIGHT, BAG, POKéMON and RUN buttons"
-				}
-			]
+			"overview": "overview/pokemon-firered-companion-overview.png"
 		},
 		{
 			"id": "pokemon-leafgreen-companion",
 			"title": "Pokémon LeafGreen Companion",
-			"description": "LeafGreen companion in the console layout of the Emerald pack, in a soft green pastel palette: a Map page with a TOWN / WORLD switch (the live map of your area, or the Town Map with your spot) and the wild Pokémon around you, party (tap a Pokémon for its stats and moves), bag by pocket, a Pokédex list with entries, trainer card, and a battle page with FIGHT, BAG, POKéMON and RUN buttons plus a move list with type effectiveness (the buttons need Packs can change games). Has a WIDE button that paints the game's world beside the picture, and a COLOR button for a fuller look (GBADuo 0.1.12 or newer).",
+			"description": "Soft green pastel dashboard: Town Map with wild Pokémon, party, bag, Pokédex, trainer card and a live battle page. WIDE and COLOR buttons. Battle buttons need Packs can change games.",
 			"version": "2.0.1",
 			"author": "khumam",
 			"official": true,
@@ -103,29 +86,12 @@
 			"minAppVersion": "0.1.12",
 			"recommendedAppVersion": "0.1.12",
 			"canModifyGame": true,
-			"screenshots": [
-				{
-					"src": "pokemon-leafgreen-companion/screenshoots/leafgreen-map.png",
-					"alt": "Map page: the Town Map with your spot and the wild Pokémon here"
-				},
-				{
-					"src": "pokemon-leafgreen-companion/screenshoots/leafgreen-party.png",
-					"alt": "Party page: tap a card for that Pokémon's details"
-				},
-				{
-					"src": "pokemon-leafgreen-companion/screenshoots/leafgreen-dex.png",
-					"alt": "Pokédex list with the selected entry"
-				},
-				{
-					"src": "pokemon-leafgreen-companion/screenshoots/leafgreen-battle.png",
-					"alt": "Battle page with FIGHT, BAG, POKéMON and RUN buttons"
-				}
-			]
+			"overview": "overview/pokemon-leafgreen-companion-overview.png"
 		},
 		{
 			"id": "pokemon-emerald-companion",
 			"title": "Pokémon Emerald Companion",
-			"description": "Dashboard built from the game's own menus: a Map page with a TOWN / WORLD switch (the live map of your area, or a Hoenn map with your spot) and the wild Pokémon here, party with summary, skills, moves and contest condition, bag by pocket with ROM descriptions, Pokédex, trainer card with badges, and a battle page with type-effectiveness chips. Tap FIGHT, BAG, POKéMON or RUN to pick the action (needs Packs can change games). Has a WIDE button that paints the game's world beside the picture, and a COLOR button for a fuller look (GBADuo 0.1.12 or newer).",
+			"description": "Dashboard built from the game's own menus: Hoenn map with wild Pokémon, party, bag, Pokédex, trainer card and a battle page with type chips. WIDE and COLOR buttons.",
 			"version": "1.0.1",
 			"author": "khumam",
 			"official": true,
@@ -162,33 +128,12 @@
 			"minAppVersion": "0.1.12",
 			"recommendedAppVersion": "0.1.12",
 			"canModifyGame": true,
-			"screenshots": [
-				{
-					"src": "pokemon-emerald-companion/screenshoots/emerald-bag.png",
-					"alt": "Bag page: pockets, with the item's price and description"
-				},
-				{
-					"src": "pokemon-emerald-companion/screenshoots/emerald-map.png",
-					"alt": "Map page: the area you are in, drawn from the game"
-				},
-				{
-					"src": "pokemon-emerald-companion/screenshoots/emerald-party.png",
-					"alt": "Party page with HP bars and types"
-				},
-				{
-					"src": "pokemon-emerald-companion/screenshoots/emerald-dex.png",
-					"alt": "Pokédex list with the selected entry"
-				},
-				{
-					"src": "pokemon-emerald-companion/screenshoots/emerald-battle.png",
-					"alt": "Battle page with FIGHT, BAG, POKéMON and RUN buttons"
-				}
-			]
+			"overview": "overview/pokemon-emerald-companion-overview.png"
 		},
 		{
 			"id": "pokemon-ruby-companion",
 			"title": "Pokémon Ruby Companion",
-			"description": "The Emerald dashboard for Ruby, in a soft red pastel palette: a Map page with a TOWN / WORLD switch (the live map of your area, or a Hoenn map with your spot) and the wild Pokémon here, party with summary, skills, moves and contest condition, bag by pocket with ROM descriptions, Pokédex, trainer card with badges, and a battle page with type-effectiveness chips. Tap FIGHT, BAG, POKéMON or RUN to pick the action (needs Packs can change games). Has a WIDE button that paints the game's world beside the picture, and a COLOR button for a fuller look (GBADuo 0.1.12 or newer).",
+			"description": "The Emerald dashboard for Ruby in a soft red pastel: Hoenn map, party, bag, Pokédex, trainer card and a battle page with type chips. WIDE and COLOR buttons.",
 			"version": "1.0.1",
 			"author": "khumam",
 			"official": true,
@@ -226,33 +171,12 @@
 			"minAppVersion": "0.1.12",
 			"recommendedAppVersion": "0.1.12",
 			"canModifyGame": true,
-			"screenshots": [
-				{
-					"src": "pokemon-ruby-companion/screenshoots/ruby-bag.png",
-					"alt": "Bag page: pockets, with the item's price and description"
-				},
-				{
-					"src": "pokemon-ruby-companion/screenshoots/ruby-map.png",
-					"alt": "Map page: the area you are in, drawn from the game"
-				},
-				{
-					"src": "pokemon-ruby-companion/screenshoots/ruby-party.png",
-					"alt": "Party page with HP bars and types"
-				},
-				{
-					"src": "pokemon-ruby-companion/screenshoots/ruby-dex.png",
-					"alt": "Pokédex list with the selected entry"
-				},
-				{
-					"src": "pokemon-ruby-companion/screenshoots/ruby-battle.png",
-					"alt": "Battle page with FIGHT, BAG, POKéMON and RUN buttons"
-				}
-			]
+			"overview": "overview/pokemon-ruby-companion-overview.png"
 		},
 		{
 			"id": "pokemon-sapphire-companion",
 			"title": "Pokémon Sapphire Companion",
-			"description": "The Emerald dashboard for Sapphire, in a soft blue pastel palette: a Map page with a TOWN / WORLD switch (the live map of your area, or a Hoenn map with your spot) and the wild Pokémon here, party with summary, skills, moves and contest condition, bag by pocket with ROM descriptions, Pokédex, trainer card with badges, and a battle page with type-effectiveness chips. Tap FIGHT, BAG, POKéMON or RUN to pick the action (needs Packs can change games). Has a WIDE button that paints the game's world beside the picture, and a COLOR button for a fuller look (GBADuo 0.1.12 or newer).",
+			"description": "The Emerald dashboard for Sapphire in a soft blue pastel: Hoenn map, party, bag, Pokédex, trainer card and a battle page with type chips. WIDE and COLOR buttons.",
 			"version": "1.0.1",
 			"author": "khumam",
 			"official": true,
@@ -290,33 +214,12 @@
 			"minAppVersion": "0.1.12",
 			"recommendedAppVersion": "0.1.12",
 			"canModifyGame": true,
-			"screenshots": [
-				{
-					"src": "pokemon-sapphire-companion/screenshoots/sapphire-bag.png",
-					"alt": "Bag page: pockets, with the item's price and description"
-				},
-				{
-					"src": "pokemon-sapphire-companion/screenshoots/sapphire-map.png",
-					"alt": "Map page: the area you are in, drawn from the game"
-				},
-				{
-					"src": "pokemon-sapphire-companion/screenshoots/sapphire-party.png",
-					"alt": "Party page with HP bars and types"
-				},
-				{
-					"src": "pokemon-sapphire-companion/screenshoots/sapphire-dex.png",
-					"alt": "Pokédex list with the selected entry"
-				},
-				{
-					"src": "pokemon-sapphire-companion/screenshoots/sapphire-battle.png",
-					"alt": "Battle page with FIGHT, BAG, POKéMON and RUN buttons"
-				}
-			]
+			"overview": "overview/pokemon-sapphire-companion-overview.png"
 		},
 		{
 			"id": "golden-sun-companion",
 			"title": "Golden Sun Companion (Early Preview)",
-			"description": "Early preview for Golden Sun, dressed in the game's own blue windows: a party roster with each member's HP, stats, items and the Djinn they hold, Psynergy with its icons, and an area Maps page that follows your character. The WIDE button paints the world beside the picture and shows nearby people in the margins; a COLOR button gives the picture a fuller look with soft shadows (GBADuo 0.1.13 or newer). Wide view and Maps are tested on the US ROM only.",
+			"description": "Early preview in the game's blue windows: party with HP, stats, items and Djinn, Psynergy, and a Maps page that follows you. WIDE and COLOR buttons. Tested on the US ROM only.",
 			"version": "0.4.1",
 			"author": "khumam",
 			"official": true,
@@ -363,29 +266,12 @@
 			"minAppVersion": "0.1.11",
 			"recommendedAppVersion": "0.1.11",
 			"canModifyGame": false,
-			"screenshots": [
-				{
-					"src": "golden-sun-companion/screenshoots/golden-sun-party.png",
-					"alt": "Golden Sun party page with the roster, stats and items"
-				},
-				{
-					"src": "golden-sun-companion/screenshoots/golden-sun-djinn.png",
-					"alt": "Golden Sun Djinn page listing all four elements and who holds each"
-				},
-				{
-					"src": "golden-sun-companion/screenshoots/golden-sun-psynergy.png",
-					"alt": "Golden Sun Psynergy page with each spell's icon and PP"
-				},
-				{
-					"src": "golden-sun-companion/screenshoots/golden-sun-options.png",
-					"alt": "Golden Sun Options page with Wide view and Color ambient"
-				}
-			]
+			"overview": "overview/golden-sun-companion-overview.png"
 		},
 		{
 			"id": "zelda-minish-cap-companion",
 			"title": "The Legend of Zelda: The Minish Cap Companion",
-			"description": "World and dungeon maps with Link's spot, his hearts, items, kinstone fusions, and quest progress, drawn from your own ROM. Tap Ezlo for a hint. Has a WIDE button that paints the world beside the picture, with nearby enemies and NPCs drawn in the margins and the HUD tucked away (the pack asks before changing the game). A COLOR button gives the picture a fuller look with soft shadows and drifting clouds (GBADuo 0.1.13 or newer).",
+			"description": "World and dungeon maps with your spot, hearts, items, kinstone fusions and quest progress, drawn from your own ROM. Tap Ezlo for a hint. WIDE and COLOR buttons.",
 			"version": "3.2.1",
 			"author": "khumam",
 			"official": true,
@@ -429,20 +315,7 @@
 			"minAppVersion": "0.1.10",
 			"recommendedAppVersion": "0.1.10",
 			"canModifyGame": false,
-			"screenshots": [
-				{
-					"src": "zelda-the-minish-cap-companion/screenshoots/zelda1.png",
-					"alt": "Map page in Deepwood Shrine: dungeon floors, map, compass, big key, and Link with his A and B items and hearts"
-				},
-				{
-					"src": "zelda-the-minish-cap-companion/screenshoots/zelda2.png",
-					"alt": "Items page: the item pouch, bombs, arrows, charm, shells and heart pieces"
-				},
-				{
-					"src": "zelda-the-minish-cap-companion/screenshoots/zelda3.png",
-					"alt": "Kinstone page: the fusion bag and fusions done out of 100"
-				}
-			]
+			"overview": "overview/zelda-the-minish-cap-companion-overview.png"
 		},
 		{
 			"id": "metroid-fusion-companion",
@@ -491,28 +364,7 @@
 			],
 			"minAppVersion": "0.1.8",
 			"canModifyGame": false,
-			"screenshots": [
-				{
-					"src": "metroid-fusion-companion/screenshoots/metroid-fusion-map.png",
-					"alt": "Map page: the live Main Deck map centered on Samus, with the four security hatches below"
-				},
-				{
-					"src": "metroid-fusion-companion/screenshoots/metroid-fusion-status.png",
-					"alt": "Status page: Samus on her grid with location, room, time, completion, maps, upgrades, tanks, security, mission progress and suit"
-				},
-				{
-					"src": "metroid-fusion-companion/screenshoots/metroid-fusion-arms.png",
-					"alt": "Arms page: the beam, missile, bomb, suit and misc. upgrades, lit once Samus has them"
-				},
-				{
-					"src": "metroid-fusion-companion/screenshoots/metroid-fusion-sectors.png",
-					"alt": "Sectors page: each sector's completion and whether its map is downloaded"
-				},
-				{
-					"src": "metroid-fusion-companion/screenshoots/metroid-fusion-mission.png",
-					"alt": "Mission page: the bosses, security levels, story progress and the next objective"
-				}
-			]
+			"overview": "overview/metroid-fusion-companion-overview.png"
 		},
 		{
 			"id": "metroid-zero-mission-companion",
@@ -560,24 +412,7 @@
 			],
 			"minAppVersion": "0.1.8",
 			"canModifyGame": true,
-			"screenshots": [
-				{
-					"src": "metroid-zero-mission-companion/screenshoots/metroid-zero-mission-map.png",
-					"alt": "Map page: your explored Brinstar map centered on Samus, drawn from the game's own map tiles"
-				},
-				{
-					"src": "metroid-zero-mission-companion/screenshoots/metroid-zero-mission-status.png",
-					"alt": "Status page: Samus's suit with the beams and gear she has, tap one to switch it on or off"
-				},
-				{
-					"src": "metroid-zero-mission-companion/screenshoots/metroid-zero-mission-sectors.png",
-					"alt": "Sectors page: how much of each area you have explored"
-				},
-				{
-					"src": "metroid-zero-mission-companion/screenshoots/metroid-zero-mission-log.png",
-					"alt": "Log page: the eight boss targets and the recovered energy, missile, super and power bomb tanks"
-				}
-			]
+			"overview": "overview/metroid-zero-mission-companion-overview.png"
 		},
 		{
 			"id": "zelda-oracle-of-ages-companion",
@@ -625,24 +460,7 @@
 			],
 			"minAppVersion": "0.1.8",
 			"canModifyGame": false,
-			"screenshots": [
-				{
-					"src": "zelda-oracle-of-ages-companion/screenshoots/oracle-of-ages-map.png",
-					"alt": "Map page: the past overworld with the rooms Link hasn't visited dimmed and his room outlined"
-				},
-				{
-					"src": "zelda-oracle-of-ages-companion/screenshoots/oracle-of-ages-rings.png",
-					"alt": "Rings page: the ring box and the 64-ring collection, with the owned Friendship ring in colour"
-				},
-				{
-					"src": "zelda-oracle-of-ages-companion/screenshoots/oracle-of-ages-seeds.png",
-					"alt": "Seeds page: the five seeds with the satchel's selection marked, and bombs, bombchus and gasha seeds"
-				},
-				{
-					"src": "zelda-oracle-of-ages-companion/screenshoots/oracle-of-ages-status.png",
-					"alt": "Status page: hearts and heart pieces, the eight essences, and era, harp song and room"
-				}
-			]
+			"overview": "overview/zelda-oracle-of-ages-companion-overview.png"
 		},
 		{
 			"id": "mario-land-2-companion",
@@ -684,16 +502,7 @@
 			],
 			"minAppVersion": "0.1.8",
 			"canModifyGame": false,
-			"screenshots": [
-				{
-					"src": "super-mario-land-2-companion/screenshoots/mario-land-2-save.png",
-					"alt": "Save page: the three save files, with the one selected in the game highlighted"
-				},
-				{
-					"src": "super-mario-land-2-companion/screenshoots/mario-land-2-title.png",
-					"alt": "Title page: press start to play over a sky and hills"
-				}
-			]
+			"overview": "overview/super-mario-land-2-companion-overview.png"
 		}
 	]
 }
