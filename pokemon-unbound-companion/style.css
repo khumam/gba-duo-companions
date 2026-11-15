@@ -1,0 +1,1263 @@
+/*
+ * Pokemon Unbound menu: the game's own windows. A black title bar with the page squares, slate windows with grey pill labels
+ * and cream value rows (Info page), cut-corner cyan party cards, hexagon move cards, a green frame for the bag. Pixel font
+ * (Jersey 10). The screen is ~538 x 468dp. Screens it follows: screenshoots/game-menu/*.png.
+ */
+
+:root {
+  /* the menu */
+  --night: #1B1C20;
+  --slate: #292C32;
+  --slate-2: #20232A;
+  --slate-line: #3A3D44;
+  --pill: #71716F;
+  --pill-ink: #3C3C3A;
+  --cream: #ECECE8;
+  --cream-2: #DCDCD6;
+  --cream-line: #CECECA;
+  --plate: #D6D1C1;
+  --plate-edge: #8E8A7C;
+  --edge: #4A5C8C;
+  --mint: #8FE8D0;
+  --cyan: #8FE8F0;
+  --teal: #17384E;
+  --teal-hi: #3F86B0;
+  --green: #5AA070;
+  --green-d: #2E5A40;
+  --pink: #E0708C;
+  --text: #ECECE8;
+
+  /* roles the shared rules use */
+  --bg: var(--night);
+  --surface: #ECECE8;
+  --surface-2: #DCDCD6;
+  --line: #CECECA;
+  --line-strong: #6A6C74;
+  --line-soft: #DCDCD4;
+  --accent: #8A98C0;
+  --accent-soft: #C4C8D2;
+  --accent-strong: #4A5C8C;
+  --ink: #2B2D33;
+  --ink-2: #62646C;
+  --ok: #BFE6C0;
+  --bad: #F0B8B8;
+  --info: #C8D8F0;
+  --ok-bar: #78C850;
+  --warn-bar: #F8D030;
+  --bad-bar: #F85838;
+  --info-bar: #5A8CD8;
+  --frame: #292C32;
+  --outline: #0E0F12;
+  --foot: #3A4560;
+  --foot-hi: #4A5C8C;
+  --foot-lo: #1C2236;
+  --orange-hi: #71716F;
+  --orange-lo: #71716F;
+  --foot-press: #4A5C8C;
+  --orange-press: #4A5C8C;
+  --orange-ink: #3C3C3A;
+  --surface-hi: #F6F6F2;
+  --card-edge: #8FE8F0;
+  --card-hi: #8FE8F0;
+  --card-lo: #8FE8F0;
+  --card-ink: #0A1A26;
+  --ring: #3F86B0;
+  --battle-hi: #3F86B0;
+  --battle-lo: #17384E;
+  --battle-ink: #0A1A26;
+}
+
+@font-face { font-family: "Barlow"; src: url("assets/fonts/Jersey10-Regular.ttf"); }
+@font-face { font-family: "BarlowBold"; src: url("assets/fonts/Jersey10-Regular.ttf"); }
+
+image { image-rendering: pixelated; }
+text { white-space: nowrap; }
+
+/* ---- canvas ------------------------------------------------------------------ */
+
+#screen {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  background-color: var(--night);
+  background-image: url("assets/ui/ground.png");
+  background-repeat: repeat;
+  background-size: 24px 24px;
+  font-family: "Barlow";
+  font-size: 22px;
+  color: var(--ink);
+}
+
+.grow { flex: 1; }
+
+/* Numbers: the same pixel face, a touch larger. */
+.num {
+  font-family: "BarlowBold";
+  font-size: 20px;
+  line-height: 21px;
+  white-space: nowrap;
+}
+
+.ic8 { width: 12px; height: 12px; flex-shrink: 0; }
+
+.shell { flex: 1 1 auto; min-height: 0; }
+pages { flex: 1; min-height: 0; }
+
+/* ---- page frame: title bar, content, bottom bar ---------------------------------- */
+
+.page { flex: 1 1 auto; min-height: 0; gap: 0; }
+.content { flex: 1; min-height: 0; min-width: 0; margin: 8px 8px 6px 8px; }
+.two-col {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 8px;
+}
+.map-cols { grid-template-columns: 322px 1fr; }
+.trainer-cols { grid-template-columns: 1fr 1fr; }
+
+/* The game's black title bar: the page name, three squares for the pages, and where you are. */
+.hdr {
+  flex-direction: row;
+  align-items: center;
+  height: 38px;
+  flex-shrink: 0;
+  padding: 0 12px;
+  gap: 12px;
+  background-color: #000000;
+  border-bottom: 2px solid #3C3C40;
+}
+.hdr-title { flex-direction: row; align-items: center; gap: 16px; }
+.hdr-name {
+  font-family: "BarlowBold";
+  font-size: 28px;
+  line-height: 30px;
+  color: var(--text);
+  text-shadow: 2px 2px 0 #55565C;
+}
+.hdr-dots { flex-direction: row; gap: 6px; }
+.dot { width: 10px; height: 10px; background-color: #000000; border: 3px solid #4A4A50; border-radius: 1px; }
+.dot.on { background-color: #8A8A90; border-color: #C8C8CC; }
+.hdr-tail { flex: 1; min-width: 0; flex-direction: row; align-items: center; justify-content: flex-end; gap: 12px; }
+.loc-pill { min-width: 0; flex-shrink: 1; flex-direction: row; align-items: center; gap: 6px; }
+.loc-text {
+  font-family: "BarlowBold";
+  font-size: 20px;
+  line-height: 22px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.hstat { flex-direction: row; align-items: center; gap: 5px; flex-shrink: 0; }
+.hnum { color: var(--text); }
+.hdr-battle .hdr-name { color: #F8C8C8; }
+.hdr-battle .dot.on { background-color: var(--pink); border-color: #F8C8D4; }
+
+/* bottom bar: previous | current | next, slate plates with the Info page's blue-grey outline; the current page is mint */
+.bar { flex-direction: row; justify-content: space-between; gap: 8px; height: 44px; flex-shrink: 0; margin: 0 8px 8px 8px; }
+.bar-btn {
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 27%;
+  height: 44px;
+  padding: 0;
+  background-color: var(--slate);
+  border: 3px solid var(--edge);
+  border-radius: 8px;
+}
+.bar-btn:pressed { background-color: var(--foot-hi); }
+.chev { width: 12.5px; height: 20px; flex-shrink: 0; }
+.bar-label {
+  font-family: "BarlowBold";
+  font-size: 22px;
+  line-height: 24px;
+  letter-spacing: 1.5px;
+  color: var(--text);
+  white-space: nowrap;
+}
+.bar-mid {
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--slate-2);
+  border: 3px solid var(--mint);
+  border-radius: 8px;
+}
+.bar-title {
+  font-family: "BarlowBold";
+  font-size: 24px;
+  line-height: 26px;
+  letter-spacing: 2px;
+  color: var(--mint);
+}
+
+/* ---- windows: slate frame, grey pill label, cream body -------------------------------- */
+
+.panel {
+  min-height: 0;
+  min-width: 0;
+  padding: 0 6px 6px 6px;
+  background-color: var(--slate);
+  border: 3px solid #14161A;
+  border-radius: 4px; }
+
+.panel-head {
+  flex-direction: row;
+  align-items: center;
+  flex-shrink: 0;
+  height: 34px;
+  gap: 6px;
+  padding: 0 2px;
+}
+.panel-tab {
+  padding: 0 18px;
+  background-color: var(--pill);
+  border: 2px solid var(--pill-ink);
+  border-radius: 12px;
+}
+.panel-title {
+  font-family: "BarlowBold";
+  font-size: 21px;
+  line-height: 23px;
+  letter-spacing: 1px;
+  color: #FFFFFF;
+  text-shadow: 1px 1px 0 var(--pill-ink);
+  text-transform: uppercase;
+}
+
+.panel-body {
+  flex: 1;
+  min-height: 0;
+  padding: 6px;
+  gap: 6px;
+  background-color: var(--cream);
+  border: 3px solid var(--cream-line);
+  border-radius: 0; }
+
+.chip {
+  padding: 0 10px;
+  border: 2px solid #14161A;
+  border-radius: 10px;
+  background-color: var(--slate-line); }
+.chip-text {
+  font-family: "BarlowBold";
+  font-size: 18px;
+  line-height: 19px;
+  color: var(--text);
+}
+.chip-red { background-color: #A8505C; }
+.chip-green { background-color: var(--green); }
+.chip-blue { background-color: var(--edge); }
+.chip-yellow { background-color: #A89030; }
+
+/* ---- pokemon cards: the party menu's cut-corner cyan plates ------------------------------- */
+
+.card {
+  position: relative;
+  background-color: var(--teal);
+  border: 3px solid var(--cyan);
+  border-radius: 12px;
+  color: var(--text);
+}
+.card text { color: var(--text); text-shadow: 1px 1px 0 var(--card-ink); }
+/* Lead = the selected card: the light blue plate. */
+.ring {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--teal-hi);
+  border-radius: 9px;
+}
+.card.fainted { opacity: 0.65; }
+.strike {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  top: 45%;
+  height: 2px;
+  background-color: #F8A0A0;
+  transform: rotate(-4deg); }
+
+/* The mon sits in a ball at the card's left and spills over its edge. */
+.ball {
+  display: stack;
+  place-items: center;
+  flex-shrink: 0;
+  width: 54px;
+  height: 54px;
+  border: 3px solid #1C2630;
+  border-radius: 30px;
+  background-image: linear-gradient(180deg, #D86860 0%, #D86860 44%, #1C2630 44%, #1C2630 54%, #C8D0DC 54%, #C8D0DC 100%);
+}
+.sprite-slot {
+  display: stack;
+  place-items: center;
+  flex-shrink: 0;
+}
+.sprite-s { width: 40px; height: 32px; }
+.sprite-s .sprite { width: 52px; height: 52px; }
+.sprite-l { width: 60px; height: 56px; }
+.sprite-l .sprite { width: 64px; height: 64px; }
+.sprite-dex {
+  width: 64px;
+  height: 64px;
+  background-color: var(--slate);
+  border: 2px solid var(--edge);
+  border-radius: 0; }
+.sprite-dex .sprite { width: 64px; height: 64px; }
+
+.name-row { flex-direction: row; align-items: center; gap: 6px; }
+.mon-name {
+  font-family: "BarlowBold";
+  font-size: 24px;
+  line-height: 25px;
+  color: var(--text);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.lv { color: var(--text); }
+.status {
+  padding: 0 4px;
+  border: 1px solid #14161A;
+  border-radius: 2px;
+}
+.status-text {
+  font-family: "BarlowBold";
+  font-size: 15px;
+  line-height: 16px;
+}
+
+/* HP: the game's green "HP" tag, a dark trough, a light-green fill */
+.hp-row { flex-direction: row; align-items: center; gap: 5px; }
+.hp-tag { padding: 0; background-color: transparent; border: 0 solid transparent; }
+.hp-tag-text {
+  font-family: "BarlowBold";
+  font-size: 17px;
+  line-height: 17px;
+  color: #8CD44C;
+  text-shadow: 1px 1px 0 #0A2010;
+}
+.hp {
+  flex: 1;
+  height: 8px;
+  padding: 1px;
+  background-color: #0B1822;
+  border: 2px solid #0A141C;
+  border-radius: 2px;
+  accent-color: var(--ok-bar);
+  transition: width 400ms ease-out; }
+.hp > fill { margin: 1px; border-radius: 0; }
+.hp.mid { accent-color: var(--warn-bar); }
+.hp.low { accent-color: var(--bad-bar); }
+.hp-num { font-size: 18px; line-height: 19px; }
+
+/* full party: two columns of plates */
+.party-panel { flex: 1; }
+.party-panel .panel-body { padding: 8px; background-color: var(--night); border-color: var(--slate); }
+.pgrid {
+  flex: 1;
+  min-height: 0;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: flex-start;
+  row-gap: 8px;
+  overflow: auto;
+}
+.pgrid .pcard { width: 49%; height: 92px; flex-shrink: 0; }
+.pcard { flex-direction: row; align-items: center; gap: 6px; padding: 5px 10px 5px 6px; }
+.pcard-body { flex: 1; min-width: 0; gap: 2px; }
+.hp-foot { flex-direction: row; align-items: center; }
+.hp-big { font-size: 20px; line-height: 21px; }
+
+.type-row { flex-direction: row; gap: 4px; }
+.type-img { width: 48px; height: 18px; image-rendering: auto; }
+
+/* ---- radar map ------------------------------------------------------------------- */
+
+/* The Town Map's 168 x 136 shape at 280 x 227dp; the markers'
+   % positions are relative to this box. */
+.radar-panel .panel-body { padding: 8px; align-items: center; justify-content: center; }
+.radar {
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  background-color: #BBD3F5;
+  border: 2px solid var(--line);
+  border-radius: 0; }
+.radar-img {
+  width: 280px;
+  height: 227px;
+  object-fit: fill;
+}
+.pins { position: absolute; left: 0; top: 0; right: 0; bottom: 0; }
+.pin { position: absolute; width: 21px; height: 21px; }
+
+/* Wild Pokemon: the method button (tap for the next one) stays put, the list scrolls. */
+.wild-panel .panel-body { padding: 6px; }
+.wild {
+  flex: 1;
+  min-height: 0;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+}
+.wild-method {
+  flex-shrink: 0;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 34px;
+  padding: 0 8px;
+  background-color: var(--accent-soft);
+  border: 2px solid var(--line);
+  border-radius: 0;
+}
+.wild-method:pressed { background-color: var(--accent); }
+.wild-label { font-family: "Barlow"; font-size: 14px; line-height: 18px; color: var(--ink-2); }
+.wild-method-text { font-family: "BarlowBold"; font-size: 21px; line-height: 22px; color: var(--ink); white-space: nowrap; }
+.wild-mons { flex: 1; min-height: 0; gap: 4px; overflow: auto; }
+.wild-mon {
+  flex-direction: row;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 6px 0 2px;
+  background-color: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 0; }
+.wild-sprite { width: 36px; height: 36px; flex-shrink: 0; }
+.wild-info { flex: 1; min-width: 0; gap: 1px; }
+.wild-name { font-family: "BarlowBold"; font-size: 19px; line-height: 20px; color: var(--ink); white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
+.wild-level { font-family: "Barlow"; font-size: 16px; line-height: 17px; color: var(--ink-2); }
+.wild-chance { flex-shrink: 0; padding: 0 4px; background-color: var(--surface); border: 1px solid var(--line); border-radius: 0; }
+.wild-chance-text { font-family: "BarlowBold"; font-size: 17px; line-height: 18px; color: var(--ink); }
+.wild-none { height: 40px; justify-content: center; align-items: center; }
+.wild-none-text { font-family: "Barlow"; font-size: 19px; line-height: 24px; color: var(--ink-2); }
+
+.cross-anchor {
+  position: absolute;
+  display: stack;
+  place-items: center;
+  width: 87px;
+  height: 87px;
+  transform: translate(-43.5px, -43.5px);
+}
+.crosshair { width: 87px; height: 87px; }
+.you { width: 28px; height: 28px; }
+
+/* ---- bag: the Key Items screen's green frame, slate list, blue cursor row ---------------------- */
+
+.bag-panel { flex: 1; background-color: var(--green); border-color: var(--green-d); }
+.bag-panel .panel-tab { background-color: var(--green-d); border-color: #1A3626; }
+.bag-panel .panel-body { background-color: var(--slate); border: 3px solid var(--green-d); padding: 6px; }
+.pockets { gap: 8px; }
+.pockets tab-bar { gap: 6px; }
+.pockets tab {
+  padding: 2px 12px;
+  background-color: var(--slate-2);
+  border: 2px solid var(--green);
+  border-radius: 2px;
+  font-family: "BarlowBold";
+  font-size: 20px;
+  line-height: 23px;
+  color: #9FD0B0;
+}
+.pockets tab:active {
+  background-color: var(--green);
+  border-color: #9FD0B0;
+  color: #FFFFFF; }
+
+.item-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 12px;
+  row-gap: 0;
+  align-content: start;
+  overflow: auto;
+}
+.item-row {
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  height: 38px;
+  padding: 0 8px;
+  border-bottom: 2px solid #1C1E22; }
+.item-row:pressed { background-color: var(--slate-2); }
+.item-icon { width: 30px; height: 30px; margin: -4px 0; }
+.item-name {
+  font-family: "Barlow";
+  font-size: 23px;
+  line-height: 25px;
+  color: var(--text);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.item-row:pressed .item-name { color: #4A90E0; }
+.item-count { color: var(--text); text-align: right; }
+.item-grid empty {
+  font-family: "Barlow";
+  font-size: 20px;
+  color: #9FD0B0;
+  padding: 9px;
+}
+
+/* ---- dex --------------------------------------------------------------------------- */
+
+.dex-panel .panel-body { gap: 9px; padding: 8px; }
+.dex-stat {
+  flex: 1;
+  justify-content: space-between;
+  padding: 8px 10px;
+  border: 2px solid var(--line);
+  border-radius: 0;
+}
+.dex-stat.seen { background-color: var(--info); color: var(--ink); }
+.dex-stat.caught { background-color: var(--accent-soft); color: var(--ink); }
+.dex-stat-head { flex-direction: row; align-items: center; }
+.dex-label {
+  font-family: "BarlowBold";
+  font-size: 21px;
+  line-height: 23px;
+  letter-spacing: 1.5px;
+}
+.dex-of { font-size: 16px; }
+.dex-num {
+  font-size: 34px;
+  line-height: 36px;
+}
+.dex-stat.caught .dex-num { color: var(--ink); }
+.dex-bar {
+  height: 12px;
+  background-color: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 0;
+  accent-color: var(--info-bar);
+  transition: width 400ms ease-out; }
+
+.dex-side .panel-body { gap: 9px; padding: 8px; }
+.complete {
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background-color: var(--surface-2);
+  border: 2px solid var(--line);
+  border-radius: 0; }
+.complete-num { font-size: 44px; line-height: 48px; color: var(--ink); }
+.complete-sub {
+  font-family: "Barlow";
+  font-size: 18px;
+  line-height: 19px;
+  color: var(--ink-2);
+}
+.last {
+  gap: 6px;
+  padding: 8px 10px;
+  background-color: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 0; }
+.last-label {
+  font-family: "Barlow";
+  font-size: 17px;
+  line-height: 19px;
+  letter-spacing: 1px;
+  color: var(--ink-2);
+}
+.last-row { flex-direction: row; align-items: center; gap: 9px; }
+.last-id { gap: 4px; }
+.last-no { color: var(--ink-2); font-size: 16px; }
+.last-name {
+  font-family: "BarlowBold";
+  font-size: 24px;
+  line-height: 27px;
+  color: var(--ink);
+}
+
+/* ---- trainer card ------------------------------------------------------------------ */
+
+.id-panel .panel-body,
+.badge-panel .panel-body { padding: 8px; }
+.id-card {
+  flex: 1;
+  background-color: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 0;
+  overflow: hidden; }
+.id-band {
+  flex-direction: row;
+  align-items: center;
+  padding: 5px 9px;
+  background-color: var(--accent-soft);
+  border-bottom: 2px solid var(--line); }
+.id-band-text {
+  font-family: "BarlowBold";
+  font-size: 28px;
+  line-height: 30px;
+  letter-spacing: 1.5px;
+  color: var(--ink);
+}
+.id-no { color: var(--ink); font-size: 26px; line-height: 28px; }
+.id-main { flex: 1; flex-direction: row; gap: 9px; padding: 9px; }
+.id-rows { flex: 1; min-width: 0; justify-content: space-evenly; }
+.id-row {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--line-soft);
+}
+.id-row:last-child { border-bottom: 0 solid transparent; }
+.id-ico-slot { width: 30px; height: 30px; flex-shrink: 0; align-items: center; justify-content: center; }
+.id-ico { width: 28px; height: 28px; }
+.id-key {
+  font-family: "BarlowBold";
+  font-size: 26px;
+  line-height: 28px;
+  letter-spacing: 1px;
+  color: var(--ink-2);
+}
+.id-val { color: var(--ink); font-size: 28px; line-height: 30px; }
+
+.badge-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 8px;
+}
+.badge {
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 5px;
+  border: 2px solid var(--line);
+  border-radius: 0;
+}
+.badge.earned { background-color: var(--surface); }
+.badge.locked { background-color: var(--surface-2); opacity: 0.55; }
+.badge-img { width: 26px; height: 26px; image-rendering: auto; }
+.badge-lock { width: 18px; height: 18px; margin: 0 3px 0 2px; }
+.badge-name {
+  font-family: "BarlowBold";
+  font-size: 13px;
+  line-height: 15px;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+/* ---- battle ---------------------------------------------------------------------- */
+
+.battle-content { display: stack; place-items: stretch; }
+.battle-cols {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 10px;
+}
+.battle-side .panel-body { padding: 8px; gap: 8px; }
+.stat-list { flex: 1; gap: 4px; justify-content: space-between; }
+.stat-row {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 4px 3px 9px;
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 0; }
+.stat-name {
+  font-family: "BarlowBold";
+  font-size: 20px;
+  line-height: 22px;
+  color: var(--ink);
+}
+.stat-val { color: var(--ink); font-size: 17px; line-height: 18px; }
+.stage {
+  width: 36px;
+  align-items: center;
+  padding: 1px 0;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background-color: var(--surface-2); }
+.stage-text { font-size: 14px; line-height: 16px; color: var(--ink); }
+.stat-row.up .stage { background-color: var(--ok); }
+.stat-row.down .stage { background-color: var(--bad); }
+
+.no-battle { align-items: center; justify-content: center; }
+.no-battle-card {
+  align-items: center;
+  gap: 9px;
+  padding: 18px 27px;
+  background-color: #FFFFFF;
+  border: 4px solid #66737A;
+  border-radius: 0; }
+.no-battle-text {
+  font-family: "BarlowBold";
+  font-size: 29px;
+  line-height: 31px;
+  letter-spacing: 2px;
+  color: var(--ink);
+}
+.no-battle-sub {
+  font-family: "Barlow";
+  font-size: 18px;
+  line-height: 19px;
+  color: var(--ink-2);
+}
+
+/* ---- waiting (boot) screen ------------------------------------------------------- */
+
+.waiting { flex: 1 1 auto; align-items: center; justify-content: center; }
+.boot {
+  width: 300px;
+  align-items: center;
+  gap: 9px;
+  padding: 18px 0;
+  background-color: var(--slate);
+  border: 3px solid var(--edge);
+  border-radius: 8px;
+  overflow: hidden; }
+.boot-title {
+  font-family: "BarlowBold";
+  font-size: 39px;
+  line-height: 41px;
+  letter-spacing: 4px;
+  color: var(--text);
+  text-shadow: 2px 2px 0 #55565C;
+}
+.boot-sub {
+  font-family: "Barlow";
+  font-size: 23px;
+  line-height: 25px;
+  letter-spacing: 2px;
+  color: var(--mint);
+}
+.boot-pill {
+  padding: 3px 14px;
+  background-color: var(--pill);
+  border: 2px solid var(--pill-ink);
+  border-radius: 12px; }
+.boot-pill-text {
+  font-family: "BarlowBold";
+  font-size: 16px;
+  line-height: 18px;
+  letter-spacing: 1px;
+  color: #FFFFFF;
+}
+
+/* ---- pokemon detail: Info page on the left, Moves / Stats on the right ---------------------------- */
+
+.detail-cols { grid-template-columns: 252px 1fr; }
+.detail-left { min-width: 0; min-height: 0; gap: 6px; }
+
+/* the name plate (cream with a grey base line), the mon beside it */
+.plate {
+  flex-direction: row;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 4px;
+  height: 92px;
+  padding: 4px 8px 4px 2px;
+  background-color: var(--plate);
+  border: 3px solid var(--plate-edge);
+  border-bottom: 5px solid #A8A394;
+  border-radius: 0;
+}
+.plate-body { flex: 1; min-width: 0; gap: 4px; }
+.plate-name { font-family: "BarlowBold"; font-size: 24px; line-height: 25px; color: var(--ink); text-overflow: ellipsis; }
+.plate .lv, .plate-lv { color: var(--ink); }
+.plate .card text, .plate text { text-shadow: none; }
+.sprite-xl { width: 76px; height: 72px; }
+.sprite-xl .sprite { width: 84px; height: 84px; }
+.plate .type-img { width: 44px; height: 17px; }
+
+/* label pill on slate | value on cream, one row each */
+.irows {
+  flex: 1;
+  min-height: 0;
+  background-color: var(--slate);
+  border: 3px solid #14161A;
+  justify-content: space-between;
+}
+.irow {
+  flex: 1;
+  min-height: 0;
+  flex-direction: row;
+  align-items: stretch;
+  border-bottom: 2px solid #1C1E22;
+}
+.irow:last-child { border-bottom: 0 solid transparent; }
+.ipill {
+  width: 86px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  margin: 6px 6px 6px 6px;
+  background-color: var(--pill);
+  border-radius: 10px;
+}
+.ipill-text { font-family: "BarlowBold"; font-size: 18px; line-height: 19px; color: #FFFFFF; text-shadow: 1px 1px 0 var(--pill-ink); }
+.ival {
+  flex: 1;
+  min-width: 0;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  padding: 0 8px;
+  background-color: var(--cream);
+  border-bottom: 2px solid var(--cream-line);
+}
+.ival-col { flex-direction: column; justify-content: center; align-items: stretch; gap: 3px; }
+.ival-text { font-family: "BarlowBold"; font-size: 22px; line-height: 24px; color: var(--ink); text-overflow: ellipsis; }
+.info-icon { width: 24px; height: 24px; }
+.ival .hp-tag { display: none; }
+.ival .hp-num { color: var(--ink); text-shadow: none; }
+.ival .hp-row text { text-shadow: none; }
+.meter-val { font-size: 15px; line-height: 16px; color: var(--ink-2); }
+.exp {
+  height: 8px;
+  background-color: var(--cream-2);
+  border: 2px solid #9A9A94;
+  border-radius: 0;
+  accent-color: var(--info-bar);
+  transition: width 400ms ease-out; }
+
+/* right side: the tabs (MOVES | STATS) over a near-black well */
+.sum-panel .panel-body { padding: 8px; background-color: var(--night); border: 3px solid var(--slate); }
+.sum-tabs { gap: 8px; }
+.sum-tabs tab-bar { gap: 6px; }
+.sum-tabs tab {
+  padding: 2px 14px;
+  background-color: var(--slate-line);
+  border: 2px solid #14161A;
+  border-radius: 10px;
+  font-family: "BarlowBold";
+  font-size: 20px;
+  line-height: 23px;
+  color: #C8C8CC;
+}
+.sum-tabs tab:active { background-color: var(--mint); border-color: #2E6A58; color: #0F2F25; }
+
+/* Moves: hexagon cards. The two diamonds are the points of the hexagon. */
+.mcards { flex: 1; min-height: 0; gap: 8px; padding: 0 14px; }
+.mcard {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  padding: 0 10px;
+  background-color: var(--slate);
+  border: 3px solid var(--edge);
+  border-radius: 2px;
+}
+.hex { position: absolute; top: 50%; width: 18px; height: 18px; margin-top: -9px; background-color: var(--slate); transform: rotate(45deg); }
+.hex-l { left: -9px; border-left: 3px solid var(--edge); border-bottom: 3px solid var(--edge); }
+.hex-r { right: -9px; border-top: 3px solid var(--edge); border-right: 3px solid var(--edge); }
+.mc-tag { flex-shrink: 0; width: 60px; }
+.mcard .type-img { width: 60px; height: 22px; }
+.mc-main { flex: 1; min-width: 0; align-items: flex-end; gap: 0; }
+.mc-name { align-self: flex-start; font-family: "BarlowBold"; font-size: 26px; line-height: 27px; color: var(--text); text-overflow: ellipsis; }
+.mc-pp { color: #C8D0E0; font-size: 20px; line-height: 21px; }
+
+/* Stats */
+.dstat-list { gap: 5px; }
+.dstat {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  padding: 0 8px;
+  background-color: var(--slate);
+  border: 2px solid var(--edge);
+  border-radius: 2px; }
+.dstat-name { width: 44px; font-family: "BarlowBold"; font-size: 21px; line-height: 23px; color: var(--text); }
+.dstat.up { background-color: #1F4A2C; }
+.dstat.down { background-color: #4A2024; }
+.dstat-bar {
+  flex: 1;
+  height: 8px;
+  background-color: #0B1822;
+  border: 2px solid #0A141C;
+  border-radius: 2px;
+  accent-color: var(--info-bar);
+  transition: width 400ms ease-out; }
+.dstat-val { width: 66px; text-align: right; font-size: 18px; line-height: 19px; color: var(--text); }
+
+.sub-label {
+  font-family: "BarlowBold";
+  font-size: 20px;
+  line-height: 22px;
+  letter-spacing: 2px;
+  color: var(--text);
+}
+.meter .hp-num { color: var(--ink); }
+
+/* ---- settings (trainer page) ------------------------------------------------------ */
+
+.side-col { flex: 1; min-width: 0; min-height: 0; gap: 8px; }
+.set-panel { flex-shrink: 0; height: 92px; }
+.set-panel .panel-body { padding: 6px; gap: 6px; }
+.opt-btn {
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  padding: 0 8px;
+  background-color: var(--accent);
+  border: 2px solid var(--line);
+  border-radius: 0;
+}
+.opt-btn:pressed { background-color: var(--accent-strong); }
+.opt-label { font-family: "BarlowBold"; font-size: 20px; line-height: 22px; letter-spacing: 1px; color: var(--ink); }
+.opt-state {
+  font-family: "BarlowBold";
+  font-size: 18px;
+  line-height: 19px;
+  padding: 0 8px;
+  color: #FFFFFF;
+  text-shadow: 1px 1px 0 var(--foot-lo);
+  background-color: var(--foot);
+  border: 2px solid var(--foot-lo);
+  border-radius: 0; }
+.opt-btn.opt-on .opt-state { background-color: var(--orange-lo); border-color: var(--orange-ink); text-shadow: 1px 1px 0 var(--orange-ink); }
+.badge-panel { flex: 1; }
+
+/* ---- pokedex list -------------------------------------------------------------------- */
+
+.dex-cols { flex-direction: row; gap: 8px; }
+.dex-list-panel { flex: 2; }
+.dex-entry-panel { flex: 3; }
+.dex-list-panel .panel-body, .dex-entry-panel .panel-body { padding: 6px; gap: 6px; }
+.pager { flex-direction: row; align-items: center; gap: 6px; height: 36px; flex-shrink: 0; }
+.pg-btn {
+  width: 44px;
+  height: 36px;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--foot);
+  border: 2px solid var(--foot-lo);
+  border-radius: 0;
+}
+.pg-btn:pressed { background-color: var(--foot-press); }
+.pg-label { font-family: "BarlowBold"; font-size: 24px; line-height: 26px; color: #FFFFFF; text-shadow: 1px 1px 0 var(--foot-lo); }
+.pager-mid {
+  flex: 1;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--surface-2);
+  border: 2px solid var(--line);
+  border-radius: 0; }
+.pager-text { font-family: "BarlowBold"; font-size: 19px; line-height: 20px; color: var(--ink); }
+.pager-sub { font-size: 13px; line-height: 13px; color: var(--ink-2); }
+.dex-list { flex: 1; min-height: 0; gap: 4px; overflow: auto; }
+.dex-row {
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  height: 42px;
+  flex-shrink: 0;
+  padding: 0 8px 0 2px;
+  background-color: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 0; }
+.dex-row.sel { background-color: var(--accent-soft); border-color: var(--line-strong); }
+.dex-row.unseen { opacity: 0.6; }
+.dex-thumb { width: 38px; height: 38px; align-items: center; justify-content: center; flex-shrink: 0; overflow: visible; }
+.dex-img { width: 52px; height: 52px; }
+.dex-q { font-size: 26px; color: var(--ink-2); }
+.dex-info { flex: 1; min-width: 0; }
+.dex-row .dex-no { font-size: 13px; line-height: 14px; color: var(--ink-2); }
+.dex-name { font-family: "BarlowBold"; font-size: 20px; line-height: 21px; color: var(--ink); text-overflow: ellipsis; }
+.dex-own { width: 12px; height: 12px; flex-shrink: 0; background-color: var(--accent-strong); border: 2px solid var(--outline); border-radius: 0; }
+
+.dex-hero { flex-direction: row; align-items: center; gap: 8px; flex-shrink: 0; }
+.dex-big {
+  width: 84px;
+  height: 84px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--surface-2);
+  border: 2px solid var(--line);
+  border-radius: 0; }
+.dex-big-img { width: 80px; height: 80px; }
+.dex-big-q { font-size: 44px; color: var(--ink-2); }
+.dex-id { flex: 1; min-width: 0; gap: 2px; }
+.dex-sel-no { font-size: 14px; line-height: 15px; color: var(--ink-2); }
+.dex-sel-name { font-family: "BarlowBold"; font-size: 26px; line-height: 27px; color: var(--ink); text-overflow: ellipsis; }
+.dex-cat { font-size: 16px; line-height: 17px; color: var(--ink-2); }
+.dex-meas { flex-direction: row; gap: 6px; flex-shrink: 0; }
+.meas {
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 8px;
+  background-color: var(--surface-2);
+  border: 2px solid var(--line);
+  border-radius: 0; }
+.meas.grow { min-width: 0; }
+.meas-k { font-size: 14px; line-height: 15px; color: var(--ink-2); }
+.meas-v { font-family: "BarlowBold"; font-size: 17px; line-height: 18px; color: var(--ink); text-overflow: ellipsis; }
+.dex-desc {
+  flex: 1;
+  min-height: 0;
+  padding: 4px 8px;
+  background-color: var(--surface-2);
+  border: 2px solid var(--line);
+  border-radius: 0;
+  overflow: hidden; }
+.dex-desc-text { white-space: normal; font-size: 16px; line-height: 17px; color: var(--ink); }
+.dex-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3px 6px; flex-shrink: 0; }
+.dex-stats .dex-srow { height: 22px; padding: 0 6px; gap: 6px; }
+.dex-stats .dstat-name { width: 42px; font-size: 14px; line-height: 15px; }
+.dex-stats .dstat-bar { height: 8px; }
+.dex-stats .dstat-val { width: 28px; font-size: 14px; line-height: 15px; }
+
+/* ---- battle: controls ----------------------------------------------------------------- */
+
+.battle-main { flex: 1; min-height: 0; gap: 8px; }
+.combatants { flex-direction: row; gap: 8px; flex-shrink: 0; }
+.combatant { flex: 1; min-width: 0; }
+.combatant .pcard, .bside .pcard { width: 100%; height: 92px; flex-shrink: 0; }
+.combatant .sprite-l, .bside .sprite-l { width: 52px; height: 52px; }
+.combatant .sprite-l .sprite, .bside .sprite-l .sprite { width: 60px; height: 60px; }
+.combatant .type-img, .bside .type-img { width: 40px; height: 15px; }
+.combatant .mon-name, .bside .mon-name { font-size: 20px; line-height: 21px; }
+.moves-preview {
+  flex: 1;
+  min-height: 0;
+  gap: 4px;
+  padding: 6px;
+  background-color: var(--frame);
+  border: 3px solid var(--outline);
+  border-radius: 0; }
+.moves-title { font-family: "BarlowBold"; font-size: 14px; line-height: 15px; letter-spacing: 2px; color: #FFFFFF; text-shadow: 1px 1px 0 var(--orange-ink); }
+.mchips { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); gap: 6px; }
+.mchip {
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 6px;
+  background-color: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 0; }
+.mchip.se { background-color: var(--ok); }
+.mchip.nve { background-color: var(--bad); }
+.mchip.imm { background-color: var(--surface-2); opacity: 0.7; }
+.mchip.best { border-color: #F2B705; border-width: 3px; }
+.mchip:pressed { background-color: var(--accent-soft); }
+.mchip .type-img { width: 40px; height: 15px; }
+.mchip-main { flex: 1; min-width: 0; gap: 1px; }
+.mchip-name { font-family: "BarlowBold"; font-size: 20px; line-height: 21px; color: var(--ink); text-overflow: ellipsis; }
+.mchip-pp { font-size: 9px; line-height: 11px; color: var(--ink-2); }
+.tiles { flex-direction: row; gap: 6px; height: 74px; flex-shrink: 0; }
+.tile {
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 0;
+  background-color: var(--foot);
+  border: 3px solid var(--foot-lo);
+  border-radius: 0;
+}
+.tile:pressed { background-color: var(--foot-press); }
+.t-fight { flex: 1.5; background-color: var(--orange-lo); border-color: var(--outline); }
+.t-fight .tile-label { font-size: 30px; line-height: 31px; letter-spacing: 2px; }
+.tile-label { font-family: "BarlowBold"; font-size: 20px; line-height: 21px; letter-spacing: 1px; color: #FFFFFF; text-shadow: 1px 1px 0 var(--foot-lo); }
+.tile-sub { font-size: 14px; line-height: 15px; color: #FFFFFF; text-overflow: ellipsis; }
+.tile.on { border-color: #FFFFFF; }
+.combatant:pressed, .bside:pressed { opacity: 0.85; }
+
+/* moves page */
+.battle-detail { gap: 8px; }
+.sides { flex-direction: row; gap: 8px; flex: 1; min-height: 0; }
+.bside { flex: 1; min-width: 0; gap: 4px; }
+.bside .stat-list { gap: 2px; justify-content: flex-start; }
+.bside .stat-row { padding: 0 4px 0 8px; gap: 6px; }
+.bside .stat-name { font-size: 17px; line-height: 19px; }
+.bside .stat-val { font-size: 15px; line-height: 16px; }
+.bside .stage { width: 32px; padding: 0; }
+.skills {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  padding: 6px;
+  height: 116px;
+  flex-shrink: 0;
+  background-color: var(--frame);
+  border: 3px solid var(--outline);
+  border-radius: 0; }
+.skill {
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 6px;
+  background-color: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 0; }
+.skill.se { background-color: var(--ok); }
+.skill.nve { background-color: var(--bad); }
+.skill.on { border-color: var(--accent-strong); }
+.skill:pressed { background-color: var(--accent-soft); }
+.skill .type-img { width: 40px; height: 15px; }
+.skill-main { flex: 1; min-width: 0; }
+.skill-name { font-family: "BarlowBold"; font-size: 19px; line-height: 20px; color: var(--ink); text-overflow: ellipsis; }
+.skill-sub { font-size: 13px; line-height: 14px; color: var(--ink-2); }
+.skill-right { align-items: flex-end; gap: 2px; }
+.eff { padding: 0 5px; background-color: var(--surface-2); border: 1px solid var(--line); border-radius: 0; }
+.eff.se { background-color: #5DB86A; }
+.eff.nve { background-color: #D8796B; }
+.eff-text { font-family: "BarlowBold"; font-size: 14px; line-height: 15px; color: var(--ink); }
+.eff.se .eff-text, .eff.nve .eff-text { color: #FFFFFF; }
+.skill-pp { font-size: 14px; line-height: 15px; color: var(--ink-2); }
+.bar-full { width: 100%; background-size: 510px 46px; }
+
+/* ---- map: TOWN / WORLD switch and the live area picture ------------------------------------ */
+
+.map-modes { flex-direction: row; align-items: center; gap: 4px; }
+.map-mode {
+  height: 24px;
+  padding: 0 10px;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--accent-soft);
+  border: 2px solid var(--outline);
+  border-radius: 0;
+}
+.map-mode:pressed { background-color: var(--accent); }
+.map-mode.on { background-color: var(--foot); }
+.map-mode-text { font-family: "BarlowBold"; font-size: 17px; line-height: 18px; letter-spacing: 1px; color: var(--ink); }
+.map-mode.on .map-mode-text { color: #FFFFFF; text-shadow: 1px 1px 0 var(--foot-lo); }
+/* the live picture has the Town Map's size (280 x 227 inside its 2px border) */
+.town-pic {
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  width: 284px;
+  height: 231px;
+  background-color: #BBD3F5;
+  border: 2px solid var(--line);
+  border-radius: 0; }
+.area-img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: fill; }
+.area-anchor { position: absolute; width: 0; height: 0; }
+.area-you { position: absolute; left: -13px; top: -22px; width: 26px; height: 26px; }
+.town-off {
+  flex-shrink: 0;
+  width: 284px;
+  height: 231px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 28px;
+  background-color: var(--surface-2);
+  border: 2px solid var(--line);
+  border-radius: 0; }
+.town-off-text { white-space: normal; text-align: center; font-size: 19px; line-height: 21px; color: var(--ink-2); }
+
+
+/* ---- hard depth: a solid step of shadow under windows and buttons, no blur ------------------------ */
+.panel, .bar-btn, .tile, .fight-btn, .moves-preview { box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.5); }
+
+/* ---- Unbound skin for the shared pages (battle, dex, map, trainer, settings) ----------------------- */
+.no-battle-card { background-color: var(--slate); border: 3px solid var(--edge); border-radius: 8px; }
+.no-battle-text { color: var(--text); text-shadow: 2px 2px 0 #55565C; }
+.no-battle-sub { color: var(--mint); }
+.moves-preview { background-color: var(--slate); border: 3px solid #14161A; border-radius: 4px; }
+.moves-title { color: var(--text); text-shadow: none; }
+.mchip, .skill { background-color: var(--slate-2); border: 2px solid var(--edge); border-radius: 2px; }
+.mchip-name, .skill-name { color: var(--text); }
+.mchip-pp, .skill-sub { color: #C8D0E0; }
+.mchip.se, .skill.se { background-color: #1F4A2C; }
+.mchip.nve, .skill.nve { background-color: #4A2024; }
+.mchip.best { border-color: var(--mint); }
+.mchip:pressed, .skill:pressed { background-color: var(--foot); }
+.skill.on { border-color: var(--mint); }
+.tile { background-color: var(--slate); border: 3px solid var(--edge); border-radius: 8px; }
+.tile.on { border-color: var(--mint); }
+.tile-label { color: var(--text); text-shadow: none; }
+.tile-sub { color: #C8D0E0; }
+.t-fight { background-color: #4A2024; border-color: #A8505C; }
+.map-mode { background-color: var(--slate-line); border: 2px solid #14161A; border-radius: 8px; }
+.map-mode.on { background-color: var(--mint); border-color: #2E6A58; }
+.map-mode-text { color: #C8C8CC; }
+.map-mode.on .map-mode-text { color: #0F2F25; text-shadow: none; }
+.opt-btn { background-color: var(--slate-2); border: 2px solid var(--edge); border-radius: 2px; }
+.opt-label { color: var(--text); }
+.opt-state { background-color: var(--slate-line); border: 2px solid #14161A; border-radius: 8px; text-shadow: none; }
+.opt-btn.opt-on .opt-state { background-color: var(--green); border-color: var(--green-d); text-shadow: none; }
+.set-panel .panel-body, .badge-panel .panel-body, .id-panel .panel-body { background-color: var(--slate); border: 3px solid #14161A; }
+.id-card { background-color: var(--cream); border: 3px solid var(--cream-line); }
+.id-band { background-color: var(--pill); border-bottom: 3px solid var(--pill-ink); }
+.id-band-text, .id-no { color: #FFFFFF; text-shadow: 1px 1px 0 var(--pill-ink); }
+.badge.earned { background-color: var(--cream); }
+.wild-method { background-color: var(--slate-line); border: 2px solid #14161A; border-radius: 8px; }
+.wild-label, .wild-method-text { color: var(--text); }
+.wild-mon { background-color: var(--slate-2); border: 2px solid var(--edge); }
+.wild-name { color: var(--text); }
+.wild-level { color: #C8D0E0; }
+.wild-chance { background-color: var(--slate-line); border-color: #14161A; }
+.wild-chance-text { color: var(--text); }
+.pg-btn { background-color: var(--slate-line); border: 2px solid #14161A; border-radius: 8px; }
+.dex-row { background-color: var(--cream); border: 2px solid var(--cream-line); }
+.dex-row.sel { background-color: #BFEDE0; border-color: var(--mint); }
+
+/* ---- search: a text field with a clear button above the Pokedex list and the bag ---------------------- */
+.search-row { flex-direction: row; gap: 6px; height: 32px; flex-shrink: 0; }
+.search-input {
+  flex: 1;
+  min-width: 0;
+  height: 32px;
+  padding: 3px 8px;
+  background-color: var(--surface-hi);
+  border: 2px solid var(--line-strong);
+  font-size: 20px;
+  line-height: 24px;
+  color: var(--ink);
+}
+.search-clear {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--foot);
+  border: 2px solid var(--outline);
+}
+.search-clear:pressed { background-color: var(--foot-press); }
+.search-clear-x { font-size: 22px; line-height: 22px; color: #FFFFFF; text-shadow: 1px 1px 0 var(--foot-lo); }
+.pager-found { height: 36px; flex-shrink: 0; align-items: center; justify-content: center; background-color: var(--surface-2); border: 2px solid var(--line); }
+.pager-found-text { font-size: 20px; line-height: 20px; letter-spacing: 1px; color: var(--ink); }
+
+/* >>> nav placement */
+/* the docks and the NAV setting are skinned from the ring bar's own buttons (art/../skill/tools/navkit_pokemon.py reads .bar-btn, .bar-label, .bar-mid, .bar-title) */
+.shell { flex-direction: row; }
+pages { min-width: 0; }
+.pdock { width: 92px; max-height: 318px; align-self: flex-start; flex-shrink: 0; gap: 6px; overflow: auto; }
+.pdock-l { margin-right: 8px; }
+.pdock-r { margin-left: 8px; }
+.dock-btn { background-color: var(--slate); border: 3px solid var(--edge); border-radius: 8px; width: 100%; height: 44px; flex-shrink: 0; margin: 0; padding: 0; flex-direction: row; align-items: center; justify-content: center; }
+.dock-btn:pressed { background-color: var(--foot-hi); }
+.dock-btn.on { background-color: var(--slate-2); border: 3px solid var(--mint); background-image: none; }
+.dock-label { font-family: "BarlowBold"; line-height: 24px; letter-spacing: 1.5px; color: var(--text); white-space: nowrap; font-size: 19px; white-space: nowrap; }
+.dock-btn.on .dock-label { color: var(--mint); text-shadow: none; }
+.pdock.narrow { width: 76px; }
+.pdock.narrow .dock-label { font-size: 15px; letter-spacing: 0; }
+.opt-btn.opt-nav { background-color: var(--slate); border: 3px solid var(--edge); border-radius: 8px; }
+.opt-btn.opt-nav:pressed { background-color: var(--foot-hi); }
+.opt-btn.opt-nav .opt-label { font-family: "BarlowBold"; line-height: 24px; letter-spacing: 1.5px; color: var(--text); white-space: nowrap; }
+.opt-btn.opt-nav .opt-state { color: var(--mint); background-color: var(--slate-2); border: 2px solid var(--edge); border-radius: 0; text-shadow: none; padding: 0 8px; }
+.set-panel { height: 132px; }
+
+/* <<< nav placement */

@@ -1,0 +1,2100 @@
+{
+ "L1": false,
+ "L2": false,
+ "L3": false,
+ "L4": false,
+ "L5": false,
+ "R1": false,
+ "R2": false,
+ "R3": false,
+ "R4": false,
+ "R5": false,
+ "badgeCount": "0",
+ "badges": [
+  {
+   "earned": false,
+   "locked": true,
+   "name": "BADGE 1",
+   "src": "asset:ui/badge1.png"
+  },
+  {
+   "earned": false,
+   "locked": true,
+   "name": "BADGE 2",
+   "src": "asset:ui/badge2.png"
+  },
+  {
+   "earned": false,
+   "locked": true,
+   "name": "BADGE 3",
+   "src": "asset:ui/badge3.png"
+  },
+  {
+   "earned": false,
+   "locked": true,
+   "name": "BADGE 4",
+   "src": "asset:ui/badge4.png"
+  },
+  {
+   "earned": false,
+   "locked": true,
+   "name": "BADGE 5",
+   "src": "asset:ui/badge5.png"
+  },
+  {
+   "earned": false,
+   "locked": true,
+   "name": "BADGE 6",
+   "src": "asset:ui/badge6.png"
+  },
+  {
+   "earned": false,
+   "locked": true,
+   "name": "BADGE 7",
+   "src": "asset:ui/badge7.png"
+  },
+  {
+   "earned": false,
+   "locked": true,
+   "name": "BADGE 8",
+   "src": "asset:ui/badge8.png"
+  }
+ ],
+ "bag": {
+  "balls": [
+   {
+    "count": "x5",
+    "desc": "A tool used for catching wild Pok\u00e9mon.",
+    "hasIcon": false,
+    "icon": "",
+    "name": "Pok\u00e9 Ball",
+    "price": "0"
+   }
+  ],
+  "battle": [],
+  "berries": [],
+  "capacity": "360",
+  "hasAny": true,
+  "isEmpty": false,
+  "items": [],
+  "keyItems": [
+   {
+    "name": "Bicycle",
+    "count": "",
+    "icon": "",
+    "hasIcon": false,
+    "desc": "A folding bicycle.",
+    "price": "0"
+   }
+  ],
+  "medicine": [
+   {
+    "count": "x2",
+    "desc": "Restores the HP of a Pok\u00e9mon by 20 points.",
+    "hasIcon": false,
+    "icon": "",
+    "name": "Potion",
+    "price": "100"
+   },
+   {
+    "name": "Super Potion",
+    "count": "x2",
+    "icon": "",
+    "hasIcon": false,
+    "desc": "Restores the HP of a Pok\u00e9mon by 50 points.",
+    "price": "700"
+   }
+  ],
+  "tmHm": [],
+  "total": "7",
+  "used": "2"
+ },
+ "battle": {
+  "actBag": false,
+  "actFight": true,
+  "actMon": false,
+  "actRun": false,
+  "bagText": "7 ITEMS",
+  "balls": "5",
+  "best": "BEST: Scratch x1",
+  "bestName": "BEST: Scratch",
+  "foe": {
+   "fainted": false,
+   "female": true,
+   "hasStatus": false,
+   "hp": 15,
+   "hpHigh": true,
+   "hpLow": false,
+   "hpMid": false,
+   "hpPct": 0.789474,
+   "level": 5,
+   "male": false,
+   "maxHp": 19,
+   "name": "Crackliss",
+   "sprite": "asset:pokemon/173.png",
+   "stats": [
+    {
+     "name": "ATTACK",
+     "stage": "-1",
+     "up": false,
+     "down": true
+    }
+   ],
+   "status": "",
+   "t1": 10,
+   "t2": 3,
+   "types": [
+    {
+     "name": "FIRE",
+     "src": "asset:types/fire.png"
+    },
+    {
+     "name": "POISON",
+     "src": "asset:types/poison.png"
+    }
+   ]
+  },
+  "foeMon": {
+   "ability": "Blaze",
+   "abilityText": "Ups Fire moves by 50% at or below 1/3rd HP.",
+   "atk": 9,
+   "condition": [
+    {
+     "color": "#D85040",
+     "label": "COOL",
+     "pct": 0,
+     "value": "0"
+    },
+    {
+     "color": "#5088C0",
+     "label": "BEAUTY",
+     "pct": 0,
+     "value": "0"
+    },
+    {
+     "color": "#D85868",
+     "label": "CUTE",
+     "pct": 0,
+     "value": "0"
+    },
+    {
+     "color": "#58A868",
+     "label": "SMART",
+     "pct": 0,
+     "value": "0"
+    },
+    {
+     "color": "#E8A050",
+     "label": "TOUGH",
+     "pct": 0,
+     "value": "0"
+    }
+   ],
+   "contestDesc": "",
+   "def": 10,
+   "dex": "173",
+   "exp": "135",
+   "expPct": 0,
+   "fainted": false,
+   "female": true,
+   "friendPct": 0.27451,
+   "friendship": "70",
+   "hasHeld": false,
+   "hasStatus": false,
+   "heldIcon": "",
+   "hp": 15,
+   "hpHigh": true,
+   "hpLow": false,
+   "hpMid": false,
+   "hpPct": 0.789474,
+   "id": "15524",
+   "item": "NONE",
+   "lead": false,
+   "level": 5,
+   "male": false,
+   "maxHp": 19,
+   "metLevel": 5,
+   "metPlace": "Route 1",
+   "moveDesc": "Attacks the target with tentacles, vines, or the like. Has a 10% chance to lower Speed.",
+   "moves": [
+    {
+     "acc": "100",
+     "cdesc": "",
+     "contest": "-",
+     "contestColor": "#FFFFFF",
+     "desc": "Attacks the target with tentacles, vines, or the like. Has a 10% chance to lower Speed.",
+     "has": true,
+     "id": 132,
+     "mtype": 0,
+     "name": "Constrict",
+     "power": "40",
+     "pp": "35/35",
+     "ppLow": false,
+     "ppNow": 35,
+     "ppPct": 1,
+     "rawAcc": 100,
+     "rawPower": 40,
+     "type": "asset:types/normal.png"
+    },
+    {
+     "acc": "100",
+     "cdesc": "",
+     "contest": "-",
+     "contestColor": "#FFFFFF",
+     "desc": "The user leers at all opposing Pok\u00e9mon with sharp eyes, lowering their Defense stats.",
+     "has": true,
+     "id": 43,
+     "mtype": 0,
+     "name": "Leer",
+     "power": "--",
+     "pp": "29/30",
+     "ppLow": false,
+     "ppNow": 29,
+     "ppPct": 0.966667,
+     "rawAcc": 100,
+     "rawPower": 0,
+     "type": "asset:types/normal.png"
+    },
+    {
+     "acc": "--",
+     "cdesc": "",
+     "contest": "",
+     "contestColor": "#FFFFFF",
+     "desc": "",
+     "has": false,
+     "info": "",
+     "name": "-",
+     "power": "--",
+     "pp": "--",
+     "ppLow": false,
+     "ppPct": 0,
+     "type": ""
+    },
+    {
+     "acc": "--",
+     "cdesc": "",
+     "contest": "",
+     "contestColor": "#FFFFFF",
+     "desc": "",
+     "has": false,
+     "info": "",
+     "name": "-",
+     "power": "--",
+     "pp": "--",
+     "ppLow": false,
+     "ppPct": 0,
+     "type": ""
+    }
+   ],
+   "name": "Crackliss",
+   "nature": "MODEST",
+   "ot": "Kira",
+   "ribbon": "NONE",
+   "sheen": "0",
+   "sheenPct": 0,
+   "spa": 11,
+   "spd": 10,
+   "spe": 12,
+   "species": "Crackliss",
+   "speciesId": 173,
+   "sprite": "asset:pokemon/173.png",
+   "statRows": [
+    {
+     "down": false,
+     "ev": "EV 0",
+     "label": "HP",
+     "pct": 0.287879,
+     "up": false,
+     "value": "19"
+    },
+    {
+     "down": true,
+     "ev": "EV 0",
+     "label": "ATTACK",
+     "pct": 0.136364,
+     "up": false,
+     "value": "9"
+    },
+    {
+     "down": false,
+     "ev": "EV 0",
+     "label": "DEFENSE",
+     "pct": 0.151515,
+     "up": false,
+     "value": "10"
+    },
+    {
+     "down": false,
+     "ev": "EV 0",
+     "label": "SP. ATK",
+     "pct": 0.166667,
+     "up": true,
+     "value": "11"
+    },
+    {
+     "down": false,
+     "ev": "EV 0",
+     "label": "SP. DEF",
+     "pct": 0.151515,
+     "up": false,
+     "value": "10"
+    },
+    {
+     "down": false,
+     "ev": "EV 0",
+     "label": "SPEED",
+     "pct": 0.181818,
+     "up": false,
+     "value": "12"
+    }
+   ],
+   "status": "",
+   "t1": 10,
+   "t2": 3,
+   "toNext": "44",
+   "types": [
+    {
+     "name": "FIRE",
+     "src": "asset:types/fire.png"
+    },
+    {
+     "name": "POISON",
+     "src": "asset:types/poison.png"
+    }
+   ]
+  },
+  "inBattle": true,
+  "moves": [
+   {
+    "best": true,
+    "eff": "x1",
+    "has": true,
+    "imm": false,
+    "info": "PWR 40  ACC 100",
+    "name": "Scratch",
+    "nve": false,
+    "pp": "34",
+    "se": false,
+    "sel": true,
+    "type": "asset:types/normal.png"
+   },
+   {
+    "best": false,
+    "eff": "--",
+    "has": true,
+    "imm": false,
+    "info": "PWR --  ACC 100",
+    "name": "Growl",
+    "nve": false,
+    "pp": "40",
+    "se": false,
+    "sel": false,
+    "type": "asset:types/normal.png"
+   },
+   {
+    "best": false,
+    "eff": "--",
+    "has": true,
+    "imm": false,
+    "info": "PWR --  ACC 100",
+    "name": "Assist",
+    "nve": false,
+    "pp": "20",
+    "se": false,
+    "sel": false,
+    "type": "asset:types/normal.png"
+   },
+   {
+    "best": false,
+    "eff": "",
+    "has": false,
+    "imm": false,
+    "info": "",
+    "name": "-",
+    "nve": false,
+    "pp": "--",
+    "se": false,
+    "sel": false,
+    "type": ""
+   }
+  ],
+  "noBattle": false,
+  "runText": "NO",
+  "you": {
+   "fainted": false,
+   "female": false,
+   "hasStatus": false,
+   "hp": 20,
+   "hpHigh": true,
+   "hpLow": false,
+   "hpMid": false,
+   "hpPct": 1,
+   "level": 5,
+   "male": true,
+   "maxHp": 20,
+   "name": "Mishimizu",
+   "sprite": "asset:pokemon/back/194.png",
+   "stats": [
+    {
+     "name": "SPEED",
+     "stage": "+2",
+     "up": true,
+     "down": false
+    }
+   ],
+   "status": "",
+   "t1": 11,
+   "t2": 11,
+   "types": [
+    {
+     "name": "WATER",
+     "src": "asset:types/water.png"
+    }
+   ]
+  },
+  "youMon": {
+   "ability": "Torrent",
+   "abilityText": "Ups Water moves by 50% at or below 1/3rd HP.",
+   "atk": 11,
+   "condition": [
+    {
+     "color": "#D85040",
+     "label": "COOL",
+     "pct": 0,
+     "value": "0"
+    },
+    {
+     "color": "#5088C0",
+     "label": "BEAUTY",
+     "pct": 0,
+     "value": "0"
+    },
+    {
+     "color": "#D85868",
+     "label": "CUTE",
+     "pct": 0,
+     "value": "0"
+    },
+    {
+     "color": "#58A868",
+     "label": "SMART",
+     "pct": 0,
+     "value": "0"
+    },
+    {
+     "color": "#E8A050",
+     "label": "TOUGH",
+     "pct": 0,
+     "value": "0"
+    }
+   ],
+   "contestDesc": "",
+   "def": 10,
+   "dex": "194",
+   "exp": "153",
+   "expPct": 0.409091,
+   "fainted": false,
+   "female": false,
+   "friendPct": 0.278431,
+   "friendship": "71",
+   "hasHeld": false,
+   "hasStatus": false,
+   "heldIcon": "",
+   "hp": 20,
+   "hpHigh": true,
+   "hpLow": false,
+   "hpMid": false,
+   "hpPct": 1,
+   "id": "07556",
+   "item": "NONE",
+   "lead": true,
+   "level": 5,
+   "male": true,
+   "maxHp": 20,
+   "metLevel": 5,
+   "metPlace": "Webbed Woods",
+   "moveDesc": "Hard, pointed, sharp claws rake the target to inflict damage.",
+   "moves": [
+    {
+     "acc": "100",
+     "cdesc": "",
+     "contest": "-",
+     "contestColor": "#FFFFFF",
+     "desc": "Hard, pointed, sharp claws rake the target to inflict damage.",
+     "has": true,
+     "id": 10,
+     "mtype": 0,
+     "name": "Scratch",
+     "power": "40",
+     "pp": "34/35",
+     "ppLow": false,
+     "ppNow": 34,
+     "ppPct": 0.971429,
+     "rawAcc": 100,
+     "rawPower": 40,
+     "type": "asset:types/normal.png"
+    },
+    {
+     "acc": "100",
+     "cdesc": "",
+     "contest": "-",
+     "contestColor": "#FFFFFF",
+     "desc": "The user growls in an endearing way, lowering the Attack stats of all opposing Pok\u00e9mon.",
+     "has": true,
+     "id": 45,
+     "mtype": 0,
+     "name": "Growl",
+     "power": "--",
+     "pp": "40/40",
+     "ppLow": false,
+     "ppNow": 40,
+     "ppPct": 1,
+     "rawAcc": 100,
+     "rawPower": 0,
+     "type": "asset:types/normal.png"
+    },
+    {
+     "acc": "100",
+     "cdesc": "",
+     "contest": "-",
+     "contestColor": "#FFFFFF",
+     "desc": "The user randomly uses a move known by its party members. Some moves can't be called.",
+     "has": true,
+     "id": 271,
+     "mtype": 0,
+     "name": "Assist",
+     "power": "--",
+     "pp": "20/20",
+     "ppLow": false,
+     "ppNow": 20,
+     "ppPct": 1,
+     "rawAcc": 100,
+     "rawPower": 0,
+     "type": "asset:types/normal.png"
+    },
+    {
+     "acc": "--",
+     "cdesc": "",
+     "contest": "",
+     "contestColor": "#FFFFFF",
+     "desc": "",
+     "has": false,
+     "info": "",
+     "name": "-",
+     "power": "--",
+     "pp": "--",
+     "ppLow": false,
+     "ppPct": 0,
+     "type": ""
+    }
+   ],
+   "name": "Mishimizu",
+   "nature": "BRAVE",
+   "ot": "Kira",
+   "ribbon": "NONE",
+   "sheen": "0",
+   "sheenPct": 0,
+   "spa": 10,
+   "spd": 10,
+   "spe": 11,
+   "species": "Mishimizu",
+   "speciesId": 194,
+   "sprite": "asset:pokemon/194.png",
+   "statRows": [
+    {
+     "down": false,
+     "ev": "EV 0",
+     "label": "HP",
+     "pct": 0.30303,
+     "up": false,
+     "value": "20"
+    },
+    {
+     "down": false,
+     "ev": "EV 2",
+     "label": "ATTACK",
+     "pct": 0.166667,
+     "up": true,
+     "value": "11"
+    },
+    {
+     "down": false,
+     "ev": "EV 0",
+     "label": "DEFENSE",
+     "pct": 0.151515,
+     "up": false,
+     "value": "10"
+    },
+    {
+     "down": false,
+     "ev": "EV 0",
+     "label": "SP. ATK",
+     "pct": 0.151515,
+     "up": false,
+     "value": "10"
+    },
+    {
+     "down": false,
+     "ev": "EV 0",
+     "label": "SP. DEF",
+     "pct": 0.151515,
+     "up": false,
+     "value": "10"
+    },
+    {
+     "down": true,
+     "ev": "EV 0",
+     "label": "SPEED",
+     "pct": 0.166667,
+     "up": false,
+     "value": "11"
+    }
+   ],
+   "status": "",
+   "t1": 11,
+   "t2": 11,
+   "toNext": "26",
+   "types": [
+    {
+     "name": "WATER",
+     "src": "asset:types/water.png"
+    }
+   ]
+  }
+ },
+ "dex": {
+  "entries": [
+   {
+    "name": "Kotora",
+    "no": "001",
+    "num": 1,
+    "own": true,
+    "seen": true,
+    "sel": true,
+    "sprite": "asset:pokemon/1.png",
+    "unseen": false
+   },
+   {
+    "name": "Raitora",
+    "no": "002",
+    "num": 2,
+    "own": true,
+    "seen": true,
+    "sel": false,
+    "sprite": "asset:pokemon/2.png",
+    "unseen": false
+   },
+   {
+    "name": "Farfetch'd",
+    "no": "003",
+    "num": 3,
+    "own": true,
+    "seen": true,
+    "sel": false,
+    "sprite": "asset:pokemon/3.png",
+    "unseen": false
+   },
+   {
+    "name": "Madame",
+    "no": "004",
+    "num": 4,
+    "own": true,
+    "seen": true,
+    "sel": false,
+    "sprite": "asset:pokemon/4.png",
+    "unseen": false
+   },
+   {
+    "name": "Tangela",
+    "no": "005",
+    "num": 5,
+    "own": true,
+    "seen": true,
+    "sel": false,
+    "sprite": "asset:pokemon/5.png",
+    "unseen": false
+   },
+   {
+    "name": "Gelania",
+    "no": "006",
+    "num": 6,
+    "own": true,
+    "seen": true,
+    "sel": false,
+    "sprite": "asset:pokemon/6.png",
+    "unseen": false
+   },
+   {
+    "name": "Tangrowth",
+    "no": "007",
+    "num": 7,
+    "own": true,
+    "seen": true,
+    "sel": false,
+    "sprite": "asset:pokemon/7.png",
+    "unseen": false
+   },
+   {
+    "name": "Scaribou",
+    "no": "008",
+    "num": 8,
+    "own": true,
+    "seen": true,
+    "sel": false,
+    "sprite": "asset:pokemon/8.png",
+    "unseen": false
+   },
+   {
+    "name": "Wolfman",
+    "no": "009",
+    "num": 9,
+    "own": true,
+    "seen": true,
+    "sel": false,
+    "sprite": "asset:pokemon/9.png",
+    "unseen": false
+   },
+   {
+    "name": "Warwolf",
+    "no": "010",
+    "num": 10,
+    "own": true,
+    "seen": true,
+    "sel": false,
+    "sprite": "asset:pokemon/10.png",
+    "unseen": false
+   },
+   {
+    "name": "Kurstraw",
+    "no": "011",
+    "num": 11,
+    "own": true,
+    "seen": true,
+    "sel": false,
+    "sprite": "asset:pokemon/11.png",
+    "unseen": false
+   },
+   {
+    "name": "Pangshi",
+    "no": "012",
+    "num": 12,
+    "own": true,
+    "seen": true,
+    "sel": false,
+    "sprite": "asset:pokemon/12.png",
+    "unseen": false
+   },
+   {
+    "name": "Exeggcute",
+    "no": "013",
+    "num": 13,
+    "own": true,
+    "seen": true,
+    "sel": false,
+    "sprite": "asset:pokemon/13.png",
+    "unseen": false
+   },
+   {
+    "name": "Exeggutor",
+    "no": "014",
+    "num": 14,
+    "own": true,
+    "seen": true,
+    "sel": false,
+    "sprite": "asset:pokemon/14.png",
+    "unseen": false
+   },
+   {
+    "name": "Growlithe",
+    "no": "015",
+    "num": 15,
+    "own": true,
+    "seen": true,
+    "sel": false,
+    "sprite": "asset:pokemon/15.png",
+    "unseen": false
+   },
+   {
+    "name": "Arcanine",
+    "no": "016",
+    "num": 16,
+    "own": true,
+    "seen": true,
+    "sel": false,
+    "sprite": "asset:pokemon/16.png",
+    "unseen": false
+   },
+   {
+    "name": "Koffing",
+    "no": "017",
+    "num": 17,
+    "own": true,
+    "seen": true,
+    "sel": false,
+    "sprite": "asset:pokemon/17.png",
+    "unseen": false
+   },
+   {
+    "name": "Weezing",
+    "no": "018",
+    "num": 18,
+    "own": true,
+    "seen": true,
+    "sel": false,
+    "sprite": "asset:pokemon/18.png",
+    "unseen": false
+   },
+   {
+    "name": "Staryu",
+    "no": "019",
+    "num": 19,
+    "own": true,
+    "seen": true,
+    "sel": false,
+    "sprite": "asset:pokemon/19.png",
+    "unseen": false
+   },
+   {
+    "name": "Starmie",
+    "no": "020",
+    "num": 20,
+    "own": true,
+    "seen": true,
+    "sel": false,
+    "sprite": "asset:pokemon/20.png",
+    "unseen": false
+   },
+   {
+    "name": "Poliwag",
+    "no": "021",
+    "num": 21,
+    "own": true,
+    "seen": true,
+    "sel": false,
+    "sprite": "asset:pokemon/21.png",
+    "unseen": false
+   },
+   {
+    "name": "Poliwhirl",
+    "no": "022",
+    "num": 22,
+    "own": true,
+    "seen": true,
+    "sel": false,
+    "sprite": "asset:pokemon/22.png",
+    "unseen": false
+   },
+   {
+    "name": "Poliwrath",
+    "no": "023",
+    "num": 23,
+    "own": true,
+    "seen": true,
+    "sel": false,
+    "sprite": "asset:pokemon/23.png",
+    "unseen": false
+   },
+   {
+    "name": "Politoed",
+    "no": "024",
+    "num": 24,
+    "own": true,
+    "seen": true,
+    "sel": false,
+    "sprite": "asset:pokemon/24.png",
+    "unseen": false
+   }
+  ],
+  "found": "0 MATCHES",
+  "noMatch": false,
+  "notSearching": true,
+  "page": "1/17",
+  "range": "001-024",
+  "searching": false,
+  "sel": {
+   "abilities": "Static / Thick Fat",
+   "category": "",
+   "desc": "1-in-3 to paralyze when others make contact.",
+   "height": "--",
+   "name": "Kotora",
+   "no": "001",
+   "own": true,
+   "seen": true,
+   "sprite": "asset:pokemon/1.png",
+   "state": "LISTED",
+   "stats": [
+    {
+     "label": "HP",
+     "pct": 0.533333,
+     "value": "80"
+    },
+    {
+     "label": "ATTACK",
+     "pct": 0.366667,
+     "value": "55"
+    },
+    {
+     "label": "DEFENSE",
+     "pct": 0.333333,
+     "value": "50"
+    },
+    {
+     "label": "SP. ATK",
+     "pct": 0.366667,
+     "value": "55"
+    },
+    {
+     "label": "SP. DEF",
+     "pct": 0.4,
+     "value": "60"
+    },
+    {
+     "label": "SPEED",
+     "pct": 0.266667,
+     "value": "40"
+    }
+   ],
+   "types": [
+    {
+     "name": "ELECTRIC",
+     "src": "asset:types/electric.png"
+    }
+   ],
+   "unseen": false,
+   "weight": "--"
+  }
+ },
+ "dexCaught": "--",
+ "dexCaughtPct": 0,
+ "dexSeen": "--",
+ "dexSeenPct": 0,
+ "dockL": false,
+ "dockR": false,
+ "map": {
+  "hasMe": false,
+  "hasWild": true,
+  "hasWorldMe": false,
+  "image": "",
+  "kind": "ROUTE",
+  "live": false,
+  "mx": "50%",
+  "my": "50%",
+  "noWild": false,
+  "off": true,
+  "px": "2",
+  "py": "12",
+  "ratio": "1.0000",
+  "route": "Route 1",
+  "showTown": true,
+  "showWorld": false,
+  "wild": [
+   {
+    "chance": "41%",
+    "level": "Lv2-6",
+    "name": "Shope",
+    "sprite": "asset:pokemon/215.png"
+   },
+   {
+    "chance": "34%",
+    "level": "Lv3-5",
+    "name": "Kernut",
+    "sprite": "asset:pokemon/59.png"
+   },
+   {
+    "chance": "15%",
+    "level": "Lv3-4",
+    "name": "Caroot",
+    "sprite": "asset:pokemon/165.png"
+   },
+   {
+    "chance": "10%",
+    "level": "Lv3-6",
+    "name": "Leonte",
+    "sprite": "asset:pokemon/183.png"
+   }
+  ],
+  "wildMethod": "GRASS",
+  "wx": "50%",
+  "wy": "50%"
+ },
+ "money": "3,000",
+ "navLabel": "BOTTOM",
+ "on1": false,
+ "on2": true,
+ "on3": false,
+ "on4": false,
+ "on5": false,
+ "party": [
+  {
+   "ability": "Torrent",
+   "abilityText": "Ups Water moves by 50% at or below 1/3rd HP.",
+   "atk": 11,
+   "condition": [
+    {
+     "color": "#D85040",
+     "label": "COOL",
+     "pct": 0,
+     "value": "0"
+    },
+    {
+     "color": "#5088C0",
+     "label": "BEAUTY",
+     "pct": 0,
+     "value": "0"
+    },
+    {
+     "color": "#D85868",
+     "label": "CUTE",
+     "pct": 0,
+     "value": "0"
+    },
+    {
+     "color": "#58A868",
+     "label": "SMART",
+     "pct": 0,
+     "value": "0"
+    },
+    {
+     "color": "#E8A050",
+     "label": "TOUGH",
+     "pct": 0,
+     "value": "0"
+    }
+   ],
+   "contestDesc": "",
+   "def": 10,
+   "dex": "194",
+   "exp": "153",
+   "expPct": 0.409091,
+   "fainted": false,
+   "female": false,
+   "friendPct": 0.278431,
+   "friendship": "71",
+   "hasHeld": false,
+   "hasStatus": false,
+   "heldIcon": "",
+   "hp": 20,
+   "hpHigh": true,
+   "hpLow": false,
+   "hpMid": false,
+   "hpPct": 1,
+   "id": "07556",
+   "item": "NONE",
+   "lead": true,
+   "level": 5,
+   "male": true,
+   "maxHp": 20,
+   "metLevel": 5,
+   "metPlace": "Webbed Woods",
+   "moveDesc": "Hard, pointed, sharp claws rake the target to inflict damage.",
+   "moves": [
+    {
+     "acc": "100",
+     "cdesc": "",
+     "contest": "-",
+     "contestColor": "#FFFFFF",
+     "desc": "Hard, pointed, sharp claws rake the target to inflict damage.",
+     "has": true,
+     "id": 10,
+     "mtype": 0,
+     "name": "Scratch",
+     "power": "40",
+     "pp": "34/35",
+     "ppLow": false,
+     "ppNow": 34,
+     "ppPct": 0.971429,
+     "rawAcc": 100,
+     "rawPower": 40,
+     "type": "asset:types/normal.png"
+    },
+    {
+     "acc": "100",
+     "cdesc": "",
+     "contest": "-",
+     "contestColor": "#FFFFFF",
+     "desc": "The user growls in an endearing way, lowering the Attack stats of all opposing Pok\u00e9mon.",
+     "has": true,
+     "id": 45,
+     "mtype": 0,
+     "name": "Growl",
+     "power": "--",
+     "pp": "40/40",
+     "ppLow": false,
+     "ppNow": 40,
+     "ppPct": 1,
+     "rawAcc": 100,
+     "rawPower": 0,
+     "type": "asset:types/normal.png"
+    },
+    {
+     "acc": "100",
+     "cdesc": "",
+     "contest": "-",
+     "contestColor": "#FFFFFF",
+     "desc": "The user randomly uses a move known by its party members. Some moves can't be called.",
+     "has": true,
+     "id": 271,
+     "mtype": 0,
+     "name": "Assist",
+     "power": "--",
+     "pp": "20/20",
+     "ppLow": false,
+     "ppNow": 20,
+     "ppPct": 1,
+     "rawAcc": 100,
+     "rawPower": 0,
+     "type": "asset:types/normal.png"
+    },
+    {
+     "acc": "--",
+     "cdesc": "",
+     "contest": "",
+     "contestColor": "#FFFFFF",
+     "desc": "",
+     "has": false,
+     "info": "",
+     "name": "-",
+     "power": "--",
+     "pp": "--",
+     "ppLow": false,
+     "ppPct": 0,
+     "type": ""
+    }
+   ],
+   "name": "Mishimizu",
+   "nature": "BRAVE",
+   "ot": "Kira",
+   "ribbon": "NONE",
+   "sheen": "0",
+   "sheenPct": 0,
+   "spa": 10,
+   "spd": 10,
+   "spe": 11,
+   "species": "Mishimizu",
+   "speciesId": 194,
+   "sprite": "asset:pokemon/194.png",
+   "statRows": [
+    {
+     "down": false,
+     "ev": "EV 0",
+     "label": "HP",
+     "pct": 0.30303,
+     "up": false,
+     "value": "20"
+    },
+    {
+     "down": false,
+     "ev": "EV 2",
+     "label": "ATTACK",
+     "pct": 0.166667,
+     "up": true,
+     "value": "11"
+    },
+    {
+     "down": false,
+     "ev": "EV 0",
+     "label": "DEFENSE",
+     "pct": 0.151515,
+     "up": false,
+     "value": "10"
+    },
+    {
+     "down": false,
+     "ev": "EV 0",
+     "label": "SP. ATK",
+     "pct": 0.151515,
+     "up": false,
+     "value": "10"
+    },
+    {
+     "down": false,
+     "ev": "EV 0",
+     "label": "SP. DEF",
+     "pct": 0.151515,
+     "up": false,
+     "value": "10"
+    },
+    {
+     "down": true,
+     "ev": "EV 0",
+     "label": "SPEED",
+     "pct": 0.166667,
+     "up": false,
+     "value": "11"
+    }
+   ],
+   "status": "",
+   "t1": 11,
+   "t2": 11,
+   "toNext": "26",
+   "types": [
+    {
+     "name": "WATER",
+     "src": "asset:types/water.png"
+    }
+   ]
+  },
+  {
+   "ability": "Torrent",
+   "abilityText": "Ups Water moves by 50% at or below 1/3rd HP.",
+   "atk": 11,
+   "condition": [
+    {
+     "color": "#D85040",
+     "label": "COOL",
+     "pct": 0,
+     "value": "0"
+    },
+    {
+     "color": "#5088C0",
+     "label": "BEAUTY",
+     "pct": 0,
+     "value": "0"
+    },
+    {
+     "color": "#D85868",
+     "label": "CUTE",
+     "pct": 0,
+     "value": "0"
+    },
+    {
+     "color": "#58A868",
+     "label": "SMART",
+     "pct": 0,
+     "value": "0"
+    },
+    {
+     "color": "#E8A050",
+     "label": "TOUGH",
+     "pct": 0,
+     "value": "0"
+    }
+   ],
+   "contestDesc": "",
+   "def": 10,
+   "dex": "001",
+   "exp": "153",
+   "expPct": 0.409091,
+   "fainted": false,
+   "female": false,
+   "friendPct": 0.278431,
+   "friendship": "71",
+   "hasHeld": false,
+   "hasStatus": true,
+   "heldIcon": "",
+   "hp": 12,
+   "hpHigh": false,
+   "hpLow": false,
+   "hpMid": true,
+   "hpPct": 0.42857142857142855,
+   "id": "07556",
+   "item": "NONE",
+   "lead": false,
+   "level": 9,
+   "male": true,
+   "maxHp": 28,
+   "metLevel": 5,
+   "metPlace": "Webbed Woods",
+   "moveDesc": "Hard, pointed, sharp claws rake the target to inflict damage.",
+   "moves": [
+    {
+     "acc": "100",
+     "cdesc": "",
+     "contest": "-",
+     "contestColor": "#FFFFFF",
+     "desc": "Hard, pointed, sharp claws rake the target to inflict damage.",
+     "has": true,
+     "id": 10,
+     "mtype": 0,
+     "name": "Scratch",
+     "power": "40",
+     "pp": "34/35",
+     "ppLow": false,
+     "ppNow": 34,
+     "ppPct": 0.971429,
+     "rawAcc": 100,
+     "rawPower": 40,
+     "type": "asset:types/normal.png"
+    },
+    {
+     "acc": "100",
+     "cdesc": "",
+     "contest": "-",
+     "contestColor": "#FFFFFF",
+     "desc": "The user growls in an endearing way, lowering the Attack stats of all opposing Pok\u00e9mon.",
+     "has": true,
+     "id": 45,
+     "mtype": 0,
+     "name": "Growl",
+     "power": "--",
+     "pp": "40/40",
+     "ppLow": false,
+     "ppNow": 40,
+     "ppPct": 1,
+     "rawAcc": 100,
+     "rawPower": 0,
+     "type": "asset:types/normal.png"
+    },
+    {
+     "acc": "100",
+     "cdesc": "",
+     "contest": "-",
+     "contestColor": "#FFFFFF",
+     "desc": "The user randomly uses a move known by its party members. Some moves can't be called.",
+     "has": true,
+     "id": 271,
+     "mtype": 0,
+     "name": "Assist",
+     "power": "--",
+     "pp": "20/20",
+     "ppLow": false,
+     "ppNow": 20,
+     "ppPct": 1,
+     "rawAcc": 100,
+     "rawPower": 0,
+     "type": "asset:types/normal.png"
+    },
+    {
+     "acc": "--",
+     "cdesc": "",
+     "contest": "",
+     "contestColor": "#FFFFFF",
+     "desc": "",
+     "has": false,
+     "info": "",
+     "name": "-",
+     "power": "--",
+     "pp": "--",
+     "ppLow": false,
+     "ppPct": 0,
+     "type": ""
+    }
+   ],
+   "name": "Kotora",
+   "nature": "BRAVE",
+   "ot": "Kira",
+   "ribbon": "NONE",
+   "sheen": "0",
+   "sheenPct": 0,
+   "spa": 10,
+   "spd": 10,
+   "spe": 11,
+   "species": "Kotora",
+   "speciesId": 1,
+   "sprite": "asset:pokemon/1.png",
+   "statRows": [
+    {
+     "down": false,
+     "ev": "EV 0",
+     "label": "HP",
+     "pct": 0.30303,
+     "up": false,
+     "value": "20"
+    },
+    {
+     "down": false,
+     "ev": "EV 2",
+     "label": "ATTACK",
+     "pct": 0.166667,
+     "up": true,
+     "value": "11"
+    },
+    {
+     "down": false,
+     "ev": "EV 0",
+     "label": "DEFENSE",
+     "pct": 0.151515,
+     "up": false,
+     "value": "10"
+    },
+    {
+     "down": false,
+     "ev": "EV 0",
+     "label": "SP. ATK",
+     "pct": 0.151515,
+     "up": false,
+     "value": "10"
+    },
+    {
+     "down": false,
+     "ev": "EV 0",
+     "label": "SP. DEF",
+     "pct": 0.151515,
+     "up": false,
+     "value": "10"
+    },
+    {
+     "down": true,
+     "ev": "EV 0",
+     "label": "SPEED",
+     "pct": 0.166667,
+     "up": false,
+     "value": "11"
+    }
+   ],
+   "status": "PSN",
+   "t1": 11,
+   "t2": 11,
+   "toNext": "26",
+   "types": [
+    {
+     "name": "WATER",
+     "src": "asset:types/water.png"
+    }
+   ]
+  },
+  {
+   "ability": "Torrent",
+   "abilityText": "Ups Water moves by 50% at or below 1/3rd HP.",
+   "atk": 11,
+   "condition": [
+    {
+     "color": "#D85040",
+     "label": "COOL",
+     "pct": 0,
+     "value": "0"
+    },
+    {
+     "color": "#5088C0",
+     "label": "BEAUTY",
+     "pct": 0,
+     "value": "0"
+    },
+    {
+     "color": "#D85868",
+     "label": "CUTE",
+     "pct": 0,
+     "value": "0"
+    },
+    {
+     "color": "#58A868",
+     "label": "SMART",
+     "pct": 0,
+     "value": "0"
+    },
+    {
+     "color": "#E8A050",
+     "label": "TOUGH",
+     "pct": 0,
+     "value": "0"
+    }
+   ],
+   "contestDesc": "",
+   "def": 10,
+   "dex": "002",
+   "exp": "153",
+   "expPct": 0.409091,
+   "fainted": false,
+   "female": false,
+   "friendPct": 0.278431,
+   "friendship": "71",
+   "hasHeld": false,
+   "hasStatus": false,
+   "heldIcon": "",
+   "hp": 3,
+   "hpHigh": false,
+   "hpLow": true,
+   "hpMid": false,
+   "hpPct": 0.08823529411764706,
+   "id": "07556",
+   "item": "NONE",
+   "lead": false,
+   "level": 14,
+   "male": true,
+   "maxHp": 34,
+   "metLevel": 5,
+   "metPlace": "Webbed Woods",
+   "moveDesc": "Hard, pointed, sharp claws rake the target to inflict damage.",
+   "moves": [
+    {
+     "acc": "100",
+     "cdesc": "",
+     "contest": "-",
+     "contestColor": "#FFFFFF",
+     "desc": "Hard, pointed, sharp claws rake the target to inflict damage.",
+     "has": true,
+     "id": 10,
+     "mtype": 0,
+     "name": "Scratch",
+     "power": "40",
+     "pp": "34/35",
+     "ppLow": false,
+     "ppNow": 34,
+     "ppPct": 0.971429,
+     "rawAcc": 100,
+     "rawPower": 40,
+     "type": "asset:types/normal.png"
+    },
+    {
+     "acc": "100",
+     "cdesc": "",
+     "contest": "-",
+     "contestColor": "#FFFFFF",
+     "desc": "The user growls in an endearing way, lowering the Attack stats of all opposing Pok\u00e9mon.",
+     "has": true,
+     "id": 45,
+     "mtype": 0,
+     "name": "Growl",
+     "power": "--",
+     "pp": "40/40",
+     "ppLow": false,
+     "ppNow": 40,
+     "ppPct": 1,
+     "rawAcc": 100,
+     "rawPower": 0,
+     "type": "asset:types/normal.png"
+    },
+    {
+     "acc": "100",
+     "cdesc": "",
+     "contest": "-",
+     "contestColor": "#FFFFFF",
+     "desc": "The user randomly uses a move known by its party members. Some moves can't be called.",
+     "has": true,
+     "id": 271,
+     "mtype": 0,
+     "name": "Assist",
+     "power": "--",
+     "pp": "20/20",
+     "ppLow": false,
+     "ppNow": 20,
+     "ppPct": 1,
+     "rawAcc": 100,
+     "rawPower": 0,
+     "type": "asset:types/normal.png"
+    },
+    {
+     "acc": "--",
+     "cdesc": "",
+     "contest": "",
+     "contestColor": "#FFFFFF",
+     "desc": "",
+     "has": false,
+     "info": "",
+     "name": "-",
+     "power": "--",
+     "pp": "--",
+     "ppLow": false,
+     "ppPct": 0,
+     "type": ""
+    }
+   ],
+   "name": "Raitora",
+   "nature": "BRAVE",
+   "ot": "Kira",
+   "ribbon": "NONE",
+   "sheen": "0",
+   "sheenPct": 0,
+   "spa": 10,
+   "spd": 10,
+   "spe": 11,
+   "species": "Raitora",
+   "speciesId": 2,
+   "sprite": "asset:pokemon/2.png",
+   "statRows": [
+    {
+     "down": false,
+     "ev": "EV 0",
+     "label": "HP",
+     "pct": 0.30303,
+     "up": false,
+     "value": "20"
+    },
+    {
+     "down": false,
+     "ev": "EV 2",
+     "label": "ATTACK",
+     "pct": 0.166667,
+     "up": true,
+     "value": "11"
+    },
+    {
+     "down": false,
+     "ev": "EV 0",
+     "label": "DEFENSE",
+     "pct": 0.151515,
+     "up": false,
+     "value": "10"
+    },
+    {
+     "down": false,
+     "ev": "EV 0",
+     "label": "SP. ATK",
+     "pct": 0.151515,
+     "up": false,
+     "value": "10"
+    },
+    {
+     "down": false,
+     "ev": "EV 0",
+     "label": "SP. DEF",
+     "pct": 0.151515,
+     "up": false,
+     "value": "10"
+    },
+    {
+     "down": true,
+     "ev": "EV 0",
+     "label": "SPEED",
+     "pct": 0.166667,
+     "up": false,
+     "value": "11"
+    }
+   ],
+   "status": "",
+   "t1": 11,
+   "t2": 11,
+   "toNext": "26",
+   "types": [
+    {
+     "name": "WATER",
+     "src": "asset:types/water.png"
+    }
+   ]
+  },
+  {
+   "ability": "Torrent",
+   "abilityText": "Ups Water moves by 50% at or below 1/3rd HP.",
+   "atk": 11,
+   "condition": [
+    {
+     "color": "#D85040",
+     "label": "COOL",
+     "pct": 0,
+     "value": "0"
+    },
+    {
+     "color": "#5088C0",
+     "label": "BEAUTY",
+     "pct": 0,
+     "value": "0"
+    },
+    {
+     "color": "#D85868",
+     "label": "CUTE",
+     "pct": 0,
+     "value": "0"
+    },
+    {
+     "color": "#58A868",
+     "label": "SMART",
+     "pct": 0,
+     "value": "0"
+    },
+    {
+     "color": "#E8A050",
+     "label": "TOUGH",
+     "pct": 0,
+     "value": "0"
+    }
+   ],
+   "contestDesc": "",
+   "def": 10,
+   "dex": "194",
+   "exp": "153",
+   "expPct": 0.409091,
+   "fainted": false,
+   "female": false,
+   "friendPct": 0.278431,
+   "friendship": "71",
+   "hasHeld": false,
+   "hasStatus": false,
+   "heldIcon": "",
+   "hp": 30,
+   "hpHigh": true,
+   "hpLow": false,
+   "hpMid": false,
+   "hpPct": 1.0,
+   "id": "07556",
+   "item": "NONE",
+   "lead": false,
+   "level": 7,
+   "male": true,
+   "maxHp": 30,
+   "metLevel": 5,
+   "metPlace": "Webbed Woods",
+   "moveDesc": "Hard, pointed, sharp claws rake the target to inflict damage.",
+   "moves": [
+    {
+     "acc": "100",
+     "cdesc": "",
+     "contest": "-",
+     "contestColor": "#FFFFFF",
+     "desc": "Hard, pointed, sharp claws rake the target to inflict damage.",
+     "has": true,
+     "id": 10,
+     "mtype": 0,
+     "name": "Scratch",
+     "power": "40",
+     "pp": "34/35",
+     "ppLow": false,
+     "ppNow": 34,
+     "ppPct": 0.971429,
+     "rawAcc": 100,
+     "rawPower": 40,
+     "type": "asset:types/normal.png"
+    },
+    {
+     "acc": "100",
+     "cdesc": "",
+     "contest": "-",
+     "contestColor": "#FFFFFF",
+     "desc": "The user growls in an endearing way, lowering the Attack stats of all opposing Pok\u00e9mon.",
+     "has": true,
+     "id": 45,
+     "mtype": 0,
+     "name": "Growl",
+     "power": "--",
+     "pp": "40/40",
+     "ppLow": false,
+     "ppNow": 40,
+     "ppPct": 1,
+     "rawAcc": 100,
+     "rawPower": 0,
+     "type": "asset:types/normal.png"
+    },
+    {
+     "acc": "100",
+     "cdesc": "",
+     "contest": "-",
+     "contestColor": "#FFFFFF",
+     "desc": "The user randomly uses a move known by its party members. Some moves can't be called.",
+     "has": true,
+     "id": 271,
+     "mtype": 0,
+     "name": "Assist",
+     "power": "--",
+     "pp": "20/20",
+     "ppLow": false,
+     "ppNow": 20,
+     "ppPct": 1,
+     "rawAcc": 100,
+     "rawPower": 0,
+     "type": "asset:types/normal.png"
+    },
+    {
+     "acc": "--",
+     "cdesc": "",
+     "contest": "",
+     "contestColor": "#FFFFFF",
+     "desc": "",
+     "has": false,
+     "info": "",
+     "name": "-",
+     "power": "--",
+     "pp": "--",
+     "ppLow": false,
+     "ppPct": 0,
+     "type": ""
+    }
+   ],
+   "name": "Coppeshu",
+   "nature": "BRAVE",
+   "ot": "Kira",
+   "ribbon": "NONE",
+   "sheen": "0",
+   "sheenPct": 0,
+   "spa": 10,
+   "spd": 10,
+   "spe": 11,
+   "species": "Coppeshu",
+   "speciesId": 194,
+   "sprite": "asset:pokemon/194.png",
+   "statRows": [
+    {
+     "down": false,
+     "ev": "EV 0",
+     "label": "HP",
+     "pct": 0.30303,
+     "up": false,
+     "value": "20"
+    },
+    {
+     "down": false,
+     "ev": "EV 2",
+     "label": "ATTACK",
+     "pct": 0.166667,
+     "up": true,
+     "value": "11"
+    },
+    {
+     "down": false,
+     "ev": "EV 0",
+     "label": "DEFENSE",
+     "pct": 0.151515,
+     "up": false,
+     "value": "10"
+    },
+    {
+     "down": false,
+     "ev": "EV 0",
+     "label": "SP. ATK",
+     "pct": 0.151515,
+     "up": false,
+     "value": "10"
+    },
+    {
+     "down": false,
+     "ev": "EV 0",
+     "label": "SP. DEF",
+     "pct": 0.151515,
+     "up": false,
+     "value": "10"
+    },
+    {
+     "down": true,
+     "ev": "EV 0",
+     "label": "SPEED",
+     "pct": 0.166667,
+     "up": false,
+     "value": "11"
+    }
+   ],
+   "status": "",
+   "t1": 11,
+   "t2": 11,
+   "toNext": "26",
+   "types": [
+    {
+     "name": "WATER",
+     "src": "asset:types/water.png"
+    }
+   ]
+  }
+ ],
+ "partyCount": "4",
+ "posBottom": true,
+ "posSplit": false,
+ "ready": true,
+ "team": {
+  "avg": "9",
+  "hp": "65",
+  "hpHigh": true,
+  "hpLow": false,
+  "hpMid": false,
+  "hpPct": 0.7558139534883721,
+  "maxHp": "86"
+ },
+ "time": "0:09",
+ "trainer": {
+  "id": "07556",
+  "name": "Kira"
+ },
+ "ui": {
+  "set": {
+   "ability": "Torrent",
+   "abilityText": "Ups Water moves by 50% at or below 1/3rd HP.",
+   "atk": 11,
+   "condition": [
+    {
+     "color": "#D85040",
+     "label": "COOL",
+     "pct": 0,
+     "value": "0"
+    },
+    {
+     "color": "#5088C0",
+     "label": "BEAUTY",
+     "pct": 0,
+     "value": "0"
+    },
+    {
+     "color": "#D85868",
+     "label": "CUTE",
+     "pct": 0,
+     "value": "0"
+    },
+    {
+     "color": "#58A868",
+     "label": "SMART",
+     "pct": 0,
+     "value": "0"
+    },
+    {
+     "color": "#E8A050",
+     "label": "TOUGH",
+     "pct": 0,
+     "value": "0"
+    }
+   ],
+   "contestDesc": "",
+   "def": 10,
+   "dex": "194",
+   "exp": "153",
+   "expPct": 0.409091,
+   "female": false,
+   "friendPct": 0.278431,
+   "friendship": "71",
+   "hasHeld": false,
+   "hasStatus": false,
+   "heldIcon": "",
+   "hp": 20,
+   "hpHigh": true,
+   "hpLow": false,
+   "hpMid": false,
+   "hpPct": 1,
+   "id": "07556",
+   "item": "NONE",
+   "lead": true,
+   "level": 5,
+   "male": true,
+   "maxHp": 20,
+   "metLevel": 5,
+   "metPlace": "Webbed Woods",
+   "moveDesc": "Hard, pointed, sharp claws rake the target to inflict damage.",
+   "moves": [
+    {
+     "acc": "100",
+     "cdesc": "",
+     "contest": "-",
+     "contestColor": "#FFFFFF",
+     "desc": "Hard, pointed, sharp claws rake the target to inflict damage.",
+     "has": true,
+     "id": 10,
+     "mtype": 0,
+     "name": "Scratch",
+     "power": "40",
+     "pp": "34/35",
+     "ppLow": false,
+     "ppNow": 34,
+     "ppPct": 0.971429,
+     "rawAcc": 100,
+     "rawPower": 40,
+     "type": "asset:types/normal.png"
+    },
+    {
+     "acc": "100",
+     "cdesc": "",
+     "contest": "-",
+     "contestColor": "#FFFFFF",
+     "desc": "The user growls in an endearing way, lowering the Attack stats of all opposing Pok\u00e9mon.",
+     "has": true,
+     "id": 45,
+     "mtype": 0,
+     "name": "Growl",
+     "power": "--",
+     "pp": "40/40",
+     "ppLow": false,
+     "ppNow": 40,
+     "ppPct": 1,
+     "rawAcc": 100,
+     "rawPower": 0,
+     "type": "asset:types/normal.png"
+    },
+    {
+     "acc": "100",
+     "cdesc": "",
+     "contest": "-",
+     "contestColor": "#FFFFFF",
+     "desc": "The user randomly uses a move known by its party members. Some moves can't be called.",
+     "has": true,
+     "id": 271,
+     "mtype": 0,
+     "name": "Assist",
+     "power": "--",
+     "pp": "20/20",
+     "ppLow": false,
+     "ppNow": 20,
+     "ppPct": 1,
+     "rawAcc": 100,
+     "rawPower": 0,
+     "type": "asset:types/normal.png"
+    },
+    {
+     "acc": "--",
+     "cdesc": "",
+     "contest": "",
+     "contestColor": "#FFFFFF",
+     "desc": "",
+     "has": false,
+     "info": "",
+     "name": "-",
+     "power": "--",
+     "pp": "--",
+     "ppLow": false,
+     "ppPct": 0,
+     "type": ""
+    }
+   ],
+   "name": "Mishimizu",
+   "nature": "BRAVE",
+   "ot": "Kira",
+   "ribbon": "NONE",
+   "sheen": "0",
+   "sheenPct": 0,
+   "spa": 10,
+   "spd": 10,
+   "spe": 11,
+   "species": "Mishimizu",
+   "speciesId": 194,
+   "sprite": "asset:pokemon/194.png",
+   "statRows": [
+    {
+     "down": false,
+     "ev": "EV 0",
+     "label": "HP",
+     "pct": 0.30303,
+     "up": false,
+     "value": "20"
+    },
+    {
+     "down": false,
+     "ev": "EV 2",
+     "label": "ATTACK",
+     "pct": 0.166667,
+     "up": true,
+     "value": "11"
+    },
+    {
+     "down": false,
+     "ev": "EV 0",
+     "label": "DEFENSE",
+     "pct": 0.151515,
+     "up": false,
+     "value": "10"
+    },
+    {
+     "down": false,
+     "ev": "EV 0",
+     "label": "SP. ATK",
+     "pct": 0.151515,
+     "up": false,
+     "value": "10"
+    },
+    {
+     "down": false,
+     "ev": "EV 0",
+     "label": "SP. DEF",
+     "pct": 0.151515,
+     "up": false,
+     "value": "10"
+    },
+    {
+     "down": true,
+     "ev": "EV 0",
+     "label": "SPEED",
+     "pct": 0.166667,
+     "up": false,
+     "value": "11"
+    }
+   ],
+   "status": "",
+   "t1": 11,
+   "t2": 11,
+   "toNext": "26",
+   "types": [
+    {
+     "name": "WATER",
+     "src": "asset:types/water.png"
+    }
+   ],
+   "selName": "Potion",
+   "selDesc": "Restores the HP of a Pok\u00e9mon by 20 points.",
+   "selQty": "x2",
+   "selPrice": "100",
+   "selIcon": "",
+   "selHasIcon": false
+  }
+ },
+ "waiting": false
+}

@@ -514,3 +514,25 @@ pages { flex: 1; }
 .search-clear-x { font-size: 22px; line-height: 22px; color: #FFFFFF; text-shadow: 1px 1px 0 var(--navy); }
 .pager-found { height: 36px; flex-shrink: 0; align-items: center; justify-content: center; background-color: var(--peach); border: 2px solid var(--navy); }
 .pager-found-text { font-size: 20px; line-height: 20px; letter-spacing: 1px; color: var(--ink); }
+
+/* >>> nav placement */
+/* the docks and the NAV setting are skinned from the ring bar's own buttons (art/../skill/tools/navkit_pokemon.py reads .bar-btn, .bar-label, .bar-mid, .bar-title) */
+.shell { flex-direction: row; }
+pages { min-width: 0; }
+.pdock { width: 92px; max-height: 318px; align-self: flex-start; flex-shrink: 0; gap: 6px; overflow: auto; }
+.pdock-l { margin-right: 8px; }
+.pdock-r { margin-left: 8px; }
+.dock-btn { background-color: #078473; border: 3px solid var(--navy); border-radius: 0; border-color: #033E36; background-image: url("assets/ui/px-gloss-136x44.png"); background-size: 136px 44px; background-repeat: no-repeat; width: 100%; height: 44px; flex-shrink: 0; margin: 0; padding: 0; flex-direction: row; align-items: center; justify-content: center; }
+.dock-btn:pressed { background-color: #056658; }
+.dock-btn.on { background-color: #f0e8c8; border: 3px solid var(--navy); background-image: none; }
+.dock-label { font-family: "Jersey"; color: #FFFFFF; letter-spacing: 1px; text-shadow: 1px 1px 0 #033E36; font-size: 19px; white-space: nowrap; }
+.dock-btn.on .dock-label { color: var(--ink); text-shadow: none; }
+.pdock.narrow { width: 76px; }
+.pdock.narrow .dock-label { font-size: 15px; letter-spacing: 0; }
+.opt-btn.opt-nav { background-color: #078473; border: 3px solid var(--navy); border-radius: 0; border-color: #033E36; background-image: url("assets/ui/px-gloss-136x44.png"); background-size: 136px 44px; background-repeat: no-repeat; }
+.opt-btn.opt-nav:pressed { background-color: #056658; }
+.opt-btn.opt-nav .opt-label { font-family: "Jersey"; color: #FFFFFF; letter-spacing: 1px; text-shadow: 1px 1px 0 #033E36; }
+.opt-btn.opt-nav .opt-state { color: var(--ink); background-color: #f0e8c8; border: 2px solid #033E36; border-radius: 0; text-shadow: none; padding: 0 8px; }
+.set-win { height: 180px; }
+
+/* <<< nav placement */

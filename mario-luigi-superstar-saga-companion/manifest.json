@@ -1,0 +1,23 @@
+{
+  "id": "mario-luigi-superstar-saga-companion",
+  "name": "Mario & Luigi: Superstar Saga Companion",
+  "version": "0.2.0",
+  "author": "khumam",
+  "formatVersion": 3,
+  "match": {
+    "gameCode": [
+      "A88E"
+    ],
+    "crc32": []
+  },
+  "tickHz": 4,
+  "layout": "layout.json",
+  "styles": [
+    "style.css"
+  ],
+  "script": "main.lua",
+  "values": {},
+  "permissions": [
+    "memory-write"
+  ]
+}

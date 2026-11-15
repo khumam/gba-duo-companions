@@ -974,7 +974,7 @@ end
 local wasInBattle, wasReady, lastState = false, false, "idle"
 local pageBeforeBattle = "party"
 
-function update(ui)
+local function navBase(ui)
   local currentPage = ui and ui.page
   -- AXPE 1.0 only (the tables and addresses are for that release).
   if mem.u32(0x080000AC) ~= 0x45505841 or mem.u8(0x080000BC) ~= 0 then
@@ -1078,3 +1078,41 @@ function update(ui)
   wasInBattle, wasReady, lastState = battling, true, state
   return out
 end
+
+-- >>> nav placement
+-- where the page buttons sit: bottom (the ring bar), left, right or split (side docks). The settings row BUTTONS cycles it.
+local NAV = { { "map", "MAP" }, { "party", "POKéMON" }, { "dex", "POKéDEX" }, { "options", "OPTIONS" }, { "bag", "BAG" } }
+local NAV_ALIAS = { detail = "party", ["battle-detail"] = "battle" }
+local NAV_MODES = { "bottom", "left", "right", "split" }
+local navMode = 1
+actions = actions or {}
+function actions.cycleNav() navMode = navMode % #NAV_MODES + 1 end
+local function navState(ui)
+  local pos = NAV_MODES[navMode]
+  local cur = ui.page or NAV[1][1]
+  cur = NAV_ALIAS[cur] or cur
+  local out = { posBottom = (pos == "bottom"), posSplit = (pos == "split"), navLabel = string.upper(pos) }
+  local half = (#NAV + 1) // 2
+  local left, right = 0, 0
+  for i, n in ipairs(NAV) do
+    out["on" .. i] = (n[1] == cur)
+    local l = (pos == "left") or (pos == "split" and i <= half)
+    local r = (pos == "right") or (pos == "split" and i > half)
+    out["L" .. i], out["R" .. i] = l, r
+    if l then left = left + 1 end
+    if r then right = right + 1 end
+  end
+  out.dockL, out.dockR = left > 0, right > 0
+  return out
+end
+local navLastGood
+function update(ui)
+  local ok, r = pcall(navBase, ui)
+  if ok then navLastGood = r else
+    if log then log("update error: " .. tostring(r)) end
+    r = navLastGood
+  end
+  if r and r.ready then for key, v in pairs(navState(ui or {})) do r[key] = v end end
+  return r
+end
+-- <<< nav placement

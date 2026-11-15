@@ -1,0 +1,2276 @@
+{
+  "type": "box",
+  "class": "main",
+  "children": [
+    {
+      "type": "box",
+      "class": "waiting",
+      "children": [
+        {
+          "type": "box",
+          "class": "wait",
+          "children": [
+            {
+              "type": "text",
+              "class": "w1",
+              "text": "FINAL FANTASY"
+            },
+            {
+              "type": "text",
+              "class": "w2",
+              "text": "TACTICS ADVANCE"
+            },
+            {
+              "type": "text",
+              "class": "w3",
+              "text": "GBADUO Companion Pack"
+            }
+          ]
+        }
+      ],
+      "visibleIf": "$waiting"
+    },
+    {
+      "type": "box",
+      "class": "ready",
+      "children": [
+        {
+          "type": "box",
+          "class": "dock",
+          "children": [
+            {
+              "type": "button",
+              "class": "dbtn",
+              "onClick": [
+                {
+                  "navigate": "clan"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "class": "dt",
+                  "text": "CLAN"
+                }
+              ],
+              "classIf": {
+                "on": "$on1"
+              },
+              "visibleIf": "$L1"
+            },
+            {
+              "type": "button",
+              "class": "dbtn",
+              "onClick": [
+                {
+                  "navigate": "unit"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "class": "dt",
+                  "text": "UNIT"
+                }
+              ],
+              "classIf": {
+                "on": "$on2"
+              },
+              "visibleIf": "$L2"
+            },
+            {
+              "type": "button",
+              "class": "dbtn",
+              "onClick": [
+                {
+                  "navigate": "skills"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "class": "dt",
+                  "text": "SKILL"
+                }
+              ],
+              "classIf": {
+                "on": "$on3"
+              },
+              "visibleIf": "$L3"
+            },
+            {
+              "type": "button",
+              "class": "dbtn",
+              "onClick": [
+                {
+                  "navigate": "top"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "class": "dt",
+                  "text": "TOP"
+                }
+              ],
+              "classIf": {
+                "on": "$on4"
+              },
+              "visibleIf": "$L4"
+            },
+            {
+              "type": "button",
+              "class": "dbtn",
+              "onClick": [
+                {
+                  "navigate": "compare"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "class": "dt",
+                  "text": "VS"
+                }
+              ],
+              "classIf": {
+                "on": "$on5"
+              },
+              "visibleIf": "$L5"
+            },
+            {
+              "type": "button",
+              "class": "dbtn",
+              "onClick": [
+                {
+                  "navigate": "battle"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "class": "dt",
+                  "text": "FOES"
+                }
+              ],
+              "classIf": {
+                "on": "$on6"
+              },
+              "visibleIf": "$L6"
+            },
+            {
+              "type": "button",
+              "class": "dbtn",
+              "onClick": [
+                {
+                  "navigate": "jobs"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "class": "dt",
+                  "text": "JOBS"
+                }
+              ],
+              "classIf": {
+                "on": "$on7"
+              },
+              "visibleIf": "$L7"
+            },
+            {
+              "type": "button",
+              "class": "dbtn",
+              "onClick": [
+                {
+                  "navigate": "stats"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "class": "dt",
+                  "text": "STATS"
+                }
+              ],
+              "classIf": {
+                "on": "$on8"
+              },
+              "visibleIf": "$L8"
+            },
+            {
+              "type": "button",
+              "class": "dbtn",
+              "onClick": [
+                {
+                  "navigate": "options"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "class": "dt",
+                  "text": "OPT"
+                }
+              ],
+              "classIf": {
+                "on": "$on9"
+              },
+              "visibleIf": "$L9"
+            }
+          ],
+          "visibleIf": "$dockL"
+        },
+        {
+          "type": "box",
+          "class": "center",
+          "children": [
+            {
+              "type": "pages",
+              "class": "stage",
+              "initial": "clan",
+              "pages": [
+                {
+                  "name": "clan",
+                  "child": {
+                    "type": "box",
+                    "class": "page",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "band",
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "ttl",
+                            "text": "CLAN"
+                          },
+                          {
+                            "type": "text",
+                            "class": "sum",
+                            "text": "{total} members  avg Lv {avgLevel}"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "filters",
+                        "children": [
+                          {
+                            "type": "list",
+                            "class": "rtabs",
+                            "items": "$tabs",
+                            "template": {
+                              "type": "button",
+                              "class": "rtab",
+                              "onClick": [
+                                {
+                                  "set": {
+                                    "race": "{r}"
+                                  }
+                                }
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "class": "rt",
+                                  "text": "{short}"
+                                }
+                              ],
+                              "classIf": {
+                                "on": "$on"
+                              }
+                            }
+                          },
+                          {
+                            "type": "button",
+                            "class": "sortbtn",
+                            "onClick": [
+                              {
+                                "call": "cycleSort"
+                              }
+                            ],
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "sl",
+                                "text": "By {sortLabel}"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "list",
+                        "class": "ulist",
+                        "items": "$units",
+                        "template": {
+                          "type": "button",
+                          "class": "ucard",
+                          "onClick": [
+                            {
+                              "set": {
+                                "unit": "{idx}"
+                              }
+                            },
+                            {
+                              "navigate": "unit"
+                            }
+                          ],
+                          "children": [
+                            {
+                              "type": "box",
+                              "class": "uhead",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "class": "uname",
+                                  "text": "{name}"
+                                },
+                                {
+                                  "type": "text",
+                                  "class": "ulv",
+                                  "text": "Lv {level}"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "box",
+                              "class": "ujob",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "class": "ujobt",
+                                  "text": "{job}"
+                                },
+                                {
+                                  "type": "text",
+                                  "class": "urace",
+                                  "text": "{race}",
+                                  "bindStyle": {
+                                    "color": "{raceColor}"
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "type": "box",
+                              "class": "ures",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "class": "tag hpt",
+                                  "text": "HP"
+                                },
+                                {
+                                  "type": "bar",
+                                  "class": "hp ubar",
+                                  "value": "$hpPct",
+                                  "max": 1
+                                },
+                                {
+                                  "type": "text",
+                                  "class": "unum",
+                                  "text": "{hp}"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "box",
+                              "class": "ures",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "class": "tag mpt",
+                                  "text": "MP"
+                                },
+                                {
+                                  "type": "bar",
+                                  "class": "mp ubar",
+                                  "value": "$mpPct",
+                                  "max": 1
+                                },
+                                {
+                                  "type": "text",
+                                  "class": "unum",
+                                  "text": "{mp}"
+                                }
+                              ]
+                            }
+                          ],
+                          "classIf": {
+                            "on": "$on"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "unit",
+                  "child": {
+                    "type": "box",
+                    "class": "page",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "band",
+                        "children": [
+                          {
+                            "type": "button",
+                            "class": "arrow",
+                            "onClick": [
+                              {
+                                "set": {
+                                  "unit": "{prevIdx}"
+                                }
+                              }
+                            ],
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "at",
+                                "text": "<"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "class": "ttl",
+                            "text": "{sel.name}"
+                          },
+                          {
+                            "type": "text",
+                            "class": "count",
+                            "text": "{place}"
+                          },
+                          {
+                            "type": "button",
+                            "class": "arrow",
+                            "onClick": [
+                              {
+                                "set": {
+                                  "unit": "{nextIdx}"
+                                }
+                              }
+                            ],
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "at",
+                                "text": ">"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "ubody",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "panel",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "idrow",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "ujobt big",
+                                    "text": "{sel.job}"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "urace big",
+                                    "text": "{sel.race}",
+                                    "bindStyle": {
+                                      "color": "{sel.raceColor}"
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "lvline",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "tag",
+                                    "text": "Lv"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "unum",
+                                    "text": "{sel.level}"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "tag gap",
+                                    "text": "Exp"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "unum",
+                                    "text": "{sel.exp}"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "mjrow",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "mcell",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "tag",
+                                        "text": "Move"
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "unum",
+                                        "text": "{sel.move}"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "mcell",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "tag",
+                                        "text": "Jump"
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "unum",
+                                        "text": "{sel.jump}"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "mcell",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "tag",
+                                        "text": "Evade"
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "unum",
+                                        "text": "{sel.evade}"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "mcell",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "tag",
+                                        "text": "JP"
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "unum",
+                                        "text": "{sel.jpText}"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "vit",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "tag hpt",
+                                    "text": "HP"
+                                  },
+                                  {
+                                    "type": "bar",
+                                    "class": "hp vbar",
+                                    "value": "$sel.hpPct",
+                                    "max": 1
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "pair",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "unum",
+                                        "text": "{sel.hp}"
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "slash",
+                                        "text": "/"
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "unum",
+                                        "text": "{sel.maxHp}"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "vit",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "tag mpt",
+                                    "text": "MP"
+                                  },
+                                  {
+                                    "type": "bar",
+                                    "class": "mp vbar",
+                                    "value": "$sel.mpPct",
+                                    "max": 1
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "pair",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "unum",
+                                        "text": "{sel.mp}"
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "slash",
+                                        "text": "/"
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "unum",
+                                        "text": "{sel.maxMp}"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "panel stats",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "srow",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "slab a",
+                                    "text": "Weapon Atk"
+                                  },
+                                  {
+                                    "type": "bar",
+                                    "class": "sbar a",
+                                    "value": "$sel.atkPct",
+                                    "max": 1
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "sval",
+                                    "text": "{sel.atk}"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "srow",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "slab d",
+                                    "text": "Def"
+                                  },
+                                  {
+                                    "type": "bar",
+                                    "class": "sbar d",
+                                    "value": "$sel.defPct",
+                                    "max": 1
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "sval",
+                                    "text": "{sel.def}"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "srow",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "slab m",
+                                    "text": "Magic Pow"
+                                  },
+                                  {
+                                    "type": "bar",
+                                    "class": "sbar m",
+                                    "value": "$sel.powPct",
+                                    "max": 1
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "sval",
+                                    "text": "{sel.pow}"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "srow",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "slab r",
+                                    "text": "Res"
+                                  },
+                                  {
+                                    "type": "bar",
+                                    "class": "sbar r",
+                                    "value": "$sel.resPct",
+                                    "max": 1
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "sval",
+                                    "text": "{sel.res}"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "srow",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "slab s",
+                                    "text": "Speed"
+                                  },
+                                  {
+                                    "type": "bar",
+                                    "class": "sbar s",
+                                    "value": "$sel.spdPct",
+                                    "max": 1
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "sval",
+                                    "text": "{sel.speed}"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "panel gearp",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "sh",
+                                "text": "Equipment"
+                              },
+                              {
+                                "type": "list",
+                                "class": "gearlist",
+                                "items": "$sel.gear",
+                                "template": {
+                                  "type": "box",
+                                  "class": "gitem",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "class": "gname",
+                                      "text": "{name}"
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "skills",
+                  "child": {
+                    "type": "box",
+                    "class": "page",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "band",
+                        "children": [
+                          {
+                            "type": "button",
+                            "class": "arrow",
+                            "onClick": [
+                              {
+                                "set": {
+                                  "unit": "{prevIdx}"
+                                }
+                              }
+                            ],
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "at",
+                                "text": "<"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "class": "ttl",
+                            "text": "{sel.name}"
+                          },
+                          {
+                            "type": "text",
+                            "class": "count",
+                            "text": "{place}"
+                          },
+                          {
+                            "type": "button",
+                            "class": "arrow",
+                            "onClick": [
+                              {
+                                "set": {
+                                  "unit": "{nextIdx}"
+                                }
+                              }
+                            ],
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "at",
+                                "text": ">"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "panel skp",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "idrow",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "ujobt big",
+                                "text": "{sel.job}"
+                              },
+                              {
+                                "type": "text",
+                                "class": "urace big",
+                                "text": "{sel.race}",
+                                "bindStyle": {
+                                  "color": "{sel.raceColor}"
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "type": "list",
+                            "class": "ablist",
+                            "items": "$sel.abil",
+                            "template": {
+                              "type": "box",
+                              "class": "abrow",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "class": "abkind",
+                                  "text": "{kind}"
+                                },
+                                {
+                                  "type": "text",
+                                  "class": "abname",
+                                  "text": "{name}"
+                                },
+                                {
+                                  "type": "text",
+                                  "class": "abap",
+                                  "text": "{ap}"
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "jobs",
+                  "child": {
+                    "type": "box",
+                    "class": "page",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "band",
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "ttl",
+                            "text": "JOBS"
+                          },
+                          {
+                            "type": "text",
+                            "class": "sum",
+                            "text": "tap a job to see who has it"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "jpanel",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "jhead",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "jname",
+                                "text": "{jsel.name}"
+                              },
+                              {
+                                "type": "text",
+                                "class": "jrace",
+                                "text": "{jsel.race}",
+                                "bindStyle": {
+                                  "color": "{jsel.raceColor}"
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "class": "jwho",
+                            "text": "Clan: {jsel.who}"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "list",
+                        "class": "jlist",
+                        "items": "$jobs",
+                        "template": {
+                          "type": "button",
+                          "class": "jrow",
+                          "onClick": [
+                            {
+                              "set": {
+                                "job": "{id}"
+                              }
+                            }
+                          ],
+                          "children": [
+                            {
+                              "type": "box",
+                              "class": "jdot",
+                              "children": [],
+                              "bindStyle": {
+                                "background-color": "{raceColor}"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "class": "jn",
+                              "text": "{name}"
+                            },
+                            {
+                              "type": "text",
+                              "class": "jr",
+                              "text": "{race}",
+                              "bindStyle": {
+                                "color": "{raceColor}"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "class": "jc",
+                              "text": "x{n}",
+                              "visibleIf": "$has"
+                            }
+                          ],
+                          "classIf": {
+                            "on": "$on",
+                            "has": "$has"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "top",
+                  "child": {
+                    "type": "box",
+                    "class": "page",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "band",
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "ttl",
+                            "text": "TOP"
+                          },
+                          {
+                            "type": "text",
+                            "class": "sum",
+                            "text": "best in the clan: {topName}"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "list",
+                        "class": "stabs",
+                        "items": "$statTabs",
+                        "template": {
+                          "type": "button",
+                          "class": "stab",
+                          "onClick": [
+                            {
+                              "set": {
+                                "stat": "{k}"
+                              }
+                            }
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "class": "st",
+                              "text": "{name}"
+                            }
+                          ],
+                          "classIf": {
+                            "on": "$on"
+                          }
+                        }
+                      },
+                      {
+                        "type": "list",
+                        "class": "tlist",
+                        "items": "$top",
+                        "template": {
+                          "type": "button",
+                          "class": "trow",
+                          "onClick": [
+                            {
+                              "set": {
+                                "unit": "{idx}"
+                              }
+                            },
+                            {
+                              "navigate": "unit"
+                            }
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "class": "rk",
+                              "text": "{rank}"
+                            },
+                            {
+                              "type": "box",
+                              "class": "tmid",
+                              "children": [
+                                {
+                                  "type": "box",
+                                  "class": "tl",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "class": "tn",
+                                      "text": "{name}"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "class": "tj",
+                                      "text": "{job}"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "bar",
+                                  "class": "tbar",
+                                  "value": "$pct",
+                                  "max": 1
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "class": "tv",
+                              "text": "{value}"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "compare",
+                  "child": {
+                    "type": "box",
+                    "class": "page",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "band",
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "ttl",
+                            "text": "COMPARE"
+                          },
+                          {
+                            "type": "text",
+                            "class": "sum",
+                            "text": "pick two members with < >"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "cheads",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "cside",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "chead",
+                                "children": [
+                                  {
+                                    "type": "button",
+                                    "class": "arrow",
+                                    "onClick": [
+                                      {
+                                        "set": {
+                                          "cmpA": "{prevA}"
+                                        }
+                                      }
+                                    ],
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "at",
+                                        "text": "<"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "cname",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "cn",
+                                        "text": "{A.name}"
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "cj",
+                                        "text": "{A.job}  {A.race}"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "button",
+                                    "class": "arrow",
+                                    "onClick": [
+                                      {
+                                        "set": {
+                                          "cmpA": "{nextA}"
+                                        }
+                                      }
+                                    ],
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "at",
+                                        "text": ">"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "cside",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "chead",
+                                "children": [
+                                  {
+                                    "type": "button",
+                                    "class": "arrow",
+                                    "onClick": [
+                                      {
+                                        "set": {
+                                          "cmpB": "{prevB}"
+                                        }
+                                      }
+                                    ],
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "at",
+                                        "text": "<"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "cname",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "cn",
+                                        "text": "{B.name}"
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "cj",
+                                        "text": "{B.job}  {B.race}"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "button",
+                                    "class": "arrow",
+                                    "onClick": [
+                                      {
+                                        "set": {
+                                          "cmpB": "{nextB}"
+                                        }
+                                      }
+                                    ],
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "at",
+                                        "text": ">"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "list",
+                        "class": "xlist",
+                        "items": "$cmp",
+                        "template": {
+                          "type": "box",
+                          "class": "xrow",
+                          "children": [
+                            {
+                              "type": "text",
+                              "class": "xa",
+                              "text": "{a}",
+                              "classIf": {
+                                "win": "$aWin"
+                              }
+                            },
+                            {
+                              "type": "box",
+                              "class": "xmid",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "class": "xl",
+                                  "text": "{label}"
+                                },
+                                {
+                                  "type": "text",
+                                  "class": "xd",
+                                  "text": "{diff}"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "class": "xb",
+                              "text": "{b}",
+                              "classIf": {
+                                "win": "$bWin"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "battle",
+                  "child": {
+                    "type": "box",
+                    "class": "page",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "band",
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "ttl",
+                            "text": "BATTLE"
+                          },
+                          {
+                            "type": "text",
+                            "class": "sum",
+                            "text": "{battleNote}"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "panel lawp",
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "sh",
+                            "text": "Laws of the day"
+                          },
+                          {
+                            "type": "box",
+                            "class": "lawhead",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "lh",
+                                "text": "Forbidden"
+                              },
+                              {
+                                "type": "text",
+                                "class": "lh",
+                                "text": "Recommend"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "list",
+                            "class": "lawlist",
+                            "items": "$laws",
+                            "template": {
+                              "type": "box",
+                              "class": "lawrow",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "class": "lawf",
+                                  "text": "{forbid}"
+                                },
+                                {
+                                  "type": "text",
+                                  "class": "lawr",
+                                  "text": "{rec}"
+                                }
+                              ]
+                            }
+                          }
+                        ],
+                        "visibleIf": "$hasLaws"
+                      },
+                      {
+                        "type": "list",
+                        "class": "foelist",
+                        "items": "$foes",
+                        "visibleIf": "$inBattle",
+                        "template": {
+                          "type": "box",
+                          "class": "frow",
+                          "children": [
+                            {
+                              "type": "box",
+                              "class": "fl1",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "class": "fname",
+                                  "text": "{name}"
+                                },
+                                {
+                                  "type": "text",
+                                  "class": "fjob",
+                                  "text": "{job}  {race}"
+                                },
+                                {
+                                  "type": "text",
+                                  "class": "flv",
+                                  "text": "Lv {level}"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "box",
+                              "class": "fl2",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "class": "fhp",
+                                  "text": "HP {hpText}"
+                                },
+                                {
+                                  "type": "text",
+                                  "class": "fmp",
+                                  "text": "MP {mpText}"
+                                },
+                                {
+                                  "type": "text",
+                                  "class": "fmv",
+                                  "text": "{moveLine}"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "class": "fstat",
+                              "text": "{statLine}"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "type": "box",
+                        "class": "nobattle",
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "nbt",
+                            "text": "No battle running"
+                          },
+                          {
+                            "type": "text",
+                            "class": "nbs",
+                            "text": "Open this page during a battle to see the foes and the day's laws."
+                          }
+                        ],
+                        "visibleIf": "$noBattle"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "stats",
+                  "child": {
+                    "type": "box",
+                    "class": "page",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "band",
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "ttl",
+                            "text": "STATS"
+                          },
+                          {
+                            "type": "text",
+                            "class": "sum",
+                            "text": "the whole clan at a glance"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "scols",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "spanel",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "sh",
+                                "text": "Races"
+                              },
+                              {
+                                "type": "list",
+                                "class": "blist",
+                                "items": "$raceBars",
+                                "template": {
+                                  "type": "box",
+                                  "class": "brow",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "class": "bn",
+                                      "text": "{name}"
+                                    },
+                                    {
+                                      "type": "bar",
+                                      "class": "bbar",
+                                      "value": "$pct",
+                                      "max": 1
+                                    },
+                                    {
+                                      "type": "text",
+                                      "class": "bv",
+                                      "text": "{n}"
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "type": "text",
+                                "class": "sh gapt",
+                                "text": "Average"
+                              },
+                              {
+                                "type": "list",
+                                "class": "avgs",
+                                "items": "$avg",
+                                "template": {
+                                  "type": "box",
+                                  "class": "arow",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "class": "al",
+                                      "text": "{name}"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "class": "av",
+                                      "text": "{v}"
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "spanel",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "sh",
+                                "text": "Levels"
+                              },
+                              {
+                                "type": "list",
+                                "class": "blist2",
+                                "items": "$levelBars",
+                                "template": {
+                                  "type": "box",
+                                  "class": "brow",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "class": "bn",
+                                      "text": "{name}"
+                                    },
+                                    {
+                                      "type": "bar",
+                                      "class": "bbar",
+                                      "value": "$pct",
+                                      "max": 1
+                                    },
+                                    {
+                                      "type": "text",
+                                      "class": "bv",
+                                      "text": "{n}"
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "options",
+                  "child": {
+                    "type": "box",
+                    "class": "page",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "band",
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "ttl",
+                            "text": "OPTIONS"
+                          },
+                          {
+                            "type": "text",
+                            "class": "sum",
+                            "text": "where the page buttons sit"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "opanel",
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "oh",
+                            "text": "Navigation buttons"
+                          },
+                          {
+                            "type": "box",
+                            "class": "ocards",
+                            "children": [
+                              {
+                                "type": "button",
+                                "class": "ocard",
+                                "onClick": [
+                                  {
+                                    "set": {
+                                      "navpos": "bottom"
+                                    }
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "odiag d-bottom",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "obar b1",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "obar b2",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "opage",
+                                        "children": []
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "olab",
+                                    "text": "Bottom"
+                                  }
+                                ],
+                                "classIf": {
+                                  "on": "$posBottom"
+                                }
+                              },
+                              {
+                                "type": "button",
+                                "class": "ocard",
+                                "onClick": [
+                                  {
+                                    "set": {
+                                      "navpos": "left"
+                                    }
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "odiag d-left",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "obar b1",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "obar b2",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "opage",
+                                        "children": []
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "olab",
+                                    "text": "Left"
+                                  }
+                                ],
+                                "classIf": {
+                                  "on": "$posLeft"
+                                }
+                              },
+                              {
+                                "type": "button",
+                                "class": "ocard",
+                                "onClick": [
+                                  {
+                                    "set": {
+                                      "navpos": "right"
+                                    }
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "odiag d-right",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "obar b1",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "obar b2",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "opage",
+                                        "children": []
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "olab",
+                                    "text": "Right"
+                                  }
+                                ],
+                                "classIf": {
+                                  "on": "$posRight"
+                                }
+                              },
+                              {
+                                "type": "button",
+                                "class": "ocard",
+                                "onClick": [
+                                  {
+                                    "set": {
+                                      "navpos": "split"
+                                    }
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "odiag d-split",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "obar b1",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "obar b2",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "opage",
+                                        "children": []
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "olab",
+                                    "text": "Split"
+                                  }
+                                ],
+                                "classIf": {
+                                  "on": "$posSplit"
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "class": "onote",
+                            "text": "Side docks scroll when there are many pages. The bottom bar shows 5 buttons: use < > for the rest."
+                          },
+                          {
+                            "type": "text",
+                            "class": "onote",
+                            "text": "Kept until the game is closed."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "class": "nav",
+              "children": [
+                {
+                  "type": "button",
+                  "class": "narrow",
+                  "onClick": [
+                    {
+                      "call": "navShift",
+                      "args": [
+                        -1
+                      ]
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "class": "nt",
+                      "text": "<"
+                    }
+                  ],
+                  "visibleIf": "$navMore",
+                  "classIf": {
+                    "off": "$noPrev"
+                  }
+                },
+                {
+                  "type": "button",
+                  "class": "nbtn",
+                  "onClick": [
+                    {
+                      "navigate": "clan"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "class": "nt",
+                      "text": "CLAN"
+                    }
+                  ],
+                  "classIf": {
+                    "on": "$on1"
+                  },
+                  "visibleIf": "$B1"
+                },
+                {
+                  "type": "button",
+                  "class": "nbtn",
+                  "onClick": [
+                    {
+                      "navigate": "unit"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "class": "nt",
+                      "text": "UNIT"
+                    }
+                  ],
+                  "classIf": {
+                    "on": "$on2"
+                  },
+                  "visibleIf": "$B2"
+                },
+                {
+                  "type": "button",
+                  "class": "nbtn",
+                  "onClick": [
+                    {
+                      "navigate": "skills"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "class": "nt",
+                      "text": "SKILL"
+                    }
+                  ],
+                  "classIf": {
+                    "on": "$on3"
+                  },
+                  "visibleIf": "$B3"
+                },
+                {
+                  "type": "button",
+                  "class": "nbtn",
+                  "onClick": [
+                    {
+                      "navigate": "top"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "class": "nt",
+                      "text": "TOP"
+                    }
+                  ],
+                  "classIf": {
+                    "on": "$on4"
+                  },
+                  "visibleIf": "$B4"
+                },
+                {
+                  "type": "button",
+                  "class": "nbtn",
+                  "onClick": [
+                    {
+                      "navigate": "compare"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "class": "nt",
+                      "text": "VS"
+                    }
+                  ],
+                  "classIf": {
+                    "on": "$on5"
+                  },
+                  "visibleIf": "$B5"
+                },
+                {
+                  "type": "button",
+                  "class": "nbtn",
+                  "onClick": [
+                    {
+                      "navigate": "battle"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "class": "nt",
+                      "text": "FOES"
+                    }
+                  ],
+                  "classIf": {
+                    "on": "$on6"
+                  },
+                  "visibleIf": "$B6"
+                },
+                {
+                  "type": "button",
+                  "class": "nbtn",
+                  "onClick": [
+                    {
+                      "navigate": "jobs"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "class": "nt",
+                      "text": "JOBS"
+                    }
+                  ],
+                  "classIf": {
+                    "on": "$on7"
+                  },
+                  "visibleIf": "$B7"
+                },
+                {
+                  "type": "button",
+                  "class": "nbtn",
+                  "onClick": [
+                    {
+                      "navigate": "stats"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "class": "nt",
+                      "text": "STATS"
+                    }
+                  ],
+                  "classIf": {
+                    "on": "$on8"
+                  },
+                  "visibleIf": "$B8"
+                },
+                {
+                  "type": "button",
+                  "class": "nbtn",
+                  "onClick": [
+                    {
+                      "navigate": "options"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "class": "nt",
+                      "text": "OPT"
+                    }
+                  ],
+                  "classIf": {
+                    "on": "$on9"
+                  },
+                  "visibleIf": "$B9"
+                },
+                {
+                  "type": "button",
+                  "class": "narrow",
+                  "onClick": [
+                    {
+                      "call": "navShift",
+                      "args": [
+                        1
+                      ]
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "class": "nt",
+                      "text": ">"
+                    }
+                  ],
+                  "visibleIf": "$navMore",
+                  "classIf": {
+                    "off": "$noNext"
+                  }
+                }
+              ],
+              "visibleIf": "$posBottom"
+            }
+          ]
+        },
+        {
+          "type": "box",
+          "class": "dock",
+          "children": [
+            {
+              "type": "button",
+              "class": "dbtn",
+              "onClick": [
+                {
+                  "navigate": "clan"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "class": "dt",
+                  "text": "CLAN"
+                }
+              ],
+              "classIf": {
+                "on": "$on1"
+              },
+              "visibleIf": "$R1"
+            },
+            {
+              "type": "button",
+              "class": "dbtn",
+              "onClick": [
+                {
+                  "navigate": "unit"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "class": "dt",
+                  "text": "UNIT"
+                }
+              ],
+              "classIf": {
+                "on": "$on2"
+              },
+              "visibleIf": "$R2"
+            },
+            {
+              "type": "button",
+              "class": "dbtn",
+              "onClick": [
+                {
+                  "navigate": "skills"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "class": "dt",
+                  "text": "SKILL"
+                }
+              ],
+              "classIf": {
+                "on": "$on3"
+              },
+              "visibleIf": "$R3"
+            },
+            {
+              "type": "button",
+              "class": "dbtn",
+              "onClick": [
+                {
+                  "navigate": "top"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "class": "dt",
+                  "text": "TOP"
+                }
+              ],
+              "classIf": {
+                "on": "$on4"
+              },
+              "visibleIf": "$R4"
+            },
+            {
+              "type": "button",
+              "class": "dbtn",
+              "onClick": [
+                {
+                  "navigate": "compare"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "class": "dt",
+                  "text": "VS"
+                }
+              ],
+              "classIf": {
+                "on": "$on5"
+              },
+              "visibleIf": "$R5"
+            },
+            {
+              "type": "button",
+              "class": "dbtn",
+              "onClick": [
+                {
+                  "navigate": "battle"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "class": "dt",
+                  "text": "FOES"
+                }
+              ],
+              "classIf": {
+                "on": "$on6"
+              },
+              "visibleIf": "$R6"
+            },
+            {
+              "type": "button",
+              "class": "dbtn",
+              "onClick": [
+                {
+                  "navigate": "jobs"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "class": "dt",
+                  "text": "JOBS"
+                }
+              ],
+              "classIf": {
+                "on": "$on7"
+              },
+              "visibleIf": "$R7"
+            },
+            {
+              "type": "button",
+              "class": "dbtn",
+              "onClick": [
+                {
+                  "navigate": "stats"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "class": "dt",
+                  "text": "STATS"
+                }
+              ],
+              "classIf": {
+                "on": "$on8"
+              },
+              "visibleIf": "$R8"
+            },
+            {
+              "type": "button",
+              "class": "dbtn",
+              "onClick": [
+                {
+                  "navigate": "options"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "class": "dt",
+                  "text": "OPT"
+                }
+              ],
+              "classIf": {
+                "on": "$on9"
+              },
+              "visibleIf": "$R9"
+            }
+          ],
+          "visibleIf": "$dockR"
+        }
+      ],
+      "visibleIf": "$ready"
+    }
+  ],
+  "id": "screen"
+}

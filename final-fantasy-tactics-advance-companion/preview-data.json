@@ -1,0 +1,987 @@
+{
+ "ready": true,
+ "waiting": false,
+ "units": [
+  {
+   "idx": 0,
+   "name": "Marche",
+   "job": "Soldier",
+   "race": "Hume",
+   "raceColor": "#f2c14e",
+   "level": 50,
+   "exp": 99,
+   "hp": 442,
+   "maxHp": 442,
+   "hpPct": 1.0,
+   "mp": 85,
+   "maxMp": 85,
+   "mpPct": 1.0,
+   "atk": 589,
+   "def": 587,
+   "pow": 374,
+   "res": 459,
+   "on": true,
+   "atkPct": 0.7414285714285714,
+   "defPct": 0.76,
+   "powPct": 0.5342857142857143,
+   "resPct": 0.64,
+   "speed": 155,
+   "spdPct": 0.22142857142857142,
+   "gear": [
+    {
+     "name": "Chirijiraden",
+     "id": 0
+    },
+    {
+     "name": "Opal Helm",
+     "id": 1
+    },
+    {
+     "name": "Mirror Mail",
+     "id": 2
+    },
+    {
+     "name": "Battle Boots",
+     "id": 3
+    },
+    {
+     "name": "Gauntlets",
+     "id": 4
+    }
+   ],
+   "hasGear": true,
+   "gearCount": 5
+  },
+  {
+   "idx": 1,
+   "name": "Cecile",
+   "job": "Sniper",
+   "race": "Viera",
+   "raceColor": "#7fe08a",
+   "level": 43,
+   "exp": 99,
+   "hp": 306,
+   "maxHp": 306,
+   "hpPct": 1.0,
+   "mp": 203,
+   "maxMp": 203,
+   "mpPct": 1.0,
+   "atk": 384,
+   "def": 378,
+   "pow": 454,
+   "res": 397,
+   "on": false,
+   "atkPct": 0.5485714285714286,
+   "defPct": 0.54,
+   "powPct": 0.6485714285714286,
+   "resPct": 0.5671428571428572,
+   "speed": 155,
+   "spdPct": 0.22142857142857142,
+   "gear": [
+    {
+     "name": "Chirijiraden",
+     "id": 0
+    },
+    {
+     "name": "Opal Helm",
+     "id": 1
+    },
+    {
+     "name": "Mirror Mail",
+     "id": 2
+    },
+    {
+     "name": "Battle Boots",
+     "id": 3
+    },
+    {
+     "name": "Gauntlets",
+     "id": 4
+    }
+   ],
+   "hasGear": true,
+   "gearCount": 5
+  },
+  {
+   "idx": 2,
+   "name": "Undine",
+   "job": "Assassin",
+   "race": "Viera",
+   "raceColor": "#7fe08a",
+   "level": 43,
+   "exp": 99,
+   "hp": 265,
+   "maxHp": 265,
+   "hpPct": 1.0,
+   "mp": 241,
+   "maxMp": 241,
+   "mpPct": 1.0,
+   "atk": 392,
+   "def": 367,
+   "pow": 472,
+   "res": 391,
+   "on": false,
+   "atkPct": 0.56,
+   "defPct": 0.5242857142857142,
+   "powPct": 0.6742857142857143,
+   "resPct": 0.5585714285714286,
+   "speed": 155,
+   "spdPct": 0.22142857142857142,
+   "gear": [
+    {
+     "name": "Chirijiraden",
+     "id": 0
+    },
+    {
+     "name": "Opal Helm",
+     "id": 1
+    },
+    {
+     "name": "Mirror Mail",
+     "id": 2
+    },
+    {
+     "name": "Battle Boots",
+     "id": 3
+    },
+    {
+     "name": "Gauntlets",
+     "id": 4
+    }
+   ],
+   "hasGear": true,
+   "gearCount": 5
+  },
+  {
+   "idx": 3,
+   "name": "Cesare",
+   "job": "Thief",
+   "race": "Moogle",
+   "raceColor": "#ff9fb8",
+   "level": 43,
+   "exp": 99,
+   "hp": 140,
+   "maxHp": 301,
+   "hpPct": 0.46511627906976744,
+   "mp": 125,
+   "maxMp": 125,
+   "mpPct": 1.0,
+   "atk": 380,
+   "def": 444,
+   "pow": 385,
+   "res": 432,
+   "on": false,
+   "atkPct": 0.5428571428571428,
+   "defPct": 0.6342857142857142,
+   "powPct": 0.55,
+   "resPct": 0.6171428571428571,
+   "speed": 155,
+   "spdPct": 0.22142857142857142,
+   "gear": [
+    {
+     "name": "Chirijiraden",
+     "id": 0
+    },
+    {
+     "name": "Opal Helm",
+     "id": 1
+    },
+    {
+     "name": "Mirror Mail",
+     "id": 2
+    },
+    {
+     "name": "Battle Boots",
+     "id": 3
+    },
+    {
+     "name": "Gauntlets",
+     "id": 4
+    }
+   ],
+   "hasGear": true,
+   "gearCount": 5
+  },
+  {
+   "idx": 4,
+   "name": "Gillian",
+   "job": "Summoner",
+   "race": "Viera",
+   "raceColor": "#7fe08a",
+   "level": 42,
+   "exp": 99,
+   "hp": 313,
+   "maxHp": 313,
+   "hpPct": 1.0,
+   "mp": 136,
+   "maxMp": 136,
+   "mpPct": 1.0,
+   "atk": 414,
+   "def": 389,
+   "pow": 430,
+   "res": 387,
+   "on": false,
+   "atkPct": 0.5914285714285714,
+   "defPct": 0.5557142857142857,
+   "powPct": 0.6142857142857143,
+   "resPct": 0.5528571428571428,
+   "speed": 155,
+   "spdPct": 0.22142857142857142,
+   "gear": [
+    {
+     "name": "Chirijiraden",
+     "id": 0
+    },
+    {
+     "name": "Opal Helm",
+     "id": 1
+    },
+    {
+     "name": "Mirror Mail",
+     "id": 2
+    },
+    {
+     "name": "Battle Boots",
+     "id": 3
+    },
+    {
+     "name": "Gauntlets",
+     "id": 4
+    }
+   ],
+   "hasGear": true,
+   "gearCount": 5
+  },
+  {
+   "idx": 5,
+   "name": "Selm",
+   "job": "Dragoon",
+   "race": "Bangaa",
+   "raceColor": "#e2724a",
+   "level": 42,
+   "exp": 99,
+   "hp": 395,
+   "maxHp": 395,
+   "hpPct": 1.0,
+   "mp": 98,
+   "maxMp": 98,
+   "mpPct": 1.0,
+   "atk": 482,
+   "def": 438,
+   "pow": 308,
+   "res": 347,
+   "on": false,
+   "atkPct": 0.6885714285714286,
+   "defPct": 0.6257142857142857,
+   "powPct": 0.44,
+   "resPct": 0.4957142857142857,
+   "speed": 155,
+   "spdPct": 0.22142857142857142,
+   "gear": [
+    {
+     "name": "Chirijiraden",
+     "id": 0
+    },
+    {
+     "name": "Opal Helm",
+     "id": 1
+    },
+    {
+     "name": "Mirror Mail",
+     "id": 2
+    },
+    {
+     "name": "Battle Boots",
+     "id": 3
+    },
+    {
+     "name": "Gauntlets",
+     "id": 4
+    }
+   ],
+   "hasGear": true,
+   "gearCount": 5
+  },
+  {
+   "idx": 6,
+   "name": "Arthur",
+   "job": "Dragoon",
+   "race": "Bangaa",
+   "raceColor": "#e2724a",
+   "level": 41,
+   "exp": 99,
+   "hp": 333,
+   "maxHp": 333,
+   "hpPct": 1.0,
+   "mp": 59,
+   "maxMp": 59,
+   "mpPct": 1.0,
+   "atk": 450,
+   "def": 404,
+   "pow": 339,
+   "res": 331,
+   "on": false,
+   "atkPct": 0.6428571428571429,
+   "defPct": 0.5771428571428572,
+   "powPct": 0.48428571428571426,
+   "resPct": 0.47285714285714286,
+   "speed": 155,
+   "spdPct": 0.22142857142857142,
+   "gear": [
+    {
+     "name": "Chirijiraden",
+     "id": 0
+    },
+    {
+     "name": "Opal Helm",
+     "id": 1
+    },
+    {
+     "name": "Mirror Mail",
+     "id": 2
+    },
+    {
+     "name": "Battle Boots",
+     "id": 3
+    },
+    {
+     "name": "Gauntlets",
+     "id": 4
+    }
+   ],
+   "hasGear": true,
+   "gearCount": 5
+  },
+  {
+   "idx": 7,
+   "name": "Nusratt",
+   "job": "White Mage",
+   "race": "Nu Mou",
+   "raceColor": "#9a8cf0",
+   "level": 40,
+   "exp": 99,
+   "hp": 260,
+   "maxHp": 260,
+   "hpPct": 1.0,
+   "mp": 276,
+   "maxMp": 276,
+   "mpPct": 1.0,
+   "atk": 283,
+   "def": 362,
+   "pow": 438,
+   "res": 417,
+   "on": false,
+   "atkPct": 0.4042857142857143,
+   "defPct": 0.5171428571428571,
+   "powPct": 0.6257142857142857,
+   "resPct": 0.5957142857142858,
+   "speed": 155,
+   "spdPct": 0.22142857142857142,
+   "gear": [
+    {
+     "name": "Chirijiraden",
+     "id": 0
+    },
+    {
+     "name": "Opal Helm",
+     "id": 1
+    },
+    {
+     "name": "Mirror Mail",
+     "id": 2
+    },
+    {
+     "name": "Battle Boots",
+     "id": 3
+    },
+    {
+     "name": "Gauntlets",
+     "id": 4
+    }
+   ],
+   "hasGear": true,
+   "gearCount": 5
+  }
+ ],
+ "count": 8,
+ "sel": {
+  "idx": 0,
+  "name": "Marche",
+  "job": "Soldier",
+  "race": "Hume",
+  "raceColor": "#f2c14e",
+  "level": 50,
+  "exp": 99,
+  "hp": 442,
+  "maxHp": 442,
+  "hpPct": 1.0,
+  "mp": 85,
+  "maxMp": 85,
+  "mpPct": 1.0,
+  "atk": 589,
+  "def": 587,
+  "pow": 374,
+  "res": 459,
+  "on": true,
+  "atkPct": 0.8414285714285714,
+  "defPct": 0.8385714285714285,
+  "powPct": 0.5342857142857143,
+  "resPct": 0.6557142857142857,
+  "speed": 155,
+  "spdPct": 0.22142857142857142,
+  "gear": [
+   {
+    "name": "Chirijiraden",
+    "id": 0
+   },
+   {
+    "name": "Opal Helm",
+    "id": 1
+   },
+   {
+    "name": "Mirror Mail",
+    "id": 2
+   },
+   {
+    "name": "Battle Boots",
+    "id": 3
+   },
+   {
+    "name": "Gauntlets",
+    "id": 4
+   }
+  ],
+  "hasGear": true,
+  "gearCount": 5
+ },
+ "tabs": [
+  {
+   "r": 0,
+   "name": "All",
+   "n": 20,
+   "color": "#ffffef",
+   "on": true,
+   "short": "All"
+  },
+  {
+   "r": 1,
+   "name": "Hume",
+   "n": 3,
+   "color": "#f2c14e",
+   "on": false,
+   "short": "Hum"
+  },
+  {
+   "r": 2,
+   "name": "Bangaa",
+   "n": 3,
+   "color": "#e2724a",
+   "on": false,
+   "short": "Ban"
+  },
+  {
+   "r": 3,
+   "name": "Nu Mou",
+   "n": 4,
+   "color": "#9a8cf0",
+   "on": false,
+   "short": "Nu"
+  },
+  {
+   "r": 4,
+   "name": "Viera",
+   "n": 6,
+   "color": "#7fe08a",
+   "on": false,
+   "short": "Vie"
+  },
+  {
+   "r": 5,
+   "name": "Moogle",
+   "n": 4,
+   "color": "#ff9fb8",
+   "on": false,
+   "short": "Moo"
+  }
+ ],
+ "total": 20,
+ "sortLabel": "Level",
+ "avgLevel": "41.4",
+ "prevIdx": 7,
+ "nextIdx": 1,
+ "place": "1 / 8",
+ "jobs": [
+  {
+   "id": 2,
+   "name": "Soldier",
+   "race": "Hume",
+   "raceColor": "#f2c14e",
+   "n": 1,
+   "has": true,
+   "who": "Marche",
+   "on": true
+  },
+  {
+   "id": 3,
+   "name": "Paladin",
+   "race": "Hume",
+   "raceColor": "#f2c14e",
+   "n": 1,
+   "has": true,
+   "who": "Marche",
+   "on": false
+  },
+  {
+   "id": 4,
+   "name": "Fighter",
+   "race": "Hume",
+   "raceColor": "#f2c14e",
+   "n": 0,
+   "has": false,
+   "who": "nobody yet",
+   "on": false
+  },
+  {
+   "id": 5,
+   "name": "Thief",
+   "race": "Hume",
+   "raceColor": "#f2c14e",
+   "n": 0,
+   "has": false,
+   "who": "nobody yet",
+   "on": false
+  },
+  {
+   "id": 6,
+   "name": "Ninja",
+   "race": "Hume",
+   "raceColor": "#f2c14e",
+   "n": 1,
+   "has": true,
+   "who": "Marche",
+   "on": false
+  },
+  {
+   "id": 7,
+   "name": "White Mage",
+   "race": "Hume",
+   "raceColor": "#f2c14e",
+   "n": 0,
+   "has": false,
+   "who": "nobody yet",
+   "on": false
+  },
+  {
+   "id": 8,
+   "name": "Dragoon",
+   "race": "Bangaa",
+   "raceColor": "#e2724a",
+   "n": 2,
+   "has": true,
+   "who": "Marche",
+   "on": false
+  },
+  {
+   "id": 9,
+   "name": "Templar",
+   "race": "Bangaa",
+   "raceColor": "#e2724a",
+   "n": 1,
+   "has": true,
+   "who": "Marche",
+   "on": false
+  },
+  {
+   "id": 10,
+   "name": "Summoner",
+   "race": "Viera",
+   "raceColor": "#7fe08a",
+   "n": 2,
+   "has": true,
+   "who": "Marche",
+   "on": false
+  },
+  {
+   "id": 11,
+   "name": "Sniper",
+   "race": "Viera",
+   "raceColor": "#7fe08a",
+   "n": 2,
+   "has": true,
+   "who": "Marche",
+   "on": false
+  }
+ ],
+ "jsel": {
+  "id": 2,
+  "name": "Soldier",
+  "race": "Hume",
+  "raceColor": "#f2c14e",
+  "n": 1,
+  "has": true,
+  "who": "Marche",
+  "on": true
+ },
+ "onClan": true,
+ "onUnit": false,
+ "onJobs": false,
+ "statTabs": [
+  {
+   "k": "atk",
+   "name": "Atk",
+   "on": true
+  },
+  {
+   "k": "def",
+   "name": "Def",
+   "on": false
+  },
+  {
+   "k": "pow",
+   "name": "Pow",
+   "on": false
+  },
+  {
+   "k": "res",
+   "name": "Res",
+   "on": false
+  },
+  {
+   "k": "speed",
+   "name": "Spd",
+   "on": false
+  },
+  {
+   "k": "maxHp",
+   "name": "HP",
+   "on": false
+  },
+  {
+   "k": "maxMp",
+   "name": "MP",
+   "on": false
+  }
+ ],
+ "top": [
+  {
+   "idx": 0,
+   "rank": 1,
+   "name": "Marche",
+   "job": "Soldier",
+   "race": "Hume",
+   "value": 519,
+   "pct": 1.0
+  },
+  {
+   "idx": 5,
+   "rank": 2,
+   "name": "Selm",
+   "job": "Dragoon",
+   "race": "Bangaa",
+   "value": 482,
+   "pct": 0.928709055876686
+  },
+  {
+   "idx": 6,
+   "rank": 3,
+   "name": "Arthur",
+   "job": "Dragoon",
+   "race": "Bangaa",
+   "value": 450,
+   "pct": 0.8670520231213873
+  },
+  {
+   "idx": 4,
+   "rank": 4,
+   "name": "Gillian",
+   "job": "Summoner",
+   "race": "Viera",
+   "value": 414,
+   "pct": 0.7976878612716763
+  },
+  {
+   "idx": 2,
+   "rank": 5,
+   "name": "Undine",
+   "job": "Assassin",
+   "race": "Viera",
+   "value": 392,
+   "pct": 0.7552986512524085
+  },
+  {
+   "idx": 1,
+   "rank": 6,
+   "name": "Cecile",
+   "job": "Sniper",
+   "race": "Viera",
+   "value": 384,
+   "pct": 0.7398843930635838
+  },
+  {
+   "idx": 3,
+   "rank": 7,
+   "name": "Cesare",
+   "job": "Thief",
+   "race": "Moogle",
+   "value": 380,
+   "pct": 0.7321772639691715
+  },
+  {
+   "idx": 7,
+   "rank": 8,
+   "name": "Nusratt",
+   "job": "White Mage",
+   "race": "Nu Mou",
+   "value": 283,
+   "pct": 0.5452793834296724
+  }
+ ],
+ "topName": "Weapon Atk",
+ "A": {
+  "idx": 0,
+  "name": "Marche",
+  "job": "Soldier",
+  "race": "Hume",
+  "raceColor": "#f2c14e",
+  "level": 50,
+  "exp": 99,
+  "hp": 442,
+  "maxHp": 442,
+  "hpPct": 1.0,
+  "mp": 85,
+  "maxMp": 85,
+  "mpPct": 1.0,
+  "atk": 519,
+  "def": 532,
+  "pow": 374,
+  "res": 448,
+  "on": true,
+  "atkPct": 0.7414285714285714,
+  "defPct": 0.76,
+  "powPct": 0.5342857142857143,
+  "resPct": 0.64
+ },
+ "B": {
+  "idx": 1,
+  "name": "Cecile",
+  "job": "Sniper",
+  "race": "Viera",
+  "raceColor": "#7fe08a",
+  "level": 43,
+  "exp": 99,
+  "hp": 306,
+  "maxHp": 306,
+  "hpPct": 1.0,
+  "mp": 203,
+  "maxMp": 203,
+  "mpPct": 1.0,
+  "atk": 384,
+  "def": 378,
+  "pow": 454,
+  "res": 397,
+  "on": false,
+  "atkPct": 0.5485714285714286,
+  "defPct": 0.54,
+  "powPct": 0.6485714285714286,
+  "resPct": 0.5671428571428572
+ },
+ "prevA": 7,
+ "nextA": 1,
+ "prevB": 0,
+ "nextB": 2,
+ "cmp": [
+  {
+   "label": "Level",
+   "a": 50,
+   "b": 43,
+   "aWin": true,
+   "bWin": false,
+   "diff": "+7"
+  },
+  {
+   "label": "HP",
+   "a": 442,
+   "b": 306,
+   "aWin": true,
+   "bWin": false,
+   "diff": "+136"
+  },
+  {
+   "label": "MP",
+   "a": 85,
+   "b": 203,
+   "aWin": false,
+   "bWin": true,
+   "diff": "-118"
+  },
+  {
+   "label": "Weapon Atk",
+   "a": 589,
+   "b": 384,
+   "aWin": true,
+   "bWin": false,
+   "diff": "+205"
+  },
+  {
+   "label": "Def",
+   "a": 587,
+   "b": 378,
+   "aWin": true,
+   "bWin": false,
+   "diff": "+209"
+  },
+  {
+   "label": "Magic Pow",
+   "a": 374,
+   "b": 454,
+   "aWin": false,
+   "bWin": true,
+   "diff": "-80"
+  },
+  {
+   "label": "Res",
+   "a": 459,
+   "b": 397,
+   "aWin": true,
+   "bWin": false,
+   "diff": "+62"
+  },
+  {
+   "label": "Speed",
+   "a": 155,
+   "b": 130,
+   "aWin": true,
+   "bWin": false,
+   "diff": "+25"
+  }
+ ],
+ "raceBars": [
+  {
+   "name": "Hume",
+   "n": 4,
+   "pct": 0.6666666666666666,
+   "color": "#f2c14e"
+  },
+  {
+   "name": "Bangaa",
+   "n": 3,
+   "pct": 0.5,
+   "color": "#e2724a"
+  },
+  {
+   "name": "Nu Mou",
+   "n": 4,
+   "pct": 0.6666666666666666,
+   "color": "#9a8cf0"
+  },
+  {
+   "name": "Viera",
+   "n": 6,
+   "pct": 1.0,
+   "color": "#7fe08a"
+  },
+  {
+   "name": "Moogle",
+   "n": 3,
+   "pct": 0.5,
+   "color": "#ff9fb8"
+  }
+ ],
+ "levelBars": [
+  {
+   "name": "Lv 40",
+   "n": 9,
+   "pct": 1.0
+  },
+  {
+   "name": "Lv 41",
+   "n": 5,
+   "pct": 0.5555555555555556
+  },
+  {
+   "name": "Lv 42",
+   "n": 2,
+   "pct": 0.2222222222222222
+  },
+  {
+   "name": "Lv 43",
+   "n": 3,
+   "pct": 0.3333333333333333
+  },
+  {
+   "name": "Lv 44",
+   "n": 0,
+   "pct": 0.0
+  },
+  {
+   "name": "Lv 45",
+   "n": 0,
+   "pct": 0.0
+  },
+  {
+   "name": "Lv 46",
+   "n": 0,
+   "pct": 0.0
+  },
+  {
+   "name": "Lv 47",
+   "n": 0,
+   "pct": 0.0
+  },
+  {
+   "name": "Lv 48",
+   "n": 0,
+   "pct": 0.0
+  },
+  {
+   "name": "Lv 49",
+   "n": 0,
+   "pct": 0.0
+  },
+  {
+   "name": "Lv 50",
+   "n": 1,
+   "pct": 0.1111111111111111
+  }
+ ],
+ "avg": [
+  {
+   "name": "Atk",
+   "v": 387,
+   "pct": 0.5528571428571428
+  },
+  {
+   "name": "Def",
+   "v": 393,
+   "pct": 0.5614285714285714
+  },
+  {
+   "name": "Pow",
+   "v": 397,
+   "pct": 0.5671428571428572
+  },
+  {
+   "name": "Res",
+   "v": 408,
+   "pct": 0.5828571428571429
+  },
+  {
+   "name": "Spd",
+   "v": 148,
+   "pct": 0.21142857142857144
+  },
+  {
+   "name": "HP",
+   "v": 304,
+   "pct": 0.4342857142857143
+  },
+  {
+   "name": "MP",
+   "v": 154,
+   "pct": 0.22
+  }
+ ],
+ "onTop": false,
+ "onCmp": false,
+ "onStats": false
+}

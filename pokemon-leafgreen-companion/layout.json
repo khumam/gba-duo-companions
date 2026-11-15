@@ -41,6 +41,136 @@
       "class": "shell",
       "children": [
         {
+          "type": "box",
+          "class": "pdock pdock-l",
+          "children": [
+            {
+              "type": "button",
+              "class": "dock-btn",
+              "onClick": [
+                {
+                  "navigate": "map"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "class": "dock-label",
+                  "text": "MAP"
+                }
+              ],
+              "visibleIf": "$L1",
+              "classIf": {
+                "on": "$on1"
+              }
+            },
+            {
+              "type": "button",
+              "class": "dock-btn",
+              "onClick": [
+                {
+                  "navigate": "party"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "class": "dock-label",
+                  "text": "PARTY"
+                }
+              ],
+              "visibleIf": "$L2",
+              "classIf": {
+                "on": "$on2"
+              }
+            },
+            {
+              "type": "button",
+              "class": "dock-btn",
+              "onClick": [
+                {
+                  "navigate": "bag"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "class": "dock-label",
+                  "text": "BAG"
+                }
+              ],
+              "visibleIf": "$L3",
+              "classIf": {
+                "on": "$on3"
+              }
+            },
+            {
+              "type": "button",
+              "class": "dock-btn",
+              "onClick": [
+                {
+                  "navigate": "dex"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "class": "dock-label",
+                  "text": "DEX"
+                }
+              ],
+              "visibleIf": "$L4",
+              "classIf": {
+                "on": "$on4"
+              }
+            },
+            {
+              "type": "button",
+              "class": "dock-btn",
+              "onClick": [
+                {
+                  "navigate": "trainer"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "class": "dock-label",
+                  "text": "CARD"
+                }
+              ],
+              "visibleIf": "$L5",
+              "classIf": {
+                "on": "$on5"
+              }
+            },
+            {
+              "type": "button",
+              "class": "dock-btn",
+              "onClick": [
+                {
+                  "navigate": "battle"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "class": "dock-label",
+                  "text": "BATTLE"
+                }
+              ],
+              "visibleIf": "$L6",
+              "classIf": {
+                "on": "$on6"
+              }
+            }
+          ],
+          "visibleIf": "$dockL",
+          "classIf": {
+            "narrow": "$posSplit"
+          }
+        },
+        {
           "type": "pages",
           "pages": [
             {
@@ -445,7 +575,7 @@
                                   {
                                     "type": "text",
                                     "class": "wild-none-text",
-                                    "text": "NO WILD POKéMON HERE"
+                                    "text": "NO WILD POK\u00e9MON HERE"
                                   }
                                 ],
                                 "visibleIf": "$map.noWild"
@@ -513,7 +643,8 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "visibleIf": "$posBottom"
                   }
                 ]
               }
@@ -690,7 +821,7 @@
                                 "type": "list",
                                 "class": "pgrid",
                                 "items": "$party",
-                                "empty": "NO POKéMON",
+                                "empty": "NO POK\u00e9MON",
                                 "template": {
                                   "type": "box",
                                   "class": "card pcard",
@@ -937,7 +1068,8 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "visibleIf": "$posBottom"
                   }
                 ]
               }
@@ -1873,7 +2005,8 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "visibleIf": "$posBottom"
                   }
                 ]
               }
@@ -2020,7 +2153,7 @@
                                   {
                                     "type": "text",
                                     "class": "panel-title",
-                                    "text": "POKéDEX"
+                                    "text": "POK\u00e9DEX"
                                   }
                                 ]
                               },
@@ -2468,7 +2601,8 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "visibleIf": "$posBottom"
                   }
                 ]
               }
@@ -2923,6 +3057,30 @@
                                     "classIf": {
                                       "opt-on": "$_ambient"
                                     }
+                                  },
+                                  {
+                                    "type": "button",
+                                    "class": "opt-btn opt-nav",
+                                    "onClick": {
+                                      "call": "cycleNav"
+                                    },
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "opt-label",
+                                        "text": "NAV"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "grow",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "opt-state",
+                                        "text": "{navLabel}"
+                                      }
+                                    ]
                                   }
                                 ]
                               }
@@ -3066,7 +3224,8 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "visibleIf": "$posBottom"
                   }
                 ]
               }
@@ -3736,7 +3895,7 @@
                                   {
                                     "type": "text",
                                     "class": "tile-label",
-                                    "text": "POKéMON"
+                                    "text": "POK\u00e9MON"
                                   },
                                   {
                                     "type": "text",
@@ -3859,7 +4018,8 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "visibleIf": "$posBottom"
                   }
                 ]
               }
@@ -4525,6 +4685,136 @@
               }
             }
           ]
+        },
+        {
+          "type": "box",
+          "class": "pdock pdock-r",
+          "children": [
+            {
+              "type": "button",
+              "class": "dock-btn",
+              "onClick": [
+                {
+                  "navigate": "map"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "class": "dock-label",
+                  "text": "MAP"
+                }
+              ],
+              "visibleIf": "$R1",
+              "classIf": {
+                "on": "$on1"
+              }
+            },
+            {
+              "type": "button",
+              "class": "dock-btn",
+              "onClick": [
+                {
+                  "navigate": "party"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "class": "dock-label",
+                  "text": "PARTY"
+                }
+              ],
+              "visibleIf": "$R2",
+              "classIf": {
+                "on": "$on2"
+              }
+            },
+            {
+              "type": "button",
+              "class": "dock-btn",
+              "onClick": [
+                {
+                  "navigate": "bag"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "class": "dock-label",
+                  "text": "BAG"
+                }
+              ],
+              "visibleIf": "$R3",
+              "classIf": {
+                "on": "$on3"
+              }
+            },
+            {
+              "type": "button",
+              "class": "dock-btn",
+              "onClick": [
+                {
+                  "navigate": "dex"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "class": "dock-label",
+                  "text": "DEX"
+                }
+              ],
+              "visibleIf": "$R4",
+              "classIf": {
+                "on": "$on4"
+              }
+            },
+            {
+              "type": "button",
+              "class": "dock-btn",
+              "onClick": [
+                {
+                  "navigate": "trainer"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "class": "dock-label",
+                  "text": "CARD"
+                }
+              ],
+              "visibleIf": "$R5",
+              "classIf": {
+                "on": "$on5"
+              }
+            },
+            {
+              "type": "button",
+              "class": "dock-btn",
+              "onClick": [
+                {
+                  "navigate": "battle"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "class": "dock-label",
+                  "text": "BATTLE"
+                }
+              ],
+              "visibleIf": "$R6",
+              "classIf": {
+                "on": "$on6"
+              }
+            }
+          ],
+          "visibleIf": "$dockR",
+          "classIf": {
+            "narrow": "$posSplit"
+          }
         }
       ],
       "visibleIf": "$ready"

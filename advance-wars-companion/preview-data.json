@@ -1,0 +1,726 @@
+{
+ "ready": true,
+ "waiting": false,
+ "day": 3,
+ "funds": 12400,
+ "turnName": "Orange Star",
+ "turnColor": "#f7a57b",
+ "armies": [
+  {
+   "n": 0,
+   "name": "Orange Star",
+   "color": "#f7a57b",
+   "mine": true,
+   "count": 16,
+   "value": 198000,
+   "on": true
+  },
+  {
+   "n": 1,
+   "name": "Blue Moon",
+   "color": "#7b9cff",
+   "mine": false,
+   "count": 14,
+   "value": 195000,
+   "on": false
+  }
+ ],
+ "units": [
+  {
+   "name": "Infantry",
+   "tens": 10,
+   "hpPct": 1,
+   "fuel": 99,
+   "maxFuel": 99,
+   "fuelPct": 1.0,
+   "x": 3,
+   "y": 10,
+   "low": false,
+   "id": 1,
+   "cost": 1000,
+   "icon": "asset:icons/units/infantry-orange.png"
+  },
+  {
+   "name": "Infantry",
+   "tens": 10,
+   "hpPct": 1,
+   "fuel": 99,
+   "maxFuel": 99,
+   "fuelPct": 1.0,
+   "x": 4,
+   "y": 10,
+   "low": false,
+   "id": 1,
+   "cost": 1000,
+   "icon": "asset:icons/units/infantry-orange.png"
+  },
+  {
+   "name": "Mech",
+   "tens": 7,
+   "hpPct": 0.7,
+   "fuel": 70,
+   "maxFuel": 70,
+   "fuelPct": 1.0,
+   "x": 4,
+   "y": 12,
+   "low": false,
+   "id": 1,
+   "cost": 1000,
+   "icon": "asset:icons/units/mech-orange.png"
+  },
+  {
+   "name": "Md Tank",
+   "tens": 10,
+   "hpPct": 1,
+   "fuel": 48,
+   "maxFuel": 50,
+   "fuelPct": 0.96,
+   "x": 3,
+   "y": 12,
+   "low": false,
+   "id": 1,
+   "cost": 1000,
+   "icon": "asset:icons/units/md-tank-orange.png"
+  },
+  {
+   "name": "Tank",
+   "tens": 3,
+   "hpPct": 0.3,
+   "fuel": 60,
+   "maxFuel": 70,
+   "fuelPct": 0.8571428571428571,
+   "x": 4,
+   "y": 9,
+   "low": true,
+   "id": 1,
+   "cost": 1000,
+   "icon": "asset:icons/units/tank-orange.png"
+  },
+  {
+   "name": "Recon",
+   "tens": 10,
+   "hpPct": 1,
+   "fuel": 80,
+   "maxFuel": 80,
+   "fuelPct": 1.0,
+   "x": 4,
+   "y": 11,
+   "low": false,
+   "id": 1,
+   "cost": 1000,
+   "icon": "asset:icons/units/recon-orange.png"
+  },
+  {
+   "name": "Artlry",
+   "tens": 10,
+   "hpPct": 1,
+   "fuel": 50,
+   "maxFuel": 50,
+   "fuelPct": 1.0,
+   "x": 2,
+   "y": 6,
+   "low": false,
+   "id": 1,
+   "cost": 1000,
+   "icon": "asset:icons/units/artillery-orange.png"
+  },
+  {
+   "name": "Cruiser",
+   "tens": 10,
+   "hpPct": 1,
+   "fuel": 90,
+   "maxFuel": 99,
+   "fuelPct": 0.9090909090909091,
+   "x": 6,
+   "y": 9,
+   "low": false,
+   "id": 1,
+   "cost": 1000,
+   "icon": "asset:icons/units/cruiser-orange.png"
+  },
+  {
+   "name": "Lander",
+   "tens": 5,
+   "hpPct": 0.5,
+   "fuel": 99,
+   "maxFuel": 99,
+   "fuelPct": 1.0,
+   "x": 5,
+   "y": 10,
+   "low": false,
+   "id": 1,
+   "cost": 1000,
+   "icon": "asset:icons/units/lander-orange.png"
+  },
+  {
+   "name": "Sub",
+   "tens": 10,
+   "hpPct": 1,
+   "fuel": 55,
+   "maxFuel": 60,
+   "fuelPct": 0.9166666666666666,
+   "x": 7,
+   "y": 7,
+   "low": false,
+   "id": 1,
+   "cost": 1000,
+   "icon": "asset:icons/units/sub-orange.png"
+  }
+ ],
+ "sel": {
+  "n": 0,
+  "name": "Orange Star",
+  "color": "#f7a57b",
+  "mine": true,
+  "count": 16,
+  "value": 198000,
+  "on": true
+ },
+ "groups": [
+  {
+   "name": "Infantry",
+   "n": 2,
+   "icon": "asset:icons/units/infantry-orange.png"
+  },
+  {
+   "name": "Mech",
+   "n": 1,
+   "icon": "asset:icons/units/mech-orange.png"
+  },
+  {
+   "name": "Md Tank",
+   "n": 1,
+   "icon": "asset:icons/units/md-tank-orange.png"
+  },
+  {
+   "name": "Tank",
+   "n": 1,
+   "icon": "asset:icons/units/tank-orange.png"
+  },
+  {
+   "name": "Recon",
+   "n": 1,
+   "icon": "asset:icons/units/recon-orange.png"
+  },
+  {
+   "name": "Artlry",
+   "n": 1,
+   "icon": "asset:icons/units/artillery-orange.png"
+  },
+  {
+   "name": "Cruiser",
+   "n": 1,
+   "icon": "asset:icons/units/cruiser-orange.png"
+  },
+  {
+   "name": "Lander",
+   "n": 1,
+   "icon": "asset:icons/units/lander-orange.png"
+  },
+  {
+   "name": "Sub",
+   "n": 1,
+   "icon": "asset:icons/units/sub-orange.png"
+  }
+ ],
+ "hasUnits": true,
+ "focus": {
+  "name": "Mech",
+  "tens": 7,
+  "hpPct": 0.7,
+  "fuel": 70,
+  "maxFuel": 70,
+  "fuelPct": 1.0,
+  "x": 4,
+  "y": 12,
+  "low": false,
+  "id": 1,
+  "cost": 3000,
+  "range": "1",
+  "move": 2,
+  "vision": 2,
+  "ammo": "3",
+  "worth": 300,
+  "icon": "asset:icons/units/mech-orange.png"
+ },
+ "guide": [
+  {
+   "id": 0,
+   "name": "Infantry",
+   "cost": 1000,
+   "move": 3,
+   "vision": 2,
+   "range": "1",
+   "ammo": "none",
+   "fuel": 99,
+   "afford": true,
+   "owned": 2,
+   "hasOwned": true,
+   "on": false,
+   "icon": "asset:icons/units/infantry-orange.png"
+  },
+  {
+   "id": 1,
+   "name": "Mech",
+   "cost": 3000,
+   "move": 2,
+   "vision": 2,
+   "range": "1",
+   "ammo": "3",
+   "fuel": 70,
+   "afford": true,
+   "owned": 2,
+   "hasOwned": true,
+   "on": true,
+   "icon": "asset:icons/units/mech-orange.png"
+  },
+  {
+   "id": 2,
+   "name": "Recon",
+   "cost": 4000,
+   "move": 8,
+   "vision": 5,
+   "range": "1",
+   "ammo": "none",
+   "fuel": 80,
+   "afford": false,
+   "owned": 1,
+   "hasOwned": true,
+   "on": false,
+   "icon": "asset:icons/units/recon-orange.png"
+  },
+  {
+   "id": 3,
+   "name": "Artlry",
+   "cost": 6000,
+   "move": 5,
+   "vision": 1,
+   "range": "2-3",
+   "ammo": "9",
+   "fuel": 50,
+   "afford": false,
+   "owned": 0,
+   "hasOwned": false,
+   "on": false,
+   "icon": "asset:icons/units/artillery-orange.png"
+  },
+  {
+   "id": 4,
+   "name": "Tank",
+   "cost": 7000,
+   "move": 6,
+   "vision": 3,
+   "range": "1",
+   "ammo": "9",
+   "fuel": 70,
+   "afford": false,
+   "owned": 2,
+   "hasOwned": true,
+   "on": false,
+   "icon": "asset:icons/units/tank-orange.png"
+  },
+  {
+   "id": 5,
+   "name": "Md Tank",
+   "cost": 16000,
+   "move": 5,
+   "vision": 1,
+   "range": "1",
+   "ammo": "8",
+   "fuel": 50,
+   "afford": false,
+   "owned": 1,
+   "hasOwned": true,
+   "on": false,
+   "icon": "asset:icons/units/md-tank-orange.png"
+  }
+ ],
+ "gsel": {
+  "id": 1,
+  "name": "Mech",
+  "cost": 3000,
+  "move": 2,
+  "vision": 2,
+  "range": "1",
+  "ammo": "3",
+  "fuel": 70,
+  "afford": true,
+  "owned": 2,
+  "hasOwned": true,
+  "on": true,
+  "icon": "asset:icons/units/mech-orange.png"
+ },
+ "buyText": "Funds 12400: you can afford 5 of 18 unit types",
+ "onFront": false,
+ "onUnits": false,
+ "onGuide": true,
+ "mapNote": "19 x 14",
+ "vsL": {
+  "name": "Orange Star",
+  "color": "#f7a57b"
+ },
+ "vsR": {
+  "name": "Blue Moon",
+  "color": "#7b9cff"
+ },
+ "versus": [
+  {
+   "label": "Units",
+   "a": 16,
+   "b": 14,
+   "aWin": true,
+   "bWin": false
+  },
+  {
+   "label": "Army value",
+   "a": 198000,
+   "b": 195000,
+   "aWin": true,
+   "bWin": false
+  },
+  {
+   "label": "Average HP",
+   "a": "10.0",
+   "b": "9.6",
+   "aWin": true,
+   "bWin": false
+  },
+  {
+   "label": "Average fuel",
+   "a": "100%",
+   "b": "93%",
+   "aWin": true,
+   "bWin": false
+  },
+  {
+   "label": "Cities & HQ",
+   "a": 3,
+   "b": 4,
+   "aWin": false,
+   "bWin": true
+  },
+  {
+   "label": "Foot",
+   "a": 4,
+   "b": 2,
+   "aWin": true,
+   "bWin": false
+  },
+  {
+   "label": "Vehicle",
+   "a": 4,
+   "b": 5,
+   "aWin": false,
+   "bWin": true
+  },
+  {
+   "label": "Air",
+   "a": 0,
+   "b": 0,
+   "aWin": false,
+   "bWin": false
+  },
+  {
+   "label": "Sea",
+   "a": 8,
+   "b": 7,
+   "aWin": true,
+   "bWin": false
+  }
+ ],
+ "log": [
+  {
+   "day": 3,
+   "line": "Orange Star 16  vs  Blue Moon 13",
+   "funds": 12400
+  },
+  {
+   "day": 2,
+   "line": "Orange Star 16  vs  Blue Moon 14",
+   "funds": 6000
+  },
+  {
+   "day": 1,
+   "line": "Orange Star 16  vs  Blue Moon 14",
+   "funds": 3000
+  }
+ ],
+ "onMap": false,
+ "onVs": false,
+ "onLog": false,
+ "mapImg": "asset:preview-map.png",
+ "hasMap": true,
+ "noMap": false,
+ "mapW": "396.3px",
+ "mapH": "292.0px",
+ "mapUnits": [
+  {
+   "left": "41.7px",
+   "top": "187.7px",
+   "size": "20.9px",
+   "sizeH": "18.8px",
+   "icon": "asset:icons/units/infantry-orange.png"
+  },
+  {
+   "left": "62.6px",
+   "top": "187.7px",
+   "size": "20.9px",
+   "sizeH": "18.8px",
+   "icon": "asset:icons/units/infantry-orange.png"
+  },
+  {
+   "left": "62.6px",
+   "top": "229.4px",
+   "size": "20.9px",
+   "sizeH": "18.8px",
+   "icon": "asset:icons/units/mech-orange.png"
+  },
+  {
+   "left": "62.6px",
+   "top": "250.3px",
+   "size": "20.9px",
+   "sizeH": "18.8px",
+   "icon": "asset:icons/units/mech-orange.png"
+  },
+  {
+   "left": "41.7px",
+   "top": "229.4px",
+   "size": "20.9px",
+   "sizeH": "18.8px",
+   "icon": "asset:icons/units/md-tank-orange.png"
+  },
+  {
+   "left": "62.6px",
+   "top": "166.9px",
+   "size": "20.9px",
+   "sizeH": "18.8px",
+   "icon": "asset:icons/units/tank-orange.png"
+  },
+  {
+   "left": "20.9px",
+   "top": "208.6px",
+   "size": "20.9px",
+   "sizeH": "18.8px",
+   "icon": "asset:icons/units/tank-orange.png"
+  },
+  {
+   "left": "62.6px",
+   "top": "208.6px",
+   "size": "20.9px",
+   "sizeH": "18.8px",
+   "icon": "asset:icons/units/recon-orange.png"
+  },
+  {
+   "left": "83.4px",
+   "top": "146.0px",
+   "size": "20.9px",
+   "sizeH": "18.8px",
+   "icon": "asset:icons/units/battleship-orange.png"
+  },
+  {
+   "left": "166.9px",
+   "top": "250.3px",
+   "size": "20.9px",
+   "sizeH": "18.8px",
+   "icon": "asset:icons/units/battleship-orange.png"
+  },
+  {
+   "left": "104.3px",
+   "top": "166.9px",
+   "size": "20.9px",
+   "sizeH": "18.8px",
+   "icon": "asset:icons/units/cruiser-orange.png"
+  },
+  {
+   "left": "125.1px",
+   "top": "208.6px",
+   "size": "20.9px",
+   "sizeH": "18.8px",
+   "icon": "asset:icons/units/cruiser-orange.png"
+  },
+  {
+   "left": "83.4px",
+   "top": "187.7px",
+   "size": "20.9px",
+   "sizeH": "18.8px",
+   "icon": "asset:icons/units/lander-orange.png"
+  },
+  {
+   "left": "83.4px",
+   "top": "229.4px",
+   "size": "20.9px",
+   "sizeH": "18.8px",
+   "icon": "asset:icons/units/lander-orange.png"
+  },
+  {
+   "left": "125.1px",
+   "top": "125.1px",
+   "size": "20.9px",
+   "sizeH": "18.8px",
+   "icon": "asset:icons/units/sub-orange.png"
+  },
+  {
+   "left": "104.3px",
+   "top": "229.4px",
+   "size": "20.9px",
+   "sizeH": "18.8px",
+   "icon": "asset:icons/units/sub-orange.png"
+  },
+  {
+   "left": "271.1px",
+   "top": "62.6px",
+   "size": "20.9px",
+   "sizeH": "18.8px",
+   "icon": "asset:icons/units/infantry-blue.png"
+  },
+  {
+   "left": "271.1px",
+   "top": "83.4px",
+   "size": "20.9px",
+   "sizeH": "18.8px",
+   "icon": "asset:icons/units/infantry-blue.png"
+  },
+  {
+   "left": "312.9px",
+   "top": "83.4px",
+   "size": "20.9px",
+   "sizeH": "18.8px",
+   "icon": "asset:icons/units/tank-blue.png"
+  },
+  {
+   "left": "354.6px",
+   "top": "104.3px",
+   "size": "20.9px",
+   "sizeH": "18.8px",
+   "icon": "asset:icons/units/tank-blue.png"
+  },
+  {
+   "left": "333.7px",
+   "top": "166.9px",
+   "size": "20.9px",
+   "sizeH": "18.8px",
+   "icon": "asset:icons/units/recon-blue.png"
+  },
+  {
+   "left": "375.4px",
+   "top": "125.1px",
+   "size": "20.9px",
+   "sizeH": "18.8px",
+   "icon": "asset:icons/units/artillery-blue.png"
+  },
+  {
+   "left": "333.7px",
+   "top": "62.6px",
+   "size": "20.9px",
+   "sizeH": "18.8px",
+   "icon": "asset:icons/units/rockets-blue.png"
+  },
+  {
+   "left": "229.4px",
+   "top": "20.9px",
+   "size": "20.9px",
+   "sizeH": "18.8px",
+   "icon": "asset:icons/units/battleship-blue.png"
+  },
+  {
+   "left": "250.3px",
+   "top": "125.1px",
+   "size": "20.9px",
+   "sizeH": "18.8px",
+   "icon": "asset:icons/units/battleship-blue.png"
+  },
+  {
+   "left": "271.1px",
+   "top": "208.6px",
+   "size": "20.9px",
+   "sizeH": "18.8px",
+   "icon": "asset:icons/units/battleship-blue.png"
+  },
+  {
+   "left": "292.0px",
+   "top": "125.1px",
+   "size": "20.9px",
+   "sizeH": "18.8px",
+   "icon": "asset:icons/units/cruiser-blue.png"
+  },
+  {
+   "left": "250.3px",
+   "top": "83.4px",
+   "size": "20.9px",
+   "sizeH": "18.8px",
+   "icon": "asset:icons/units/lander-blue.png"
+  },
+  {
+   "left": "208.6px",
+   "top": "41.7px",
+   "size": "20.9px",
+   "sizeH": "18.8px",
+   "icon": "asset:icons/units/sub-blue.png"
+  },
+  {
+   "left": "292.0px",
+   "top": "187.7px",
+   "size": "20.9px",
+   "sizeH": "18.8px",
+   "icon": "asset:icons/units/sub-blue.png"
+  }
+ ],
+ "mapProps": [
+  {
+   "left": "298.9px",
+   "top": "69.5px",
+   "size": "12.9px",
+   "color": "#7b9cff",
+   "hq": true
+  },
+  {
+   "left": "281.4px",
+   "top": "93.7px",
+   "size": "9.6px",
+   "color": "#7b9cff",
+   "hq": false
+  },
+  {
+   "left": "323.1px",
+   "top": "93.7px",
+   "size": "9.6px",
+   "color": "#7b9cff",
+   "hq": false
+  },
+  {
+   "left": "344.0px",
+   "top": "135.4px",
+   "size": "9.6px",
+   "color": "#7b9cff",
+   "hq": false
+  },
+  {
+   "left": "31.1px",
+   "top": "177.1px",
+   "size": "9.6px",
+   "color": "#d9d9d9",
+   "hq": false
+  },
+  {
+   "left": "48.6px",
+   "top": "236.4px",
+   "size": "12.9px",
+   "color": "#f7a57b",
+   "hq": true
+  },
+  {
+   "left": "10.3px",
+   "top": "260.5px",
+   "size": "9.6px",
+   "color": "#f7a57b",
+   "hq": false
+  },
+  {
+   "left": "31.1px",
+   "top": "260.5px",
+   "size": "9.6px",
+   "color": "#f7a57b",
+   "hq": false
+  }
+ ]
+}

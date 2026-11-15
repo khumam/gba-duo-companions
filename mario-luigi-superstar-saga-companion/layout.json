@@ -1,0 +1,2425 @@
+{
+ "type": "box",
+ "class": "main",
+ "children": [
+  {
+   "type": "box",
+   "class": "waiting",
+   "children": [
+    {
+     "type": "box",
+     "class": "page",
+     "children": [
+      {
+       "type": "box",
+       "class": "stitch",
+       "children": [
+        {
+         "type": "box",
+         "class": "tray",
+         "children": [
+          {
+           "type": "box",
+           "class": "wait",
+           "children": [
+            {
+             "type": "text",
+             "class": "w1",
+             "text": "MARIO & LUIGI"
+            },
+            {
+             "type": "text",
+             "class": "w2",
+             "text": "SUPERSTAR SAGA"
+            },
+            {
+             "type": "text",
+             "class": "w3",
+             "text": "GBADUO Companion Pack"
+            }
+           ]
+          },
+          {
+           "type": "box",
+           "class": "belt belt-tl",
+           "children": [
+            {
+             "type": "box",
+             "class": "bstitch"
+            },
+            {
+             "type": "box",
+             "class": "buckle"
+            }
+           ]
+          },
+          {
+           "type": "box",
+           "class": "belt belt-tr",
+           "children": [
+            {
+             "type": "box",
+             "class": "bstitch"
+            },
+            {
+             "type": "box",
+             "class": "buckle"
+            }
+           ]
+          },
+          {
+           "type": "box",
+           "class": "belt belt-bl",
+           "children": [
+            {
+             "type": "box",
+             "class": "bstitch"
+            },
+            {
+             "type": "box",
+             "class": "buckle"
+            }
+           ]
+          },
+          {
+           "type": "box",
+           "class": "belt belt-br",
+           "children": [
+            {
+             "type": "box",
+             "class": "bstitch"
+            },
+            {
+             "type": "box",
+             "class": "buckle"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "visibleIf": "$waiting"
+  },
+  {
+   "type": "box",
+   "class": "ready",
+   "children": [
+    {
+     "type": "pages",
+     "class": "stage",
+     "initial": "pass",
+     "pages": [
+      {
+       "name": "pass",
+       "child": {
+        "type": "box",
+        "class": "page",
+        "children": [
+         {
+          "type": "box",
+          "class": "stitch",
+          "children": [
+           {
+            "type": "box",
+            "class": "tray",
+            "children": [
+             {
+              "type": "box",
+              "class": "top",
+              "children": [
+               {
+                "type": "box",
+                "class": "pill pill-coin",
+                "children": [
+                 {
+                  "type": "box",
+                  "class": "coin",
+                  "children": []
+                 },
+                 {
+                  "type": "text",
+                  "class": "num coins",
+                  "text": "{coins}"
+                 }
+                ]
+               },
+               {
+                "type": "box",
+                "class": "pill pill-clock",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "clock",
+                  "text": "{time}"
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "cards",
+              "children": [
+               {
+                "type": "button",
+                "class": "card pcard green",
+                "onClick": [
+                 {
+                  "set": {
+                   "bro": "luigi"
+                  }
+                 },
+                 {
+                  "navigate": "info"
+                 }
+                ],
+                "children": [
+                 {
+                  "type": "box",
+                  "class": "spine",
+                  "children": [
+                   {
+                    "type": "box",
+                    "class": "hole",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "ring"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "hole",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "ring"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "hole",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "ring"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "hole",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "ring"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "hole",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "ring"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "hole",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "ring"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "hole",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "ring"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "hole",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "ring"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "hole",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "ring"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "hole",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "ring"
+                     }
+                    ]
+                   }
+                  ]
+                 },
+                 {
+                  "type": "box",
+                  "class": "cbody",
+                  "children": [
+                   {
+                    "type": "box",
+                    "class": "head",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "head-l",
+                      "children": [
+                       {
+                        "type": "text",
+                        "class": "pp",
+                        "text": "PASSPORT"
+                       },
+                       {
+                        "type": "box",
+                        "class": "name-pill",
+                        "children": [
+                         {
+                          "type": "text",
+                          "class": "name",
+                          "text": "{luigi.name}"
+                         }
+                        ]
+                       },
+                       {
+                        "type": "box",
+                        "class": "lvrow",
+                        "children": [
+                         {
+                          "type": "text",
+                          "class": "lvl",
+                          "text": "LV"
+                         },
+                         {
+                          "type": "text",
+                          "class": "num lvn",
+                          "text": "{luigi.level}"
+                         }
+                        ]
+                       }
+                      ]
+                     },
+                     {
+                      "type": "box",
+                      "class": "photo",
+                      "children": [
+                       {
+                        "type": "image",
+                        "class": "face",
+                        "src": "$luigi.face"
+                       }
+                      ]
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "row",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "tag",
+                      "children": [
+                       {
+                        "type": "text",
+                        "class": "tagt",
+                        "text": "HP"
+                       }
+                      ]
+                     },
+                     {
+                      "type": "box",
+                      "class": "spacer",
+                      "children": []
+                     },
+                     {
+                      "type": "text",
+                      "class": "num cur",
+                      "text": "{luigi.hp}"
+                     },
+                     {
+                      "type": "text",
+                      "class": "slash",
+                      "text": "/"
+                     },
+                     {
+                      "type": "text",
+                      "class": "num max",
+                      "text": "{luigi.maxHp}"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "row",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "tag",
+                      "children": [
+                       {
+                        "type": "text",
+                        "class": "tagt",
+                        "text": "BP"
+                       }
+                      ]
+                     },
+                     {
+                      "type": "box",
+                      "class": "spacer",
+                      "children": []
+                     },
+                     {
+                      "type": "text",
+                      "class": "num cur",
+                      "text": "{luigi.bp}"
+                     },
+                     {
+                      "type": "text",
+                      "class": "slash",
+                      "text": "/"
+                     },
+                     {
+                      "type": "text",
+                      "class": "num max",
+                      "text": "{luigi.maxBp}"
+                     }
+                    ]
+                   }
+                  ]
+                 }
+                ]
+               },
+               {
+                "type": "button",
+                "class": "card pcard red",
+                "onClick": [
+                 {
+                  "set": {
+                   "bro": "mario"
+                  }
+                 },
+                 {
+                  "navigate": "info"
+                 }
+                ],
+                "children": [
+                 {
+                  "type": "box",
+                  "class": "spine",
+                  "children": [
+                   {
+                    "type": "box",
+                    "class": "hole",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "ring"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "hole",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "ring"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "hole",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "ring"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "hole",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "ring"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "hole",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "ring"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "hole",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "ring"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "hole",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "ring"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "hole",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "ring"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "hole",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "ring"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "hole",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "ring"
+                     }
+                    ]
+                   }
+                  ]
+                 },
+                 {
+                  "type": "box",
+                  "class": "cbody",
+                  "children": [
+                   {
+                    "type": "box",
+                    "class": "head",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "head-l",
+                      "children": [
+                       {
+                        "type": "text",
+                        "class": "pp",
+                        "text": "PASSPORT"
+                       },
+                       {
+                        "type": "box",
+                        "class": "name-pill",
+                        "children": [
+                         {
+                          "type": "text",
+                          "class": "name",
+                          "text": "{mario.name}"
+                         }
+                        ]
+                       },
+                       {
+                        "type": "box",
+                        "class": "lvrow",
+                        "children": [
+                         {
+                          "type": "text",
+                          "class": "lvl",
+                          "text": "LV"
+                         },
+                         {
+                          "type": "text",
+                          "class": "num lvn",
+                          "text": "{mario.level}"
+                         }
+                        ]
+                       }
+                      ]
+                     },
+                     {
+                      "type": "box",
+                      "class": "photo",
+                      "children": [
+                       {
+                        "type": "image",
+                        "class": "face",
+                        "src": "$mario.face"
+                       }
+                      ]
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "row",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "tag",
+                      "children": [
+                       {
+                        "type": "text",
+                        "class": "tagt",
+                        "text": "HP"
+                       }
+                      ]
+                     },
+                     {
+                      "type": "box",
+                      "class": "spacer",
+                      "children": []
+                     },
+                     {
+                      "type": "text",
+                      "class": "num cur",
+                      "text": "{mario.hp}"
+                     },
+                     {
+                      "type": "text",
+                      "class": "slash",
+                      "text": "/"
+                     },
+                     {
+                      "type": "text",
+                      "class": "num max",
+                      "text": "{mario.maxHp}"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "row",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "tag",
+                      "children": [
+                       {
+                        "type": "text",
+                        "class": "tagt",
+                        "text": "BP"
+                       }
+                      ]
+                     },
+                     {
+                      "type": "box",
+                      "class": "spacer",
+                      "children": []
+                     },
+                     {
+                      "type": "text",
+                      "class": "num cur",
+                      "text": "{mario.bp}"
+                     },
+                     {
+                      "type": "text",
+                      "class": "slash",
+                      "text": "/"
+                     },
+                     {
+                      "type": "text",
+                      "class": "num max",
+                      "text": "{mario.maxBp}"
+                     }
+                    ]
+                   }
+                  ]
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "bar",
+              "children": [
+               {
+                "type": "text",
+                "class": "bar-t",
+                "text": "Tap a passport for Bros. Info"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "nav",
+              "children": [
+               {
+                "type": "button",
+                "class": "nbtn",
+                "onClick": [
+                 {
+                  "navigate": "battle"
+                 }
+                ],
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "nt",
+                  "text": "< Battle"
+                 }
+                ]
+               },
+               {
+                "type": "box",
+                "class": "ntitle",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "nt2",
+                  "text": "Passports"
+                 }
+                ]
+               },
+               {
+                "type": "button",
+                "class": "nbtn",
+                "onClick": [
+                 {
+                  "navigate": "info"
+                 }
+                ],
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "nt",
+                  "text": "Bros. Info >"
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "belt belt-tl",
+              "children": [
+               {
+                "type": "box",
+                "class": "bstitch"
+               },
+               {
+                "type": "box",
+                "class": "buckle"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "belt belt-tr",
+              "children": [
+               {
+                "type": "box",
+                "class": "bstitch"
+               },
+               {
+                "type": "box",
+                "class": "buckle"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "belt belt-bl",
+              "children": [
+               {
+                "type": "box",
+                "class": "bstitch"
+               },
+               {
+                "type": "box",
+                "class": "buckle"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "belt belt-br",
+              "children": [
+               {
+                "type": "box",
+                "class": "bstitch"
+               },
+               {
+                "type": "box",
+                "class": "buckle"
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "name": "info",
+       "child": {
+        "type": "box",
+        "class": "page",
+        "children": [
+         {
+          "type": "box",
+          "class": "stitch",
+          "children": [
+           {
+            "type": "box",
+            "class": "tray",
+            "children": [
+             {
+              "type": "box",
+              "class": "infobody",
+              "children": [
+               {
+                "type": "box",
+                "class": "roundcol",
+                "children": [
+                 {
+                  "type": "button",
+                  "class": "rbtn",
+                  "onClick": [
+                   {
+                    "set": {
+                     "bro": "mario"
+                    }
+                   }
+                  ],
+                  "children": [
+                   {
+                    "type": "image",
+                    "class": "round",
+                    "src": "$mario.round"
+                   }
+                  ],
+                  "classIf": {
+                   "on": "$isMario"
+                  }
+                 },
+                 {
+                  "type": "button",
+                  "class": "rbtn",
+                  "onClick": [
+                   {
+                    "set": {
+                     "bro": "luigi"
+                    }
+                   }
+                  ],
+                  "children": [
+                   {
+                    "type": "image",
+                    "class": "round",
+                    "src": "$luigi.round"
+                   }
+                  ],
+                  "classIf": {
+                   "on": "$isLuigi"
+                  }
+                 }
+                ]
+               },
+               {
+                "type": "box",
+                "class": "card info-card",
+                "children": [
+                 {
+                  "type": "box",
+                  "class": "head",
+                  "children": [
+                   {
+                    "type": "box",
+                    "class": "head-l",
+                    "children": [
+                     {
+                      "type": "text",
+                      "class": "pp",
+                      "text": "PASSPORT"
+                     },
+                     {
+                      "type": "box",
+                      "class": "name-pill",
+                      "children": [
+                       {
+                        "type": "text",
+                        "class": "name",
+                        "text": "{sel.name}"
+                       }
+                      ]
+                     },
+                     {
+                      "type": "box",
+                      "class": "lvrow",
+                      "children": [
+                       {
+                        "type": "text",
+                        "class": "lvl",
+                        "text": "LV"
+                       },
+                       {
+                        "type": "text",
+                        "class": "num lvn",
+                        "text": "{sel.level}"
+                       }
+                      ]
+                     }
+                    ]
+                   }
+                  ]
+                 },
+                 {
+                  "type": "box",
+                  "class": "row",
+                  "children": [
+                   {
+                    "type": "box",
+                    "class": "tag",
+                    "children": [
+                     {
+                      "type": "text",
+                      "class": "tagt",
+                      "text": "HP"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "spacer",
+                    "children": []
+                   },
+                   {
+                    "type": "text",
+                    "class": "num cur",
+                    "text": "{sel.hp}"
+                   },
+                   {
+                    "type": "text",
+                    "class": "slash",
+                    "text": "/"
+                   },
+                   {
+                    "type": "text",
+                    "class": "num max",
+                    "text": "{sel.maxHp}"
+                   }
+                  ]
+                 },
+                 {
+                  "type": "box",
+                  "class": "row",
+                  "children": [
+                   {
+                    "type": "box",
+                    "class": "tag",
+                    "children": [
+                     {
+                      "type": "text",
+                      "class": "tagt",
+                      "text": "BP"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "spacer",
+                    "children": []
+                   },
+                   {
+                    "type": "text",
+                    "class": "num cur",
+                    "text": "{sel.bp}"
+                   },
+                   {
+                    "type": "text",
+                    "class": "slash",
+                    "text": "/"
+                   },
+                   {
+                    "type": "text",
+                    "class": "num max",
+                    "text": "{sel.maxBp}"
+                   }
+                  ]
+                 },
+                 {
+                  "type": "box",
+                  "class": "spacer",
+                  "children": []
+                 }
+                ],
+                "classIf": {
+                 "red": "$isMario",
+                 "green": "$isLuigi"
+                }
+               },
+               {
+                "type": "box",
+                "class": "paper",
+                "children": [
+                 {
+                  "type": "box",
+                  "class": "spine",
+                  "children": [
+                   {
+                    "type": "box",
+                    "class": "hole",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "ring"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "hole",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "ring"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "hole",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "ring"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "hole",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "ring"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "hole",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "ring"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "hole",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "ring"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "hole",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "ring"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "hole",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "ring"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "hole",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "ring"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "hole",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "ring"
+                     }
+                    ]
+                   }
+                  ]
+                 },
+                 {
+                  "type": "box",
+                  "class": "sheet",
+                  "children": [
+                   {
+                    "type": "box",
+                    "class": "prow",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "ptag",
+                      "children": [
+                       {
+                        "type": "text",
+                        "class": "ptagt",
+                        "text": "POW"
+                       }
+                      ]
+                     },
+                     {
+                      "type": "text",
+                      "class": "num pval",
+                      "text": "{sel.pow}"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "prow",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "ptag",
+                      "children": [
+                       {
+                        "type": "text",
+                        "class": "ptagt",
+                        "text": "DEF"
+                       }
+                      ]
+                     },
+                     {
+                      "type": "text",
+                      "class": "num pval",
+                      "text": "{sel.def}"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "prow",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "ptag",
+                      "children": [
+                       {
+                        "type": "text",
+                        "class": "ptagt",
+                        "text": "SPEED"
+                       }
+                      ]
+                     },
+                     {
+                      "type": "text",
+                      "class": "num pval",
+                      "text": "{sel.speed}"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "prow",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "ptag",
+                      "children": [
+                       {
+                        "type": "text",
+                        "class": "ptagt",
+                        "text": "STACHE"
+                       }
+                      ]
+                     },
+                     {
+                      "type": "text",
+                      "class": "num pval",
+                      "text": "{sel.stache}"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "prow",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "ptag",
+                      "children": [
+                       {
+                        "type": "text",
+                        "class": "ptagt",
+                        "text": "EXP"
+                       }
+                      ]
+                     },
+                     {
+                      "type": "text",
+                      "class": "num pval",
+                      "text": "{sel.exp}"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "prow",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "ptag",
+                      "children": [
+                       {
+                        "type": "text",
+                        "class": "ptagt",
+                        "text": "NEXT"
+                       }
+                      ]
+                     },
+                     {
+                      "type": "text",
+                      "class": "num pval",
+                      "text": "{sel.next}"
+                     }
+                    ]
+                   }
+                  ]
+                 }
+                ],
+                "classIf": {
+                 "red": "$isMario",
+                 "green": "$isLuigi"
+                }
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "bar",
+              "children": [
+               {
+                "type": "text",
+                "class": "bar-t",
+                "text": "{sel.name}: {sel.next} EXP to the next level"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "nav",
+              "children": [
+               {
+                "type": "button",
+                "class": "nbtn",
+                "onClick": [
+                 {
+                  "navigate": "pass"
+                 }
+                ],
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "nt",
+                  "text": "< Passports"
+                 }
+                ]
+               },
+               {
+                "type": "box",
+                "class": "ntitle",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "nt2",
+                  "text": "Bros. Info"
+                 }
+                ]
+               },
+               {
+                "type": "button",
+                "class": "nbtn",
+                "onClick": [
+                 {
+                  "navigate": "items"
+                 }
+                ],
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "nt",
+                  "text": "Items >"
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "belt belt-tl",
+              "children": [
+               {
+                "type": "box",
+                "class": "bstitch"
+               },
+               {
+                "type": "box",
+                "class": "buckle"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "belt belt-tr",
+              "children": [
+               {
+                "type": "box",
+                "class": "bstitch"
+               },
+               {
+                "type": "box",
+                "class": "buckle"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "belt belt-bl",
+              "children": [
+               {
+                "type": "box",
+                "class": "bstitch"
+               },
+               {
+                "type": "box",
+                "class": "buckle"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "belt belt-br",
+              "children": [
+               {
+                "type": "box",
+                "class": "bstitch"
+               },
+               {
+                "type": "box",
+                "class": "buckle"
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "name": "items",
+       "child": {
+        "type": "box",
+        "class": "page",
+        "children": [
+         {
+          "type": "box",
+          "class": "stitch",
+          "children": [
+           {
+            "type": "box",
+            "class": "tray",
+            "children": [
+             {
+              "type": "box",
+              "class": "itemrow",
+              "children": [
+               {
+                "type": "box",
+                "class": "tabcol",
+                "children": [
+                 {
+                  "type": "button",
+                  "class": "itab",
+                  "onClick": [
+                   {
+                    "set": {
+                     "tab": "items",
+                     "item": -1
+                    }
+                   }
+                  ],
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "tt",
+                    "text": "Items"
+                   }
+                  ],
+                  "classIf": {
+                   "on": "$itemsTab"
+                  }
+                 },
+                 {
+                  "type": "button",
+                  "class": "itab",
+                  "onClick": [
+                   {
+                    "set": {
+                     "tab": "beans",
+                     "item": -1
+                    }
+                   }
+                  ],
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "tt",
+                    "text": "Beans"
+                   }
+                  ],
+                  "classIf": {
+                   "on": "$beansTab"
+                  }
+                 }
+                ]
+               },
+               {
+                "type": "box",
+                "class": "panel",
+                "children": [
+                 {
+                  "type": "list",
+                  "class": "ilist",
+                  "items": "$list",
+                  "template": {
+                   "type": "button",
+                   "class": "irow",
+                   "onClick": [
+                    {
+                     "call": "pickItem",
+                     "args": [
+                      "{idx}"
+                     ]
+                    }
+                   ],
+                   "children": [
+                    {
+                     "type": "box",
+                     "class": "icur"
+                    },
+                    {
+                     "type": "text",
+                     "class": "iname",
+                     "text": "{name}"
+                    },
+                    {
+                     "type": "text",
+                     "class": "iqty",
+                     "text": "{qty}"
+                    }
+                   ],
+                   "classIf": {
+                    "sel": "$sel"
+                   }
+                  }
+                 },
+                 {
+                  "type": "text",
+                  "class": "empty",
+                  "text": "Nothing here yet",
+                  "visibleIf": "$noList"
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "strip",
+              "children": [
+               {
+                "type": "button",
+                "class": "mini green",
+                "children": [
+                 {
+                  "type": "box",
+                  "class": "mphoto",
+                  "children": [
+                   {
+                    "type": "image",
+                    "class": "face",
+                    "src": "$luigi.face"
+                   }
+                  ]
+                 },
+                 {
+                  "type": "box",
+                  "class": "mcol",
+                  "children": [
+                   {
+                    "type": "box",
+                    "class": "mhead",
+                    "children": [
+                     {
+                      "type": "text",
+                      "class": "mname",
+                      "text": "{luigi.name}"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "mrow",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "mtag",
+                      "children": [
+                       {
+                        "type": "text",
+                        "class": "mtagt",
+                        "text": "HP"
+                       }
+                      ]
+                     },
+                     {
+                      "type": "box",
+                      "class": "spacer",
+                      "children": []
+                     },
+                     {
+                      "type": "text",
+                      "class": "num mval",
+                      "text": "{luigi.hp}"
+                     },
+                     {
+                      "type": "text",
+                      "class": "slash",
+                      "text": "/"
+                     },
+                     {
+                      "type": "text",
+                      "class": "num mval",
+                      "text": "{luigi.maxHp}"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "mrow",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "mtag",
+                      "children": [
+                       {
+                        "type": "text",
+                        "class": "mtagt",
+                        "text": "BP"
+                       }
+                      ]
+                     },
+                     {
+                      "type": "box",
+                      "class": "spacer",
+                      "children": []
+                     },
+                     {
+                      "type": "text",
+                      "class": "num mval",
+                      "text": "{luigi.bp}"
+                     },
+                     {
+                      "type": "text",
+                      "class": "slash",
+                      "text": "/"
+                     },
+                     {
+                      "type": "text",
+                      "class": "num mval",
+                      "text": "{luigi.maxBp}"
+                     }
+                    ]
+                   }
+                  ]
+                 }
+                ],
+                "onClick": [
+                 {
+                  "call": "useItem",
+                  "args": [
+                   "luigi"
+                  ]
+                 }
+                ]
+               },
+               {
+                "type": "button",
+                "class": "mini red",
+                "children": [
+                 {
+                  "type": "box",
+                  "class": "mphoto",
+                  "children": [
+                   {
+                    "type": "image",
+                    "class": "face",
+                    "src": "$mario.face"
+                   }
+                  ]
+                 },
+                 {
+                  "type": "box",
+                  "class": "mcol",
+                  "children": [
+                   {
+                    "type": "box",
+                    "class": "mhead",
+                    "children": [
+                     {
+                      "type": "text",
+                      "class": "mname",
+                      "text": "{mario.name}"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "mrow",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "mtag",
+                      "children": [
+                       {
+                        "type": "text",
+                        "class": "mtagt",
+                        "text": "HP"
+                       }
+                      ]
+                     },
+                     {
+                      "type": "box",
+                      "class": "spacer",
+                      "children": []
+                     },
+                     {
+                      "type": "text",
+                      "class": "num mval",
+                      "text": "{mario.hp}"
+                     },
+                     {
+                      "type": "text",
+                      "class": "slash",
+                      "text": "/"
+                     },
+                     {
+                      "type": "text",
+                      "class": "num mval",
+                      "text": "{mario.maxHp}"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "mrow",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "mtag",
+                      "children": [
+                       {
+                        "type": "text",
+                        "class": "mtagt",
+                        "text": "BP"
+                       }
+                      ]
+                     },
+                     {
+                      "type": "box",
+                      "class": "spacer",
+                      "children": []
+                     },
+                     {
+                      "type": "text",
+                      "class": "num mval",
+                      "text": "{mario.bp}"
+                     },
+                     {
+                      "type": "text",
+                      "class": "slash",
+                      "text": "/"
+                     },
+                     {
+                      "type": "text",
+                      "class": "num mval",
+                      "text": "{mario.maxBp}"
+                     }
+                    ]
+                   }
+                  ]
+                 }
+                ],
+                "onClick": [
+                 {
+                  "call": "useItem",
+                  "args": [
+                   "mario"
+                  ]
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "bar",
+              "children": [
+               {
+                "type": "text",
+                "class": "bar-t",
+                "text": "{selText}"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "nav",
+              "children": [
+               {
+                "type": "button",
+                "class": "nbtn",
+                "onClick": [
+                 {
+                  "navigate": "info"
+                 }
+                ],
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "nt",
+                  "text": "< Bros. Info"
+                 }
+                ]
+               },
+               {
+                "type": "box",
+                "class": "ntitle",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "nt2",
+                  "text": "Items"
+                 }
+                ]
+               },
+               {
+                "type": "button",
+                "class": "nbtn",
+                "onClick": [
+                 {
+                  "navigate": "battle"
+                 }
+                ],
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "nt",
+                  "text": "Battle >"
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "belt belt-tl",
+              "children": [
+               {
+                "type": "box",
+                "class": "bstitch"
+               },
+               {
+                "type": "box",
+                "class": "buckle"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "belt belt-tr",
+              "children": [
+               {
+                "type": "box",
+                "class": "bstitch"
+               },
+               {
+                "type": "box",
+                "class": "buckle"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "belt belt-bl",
+              "children": [
+               {
+                "type": "box",
+                "class": "bstitch"
+               },
+               {
+                "type": "box",
+                "class": "buckle"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "belt belt-br",
+              "children": [
+               {
+                "type": "box",
+                "class": "bstitch"
+               },
+               {
+                "type": "box",
+                "class": "buckle"
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "name": "battle",
+       "child": {
+        "type": "box",
+        "class": "page",
+        "children": [
+         {
+          "type": "box",
+          "class": "stitch",
+          "children": [
+           {
+            "type": "box",
+            "class": "tray",
+            "children": [
+             {
+              "type": "box",
+              "class": "foes-wrap",
+              "children": [
+               {
+                "type": "box",
+                "class": "idle",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "idle1",
+                  "text": "No battle right now"
+                 },
+                 {
+                  "type": "text",
+                  "class": "idle2",
+                  "text": "Enemies show up here when a fight starts"
+                 }
+                ],
+                "visibleIf": "$noBattle"
+               },
+               {
+                "type": "list",
+                "class": "foes",
+                "visibleIf": "$inBattle",
+                "items": "$foes",
+                "template": {
+                 "type": "button",
+                 "class": "foe",
+                 "onClick": [
+                  {
+                   "set": {
+                    "foe": "{idx}"
+                   }
+                  }
+                 ],
+                 "classIf": {
+                  "on": "$sel",
+                  "down": "$down"
+                 },
+                 "children": [
+                  {
+                   "type": "box",
+                   "class": "fplate",
+                   "children": [
+                    {
+                     "type": "text",
+                     "class": "fname",
+                     "text": "{name}"
+                    }
+                   ]
+                  },
+                  {
+                   "type": "box",
+                   "class": "fart",
+                   "children": [
+                    {
+                     "type": "text",
+                     "class": "fnum",
+                     "text": "{n}"
+                    }
+                   ]
+                  },
+                  {
+                   "type": "bar",
+                   "class": "hp fbar",
+                   "value": "$hpPct",
+                   "max": 1
+                  },
+                  {
+                   "type": "box",
+                   "class": "fhp",
+                   "children": [
+                    {
+                     "type": "text",
+                     "class": "num fhpt",
+                     "text": "{hp}"
+                    },
+                    {
+                     "type": "text",
+                     "class": "fslash",
+                     "text": "/"
+                    },
+                    {
+                     "type": "text",
+                     "class": "fmax",
+                     "text": "{maxHp}"
+                    }
+                   ]
+                  }
+                 ]
+                }
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "fdetail",
+              "children": [
+               {
+                "type": "box",
+                "class": "fd-head",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "fd-name",
+                  "text": "{foe.name}"
+                 },
+                 {
+                  "type": "text",
+                  "class": "fd-hint",
+                  "text": "{foe.hint}"
+                 }
+                ]
+               },
+               {
+                "type": "box",
+                "class": "fd-stats",
+                "children": [
+                 {
+                  "type": "box",
+                  "class": "chip",
+                  "children": [
+                   {
+                    "type": "box",
+                    "class": "ctag",
+                    "children": [
+                     {
+                      "type": "text",
+                      "class": "ctagt",
+                      "text": "HP"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "text",
+                    "class": "num cval",
+                    "text": "{foe.hp}/{foe.maxHp}"
+                   }
+                  ]
+                 },
+                 {
+                  "type": "box",
+                  "class": "chip",
+                  "children": [
+                   {
+                    "type": "box",
+                    "class": "ctag",
+                    "children": [
+                     {
+                      "type": "text",
+                      "class": "ctagt",
+                      "text": "POW"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "text",
+                    "class": "num cval",
+                    "text": "{foe.pow}"
+                   }
+                  ]
+                 },
+                 {
+                  "type": "box",
+                  "class": "chip",
+                  "children": [
+                   {
+                    "type": "box",
+                    "class": "ctag",
+                    "children": [
+                     {
+                      "type": "text",
+                      "class": "ctagt",
+                      "text": "DEF"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "text",
+                    "class": "num cval",
+                    "text": "{foe.def}"
+                   }
+                  ]
+                 },
+                 {
+                  "type": "box",
+                  "class": "chip",
+                  "children": [
+                   {
+                    "type": "box",
+                    "class": "ctag",
+                    "children": [
+                     {
+                      "type": "text",
+                      "class": "ctagt",
+                      "text": "SPD"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "text",
+                    "class": "num cval",
+                    "text": "{foe.speed}"
+                   }
+                  ]
+                 }
+                ]
+               }
+              ],
+              "visibleIf": "$inBattle"
+             },
+             {
+              "type": "box",
+              "class": "bstrip",
+              "children": [
+               {
+                "type": "button",
+                "class": "bro green",
+                "onClick": [
+                 {
+                  "set": {
+                   "who": "luigi"
+                  }
+                 }
+                ],
+                "classIf": {
+                 "on": "$whoLuigi"
+                },
+                "children": [
+                 {
+                  "type": "box",
+                  "class": "bphoto",
+                  "children": [
+                   {
+                    "type": "image",
+                    "class": "bface",
+                    "src": "$luigi.face"
+                   }
+                  ]
+                 },
+                 {
+                  "type": "box",
+                  "class": "bcol",
+                  "children": [
+                   {
+                    "type": "box",
+                    "class": "bhead",
+                    "children": [
+                     {
+                      "type": "text",
+                      "class": "bname",
+                      "text": "{luigi.name}"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "brow",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "btag",
+                      "children": [
+                       {
+                        "type": "text",
+                        "class": "btagt",
+                        "text": "HP"
+                       }
+                      ]
+                     },
+                     {
+                      "type": "bar",
+                      "class": "hp bbar",
+                      "value": "$luigi.hpPct",
+                      "max": 1
+                     },
+                     {
+                      "type": "text",
+                      "class": "num bval",
+                      "text": "{luigi.hp}"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "brow",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "btag",
+                      "children": [
+                       {
+                        "type": "text",
+                        "class": "btagt",
+                        "text": "BP"
+                       }
+                      ]
+                     },
+                     {
+                      "type": "bar",
+                      "class": "bp bbar",
+                      "value": "$luigi.bpPct",
+                      "max": 1
+                     },
+                     {
+                      "type": "text",
+                      "class": "num bval",
+                      "text": "{luigi.bp}"
+                     }
+                    ]
+                   }
+                  ]
+                 }
+                ]
+               },
+               {
+                "type": "button",
+                "class": "bro red",
+                "onClick": [
+                 {
+                  "set": {
+                   "who": "mario"
+                  }
+                 }
+                ],
+                "classIf": {
+                 "on": "$whoMario"
+                },
+                "children": [
+                 {
+                  "type": "box",
+                  "class": "bphoto",
+                  "children": [
+                   {
+                    "type": "image",
+                    "class": "bface",
+                    "src": "$mario.face"
+                   }
+                  ]
+                 },
+                 {
+                  "type": "box",
+                  "class": "bcol",
+                  "children": [
+                   {
+                    "type": "box",
+                    "class": "bhead",
+                    "children": [
+                     {
+                      "type": "text",
+                      "class": "bname",
+                      "text": "{mario.name}"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "brow",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "btag",
+                      "children": [
+                       {
+                        "type": "text",
+                        "class": "btagt",
+                        "text": "HP"
+                       }
+                      ]
+                     },
+                     {
+                      "type": "bar",
+                      "class": "hp bbar",
+                      "value": "$mario.hpPct",
+                      "max": 1
+                     },
+                     {
+                      "type": "text",
+                      "class": "num bval",
+                      "text": "{mario.hp}"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "brow",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "btag",
+                      "children": [
+                       {
+                        "type": "text",
+                        "class": "btagt",
+                        "text": "BP"
+                       }
+                      ]
+                     },
+                     {
+                      "type": "bar",
+                      "class": "bp bbar",
+                      "value": "$mario.bpPct",
+                      "max": 1
+                     },
+                     {
+                      "type": "text",
+                      "class": "num bval",
+                      "text": "{mario.bp}"
+                     }
+                    ]
+                   }
+                  ]
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "bar",
+              "children": [
+               {
+                "type": "text",
+                "class": "bar-t",
+                "text": "{battleText}"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "nav",
+              "children": [
+               {
+                "type": "button",
+                "class": "nbtn",
+                "onClick": [
+                 {
+                  "navigate": "items"
+                 }
+                ],
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "nt",
+                  "text": "< Items"
+                 }
+                ]
+               },
+               {
+                "type": "box",
+                "class": "ntitle",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "nt2",
+                  "text": "Battle"
+                 }
+                ]
+               },
+               {
+                "type": "button",
+                "class": "nbtn",
+                "onClick": [
+                 {
+                  "navigate": "pass"
+                 }
+                ],
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "nt",
+                  "text": "Passports >"
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "belt belt-tl",
+              "children": [
+               {
+                "type": "box",
+                "class": "bstitch"
+               },
+               {
+                "type": "box",
+                "class": "buckle"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "belt belt-tr",
+              "children": [
+               {
+                "type": "box",
+                "class": "bstitch"
+               },
+               {
+                "type": "box",
+                "class": "buckle"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "belt belt-bl",
+              "children": [
+               {
+                "type": "box",
+                "class": "bstitch"
+               },
+               {
+                "type": "box",
+                "class": "buckle"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "belt belt-br",
+              "children": [
+               {
+                "type": "box",
+                "class": "bstitch"
+               },
+               {
+                "type": "box",
+                "class": "buckle"
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      }
+     ]
+    }
+   ],
+   "visibleIf": "$ready"
+  }
+ ],
+ "id": "screen"
+}

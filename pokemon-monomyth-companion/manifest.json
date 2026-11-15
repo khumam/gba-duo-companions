@@ -1,0 +1,22 @@
+{
+  "id": "pokemon-monomyth-companion",
+  "name": "Pokemon Monomyth Companion",
+  "version": "0.2.0",
+  "author": "khumam",
+  "formatVersion": 4,
+  "match": {
+    "gameCode": [
+      "MONE"
+    ],
+    "crc32": [
+      "8441c61b"
+    ]
+  },
+  "tickHz": 4,
+  "layout": "layout.json",
+  "styles": [
+    "style.css"
+  ],
+  "script": "main.lua",
+  "values": {}
+}

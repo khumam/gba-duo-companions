@@ -33,6 +33,15 @@ local DEBUG = false
 local anchored, worldX, worldY = false, 0, 0
 local lastLayout, lastPx, lastPy, lastH, lastV, still = 0, -1, -1, 0, 0, 0
 local logged = 0
+local lastBucket, nilLogged = -1, false
+local function bucketChanged(view)   -- debug: true when the match crosses into another 5% step (not on every frame)
+  local b = math.floor(view.match * 20)
+  if b == lastBucket then return false end
+  lastBucket = b
+  return true
+end
+
+local rebaseWait, jumpAge, jumpOffX, jumpOffY = 0, 100, nil, 0
 
 local function delta(now, before)
   return ((now - before + 128) % 256) - 128
@@ -59,14 +68,35 @@ local function track(layout)
   local qy = mem.u16(PLAYER_OBJ + PREV_COORDS + 2)
   local h = mem.u16(REG_BG1HOFS) % 256
   local v = mem.u16(REG_BG1VOFS) % 256
+  local jumped = lastPx >= 0 and (math.abs(px - lastPx) > 1 or math.abs(py - lastPy) > 1)
+  jumpAge = jumped and 0 or jumpAge + 1
   if anchored then
     worldX = worldX + delta(h, lastH)
     worldY = worldY + delta(v, lastV)
-    if layout ~= lastLayout then
-      local midX = tiles(px, qx) - PLAYER_SCREEN_X
-      local midY = tiles(py, qy) - PLAYER_SCREEN_Y
-      worldX = worldX + 16 * round((midX - worldX) / 16)
-      worldY = worldY + 16 * round((midY - worldY) / 16)
+    -- The game changes gMapHeader and rebases the player's tile coordinates a frame or so apart, in either order
+    -- (on a connection, going up the coordinates jumped 50 tiles the frame after the header changed, going down the
+    -- frame before). The coordinates change as a step begins, so on the jump the camera still sits at the previous tile:
+    -- that fixes the whole-tile shift (the middle of the step would be a tie between two tiles). The shift is kept
+    -- until the header has changed too, and used when both have happened; if no jump ever comes, the middle of
+    -- the step after a few frames.
+    if jumped then
+      jumpOffX = 16 * round((qx * 16 - PLAYER_SCREEN_X - worldX) / 16)
+      jumpOffY = 16 * round((qy * 16 - PLAYER_SCREEN_Y - worldY) / 16)
+    elseif jumpAge > 8 then
+      jumpOffX = nil
+    end
+    if layout ~= lastLayout then rebaseWait = 8 end
+    if rebaseWait > 0 then
+      rebaseWait = rebaseWait - 1
+      if jumpOffX then
+        worldX, worldY = worldX + jumpOffX, worldY + jumpOffY
+        jumpOffX, rebaseWait = nil, 0
+      elseif rebaseWait == 0 then
+        local midX = tiles(px, qx) - PLAYER_SCREEN_X
+        local midY = tiles(py, qy) - PLAYER_SCREEN_Y
+        worldX = worldX + 16 * round((midX - worldX) / 16)
+        worldY = worldY + 16 * round((midY - worldY) / 16)
+      end
     end
   end
   if DEBUG and layout ~= lastLayout then
@@ -94,10 +124,10 @@ local MAX_MARKERS = 64
 
 local function markers(view)
   return entities.within(mem.u32(MAP_HEADER + 4), worldX - view.width, worldX + view.width,
-    worldY - view.height, worldY + view.height, MAX_MARKERS)
+    worldY - view.height, worldY + view.height, MAX_MARKERS, worldX, worldY)
 end
 
-function wide(view)
+local function wideInner(view)
   local layout = mem.u32(MAP_HEADER)
   if layout < 0x08000000 or layout >= 0x0A000000 then return nil end
   local gridW = mem.u32(BACKUP_LAYOUT)
@@ -110,7 +140,7 @@ function wide(view)
 
   local px, py, h, v = track(layout)
   if not anchored then return nil end
-  if DEBUG and view.match < 0.9 and logged < 600 then
+  if DEBUG and bucketChanged(view) and logged < 600 then
     logged = logged + 1
     log(string.format("LOW match=%.3f x=%d y=%d tile=%d,%d scroll=%d,%d", view.match, worldX, worldY, px, py, h, v))
   end
@@ -124,6 +154,17 @@ function wide(view)
     tiles = 0x06000000, palette = 0x05000000,
     markers = markers(view),
   }
+end
+
+-- debug: say why the wide view had no world (map change, unanchored camera)
+function wide(view)
+  local result = wideInner(view)
+  if DEBUG and not result and not nilLogged and logged < 600 then   -- once per run of nil frames
+    logged = logged + 1
+    log(string.format("NIL anchored=%s", tostring(anchored)))
+  end
+  nilLogged = not result
+  return result
 end
 
 -- The look of the game while Ambient is on (ambient.lua).

@@ -177,7 +177,7 @@ function update()
       hasLogo = ART ~= false,
       noLogo = ART == false,
       waitTitle = noRom and "US ROM ONLY" or "",
-      waitSub = noRom and "Needs game code AMTE." or "Load a save to wake the visor.",
+      waitSub = noRom and "Needs game code AMTE." or "GBADUO Companion Pack",
     }
   end
 

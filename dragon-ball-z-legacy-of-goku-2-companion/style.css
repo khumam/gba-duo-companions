@@ -1,0 +1,150 @@
+/*
+ * Dragon Ball Z: The Legacy of Goku II companion: the game's own pause menu
+ * (Status / Items / Journal), rebuilt for the second screen.
+ *
+ * Lengths are art pixels (`17.344px`): `python3 art/css.py` expands them to px (2.168px = 2.168px = 5 device px
+ * on the Thor, 248 x 216 ap), so the pixel art stays crisp. Edit this file, not style.css.
+ * Everything is placed absolutely on that grid, like the game's own fixed screen.
+ */
+
+:root {
+  --orange: #ffaa00;
+  --quest: #f0a878;
+  --ink: #000000;
+  --red: #ff2a2a;
+}
+
+@font-face { font-family: "Silkscreen"; src: url("assets/fonts/Silkscreen-Bold.ttf"); font-weight: 700; }
+@font-face { font-family: "Silkscreen"; src: url("assets/fonts/Silkscreen-Regular.ttf"); font-weight: 400; }
+
+image { image-rendering: pixelated; }
+text { white-space: nowrap; }
+
+#screen { width: 100%; height: 100%; position: relative; overflow: hidden; background-color: #632163; }
+.waiting, .ready, .stage { width: 100%; height: 100%; position: relative; }
+.page {
+  width: 100%; height: 100%; position: relative; overflow: hidden;
+  background-color: #632163;
+  background-image: url("assets/ui/bg.png");
+  background-size: cover;
+  font-family: "Silkscreen"; font-weight: 400; font-size: 17.344px; color: #ffffff;
+  text-shadow: 2.168px 2.168px 0 #000000;
+}
+
+/* ---- chrome ---- */
+.win { position: absolute; left: 17.344px; top: 21.68px; width: 502.976px; height: 359.888px; }
+.navbar { position: absolute; left: 0; top: 381.568px; width: 537.664px; height: 86.72px; }
+.tab { position: absolute; top: 381.568px; width: 199.456px; height: 86.72px; padding: 0; margin: 0; background: none; border: 0; border-radius: 0; }
+.tab-l { left: 0; }
+.tab-r { left: 333.872px; }
+.tab .shoulder { position: absolute; left: 4.336px; top: 21.68px; width: 195.12px; height: 58.536px; }
+.tab-name { position: absolute; top: 39.024px; width: 164.768px; text-align: center; font-size: 17.344px; color: #2a2a2a; text-shadow: none; }
+.tab-name-l { left: 13.008px; }
+.tab-name-r { left: 26.016px; }
+.tab:pressed .shoulder { opacity: .75; }
+.nav-title { position: absolute; left: 138.752px; width: 260.16px; top: 394.576px; text-align: center; font-size: 21.68px; }
+
+.corner { position: absolute; top: 8.672px; width: 34.688px; height: 30.352px; }
+.corner-l { left: 17.344px; }
+.corner-r { left: 476.96px; }
+.arrow { position: absolute; left: 0; top: 0; width: 34.688px; height: 30.352px; }
+.arrow-btn { position: absolute; left: 0; top: 0; width: 34.688px; height: 30.352px; padding: 0; margin: 0; background: none; border: 0; border-radius: 0; }
+.side { position: absolute; left: 39.024px; width: 30.352px; height: 34.688px; }
+.side-u { top: 86.72px; }
+.side-d { top: 316.528px; }
+.side .arrow { width: 30.352px; height: 34.688px; }
+.side .arrow-btn { width: 30.352px; height: 34.688px; }
+.tab-title { position: absolute; left: 73.712px; top: 36.856px; width: 147.424px; text-align: center; }
+.tab-title-wide { left: 60.704px; width: 173.44px; }
+
+/* ---- status ---- */
+.who { position: absolute; left: 73.712px; top: 30.352px; width: 147.424px; text-align: center; }
+.lvl { position: absolute; left: 73.712px; top: 49.864px; width: 147.424px; text-align: center; color: var(--orange); }
+.lbl { position: absolute; left: 0; width: 112.736px; text-align: right; }
+.bar { position: absolute; left: 121.408px; height: 17.344px; width: 162.6px; overflow: hidden; }
+.num { position: absolute; left: 121.408px; width: 162.6px; text-align: right; }
+.lbl-hp, .bar-hp { top: 95.392px; } .num-hp { top: 114.904px; }
+.lbl-ep, .bar-ep { top: 138.752px; } .num-ep { top: 158.264px; }
+.lbl-str, .bar-str { top: 182.112px; } .num-str { top: 201.624px; }
+.lbl-pow, .bar-pow { top: 225.472px; } .num-pow { top: 244.984px; }
+.lbl-end, .bar-end { top: 268.832px; } .num-end { top: 288.344px; }
+.bar.solid { background-color: #528cad; box-shadow: 2.168px 2.168px 0 #4a84a5; }
+.bar-hp > fill { background-color: #ff0000; transition: width 300ms ease-out; }
+.bar-ep > fill { background-color: #00ff00; transition: width 300ms ease-out; }
+.bar.seg { width: 162.6px; background-image: url("assets/ui/seg-off.png"); background-size: 162.6px 17.344px; background-repeat: no-repeat; }
+.bar.seg > fill { background-image: url("assets/ui/seg-on.png"); background-size: 162.6px 17.344px; background-repeat: no-repeat; transition: width 300ms ease-out; }
+.portrait { position: absolute; left: 316.528px; top: 95.392px; width: 138.752px; height: 136.584px; }
+.lbl-exp, .lbl-next { left: 316.528px; width: 65.04px; text-align: left; color: var(--orange); }
+.lbl-exp { top: 251.488px; } .lbl-next { top: 275.336px; }
+.val { position: absolute; left: 316.528px; width: 138.752px; text-align: right; }
+.val-exp { top: 251.488px; } .val-next { top: 275.336px; }
+.roster { position: absolute; left: 78.048px; top: 320.864px; width: 416.256px; height: 34.688px; flex-direction: row; }
+.pick {
+  width: 82.384px; height: 34.688px; padding: 0; margin: 0; border-radius: 0; justify-content: center; align-items: center;
+  background-color: #b5b5b5;
+  border-top: 2.168px solid #ffffff; border-left: 2.168px solid #ffffff; border-right: 2.168px solid #636363; border-bottom: 2.168px solid #636363;
+}
+.pick-name { color: #2a2a2a; text-shadow: none; font-size: 15.176px; }
+.pick:pressed { background-color: #cecece; }
+.pick.sel { background-color: var(--orange); border-top-color: #ffe29a; border-left-color: #ffe29a; border-right-color: #a86000; border-bottom-color: #a86000; }
+.pick.sel .pick-name { color: #3a1a00; }
+
+/* ---- techniques (the Status page, down arrow) ---- */
+.tname { position: absolute; left: 73.712px; top: 95.392px; width: 325.2px; color: var(--orange); }
+.tcount { position: absolute; left: 346.88px; top: 95.392px; width: 108.4px; text-align: right; color: var(--orange); }
+.tdesc { position: absolute; left: 73.712px; top: 125.744px; width: 381.568px; white-space: normal; line-height: 21.68px; text-transform: uppercase; }
+
+/* ---- items ---- */
+.itemlist { position: absolute; left: 82.384px; top: 84.552px; width: 242.816px; height: 271px; overflow: auto; }
+.irow { width: 238.48px; height: 54.2px; padding: 0; margin: 0; background: none; border: 0; border-radius: 0; flex-direction: row; align-items: center; justify-content: flex-start; }
+.ic { width: 43.36px; height: 47.696px; margin-right: 8.672px; border: 2.168px solid transparent; justify-content: center; align-items: center; }
+.ic.sel { border-color: var(--orange); }
+.icon { width: 39.024px; height: 43.36px; }
+.itxt { flex-direction: column; justify-content: center; }
+.iname { color: #ffffff; text-transform: uppercase; }
+.icount { color: #ffffff; margin-top: 2.168px; }
+.irow.sel .iname { color: var(--orange); }
+.irow:pressed .iname { color: var(--orange); }
+.big { position: absolute; left: 355.552px; top: 91.056px; width: 108.4px; height: 86.72px; }
+.desc { position: absolute; left: 333.872px; top: 195.12px; width: 151.76px; text-align: center; white-space: normal; line-height: 21.68px; text-transform: uppercase; }
+.empty { position: absolute; left: 34.688px; top: 195.12px; width: 459.616px; text-align: center; color: var(--red); }
+
+/* ---- item popup ---- */
+.poplayer { position: absolute; left: 0; top: 0; width: 537.664px; height: 468.288px; }
+.dim { position: absolute; left: 0; top: 0; width: 537.664px; height: 468.288px; padding: 0; margin: 0; border: 0; border-radius: 0; background-color: #00000080; }
+.pop { position: absolute; left: 91.056px; top: 147.424px; width: 355.552px; height: 173.44px; }
+.pop-big { position: absolute; left: 112.736px; top: 186.448px; width: 108.4px; height: 86.72px; }
+.pop-q { position: absolute; left: 229.808px; top: 173.44px; width: 195.12px; white-space: normal; line-height: 21.68px; text-transform: uppercase; }
+.pop-sub { position: absolute; left: 229.808px; top: 203.792px; width: 195.12px; white-space: normal; line-height: 19.512px; color: var(--orange); text-transform: uppercase; }
+.pop-btn { position: absolute; top: 264.496px; height: 36.856px; padding: 0; margin: 0; background: none; border: 0; border-radius: 0; flex-direction: row; align-items: center; }
+.pop-no { left: 229.808px; width: 86.72px; }
+.pop-yes { left: 316.528px; width: 108.4px; }
+.pop-ok { left: 316.528px; width: 108.4px; }
+.pop-btn .round { position: absolute; left: 0; top: 0; width: 36.856px; height: 36.856px; }
+.pop-btn .rl { position: absolute; left: 8.672px; top: 6.504px; color: #2a2a2a; text-shadow: none; }
+.pop-lbl { position: absolute; left: 45.528px; top: 6.504px; }
+.pop-btn:pressed .round { opacity: .7; }
+
+/* ---- journal ---- */
+.qlist { position: absolute; left: 56.368px; top: 86.72px; width: 416.256px; height: 264.496px; overflow: auto; }
+.qrow { width: 411.92px; flex-direction: row; align-items: center; padding-top: 6.504px; padding-bottom: 6.504px; }
+.jswitch { position: absolute; left: 60.704px; top: 26.016px; width: 173.44px; height: 43.36px; padding: 0; margin: 0; background: none; border: 0; border-radius: 0; }
+.jhint { position: absolute; left: 56.368px; top: 359.888px; width: 416.256px; text-align: center; color: var(--orange); font-size: 15.176px; }
+.star { width: 19.512px; height: 19.512px; margin-right: 17.344px; border-radius: 10.84px; background-color: #c07830; border: 2.168px solid #000000; }
+.star.main { background-color: #ffd23a; } .star.side { background-color: #d8d8e8; } .star.other { background-color: #c07830; }
+.check { width: 30.352px; height: 30.352px; margin-right: 17.344px; }
+.qtext { width: 359.888px; white-space: normal; line-height: 19.512px; color: var(--quest); text-transform: uppercase; }
+
+/* ---- waiting ---- */
+.page-waiting .who { left: 52.032px; top: 121.408px; width: 433.6px; font-size: 26.016px; }
+.wait-1 { position: absolute; left: 52.032px; top: 164.768px; width: 433.6px; text-align: center; color: var(--orange); }
+.wait-2 { position: absolute; left: 52.032px; top: 238.48px; width: 433.6px; text-align: center; }
+
+/* ---- options ---- */
+.orow { position: absolute; left: 56.368px; top: 86.72px; width: 416.256px; height: 47.696px; padding: 0 17.344px; margin: 0; background-color: #b9b9b9; border: 2.168px solid #2a2a2a; border-radius: 0; flex-direction: row; align-items: center; justify-content: space-between; }
+.orow:pressed { background-color: #8f8f8f; }
+.oname { color: #2a2a2a; text-shadow: none; font-size: 17.344px; }
+.oval { color: #2a2a2a; text-shadow: none; font-size: 17.344px; }
+.oval.on { color: #a85000; }
+.ohint { position: absolute; left: 56.368px; top: 151.76px; width: 416.256px; text-align: center; color: #d8d8f0; font-size: 13.008px; }
+.ohint-2 { top: 173.44px; }

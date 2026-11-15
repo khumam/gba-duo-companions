@@ -1,0 +1,220 @@
+{
+ "beansTab": false,
+ "coins": 5898,
+ "isLuigi": false,
+ "isMario": true,
+ "itemsTab": true,
+ "list": [
+  {
+   "idx": 0,
+   "name": "Mushrooms",
+   "qty": 11,
+   "sel": false
+  },
+  {
+   "idx": 1,
+   "name": "Super Mushrooms",
+   "qty": 10,
+   "sel": true
+  },
+  {
+   "idx": 2,
+   "name": "Ultra Mushrooms",
+   "qty": 20,
+   "sel": false
+  },
+  {
+   "idx": 3,
+   "name": "Max Mushrooms",
+   "qty": 11,
+   "sel": false
+  },
+  {
+   "idx": 4,
+   "name": "Nuts",
+   "qty": 12,
+   "sel": false
+  },
+  {
+   "idx": 5,
+   "name": "Super Nuts",
+   "qty": 11,
+   "sel": false
+  },
+  {
+   "idx": 6,
+   "name": "Ultra Nuts",
+   "qty": 13,
+   "sel": false
+  },
+  {
+   "idx": 7,
+   "name": "Max Nuts",
+   "qty": 12,
+   "sel": false
+  },
+  {
+   "idx": 8,
+   "name": "Syrup",
+   "qty": 10,
+   "sel": false
+  },
+  {
+   "idx": 9,
+   "name": "Super Syrup",
+   "qty": 11,
+   "sel": false
+  },
+  {
+   "idx": 10,
+   "name": "Ultra Syrup",
+   "qty": 24,
+   "sel": false
+  },
+  {
+   "idx": 11,
+   "name": "Max Syrup",
+   "qty": 12,
+   "sel": false
+  },
+  {
+   "idx": 12,
+   "name": "1-Up Mushrooms",
+   "qty": 7,
+   "sel": false
+  },
+  {
+   "idx": 13,
+   "name": "1-Up Supers",
+   "qty": 12,
+   "sel": false
+  },
+  {
+   "idx": 14,
+   "name": "Golden Mushrooms",
+   "qty": 2,
+   "sel": false
+  },
+  {
+   "idx": 15,
+   "name": "Refreshing Herbs",
+   "qty": 12,
+   "sel": false
+  },
+  {
+   "idx": 16,
+   "name": "Red Peppers",
+   "qty": 3,
+   "sel": false
+  },
+  {
+   "idx": 17,
+   "name": "Green Peppers",
+   "qty": 3,
+   "sel": false
+  }
+ ],
+ "luigi": {
+  "bp": 80,
+  "def": 153,
+  "exp": 50119,
+  "face": "asset:gfx/luigi.png",
+  "hp": 9,
+  "level": 40,
+  "maxBp": 80,
+  "maxHp": 84,
+  "name": "Luigi",
+  "next": 2779,
+  "pow": 134,
+  "round": "asset:gfx/round_luigi.png",
+  "speed": 84,
+  "stache": 105,
+  "hpPct": 0.75,
+  "bpPct": 1.0
+ },
+ "mario": {
+  "bp": 7,
+  "def": 163,
+  "exp": 48275,
+  "face": "asset:gfx/mario.png",
+  "hp": 8,
+  "level": 40,
+  "maxBp": 70,
+  "maxHp": 105,
+  "name": "Mario",
+  "next": 4530,
+  "pow": 147,
+  "round": "asset:gfx/round_mario.png",
+  "speed": 97,
+  "stache": 100,
+  "hpPct": 0.8,
+  "bpPct": 0.7
+ },
+ "noList": false,
+ "ready": true,
+ "sel": {
+  "bp": 70,
+  "def": 163,
+  "exp": 48275,
+  "face": "asset:gfx/mario.png",
+  "hp": 105,
+  "level": 40,
+  "maxBp": 70,
+  "maxHp": 105,
+  "name": "Mario",
+  "next": 4530,
+  "pow": 147,
+  "round": "asset:gfx/round_mario.png",
+  "speed": 97,
+  "stache": 100
+ },
+ "selText": "Super Mushrooms: Recover 50 HP.  Tap a bro to use.",
+ "time": "19:40",
+ "waiting": false,
+ "inBattle": true,
+ "noBattle": false,
+ "foes": [
+  {
+   "idx": 0,
+   "name": "Goomba",
+   "n": "A",
+   "hp": 8,
+   "maxHp": 8,
+   "hpPct": 1.0,
+   "sel": true,
+   "down": false
+  },
+  {
+   "idx": 1,
+   "name": "Goomba",
+   "n": "B",
+   "hp": 3,
+   "maxHp": 8,
+   "hpPct": 0.375,
+   "sel": false,
+   "down": false
+  },
+  {
+   "idx": 2,
+   "name": "Beanie",
+   "n": "C",
+   "hp": 0,
+   "maxHp": 10,
+   "hpPct": 0,
+   "sel": false,
+   "down": true
+  }
+ ],
+ "foe": {
+  "name": "Goomba A",
+  "hint": "Jump on it. Hammer it. Easy.",
+  "hp": 8,
+  "maxHp": 8,
+  "pow": 5,
+  "def": 2,
+  "speed": 4
+ },
+ "whoMario": true,
+ "whoLuigi": false,
+ "battleText": "Mario: HP 8/10   BP 7/10"
+}

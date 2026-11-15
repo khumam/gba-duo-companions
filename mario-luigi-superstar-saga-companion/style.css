@@ -1,0 +1,224 @@
+/* Mario & Luigi: Superstar Saga companion. The menu is a leather suitcase: stitched leather case, checkered lining, and the things lying in it
+   (passport booklets, a notebook, a blue felt pad) as flat shapes with a dark outline and a soft hard-edged shadow, not bevels.
+   Whole art pixels everywhere (1 art px = 2.168dp). Textures are small tiles in assets/ui. Only the brothers' portraits are pictures. */
+:root { --yellow: #ffd600; --ink: #293142; --edge: #3b2112; --leather: #8c4221; --sage: #bdc6b5; --blue: #214273; --cream: #efefe7; --shade: rgba(41, 49, 66, 0.38); }
+@font-face { font-family: "Jersey"; src: url("assets/fonts/Jersey10-Regular.ttf"); }
+
+image { image-rendering: pixelated; }
+text { white-space: nowrap; }
+#screen { width: 100%; height: 100%; background-color: #2e1a10; }
+.waiting, .ready, .stage { width: 100%; height: 100%; }
+
+/* the case, as in the game menu: black outline, a light tan edge, an orange-brown band, rust leather, then a dark brown lip around the lining */
+.page { width: 100%; height: 100%; padding: 4.336px; background-color: #c68a68; border: 2.168px solid #2b170d; border-radius: 8.672px;
+  font-family: "Jersey"; font-size: 21.68px; color: #ffffff; text-shadow: 2.168px 2.168px 0 var(--ink); }
+.stitch { flex: 1; padding: 8.672px; background-color: var(--leather); background-image: url("assets/ui/leather.png"); background-size: 34.7px 34.7px;
+  border: 4.336px solid #a8582e; border-radius: 6.504px; }
+.tray { flex: 1; padding: 8.672px; gap: 8.672px; background-color: var(--sage); background-image: url("assets/ui/lining.png"); background-size: 17.34px 17.34px;
+  border: 4.336px solid #5c3020; border-radius: 4.336px; position: relative; }
+.num { color: var(--yellow); }
+
+/* nav: leather straps */
+.nav { flex-direction: row; height: 28px; gap: 4.336px; align-items: center; }
+.nbtn { width: 104px; height: 28px; padding: 0; margin: 0; background-color: #6b3318; background-image: url("assets/ui/leather-d.png"); background-size: 34.7px 34.7px;
+  border: 4.336px solid var(--edge); border-radius: 4.336px; justify-content: center; align-items: center; box-shadow: 2.168px 2.168px 0 var(--shade); }
+.nt { font-size: 17.34px; }
+.nbtn:pressed { background-color: #4a230f; box-shadow: none; }
+.ntitle { flex: 1; height: 28px; background-color: #6b3318; background-image: url("assets/ui/leather-d.png"); background-size: 34.7px 34.7px; justify-content: center; align-items: center;
+  border: 4.336px solid var(--edge); border-radius: 4.336px; }
+.nt2 { color: var(--yellow); font-size: 19.5px; }
+
+/* the blue felt info bar, leather-edged */
+.bar { height: 36px; padding: 0 13px; justify-content: center; background-color: var(--blue); background-image: url("assets/ui/fabric.png"); background-size: 8.672px 8.672px;
+  border: 6.504px solid var(--leather); border-radius: 6.504px; box-shadow: 2.168px 2.168px 0 var(--shade); }
+.bar-t { font-size: 19.5px; text-shadow: none; }
+
+/* top: coin and clock */
+.top { flex-direction: row; height: 40px; justify-content: space-between; align-items: center; }
+.pill { height: 36px; flex-direction: row; align-items: center; gap: 8.672px; padding: 0 13px; border: 4.336px solid var(--edge); border-radius: 8.672px; box-shadow: 4.336px 4.336px 0 var(--shade); }
+.pill-coin { background-color: #4a525a; }
+.coin { width: 21.68px; height: 21.68px; background-color: var(--yellow); border: 4.336px solid #8c6a00; border-radius: 6.504px; }
+.pill-clock { background-color: #d6d6ce; }
+.clock { color: var(--ink); text-shadow: none; }
+
+/* passports: booklets lying in the case */
+.cards { flex: 1; flex-direction: row; gap: 15.176px; }
+.card { flex: 1; padding: 10.84px; gap: 8.672px; border-width: 4.336px; border-style: solid; border-radius: 6.504px; box-shadow: 6.504px 6.504px 0 var(--shade);
+  margin: 0; flex-direction: column; justify-content: flex-start; align-items: stretch; }
+.pcard { padding: 0; gap: 0; flex-direction: row; }
+.cbody { flex: 1; padding: 10.84px; gap: 8.672px; }
+.green { background-color: #4ae77b; border-color: #14562a; }
+.red { background-color: #d41414; border-color: #5a0404; }
+.head { flex-direction: row; gap: 8.672px; align-items: flex-start; }
+.head-l { flex: 1; gap: 6.504px; }
+.pp { font-size: 15.18px; text-shadow: none; }
+.green .pp { color: var(--ink); } .red .pp { color: #ffffff; text-shadow: 2.168px 2.168px 0 #5a0404; }
+.name-pill { height: 30.35px; padding: 0 10.84px; justify-content: center; border-radius: 4.336px; }
+.green .name-pill { background-color: #1f8a3c; } .red .name-pill { background-color: #7a0808; }
+.name { text-transform: uppercase; }
+.lvrow { flex-direction: row; gap: 8.672px; align-items: center; align-self: flex-start; height: 34px; padding: 0 10.84px; background-color: var(--ink); border-radius: 4.336px; }
+.lvl { font-size: 15.18px; text-shadow: none; color: #ffffff; }
+.lvn { font-size: 30.35px; }
+.photo { width: 65px; padding: 4.336px; align-items: center; background-color: #fff7ef; border: 2.168px solid var(--edge); box-shadow: 2.168px 2.168px 0 var(--shade); }
+.face { width: 56.4px; height: 82.4px; }
+.row { flex: 1; flex-direction: row; align-items: center; gap: 8.672px; padding: 0 10.84px; border-radius: 4.336px; }
+.green .row { background-color: #adf7bd; } .red .row { background-color: #ffa594; }
+.tag { height: 24.3px; padding: 0 6.504px; justify-content: center; border-radius: 2.168px; background-color: #55556b; }
+.tagt { font-size: 15.18px; text-shadow: none; }
+.cur { width: 70px; text-align: right; font-size: 30.35px; }
+.slash { color: var(--ink); text-shadow: none; }
+.max { font-size: 23.85px; }
+.spacer { flex: 1; }
+
+/* leather belts across the corners of the lining, with a buckle, holding the things in the case */
+.belt { position: absolute; width: 62px; height: 17.34px; padding: 2.168px; background-color: #6b3318; background-image: url("assets/ui/leather-d.png"); background-size: 34.7px 34.7px;
+  border: 2.168px solid var(--edge); border-radius: 2.168px; box-shadow: 2.168px 2.168px 0 var(--shade); }
+.bstitch { flex: 1; border-top: 2.168px solid #c68a68; border-bottom: 2.168px solid #4a230f; }
+.buckle { position: absolute; top: -4.336px; right: 11px; width: 15px; height: 21.7px; background-color: #d9b43f; border: 2.168px solid var(--edge); border-radius: 2.168px; }
+.belt-tl { left: -23px; top: 2px; transform: rotate(-45deg); }
+.belt-tr { right: -23px; top: 2px; transform: rotate(45deg); }
+.belt-bl { left: -23px; bottom: 2px; transform: rotate(45deg); }
+.belt-br { right: -23px; bottom: 2px; transform: rotate(-45deg); }
+
+/* binder: a thin spine with rings, down the left of a booklet or notebook */
+.spine { width: 13px; padding: 4.336px 0; background-color: #4a525a; border-right: 2.168px solid var(--edge); }
+.red .spine { background-color: #7a0808; } .green .spine { background-color: #1f6a34; }
+.hole { flex: 1; justify-content: center; align-items: center; }
+.ring { width: 13px; height: 6.504px; background-color: #d6d6ce; border-radius: 4.336px; border: 2.168px solid var(--edge); margin-left: 4.336px; }
+
+/* bros. info */
+.infobody { flex: 1; flex-direction: row; gap: 10.84px; }
+.roundcol { width: 118px; gap: 8.672px; justify-content: center; align-items: center; }
+.rbtn { width: 118px; flex: 1; padding: 4.336px; margin: 0; background-color: #6b3318; background-image: url("assets/ui/leather-d.png"); background-size: 34.7px 34.7px; border: 4.336px solid var(--edge); border-radius: 8.672px;
+  justify-content: center; align-items: center; box-shadow: 4.336px 4.336px 0 var(--shade); }
+.rbtn.on { background-color: var(--yellow); background-image: none; border-color: #8c6a00; }
+.round { width: 96px; height: 104px; }
+.info-card { flex: 1; padding: 10.84px; }
+.info-card .row { gap: 4.336px; padding: 0 4.336px; }
+.info-card .cur { width: 46px; font-size: 24px; }
+.info-card .max { font-size: 19.5px; }
+.paper { width: 172px; flex-direction: row; padding: 0; gap: 0; background-color: var(--cream); background-image: url("assets/ui/paper.png"); background-size: 69.4px 69.4px;
+  border: 4.336px solid var(--edge); border-radius: 4.336px; box-shadow: 6.504px 6.504px 0 var(--shade); }
+.sheet { flex: 1; padding: 4.336px 6.504px 4.336px 8.672px; border-left: 2.168px solid #e0705a; }
+.prow { flex: 1; flex-direction: row; align-items: center; gap: 8.672px; padding: 0; background: none; border-bottom: 2.168px solid #9cc0e0; }
+.ptag { height: 24.3px; padding: 0 6.504px; justify-content: center; border-radius: 2.168px; background-color: #55556b; }
+.ptagt { font-size: 15.18px; text-shadow: none; }
+.pval { flex: 1; text-align: right; font-size: 24px; }
+
+/* items and beans */
+.itemrow { flex: 1; flex-direction: row; gap: 8.672px; }
+.tabcol { width: 84px; gap: 8.672px; }
+.itab { width: 84px; height: 50px; padding: 0; margin: 0; background-color: #6b3318; background-image: url("assets/ui/leather-d.png"); background-size: 34.7px 34.7px;
+  border: 4.336px solid var(--edge); border-radius: 6.504px; justify-content: center; align-items: center; box-shadow: 4.336px 4.336px 0 var(--shade); }
+.itab.on { background-color: var(--yellow); background-image: none; border-color: #8c6a00; }
+.tt { font-size: 19.5px; } .itab.on .tt { color: var(--ink); text-shadow: none; }
+.panel { flex: 1; padding: 8.672px 13px; background-color: var(--blue); background-image: url("assets/ui/fabric.png"); background-size: 8.672px 8.672px;
+  border: 6.504px solid var(--leather); border-radius: 8.672px; box-shadow: 4.336px 4.336px 0 var(--shade); }
+.ilist { flex: 1; overflow: auto; }
+.irow { height: 27px; padding: 0 8.672px 0 6.504px; margin: 0; background: none; border: 0; border-radius: 0; flex-direction: row; justify-content: flex-start; align-items: center; }
+.iname { flex: 1; color: #b4c4e4; text-shadow: 2.168px 2.168px 0 #14284a; }
+.iqty { width: 50px; text-align: right; color: #b4c4e4; text-shadow: 2.168px 2.168px 0 #14284a; }
+.irow.sel { background-color: #3f6fb2; border: 2.168px solid var(--yellow); border-radius: 4.336px; box-shadow: 2.168px 2.168px 0 #14284a; }
+.irow.sel .iname, .irow.sel .iqty { color: #ffffff; }
+.icur { width: 8.672px; height: 8.672px; margin-right: 8.672px; background-color: transparent; }
+.irow.sel .icur { background-color: var(--yellow); }
+.irow:pressed .iname { color: var(--yellow); }
+.empty { text-align: center; color: #b4c4e4; }
+.strip { flex-direction: row; gap: 8.672px; height: 100px; }
+.mini { flex: 1; flex-direction: row; gap: 8.672px; padding: 6.504px; background-color: var(--cream); background-image: url("assets/ui/paper.png"); background-size: 69.4px 69.4px;
+  border: 4.336px solid var(--edge); border-radius: 4.336px; box-shadow: 4.336px 4.336px 0 var(--shade); }
+.mcol { flex: 1; gap: 4.336px; }
+.mhead { height: 21.7px; padding: 0 8.672px; justify-content: center; border-radius: 2.168px; }
+.green .mhead { background-color: #4ae77b; } .red .mhead { background-color: #d41414; }
+.mname { font-size: 17.34px; }
+.green .mname { color: var(--ink); text-shadow: none; } .red .mname { text-shadow: 2.168px 2.168px 0 #5a0404; }
+.mrow { flex: 1; flex-direction: row; align-items: center; gap: 6.504px; padding: 0 6.504px; border-radius: 2.168px; }
+.mini.green .mrow { background-color: #b5ffc6; } .mini.red .mrow { background-color: #ffceb5; }
+.mini.green, .mini.red { background-color: var(--cream); border-color: var(--edge); }
+.mtag { height: 17.3px; padding: 0 4.336px; justify-content: center; border-radius: 2.168px; background-color: #55556b; }
+.mtagt { font-size: 13px; text-shadow: none; }
+.mval { flex: 1; text-align: right; font-size: 21.68px; }
+.mphoto { width: 65px; padding: 4.336px; align-items: center; background-color: #fff7ef; border: 2.168px solid var(--edge); }
+
+/* battle: enemy cards, the selected enemy's sheet, the two brothers */
+.foes-wrap { flex: 1; }
+.foes { flex: 1; flex-direction: row; gap: 8.672px; }
+.foe { flex: 1; padding: 6.504px; margin: 0; gap: 4.336px; flex-direction: column; justify-content: flex-start; align-items: stretch; background-color: var(--cream);
+  background-image: url("assets/ui/paper.png"); background-size: 69.4px 69.4px; border: 4.336px solid var(--edge); border-radius: 4.336px; box-shadow: 4.336px 4.336px 0 var(--shade); }
+.foe.on { background-color: #fff3b0; background-image: none; border-color: #8c6a00; }
+.foe.down { background-color: #b9b9b0; background-image: none; }
+.fplate { height: 28px; padding: 0 6.504px; justify-content: center; background-color: var(--ink); border-radius: 2.168px; }
+.fname { font-size: 19.5px; text-shadow: none; }
+.fart { height: 46px; justify-content: center; align-items: center; background-color: #c7cfbf; border: 2.168px solid var(--edge); border-radius: 4.336px; }
+.fnum { font-size: 34px; color: var(--ink); text-shadow: none; }
+.fhp { height: 26px; flex-direction: row; justify-content: center; align-items: center; gap: 4.336px; }
+.fhpt { font-size: 23.85px; color: var(--ink); text-shadow: none; }
+.fslash { color: var(--ink); text-shadow: none; }
+.fmax { font-size: 19.5px; color: var(--ink); text-shadow: none; }
+bar { height: 13px; background-color: var(--ink); border: 2.168px solid var(--edge); border-radius: 2.168px; }
+bar.hp > fill { background-color: #4ae77b; }
+bar.bp > fill { background-color: #6fc3ff; }
+.idle { flex: 1; justify-content: center; align-items: center; gap: 8.672px; background-color: var(--blue); background-image: url("assets/ui/fabric.png"); background-size: 8.672px 8.672px;
+  border: 6.504px solid var(--leather); border-radius: 8.672px; box-shadow: 4.336px 4.336px 0 var(--shade); }
+.idle1 { font-size: 30.35px; } .idle2 { color: #b4c4e4; font-size: 19.5px; text-shadow: none; }
+.fdetail { height: 82px; padding: 6.504px 13px; gap: 6.504px; background-color: var(--blue); background-image: url("assets/ui/fabric.png"); background-size: 8.672px 8.672px;
+  border: 6.504px solid var(--leather); border-radius: 6.504px; box-shadow: 4.336px 4.336px 0 var(--shade); }
+.fd-head { flex-direction: row; align-items: center; gap: 13px; }
+.fd-name { font-size: 23.85px; }
+.fd-hint { flex: 1; color: #b4c4e4; font-size: 17.34px; text-shadow: none; }
+.fd-stats { flex-direction: row; gap: 8.672px; }
+.chip { flex: 1; flex-direction: row; align-items: center; gap: 6.504px; }
+.ctag { height: 21.7px; padding: 0 6.504px; justify-content: center; border-radius: 2.168px; background-color: #55556b; }
+.ctagt { font-size: 15.18px; text-shadow: none; }
+.cval { font-size: 21.68px; }
+.bstrip { flex-direction: row; gap: 8.672px; height: 90px; }
+.bro { flex: 1; flex-direction: row; gap: 6.504px; padding: 6.504px; margin: 0; align-items: stretch; justify-content: flex-start; background-color: var(--cream);
+  background-image: url("assets/ui/paper.png"); background-size: 69.4px 69.4px; border: 4.336px solid var(--edge); border-radius: 4.336px; box-shadow: 4.336px 4.336px 0 var(--shade); }
+.bro.on { background-color: #fff3b0; background-image: none; border-color: #8c6a00; }
+.bphoto { width: 52px; padding: 2.168px; align-items: center; justify-content: center; background-color: #fff7ef; border: 2.168px solid var(--edge); }
+.bface { width: 36px; height: 52.8px; }
+.bcol { flex: 1; gap: 4.336px; }
+.bhead { height: 21.7px; padding: 0 8.672px; justify-content: center; border-radius: 2.168px; }
+.green .bhead { background-color: #4ae77b; } .red .bhead { background-color: #d41414; }
+.bname { font-size: 17.34px; }
+.green .bname { color: var(--ink); text-shadow: none; } .red .bname { text-shadow: 2.168px 2.168px 0 #5a0404; }
+.brow { flex: 1; flex-direction: row; align-items: center; gap: 6.504px; }
+.btag { height: 17.3px; padding: 0 4.336px; justify-content: center; border-radius: 2.168px; background-color: #55556b; }
+.btagt { font-size: 13px; text-shadow: none; }
+.bbar { flex: 1; }
+.bval { width: 30px; text-align: right; font-size: 19.5px; color: var(--ink); text-shadow: none; }
+
+/* waiting */
+.wait { flex: 1; justify-content: center; align-items: center; gap: 8.672px; background-color: var(--blue); background-image: url("assets/ui/fabric.png"); background-size: 8.672px 8.672px;
+  border: 6.504px solid var(--leather); border-radius: 8.672px; box-shadow: 4.336px 4.336px 0 var(--shade); }
+.w1 { font-size: 30.35px; } .w2 { color: var(--yellow); } .w3 { margin-top: 13px; }
+
+/* numbers sit on light rows and paper: dark ink, no shadow (yellow only on dark surfaces) */
+.row .num, .prow .num, .mrow .num { color: var(--ink); text-shadow: none; }
+
+/* Texture on everything that was a flat colour, as the case leather has: a tiny alpha tile over the element's own colour
+   (one image per element, so the colour underneath still comes from background-color). grain-d: saturated and dark
+   surfaces, grain-l: light ones, weave: the dark ink plates. 8 art pixels a tile. */
+.green, .red, .name-pill, .pill-coin, .coin, .buckle, .spine, .ring, .tag, .ptag, .mtag, .btag, .ctag, .mhead, .bhead,
+.green .name-pill, .red .name-pill { background-image: url("assets/ui/grain-d.png"); background-size: 17.34px 17.34px; }
+.lvrow, .fplate, bar { background-image: url("assets/ui/weave.png"); background-size: 17.34px 17.34px; }
+.photo, .mphoto, .bphoto, .pill-clock, .fart,
+.foe.on, .foe.down, .bro.on, bar.hp > fill, bar.bp > fill { background-image: url("assets/ui/grain-l.png"); background-size: 17.34px 17.34px; }
+.rbtn.on, .itab.on { background-image: url("assets/ui/grain-d.png"); background-size: 17.34px 17.34px; }
+.mini.green, .mini.red { background-image: url("assets/ui/paper.png"); background-size: 69.4px 69.4px; }
+
+/* the stats rows are paper, tinted to the passport (paper.png's own pattern in the row's colour), no grain on top */
+.green .row { background-image: url("assets/ui/paper-g.png"); background-size: 69.4px 69.4px; }
+.red .row { background-image: url("assets/ui/paper-r.png"); background-size: 69.4px 69.4px; }
+.mini.green .mrow { background-image: url("assets/ui/paper-g2.png"); background-size: 69.4px 69.4px; }
+.mini.red .mrow { background-image: url("assets/ui/paper-r2.png"); background-size: 69.4px 69.4px; }
+.paper.green, .paper.red { background-image: url("assets/ui/paper.png"); background-size: 69.4px 69.4px; }
+
+/* the two brothers' cards on Items are buttons: tap one to use the selected item on them */
+.mini { margin: 0; align-items: stretch; justify-content: flex-start; }
+.mini:pressed { transform: translate(2px, 2px); box-shadow: none; }
+
+/* the passport covers (Mario red, Luigi green) are the same felt as the blue info bar, in their own colour */
+.card.green { background-image: url("assets/ui/fabric-g.png"); background-size: 8.672px 8.672px; }
+.card.red { background-image: url("assets/ui/fabric-r.png"); background-size: 8.672px 8.672px; }
+.bro.green, .bro.red { background-image: url("assets/ui/paper.png"); background-size: 69.4px 69.4px; }

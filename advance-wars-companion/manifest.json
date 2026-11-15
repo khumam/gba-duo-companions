@@ -1,0 +1,21 @@
+{
+  "id": "advance-wars-companion",
+  "name": "Advance Wars Companion",
+  "version": "0.1.0",
+  "author": "khumam",
+  "formatVersion": 3,
+  "match": {
+    "gameCode": [
+      "AWRE"
+    ],
+    "crc32": []
+  },
+  "tickHz": 4,
+  "layout": "layout.json",
+  "styles": [
+    "style.css"
+  ],
+  "script": "main.lua",
+  "values": {},
+  "permissions": []
+}

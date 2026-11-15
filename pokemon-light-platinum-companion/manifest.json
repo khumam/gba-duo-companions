@@ -1,0 +1,26 @@
+{
+  "id": "pokemon-light-platinum-companion",
+  "name": "Pokemon Light Platinum Companion",
+  "version": "0.1.0",
+  "author": "khumam",
+  "formatVersion": 4,
+  "match": {
+    "gameCode": [
+      "AXVE"
+    ],
+    "crc32": [
+      "4b04b0c7"
+    ]
+  },
+  "tickHz": 4,
+  "layout": "layout.json",
+  "styles": [
+    "style.css"
+  ],
+  "script": "main.lua",
+  "gameScript": "game.lua",
+  "values": {},
+  "permissions": [
+    "memory-write"
+  ]
+}

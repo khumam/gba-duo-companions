@@ -55,10 +55,10 @@ local RELEASES = {
     dungeonTiles = 0x085C2470, mapObjTiles = 0x08936CB0,
   },
   BZME = { -- US
-    mapTiles = 0x08934FE0, map = 0x08938FE0, mapPalette6 = 0x085B4480,
+    mapTiles = 0x08934FE0, map = 0x08938FE0, mapPalette6 = 0x085B44C0,
     anims = 0x080FDFD8, frames = 0x0811B578, tiles = 0x082E68F4, objLists = 0x082F3D74, sprite = 0x142,
     objPalette = 0x085A2E80,
-    questGfx = 0x089134A0, questPalette = 0x085B43E0,
+    questGfx = 0x089134A0, questPalette = 0x085B4420,
     ezloFrames = 0x08116DD4, linkGfx = 0x0813AE14, linkFrames = 0x08114F98,
     logoTiles = 0x088D6760, logoPalette = 0x085BD9E0,
     heartTiles = 0x085C3880, hudPalette = 0x085A3000,

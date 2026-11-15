@@ -950,7 +950,7 @@ local wasInBattle, lastState, pageBeforeBattle = false, "idle", "map"
 local dexOut, dexCaught, dexAge = nil, 0, 0
 local lastDexQuery = nil
 
-function update(ui)
+local function navBase(ui)
   local currentPage = ui and ui.page
   -- ponytail: only BPGE v1.0 is verified; add a revision table before supporting v1.1.
   if mem.u32(0x080000AC) ~= 0x45475042 or mem.u8(0x080000BC) ~= 0 then
@@ -1059,3 +1059,41 @@ function update(ui)
   wasInBattle, lastState = battling, state
   return out
 end
+
+-- >>> nav placement
+-- where the page buttons sit: bottom (the ring bar), left, right or split (side docks). The settings row BUTTONS cycles it.
+local NAV = { { "map", "MAP" }, { "party", "PARTY" }, { "bag", "BAG" }, { "dex", "DEX" }, { "trainer", "CARD" }, { "battle", "BATTLE" } }
+local NAV_ALIAS = { detail = "party", ["battle-detail"] = "battle" }
+local NAV_MODES = { "bottom", "left", "right", "split" }
+local navMode = 1
+actions = actions or {}
+function actions.cycleNav() navMode = navMode % #NAV_MODES + 1 end
+local function navState(ui)
+  local pos = NAV_MODES[navMode]
+  local cur = ui.page or NAV[1][1]
+  cur = NAV_ALIAS[cur] or cur
+  local out = { posBottom = (pos == "bottom"), posSplit = (pos == "split"), navLabel = string.upper(pos) }
+  local half = (#NAV + 1) // 2
+  local left, right = 0, 0
+  for i, n in ipairs(NAV) do
+    out["on" .. i] = (n[1] == cur)
+    local l = (pos == "left") or (pos == "split" and i <= half)
+    local r = (pos == "right") or (pos == "split" and i > half)
+    out["L" .. i], out["R" .. i] = l, r
+    if l then left = left + 1 end
+    if r then right = right + 1 end
+  end
+  out.dockL, out.dockR = left > 0, right > 0
+  return out
+end
+local navLastGood
+function update(ui)
+  local ok, r = pcall(navBase, ui)
+  if ok then navLastGood = r else
+    if log then log("update error: " .. tostring(r)) end
+    r = navLastGood
+  end
+  if r and r.ready then for key, v in pairs(navState(ui or {})) do r[key] = v end end
+  return r
+end
+-- <<< nav placement

@@ -1,0 +1,1847 @@
+{
+ "type": "box",
+ "class": "main",
+ "children": [
+  {
+   "type": "box",
+   "class": "waiting",
+   "children": [
+    {
+     "type": "box",
+     "class": "page page-waiting",
+     "children": [
+      {
+       "type": "image",
+       "class": "win w-wait",
+       "src": "asset:ui/win-240x208.png"
+      },
+      {
+       "type": "text",
+       "class": "wt-1",
+       "text": "FINAL FANTASY VI"
+      },
+      {
+       "type": "text",
+       "class": "wt-2",
+       "text": "ADVANCE"
+      },
+      {
+       "type": "text",
+       "class": "wt-3",
+       "text": "Load a game to see your party"
+      }
+     ]
+    }
+   ],
+   "visibleIf": "$waiting"
+  },
+  {
+   "type": "box",
+   "class": "ready",
+   "children": [
+    {
+     "type": "pages",
+     "class": "stage",
+     "initial": "party",
+     "pages": [
+      {
+       "name": "party",
+       "child": {
+        "type": "box",
+        "class": "page page-party",
+        "children": [
+         {
+          "type": "image",
+          "class": "win w-party",
+          "src": "asset:ui/win-240x156.png"
+         },
+         {
+          "type": "list",
+          "class": "members",
+          "items": "$party",
+          "template": {
+           "type": "button",
+           "class": "mem",
+           "onClick": [
+            {
+             "set": {
+              "who": "{actor}"
+             }
+            },
+            {
+             "navigate": "status"
+            }
+           ],
+           "children": [
+            {
+             "type": "image",
+             "class": "mface",
+             "src": "$face"
+            },
+            {
+             "type": "text",
+             "class": "mname",
+             "text": "{name}"
+            },
+            {
+             "type": "text",
+             "class": "mclass",
+             "text": "{class}"
+            },
+            {
+             "type": "text",
+             "class": "lab mlv-l",
+             "text": "LV"
+            },
+            {
+             "type": "text",
+             "class": "num mlv",
+             "text": "{level}"
+            },
+            {
+             "type": "text",
+             "class": "lab mhp-l",
+             "text": "HP"
+            },
+            {
+             "type": "text",
+             "class": "num mhp",
+             "text": "{hp}/{maxHp}"
+            },
+            {
+             "type": "text",
+             "class": "lab mmp-l",
+             "text": "MP"
+            },
+            {
+             "type": "text",
+             "class": "num mmp",
+             "text": "{mp}/{maxMp}"
+            }
+           ],
+           "classIf": {
+            "marked": "$marked"
+           }
+          }
+         },
+         {
+          "type": "image",
+          "class": "win w-info",
+          "src": "asset:ui/win-240x22.png"
+         },
+         {
+          "type": "text",
+          "class": "lab i-time-l",
+          "text": "Time"
+         },
+         {
+          "type": "text",
+          "class": "num i-time",
+          "text": "{time}"
+         },
+         {
+          "type": "text",
+          "class": "lab i-steps-l",
+          "text": "Steps"
+         },
+         {
+          "type": "text",
+          "class": "num i-steps",
+          "text": "{steps}"
+         },
+         {
+          "type": "text",
+          "class": "lab i-gil-l",
+          "text": "Gil"
+         },
+         {
+          "type": "text",
+          "class": "num i-gil",
+          "text": "{gil}"
+         },
+         {
+          "type": "image",
+          "class": "win w-nl",
+          "src": "asset:ui/win-76x26.png"
+         },
+         {
+          "type": "image",
+          "class": "win w-nt",
+          "src": "asset:ui/win-80x26.png"
+         },
+         {
+          "type": "image",
+          "class": "win w-nr",
+          "src": "asset:ui/win-76x26.png"
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-l",
+          "onClick": [
+           {
+            "navigate": "config"
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "nb nb-l",
+            "text": "< Config"
+           }
+          ]
+         },
+         {
+          "type": "text",
+          "class": "ntitle",
+          "text": "Party"
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-r",
+          "onClick": [
+           {
+            "navigate": "items"
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "nb nb-r",
+            "text": "Items >"
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "name": "items",
+       "child": {
+        "type": "box",
+        "class": "page page-items",
+        "children": [
+         {
+          "type": "image",
+          "class": "win w-head",
+          "src": "asset:ui/win-240x20.png"
+         },
+         {
+          "type": "text",
+          "class": "head-title",
+          "text": "Items"
+         },
+         {
+          "type": "image",
+          "class": "win w-list",
+          "src": "asset:ui/win-240x134.png"
+         },
+         {
+          "type": "list",
+          "class": "itemlist",
+          "items": "$items",
+          "template": {
+           "type": "button",
+           "class": "icell",
+           "onClick": [
+            {
+             "set": {
+              "item": "{slot}",
+              "popup": true
+             }
+            }
+           ],
+           "children": [
+            {
+             "type": "text",
+             "class": "iname",
+             "text": "{name}"
+            },
+            {
+             "type": "text",
+             "class": "iqty",
+             "text": ": {qty}"
+            }
+           ],
+           "classIf": {
+            "sel": "$sel"
+           }
+          }
+         },
+         {
+          "type": "text",
+          "class": "empty",
+          "text": "No items",
+          "visibleIf": "$noItems"
+         },
+         {
+          "type": "image",
+          "class": "win w-info",
+          "src": "asset:ui/win-240x22.png"
+         },
+         {
+          "type": "text",
+          "class": "sel-name",
+          "text": "{selItem.name}"
+         },
+         {
+          "type": "text",
+          "class": "lab sel-qty",
+          "text": "x {selItem.qty}",
+          "visibleIf": "$items"
+         },
+         {
+          "type": "image",
+          "class": "win w-nl",
+          "src": "asset:ui/win-76x26.png"
+         },
+         {
+          "type": "image",
+          "class": "win w-nt",
+          "src": "asset:ui/win-80x26.png"
+         },
+         {
+          "type": "image",
+          "class": "win w-nr",
+          "src": "asset:ui/win-76x26.png"
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-l",
+          "onClick": [
+           {
+            "navigate": "party"
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "nb nb-l",
+            "text": "< Party"
+           }
+          ]
+         },
+         {
+          "type": "text",
+          "class": "ntitle",
+          "text": "Items"
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-r",
+          "onClick": [
+           {
+            "navigate": "abilities"
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "nb nb-r",
+            "text": "Abilities >"
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "poplayer",
+          "children": [
+           {
+            "type": "button",
+            "class": "dim",
+            "onClick": [
+             {
+              "set": {
+               "popup": false
+              }
+             }
+            ],
+            "children": []
+           },
+           {
+            "type": "image",
+            "class": "win w-pop",
+            "src": "asset:ui/win-200x86.png"
+           },
+           {
+            "type": "text",
+            "class": "pop-q",
+            "text": "{detail.prompt}"
+           },
+           {
+            "type": "text",
+            "class": "lab pop-sub",
+            "text": "{detail.sub}"
+           },
+           {
+            "type": "list",
+            "class": "targets",
+            "items": "$tabs",
+            "template": {
+             "type": "button",
+             "class": "tgt",
+             "onClick": [
+              {
+               "call": "useItem",
+               "args": [
+                "{detail.slot}",
+                "{actor}"
+               ],
+               "set": {
+                "popup": false
+               }
+              }
+             ],
+             "children": [
+              {
+               "type": "text",
+               "class": "tgt-t",
+               "text": "{name}"
+              }
+             ]
+            },
+            "visibleIf": "$detail.single"
+           },
+           {
+            "type": "button",
+            "class": "pbtn pbtn-yes",
+            "onClick": [
+             {
+              "call": "useItem",
+              "args": [
+               "{detail.slot}",
+               -1
+              ],
+              "set": {
+               "popup": false
+              }
+             }
+            ],
+            "children": [
+             {
+              "type": "text",
+              "class": "pbtn-t",
+              "text": "Yes"
+             }
+            ],
+            "visibleIf": "$detail.party"
+           },
+           {
+            "type": "button",
+            "class": "pbtn pbtn-no",
+            "onClick": [
+             {
+              "set": {
+               "popup": false
+              }
+             }
+            ],
+            "children": [
+             {
+              "type": "text",
+              "class": "pbtn-t",
+              "text": "No"
+             }
+            ],
+            "visibleIf": "$detail.party"
+           },
+           {
+            "type": "button",
+            "class": "pbtn pbtn-cancel",
+            "onClick": [
+             {
+              "set": {
+               "popup": false
+              }
+             }
+            ],
+            "children": [
+             {
+              "type": "text",
+              "class": "pbtn-t",
+              "text": "Cancel"
+             }
+            ],
+            "visibleIf": "$detail.single"
+           },
+           {
+            "type": "button",
+            "class": "pbtn pbtn-ok",
+            "onClick": [
+             {
+              "set": {
+               "popup": false
+              }
+             }
+            ],
+            "children": [
+             {
+              "type": "text",
+              "class": "pbtn-t",
+              "text": "OK"
+             }
+            ],
+            "visibleIf": "$detail.none"
+           }
+          ],
+          "visibleIf": "$ui.popup"
+         }
+        ]
+       }
+      },
+      {
+       "name": "abilities",
+       "child": {
+        "type": "box",
+        "class": "page page-abilities",
+        "children": [
+         {
+          "type": "image",
+          "class": "win w-head",
+          "src": "asset:ui/win-240x20.png"
+         },
+         {
+          "type": "list",
+          "class": "tabs",
+          "items": "$tabs",
+          "template": {
+           "type": "button",
+           "class": "tab",
+           "onClick": [
+            {
+             "set": {
+              "who": "{actor}"
+             }
+            }
+           ],
+           "children": [
+            {
+             "type": "text",
+             "class": "tab-t",
+             "text": "{name}"
+            }
+           ],
+           "classIf": {
+            "sel": "$sel"
+           }
+          }
+         },
+         {
+          "type": "image",
+          "class": "win w-esper",
+          "src": "asset:ui/win-240x68.png"
+         },
+         {
+          "type": "text",
+          "class": "lab esper-l",
+          "text": "Esper"
+         },
+         {
+          "type": "text",
+          "class": "esper-n",
+          "text": "{sel.esper}"
+         },
+         {
+          "type": "list",
+          "class": "espers",
+          "items": "$espers",
+          "template": {
+           "type": "text",
+           "class": "cell",
+           "text": "{name}",
+           "classIf": {
+            "mine": "$mine",
+            "taken": "$taken"
+           }
+          }
+         },
+         {
+          "type": "image",
+          "class": "win w-magic",
+          "src": "asset:ui/win-240x88.png"
+         },
+         {
+          "type": "text",
+          "class": "lab magic-l",
+          "text": "Magic"
+         },
+         {
+          "type": "text",
+          "class": "magic-n",
+          "text": "{sel.spellCount} learned"
+         },
+         {
+          "type": "list",
+          "class": "spells",
+          "items": "$spells",
+          "template": {
+           "type": "text",
+           "class": "cell",
+           "text": "{name}"
+          }
+         },
+         {
+          "type": "image",
+          "class": "win w-nl",
+          "src": "asset:ui/win-76x26.png"
+         },
+         {
+          "type": "image",
+          "class": "win w-nt",
+          "src": "asset:ui/win-80x26.png"
+         },
+         {
+          "type": "image",
+          "class": "win w-nr",
+          "src": "asset:ui/win-76x26.png"
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-l",
+          "onClick": [
+           {
+            "navigate": "items"
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "nb nb-l",
+            "text": "< Items"
+           }
+          ]
+         },
+         {
+          "type": "text",
+          "class": "ntitle",
+          "text": "Abilities"
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-r",
+          "onClick": [
+           {
+            "navigate": "skills"
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "nb nb-r",
+            "text": "Skills >"
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "name": "skills",
+       "child": {
+        "type": "box",
+        "class": "page page-skills",
+        "children": [
+         {
+          "type": "image",
+          "class": "win w-head",
+          "src": "asset:ui/win-240x20.png"
+         },
+         {
+          "type": "list",
+          "class": "tabs",
+          "items": "$tabs",
+          "template": {
+           "type": "button",
+           "class": "tab",
+           "onClick": [
+            {
+             "set": {
+              "who": "{actor}"
+             }
+            }
+           ],
+           "children": [
+            {
+             "type": "text",
+             "class": "tab-t",
+             "text": "{name}"
+            }
+           ],
+           "classIf": {
+            "sel": "$sel"
+           }
+          }
+         },
+         {
+          "type": "image",
+          "class": "win w-kind",
+          "src": "asset:ui/win-240x22.png"
+         },
+         {
+          "type": "list",
+          "class": "kinds",
+          "items": "$kinds",
+          "template": {
+           "type": "button",
+           "class": "kind",
+           "onClick": [
+            {
+             "set": {
+              "sk": "{k}"
+             }
+            }
+           ],
+           "children": [
+            {
+             "type": "text",
+             "class": "kind-t",
+             "text": "{name}"
+            }
+           ],
+           "classIf": {
+            "sel": "$on",
+            "off": "$off"
+           }
+          }
+         },
+         {
+          "type": "image",
+          "class": "win w-slist",
+          "src": "asset:ui/win-240x134.png"
+         },
+         {
+          "type": "list",
+          "class": "sklist",
+          "items": "$techs",
+          "template": {
+           "type": "text",
+           "class": "scell",
+           "text": "{name}"
+          }
+         },
+         {
+          "type": "text",
+          "class": "sk-empty",
+          "text": "Nothing learned yet",
+          "visibleIf": "$noTechs"
+         },
+         {
+          "type": "image",
+          "class": "win w-nl",
+          "src": "asset:ui/win-76x26.png"
+         },
+         {
+          "type": "image",
+          "class": "win w-nt",
+          "src": "asset:ui/win-80x26.png"
+         },
+         {
+          "type": "image",
+          "class": "win w-nr",
+          "src": "asset:ui/win-76x26.png"
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-l",
+          "onClick": [
+           {
+            "navigate": "abilities"
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "nb nb-l",
+            "text": "< Abilities"
+           }
+          ]
+         },
+         {
+          "type": "text",
+          "class": "ntitle",
+          "text": "Skills"
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-r",
+          "onClick": [
+           {
+            "navigate": "equip"
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "nb nb-r",
+            "text": "Equip >"
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "name": "equip",
+       "child": {
+        "type": "box",
+        "class": "page page-equip",
+        "children": [
+         {
+          "type": "image",
+          "class": "win w-head",
+          "src": "asset:ui/win-240x20.png"
+         },
+         {
+          "type": "list",
+          "class": "tabs",
+          "items": "$tabs",
+          "template": {
+           "type": "button",
+           "class": "tab",
+           "onClick": [
+            {
+             "set": {
+              "who": "{actor}"
+             }
+            }
+           ],
+           "children": [
+            {
+             "type": "text",
+             "class": "tab-t",
+             "text": "{name}"
+            }
+           ],
+           "classIf": {
+            "sel": "$sel"
+           }
+          }
+         },
+         {
+          "type": "image",
+          "class": "win w-top",
+          "src": "asset:ui/win-240x70.png"
+         },
+         {
+          "type": "list",
+          "class": "slots",
+          "items": "$equip",
+          "template": {
+           "type": "box",
+           "class": "slot",
+           "children": [
+            {
+             "type": "text",
+             "class": "lab slot-l",
+             "text": "{label}"
+            },
+            {
+             "type": "text",
+             "class": "slot-n",
+             "text": "{item}"
+            }
+           ]
+          }
+         },
+         {
+          "type": "image",
+          "class": "eface",
+          "src": "$face"
+         },
+         {
+          "type": "image",
+          "class": "win w-stats",
+          "src": "asset:ui/win-240x86.png"
+         },
+         {
+          "type": "text",
+          "class": "lab st-ex-l",
+          "text": "EXP"
+         },
+         {
+          "type": "text",
+          "class": "num st-ex",
+          "text": "{sel.exp}"
+         },
+         {
+          "type": "text",
+          "class": "lab st-lv-l",
+          "text": "LV"
+         },
+         {
+          "type": "text",
+          "class": "num st-lv",
+          "text": "{sel.level}"
+         },
+         {
+          "type": "text",
+          "class": "lab st-hp-l",
+          "text": "HP"
+         },
+         {
+          "type": "text",
+          "class": "num st-hp",
+          "text": "{sel.hp}/{sel.maxHp}"
+         },
+         {
+          "type": "text",
+          "class": "lab st-mp-l",
+          "text": "MP"
+         },
+         {
+          "type": "text",
+          "class": "num st-mp",
+          "text": "{sel.mp}/{sel.maxMp}"
+         },
+         {
+          "type": "text",
+          "class": "lab st-str-l",
+          "text": "Strength"
+         },
+         {
+          "type": "text",
+          "class": "num st-str",
+          "text": "{sel.vigor}"
+         },
+         {
+          "type": "text",
+          "class": "lab st-spd-l",
+          "text": "Speed"
+         },
+         {
+          "type": "text",
+          "class": "num st-spd",
+          "text": "{sel.speed}"
+         },
+         {
+          "type": "text",
+          "class": "lab st-sta-l",
+          "text": "Stamina"
+         },
+         {
+          "type": "text",
+          "class": "num st-sta",
+          "text": "{sel.stamina}"
+         },
+         {
+          "type": "text",
+          "class": "lab st-mag-l",
+          "text": "Magic"
+         },
+         {
+          "type": "text",
+          "class": "num st-mag",
+          "text": "{sel.magic}"
+         },
+         {
+          "type": "text",
+          "class": "lab st-cmd-l",
+          "text": "Commands"
+         },
+         {
+          "type": "text",
+          "class": "cmds",
+          "text": "{sel.commands}"
+         },
+         {
+          "type": "image",
+          "class": "win w-nl",
+          "src": "asset:ui/win-76x26.png"
+         },
+         {
+          "type": "image",
+          "class": "win w-nt",
+          "src": "asset:ui/win-80x26.png"
+         },
+         {
+          "type": "image",
+          "class": "win w-nr",
+          "src": "asset:ui/win-76x26.png"
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-l",
+          "onClick": [
+           {
+            "navigate": "skills"
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "nb nb-l",
+            "text": "< Skills"
+           }
+          ]
+         },
+         {
+          "type": "text",
+          "class": "ntitle",
+          "text": "Equip"
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-r",
+          "onClick": [
+           {
+            "navigate": "relics"
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "nb nb-r",
+            "text": "Relics >"
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "name": "relics",
+       "child": {
+        "type": "box",
+        "class": "page page-relics",
+        "children": [
+         {
+          "type": "image",
+          "class": "win w-head",
+          "src": "asset:ui/win-240x20.png"
+         },
+         {
+          "type": "list",
+          "class": "tabs",
+          "items": "$tabs",
+          "template": {
+           "type": "button",
+           "class": "tab",
+           "onClick": [
+            {
+             "set": {
+              "who": "{actor}"
+             }
+            }
+           ],
+           "children": [
+            {
+             "type": "text",
+             "class": "tab-t",
+             "text": "{name}"
+            }
+           ],
+           "classIf": {
+            "sel": "$sel"
+           }
+          }
+         },
+         {
+          "type": "image",
+          "class": "win w-top",
+          "src": "asset:ui/win-240x70.png"
+         },
+         {
+          "type": "list",
+          "class": "slots",
+          "items": "$relics",
+          "template": {
+           "type": "box",
+           "class": "slot",
+           "children": [
+            {
+             "type": "text",
+             "class": "lab slot-l",
+             "text": "{label}"
+            },
+            {
+             "type": "text",
+             "class": "slot-n",
+             "text": "{item}"
+            }
+           ]
+          }
+         },
+         {
+          "type": "image",
+          "class": "eface",
+          "src": "$face"
+         },
+         {
+          "type": "image",
+          "class": "win w-stats",
+          "src": "asset:ui/win-240x86.png"
+         },
+         {
+          "type": "text",
+          "class": "lab st-ex-l",
+          "text": "EXP"
+         },
+         {
+          "type": "text",
+          "class": "num st-ex",
+          "text": "{sel.exp}"
+         },
+         {
+          "type": "text",
+          "class": "lab st-lv-l",
+          "text": "LV"
+         },
+         {
+          "type": "text",
+          "class": "num st-lv",
+          "text": "{sel.level}"
+         },
+         {
+          "type": "text",
+          "class": "lab st-hp-l",
+          "text": "HP"
+         },
+         {
+          "type": "text",
+          "class": "num st-hp",
+          "text": "{sel.hp}/{sel.maxHp}"
+         },
+         {
+          "type": "text",
+          "class": "lab st-mp-l",
+          "text": "MP"
+         },
+         {
+          "type": "text",
+          "class": "num st-mp",
+          "text": "{sel.mp}/{sel.maxMp}"
+         },
+         {
+          "type": "text",
+          "class": "lab st-str-l",
+          "text": "Strength"
+         },
+         {
+          "type": "text",
+          "class": "num st-str",
+          "text": "{sel.vigor}"
+         },
+         {
+          "type": "text",
+          "class": "lab st-spd-l",
+          "text": "Speed"
+         },
+         {
+          "type": "text",
+          "class": "num st-spd",
+          "text": "{sel.speed}"
+         },
+         {
+          "type": "text",
+          "class": "lab st-sta-l",
+          "text": "Stamina"
+         },
+         {
+          "type": "text",
+          "class": "num st-sta",
+          "text": "{sel.stamina}"
+         },
+         {
+          "type": "text",
+          "class": "lab st-mag-l",
+          "text": "Magic"
+         },
+         {
+          "type": "text",
+          "class": "num st-mag",
+          "text": "{sel.magic}"
+         },
+         {
+          "type": "text",
+          "class": "lab st-cmd-l",
+          "text": "Commands"
+         },
+         {
+          "type": "text",
+          "class": "cmds",
+          "text": "{sel.commands}"
+         },
+         {
+          "type": "image",
+          "class": "win w-nl",
+          "src": "asset:ui/win-76x26.png"
+         },
+         {
+          "type": "image",
+          "class": "win w-nt",
+          "src": "asset:ui/win-80x26.png"
+         },
+         {
+          "type": "image",
+          "class": "win w-nr",
+          "src": "asset:ui/win-76x26.png"
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-l",
+          "onClick": [
+           {
+            "navigate": "equip"
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "nb nb-l",
+            "text": "< Equip"
+           }
+          ]
+         },
+         {
+          "type": "text",
+          "class": "ntitle",
+          "text": "Relics"
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-r",
+          "onClick": [
+           {
+            "navigate": "formation"
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "nb nb-r",
+            "text": "Formation >"
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "name": "status",
+       "child": {
+        "type": "box",
+        "class": "page page-status",
+        "children": [
+         {
+          "type": "image",
+          "class": "win w-head",
+          "src": "asset:ui/win-240x20.png"
+         },
+         {
+          "type": "list",
+          "class": "tabs",
+          "items": "$tabs",
+          "template": {
+           "type": "button",
+           "class": "tab",
+           "onClick": [
+            {
+             "set": {
+              "who": "{actor}"
+             }
+            }
+           ],
+           "children": [
+            {
+             "type": "text",
+             "class": "tab-t",
+             "text": "{name}"
+            }
+           ],
+           "classIf": {
+            "sel": "$sel"
+           }
+          }
+         },
+         {
+          "type": "image",
+          "class": "win w-top",
+          "src": "asset:ui/win-240x70.png"
+         },
+         {
+          "type": "image",
+          "class": "sface",
+          "src": "$face"
+         },
+         {
+          "type": "text",
+          "class": "sname",
+          "text": "{sel.name}"
+         },
+         {
+          "type": "text",
+          "class": "sclass",
+          "text": "{sel.class}"
+         },
+         {
+          "type": "text",
+          "class": "lab sa-l",
+          "text": "Esper"
+         },
+         {
+          "type": "text",
+          "class": "sa-n",
+          "text": "{sel.esper}"
+         },
+         {
+          "type": "text",
+          "class": "lab sb-l",
+          "text": "Spells"
+         },
+         {
+          "type": "text",
+          "class": "sb-n",
+          "text": "{sel.spellCount} learned"
+         },
+         {
+          "type": "image",
+          "class": "win w-stats",
+          "src": "asset:ui/win-240x86.png"
+         },
+         {
+          "type": "text",
+          "class": "lab st-ex-l",
+          "text": "EXP",
+          "visibleIf": "$notCombat"
+         },
+         {
+          "type": "text",
+          "class": "num st-ex",
+          "text": "{sel.exp}",
+          "visibleIf": "$notCombat"
+         },
+         {
+          "type": "text",
+          "class": "lab st-lv-l",
+          "text": "LV",
+          "visibleIf": "$notCombat"
+         },
+         {
+          "type": "text",
+          "class": "num st-lv",
+          "text": "{sel.level}",
+          "visibleIf": "$notCombat"
+         },
+         {
+          "type": "text",
+          "class": "lab st-hp-l",
+          "text": "HP",
+          "visibleIf": "$notCombat"
+         },
+         {
+          "type": "text",
+          "class": "num st-hp",
+          "text": "{sel.hp}/{sel.maxHp}",
+          "visibleIf": "$notCombat"
+         },
+         {
+          "type": "text",
+          "class": "lab st-mp-l",
+          "text": "MP",
+          "visibleIf": "$notCombat"
+         },
+         {
+          "type": "text",
+          "class": "num st-mp",
+          "text": "{sel.mp}/{sel.maxMp}",
+          "visibleIf": "$notCombat"
+         },
+         {
+          "type": "text",
+          "class": "lab st-str-l",
+          "text": "Strength",
+          "visibleIf": "$notCombat"
+         },
+         {
+          "type": "text",
+          "class": "num st-str",
+          "text": "{sel.vigor}",
+          "visibleIf": "$notCombat"
+         },
+         {
+          "type": "text",
+          "class": "lab st-spd-l",
+          "text": "Speed",
+          "visibleIf": "$notCombat"
+         },
+         {
+          "type": "text",
+          "class": "num st-spd",
+          "text": "{sel.speed}",
+          "visibleIf": "$notCombat"
+         },
+         {
+          "type": "text",
+          "class": "lab st-sta-l",
+          "text": "Stamina",
+          "visibleIf": "$notCombat"
+         },
+         {
+          "type": "text",
+          "class": "num st-sta",
+          "text": "{sel.stamina}",
+          "visibleIf": "$notCombat"
+         },
+         {
+          "type": "text",
+          "class": "lab st-mag-l",
+          "text": "Magic",
+          "visibleIf": "$notCombat"
+         },
+         {
+          "type": "text",
+          "class": "num st-mag",
+          "text": "{sel.magic}",
+          "visibleIf": "$notCombat"
+         },
+         {
+          "type": "text",
+          "class": "lab st-cmd-l",
+          "text": "Commands",
+          "visibleIf": "$notCombat"
+         },
+         {
+          "type": "text",
+          "class": "cmds",
+          "text": "{sel.commands}",
+          "visibleIf": "$notCombat"
+         },
+         {
+          "type": "text",
+          "class": "lab sc-a-l",
+          "text": "Attack",
+          "visibleIf": "$combat"
+         },
+         {
+          "type": "text",
+          "class": "num sc-a",
+          "text": "{sel.attackText}",
+          "visibleIf": "$combat"
+         },
+         {
+          "type": "text",
+          "class": "lab sc-d-l",
+          "text": "Defense",
+          "visibleIf": "$combat"
+         },
+         {
+          "type": "text",
+          "class": "num sc-d",
+          "text": "{sel.defense}",
+          "visibleIf": "$combat"
+         },
+         {
+          "type": "text",
+          "class": "lab sc-e-l",
+          "text": "Evasion",
+          "visibleIf": "$combat"
+         },
+         {
+          "type": "text",
+          "class": "num sc-e",
+          "text": "{sel.evasion}%",
+          "visibleIf": "$combat"
+         },
+         {
+          "type": "text",
+          "class": "lab sc-md-l",
+          "text": "Mag Defense",
+          "visibleIf": "$combat"
+         },
+         {
+          "type": "text",
+          "class": "num sc-md",
+          "text": "{sel.mdefense}",
+          "visibleIf": "$combat"
+         },
+         {
+          "type": "text",
+          "class": "lab sc-me-l",
+          "text": "Mag Evasion",
+          "visibleIf": "$combat"
+         },
+         {
+          "type": "text",
+          "class": "num sc-me",
+          "text": "{sel.mevasion}%",
+          "visibleIf": "$combat"
+         },
+         {
+          "type": "text",
+          "class": "lab sc-n-l",
+          "text": "Next LV",
+          "visibleIf": "$combat"
+         },
+         {
+          "type": "text",
+          "class": "num sc-n",
+          "text": "{sel.expNext}",
+          "visibleIf": "$combat"
+         },
+         {
+          "type": "button",
+          "class": "combat-btn",
+          "onClick": [
+           {
+            "set": {
+             "sp": 1
+            }
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "combat-t",
+            "text": "Combat >"
+           }
+          ],
+          "visibleIf": "$notCombat"
+         },
+         {
+          "type": "button",
+          "class": "combat-btn",
+          "onClick": [
+           {
+            "set": {
+             "sp": 0
+            }
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "combat-t",
+            "text": "< Stats"
+           }
+          ],
+          "visibleIf": "$combat"
+         },
+         {
+          "type": "image",
+          "class": "win w-nl",
+          "src": "asset:ui/win-76x26.png"
+         },
+         {
+          "type": "image",
+          "class": "win w-nt",
+          "src": "asset:ui/win-80x26.png"
+         },
+         {
+          "type": "image",
+          "class": "win w-nr",
+          "src": "asset:ui/win-76x26.png"
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-l",
+          "onClick": [
+           {
+            "navigate": "party"
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "nb nb-l",
+            "text": "< Party"
+           }
+          ]
+         },
+         {
+          "type": "text",
+          "class": "ntitle",
+          "text": "Status"
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-r",
+          "onClick": [
+           {
+            "navigate": "equip"
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "nb nb-r",
+            "text": "Equip >"
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "name": "formation",
+       "child": {
+        "type": "box",
+        "class": "page page-formation",
+        "children": [
+         {
+          "type": "image",
+          "class": "win w-head",
+          "src": "asset:ui/win-240x20.png"
+         },
+         {
+          "type": "text",
+          "class": "lab form-hint",
+          "text": "{formationHint}"
+         },
+         {
+          "type": "image",
+          "class": "win w-form",
+          "src": "asset:ui/win-240x158.png"
+         },
+         {
+          "type": "list",
+          "class": "fmembers",
+          "items": "$party",
+          "template": {
+           "type": "button",
+           "class": "mem",
+           "onClick": [
+            {
+             "call": "pick",
+             "args": [
+              "{actor}"
+             ]
+            }
+           ],
+           "children": [
+            {
+             "type": "image",
+             "class": "mface",
+             "src": "$face"
+            },
+            {
+             "type": "text",
+             "class": "mname",
+             "text": "{name}"
+            },
+            {
+             "type": "text",
+             "class": "mclass",
+             "text": "{class}"
+            },
+            {
+             "type": "text",
+             "class": "lab mlv-l",
+             "text": "LV"
+            },
+            {
+             "type": "text",
+             "class": "num mlv",
+             "text": "{level}"
+            },
+            {
+             "type": "text",
+             "class": "lab mhp-l",
+             "text": "HP"
+            },
+            {
+             "type": "text",
+             "class": "num mhp",
+             "text": "{hp}/{maxHp}"
+            },
+            {
+             "type": "text",
+             "class": "lab mmp-l",
+             "text": "MP"
+            },
+            {
+             "type": "text",
+             "class": "num mmp",
+             "text": "{mp}/{maxMp}"
+            }
+           ],
+           "classIf": {
+            "marked": "$marked"
+           }
+          }
+         },
+         {
+          "type": "image",
+          "class": "win w-nl",
+          "src": "asset:ui/win-76x26.png"
+         },
+         {
+          "type": "image",
+          "class": "win w-nt",
+          "src": "asset:ui/win-80x26.png"
+         },
+         {
+          "type": "image",
+          "class": "win w-nr",
+          "src": "asset:ui/win-76x26.png"
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-l",
+          "onClick": [
+           {
+            "navigate": "relics"
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "nb nb-l",
+            "text": "< Relics"
+           }
+          ]
+         },
+         {
+          "type": "text",
+          "class": "ntitle",
+          "text": "Formation"
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-r",
+          "onClick": [
+           {
+            "navigate": "config"
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "nb nb-r",
+            "text": "Config >"
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "name": "config",
+       "child": {
+        "type": "box",
+        "class": "page page-config",
+        "children": [
+         {
+          "type": "image",
+          "class": "win w-head",
+          "src": "asset:ui/win-240x20.png"
+         },
+         {
+          "type": "text",
+          "class": "head-title",
+          "text": "Config"
+         },
+         {
+          "type": "image",
+          "class": "win w-conf",
+          "src": "asset:ui/win-240x158.png"
+         },
+         {
+          "type": "list",
+          "class": "crows",
+          "items": "$config",
+          "template": {
+           "type": "box",
+           "class": "crow",
+           "children": [
+            {
+             "type": "text",
+             "class": "lab clab",
+             "text": "{label}"
+            },
+            {
+             "type": "list",
+             "class": "copts",
+             "items": "$opts",
+             "template": {
+              "type": "button",
+              "class": "copt",
+              "onClick": [
+               {
+                "call": "setConfig",
+                "args": [
+                 "{row}",
+                 "{val}"
+                ]
+               }
+              ],
+              "children": [
+               {
+                "type": "text",
+                "class": "copt-t",
+                "text": "{text}"
+               }
+              ],
+              "classIf": {
+               "sel": "$sel"
+              }
+             },
+             "classIf": {}
+            }
+           ],
+           "classIf": {
+            "six": "$six"
+           }
+          }
+         },
+         {
+          "type": "image",
+          "class": "win w-nl",
+          "src": "asset:ui/win-76x26.png"
+         },
+         {
+          "type": "image",
+          "class": "win w-nt",
+          "src": "asset:ui/win-80x26.png"
+         },
+         {
+          "type": "image",
+          "class": "win w-nr",
+          "src": "asset:ui/win-76x26.png"
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-l",
+          "onClick": [
+           {
+            "navigate": "formation"
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "nb nb-l",
+            "text": "< Formation"
+           }
+          ]
+         },
+         {
+          "type": "text",
+          "class": "ntitle",
+          "text": "Config"
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-r",
+          "onClick": [
+           {
+            "navigate": "party"
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "nb nb-r",
+            "text": "Party >"
+           }
+          ]
+         }
+        ]
+       }
+      }
+     ]
+    }
+   ],
+   "visibleIf": "$ready"
+  }
+ ],
+ "id": "screen"
+}

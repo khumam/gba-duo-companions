@@ -1,0 +1,21 @@
+{
+  "id": "final-fantasy-tactics-advance-companion",
+  "name": "Final Fantasy Tactics Advance Companion",
+  "version": "0.1.0",
+  "author": "khumam",
+  "formatVersion": 3,
+  "match": {
+    "gameCode": [
+      "AFXE"
+    ],
+    "crc32": []
+  },
+  "tickHz": 4,
+  "layout": "layout.json",
+  "styles": [
+    "style.css"
+  ],
+  "script": "main.lua",
+  "values": {},
+  "permissions": []
+}

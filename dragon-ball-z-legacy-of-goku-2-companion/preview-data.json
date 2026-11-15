@@ -1,0 +1,151 @@
+{
+ "ready": true,
+ "waiting": false,
+ "multi": true,
+ "prevWho": 5,
+ "nextWho": 2,
+ "member": {
+  "idx": 1,
+  "name": "Gohan",
+  "level": 40,
+  "hp": 904,
+  "maxHp": 904,
+  "hpPct": 1,
+  "ep": 134,
+  "maxEp": 134,
+  "epPct": 1,
+  "str": 100,
+  "pow": 100,
+  "end_": 100,
+  "strPct": 1,
+  "powPct": 1,
+  "endPct": 1,
+  "exp": 3147647,
+  "next": 187863,
+  "portrait": "asset:gfx/p0.png"
+ },
+ "roster": [
+  {
+   "idx": 1,
+   "name": "GOHAN",
+   "sel": true
+  },
+  {
+   "idx": 2,
+   "name": "PICCOLO",
+   "sel": false
+  },
+  {
+   "idx": 3,
+   "name": "VEGETA",
+   "sel": false
+  },
+  {
+   "idx": 4,
+   "name": "TRUNKS",
+   "sel": false
+  },
+  {
+   "idx": 5,
+   "name": "GOKU",
+   "sel": false
+  }
+ ],
+ "items": [
+  {
+   "slot": 0,
+   "name": "Golden Cap.",
+   "count": "1/1",
+   "hasCount": false,
+   "icon": "asset:gfx/i0.png",
+   "sel": false
+  },
+  {
+   "slot": 1,
+   "name": "STR Cap. +1",
+   "count": "1/99",
+   "hasCount": true,
+   "icon": "asset:gfx/i1.png",
+   "sel": false
+  },
+  {
+   "slot": 3,
+   "name": "STR Cap. +5",
+   "count": "85/99",
+   "hasCount": true,
+   "icon": "asset:gfx/i3.png",
+   "sel": true
+  },
+  {
+   "slot": 4,
+   "name": "PWR Cap. +1",
+   "count": "1/99",
+   "hasCount": true,
+   "icon": "asset:gfx/i4.png",
+   "sel": false
+  },
+  {
+   "slot": 6,
+   "name": "PWR Cap. +5",
+   "count": "95/99",
+   "hasCount": true,
+   "icon": "asset:gfx/i6.png",
+   "sel": false
+  },
+  {
+   "slot": 16,
+   "name": "Golden Cap.",
+   "count": "25/25",
+   "hasCount": true,
+   "icon": "asset:gfx/i16.png",
+   "sel": false
+  },
+  {
+   "slot": 20,
+   "name": "Cookie",
+   "count": "3/99",
+   "hasCount": true,
+   "icon": "asset:gfx/i20.png",
+   "sel": false
+  },
+  {
+   "slot": 21,
+   "name": "Scouter",
+   "count": "1/1",
+   "hasCount": false,
+   "icon": "asset:gfx/i21.png",
+   "sel": false
+  }
+ ],
+ "detail": {
+  "name": "STR Cap. +5",
+  "desc": "Raises Strength by 5",
+  "big": "asset:gfx/b3.png",
+  "slot": 3,
+  "prompt": "Use STR Cap. +5?",
+  "sub": "on Gohan",
+  "canUse": true,
+  "noUse": false
+ },
+ "noItems": false,
+ "prevItem": 1,
+ "nextItem": 4,
+ "multiItems": true,
+ "done": [
+  {
+   "text": "Meet up with the others in the Briefs' residence to hear Cell's announcement"
+  },
+  {
+   "text": "Talk to Bulma in Dr. Briefs' workshop"
+  },
+  {
+   "text": "Meet Master Roshi at Capsule Corporation"
+  },
+  {
+   "text": "Prevent Cell from absorbing Android 18"
+  }
+ ],
+ "noDone": false,
+ "_wide": false,
+ "_wideLabel": "OFF"
+}

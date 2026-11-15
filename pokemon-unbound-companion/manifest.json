@@ -1,0 +1,26 @@
+{
+  "id": "pokemon-unbound-companion",
+  "name": "Pokemon Unbound Companion",
+  "version": "0.1.0",
+  "author": "khumam",
+  "formatVersion": 4,
+  "gameScript": "game.lua",
+  "match": {
+    "gameCode": [
+      "BPRE"
+    ],
+    "crc32": [
+      "d8900587"
+    ]
+  },
+  "tickHz": 4,
+  "layout": "layout.json",
+  "styles": [
+    "style.css"
+  ],
+  "script": "main.lua",
+  "values": {},
+  "permissions": [
+    "memory-write"
+  ]
+}

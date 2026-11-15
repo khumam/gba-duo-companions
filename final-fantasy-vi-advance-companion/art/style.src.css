@@ -1,0 +1,159 @@
+/*
+ * Final Fantasy VI Advance companion: every page of the game's pause menu (Party, Items, Abilities, Equip, Relics, Status,
+ * Formation, Config), rebuilt for the second screen and joined by left / right buttons that cycle through them. Windows are PNGs
+ * from art/ui.py (the game's blue gradient and grey frame); text sits on the 248 x 216 art-pixel grid (`10ap`: `python3 art/css.py`
+ * expands ap to px, 1ap = 2.168px = 5 device px). Edit this file, not style.css.
+ */
+:root { --cyan: #00dee7; --amber: #ffd070; --grey: #8c8cb4; }
+@font-face { font-family: "Jersey"; src: url("assets/fonts/Jersey10-Regular.ttf"); }
+
+image { image-rendering: pixelated; }
+text { white-space: nowrap; }
+#screen { width: 100%; height: 100%; position: relative; overflow: hidden; background-color: #000000; }
+.waiting, .ready, .stage { width: 100%; height: 100%; position: relative; }
+.page { width: 100%; height: 100%; position: relative; overflow: hidden; background-color: #000000;
+  font-family: "Jersey"; font-size: 10ap; color: #ffffff; text-shadow: 1ap 1ap 0 #000000; }
+.lab { color: var(--cyan); position: absolute; }
+.num { position: absolute; text-align: right; }
+.win { position: absolute; }
+
+/* windows */
+.w-party { left: 4ap; top: 4ap; width: 240ap; height: 156ap; }
+.w-info { left: 4ap; top: 162ap; width: 240ap; height: 22ap; }
+.w-head { left: 4ap; top: 4ap; width: 240ap; height: 20ap; }
+.w-list { left: 4ap; top: 26ap; width: 240ap; height: 134ap; }
+.w-form, .w-conf { left: 4ap; top: 26ap; width: 240ap; height: 158ap; }
+.w-esper { left: 4ap; top: 26ap; width: 240ap; height: 68ap; }
+.w-magic { left: 4ap; top: 96ap; width: 240ap; height: 88ap; }
+.w-top { left: 4ap; top: 26ap; width: 240ap; height: 70ap; }
+.w-stats { left: 4ap; top: 98ap; width: 240ap; height: 86ap; }
+.w-wait { left: 4ap; top: 4ap; width: 240ap; height: 208ap; }
+.w-pop { left: 24ap; top: 58ap; width: 200ap; height: 86ap; }
+.w-nl { left: 4ap; top: 186ap; width: 76ap; height: 26ap; }
+.w-nt { left: 84ap; top: 186ap; width: 80ap; height: 26ap; }
+.w-nr { left: 168ap; top: 186ap; width: 76ap; height: 26ap; }
+
+/* nav: left / right buttons that cycle the pages */
+.nbtn { position: absolute; top: 186ap; width: 76ap; height: 26ap; padding: 0; margin: 0; background: none; border: 0; border-radius: 0; justify-content: center; align-items: center; }
+.nbtn-l { left: 4ap; } .nbtn-r { left: 168ap; }
+.nb { color: #ffffff; }
+.nbtn:pressed .nb { color: var(--amber); }
+.ntitle { position: absolute; left: 84ap; width: 80ap; top: 192ap; text-align: center; color: var(--cyan); }
+
+/* party / formation rows */
+.members, .fmembers { position: absolute; left: 4ap; top: 8ap; width: 240ap; height: 148ap; }
+.fmembers { top: 30ap; }
+.mem { position: relative; width: 240ap; height: 37ap; padding: 0; margin: 0; background: none; border: 0; border-radius: 0; justify-content: flex-start; align-items: flex-start; }
+.mem.marked .mname { color: var(--cyan); }
+.mem:pressed .mname { color: var(--amber); }
+.mface { position: absolute; left: 6ap; top: 0; width: 34ap; height: 37ap; }
+.mname { position: absolute; left: 46ap; top: 0; }
+.mclass { position: absolute; left: 46ap; width: 186ap; top: 0; text-align: right; }
+.mlv-l { left: 60ap; top: 9ap; } .mlv { left: 60ap; width: 52ap; top: 9ap; }
+.mhp-l { left: 60ap; top: 18ap; } .mhp { left: 60ap; width: 100ap; top: 18ap; }
+.mmp-l { left: 60ap; top: 27ap; } .mmp { left: 60ap; width: 100ap; top: 27ap; }
+.i-time-l { left: 12ap; top: 167ap; } .i-time { left: 12ap; width: 66ap; top: 167ap; }
+.i-steps-l { left: 88ap; top: 167ap; } .i-steps { left: 88ap; width: 74ap; top: 167ap; }
+.i-gil-l { left: 170ap; top: 167ap; } .i-gil { left: 170ap; width: 66ap; top: 167ap; }
+.form-hint { left: 12ap; top: 9ap; }
+
+/* items */
+.head-title { position: absolute; left: 150ap; width: 86ap; top: 9ap; text-align: right; color: var(--cyan); }
+.itemlist { position: absolute; left: 10ap; top: 31ap; width: 228ap; height: 125ap; overflow: auto; display: grid; grid-template-columns: 108ap 108ap; column-gap: 12ap; }
+.icell { width: 108ap; height: 11ap; padding: 0; margin: 0; background: none; border: 0; border-radius: 0; flex-direction: row; justify-content: flex-start; align-items: center; }
+.iname { flex: 1; } .iqty { width: 30ap; text-align: right; }
+.icell.sel .iname, .icell.sel .iqty { color: var(--cyan); }
+.icell:pressed .iname { color: var(--amber); }
+.empty { position: absolute; left: 4ap; width: 240ap; top: 86ap; text-align: center; }
+.sel-name { position: absolute; left: 12ap; top: 167ap; }
+.sel-qty { left: 150ap; width: 86ap; top: 167ap; text-align: right; }
+
+/* character tabs */
+.tabs { position: absolute; left: 6ap; top: 4ap; width: 236ap; height: 20ap; flex-direction: row; }
+.tab { width: 58ap; height: 20ap; padding: 0; margin: 0; background: none; border: 0; border-radius: 0; justify-content: center; align-items: center; }
+.tab-t { color: #ffffff; }
+.tab.sel .tab-t { color: var(--cyan); }
+.tab:pressed .tab-t { color: var(--amber); }
+
+/* abilities */
+.esper-l { left: 12ap; top: 30ap; } .esper-n { position: absolute; left: 60ap; top: 30ap; }
+.espers { position: absolute; left: 10ap; top: 42ap; width: 228ap; height: 50ap; overflow: auto; display: grid; grid-template-columns: 76ap 76ap 76ap; }
+.magic-l { left: 12ap; top: 100ap; } .magic-n { position: absolute; left: 60ap; top: 100ap; }
+.spells { position: absolute; left: 10ap; top: 112ap; width: 228ap; height: 70ap; overflow: auto; display: grid; grid-template-columns: 76ap 76ap 76ap; }
+.cell { width: 76ap; height: 11ap; }
+.cell.mine { color: var(--cyan); }
+.cell.taken { color: var(--grey); }
+
+/* skills */
+.w-kind { left: 4ap; top: 26ap; width: 240ap; height: 22ap; }
+.w-slist { left: 4ap; top: 50ap; width: 240ap; height: 134ap; }
+.kinds { position: absolute; left: 6ap; top: 28ap; width: 236ap; height: 18ap; flex-direction: row; }
+.kind { width: 47ap; height: 18ap; padding: 0; margin: 0; background: none; border: 0; border-radius: 0; justify-content: center; align-items: center; }
+.kind-t { color: #ffffff; font-size: 8ap; }
+.kind.sel .kind-t { color: var(--cyan); }
+.kind.off .kind-t { color: var(--grey); }
+.kind.sel.off .kind-t { color: var(--cyan); }
+.kind:pressed .kind-t { color: var(--amber); }
+.sklist { position: absolute; left: 10ap; top: 54ap; width: 228ap; height: 126ap; overflow: auto; display: grid; grid-template-columns: 112ap 112ap; column-gap: 4ap; }
+.scell { width: 112ap; height: 11ap; }
+.sk-empty { position: absolute; left: 4ap; width: 240ap; top: 110ap; text-align: center; color: var(--grey); }
+
+/* equip / relics / status */
+.slots { position: absolute; left: 14ap; top: 32ap; width: 184ap; height: 60ap; }
+.slot { width: 184ap; height: 14ap; flex-direction: row; align-items: center; }
+.slot .lab { position: relative; width: 56ap; }
+.slot-n { flex: 1; }
+.eface { position: absolute; left: 204ap; top: 32ap; width: 34ap; height: 37ap; }
+.sface { position: absolute; left: 10ap; top: 31ap; width: 34ap; height: 37ap; }
+.sname { position: absolute; left: 52ap; top: 32ap; }
+.sclass { position: absolute; left: 52ap; top: 32ap; width: 182ap; text-align: right; }
+.sa-l { left: 52ap; top: 46ap; } .sa-n { position: absolute; left: 100ap; top: 46ap; }
+.sb-l { left: 52ap; top: 58ap; } .sb-n { position: absolute; left: 100ap; top: 58ap; }
+.st-ex-l, .st-lv-l, .st-hp-l, .st-mp-l { left: 12ap; }
+.st-ex, .st-lv, .st-hp, .st-mp { left: 12ap; width: 108ap; }
+.st-str-l, .st-spd-l, .st-sta-l, .st-mag-l { left: 128ap; }
+.st-str, .st-spd, .st-sta, .st-mag { left: 128ap; width: 108ap; }
+.st-lv-l, .st-lv, .st-str-l, .st-str { top: 104ap; }
+.st-hp-l, .st-hp, .st-spd-l, .st-spd { top: 118ap; }
+.st-mp-l, .st-mp, .st-sta-l, .st-sta { top: 132ap; }
+.st-ex-l, .st-ex, .st-mag-l, .st-mag { top: 146ap; }
+.st-cmd-l { left: 12ap; top: 164ap; }
+.cmds { position: absolute; left: 70ap; top: 164ap; width: 112ap; }
+.combat-btn { position: absolute; left: 186ap; top: 162ap; width: 50ap; height: 14ap; padding: 0; justify-content: center; align-items: center; }
+.combat-t { font-size: 8ap; color: var(--cyan); }
+.sc-a-l, .sc-d-l, .sc-e-l, .sc-n-l { left: 12ap; }
+.sc-a, .sc-d, .sc-e, .sc-n { left: 12ap; width: 108ap; }
+.sc-md-l, .sc-me-l { left: 128ap; }
+.sc-md, .sc-me { left: 128ap; width: 108ap; }
+.sc-a-l, .sc-a, .sc-md-l, .sc-md { top: 104ap; }
+.sc-d-l, .sc-d, .sc-me-l, .sc-me { top: 118ap; }
+.sc-e-l, .sc-e { top: 132ap; }
+.sc-n-l, .sc-n { top: 146ap; }
+
+/* config */
+.crows { position: absolute; left: 10ap; top: 32ap; width: 228ap; height: 148ap; }
+.crow { width: 228ap; height: 17ap; flex-direction: row; align-items: center; }
+.crow .clab { position: relative; width: 96ap; }
+.copts { flex-direction: row; }
+.copt { height: 15ap; width: 66ap; padding: 0; margin: 0; background: none; border: 0; border-radius: 0; justify-content: flex-start; align-items: center; }
+.crow.six .copt { width: 22ap; }
+.copt-t { color: var(--grey); }
+.copt.sel .copt-t { color: #ffffff; }
+.copt:pressed .copt-t { color: var(--amber); }
+
+/* item popup */
+.poplayer { position: absolute; left: 0; top: 0; width: 248ap; height: 216ap; }
+.dim { position: absolute; left: 0; top: 0; width: 248ap; height: 216ap; padding: 0; margin: 0; border: 0; border-radius: 0; background-color: #00000099; }
+.pop-q { position: absolute; left: 36ap; width: 176ap; top: 66ap; }
+.pop-sub { left: 36ap; width: 176ap; top: 78ap; white-space: normal; line-height: 10ap; }
+.targets { position: absolute; left: 32ap; top: 100ap; width: 188ap; height: 16ap; flex-direction: row; }
+.tgt { width: 47ap; height: 16ap; padding: 0; margin: 0; background: none; border: 0; border-radius: 0; justify-content: center; align-items: center; }
+.tgt-t { color: #ffffff; } .tgt:pressed .tgt-t { color: var(--amber); }
+.pbtn { position: absolute; top: 120ap; height: 16ap; width: 60ap; padding: 0; margin: 0; background: none; border: 0; border-radius: 0; justify-content: center; align-items: center; }
+.pbtn-yes { left: 48ap; } .pbtn-no { left: 140ap; } .pbtn-ok { left: 94ap; } .pbtn-cancel { left: 94ap; }
+.pbtn-t { color: var(--cyan); } .pbtn:pressed .pbtn-t { color: var(--amber); }
+
+/* waiting */
+.wt-1 { position: absolute; left: 4ap; width: 240ap; top: 84ap; text-align: center; font-size: 14ap; }
+.wt-2 { position: absolute; left: 4ap; width: 240ap; top: 104ap; text-align: center; color: var(--cyan); }
+.wt-3 { position: absolute; left: 4ap; width: 240ap; top: 134ap; text-align: center; }

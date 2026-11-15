@@ -1,0 +1,159 @@
+/*
+ * Final Fantasy VI Advance companion: every page of the game's pause menu (Party, Items, Abilities, Equip, Relics, Status,
+ * Formation, Config), rebuilt for the second screen and joined by left / right buttons that cycle through them. Windows are PNGs
+ * from art/ui.py (the game's blue gradient and grey frame); text sits on the 248 x 216 art-pixel grid (`21.68px`: `python3 art/css.py`
+ * expands ap to px, 2.168px = 2.168px = 5 device px). Edit this file, not style.css.
+ */
+:root { --cyan: #00dee7; --amber: #ffd070; --grey: #8c8cb4; }
+@font-face { font-family: "Jersey"; src: url("assets/fonts/Jersey10-Regular.ttf"); }
+
+image { image-rendering: pixelated; }
+text { white-space: nowrap; }
+#screen { width: 100%; height: 100%; position: relative; overflow: hidden; background-color: #000000; }
+.waiting, .ready, .stage { width: 100%; height: 100%; position: relative; }
+.page { width: 100%; height: 100%; position: relative; overflow: hidden; background-color: #000000;
+  font-family: "Jersey"; font-size: 21.68px; color: #ffffff; text-shadow: 2.168px 2.168px 0 #000000; }
+.lab { color: var(--cyan); position: absolute; }
+.num { position: absolute; text-align: right; }
+.win { position: absolute; }
+
+/* windows */
+.w-party { left: 8.672px; top: 8.672px; width: 520.32px; height: 338.208px; }
+.w-info { left: 8.672px; top: 351.216px; width: 520.32px; height: 47.696px; }
+.w-head { left: 8.672px; top: 8.672px; width: 520.32px; height: 43.36px; }
+.w-list { left: 8.672px; top: 56.368px; width: 520.32px; height: 290.512px; }
+.w-form, .w-conf { left: 8.672px; top: 56.368px; width: 520.32px; height: 342.544px; }
+.w-esper { left: 8.672px; top: 56.368px; width: 520.32px; height: 147.424px; }
+.w-magic { left: 8.672px; top: 208.128px; width: 520.32px; height: 190.784px; }
+.w-top { left: 8.672px; top: 56.368px; width: 520.32px; height: 151.76px; }
+.w-stats { left: 8.672px; top: 212.464px; width: 520.32px; height: 186.448px; }
+.w-wait { left: 8.672px; top: 8.672px; width: 520.32px; height: 450.944px; }
+.w-pop { left: 52.032px; top: 125.744px; width: 433.6px; height: 186.448px; }
+.w-nl { left: 8.672px; top: 403.248px; width: 164.768px; height: 56.368px; }
+.w-nt { left: 182.112px; top: 403.248px; width: 173.44px; height: 56.368px; }
+.w-nr { left: 364.224px; top: 403.248px; width: 164.768px; height: 56.368px; }
+
+/* nav: left / right buttons that cycle the pages */
+.nbtn { position: absolute; top: 403.248px; width: 164.768px; height: 56.368px; padding: 0; margin: 0; background: none; border: 0; border-radius: 0; justify-content: center; align-items: center; }
+.nbtn-l { left: 8.672px; } .nbtn-r { left: 364.224px; }
+.nb { color: #ffffff; }
+.nbtn:pressed .nb { color: var(--amber); }
+.ntitle { position: absolute; left: 182.112px; width: 173.44px; top: 416.256px; text-align: center; color: var(--cyan); }
+
+/* party / formation rows */
+.members, .fmembers { position: absolute; left: 8.672px; top: 17.344px; width: 520.32px; height: 320.864px; }
+.fmembers { top: 65.04px; }
+.mem { position: relative; width: 520.32px; height: 80.216px; padding: 0; margin: 0; background: none; border: 0; border-radius: 0; justify-content: flex-start; align-items: flex-start; }
+.mem.marked .mname { color: var(--cyan); }
+.mem:pressed .mname { color: var(--amber); }
+.mface { position: absolute; left: 13.008px; top: 0; width: 73.712px; height: 80.216px; }
+.mname { position: absolute; left: 99.728px; top: 0; }
+.mclass { position: absolute; left: 99.728px; width: 403.248px; top: 0; text-align: right; }
+.mlv-l { left: 130.08px; top: 19.512px; } .mlv { left: 130.08px; width: 112.736px; top: 19.512px; }
+.mhp-l { left: 130.08px; top: 39.024px; } .mhp { left: 130.08px; width: 216.8px; top: 39.024px; }
+.mmp-l { left: 130.08px; top: 58.536px; } .mmp { left: 130.08px; width: 216.8px; top: 58.536px; }
+.i-time-l { left: 26.016px; top: 362.056px; } .i-time { left: 26.016px; width: 143.088px; top: 362.056px; }
+.i-steps-l { left: 190.784px; top: 362.056px; } .i-steps { left: 190.784px; width: 160.432px; top: 362.056px; }
+.i-gil-l { left: 368.56px; top: 362.056px; } .i-gil { left: 368.56px; width: 143.088px; top: 362.056px; }
+.form-hint { left: 26.016px; top: 19.512px; }
+
+/* items */
+.head-title { position: absolute; left: 325.2px; width: 186.448px; top: 19.512px; text-align: right; color: var(--cyan); }
+.itemlist { position: absolute; left: 21.68px; top: 67.208px; width: 494.304px; height: 271px; overflow: auto; display: grid; grid-template-columns: 234.144px 234.144px; column-gap: 26.016px; }
+.icell { width: 234.144px; height: 23.848px; padding: 0; margin: 0; background: none; border: 0; border-radius: 0; flex-direction: row; justify-content: flex-start; align-items: center; }
+.iname { flex: 1; } .iqty { width: 65.04px; text-align: right; }
+.icell.sel .iname, .icell.sel .iqty { color: var(--cyan); }
+.icell:pressed .iname { color: var(--amber); }
+.empty { position: absolute; left: 8.672px; width: 520.32px; top: 186.448px; text-align: center; }
+.sel-name { position: absolute; left: 26.016px; top: 362.056px; }
+.sel-qty { left: 325.2px; width: 186.448px; top: 362.056px; text-align: right; }
+
+/* character tabs */
+.tabs { position: absolute; left: 13.008px; top: 8.672px; width: 511.648px; height: 43.36px; flex-direction: row; }
+.tab { width: 125.744px; height: 43.36px; padding: 0; margin: 0; background: none; border: 0; border-radius: 0; justify-content: center; align-items: center; }
+.tab-t { color: #ffffff; }
+.tab.sel .tab-t { color: var(--cyan); }
+.tab:pressed .tab-t { color: var(--amber); }
+
+/* abilities */
+.esper-l { left: 26.016px; top: 65.04px; } .esper-n { position: absolute; left: 130.08px; top: 65.04px; }
+.espers { position: absolute; left: 21.68px; top: 91.056px; width: 494.304px; height: 108.4px; overflow: auto; display: grid; grid-template-columns: 164.768px 164.768px 164.768px; }
+.magic-l { left: 26.016px; top: 216.8px; } .magic-n { position: absolute; left: 130.08px; top: 216.8px; }
+.spells { position: absolute; left: 21.68px; top: 242.816px; width: 494.304px; height: 151.76px; overflow: auto; display: grid; grid-template-columns: 164.768px 164.768px 164.768px; }
+.cell { width: 164.768px; height: 23.848px; }
+.cell.mine { color: var(--cyan); }
+.cell.taken { color: var(--grey); }
+
+/* skills */
+.w-kind { left: 8.672px; top: 56.368px; width: 520.32px; height: 47.696px; }
+.w-slist { left: 8.672px; top: 108.4px; width: 520.32px; height: 290.512px; }
+.kinds { position: absolute; left: 13.008px; top: 60.704px; width: 511.648px; height: 39.024px; flex-direction: row; }
+.kind { width: 101.896px; height: 39.024px; padding: 0; margin: 0; background: none; border: 0; border-radius: 0; justify-content: center; align-items: center; }
+.kind-t { color: #ffffff; font-size: 17.344px; }
+.kind.sel .kind-t { color: var(--cyan); }
+.kind.off .kind-t { color: var(--grey); }
+.kind.sel.off .kind-t { color: var(--cyan); }
+.kind:pressed .kind-t { color: var(--amber); }
+.sklist { position: absolute; left: 21.68px; top: 117.072px; width: 494.304px; height: 273.168px; overflow: auto; display: grid; grid-template-columns: 242.816px 242.816px; column-gap: 8.672px; }
+.scell { width: 242.816px; height: 23.848px; }
+.sk-empty { position: absolute; left: 8.672px; width: 520.32px; top: 238.48px; text-align: center; color: var(--grey); }
+
+/* equip / relics / status */
+.slots { position: absolute; left: 30.352px; top: 69.376px; width: 398.912px; height: 130.08px; }
+.slot { width: 398.912px; height: 30.352px; flex-direction: row; align-items: center; }
+.slot .lab { position: relative; width: 121.408px; }
+.slot-n { flex: 1; }
+.eface { position: absolute; left: 442.272px; top: 69.376px; width: 73.712px; height: 80.216px; }
+.sface { position: absolute; left: 21.68px; top: 67.208px; width: 73.712px; height: 80.216px; }
+.sname { position: absolute; left: 112.736px; top: 69.376px; }
+.sclass { position: absolute; left: 112.736px; top: 69.376px; width: 394.576px; text-align: right; }
+.sa-l { left: 112.736px; top: 99.728px; } .sa-n { position: absolute; left: 216.8px; top: 99.728px; }
+.sb-l { left: 112.736px; top: 125.744px; } .sb-n { position: absolute; left: 216.8px; top: 125.744px; }
+.st-ex-l, .st-lv-l, .st-hp-l, .st-mp-l { left: 26.016px; }
+.st-ex, .st-lv, .st-hp, .st-mp { left: 26.016px; width: 234.144px; }
+.st-str-l, .st-spd-l, .st-sta-l, .st-mag-l { left: 277.504px; }
+.st-str, .st-spd, .st-sta, .st-mag { left: 277.504px; width: 234.144px; }
+.st-lv-l, .st-lv, .st-str-l, .st-str { top: 225.472px; }
+.st-hp-l, .st-hp, .st-spd-l, .st-spd { top: 255.824px; }
+.st-mp-l, .st-mp, .st-sta-l, .st-sta { top: 286.176px; }
+.st-ex-l, .st-ex, .st-mag-l, .st-mag { top: 316.528px; }
+.st-cmd-l { left: 26.016px; top: 355.552px; }
+.cmds { position: absolute; left: 151.76px; top: 355.552px; width: 242.816px; }
+.combat-btn { position: absolute; left: 403.248px; top: 351.216px; width: 108.4px; height: 30.352px; padding: 0; justify-content: center; align-items: center; }
+.combat-t { font-size: 17.344px; color: var(--cyan); }
+.sc-a-l, .sc-d-l, .sc-e-l, .sc-n-l { left: 26.016px; }
+.sc-a, .sc-d, .sc-e, .sc-n { left: 26.016px; width: 234.144px; }
+.sc-md-l, .sc-me-l { left: 277.504px; }
+.sc-md, .sc-me { left: 277.504px; width: 234.144px; }
+.sc-a-l, .sc-a, .sc-md-l, .sc-md { top: 225.472px; }
+.sc-d-l, .sc-d, .sc-me-l, .sc-me { top: 255.824px; }
+.sc-e-l, .sc-e { top: 286.176px; }
+.sc-n-l, .sc-n { top: 316.528px; }
+
+/* config */
+.crows { position: absolute; left: 21.68px; top: 69.376px; width: 494.304px; height: 320.864px; }
+.crow { width: 494.304px; height: 36.856px; flex-direction: row; align-items: center; }
+.crow .clab { position: relative; width: 208.128px; }
+.copts { flex-direction: row; }
+.copt { height: 32.52px; width: 143.088px; padding: 0; margin: 0; background: none; border: 0; border-radius: 0; justify-content: flex-start; align-items: center; }
+.crow.six .copt { width: 47.696px; }
+.copt-t { color: var(--grey); }
+.copt.sel .copt-t { color: #ffffff; }
+.copt:pressed .copt-t { color: var(--amber); }
+
+/* item popup */
+.poplayer { position: absolute; left: 0; top: 0; width: 537.664px; height: 468.288px; }
+.dim { position: absolute; left: 0; top: 0; width: 537.664px; height: 468.288px; padding: 0; margin: 0; border: 0; border-radius: 0; background-color: #00000099; }
+.pop-q { position: absolute; left: 78.048px; width: 381.568px; top: 143.088px; }
+.pop-sub { left: 78.048px; width: 381.568px; top: 169.104px; white-space: normal; line-height: 21.68px; }
+.targets { position: absolute; left: 69.376px; top: 216.8px; width: 407.584px; height: 34.688px; flex-direction: row; }
+.tgt { width: 101.896px; height: 34.688px; padding: 0; margin: 0; background: none; border: 0; border-radius: 0; justify-content: center; align-items: center; }
+.tgt-t { color: #ffffff; } .tgt:pressed .tgt-t { color: var(--amber); }
+.pbtn { position: absolute; top: 260.16px; height: 34.688px; width: 130.08px; padding: 0; margin: 0; background: none; border: 0; border-radius: 0; justify-content: center; align-items: center; }
+.pbtn-yes { left: 104.064px; } .pbtn-no { left: 303.52px; } .pbtn-ok { left: 203.792px; } .pbtn-cancel { left: 203.792px; }
+.pbtn-t { color: var(--cyan); } .pbtn:pressed .pbtn-t { color: var(--amber); }
+
+/* waiting */
+.wt-1 { position: absolute; left: 8.672px; width: 520.32px; top: 182.112px; text-align: center; font-size: 30.352px; }
+.wt-2 { position: absolute; left: 8.672px; width: 520.32px; top: 225.472px; text-align: center; color: var(--cyan); }
+.wt-3 { position: absolute; left: 8.672px; width: 520.32px; top: 290.512px; text-align: center; }
