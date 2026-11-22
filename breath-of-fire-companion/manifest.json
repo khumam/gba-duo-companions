@@ -1,0 +1,18 @@
+{
+  "id": "breath-of-fire-companion",
+  "name": "Breath of Fire Companion",
+  "version": "0.10.0",
+  "author": "Ress",
+  "formatVersion": 2,
+  "match": {
+    "gameCode": [
+      "ABFE"
+    ]
+  },
+  "tickHz": 4,
+  "layout": "layout.json",
+  "styles": [
+    "style.css"
+  ],
+  "script": "main.lua"
+}

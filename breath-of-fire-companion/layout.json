@@ -1,0 +1,2907 @@
+{
+ "type": "box",
+ "class": "screen",
+ "children": [
+  {
+   "type": "box",
+   "class": "waiting",
+   "children": [
+    {
+     "type": "box",
+     "class": "win wait-win",
+     "children": [
+      {
+       "type": "box",
+       "class": "stud tl",
+       "children": []
+      },
+      {
+       "type": "box",
+       "class": "stud tr",
+       "children": []
+      },
+      {
+       "type": "box",
+       "class": "stud bl",
+       "children": []
+      },
+      {
+       "type": "box",
+       "class": "stud br",
+       "children": []
+      },
+      {
+       "type": "box",
+       "class": "win-body",
+       "children": [
+        {
+         "type": "text",
+         "class": "wait-title",
+         "text": "BREATH OF FIRE"
+        },
+        {
+         "type": "text",
+         "class": "wait-sub",
+         "text": "Dragon Warrior's Companion"
+        },
+        {
+         "type": "box",
+         "class": "rule",
+         "children": []
+        },
+        {
+         "type": "text",
+         "class": "wait-line",
+         "text": "{waitingText}"
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "visibleIf": "$waiting"
+  },
+  {
+   "type": "box",
+   "class": "main",
+   "children": [
+    {
+     "type": "box",
+     "class": "row header",
+     "children": [
+      {
+       "type": "box",
+       "class": "win w-brand",
+       "children": [
+        {
+         "type": "box",
+         "class": "stud tl",
+         "children": []
+        },
+        {
+         "type": "box",
+         "class": "stud tr",
+         "children": []
+        },
+        {
+         "type": "box",
+         "class": "stud bl",
+         "children": []
+        },
+        {
+         "type": "box",
+         "class": "stud br",
+         "children": []
+        },
+        {
+         "type": "box",
+         "class": "win-body",
+         "children": [
+          {
+           "type": "text",
+           "class": "brand",
+           "text": "BREATH OF FIRE"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "box",
+       "class": "win w-place",
+       "children": [
+        {
+         "type": "box",
+         "class": "stud tl",
+         "children": []
+        },
+        {
+         "type": "box",
+         "class": "stud tr",
+         "children": []
+        },
+        {
+         "type": "box",
+         "class": "stud bl",
+         "children": []
+        },
+        {
+         "type": "box",
+         "class": "stud br",
+         "children": []
+        },
+        {
+         "type": "box",
+         "class": "win-body",
+         "children": [
+          {
+           "type": "box",
+           "class": "row place-row",
+           "children": [
+            {
+             "type": "text",
+             "class": "place-n",
+             "text": "{place}"
+            },
+            {
+             "type": "text",
+             "class": "time-chip",
+             "text": "{timeText}",
+             "classIf": {
+              "night": "$isNight"
+             }
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "box",
+       "class": "win w-gold",
+       "children": [
+        {
+         "type": "box",
+         "class": "stud tl",
+         "children": []
+        },
+        {
+         "type": "box",
+         "class": "stud tr",
+         "children": []
+        },
+        {
+         "type": "box",
+         "class": "stud bl",
+         "children": []
+        },
+        {
+         "type": "box",
+         "class": "stud br",
+         "children": []
+        },
+        {
+         "type": "box",
+         "class": "win-body",
+         "children": [
+          {
+           "type": "box",
+           "class": "row gold-row",
+           "children": [
+            {
+             "type": "text",
+             "class": "tag",
+             "text": "GOLD"
+            },
+            {
+             "type": "text",
+             "class": "num",
+             "text": "{gold}G"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "box",
+     "class": "row nav",
+     "children": [
+      {
+       "type": "box",
+       "class": "tab",
+       "children": [
+        {
+         "type": "text",
+         "class": "tab-t",
+         "text": "PARTY"
+        }
+       ],
+       "classIf": {
+        "on": "$navParty"
+       },
+       "onClick": {
+        "navigate": "party"
+       }
+      },
+      {
+       "type": "box",
+       "class": "tab",
+       "children": [
+        {
+         "type": "text",
+         "class": "tab-t",
+         "text": "GEAR"
+        }
+       ],
+       "classIf": {
+        "on": "$navGear"
+       },
+       "onClick": {
+        "navigate": "gear"
+       }
+      },
+      {
+       "type": "box",
+       "class": "tab",
+       "children": [
+        {
+         "type": "text",
+         "class": "tab-t",
+         "text": "ITEMS"
+        }
+       ],
+       "classIf": {
+        "on": "$navItems"
+       },
+       "onClick": {
+        "navigate": "items"
+       }
+      },
+      {
+       "type": "box",
+       "class": "tab",
+       "children": [
+        {
+         "type": "text",
+         "class": "tab-t",
+         "text": "BATTLE"
+        }
+       ],
+       "classIf": {
+        "on": "$navBattle"
+       },
+       "onClick": {
+        "navigate": "battle"
+       }
+      },
+      {
+       "type": "box",
+       "class": "tab",
+       "children": [
+        {
+         "type": "text",
+         "class": "tab-t",
+         "text": "BOOK"
+        }
+       ],
+       "classIf": {
+        "on": "$navBook"
+       },
+       "onClick": {
+        "navigate": "book"
+       }
+      },
+      {
+       "type": "box",
+       "class": "tab",
+       "children": [
+        {
+         "type": "text",
+         "class": "tab-t",
+         "text": "MAGIC"
+        }
+       ],
+       "classIf": {
+        "on": "$navMagic"
+       },
+       "onClick": {
+        "navigate": "magic"
+       }
+      },
+      {
+       "type": "box",
+       "class": "tab",
+       "children": [
+        {
+         "type": "text",
+         "class": "tab-t",
+         "text": "JOURNEY"
+        }
+       ],
+       "classIf": {
+        "on": "$navJourney"
+       },
+       "onClick": {
+        "navigate": "journey"
+       }
+      }
+     ]
+    },
+    {
+     "type": "pages",
+     "class": "stage",
+     "state": "page",
+     "initial": "party",
+     "pages": [
+      {
+       "name": "party",
+       "child": {
+        "type": "box",
+        "class": "page-party",
+        "children": [
+         {
+          "type": "list",
+          "class": "cards",
+          "items": "$party",
+          "template": {
+           "type": "box",
+           "class": "win card",
+           "children": [
+            {
+             "type": "box",
+             "class": "stud tl",
+             "children": []
+            },
+            {
+             "type": "box",
+             "class": "stud tr",
+             "children": []
+            },
+            {
+             "type": "box",
+             "class": "stud bl",
+             "children": []
+            },
+            {
+             "type": "box",
+             "class": "stud br",
+             "children": []
+            },
+            {
+             "type": "box",
+             "class": "win-body",
+             "children": [
+              {
+               "type": "box",
+               "class": "card-in",
+               "children": [
+                {
+                 "type": "box",
+                 "class": "row card-top",
+                 "children": [
+                  {
+                   "type": "box",
+                   "class": "pframe",
+                   "children": [
+                    {
+                     "type": "image",
+                     "class": "portrait",
+                     "src": "$portrait",
+                     "visibleIf": "$hasPortrait"
+                    },
+                    {
+                     "type": "text",
+                     "class": "pinit",
+                     "text": "{initial}",
+                     "visibleIf": "$noPortrait"
+                    }
+                   ]
+                  },
+                  {
+                   "type": "box",
+                   "class": "card-info",
+                   "children": [
+                    {
+                     "type": "box",
+                     "class": "row name-row",
+                     "children": [
+                      {
+                       "type": "text",
+                       "class": "mname",
+                       "text": "{name}"
+                      },
+                      {
+                       "type": "box",
+                       "class": "row lv",
+                       "children": [
+                        {
+                         "type": "text",
+                         "class": "lv-l",
+                         "text": "LV"
+                        },
+                        {
+                         "type": "text",
+                         "class": "lv-n",
+                         "text": "{lvText}"
+                        }
+                       ]
+                      }
+                     ]
+                    },
+                    {
+                     "type": "box",
+                     "class": "gline",
+                     "children": [
+                      {
+                       "type": "box",
+                       "class": "row gline-top",
+                       "children": [
+                        {
+                         "type": "text",
+                         "class": "tag",
+                         "text": "HP"
+                        },
+                        {
+                         "type": "text",
+                         "class": "gnum",
+                         "text": "{hpText}"
+                        }
+                       ]
+                      },
+                      {
+                       "type": "bar",
+                       "class": "hp",
+                       "value": "$hpPct",
+                       "max": 1
+                      }
+                     ],
+                     "classIf": {
+                      "low": "$low"
+                     }
+                    },
+                    {
+                     "type": "box",
+                     "class": "",
+                     "children": [
+                      {
+                       "type": "box",
+                       "class": "gline",
+                       "children": [
+                        {
+                         "type": "box",
+                         "class": "row gline-top",
+                         "children": [
+                          {
+                           "type": "text",
+                           "class": "tag",
+                           "text": "AP"
+                          },
+                          {
+                           "type": "text",
+                           "class": "gnum",
+                           "text": "{apText}"
+                          }
+                         ]
+                        },
+                        {
+                         "type": "bar",
+                         "class": "ap",
+                         "value": "$apPct",
+                         "max": 1
+                        }
+                       ]
+                      }
+                     ],
+                     "visibleIf": "$hasAp"
+                    },
+                    {
+                     "type": "box",
+                     "class": "row exp-row",
+                     "children": [
+                      {
+                       "type": "text",
+                       "class": "tag",
+                       "text": "NEXT"
+                      },
+                      {
+                       "type": "text",
+                       "class": "gnum",
+                       "text": "{nextText}"
+                      }
+                     ]
+                    },
+                    {
+                     "type": "bar",
+                     "class": "xp",
+                     "value": "$expPct",
+                     "max": 1
+                    }
+                   ]
+                  }
+                 ]
+                },
+                {
+                 "type": "list",
+                 "class": "quick",
+                 "items": "$quick",
+                 "template": {
+                  "type": "box",
+                  "class": "q",
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "q-l",
+                    "text": "{label}"
+                   },
+                   {
+                    "type": "text",
+                    "class": "q-v",
+                    "text": "{value}"
+                   }
+                  ]
+                 }
+                },
+                {
+                 "type": "box",
+                 "class": "row card-foot",
+                 "children": [
+                  {
+                   "type": "text",
+                   "class": "ko",
+                   "text": "KO",
+                   "visibleIf": "$ko"
+                  },
+                  {
+                   "type": "text",
+                   "class": "fuse",
+                   "text": "FUSED",
+                   "visibleIf": "$fused"
+                  },
+                  {
+                   "type": "text",
+                   "class": "stat-chip",
+                   "text": "{status}",
+                   "visibleIf": "$hasStatus"
+                  },
+                  {
+                   "type": "image",
+                   "class": "ic",
+                   "src": "$weaponIcon",
+                   "visibleIf": "$hasWeaponIcon"
+                  },
+                  {
+                   "type": "text",
+                   "class": "wpn",
+                   "text": "{weapon}"
+                  },
+                  {
+                   "type": "box",
+                   "class": "spacer-flex",
+                   "children": []
+                  },
+                  {
+                   "type": "text",
+                   "class": "more",
+                   "text": "MORE >"
+                  }
+                 ]
+                }
+               ],
+               "visibleIf": "$filled"
+              },
+              {
+               "type": "box",
+               "class": "card-open",
+               "children": [
+                {
+                 "type": "text",
+                 "class": "open-dash",
+                 "text": "-"
+                },
+                {
+                 "type": "text",
+                 "class": "open-t",
+                 "text": "Empty"
+                }
+               ],
+               "visibleIf": "$open"
+              }
+             ]
+            }
+           ],
+           "classIf": {
+            "empty": "$open",
+            "dim": "$dim"
+           },
+           "onClick": {
+            "set": {
+             "sel": "{index}"
+            }
+           }
+          }
+         },
+         {
+          "type": "box",
+          "class": "reserve",
+          "children": [
+           {
+            "type": "box",
+            "class": "row res-head",
+            "children": [
+             {
+              "type": "text",
+              "class": "tag",
+              "text": "RESERVE"
+             },
+             {
+              "type": "box",
+              "class": "res-rule",
+              "children": []
+             }
+            ]
+           },
+           {
+            "type": "list",
+            "class": "minis",
+            "items": "$reserve",
+            "template": {
+             "type": "box",
+             "class": "win mini",
+             "children": [
+              {
+               "type": "box",
+               "class": "stud tl",
+               "children": []
+              },
+              {
+               "type": "box",
+               "class": "stud tr",
+               "children": []
+              },
+              {
+               "type": "box",
+               "class": "stud bl",
+               "children": []
+              },
+              {
+               "type": "box",
+               "class": "stud br",
+               "children": []
+              },
+              {
+               "type": "box",
+               "class": "win-body",
+               "children": [
+                {
+                 "type": "box",
+                 "class": "row mini-in",
+                 "children": [
+                  {
+                   "type": "box",
+                   "class": "mframe",
+                   "children": [
+                    {
+                     "type": "image",
+                     "class": "mportrait",
+                     "src": "$portrait",
+                     "visibleIf": "$hasPortrait"
+                    },
+                    {
+                     "type": "text",
+                     "class": "pinit",
+                     "text": "{initial}",
+                     "visibleIf": "$noPortrait"
+                    }
+                   ]
+                  },
+                  {
+                   "type": "box",
+                   "class": "mini-info",
+                   "children": [
+                    {
+                     "type": "box",
+                     "class": "row name-row",
+                     "children": [
+                      {
+                       "type": "text",
+                       "class": "mnm",
+                       "text": "{name}"
+                      },
+                      {
+                       "type": "text",
+                       "class": "mlv",
+                       "text": "{lvText}"
+                      }
+                     ]
+                    },
+                    {
+                     "type": "bar",
+                     "class": "hp",
+                     "value": "$hpPct",
+                     "max": 1,
+                     "classIf": {
+                      "low": "$low"
+                     }
+                    },
+                    {
+                     "type": "text",
+                     "class": "mhp",
+                     "text": "{hpText}"
+                    }
+                   ]
+                  }
+                 ]
+                }
+               ]
+              }
+             ],
+             "classIf": {
+              "dim": "$dim"
+             },
+             "onClick": {
+              "set": {
+               "sel": "{index}"
+              }
+             }
+            }
+           }
+          ],
+          "visibleIf": "$hasReserve"
+         }
+        ]
+       }
+      },
+      {
+       "name": "gear",
+       "child": {
+        "type": "box",
+        "class": "page-gear",
+        "children": [
+         {
+          "type": "box",
+          "class": "row g-head",
+          "children": [
+           {
+            "type": "box",
+            "class": "gh-who",
+            "children": []
+           },
+           {
+            "type": "text",
+            "class": "gh",
+            "text": "WPN"
+           },
+           {
+            "type": "text",
+            "class": "gh",
+            "text": "SHD"
+           },
+           {
+            "type": "text",
+            "class": "gh",
+            "text": "ARM"
+           },
+           {
+            "type": "text",
+            "class": "gh",
+            "text": "HLM"
+           },
+           {
+            "type": "text",
+            "class": "gh",
+            "text": "ETC"
+           },
+           {
+            "type": "text",
+            "class": "gh",
+            "text": "ETC"
+           }
+          ]
+         },
+         {
+          "type": "list",
+          "class": "g-list",
+          "items": "$members",
+          "template": {
+           "type": "box",
+           "class": "win gline-win",
+           "children": [
+            {
+             "type": "box",
+             "class": "stud tl",
+             "children": []
+            },
+            {
+             "type": "box",
+             "class": "stud tr",
+             "children": []
+            },
+            {
+             "type": "box",
+             "class": "stud bl",
+             "children": []
+            },
+            {
+             "type": "box",
+             "class": "stud br",
+             "children": []
+            },
+            {
+             "type": "box",
+             "class": "win-body",
+             "children": [
+              {
+               "type": "box",
+               "class": "row gl",
+               "children": [
+                {
+                 "type": "box",
+                 "class": "gl-who",
+                 "children": [
+                  {
+                   "type": "box",
+                   "class": "mframe",
+                   "children": [
+                    {
+                     "type": "image",
+                     "class": "mportrait",
+                     "src": "$portrait",
+                     "visibleIf": "$hasPortrait"
+                    },
+                    {
+                     "type": "text",
+                     "class": "pinit",
+                     "text": "{initial}",
+                     "visibleIf": "$noPortrait"
+                    }
+                   ]
+                  },
+                  {
+                   "type": "text",
+                   "class": "gl-name",
+                   "text": "{name}"
+                  }
+                 ]
+                },
+                {
+                 "type": "list",
+                 "class": "gl-cells",
+                 "items": "$gear",
+                 "template": {
+                  "type": "box",
+                  "class": "gcell",
+                  "children": [
+                   {
+                    "type": "box",
+                    "class": "row gc-top",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "icbox",
+                      "children": [
+                       {
+                        "type": "image",
+                        "class": "ic",
+                        "src": "$icon",
+                        "visibleIf": "$hasIcon"
+                       }
+                      ]
+                     },
+                     {
+                      "type": "text",
+                      "class": "gc-pw",
+                      "text": "{pnum}",
+                      "visibleIf": "$hasPower"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "text",
+                    "class": "gc-name",
+                    "text": "{name}",
+                    "classIf": {
+                     "dim": "$empty"
+                    }
+                   }
+                  ]
+                 }
+                }
+               ]
+              }
+             ]
+            }
+           ],
+           "classIf": {
+            "dim": "$dim"
+           },
+           "onClick": {
+            "set": {
+             "sel": "{index}"
+            }
+           }
+          }
+         }
+        ]
+       }
+      },
+      {
+       "name": "items",
+       "child": {
+        "type": "box",
+        "class": "page-items",
+        "children": [
+         {
+          "type": "box",
+          "class": "win w-bagsum",
+          "children": [
+           {
+            "type": "box",
+            "class": "stud tl",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "stud tr",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "stud bl",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "stud br",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "win-body",
+            "children": [
+             {
+              "type": "box",
+              "class": "row bag-sum",
+              "children": [
+               {
+                "type": "box",
+                "class": "row store-pills",
+                "children": [
+                 {
+                  "type": "box",
+                  "class": "pill",
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "pill-t",
+                    "text": "BAG"
+                   }
+                  ],
+                  "classIf": {
+                   "on": "$viewBag"
+                  },
+                  "onClick": {
+                   "set": {
+                    "store": 0,
+                    "it": -1
+                   }
+                  }
+                 },
+                 {
+                  "type": "box",
+                  "class": "pill",
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "pill-t",
+                    "text": "VAULT"
+                   }
+                  ],
+                  "classIf": {
+                   "on": "$viewVault"
+                  },
+                  "onClick": {
+                   "set": {
+                    "store": 1,
+                    "it": -1
+                   }
+                  }
+                 },
+                 {
+                  "type": "box",
+                  "class": "pill",
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "pill-t",
+                    "text": "VITAL"
+                   }
+                  ],
+                  "classIf": {
+                   "on": "$viewVital"
+                  },
+                  "onClick": {
+                   "set": {
+                    "store": 2,
+                    "it": -1
+                   }
+                  }
+                 }
+                ]
+               },
+               {
+                "type": "text",
+                "class": "bs-v bs-used",
+                "text": "{bagUsed}"
+               },
+               {
+                "type": "box",
+                "class": "spacer-flex",
+                "children": []
+               },
+               {
+                "type": "box",
+                "class": "bs",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "tag",
+                  "text": "ITM"
+                 },
+                 {
+                  "type": "text",
+                  "class": "bs-v",
+                  "text": "{bagItems}"
+                 }
+                ],
+                "visibleIf": "$showKinds"
+               },
+               {
+                "type": "box",
+                "class": "bs",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "tag",
+                  "text": "WPN"
+                 },
+                 {
+                  "type": "text",
+                  "class": "bs-v",
+                  "text": "{bagWeapons}"
+                 }
+                ],
+                "visibleIf": "$showKinds"
+               },
+               {
+                "type": "box",
+                "class": "bs",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "tag",
+                  "text": "ARM"
+                 },
+                 {
+                  "type": "text",
+                  "class": "bs-v",
+                  "text": "{bagArmor}"
+                 }
+                ],
+                "visibleIf": "$showKinds"
+               },
+               {
+                "type": "box",
+                "class": "bs",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "tag",
+                  "text": "BANK"
+                 },
+                 {
+                  "type": "text",
+                  "class": "bs-v",
+                  "text": "{bank}G"
+                 }
+                ],
+                "visibleIf": "$viewVault"
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "win w-bag",
+          "children": [
+           {
+            "type": "box",
+            "class": "stud tl",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "stud tr",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "stud bl",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "stud br",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "win-body",
+            "children": [
+             {
+              "type": "list",
+              "class": "bag",
+              "items": "$bag",
+              "template": {
+               "type": "box",
+               "class": "bcell",
+               "children": [
+                {
+                 "type": "box",
+                 "class": "icbox",
+                 "children": [
+                  {
+                   "type": "image",
+                   "class": "ic",
+                   "src": "$icon",
+                   "visibleIf": "$hasIcon"
+                  }
+                 ]
+                },
+                {
+                 "type": "text",
+                 "class": "b-name",
+                 "text": "{name}"
+                },
+                {
+                 "type": "text",
+                 "class": "b-n",
+                 "text": "{count}",
+                 "visibleIf": "$hasCount"
+                }
+               ],
+               "classIf": {
+                "gear": "$gear",
+                "sel": "$sel"
+               },
+               "onClick": {
+                "set": {
+                 "it": "{idx}"
+                }
+               }
+              }
+             },
+             {
+              "type": "text",
+              "class": "hint",
+              "text": "{emptyText}",
+              "visibleIf": "$bagEmpty"
+             },
+             {
+              "type": "box",
+              "class": "row more-row",
+              "children": [
+               {
+                "type": "box",
+                "class": "spacer-flex",
+                "children": []
+               },
+               {
+                "type": "text",
+                "class": "more-cue",
+                "text": "{moreText}"
+               }
+              ],
+              "visibleIf": "$bagMore"
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "win w-help",
+          "children": [
+           {
+            "type": "box",
+            "class": "stud tl",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "stud tr",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "stud bl",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "stud br",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "win-body",
+            "children": [
+             {
+              "type": "text",
+              "class": "sp-help",
+              "text": "{itemHelp}"
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "name": "battle",
+       "child": {
+        "type": "box",
+        "class": "page-battle",
+        "children": [
+         {
+          "type": "box",
+          "class": "win w-bstate",
+          "children": [
+           {
+            "type": "box",
+            "class": "stud tl",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "stud tr",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "stud bl",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "stud br",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "win-body",
+            "children": [
+             {
+              "type": "box",
+              "class": "row b-state",
+              "children": [
+               {
+                "type": "text",
+                "class": "b-big",
+                "text": "IN BATTLE",
+                "visibleIf": "$fighting"
+               },
+               {
+                "type": "text",
+                "class": "b-left",
+                "text": "{foesLeft}",
+                "visibleIf": "$fighting"
+               },
+               {
+                "type": "text",
+                "class": "b-big",
+                "text": "LAST BATTLE",
+                "visibleIf": "$notFighting"
+               },
+               {
+                "type": "box",
+                "class": "spacer-flex",
+                "children": []
+               },
+               {
+                "type": "box",
+                "class": "row spoils",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "tag",
+                  "text": "{resultText}"
+                 },
+                 {
+                  "type": "text",
+                  "class": "sp-v",
+                  "text": "{spoilExp}",
+                  "visibleIf": "$spoils"
+                 },
+                 {
+                  "type": "text",
+                  "class": "sp-v",
+                  "text": "{spoilGold}",
+                  "visibleIf": "$spoils"
+                 }
+                ],
+                "visibleIf": "$showResult"
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "row b-cards",
+          "children": [
+           {
+            "type": "box",
+            "class": "win w-foes",
+            "children": [
+             {
+              "type": "box",
+              "class": "stud tl",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "stud tr",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "stud bl",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "stud br",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "win-body",
+              "children": [
+               {
+                "type": "box",
+                "class": "row b-head",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "tag",
+                  "text": "ENEMIES"
+                 },
+                 {
+                  "type": "box",
+                  "class": "spacer-flex",
+                  "children": []
+                 },
+                 {
+                  "type": "text",
+                  "class": "b-left",
+                  "text": "{foeCount}"
+                 }
+                ]
+               },
+               {
+                "type": "list",
+                "class": "foes",
+                "items": "$foes",
+                "template": {
+                 "type": "box",
+                 "class": "foe",
+                 "children": [
+                  {
+                   "type": "box",
+                   "class": "row foe-top",
+                   "children": [
+                    {
+                     "type": "text",
+                     "class": "foe-n",
+                     "text": "{name}"
+                    },
+                    {
+                     "type": "text",
+                     "class": "foe-lv",
+                     "text": "LV {lv}"
+                    },
+                    {
+                     "type": "box",
+                     "class": "spacer-flex",
+                     "children": []
+                    },
+                    {
+                     "type": "text",
+                     "class": "foe-hp",
+                     "text": "{hpText}"
+                    }
+                   ]
+                  },
+                  {
+                   "type": "bar",
+                   "class": "hp foe",
+                   "value": "$hpPct",
+                   "max": 1,
+                   "classIf": {
+                    "low": "$low"
+                   }
+                  },
+                  {
+                   "type": "box",
+                   "class": "row foe-st",
+                   "children": [
+                    {
+                     "type": "text",
+                     "class": "fs-l",
+                     "text": "ATK"
+                    },
+                    {
+                     "type": "text",
+                     "class": "fs-v",
+                     "text": "{atk}"
+                    },
+                    {
+                     "type": "text",
+                     "class": "fs-l",
+                     "text": "DEF"
+                    },
+                    {
+                     "type": "text",
+                     "class": "fs-v",
+                     "text": "{def}"
+                    },
+                    {
+                     "type": "text",
+                     "class": "fs-l",
+                     "text": "AGI"
+                    },
+                    {
+                     "type": "text",
+                     "class": "fs-v",
+                     "text": "{agi}"
+                    }
+                   ],
+                   "visibleIf": "$showStats"
+                  }
+                 ],
+                 "classIf": {
+                  "dead": "$dead"
+                 },
+                 "onClick": {
+                  "set": {
+                   "mon": "{id}"
+                  }
+                 }
+                }
+               },
+               {
+                "type": "box",
+                "class": "row more-row",
+                "children": [
+                 {
+                  "type": "box",
+                  "class": "spacer-flex",
+                  "children": []
+                 },
+                 {
+                  "type": "text",
+                  "class": "more-cue",
+                  "text": "{foesMoreText}"
+                 }
+                ],
+                "visibleIf": "$foesMore"
+               },
+               {
+                "type": "text",
+                "class": "hint",
+                "text": "No battle yet. This page opens by itself when a fight starts.",
+                "visibleIf": "$noBattle"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "type": "list",
+            "class": "pbs",
+            "items": "$battleParty",
+            "template": {
+             "type": "box",
+             "class": "win pb",
+             "children": [
+              {
+               "type": "box",
+               "class": "stud tl",
+               "children": []
+              },
+              {
+               "type": "box",
+               "class": "stud tr",
+               "children": []
+              },
+              {
+               "type": "box",
+               "class": "stud bl",
+               "children": []
+              },
+              {
+               "type": "box",
+               "class": "stud br",
+               "children": []
+              },
+              {
+               "type": "box",
+               "class": "win-body",
+               "children": [
+                {
+                 "type": "box",
+                 "class": "row pb-in",
+                 "children": [
+                  {
+                   "type": "box",
+                   "class": "pframe",
+                   "children": [
+                    {
+                     "type": "image",
+                     "class": "portrait",
+                     "src": "$portrait",
+                     "visibleIf": "$hasPortrait"
+                    },
+                    {
+                     "type": "text",
+                     "class": "pinit",
+                     "text": "{initial}",
+                     "visibleIf": "$noPortrait"
+                    }
+                   ]
+                  },
+                  {
+                   "type": "box",
+                   "class": "pb-info",
+                   "children": [
+                    {
+                     "type": "box",
+                     "class": "row name-row",
+                     "children": [
+                      {
+                       "type": "text",
+                       "class": "mname",
+                       "text": "{name}"
+                      },
+                      {
+                       "type": "box",
+                       "class": "spacer-flex",
+                       "children": []
+                      },
+                      {
+                       "type": "text",
+                       "class": "drg-chip",
+                       "text": "DRAGON",
+                       "visibleIf": "$dragon"
+                      },
+                      {
+                       "type": "text",
+                       "class": "stat-chip",
+                       "text": "{status}",
+                       "visibleIf": "$hasStatus"
+                      },
+                      {
+                       "type": "text",
+                       "class": "ko",
+                       "text": "KO",
+                       "visibleIf": "$ko"
+                      }
+                     ]
+                    },
+                    {
+                     "type": "box",
+                     "class": "gline",
+                     "children": [
+                      {
+                       "type": "box",
+                       "class": "row gline-top",
+                       "children": [
+                        {
+                         "type": "text",
+                         "class": "tag",
+                         "text": "HP"
+                        },
+                        {
+                         "type": "text",
+                         "class": "gnum",
+                         "text": "{hpText}"
+                        }
+                       ]
+                      },
+                      {
+                       "type": "bar",
+                       "class": "hp",
+                       "value": "$hpPct",
+                       "max": 1
+                      }
+                     ],
+                     "classIf": {
+                      "low": "$low"
+                     }
+                    },
+                    {
+                     "type": "box",
+                     "class": "",
+                     "children": [
+                      {
+                       "type": "box",
+                       "class": "gline",
+                       "children": [
+                        {
+                         "type": "box",
+                         "class": "row gline-top",
+                         "children": [
+                          {
+                           "type": "text",
+                           "class": "tag",
+                           "text": "AP"
+                          },
+                          {
+                           "type": "text",
+                           "class": "gnum",
+                           "text": "{apText}"
+                          }
+                         ]
+                        },
+                        {
+                         "type": "bar",
+                         "class": "ap",
+                         "value": "$apPct",
+                         "max": 1
+                        }
+                       ]
+                      }
+                     ],
+                     "visibleIf": "$hasAp"
+                    }
+                   ]
+                  }
+                 ]
+                }
+               ]
+              }
+             ],
+             "classIf": {
+              "low": "$low",
+              "dim": "$ko"
+             },
+             "onClick": {
+              "set": {
+               "sel": "{index}"
+              }
+             }
+            }
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "name": "book",
+       "child": {
+        "type": "box",
+        "class": "page-book",
+        "children": [
+         {
+          "type": "box",
+          "class": "win w-bkhead",
+          "children": [
+           {
+            "type": "box",
+            "class": "stud tl",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "stud tr",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "stud bl",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "stud br",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "win-body",
+            "children": [
+             {
+              "type": "box",
+              "class": "row bk-head",
+              "children": [
+               {
+                "type": "text",
+                "class": "tag",
+                "text": "MONSTERS MET"
+               },
+               {
+                "type": "text",
+                "class": "bs-v",
+                "text": "{bookMet}"
+               },
+               {
+                "type": "text",
+                "class": "hint bk-hint",
+                "text": "this session"
+               },
+               {
+                "type": "box",
+                "class": "spacer-flex",
+                "children": []
+               },
+               {
+                "type": "box",
+                "class": "pill",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "pill-t",
+                  "text": "REVEAL ALL"
+                 }
+                ],
+                "visibleIf": "$revealOff",
+                "onClick": {
+                 "set": {
+                  "reveal": 1
+                 }
+                }
+               },
+               {
+                "type": "box",
+                "class": "pill on",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "pill-t",
+                  "text": "HIDE UNMET"
+                 }
+                ],
+                "visibleIf": "$revealOn",
+                "onClick": {
+                 "set": {
+                  "reveal": 0
+                 }
+                }
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "win w-book",
+          "children": [
+           {
+            "type": "box",
+            "class": "stud tl",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "stud tr",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "stud bl",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "stud br",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "win-body",
+            "children": [
+             {
+              "type": "list",
+              "class": "book",
+              "items": "$book",
+              "template": {
+               "type": "box",
+               "class": "mcell",
+               "children": [
+                {
+                 "type": "text",
+                 "class": "mc-num",
+                 "text": "{num}"
+                },
+                {
+                 "type": "text",
+                 "class": "mc-n",
+                 "text": "{name}"
+                }
+               ],
+               "classIf": {
+                "unmet": "$unmet"
+               },
+               "onClick": {
+                "set": {
+                 "mon": "{id}"
+                }
+               }
+              }
+             },
+             {
+              "type": "box",
+              "class": "row more-row",
+              "children": [
+               {
+                "type": "box",
+                "class": "spacer-flex",
+                "children": []
+               },
+               {
+                "type": "text",
+                "class": "more-cue",
+                "text": "SCROLL FOR ALL {bookTotal}"
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "name": "magic",
+       "child": {
+        "type": "box",
+        "class": "page-magic",
+        "children": [
+         {
+          "type": "list",
+          "class": "casters",
+          "items": "$casters",
+          "template": {
+           "type": "box",
+           "class": "caster",
+           "children": [
+            {
+             "type": "box",
+             "class": "mframe",
+             "children": [
+              {
+               "type": "image",
+               "class": "mportrait",
+               "src": "$portrait",
+               "visibleIf": "$hasPortrait"
+              }
+             ]
+            },
+            {
+             "type": "text",
+             "class": "cs-n",
+             "text": "{name}"
+            }
+           ],
+           "classIf": {
+            "on": "$on"
+           },
+           "onClick": {
+            "set": {
+             "mag": "{idx}",
+             "sp": -1
+            }
+           }
+          }
+         },
+         {
+          "type": "text",
+          "class": "hint",
+          "text": "Nobody in the party knows magic yet.",
+          "visibleIf": "$noCasters"
+         },
+         {
+          "type": "box",
+          "class": "win w-spells",
+          "children": [
+           {
+            "type": "box",
+            "class": "stud tl",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "stud tr",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "stud bl",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "stud br",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "win-body",
+            "children": [
+             {
+              "type": "box",
+              "class": "row j-head",
+              "children": [
+               {
+                "type": "text",
+                "class": "tag",
+                "text": "{magTitle}"
+               },
+               {
+                "type": "text",
+                "class": "mg-n",
+                "text": "{magName}"
+               },
+               {
+                "type": "text",
+                "class": "mg-lv",
+                "text": "{magLv}"
+               },
+               {
+                "type": "box",
+                "class": "spacer-flex",
+                "children": []
+               },
+               {
+                "type": "text",
+                "class": "j-count",
+                "text": "{magCount}"
+               }
+              ]
+             },
+             {
+              "type": "list",
+              "class": "spells",
+              "items": "$spells",
+              "template": {
+               "type": "box",
+               "class": "scell",
+               "children": [
+                {
+                 "type": "box",
+                 "class": "icbox",
+                 "children": [
+                  {
+                   "type": "image",
+                   "class": "ic",
+                   "src": "$icon",
+                   "visibleIf": "$hasIcon"
+                  }
+                 ]
+                },
+                {
+                 "type": "text",
+                 "class": "sc-n",
+                 "text": "{name}"
+                },
+                {
+                 "type": "text",
+                 "class": "sc-lv",
+                 "text": "{lvText}",
+                 "visibleIf": "$locked"
+                }
+               ],
+               "classIf": {
+                "locked": "$locked",
+                "sel": "$sel"
+               },
+               "onClick": {
+                "set": {
+                 "sp": "{idx}"
+                }
+               }
+              }
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "win w-help",
+          "children": [
+           {
+            "type": "box",
+            "class": "stud tl",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "stud tr",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "stud bl",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "stud br",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "win-body",
+            "children": [
+             {
+              "type": "text",
+              "class": "sp-help",
+              "text": "{spellHelp}"
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "name": "journey",
+       "child": {
+        "type": "box",
+        "class": "page-journey",
+        "children": [
+         {
+          "type": "box",
+          "class": "row j-top",
+          "children": [
+           {
+            "type": "box",
+            "class": "win w-dragons",
+            "children": [
+             {
+              "type": "box",
+              "class": "stud tl",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "stud tr",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "stud bl",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "stud br",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "win-body",
+              "children": [
+               {
+                "type": "box",
+                "class": "row j-head",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "tag",
+                  "text": "DRAGON FORMS"
+                 },
+                 {
+                  "type": "box",
+                  "class": "spacer-flex",
+                  "children": []
+                 },
+                 {
+                  "type": "text",
+                  "class": "j-count",
+                  "text": "{dragonCount}"
+                 }
+                ]
+               },
+               {
+                "type": "list",
+                "class": "dragons",
+                "items": "$dragons",
+                "template": {
+                 "type": "box",
+                 "class": "dcell",
+                 "children": [
+                  {
+                   "type": "box",
+                   "class": "icbox",
+                   "children": [
+                    {
+                     "type": "image",
+                     "class": "ic",
+                     "src": "$icon",
+                     "visibleIf": "$hasIcon"
+                    }
+                   ]
+                  },
+                  {
+                   "type": "text",
+                   "class": "dc-n",
+                   "text": "{name}"
+                  }
+                 ],
+                 "classIf": {
+                  "locked": "$locked"
+                 },
+                 "onClick": [
+                  {
+                   "set": {
+                    "mag": "{ryuChip}",
+                    "sp": "{k}"
+                   }
+                  },
+                  {
+                   "navigate": "magic"
+                  }
+                 ]
+                }
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "win w-crew",
+            "children": [
+             {
+              "type": "box",
+              "class": "stud tl",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "stud tr",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "stud bl",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "stud br",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "win-body",
+              "children": [
+               {
+                "type": "box",
+                "class": "row j-head",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "tag",
+                  "text": "COMPANIONS"
+                 },
+                 {
+                  "type": "box",
+                  "class": "spacer-flex",
+                  "children": []
+                 },
+                 {
+                  "type": "text",
+                  "class": "j-count",
+                  "text": "{crewCount}"
+                 }
+                ]
+               },
+               {
+                "type": "list",
+                "class": "crew",
+                "items": "$crew",
+                "template": {
+                 "type": "box",
+                 "class": "ccell",
+                 "children": [
+                  {
+                   "type": "box",
+                   "class": "mframe",
+                   "children": [
+                    {
+                     "type": "image",
+                     "class": "mportrait",
+                     "src": "$portrait",
+                     "visibleIf": "$hasPortrait"
+                    }
+                   ]
+                  },
+                  {
+                   "type": "text",
+                   "class": "cc-n",
+                   "text": "{name}"
+                  },
+                  {
+                   "type": "text",
+                   "class": "cc-lv",
+                   "text": "{lv}"
+                  },
+                  {
+                   "type": "text",
+                   "class": "cc-where",
+                   "text": "{where}",
+                   "visibleIf": "$hasWhere"
+                  }
+                 ],
+                 "classIf": {
+                  "locked": "$locked"
+                 },
+                 "onClick": {
+                  "set": {
+                   "sel": "{index}"
+                  }
+                 }
+                }
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "win w-fish",
+          "children": [
+           {
+            "type": "box",
+            "class": "stud tl",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "stud tr",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "stud bl",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "stud br",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "win-body",
+            "children": [
+             {
+              "type": "box",
+              "class": "row j-head",
+              "children": [
+               {
+                "type": "text",
+                "class": "tag",
+                "text": "FISHING"
+               },
+               {
+                "type": "box",
+                "class": "spacer-flex",
+                "children": []
+               },
+               {
+                "type": "text",
+                "class": "j-count",
+                "text": "{fishTotal} IN BAG"
+               }
+              ]
+             },
+             {
+              "type": "list",
+              "class": "fish",
+              "items": "$fish",
+              "template": {
+               "type": "box",
+               "class": "fcell",
+               "children": [
+                {
+                 "type": "box",
+                 "class": "icbox",
+                 "children": [
+                  {
+                   "type": "image",
+                   "class": "ic",
+                   "src": "$icon",
+                   "visibleIf": "$hasIcon"
+                  }
+                 ]
+                },
+                {
+                 "type": "text",
+                 "class": "fc-n",
+                 "text": "{name}"
+                },
+                {
+                 "type": "text",
+                 "class": "fc-c",
+                 "text": "{count}"
+                }
+               ],
+               "classIf": {
+                "none": "$none"
+               }
+              }
+             },
+             {
+              "type": "box",
+              "class": "row rods",
+              "children": [
+               {
+                "type": "text",
+                "class": "gslot",
+                "text": "RODS"
+               },
+               {
+                "type": "text",
+                "class": "rod-n",
+                "text": "{rods}"
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "type": "box",
+     "class": "overlay",
+     "children": [
+      {
+       "type": "box",
+       "class": "scrim",
+       "children": [],
+       "onClick": {
+        "set": {
+         "sel": -1
+        }
+       }
+      },
+      {
+       "type": "box",
+       "class": "win d-win",
+       "children": [
+        {
+         "type": "box",
+         "class": "stud tl",
+         "children": []
+        },
+        {
+         "type": "box",
+         "class": "stud tr",
+         "children": []
+        },
+        {
+         "type": "box",
+         "class": "stud bl",
+         "children": []
+        },
+        {
+         "type": "box",
+         "class": "stud br",
+         "children": []
+        },
+        {
+         "type": "box",
+         "class": "win-body",
+         "children": [
+          {
+           "type": "box",
+           "class": "row d-top",
+           "children": [
+            {
+             "type": "box",
+             "class": "pframe big",
+             "children": [
+              {
+               "type": "image",
+               "class": "portrait big",
+               "src": "$detail.portrait",
+               "visibleIf": "$detail.hasPortrait"
+              },
+              {
+               "type": "text",
+               "class": "pinit",
+               "text": "{detail.initial}",
+               "visibleIf": "$detail.noPortrait"
+              }
+             ]
+            },
+            {
+             "type": "box",
+             "class": "d-head",
+             "children": [
+              {
+               "type": "box",
+               "class": "row name-row",
+               "children": [
+                {
+                 "type": "text",
+                 "class": "mname big",
+                 "text": "{detail.name}"
+                },
+                {
+                 "type": "box",
+                 "class": "row lv",
+                 "children": [
+                  {
+                   "type": "text",
+                   "class": "lv-l",
+                   "text": "LV"
+                  },
+                  {
+                   "type": "text",
+                   "class": "lv-n",
+                   "text": "{detail.lvText}"
+                  }
+                 ]
+                }
+               ]
+              },
+              {
+               "type": "box",
+               "class": "row d-nums",
+               "children": [
+                {
+                 "type": "box",
+                 "class": "dn",
+                 "children": [
+                  {
+                   "type": "text",
+                   "class": "tag",
+                   "text": "HP"
+                  },
+                  {
+                   "type": "text",
+                   "class": "gnum",
+                   "text": "{detail.hpText}"
+                  }
+                 ]
+                },
+                {
+                 "type": "box",
+                 "class": "dn",
+                 "children": [
+                  {
+                   "type": "text",
+                   "class": "tag",
+                   "text": "AP"
+                  },
+                  {
+                   "type": "text",
+                   "class": "gnum",
+                   "text": "{detail.apText}"
+                  }
+                 ]
+                },
+                {
+                 "type": "box",
+                 "class": "dn",
+                 "children": [
+                  {
+                   "type": "text",
+                   "class": "tag",
+                   "text": "EXP"
+                  },
+                  {
+                   "type": "text",
+                   "class": "gnum",
+                   "text": "{detail.expText}"
+                  }
+                 ]
+                },
+                {
+                 "type": "box",
+                 "class": "dn",
+                 "children": [
+                  {
+                   "type": "text",
+                   "class": "tag",
+                   "text": "NEXT LV"
+                  },
+                  {
+                   "type": "text",
+                   "class": "gnum",
+                   "text": "{detail.nextTotal}"
+                  }
+                 ],
+                 "visibleIf": "$detail.hasNext"
+                }
+               ]
+              },
+              {
+               "type": "bar",
+               "class": "xp",
+               "value": "$detail.expPct",
+               "max": 1
+              }
+             ]
+            },
+            {
+             "type": "box",
+             "class": "close",
+             "children": [
+              {
+               "type": "text",
+               "class": "close-t",
+               "text": "X"
+              }
+             ],
+             "onClick": {
+              "set": {
+               "sel": -1
+              }
+             }
+            }
+           ]
+          },
+          {
+           "type": "box",
+           "class": "hr",
+           "children": []
+          },
+          {
+           "type": "box",
+           "class": "row d-stats",
+           "children": [
+            {
+             "type": "list",
+             "class": "scol",
+             "items": "$detail.stats",
+             "template": {
+              "type": "box",
+              "class": "row srow",
+              "children": [
+               {
+                "type": "text",
+                "class": "slab",
+                "text": "{label}"
+               },
+               {
+                "type": "text",
+                "class": "sval",
+                "text": "{value}"
+               }
+              ]
+             }
+            },
+            {
+             "type": "box",
+             "class": "vr",
+             "children": []
+            },
+            {
+             "type": "list",
+             "class": "scol",
+             "items": "$detail.derived",
+             "template": {
+              "type": "box",
+              "class": "row srow",
+              "children": [
+               {
+                "type": "text",
+                "class": "slab",
+                "text": "{label}"
+               },
+               {
+                "type": "text",
+                "class": "sval",
+                "text": "{value}"
+               }
+              ]
+             }
+            }
+           ]
+          },
+          {
+           "type": "box",
+           "class": "hr",
+           "children": []
+          },
+          {
+           "type": "list",
+           "class": "gear",
+           "items": "$detail.gear",
+           "template": {
+            "type": "box",
+            "class": "row grow",
+            "children": [
+             {
+              "type": "text",
+              "class": "gslot",
+              "text": "{slot}"
+             },
+             {
+              "type": "box",
+              "class": "icbox",
+              "children": [
+               {
+                "type": "image",
+                "class": "ic",
+                "src": "$icon",
+                "visibleIf": "$hasIcon"
+               }
+              ]
+             },
+             {
+              "type": "text",
+              "class": "gname",
+              "text": "{name}",
+              "classIf": {
+               "dim": "$empty"
+              }
+             },
+             {
+              "type": "text",
+              "class": "gpow",
+              "text": "{power}",
+              "visibleIf": "$hasPower"
+             }
+            ]
+           }
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "visibleIf": "$detailOpen"
+    },
+    {
+     "type": "box",
+     "class": "overlay",
+     "children": [
+      {
+       "type": "box",
+       "class": "scrim",
+       "children": [],
+       "onClick": {
+        "set": {
+         "mon": -1
+        }
+       }
+      },
+      {
+       "type": "box",
+       "class": "win d-win mon-win",
+       "children": [
+        {
+         "type": "box",
+         "class": "stud tl",
+         "children": []
+        },
+        {
+         "type": "box",
+         "class": "stud tr",
+         "children": []
+        },
+        {
+         "type": "box",
+         "class": "stud bl",
+         "children": []
+        },
+        {
+         "type": "box",
+         "class": "stud br",
+         "children": []
+        },
+        {
+         "type": "box",
+         "class": "win-body",
+         "children": [
+          {
+           "type": "box",
+           "class": "row d-top",
+           "children": [
+            {
+             "type": "box",
+             "class": "d-head",
+             "children": [
+              {
+               "type": "box",
+               "class": "row name-row",
+               "children": [
+                {
+                 "type": "text",
+                 "class": "mname big",
+                 "text": "{mon.name}"
+                },
+                {
+                 "type": "text",
+                 "class": "mc-num big",
+                 "text": "No.{mon.num}"
+                }
+               ]
+              },
+              {
+               "type": "box",
+               "class": "row d-nums",
+               "children": [
+                {
+                 "type": "box",
+                 "class": "dn",
+                 "children": [
+                  {
+                   "type": "text",
+                   "class": "tag",
+                   "text": "LV"
+                  },
+                  {
+                   "type": "text",
+                   "class": "gnum",
+                   "text": "{mon.lv}"
+                  }
+                 ]
+                },
+                {
+                 "type": "box",
+                 "class": "dn",
+                 "children": [
+                  {
+                   "type": "text",
+                   "class": "tag",
+                   "text": "HP"
+                  },
+                  {
+                   "type": "text",
+                   "class": "gnum",
+                   "text": "{mon.hp}"
+                  }
+                 ]
+                },
+                {
+                 "type": "box",
+                 "class": "dn",
+                 "children": [
+                  {
+                   "type": "text",
+                   "class": "tag",
+                   "text": "ATK"
+                  },
+                  {
+                   "type": "text",
+                   "class": "gnum",
+                   "text": "{mon.atk}"
+                  }
+                 ]
+                },
+                {
+                 "type": "box",
+                 "class": "dn",
+                 "children": [
+                  {
+                   "type": "text",
+                   "class": "tag",
+                   "text": "DEF"
+                  },
+                  {
+                   "type": "text",
+                   "class": "gnum",
+                   "text": "{mon.def}"
+                  }
+                 ]
+                },
+                {
+                 "type": "box",
+                 "class": "dn",
+                 "children": [
+                  {
+                   "type": "text",
+                   "class": "tag",
+                   "text": "AGI"
+                  },
+                  {
+                   "type": "text",
+                   "class": "gnum",
+                   "text": "{mon.agi}"
+                  }
+                 ]
+                }
+               ]
+              },
+              {
+               "type": "box",
+               "class": "row d-nums",
+               "children": [
+                {
+                 "type": "box",
+                 "class": "dn",
+                 "children": [
+                  {
+                   "type": "text",
+                   "class": "tag",
+                   "text": "BATTLES THIS SESSION"
+                  },
+                  {
+                   "type": "text",
+                   "class": "gnum",
+                   "text": "{mon.met}"
+                  }
+                 ]
+                }
+               ]
+              },
+              {
+               "type": "text",
+               "class": "hint",
+               "text": "Not met this session yet.",
+               "visibleIf": "$mon.notSeen"
+              }
+             ]
+            },
+            {
+             "type": "box",
+             "class": "close",
+             "children": [
+              {
+               "type": "text",
+               "class": "close-t",
+               "text": "X"
+              }
+             ],
+             "onClick": {
+              "set": {
+               "mon": -1
+              }
+             }
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "visibleIf": "$monOpen"
+    }
+   ],
+   "visibleIf": "$ready"
+  }
+ ],
+ "id": "screen"
+}

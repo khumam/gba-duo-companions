@@ -1,0 +1,18 @@
+{
+  "id": "castlevania-hod-companion",
+  "name": "Castlevania: Harmony of Dissonance Companion",
+  "version": "1.0.0",
+  "author": "Ress",
+  "formatVersion": 2,
+  "match": {
+    "gameCode": [
+      "ACHE"
+    ]
+  },
+  "tickHz": 4,
+  "layout": "layout.json",
+  "styles": [
+    "style.css"
+  ],
+  "script": "main.lua"
+}

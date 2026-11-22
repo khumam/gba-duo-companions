@@ -1,0 +1,3418 @@
+{
+ "type": "box",
+ "class": "",
+ "children": [
+  {
+   "type": "box",
+   "class": "waiting",
+   "children": [
+    {
+     "type": "box",
+     "class": "win wait-win",
+     "children": [
+      {
+       "type": "box",
+       "class": "bar",
+       "children": [
+        {
+         "type": "text",
+         "class": "bar-t",
+         "text": "SWORDCRAFT STORY"
+        },
+        {
+         "type": "box",
+         "class": "bar-end",
+         "children": []
+        }
+       ]
+      },
+      {
+       "type": "box",
+       "class": "win-body wait-body",
+       "children": [
+        {
+         "type": "box",
+         "class": "wait-pair",
+         "children": [
+          {
+           "type": "image",
+           "class": "wait-art",
+           "src": "asset:img/cleru-status.png"
+          },
+          {
+           "type": "image",
+           "class": "wait-art",
+           "src": "asset:img/pratty-status.png"
+          }
+         ]
+        },
+        {
+         "type": "box",
+         "class": "wait-text",
+         "children": [
+          {
+           "type": "text",
+           "class": "wait-title",
+           "text": "SUMMON NIGHT"
+          },
+          {
+           "type": "text",
+           "class": "wait-sub",
+           "text": "Craftknight's Companion"
+          },
+          {
+           "type": "box",
+           "class": "rule",
+           "children": []
+          },
+          {
+           "type": "text",
+           "class": "wait-line",
+           "text": "{waitingText}"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "visibleIf": "$waiting"
+  },
+  {
+   "type": "box",
+   "class": "main",
+   "children": [
+    {
+     "type": "box",
+     "class": "header",
+     "children": [
+      {
+       "type": "box",
+       "class": "win w-place",
+       "children": [
+        {
+         "type": "box",
+         "class": "bar",
+         "children": [
+          {
+           "type": "text",
+           "class": "bar-t",
+           "text": "PLACE"
+          },
+          {
+           "type": "box",
+           "class": "bar-end",
+           "children": []
+          }
+         ]
+        },
+        {
+         "type": "box",
+         "class": "win-body",
+         "children": [
+          {
+           "type": "box",
+           "class": "place-row",
+           "children": [
+            {
+             "type": "text",
+             "class": "place",
+             "text": "{place}"
+            },
+            {
+             "type": "text",
+             "class": "area",
+             "text": "{area}"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "box",
+       "class": "win w-money",
+       "children": [
+        {
+         "type": "box",
+         "class": "bar",
+         "children": [
+          {
+           "type": "text",
+           "class": "bar-t",
+           "text": "MONEY"
+          },
+          {
+           "type": "box",
+           "class": "bar-end",
+           "children": []
+          }
+         ]
+        },
+        {
+         "type": "box",
+         "class": "win-body",
+         "children": [
+          {
+           "type": "text",
+           "class": "num",
+           "text": "{money} b"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "box",
+       "class": "win w-time",
+       "children": [
+        {
+         "type": "box",
+         "class": "bar",
+         "children": [
+          {
+           "type": "text",
+           "class": "bar-t",
+           "text": "PLAY TIME"
+          },
+          {
+           "type": "box",
+           "class": "bar-end",
+           "children": []
+          }
+         ]
+        },
+        {
+         "type": "box",
+         "class": "win-body",
+         "children": [
+          {
+           "type": "text",
+           "class": "num",
+           "text": "{time}"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "box",
+       "class": "win w-look",
+       "children": [
+        {
+         "type": "box",
+         "class": "bar",
+         "children": [
+          {
+           "type": "text",
+           "class": "bar-t",
+           "text": "COLOR"
+          },
+          {
+           "type": "box",
+           "class": "bar-end",
+           "children": []
+          }
+         ]
+        },
+        {
+         "type": "box",
+         "class": "win-body",
+         "children": [
+          {
+           "type": "box",
+           "class": "pill tap",
+           "children": [
+            {
+             "type": "text",
+             "class": "pill-t",
+             "text": "{_ambientLabel}"
+            }
+           ],
+           "classIf": {
+            "on": "$_ambient"
+           },
+           "onClick": {
+            "call": "ambientView",
+            "args": [
+             "toggle"
+            ]
+           }
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "pages",
+     "class": "stage-pages",
+     "state": "page",
+     "initial": "status",
+     "pages": [
+      {
+       "name": "status",
+       "child": {
+        "type": "box",
+        "class": "page-status",
+        "children": [
+         {
+          "type": "box",
+          "class": "win w-hero",
+          "children": [
+           {
+            "type": "box",
+            "class": "bar",
+            "children": [
+             {
+              "type": "text",
+              "class": "bar-t",
+              "text": "STATUS"
+             },
+             {
+              "type": "box",
+              "class": "bar-end",
+              "children": []
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "win-body",
+            "children": [
+             {
+              "type": "box",
+              "class": "hero",
+              "children": [
+               {
+                "type": "box",
+                "class": "frame",
+                "children": [
+                 {
+                  "type": "image",
+                  "class": "portrait",
+                  "src": "$hero.portrait"
+                 }
+                ]
+               },
+               {
+                "type": "box",
+                "class": "hero-info",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "hero-name",
+                  "text": "{hero.name}"
+                 },
+                 {
+                  "type": "box",
+                  "class": "lv-row",
+                  "children": [
+                   {
+                    "type": "box",
+                    "class": "lv-chip",
+                    "children": [
+                     {
+                      "type": "text",
+                      "class": "lv-l",
+                      "text": "LV"
+                     },
+                     {
+                      "type": "text",
+                      "class": "lv-n",
+                      "text": "{hero.lv}"
+                     }
+                    ]
+                   }
+                  ]
+                 },
+                 {
+                  "type": "box",
+                  "class": "gauge",
+                  "children": [
+                   {
+                    "type": "box",
+                    "class": "gauge-row",
+                    "children": [
+                     {
+                      "type": "text",
+                      "class": "g-l",
+                      "text": "HP"
+                     },
+                     {
+                      "type": "text",
+                      "class": "g-n",
+                      "text": "{hero.hp}/ {hero.maxHp}"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "bar",
+                    "class": "hp",
+                    "value": "$hero.hpPct",
+                    "max": 1,
+                    "classIf": {
+                     "low": "$hero.low"
+                    }
+                   }
+                  ]
+                 },
+                 {
+                  "type": "box",
+                  "class": "gauge",
+                  "children": [
+                   {
+                    "type": "box",
+                    "class": "gauge-row",
+                    "children": [
+                     {
+                      "type": "text",
+                      "class": "g-l",
+                      "text": "EXP"
+                     },
+                     {
+                      "type": "text",
+                      "class": "g-n g-right",
+                      "text": "{hero.exp}"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "gauge-row",
+                    "children": [
+                     {
+                      "type": "text",
+                      "class": "g-l",
+                      "text": "NEXT"
+                     },
+                     {
+                      "type": "text",
+                      "class": "g-n g-right",
+                      "text": "{hero.next}"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "bar",
+                    "class": "xp",
+                    "value": "$hero.expPct",
+                    "max": 1
+                   }
+                  ]
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "status-side",
+          "children": [
+           {
+            "type": "box",
+            "class": "win w-ability",
+            "children": [
+             {
+              "type": "box",
+              "class": "bar",
+              "children": [
+               {
+                "type": "text",
+                "class": "bar-t",
+                "text": "ABILITY"
+               },
+               {
+                "type": "box",
+                "class": "bar-end",
+                "children": []
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "win-body",
+              "children": [
+               {
+                "type": "box",
+                "class": "st-head",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "st-l",
+                  "text": ""
+                 },
+                 {
+                  "type": "text",
+                  "class": "st-h",
+                  "text": "HAND"
+                 },
+                 {
+                  "type": "text",
+                  "class": "st-h",
+                  "text": "I"
+                 },
+                 {
+                  "type": "text",
+                  "class": "st-h",
+                  "text": "II"
+                 },
+                 {
+                  "type": "text",
+                  "class": "st-h",
+                  "text": "III"
+                 }
+                ]
+               },
+               {
+                "type": "list",
+                "class": "st-list",
+                "items": "$hero.stats",
+                "template": {
+                 "type": "box",
+                 "class": "st-row",
+                 "children": [
+                  {
+                   "type": "text",
+                   "class": "st-l",
+                   "text": "{label}"
+                  },
+                  {
+                   "type": "text",
+                   "class": "st-v st-hand",
+                   "text": "{v3}"
+                  },
+                  {
+                   "type": "text",
+                   "class": "st-v",
+                   "text": "{v0}"
+                  },
+                  {
+                   "type": "text",
+                   "class": "st-v",
+                   "text": "{v1}"
+                  },
+                  {
+                   "type": "text",
+                   "class": "st-v",
+                   "text": "{v2}"
+                  }
+                 ]
+                }
+               },
+               {
+                "type": "text",
+                "class": "hint",
+                "text": "HAND is bare-handed; I, II, III use the weapon in that slot."
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "win w-beast tap",
+            "children": [
+             {
+              "type": "box",
+              "class": "bar",
+              "children": [
+               {
+                "type": "text",
+                "class": "bar-t",
+                "text": "GUARDIAN BEAST"
+               },
+               {
+                "type": "box",
+                "class": "bar-end",
+                "children": []
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "win-body",
+              "children": [
+               {
+                "type": "box",
+                "class": "beast-mini",
+                "children": [
+                 {
+                  "type": "box",
+                  "class": "mini-frame",
+                  "children": [
+                   {
+                    "type": "image",
+                    "class": "mini-portrait",
+                    "src": "$beast.portrait"
+                   }
+                  ]
+                 },
+                 {
+                  "type": "box",
+                  "class": "beast-col",
+                  "children": [
+                   {
+                    "type": "box",
+                    "class": "hero-top",
+                    "children": [
+                     {
+                      "type": "text",
+                      "class": "beast-name",
+                      "text": "{beast.name}"
+                     },
+                     {
+                      "type": "text",
+                      "class": "beast-lv",
+                      "text": "LV {beast.lv}"
+                     },
+                     {
+                      "type": "text",
+                      "class": "more",
+                      "text": "MORE >"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "bar",
+                    "class": "xp",
+                    "value": "$beast.expPct",
+                    "max": 1
+                   }
+                  ]
+                 }
+                ]
+               }
+              ]
+             }
+            ],
+            "onClick": {
+             "navigate": "beast"
+            },
+            "visibleIf": "$hasBeast"
+           },
+           {
+            "type": "box",
+            "class": "win w-beast",
+            "children": [
+             {
+              "type": "box",
+              "class": "bar",
+              "children": [
+               {
+                "type": "text",
+                "class": "bar-t",
+                "text": "GUARDIAN BEAST"
+               },
+               {
+                "type": "box",
+                "class": "bar-end",
+                "children": []
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "win-body",
+              "children": [
+               {
+                "type": "text",
+                "class": "hint",
+                "text": "Not chosen yet."
+               }
+              ]
+             }
+            ],
+            "visibleIf": "$noBeast"
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "name": "battle",
+       "child": {
+        "type": "box",
+        "class": "page-battle",
+        "children": [
+         {
+          "type": "box",
+          "class": "battle-live",
+          "children": [
+           {
+            "type": "box",
+            "class": "stage",
+            "children": [
+             {
+              "type": "box",
+              "class": "stage-sky",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "stage-floor",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "stage-row",
+              "children": [
+               {
+                "type": "box",
+                "class": "fighter hero-side",
+                "children": [
+                 {
+                  "type": "box",
+                  "class": "hero-stage",
+                  "children": [
+                   {
+                    "type": "box",
+                    "class": "sprite-box",
+                    "children": [
+                     {
+                      "type": "image",
+                      "class": "sprite",
+                      "src": "$battle.heroSprite",
+                      "visibleIf": "$battle.hasHeroSprite",
+                      "bindStyle": {
+                       "width": "{battle.heroW}px",
+                       "height": "{battle.heroH}px"
+                      }
+                     }
+                    ]
+                   },
+                   {
+                    "type": "list",
+                    "class": "wbadges",
+                    "items": "$battle.wear",
+                    "visibleIf": "$battle.hasWear",
+                    "template": {
+                     "type": "box",
+                     "class": "wbadge",
+                     "children": [
+                      {
+                       "type": "image",
+                       "class": "wbadge-ic",
+                       "src": "$icon",
+                       "visibleIf": "$hasIcon"
+                      },
+                      {
+                       "type": "text",
+                       "class": "wbadge-n",
+                       "text": "{slot}"
+                      }
+                     ],
+                     "classIf": {
+                      "low": "$low"
+                     }
+                    }
+                   }
+                  ]
+                 },
+                 {
+                  "type": "box",
+                  "class": "shadow",
+                  "children": []
+                 }
+                ]
+               },
+               {
+                "type": "text",
+                "class": "vs",
+                "text": "VS"
+               },
+               {
+                "type": "box",
+                "class": "fighter foe-side",
+                "children": [
+                 {
+                  "type": "box",
+                  "class": "sprite-box",
+                  "children": [
+                   {
+                    "type": "image",
+                    "class": "sprite",
+                    "src": "$battle.enemySprite",
+                    "visibleIf": "$battle.hasEnemySprite",
+                    "bindStyle": {
+                     "width": "{battle.enemyW}px",
+                     "height": "{battle.enemyH}px"
+                    }
+                   }
+                  ]
+                 },
+                 {
+                  "type": "box",
+                  "class": "shadow",
+                  "children": []
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "victory",
+              "children": [
+               {
+                "type": "text",
+                "class": "victory-t",
+                "text": "VICTORY"
+               }
+              ],
+              "visibleIf": "$battle.won"
+             },
+             {
+              "type": "box",
+              "class": "alerts",
+              "children": [
+               {
+                "type": "text",
+                "class": "alert alert-hp",
+                "text": "LOW HP",
+                "visibleIf": "$battle.low"
+               },
+               {
+                "type": "text",
+                "class": "alert alert-wear",
+                "text": "WEAPON WEARING OUT",
+                "visibleIf": "$battle.breaking"
+               }
+              ],
+              "visibleIf": "$battle.fighting"
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "battle-cards",
+            "children": [
+             {
+              "type": "box",
+              "class": "win w-card",
+              "children": [
+               {
+                "type": "box",
+                "class": "bar",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "bar-t",
+                  "text": "{hero.who}"
+                 },
+                 {
+                  "type": "box",
+                  "class": "bar-end",
+                  "children": []
+                 }
+                ]
+               },
+               {
+                "type": "box",
+                "class": "win-body",
+                "children": [
+                 {
+                  "type": "box",
+                  "class": "hero-top",
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "foe-name",
+                    "text": "{hero.name}"
+                   },
+                   {
+                    "type": "box",
+                    "class": "lv-chip",
+                    "children": [
+                     {
+                      "type": "text",
+                      "class": "lv-l",
+                      "text": "LV"
+                     },
+                     {
+                      "type": "text",
+                      "class": "lv-n",
+                      "text": "{hero.lv}"
+                     }
+                    ]
+                   }
+                  ]
+                 },
+                 {
+                  "type": "box",
+                  "class": "gauge",
+                  "children": [
+                   {
+                    "type": "box",
+                    "class": "gauge-row",
+                    "children": [
+                     {
+                      "type": "text",
+                      "class": "g-l",
+                      "text": "HP"
+                     },
+                     {
+                      "type": "text",
+                      "class": "g-n big",
+                      "text": "{battle.hp}/ {battle.maxHp}"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "bar",
+                    "class": "hp hp-big",
+                    "value": "$battle.hpPct",
+                    "max": 1,
+                    "classIf": {
+                     "low": "$battle.low"
+                    }
+                   }
+                  ]
+                 },
+                 {
+                  "type": "list",
+                  "class": "wear",
+                  "items": "$battle.wear",
+                  "template": {
+                   "type": "box",
+                   "class": "wear-row",
+                   "children": [
+                    {
+                     "type": "image",
+                     "class": "wear-ic",
+                     "src": "$icon",
+                     "visibleIf": "$hasIcon"
+                    },
+                    {
+                     "type": "text",
+                     "class": "wear-name",
+                     "text": "{name}"
+                    },
+                    {
+                     "type": "text",
+                     "class": "wear-n",
+                     "text": "{cur}/ {max}"
+                    },
+                    {
+                     "type": "bar",
+                     "class": "dur",
+                     "value": "$pct",
+                     "max": 1,
+                     "classIf": {
+                      "low": "$low"
+                     }
+                    }
+                   ]
+                  }
+                 },
+                 {
+                  "type": "box",
+                  "class": "",
+                  "children": [
+                   {
+                    "type": "box",
+                    "class": "gauge",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "gauge-row",
+                      "children": [
+                       {
+                        "type": "text",
+                        "class": "g-l",
+                        "text": "EXP"
+                       },
+                       {
+                        "type": "text",
+                        "class": "g-n",
+                        "text": "{hero.exp}"
+                       },
+                       {
+                        "type": "text",
+                        "class": "g-l g-next",
+                        "text": "NEXT"
+                       },
+                       {
+                        "type": "text",
+                        "class": "g-n",
+                        "text": "{hero.next}"
+                       }
+                      ]
+                     },
+                     {
+                      "type": "bar",
+                      "class": "xp",
+                      "value": "$hero.expPct",
+                      "max": 1
+                     }
+                    ]
+                   }
+                  ],
+                  "visibleIf": "$battle.noWear"
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "win w-card",
+              "children": [
+               {
+                "type": "box",
+                "class": "bar",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "bar-t",
+                  "text": "ENEMY"
+                 },
+                 {
+                  "type": "box",
+                  "class": "bar-end",
+                  "children": []
+                 }
+                ]
+               },
+               {
+                "type": "box",
+                "class": "win-body",
+                "children": [
+                 {
+                  "type": "box",
+                  "class": "hero-top",
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "foe-name",
+                    "text": "{battle.enemy.name}"
+                   },
+                   {
+                    "type": "box",
+                    "class": "lv-chip",
+                    "children": [
+                     {
+                      "type": "text",
+                      "class": "lv-l",
+                      "text": "LV"
+                     },
+                     {
+                      "type": "text",
+                      "class": "lv-n",
+                      "text": "{battle.enemy.lv}"
+                     }
+                    ]
+                   }
+                  ]
+                 },
+                 {
+                  "type": "box",
+                  "class": "gauge",
+                  "children": [
+                   {
+                    "type": "box",
+                    "class": "gauge-row",
+                    "children": [
+                     {
+                      "type": "text",
+                      "class": "g-l",
+                      "text": "HP"
+                     },
+                     {
+                      "type": "text",
+                      "class": "g-n big",
+                      "text": "{battle.foe.hp}/ {battle.foe.maxHp}"
+                     },
+                     {
+                      "type": "text",
+                      "class": "g-l g-next",
+                      "text": "{battle.foesLeft}",
+                      "visibleIf": "$battle.manyFoes"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "bar",
+                    "class": "hp hp-big foe-hp",
+                    "value": "$battle.foe.hpPct",
+                    "max": 1
+                   }
+                  ]
+                 },
+                 {
+                  "type": "box",
+                  "class": "foe-stats",
+                  "children": [
+                   {
+                    "type": "box",
+                    "class": "fs",
+                    "children": [
+                     {
+                      "type": "text",
+                      "class": "g-l",
+                      "text": "ATK"
+                     },
+                     {
+                      "type": "text",
+                      "class": "fs-v",
+                      "text": "{battle.enemy.atk}"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "fs",
+                    "children": [
+                     {
+                      "type": "text",
+                      "class": "g-l",
+                      "text": "DEF"
+                     },
+                     {
+                      "type": "text",
+                      "class": "fs-v",
+                      "text": "{battle.enemy.def}"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "fs",
+                    "children": [
+                     {
+                      "type": "text",
+                      "class": "g-l",
+                      "text": "EXP"
+                     },
+                     {
+                      "type": "text",
+                      "class": "fs-v",
+                      "text": "{battle.enemy.exp}"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "fs",
+                    "children": [
+                     {
+                      "type": "text",
+                      "class": "g-l",
+                      "text": "MONEY"
+                     },
+                     {
+                      "type": "text",
+                      "class": "fs-v",
+                      "text": "{battle.enemy.money} b"
+                     }
+                    ]
+                   }
+                  ]
+                 },
+                 {
+                  "type": "box",
+                  "class": "drop-row",
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "g-l",
+                    "text": "MAY DROP"
+                   },
+                   {
+                    "type": "image",
+                    "class": "need-ic",
+                    "src": "$battle.dropIcon"
+                   },
+                   {
+                    "type": "text",
+                    "class": "drop-n",
+                    "text": "{battle.drop}"
+                   }
+                  ],
+                  "visibleIf": "$battle.hasDrop"
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ],
+          "visibleIf": "$inBattle"
+         },
+         {
+          "type": "box",
+          "class": "battle-idle idle-wrap",
+          "children": [
+           {
+            "type": "box",
+            "class": "win",
+            "children": [
+             {
+              "type": "box",
+              "class": "bar",
+              "children": [
+               {
+                "type": "text",
+                "class": "bar-t",
+                "text": "BATTLE"
+               },
+               {
+                "type": "box",
+                "class": "bar-end",
+                "children": []
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "win-body",
+              "children": [
+               {
+                "type": "box",
+                "class": "idle",
+                "children": [
+                 {
+                  "type": "box",
+                  "class": "idle-art",
+                  "children": [
+                   {
+                    "type": "image",
+                    "class": "idle-portrait",
+                    "src": "$hero.portrait"
+                   }
+                  ]
+                 },
+                 {
+                  "type": "box",
+                  "class": "idle-text",
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "idle-title",
+                    "text": "No battle right now"
+                   },
+                   {
+                    "type": "text",
+                    "class": "idle-body",
+                    "text": "This page opens by itself when a fight starts in the Labyrinth: both fighters, live HP, the enemy's level, stats and rewards."
+                   },
+                   {
+                    "type": "box",
+                    "class": "rule",
+                    "children": []
+                   },
+                   {
+                    "type": "box",
+                    "class": "idle-row",
+                    "children": [
+                     {
+                      "type": "text",
+                      "class": "g-l",
+                      "text": "{hero.who}"
+                     },
+                     {
+                      "type": "text",
+                      "class": "g-n",
+                      "text": "{hero.hp}/ {hero.maxHp} HP"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "bar",
+                    "class": "hp",
+                    "value": "$hero.hpPct",
+                    "max": 1,
+                    "classIf": {
+                     "low": "$hero.low"
+                    }
+                   }
+                  ]
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ],
+          "visibleIf": "$noBattle"
+         }
+        ]
+       }
+      },
+      {
+       "name": "weapon",
+       "child": {
+        "type": "box",
+        "class": "page-weapon",
+        "children": [
+         {
+          "type": "box",
+          "class": "win w-eq",
+          "children": [
+           {
+            "type": "box",
+            "class": "bar",
+            "children": [
+             {
+              "type": "text",
+              "class": "bar-t",
+              "text": "EQUIPPED"
+             },
+             {
+              "type": "box",
+              "class": "bar-end",
+              "children": []
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "win-body",
+            "children": [
+             {
+              "type": "list",
+              "class": "eq-list",
+              "items": "$weapons.equipped",
+              "template": {
+               "type": "box",
+               "class": "eq",
+               "children": [
+                {
+                 "type": "text",
+                 "class": "eq-n",
+                 "text": "{slot}"
+                },
+                {
+                 "type": "box",
+                 "class": "eq-ic",
+                 "children": [
+                  {
+                   "type": "image",
+                   "class": "w-icon",
+                   "src": "$icon",
+                   "visibleIf": "$has"
+                  }
+                 ]
+                },
+                {
+                 "type": "box",
+                 "class": "eq-col",
+                 "children": [
+                  {
+                   "type": "text",
+                   "class": "eq-name",
+                   "text": "{name}",
+                   "classIf": {
+                    "dim": "$empty"
+                   }
+                  },
+                  {
+                   "type": "text",
+                   "class": "eq-stats",
+                   "text": "{stats}"
+                  }
+                 ]
+                }
+               ]
+              }
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "win w-wl",
+          "children": [
+           {
+            "type": "box",
+            "class": "bar",
+            "children": [
+             {
+              "type": "text",
+              "class": "bar-t",
+              "text": "WEAPONS"
+             },
+             {
+              "type": "box",
+              "class": "bar-end",
+              "children": []
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "win-body",
+            "children": [
+             {
+              "type": "box",
+              "class": "wl-head",
+              "children": [
+               {
+                "type": "box",
+                "class": "wl-ic",
+                "children": []
+               },
+               {
+                "type": "text",
+                "class": "sm-h wl-name",
+                "text": "NAME"
+               },
+               {
+                "type": "text",
+                "class": "sm-h wl-v",
+                "text": "ATK"
+               },
+               {
+                "type": "text",
+                "class": "sm-h wl-v",
+                "text": "DEF"
+               },
+               {
+                "type": "text",
+                "class": "sm-h wl-v",
+                "text": "AGL"
+               },
+               {
+                "type": "text",
+                "class": "sm-h wl-v",
+                "text": "DUR"
+               },
+               {
+                "type": "text",
+                "class": "sm-h wl-v",
+                "text": "TEC"
+               },
+               {
+                "type": "text",
+                "class": "sm-h wl-q",
+                "text": "QTY"
+               }
+              ]
+             },
+             {
+              "type": "list",
+              "class": "wl",
+              "items": "$weapons.list",
+              "empty": "No weapons yet. Forge one at your workshop: Create weapons.",
+              "template": {
+               "type": "box",
+               "class": "wl-row tap",
+               "children": [
+                {
+                 "type": "box",
+                 "class": "wl-ic",
+                 "children": [
+                  {
+                   "type": "image",
+                   "class": "w-icon",
+                   "src": "$icon"
+                  }
+                 ]
+                },
+                {
+                 "type": "box",
+                 "class": "wl-name",
+                 "children": [
+                  {
+                   "type": "text",
+                   "class": "wl-t",
+                   "text": "{name}"
+                  },
+                  {
+                   "type": "text",
+                   "class": "eq-badge",
+                   "text": "E",
+                   "visibleIf": "$on"
+                  },
+                  {
+                   "type": "text",
+                   "class": "el-tag",
+                   "text": "{elem}",
+                   "visibleIf": "$hasElem"
+                  }
+                 ]
+                },
+                {
+                 "type": "text",
+                 "class": "wl-v",
+                 "text": "{atk}"
+                },
+                {
+                 "type": "text",
+                 "class": "wl-v",
+                 "text": "{def}"
+                },
+                {
+                 "type": "text",
+                 "class": "wl-v",
+                 "text": "{agl}"
+                },
+                {
+                 "type": "text",
+                 "class": "wl-v",
+                 "text": "{dur}"
+                },
+                {
+                 "type": "text",
+                 "class": "wl-v wl-tec",
+                 "text": "{tec}"
+                },
+                {
+                 "type": "text",
+                 "class": "wl-q",
+                 "text": "{count}"
+                }
+               ],
+               "classIf": {
+                "selected": "$selected"
+               },
+               "onClick": {
+                "set": {
+                 "wpick": "{id}"
+                }
+               }
+              }
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "name": "craft",
+       "child": {
+        "type": "box",
+        "class": "page-craft",
+        "children": [
+         {
+          "type": "box",
+          "class": "win w-mats",
+          "children": [
+           {
+            "type": "box",
+            "class": "bar",
+            "children": [
+             {
+              "type": "text",
+              "class": "bar-t",
+              "text": "MATERIAL"
+             },
+             {
+              "type": "box",
+              "class": "bar-end",
+              "children": []
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "win-body",
+            "children": [
+             {
+              "type": "box",
+              "class": "mats-row",
+              "children": [
+               {
+                "type": "list",
+                "class": "mats",
+                "items": "$mats",
+                "template": {
+                 "type": "box",
+                 "class": "mat",
+                 "children": [
+                  {
+                   "type": "box",
+                   "class": "mat-top",
+                   "children": [
+                    {
+                     "type": "image",
+                     "class": "mat-icon",
+                     "src": "$icon"
+                    },
+                    {
+                     "type": "text",
+                     "class": "mat-n",
+                     "text": "{count}"
+                    }
+                   ]
+                  },
+                  {
+                   "type": "text",
+                   "class": "mat-l",
+                   "text": "{label}"
+                  },
+                  {
+                   "type": "bar",
+                   "class": "mat-g",
+                   "value": "$pct",
+                   "max": 1
+                  },
+                  {
+                   "type": "text",
+                   "class": "mat-plus",
+                   "text": "{plus}"
+                  }
+                 ]
+                }
+               },
+               {
+                "type": "box",
+                "class": "mat ore-tile",
+                "children": [
+                 {
+                  "type": "box",
+                  "class": "mat-top",
+                  "children": [
+                   {
+                    "type": "image",
+                    "class": "mat-icon",
+                    "src": "asset:img/mat-ore.png"
+                   },
+                   {
+                    "type": "text",
+                    "class": "mat-n",
+                    "text": "{mystic}"
+                   }
+                  ]
+                 },
+                 {
+                  "type": "text",
+                  "class": "mat-l",
+                  "text": "MYSTIC ORE"
+                 },
+                 {
+                  "type": "bar",
+                  "class": "mat-g",
+                  "value": "$mystic",
+                  "max": 99
+                 },
+                 {
+                  "type": "text",
+                  "class": "mat-plus",
+                  "text": ""
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "win w-smelt",
+          "children": [
+           {
+            "type": "box",
+            "class": "bar",
+            "children": [
+             {
+              "type": "text",
+              "class": "bar-t",
+              "text": "SMELT FROM YOUR BAG"
+             },
+             {
+              "type": "box",
+              "class": "bar-end",
+              "children": []
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "win-body",
+            "children": [
+             {
+              "type": "box",
+              "class": "sm-head",
+              "children": [
+               {
+                "type": "box",
+                "class": "sm-it",
+                "children": []
+               },
+               {
+                "type": "text",
+                "class": "sm-h sm-name",
+                "text": "ITEM"
+               },
+               {
+                "type": "text",
+                "class": "sm-h sm-q",
+                "text": "QTY"
+               },
+               {
+                "type": "image",
+                "class": "sm-ic",
+                "src": "asset:img/mat-thunder.png"
+               },
+               {
+                "type": "image",
+                "class": "sm-ic",
+                "src": "asset:img/mat-fire.png"
+               },
+               {
+                "type": "image",
+                "class": "sm-ic",
+                "src": "asset:img/mat-water.png"
+               },
+               {
+                "type": "image",
+                "class": "sm-ic",
+                "src": "asset:img/mat-wind.png"
+               }
+              ]
+             },
+             {
+              "type": "list",
+              "class": "sm-list",
+              "items": "$smelt",
+              "empty": "Nothing to smelt. Items and drops that melt down show here.",
+              "template": {
+               "type": "box",
+               "class": "sm-row tap",
+               "children": [
+                {
+                 "type": "image",
+                 "class": "sm-it",
+                 "src": "$icon"
+                },
+                {
+                 "type": "text",
+                 "class": "sm-name",
+                 "text": "{name}"
+                },
+                {
+                 "type": "text",
+                 "class": "sm-q",
+                 "text": "x{count}"
+                },
+                {
+                 "type": "text",
+                 "class": "sm-v",
+                 "text": "{thunder}"
+                },
+                {
+                 "type": "text",
+                 "class": "sm-v",
+                 "text": "{fire}"
+                },
+                {
+                 "type": "text",
+                 "class": "sm-v",
+                 "text": "{water}"
+                },
+                {
+                 "type": "text",
+                 "class": "sm-v",
+                 "text": "{wind}"
+                }
+               ],
+               "onClick": {
+                "set": {
+                 "pick": "{id}"
+                }
+               }
+              }
+             },
+             {
+              "type": "text",
+              "class": "hint",
+              "text": "Smelt at your workshop forge: Create materials > Item. The +N under each material is what your whole bag would add."
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "name": "bag",
+       "child": {
+        "type": "box",
+        "class": "page-bag",
+        "children": [
+         {
+          "type": "box",
+          "class": "win w-bag",
+          "children": [
+           {
+            "type": "box",
+            "class": "bar",
+            "children": [
+             {
+              "type": "text",
+              "class": "bar-t",
+              "text": "ITEM"
+             },
+             {
+              "type": "box",
+              "class": "bar-end",
+              "children": []
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "win-body",
+            "children": [
+             {
+              "type": "box",
+              "class": "book-top",
+              "children": [
+               {
+                "type": "box",
+                "class": "seg tap",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "seg-t",
+                  "text": "BAG"
+                 }
+                ],
+                "classIf": {
+                 "on": "$bagMain"
+                },
+                "onClick": {
+                 "set": {
+                  "bagTab": "bag"
+                 }
+                }
+               },
+               {
+                "type": "box",
+                "class": "seg tap",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "seg-t",
+                  "text": "KEY ITEMS"
+                 }
+                ],
+                "classIf": {
+                 "on": "$bagKey"
+                },
+                "onClick": {
+                 "set": {
+                  "bagTab": "key"
+                 }
+                }
+               }
+              ]
+             },
+             {
+              "type": "list",
+              "class": "bag",
+              "items": "$bag",
+              "empty": "Nothing in the bag yet.",
+              "visibleIf": "$bagMain",
+              "template": {
+               "type": "box",
+               "class": "item tap",
+               "children": [
+                {
+                 "type": "image",
+                 "class": "it-icon",
+                 "src": "$icon"
+                },
+                {
+                 "type": "text",
+                 "class": "it-name",
+                 "text": "{name}"
+                },
+                {
+                 "type": "text",
+                 "class": "tag",
+                 "text": "{tag}"
+                },
+                {
+                 "type": "text",
+                 "class": "it-n",
+                 "text": "{qty}"
+                }
+               ],
+               "classIf": {
+                "selected": "$selected"
+               },
+               "onClick": {
+                "set": {
+                 "pick": "{id}"
+                }
+               }
+              }
+             },
+             {
+              "type": "list",
+              "class": "keys",
+              "items": "$events",
+              "empty": "No key items yet.",
+              "visibleIf": "$bagKey",
+              "template": {
+               "type": "box",
+               "class": "key-row",
+               "children": [
+                {
+                 "type": "image",
+                 "class": "key-ic",
+                 "src": "$icon"
+                },
+                {
+                 "type": "box",
+                 "class": "key-col",
+                 "children": [
+                  {
+                   "type": "text",
+                   "class": "key-name",
+                   "text": "{name}"
+                  },
+                  {
+                   "type": "text",
+                   "class": "key-desc",
+                   "text": "{desc}"
+                  }
+                 ]
+                }
+               ]
+              }
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "name": "beast",
+       "child": {
+        "type": "box",
+        "class": "page-beast",
+        "children": [
+         {
+          "type": "box",
+          "class": "win w-bb",
+          "children": [
+           {
+            "type": "box",
+            "class": "bar",
+            "children": [
+             {
+              "type": "text",
+              "class": "bar-t",
+              "text": "GUARDIAN BEAST"
+             },
+             {
+              "type": "box",
+              "class": "bar-end",
+              "children": []
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "win-body",
+            "children": [
+             {
+              "type": "box",
+              "class": "bb",
+              "children": [
+               {
+                "type": "box",
+                "class": "frame big-frame",
+                "children": [
+                 {
+                  "type": "image",
+                  "class": "big-portrait",
+                  "src": "$beast.portrait"
+                 }
+                ]
+               },
+               {
+                "type": "box",
+                "class": "bb-info",
+                "children": [
+                 {
+                  "type": "box",
+                  "class": "hero-top",
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "bb-name",
+                    "text": "{beast.name}"
+                   },
+                   {
+                    "type": "box",
+                    "class": "lv-chip",
+                    "children": [
+                     {
+                      "type": "text",
+                      "class": "lv-l",
+                      "text": "LV"
+                     },
+                     {
+                      "type": "text",
+                      "class": "lv-n",
+                      "text": "{beast.lv}"
+                     }
+                    ]
+                   }
+                  ]
+                 },
+                 {
+                  "type": "box",
+                  "class": "gauge",
+                  "children": [
+                   {
+                    "type": "box",
+                    "class": "gauge-row",
+                    "children": [
+                     {
+                      "type": "text",
+                      "class": "g-l",
+                      "text": "EXP"
+                     },
+                     {
+                      "type": "text",
+                      "class": "g-n",
+                      "text": "{beast.exp}"
+                     },
+                     {
+                      "type": "text",
+                      "class": "g-l g-next",
+                      "text": "NEXT"
+                     },
+                     {
+                      "type": "text",
+                      "class": "g-n",
+                      "text": "{beast.next}"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "bar",
+                    "class": "xp",
+                    "value": "$beast.expPct",
+                    "max": 1
+                   }
+                  ]
+                 },
+                 {
+                  "type": "box",
+                  "class": "rule",
+                  "children": []
+                 },
+                 {
+                  "type": "text",
+                  "class": "g-l",
+                  "text": "PARTNER"
+                 },
+                 {
+                  "type": "box",
+                  "class": "pair",
+                  "children": [
+                   {
+                    "type": "box",
+                    "class": "mini-frame",
+                    "children": [
+                     {
+                      "type": "image",
+                      "class": "mini-portrait",
+                      "src": "$hero.portrait"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "beast-col",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "hero-top",
+                      "children": [
+                       {
+                        "type": "text",
+                        "class": "beast-name",
+                        "text": "{hero.name}"
+                       },
+                       {
+                        "type": "text",
+                        "class": "beast-lv",
+                        "text": "LV {hero.lv}"
+                       }
+                      ]
+                     },
+                     {
+                      "type": "bar",
+                      "class": "xp",
+                      "value": "$hero.expPct",
+                      "max": 1
+                     }
+                    ]
+                   }
+                  ]
+                 },
+                 {
+                  "type": "box",
+                  "class": "back-btn tap",
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "back-t",
+                    "text": "< BACK TO STATUS"
+                   }
+                  ],
+                  "onClick": {
+                   "navigate": "status"
+                  }
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "name": "journey",
+       "child": {
+        "type": "box",
+        "class": "page-journey",
+        "children": [
+         {
+          "type": "box",
+          "class": "book-top log-tabs",
+          "children": [
+           {
+            "type": "box",
+            "class": "seg tap",
+            "children": [
+             {
+              "type": "text",
+              "class": "seg-t",
+              "text": "PROGRESS"
+             }
+            ],
+            "classIf": {
+             "on": "$logMain"
+            },
+            "onClick": {
+             "set": {
+              "logTab": "main"
+             }
+            }
+           },
+           {
+            "type": "box",
+            "class": "seg tap",
+            "children": [
+             {
+              "type": "text",
+              "class": "seg-t",
+              "text": "MONSTER BOOK"
+             }
+            ],
+            "classIf": {
+             "on": "$logBook"
+            },
+            "onClick": {
+             "set": {
+              "logTab": "book"
+             }
+            }
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "log-main",
+          "children": [
+           {
+            "type": "box",
+            "class": "journey-top",
+            "children": [
+             {
+              "type": "box",
+              "class": "win w-lab",
+              "children": [
+               {
+                "type": "box",
+                "class": "bar",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "bar-t",
+                  "text": "LABYRINTH"
+                 },
+                 {
+                  "type": "box",
+                  "class": "bar-end",
+                  "children": []
+                 }
+                ]
+               },
+               {
+                "type": "box",
+                "class": "win-body",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "g-l",
+                  "text": "KEYS"
+                 },
+                 {
+                  "type": "list",
+                  "class": "ladder",
+                  "items": "$journey.keys",
+                  "template": {
+                   "type": "box",
+                   "class": "rung",
+                   "children": [
+                    {
+                     "type": "box",
+                     "class": "rung-box",
+                     "children": [
+                      {
+                       "type": "image",
+                       "class": "rung-ic",
+                       "src": "$journey.keyIcon",
+                       "visibleIf": "$has"
+                      },
+                      {
+                       "type": "text",
+                       "class": "rung-q",
+                       "text": "?",
+                       "visibleIf": "$no"
+                      }
+                     ]
+                    },
+                    {
+                     "type": "text",
+                     "class": "rung-n",
+                     "text": "{n}"
+                    }
+                   ],
+                   "classIf": {
+                    "has": "$has"
+                   }
+                  }
+                 },
+                 {
+                  "type": "text",
+                  "class": "hint",
+                  "text": "Each key opens deeper floors."
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "win w-tour",
+              "children": [
+               {
+                "type": "box",
+                "class": "bar",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "bar-t",
+                  "text": "TOURNAMENT"
+                 },
+                 {
+                  "type": "box",
+                  "class": "bar-end",
+                  "children": []
+                 }
+                ]
+               },
+               {
+                "type": "box",
+                "class": "win-body",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "g-l",
+                  "text": "MATCH NOTICES"
+                 },
+                 {
+                  "type": "list",
+                  "class": "ladder",
+                  "items": "$journey.notices",
+                  "template": {
+                   "type": "box",
+                   "class": "rung",
+                   "children": [
+                    {
+                     "type": "box",
+                     "class": "rung-box",
+                     "children": [
+                      {
+                       "type": "image",
+                       "class": "rung-ic",
+                       "src": "$journey.noticeIcon",
+                       "visibleIf": "$has"
+                      },
+                      {
+                       "type": "text",
+                       "class": "rung-q",
+                       "text": "?",
+                       "visibleIf": "$no"
+                      }
+                     ]
+                    },
+                    {
+                     "type": "text",
+                     "class": "rung-n",
+                     "text": "{n}"
+                    }
+                   ],
+                   "classIf": {
+                    "has": "$has"
+                   }
+                  }
+                 },
+                 {
+                  "type": "text",
+                  "class": "hint",
+                  "text": "One notice per rank match."
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "win w-coll",
+            "children": [
+             {
+              "type": "box",
+              "class": "bar",
+              "children": [
+               {
+                "type": "text",
+                "class": "bar-t",
+                "text": "COLLECTION"
+               },
+               {
+                "type": "box",
+                "class": "bar-end",
+                "children": []
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "win-body",
+              "children": [
+               {
+                "type": "box",
+                "class": "meter",
+                "children": [
+                 {
+                  "type": "box",
+                  "class": "gauge-row",
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "g-l",
+                    "text": "RECIPES LEARNED"
+                   },
+                   {
+                    "type": "text",
+                    "class": "g-n meter-n",
+                    "text": "{journey.weapons}/ {journey.weaponTotal}"
+                   }
+                  ]
+                 },
+                 {
+                  "type": "bar",
+                  "class": "xp",
+                  "value": "$journey.weaponsPct",
+                  "max": 1
+                 }
+                ]
+               },
+               {
+                "type": "box",
+                "class": "meter",
+                "children": [
+                 {
+                  "type": "box",
+                  "class": "gauge-row",
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "g-l",
+                    "text": "ACCESSORIES"
+                   },
+                   {
+                    "type": "text",
+                    "class": "g-n meter-n",
+                    "text": "{journey.accessories}/ 60"
+                   }
+                  ]
+                 },
+                 {
+                  "type": "bar",
+                  "class": "xp",
+                  "value": "$journey.accPct",
+                  "max": 1
+                 }
+                ]
+               },
+               {
+                "type": "box",
+                "class": "meter",
+                "children": [
+                 {
+                  "type": "box",
+                  "class": "gauge-row",
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "g-l",
+                    "text": "KEY ITEMS"
+                   },
+                   {
+                    "type": "text",
+                    "class": "g-n meter-n",
+                    "text": "{journey.keyItems}/ 41"
+                   }
+                  ]
+                 },
+                 {
+                  "type": "bar",
+                  "class": "xp",
+                  "value": "$journey.keyPct2",
+                  "max": 1
+                 }
+                ]
+               },
+               {
+                "type": "box",
+                "class": "meter",
+                "children": [
+                 {
+                  "type": "box",
+                  "class": "gauge-row",
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "g-l",
+                    "text": "MONSTERS KNOWN"
+                   },
+                   {
+                    "type": "text",
+                    "class": "g-n meter-n",
+                    "text": "{journey.known}/ {journey.knownTotal}"
+                   }
+                  ]
+                 },
+                 {
+                  "type": "bar",
+                  "class": "xp",
+                  "value": "$journey.knownPct",
+                  "max": 1
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ],
+          "visibleIf": "$logMain"
+         },
+         {
+          "type": "box",
+          "class": "log-book",
+          "children": [
+           {
+            "type": "box",
+            "class": "win w-book",
+            "children": [
+             {
+              "type": "box",
+              "class": "bar",
+              "children": [
+               {
+                "type": "text",
+                "class": "bar-t",
+                "text": "MONSTER BOOK"
+               },
+               {
+                "type": "box",
+                "class": "bar-end",
+                "children": []
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "win-body",
+              "children": [
+               {
+                "type": "box",
+                "class": "book-top",
+                "children": [
+                 {
+                  "type": "box",
+                  "class": "seg tap",
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "seg-t",
+                    "text": "MONSTERS"
+                   }
+                  ],
+                  "classIf": {
+                   "on": "$book.monsters"
+                  },
+                  "onClick": {
+                   "set": {
+                    "bookTab": "monster"
+                   }
+                  }
+                 },
+                 {
+                  "type": "box",
+                  "class": "seg tap",
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "seg-t",
+                    "text": "BOSSES"
+                   }
+                  ],
+                  "classIf": {
+                   "on": "$book.bosses"
+                  },
+                  "onClick": {
+                   "set": {
+                    "bookTab": "boss"
+                   }
+                  }
+                 },
+                 {
+                  "type": "box",
+                  "class": "spoil-row",
+                  "children": [
+                   {
+                    "type": "box",
+                    "class": "seg tap",
+                    "children": [
+                     {
+                      "type": "text",
+                      "class": "seg-t",
+                      "text": "REVEAL ALL"
+                     }
+                    ],
+                    "visibleIf": "$book.noSpoil",
+                    "onClick": {
+                     "set": {
+                      "spoil": "1"
+                     }
+                    }
+                   },
+                   {
+                    "type": "box",
+                    "class": "seg on tap",
+                    "children": [
+                     {
+                      "type": "text",
+                      "class": "seg-t",
+                      "text": "HIDE UNMET"
+                     }
+                    ],
+                    "visibleIf": "$book.spoil",
+                    "onClick": {
+                     "set": {
+                      "spoil": ""
+                     }
+                    }
+                   }
+                  ]
+                 },
+                 {
+                  "type": "box",
+                  "class": "sm-fill",
+                  "children": []
+                 },
+                 {
+                  "type": "text",
+                  "class": "g-l",
+                  "text": "KNOWN"
+                 },
+                 {
+                  "type": "text",
+                  "class": "g-n",
+                  "text": "{book.known}/ {book.total}"
+                 }
+                ]
+               },
+               {
+                "type": "box",
+                "class": "bk-head",
+                "children": [
+                 {
+                  "type": "box",
+                  "class": "bk-dot",
+                  "children": []
+                 },
+                 {
+                  "type": "text",
+                  "class": "sm-h bk-name",
+                  "text": "NAME"
+                 },
+                 {
+                  "type": "text",
+                  "class": "sm-h bk-v",
+                  "text": "LV"
+                 },
+                 {
+                  "type": "text",
+                  "class": "sm-h bk-w",
+                  "text": "HP"
+                 },
+                 {
+                  "type": "text",
+                  "class": "sm-h bk-v",
+                  "text": "ATK"
+                 },
+                 {
+                  "type": "text",
+                  "class": "sm-h bk-v",
+                  "text": "DEF"
+                 },
+                 {
+                  "type": "text",
+                  "class": "sm-h bk-w",
+                  "text": "EXP"
+                 },
+                 {
+                  "type": "text",
+                  "class": "sm-h bk-w",
+                  "text": "MONEY"
+                 }
+                ]
+               },
+               {
+                "type": "list",
+                "class": "bk",
+                "items": "$book.list",
+                "template": {
+                 "type": "box",
+                 "class": "bk-row tap",
+                 "children": [
+                  {
+                   "type": "box",
+                   "class": "bk-dot",
+                   "children": [
+                    {
+                     "type": "box",
+                     "class": "dot",
+                     "children": [],
+                     "classIf": {
+                      "met": "$met",
+                      "now": "$now"
+                     }
+                    }
+                   ]
+                  },
+                  {
+                   "type": "text",
+                   "class": "bk-name",
+                   "text": "{name}"
+                  },
+                  {
+                   "type": "text",
+                   "class": "bk-v",
+                   "text": "{lv}"
+                  },
+                  {
+                   "type": "text",
+                   "class": "bk-w",
+                   "text": "{hp}"
+                  },
+                  {
+                   "type": "text",
+                   "class": "bk-v",
+                   "text": "{atk}"
+                  },
+                  {
+                   "type": "text",
+                   "class": "bk-v",
+                   "text": "{def}"
+                  },
+                  {
+                   "type": "text",
+                   "class": "bk-w",
+                   "text": "{exp}"
+                  },
+                  {
+                   "type": "text",
+                   "class": "bk-w",
+                   "text": "{money}"
+                  }
+                 ],
+                 "classIf": {
+                  "selected": "$selected",
+                  "now": "$now",
+                  "hidden": "$hidden"
+                 },
+                 "onClick": {
+                  "set": {
+                   "epick": "{id}"
+                  }
+                 }
+                }
+               },
+               {
+                "type": "text",
+                "class": "hint",
+                "text": "Known = the game's own Bestiary (List > Bestiary). Bosses aren't in it: REVEAL ALL shows them."
+               }
+              ]
+             }
+            ]
+           }
+          ],
+          "visibleIf": "$logBook"
+         }
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "type": "box",
+     "class": "nav",
+     "children": [
+      {
+       "type": "box",
+       "class": "tab tap",
+       "children": [
+        {
+         "type": "box",
+         "class": "cur",
+         "children": [],
+         "visibleIf": "$nav_status"
+        },
+        {
+         "type": "text",
+         "class": "tab-t",
+         "text": "STATUS"
+        }
+       ],
+       "classIf": {
+        "on": "$nav_status"
+       },
+       "onClick": {
+        "navigate": "status"
+       }
+      },
+      {
+       "type": "box",
+       "class": "tab tap",
+       "children": [
+        {
+         "type": "box",
+         "class": "cur",
+         "children": [],
+         "visibleIf": "$nav_battle"
+        },
+        {
+         "type": "text",
+         "class": "tab-t",
+         "text": "BATTLE"
+        }
+       ],
+       "classIf": {
+        "on": "$nav_battle"
+       },
+       "onClick": {
+        "navigate": "battle"
+       }
+      },
+      {
+       "type": "box",
+       "class": "tab tap",
+       "children": [
+        {
+         "type": "box",
+         "class": "cur",
+         "children": [],
+         "visibleIf": "$nav_weapon"
+        },
+        {
+         "type": "text",
+         "class": "tab-t",
+         "text": "WEAPON"
+        }
+       ],
+       "classIf": {
+        "on": "$nav_weapon"
+       },
+       "onClick": {
+        "navigate": "weapon"
+       }
+      },
+      {
+       "type": "box",
+       "class": "tab tap",
+       "children": [
+        {
+         "type": "box",
+         "class": "cur",
+         "children": [],
+         "visibleIf": "$nav_craft"
+        },
+        {
+         "type": "text",
+         "class": "tab-t",
+         "text": "CRAFT"
+        }
+       ],
+       "classIf": {
+        "on": "$nav_craft"
+       },
+       "onClick": {
+        "navigate": "craft"
+       }
+      },
+      {
+       "type": "box",
+       "class": "tab tap",
+       "children": [
+        {
+         "type": "box",
+         "class": "cur",
+         "children": [],
+         "visibleIf": "$nav_bag"
+        },
+        {
+         "type": "text",
+         "class": "tab-t",
+         "text": "ITEM"
+        }
+       ],
+       "classIf": {
+        "on": "$nav_bag"
+       },
+       "onClick": {
+        "navigate": "bag"
+       }
+      },
+      {
+       "type": "box",
+       "class": "tab tap",
+       "children": [
+        {
+         "type": "box",
+         "class": "cur",
+         "children": [],
+         "visibleIf": "$nav_beast"
+        },
+        {
+         "type": "text",
+         "class": "tab-t",
+         "text": "BEAST"
+        }
+       ],
+       "classIf": {
+        "on": "$nav_beast"
+       },
+       "onClick": {
+        "navigate": "beast"
+       }
+      },
+      {
+       "type": "box",
+       "class": "tab tap",
+       "children": [
+        {
+         "type": "box",
+         "class": "cur",
+         "children": [],
+         "visibleIf": "$nav_journey"
+        },
+        {
+         "type": "text",
+         "class": "tab-t",
+         "text": "LOG"
+        }
+       ],
+       "classIf": {
+        "on": "$nav_journey"
+       },
+       "onClick": {
+        "navigate": "journey"
+       }
+      }
+     ]
+    },
+    {
+     "type": "box",
+     "class": "scrim",
+     "children": [
+      {
+       "type": "box",
+       "class": "win pop",
+       "children": [
+        {
+         "type": "box",
+         "class": "bar",
+         "children": [
+          {
+           "type": "text",
+           "class": "bar-t",
+           "text": "{pick.tag}"
+          },
+          {
+           "type": "box",
+           "class": "bar-end",
+           "children": []
+          }
+         ]
+        },
+        {
+         "type": "box",
+         "class": "win-body pop-body",
+         "children": [
+          {
+           "type": "box",
+           "class": "pop-top",
+           "children": [
+            {
+             "type": "image",
+             "class": "pop-icon",
+             "src": "$pick.icon"
+            },
+            {
+             "type": "text",
+             "class": "pop-name",
+             "text": "{pick.name}"
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "class": "pop-desc",
+           "text": "{pick.desc}"
+          },
+          {
+           "type": "box",
+           "class": "pop-row",
+           "children": [
+            {
+             "type": "text",
+             "class": "g-l",
+             "text": "SMELTS INTO"
+            },
+            {
+             "type": "text",
+             "class": "num pop-smelt",
+             "text": "{pick.smelt}"
+            }
+           ],
+           "visibleIf": "$pick.canSmelt"
+          },
+          {
+           "type": "box",
+           "class": "pop-row",
+           "children": [
+            {
+             "type": "text",
+             "class": "g-l",
+             "text": "PRICE"
+            },
+            {
+             "type": "text",
+             "class": "num",
+             "text": "{pick.price}"
+            }
+           ]
+          },
+          {
+           "type": "button",
+           "class": "pop-btn",
+           "text": "CLOSE",
+           "onClick": {
+            "set": {
+             "pick": ""
+            }
+           }
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "visibleIf": "$pick",
+     "onClick": {
+      "set": {
+       "pick": ""
+      }
+     }
+    },
+    {
+     "type": "box",
+     "class": "scrim",
+     "children": [
+      {
+       "type": "box",
+       "class": "win pop wpop",
+       "children": [
+        {
+         "type": "box",
+         "class": "bar",
+         "children": [
+          {
+           "type": "text",
+           "class": "bar-t",
+           "text": "{wpick.typeName}"
+          },
+          {
+           "type": "box",
+           "class": "bar-end",
+           "children": []
+          }
+         ]
+        },
+        {
+         "type": "box",
+         "class": "win-body pop-body",
+         "children": [
+          {
+           "type": "box",
+           "class": "pop-top",
+           "children": [
+            {
+             "type": "image",
+             "class": "pop-icon",
+             "src": "$wpick.icon"
+            },
+            {
+             "type": "text",
+             "class": "pop-name",
+             "text": "{wpick.name}"
+            },
+            {
+             "type": "text",
+             "class": "el-tag",
+             "text": "{wpick.elem}",
+             "visibleIf": "$wpick.hasElem"
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "class": "pop-desc",
+           "text": "{wpick.desc}"
+          },
+          {
+           "type": "box",
+           "class": "stat-grid",
+           "children": [
+            {
+             "type": "box",
+             "class": "fs",
+             "children": [
+              {
+               "type": "text",
+               "class": "g-l",
+               "text": "ATK"
+              },
+              {
+               "type": "text",
+               "class": "fs-v",
+               "text": "{wpick.atk}"
+              }
+             ]
+            },
+            {
+             "type": "box",
+             "class": "fs",
+             "children": [
+              {
+               "type": "text",
+               "class": "g-l",
+               "text": "DEF"
+              },
+              {
+               "type": "text",
+               "class": "fs-v",
+               "text": "{wpick.def}"
+              }
+             ]
+            },
+            {
+             "type": "box",
+             "class": "fs",
+             "children": [
+              {
+               "type": "text",
+               "class": "g-l",
+               "text": "AGL"
+              },
+              {
+               "type": "text",
+               "class": "fs-v",
+               "text": "{wpick.agl}"
+              }
+             ]
+            },
+            {
+             "type": "box",
+             "class": "fs",
+             "children": [
+              {
+               "type": "text",
+               "class": "g-l",
+               "text": "DUR"
+              },
+              {
+               "type": "text",
+               "class": "fs-v",
+               "text": "{wpick.dur}"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "type": "box",
+           "class": "pop-row",
+           "children": [
+            {
+             "type": "text",
+             "class": "g-l",
+             "text": "FORGE"
+            },
+            {
+             "type": "list",
+             "class": "need",
+             "items": "$wpick.need",
+             "template": {
+              "type": "box",
+              "class": "need-chip",
+              "children": [
+               {
+                "type": "image",
+                "class": "need-ic",
+                "src": "$icon"
+               },
+               {
+                "type": "text",
+                "class": "need-n",
+                "text": "{need}"
+               },
+               {
+                "type": "text",
+                "class": "need-h",
+                "text": "/ {have}"
+               }
+              ],
+              "classIf": {
+               "short": "$short"
+              }
+             }
+            },
+            {
+             "type": "text",
+             "class": "ready",
+             "text": "READY",
+             "visibleIf": "$wpick.canForge"
+            },
+            {
+             "type": "text",
+             "class": "notready",
+             "text": "NEED MORE",
+             "visibleIf": "$wpick.cantForge"
+            }
+           ]
+          },
+          {
+           "type": "box",
+           "class": "pop-row",
+           "children": [
+            {
+             "type": "text",
+             "class": "g-l",
+             "text": "UPGRADES INTO"
+            },
+            {
+             "type": "text",
+             "class": "num",
+             "text": "{wpick.into}"
+            }
+           ],
+           "visibleIf": "$wpick.hasInto"
+          },
+          {
+           "type": "box",
+           "class": "pop-row",
+           "children": [
+            {
+             "type": "text",
+             "class": "g-l",
+             "text": "PRICE"
+            },
+            {
+             "type": "text",
+             "class": "num",
+             "text": "{wpick.price}"
+            }
+           ]
+          },
+          {
+           "type": "button",
+           "class": "pop-btn",
+           "text": "CLOSE",
+           "onClick": {
+            "set": {
+             "wpick": ""
+            }
+           }
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "visibleIf": "$wpick",
+     "onClick": {
+      "set": {
+       "wpick": ""
+      }
+     }
+    },
+    {
+     "type": "box",
+     "class": "scrim",
+     "children": [
+      {
+       "type": "box",
+       "class": "win pop epop",
+       "children": [
+        {
+         "type": "box",
+         "class": "bar",
+         "children": [
+          {
+           "type": "text",
+           "class": "bar-t",
+           "text": "{epick.kind}"
+          },
+          {
+           "type": "box",
+           "class": "bar-end",
+           "children": []
+          }
+         ]
+        },
+        {
+         "type": "box",
+         "class": "win-body pop-body",
+         "children": [
+          {
+           "type": "box",
+           "class": "hero-top",
+           "children": [
+            {
+             "type": "text",
+             "class": "pop-name",
+             "text": "{epick.name}"
+            },
+            {
+             "type": "box",
+             "class": "lv-chip",
+             "children": [
+              {
+               "type": "text",
+               "class": "lv-l",
+               "text": "LV"
+              },
+              {
+               "type": "text",
+               "class": "lv-n",
+               "text": "{epick.lv}"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "type": "box",
+           "class": "stat-grid",
+           "children": [
+            {
+             "type": "box",
+             "class": "fs",
+             "children": [
+              {
+               "type": "text",
+               "class": "g-l",
+               "text": "HP"
+              },
+              {
+               "type": "text",
+               "class": "fs-v",
+               "text": "{epick.hp}"
+              }
+             ]
+            },
+            {
+             "type": "box",
+             "class": "fs",
+             "children": [
+              {
+               "type": "text",
+               "class": "g-l",
+               "text": "ATK"
+              },
+              {
+               "type": "text",
+               "class": "fs-v",
+               "text": "{epick.atk}"
+              }
+             ]
+            },
+            {
+             "type": "box",
+             "class": "fs",
+             "children": [
+              {
+               "type": "text",
+               "class": "g-l",
+               "text": "DEF"
+              },
+              {
+               "type": "text",
+               "class": "fs-v",
+               "text": "{epick.def}"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "type": "box",
+           "class": "pop-row",
+           "children": [
+            {
+             "type": "text",
+             "class": "g-l",
+             "text": "EXP"
+            },
+            {
+             "type": "text",
+             "class": "num",
+             "text": "{epick.exp}"
+            }
+           ]
+          },
+          {
+           "type": "box",
+           "class": "pop-row",
+           "children": [
+            {
+             "type": "text",
+             "class": "g-l",
+             "text": "MONEY"
+            },
+            {
+             "type": "text",
+             "class": "num",
+             "text": "{epick.money}"
+            }
+           ]
+          },
+          {
+           "type": "box",
+           "class": "pop-row",
+           "children": [
+            {
+             "type": "text",
+             "class": "g-l",
+             "text": "MAY DROP"
+            },
+            {
+             "type": "list",
+             "class": "drops",
+             "items": "$epick.drops",
+             "template": {
+              "type": "box",
+              "class": "drop-chip",
+              "children": [
+               {
+                "type": "image",
+                "class": "need-ic",
+                "src": "$icon"
+               },
+               {
+                "type": "text",
+                "class": "drop-n",
+                "text": "{name}"
+               }
+              ]
+             }
+            }
+           ],
+           "visibleIf": "$epick.hasDrops"
+          },
+          {
+           "type": "button",
+           "class": "pop-btn",
+           "text": "CLOSE",
+           "onClick": {
+            "set": {
+             "epick": ""
+            }
+           }
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "visibleIf": "$epick",
+     "onClick": {
+      "set": {
+       "epick": ""
+      }
+     }
+    }
+   ],
+   "visibleIf": "$ready"
+  },
+  {
+   "type": "text",
+   "class": "err",
+   "text": "{_scriptError}",
+   "visibleIf": "$_scriptError"
+  }
+ ],
+ "id": "screen"
+}

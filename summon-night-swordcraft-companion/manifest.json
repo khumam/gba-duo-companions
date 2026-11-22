@@ -1,0 +1,20 @@
+{
+  "id": "summon-night-swordcraft-companion",
+  "name": "Summon Night: Swordcraft Story Companion",
+  "version": "0.9.4",
+  "author": "Ress",
+  "formatVersion": 4,
+  "match": {
+    "gameCode": [
+      "AB4E"
+    ],
+    "crc32": []
+  },
+  "tickHz": 4,
+  "layout": "layout.json",
+  "styles": [
+    "style.css"
+  ],
+  "script": "main.lua",
+  "gameScript": "game.lua"
+}

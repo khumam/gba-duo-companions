@@ -1193,6 +1193,128 @@
 			"recommendedAppVersion": "0.1.15",
 			"canModifyGame": false,
 			"overview": "overview/zelda-a-link-to-the-past-companion-overview.png"
+		},
+		{
+			"id": "breath-of-fire-companion",
+			"title": "Breath of Fire Companion",
+			"description": "A companion for Breath of Fire: party, gear, items, battle, book, magic and journey pages.",
+			"version": "0.10.0",
+			"author": "Ress",
+			"official": false,
+			"repo": "khumam/gba-duo-companions",
+			"path": "breath-of-fire-companion",
+			"tag": "v3.4.0",
+			"url": "https://github.com/khumam/gba-duo-companions/tree/main/breath-of-fire-companion",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v3.4.0/breath-of-fire-companion-0.10.0.zip",
+			"games": [
+				{
+					"title": "Breath of Fire",
+					"region": "US",
+					"gameCode": "ABFE"
+				}
+			],
+			"design": "Breath of Fire",
+			"pages": [
+				"Party",
+				"Gear",
+				"Items",
+				"Battle",
+				"Book",
+				"Magic",
+				"Journey"
+			],
+			"tags": [
+				"breath-of-fire",
+				"rpg",
+				"party",
+				"items",
+				"community"
+			],
+			"minAppVersion": "0.1.3",
+			"recommendedAppVersion": "0.1.3",
+			"canModifyGame": false,
+			"overview": "overview/breath-of-fire-companion-overview.png"
+		},
+		{
+			"id": "castlevania-hod-companion",
+			"title": "Castlevania: Harmony of Dissonance Companion (Ress)",
+			"description": "Styled after the pause menu, everything read from your ROM: status, items, magic, live battle with enemy HP bars, the Encyclopedia and the castle map.",
+			"version": "1.0.0",
+			"author": "Ress",
+			"official": false,
+			"repo": "khumam/gba-duo-companions",
+			"path": "castlevania-hod-companion",
+			"tag": "v3.4.0",
+			"url": "https://github.com/khumam/gba-duo-companions/tree/main/castlevania-hod-companion",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v3.4.0/castlevania-hod-companion-1.0.0.zip",
+			"games": [
+				{
+					"title": "Castlevania: Harmony of Dissonance",
+					"region": "US",
+					"gameCode": "ACHE"
+				}
+			],
+			"design": "Castlevania: Harmony of Dissonance",
+			"pages": [
+				"Status",
+				"Items",
+				"Magic",
+				"Battle",
+				"Book",
+				"Map"
+			],
+			"tags": [
+				"castlevania",
+				"metroidvania",
+				"map",
+				"items",
+				"community"
+			],
+			"minAppVersion": "0.1.3",
+			"recommendedAppVersion": "0.1.3",
+			"canModifyGame": false,
+			"overview": "overview/castlevania-hod-companion-overview.png"
+		},
+		{
+			"id": "summon-night-swordcraft-companion",
+			"title": "Summon Night: Swordcraft Story Companion",
+			"description": "A companion for Summon Night: Swordcraft Story: status, battle, weapons, crafting, bag, Guardian Beasts and journey, with a game script.",
+			"version": "0.9.4",
+			"author": "Ress",
+			"official": false,
+			"repo": "khumam/gba-duo-companions",
+			"path": "summon-night-swordcraft-companion",
+			"tag": "v3.4.0",
+			"url": "https://github.com/khumam/gba-duo-companions/tree/main/summon-night-swordcraft-companion",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v3.4.0/summon-night-swordcraft-companion-0.9.4.zip",
+			"games": [
+				{
+					"title": "Summon Night: Swordcraft Story",
+					"region": "US",
+					"gameCode": "AB4E"
+				}
+			],
+			"design": "Summon Night: Swordcraft Story",
+			"pages": [
+				"Status",
+				"Battle",
+				"Weapon",
+				"Craft",
+				"Bag",
+				"Beast",
+				"Journey"
+			],
+			"tags": [
+				"summon-night",
+				"rpg",
+				"crafting",
+				"items",
+				"community"
+			],
+			"minAppVersion": "0.1.15",
+			"recommendedAppVersion": "0.1.15",
+			"canModifyGame": false,
+			"overview": "overview/summon-night-swordcraft-companion-overview.png"
 		}
 	]
 }
