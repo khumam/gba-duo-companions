@@ -1184,6 +1184,7 @@
    "value": "??????"
   }
  ],
+ "isSample": true,
  "itemCount": 8,
  "itemGrid": [
   {
@@ -1880,6 +1881,7 @@
  "tbSheep": false,
  "tbSprites": false,
  "tmFish": false,
+ "tmOther": false,
  "tmRec": false,
  "tmShip": true,
  "tools": [

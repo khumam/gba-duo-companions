@@ -321,14 +321,14 @@
 			"id": "metroid-fusion-companion",
 			"title": "Metroid Fusion Companion",
 			"description": "The game's pause screen on the second screen: live energy and ammo, Samus on her grid, every upgrade, the area map, sector progress, bosses, security hatches and your next objective.",
-			"version": "2.0.4",
+			"version": "2.0.5",
 			"author": "khumam",
 			"official": true,
 			"repo": "khumam/gba-duo-companions",
 			"path": "metroid-fusion-companion",
-			"tag": "v3.2.0",
+			"tag": "v3.3.0",
 			"url": "https://github.com/khumam/gba-duo-companions/tree/main/metroid-fusion-companion",
-			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v3.2.0/metroid-fusion-companion-2.0.4.zip",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v3.3.0/metroid-fusion-companion-2.0.5.zip",
 			"games": [
 				{
 					"title": "Metroid Fusion",
@@ -370,14 +370,14 @@
 			"id": "metroid-zero-mission-companion",
 			"title": "Metroid: Zero Mission Companion",
 			"description": "The game's pause screen on the second screen: live energy and ammo, your explored map, Samus's suit with beams and gear you can switch on and off, sector progress and boss targets.",
-			"version": "1.0.4",
+			"version": "1.0.5",
 			"author": "khumam",
 			"official": true,
 			"repo": "khumam/gba-duo-companions",
 			"path": "metroid-zero-mission-companion",
-			"tag": "v3.2.0",
+			"tag": "v3.3.0",
 			"url": "https://github.com/khumam/gba-duo-companions/tree/main/metroid-zero-mission-companion",
-			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v3.2.0/metroid-zero-mission-companion-1.0.4.zip",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v3.3.0/metroid-zero-mission-companion-1.0.5.zip",
 			"games": [
 				{
 					"title": "Metroid: Zero Mission",
@@ -873,6 +873,326 @@
 			"recommendedAppVersion": "0.1.15",
 			"canModifyGame": true,
 			"overview": "overview/pokemon-unbound-companion-overview.png"
+		},
+		{
+			"id": "castlevania-aria-of-sorrow-companion",
+			"title": "Castlevania: Aria of Sorrow Companion",
+			"description": "The pause menu in a loop: status with the equipment and tappable menu, soul set, equipment, items, abilities, enemy data and the castle map. Equip, set souls and use items from the second screen (needs Packs can change games).",
+			"version": "0.1.0",
+			"author": "khumam",
+			"official": true,
+			"repo": "khumam/gba-duo-companions",
+			"path": "castlevania-aria-of-sorrow-companion",
+			"tag": "v3.3.0",
+			"url": "https://github.com/khumam/gba-duo-companions/tree/main/castlevania-aria-of-sorrow-companion",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v3.3.0/castlevania-aria-of-sorrow-companion-0.1.0.zip",
+			"games": [
+				{
+					"title": "Castlevania: Aria of Sorrow",
+					"region": "US",
+					"gameCode": "A2CE"
+				}
+			],
+			"design": "Castlevania: Aria of Sorrow",
+			"pages": [
+				"Status",
+				"Soul",
+				"Equip",
+				"Items",
+				"Ability",
+				"Enemy",
+				"Config",
+				"Map"
+			],
+			"tags": [
+				"castlevania",
+				"metroidvania",
+				"rpg",
+				"map",
+				"equipment"
+			],
+			"minAppVersion": "0.1.15",
+			"recommendedAppVersion": "0.1.15",
+			"canModifyGame": true,
+			"overview": "overview/castlevania-aria-of-sorrow-companion-overview.png"
+		},
+		{
+			"id": "castlevania-circle-of-the-moon-companion",
+			"title": "Castlevania: Circle of the Moon Companion",
+			"description": "The pause menu in a loop: status with the DSS combo and gear, the 100 DSS cards, items, cards, magic, config and the castle map.",
+			"version": "0.1.0",
+			"author": "khumam",
+			"official": true,
+			"repo": "khumam/gba-duo-companions",
+			"path": "castlevania-circle-of-the-moon-companion",
+			"tag": "v3.3.0",
+			"url": "https://github.com/khumam/gba-duo-companions/tree/main/castlevania-circle-of-the-moon-companion",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v3.3.0/castlevania-circle-of-the-moon-companion-0.1.0.zip",
+			"games": [
+				{
+					"title": "Castlevania: Circle of the Moon",
+					"region": "US",
+					"gameCode": "AAME"
+				}
+			],
+			"design": "Castlevania: Circle of the Moon",
+			"pages": [
+				"Status",
+				"DSS",
+				"Items",
+				"Cards",
+				"Magic",
+				"Config",
+				"Map"
+			],
+			"tags": [
+				"castlevania",
+				"metroidvania",
+				"rpg",
+				"map",
+				"cards"
+			],
+			"minAppVersion": "0.1.15",
+			"recommendedAppVersion": "0.1.15",
+			"canModifyGame": true,
+			"overview": "overview/castlevania-circle-of-the-moon-companion-overview.png"
+		},
+		{
+			"id": "castlevania-harmony-of-dissonance-companion",
+			"title": "Castlevania: Harmony of Dissonance Companion",
+			"description": "The pause menu in a loop plus the SELECT castle map (Castle A and B): status, equipment, items, spell books, relics and the config buttons.",
+			"version": "0.1.0",
+			"author": "khumam",
+			"official": true,
+			"repo": "khumam/gba-duo-companions",
+			"path": "castlevania-harmony-of-dissonance-companion",
+			"tag": "v3.3.0",
+			"url": "https://github.com/khumam/gba-duo-companions/tree/main/castlevania-harmony-of-dissonance-companion",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v3.3.0/castlevania-harmony-of-dissonance-companion-0.1.0.zip",
+			"games": [
+				{
+					"title": "Castlevania: Harmony of Dissonance",
+					"region": "US",
+					"gameCode": "ACHE"
+				}
+			],
+			"design": "Castlevania: Harmony of Dissonance",
+			"pages": [
+				"Map",
+				"Status",
+				"Equip",
+				"Items",
+				"Books",
+				"Relics",
+				"Config"
+			],
+			"tags": [
+				"castlevania",
+				"metroidvania",
+				"rpg",
+				"map",
+				"relics"
+			],
+			"minAppVersion": "0.1.15",
+			"recommendedAppVersion": "0.1.15",
+			"canModifyGame": true,
+			"overview": "overview/castlevania-harmony-of-dissonance-companion-overview.png"
+		},
+		{
+			"id": "fire-emblem-companion",
+			"title": "Fire Emblem Companion",
+			"description": "The game's unit screens on the second screen: every unit with stats and growths, personal data, items, weapon ranks, the convoy and the chapter status. Portraits are read from your ROM.",
+			"version": "0.1.0",
+			"author": "khumam",
+			"official": true,
+			"repo": "khumam/gba-duo-companions",
+			"path": "fire-emblem-companion",
+			"tag": "v3.3.0",
+			"url": "https://github.com/khumam/gba-duo-companions/tree/main/fire-emblem-companion",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v3.3.0/fire-emblem-companion-0.1.0.zip",
+			"games": [
+				{
+					"title": "Fire Emblem",
+					"region": "EU",
+					"gameCode": "AE7Y"
+				}
+			],
+			"design": "Fire Emblem",
+			"pages": [
+				"Units",
+				"Personal",
+				"Items",
+				"Weapons",
+				"Supply",
+				"Status"
+			],
+			"tags": [
+				"fire-emblem",
+				"tactics",
+				"rpg",
+				"units",
+				"rom-graphics"
+			],
+			"minAppVersion": "0.1.15",
+			"recommendedAppVersion": "0.1.15",
+			"canModifyGame": true,
+			"overview": "overview/fire-emblem-companion-overview.png"
+		},
+		{
+			"id": "fire-emblem-the-sacred-stones-companion",
+			"title": "Fire Emblem: The Sacred Stones Companion",
+			"description": "The same unit screens for The Sacred Stones: stats, personal data, items, weapon ranks, the convoy and the chapter status, with portraits read from your ROM.",
+			"version": "0.1.0",
+			"author": "khumam",
+			"official": true,
+			"repo": "khumam/gba-duo-companions",
+			"path": "fire-emblem-the-sacred-stones-companion",
+			"tag": "v3.3.0",
+			"url": "https://github.com/khumam/gba-duo-companions/tree/main/fire-emblem-the-sacred-stones-companion",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v3.3.0/fire-emblem-the-sacred-stones-companion-0.1.0.zip",
+			"games": [
+				{
+					"title": "Fire Emblem: The Sacred Stones",
+					"region": "US",
+					"gameCode": "BE8E"
+				}
+			],
+			"design": "Fire Emblem: The Sacred Stones",
+			"pages": [
+				"Units",
+				"Personal",
+				"Items",
+				"Weapons",
+				"Supply",
+				"Status"
+			],
+			"tags": [
+				"fire-emblem",
+				"tactics",
+				"rpg",
+				"units",
+				"rom-graphics"
+			],
+			"minAppVersion": "0.1.15",
+			"recommendedAppVersion": "0.1.15",
+			"canModifyGame": true,
+			"overview": "overview/fire-emblem-the-sacred-stones-companion-overview.png"
+		},
+		{
+			"id": "harvest-moon-fomt-companion",
+			"title": "Harvest Moon: Friends of Mineral Town Companion",
+			"description": "The pause menu on the second screen in the game's own paper windows: farm and gold, the rucksack with the game's tool and item icons, chickens, cattle and sheep with hearts, the Memo's shipping list, and the town and farm maps. Family, sprites, fishing, records and map markers are sample values for now.",
+			"version": "0.1.0",
+			"author": "khumam",
+			"official": true,
+			"repo": "khumam/gba-duo-companions",
+			"path": "harvest-moon-fomt-companion",
+			"tag": "v3.3.0",
+			"url": "https://github.com/khumam/gba-duo-companions/tree/main/harvest-moon-fomt-companion",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v3.3.0/harvest-moon-fomt-companion-0.1.0.zip",
+			"games": [
+				{
+					"title": "Harvest Moon: Friends of Mineral Town",
+					"region": "US",
+					"gameCode": "A4NE"
+				}
+			],
+			"design": "Harvest Moon: Friends of Mineral Town",
+			"pages": [
+				"Farm",
+				"Pack",
+				"Barn",
+				"Maps",
+				"Memo"
+			],
+			"tags": [
+				"harvest-moon",
+				"farming",
+				"simulation",
+				"items",
+				"map",
+				"rom-graphics"
+			],
+			"minAppVersion": "0.1.15",
+			"recommendedAppVersion": "0.1.15",
+			"canModifyGame": true,
+			"overview": "overview/harvest-moon-fomt-companion-overview.png"
+		},
+		{
+			"id": "mother-3-companion",
+			"title": "Mother 3 Companion",
+			"description": "The game's pause windows: goods, equipment, PSI and status for the party, with portraits and item data read from your ROM. Made for the English fan translation (v1.3).",
+			"version": "0.1.0",
+			"author": "khumam",
+			"official": true,
+			"repo": "khumam/gba-duo-companions",
+			"path": "mother-3-companion",
+			"tag": "v3.3.0",
+			"url": "https://github.com/khumam/gba-duo-companions/tree/main/mother-3-companion",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v3.3.0/mother-3-companion-0.1.0.zip",
+			"games": [
+				{
+					"title": "Mother 3 (English fan translation)",
+					"region": "JP",
+					"gameCode": "A3UJ"
+				}
+			],
+			"design": "Mother 3",
+			"pages": [
+				"Goods",
+				"Equip",
+				"PSI",
+				"Status"
+			],
+			"tags": [
+				"mother",
+				"rpg",
+				"party",
+				"items",
+				"fan-translation"
+			],
+			"minAppVersion": "0.1.15",
+			"recommendedAppVersion": "0.1.15",
+			"canModifyGame": true,
+			"overview": "overview/mother-3-companion-overview.png"
+		},
+		{
+			"id": "zelda-a-link-to-the-past-companion",
+			"title": "The Legend of Zelda: A Link to the Past Companion",
+			"description": "The GBA item screen: your items grid, hearts, magic, bombs and arrows with upgrades, rupees, dungeon progress and the overworld map.",
+			"version": "0.1.0",
+			"author": "khumam",
+			"official": true,
+			"repo": "khumam/gba-duo-companions",
+			"path": "zelda-a-link-to-the-past-companion",
+			"tag": "v3.3.0",
+			"url": "https://github.com/khumam/gba-duo-companions/tree/main/zelda-a-link-to-the-past-companion",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v3.3.0/zelda-a-link-to-the-past-companion-0.1.0.zip",
+			"games": [
+				{
+					"title": "The Legend of Zelda: A Link to the Past",
+					"region": "US",
+					"gameCode": "AZLE"
+				}
+			],
+			"design": "The Legend of Zelda: A Link to the Past",
+			"pages": [
+				"Items",
+				"Status",
+				"Dungeons",
+				"Map"
+			],
+			"tags": [
+				"zelda",
+				"adventure",
+				"map",
+				"items",
+				"dungeons"
+			],
+			"minAppVersion": "0.1.15",
+			"recommendedAppVersion": "0.1.15",
+			"canModifyGame": false,
+			"overview": "overview/zelda-a-link-to-the-past-companion-overview.png"
 		}
 	]
 }

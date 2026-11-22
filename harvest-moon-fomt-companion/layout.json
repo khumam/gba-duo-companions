@@ -59,6 +59,12 @@
           ]
          },
          {
+          "type": "text",
+          "class": "note",
+          "text": "Clock, family and weather are sample values (not live yet)",
+          "visibleIf": "$isSample"
+         },
+         {
           "type": "box",
           "class": "scroll",
           "children": [
@@ -420,6 +426,12 @@
             "text": "Livestock"
            }
           ]
+         },
+         {
+          "type": "text",
+          "class": "note",
+          "text": "Sprites tab shows sample values (not live yet)",
+          "visibleIf": "$tbSprites"
          },
          {
           "type": "row",
@@ -794,6 +806,12 @@
           ]
          },
          {
+          "type": "text",
+          "class": "note",
+          "text": "Marker positions are sample values (not live yet)",
+          "visibleIf": "$isSample"
+         },
+         {
           "type": "row",
           "class": "pills",
           "children": [
@@ -1022,6 +1040,12 @@
             "text": "Memo"
            }
           ]
+         },
+         {
+          "type": "text",
+          "class": "note",
+          "text": "Fishing and records are sample values (not live yet)",
+          "visibleIf": "$tmOther"
          },
          {
           "type": "row",

@@ -246,8 +246,9 @@ function update(ui)
   local bt, mt, st = ui.barnTab or "chickens", ui.memoTab or "ship", ui.mapTab or "town"
   r.tbChickens, r.tbCattle, r.tbSheep, r.tbSprites = bt == "chickens", bt == "cattle", bt == "sheep", bt == "sprites"
   r.tmShip, r.tmFish, r.tmRec = mt == "ship", mt == "fish", mt == "rec"
+  r.tmOther = mt ~= "ship"
   r.mpTown, r.mpFarm = st == "town", st == "farm"
-  if DESIGN then for k, v in pairs(designData()) do r[k] = v end end
+  if DESIGN then for k, v in pairs(designData()) do r[k] = v end; r.isSample = true end
   -- popups: animal detail
   if ui.tool and ui.tool ~= "" then r.tName = ui.tool end
   local sel = tonumber(ui.animal)

@@ -97,3 +97,5 @@
 .scroll .topline, .scroll .win, .scroll .tiles { margin: 0 10px; }
 .page .scroll { padding-top: 0; }
 .bar { flex-shrink: 0; } .scroll { min-height: 0; }
+
+.note { font-size: 15px; color: #a05a00; padding: 0 12px 4px 12px; text-align: center; flex-shrink: 0; }

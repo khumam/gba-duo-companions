@@ -33,6 +33,7 @@ def slot_grid(src):
 # ---------- Farm ----------
 farm = box("page", [
     bar("{farm} Property", ("{season} {day}  {weekday}  {clock}", "$hasClock")),
+    text("note", "Clock, family and weather are sample values (not live yet)", visibleIf="$isSample"),
     box("scroll", [
     row("topline", [
         box("win gold-win", [row("gold-row", [img("coin", "$coinIcon"), text("gold", "{gold}G")]),
@@ -73,6 +74,7 @@ sprites = {"type": "list", "class": "clist", "items": "$sprites", "template": bo
                  {"type": "bar", "class": "meter m3", "value": "$b3", "max": 1}])])}
 barn = box("page", [
     bar("Livestock"),
+    text("note", "Sprites tab shows sample values (not live yet)", visibleIf="$tbSprites"),
     pills("barnTab", "chickens", [("Chickens", "chickens", "$tbChickens"), ("Cattle", "cattle", "$tbCattle"),
                                   ("Sheep", "sheep", "$tbSheep"), ("Sprites", "sprites", "$tbSprites")]),
     box("scroll", [
@@ -85,6 +87,7 @@ barn = box("page", [
 # ---------- Maps ----------
 maps = box("page", [
     bar("Maps"),
+    text("note", "Marker positions are sample values (not live yet)", visibleIf="$isSample"),
     pills("mapTab", "town", [("Town", "town", "$mpTown"), ("Farm", "farm", "$mpFarm")]),
     box("tabbody", [
         box("win map-win", [box("map-view", [
@@ -105,6 +108,7 @@ maps = box("page", [
 def kv_row(): return box("win srow", [box("sname-col", [text("sname", "{name}")]), text("scount", "{value}")])
 memo = box("page", [
     bar("Memo"),
+    text("note", "Fishing and records are sample values (not live yet)", visibleIf="$tmOther"),
     pills("memoTab", "ship", [("Shipped", "ship", "$tmShip"), ("Fishing", "fish", "$tmFish"), ("Records", "rec", "$tmRec")]),
     text("dim pad", "Nothing shipped yet", visibleIf="$noShipped"),
     box("scroll", [
