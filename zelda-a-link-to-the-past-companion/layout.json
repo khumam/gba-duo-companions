@@ -1,0 +1,953 @@
+{
+ "type": "box",
+ "class": "main",
+ "children": [
+  {
+   "type": "box",
+   "class": "waiting",
+   "children": [
+    {
+     "type": "box",
+     "class": "page page-waiting",
+     "children": [
+      {
+       "type": "text",
+       "class": "w-1",
+       "text": "A LINK TO THE PAST"
+      },
+      {
+       "type": "text",
+       "class": "w-2",
+       "text": "COMPANION"
+      },
+      {
+       "type": "text",
+       "class": "w-3",
+       "text": "Load a file to see Link's items."
+      },
+      {
+       "type": "text",
+       "class": "w-4",
+       "text": "This pack reads the USA cartridge (AZLE).",
+       "visibleIf": "$wrongRom"
+      }
+     ]
+    }
+   ],
+   "visibleIf": "$waiting"
+  },
+  {
+   "type": "box",
+   "class": "ready",
+   "children": [
+    {
+     "type": "pages",
+     "class": "stage",
+     "initial": "items",
+     "pages": [
+      {
+       "name": "items",
+       "child": {
+        "type": "box",
+        "class": "page page-items",
+        "children": [
+         {
+          "type": "box",
+          "class": "panel p-item green",
+          "children": []
+         },
+         {
+          "type": "text",
+          "class": "plabel p-item-l",
+          "text": "ITEM"
+         },
+         {
+          "type": "text",
+          "class": "letter letter-a",
+          "text": "A"
+         },
+         {
+          "type": "list",
+          "class": "grid",
+          "items": "$grid",
+          "template": {
+           "type": "button",
+           "class": "cell",
+           "onClick": [
+            {
+             "set": {
+              "cell": "{k}"
+             }
+            }
+           ],
+           "children": [
+            {
+             "type": "box",
+             "class": "bracket",
+             "children": [],
+             "visibleIf": "$sel"
+            },
+            {
+             "type": "image",
+             "class": "cicon",
+             "src": "$img",
+             "visibleIf": "$have"
+            },
+            {
+             "type": "text",
+             "class": "ccount",
+             "text": "{count}"
+            }
+           ],
+           "classIf": {
+            "sel": "$sel"
+           }
+          }
+         },
+         {
+          "type": "box",
+          "class": "panel p-sel green",
+          "children": []
+         },
+         {
+          "type": "text",
+          "class": "plabel p-sel-l",
+          "text": ""
+         },
+         {
+          "type": "image",
+          "class": "sel-i",
+          "src": "$sel.img",
+          "visibleIf": "$sel.has"
+         },
+         {
+          "type": "text",
+          "class": "sel-n",
+          "text": "{sel.name}"
+         },
+         {
+          "type": "box",
+          "class": "panel p-pend yellow",
+          "children": []
+         },
+         {
+          "type": "text",
+          "class": "plabel p-pend-l",
+          "text": "PENDANTS"
+         },
+         {
+          "type": "image",
+          "class": "pend pend-0",
+          "src": "$pend0"
+         },
+         {
+          "type": "image",
+          "class": "pend pend-1",
+          "src": "$pend1"
+         },
+         {
+          "type": "image",
+          "class": "pend pend-2",
+          "src": "$pend2"
+         },
+         {
+          "type": "text",
+          "class": "cry-n",
+          "text": "CRYSTALS {crystalCount}",
+          "visibleIf": "$anyCrystal"
+         },
+         {
+          "type": "box",
+          "class": "panel p-do red",
+          "children": []
+         },
+         {
+          "type": "text",
+          "class": "plabel p-do-l",
+          "text": "DO"
+         },
+         {
+          "type": "text",
+          "class": "letter letter-r",
+          "text": "R"
+         },
+         {
+          "type": "text",
+          "class": "do-w do-1",
+          "text": "TALK"
+         },
+         {
+          "type": "text",
+          "class": "do-w do-2",
+          "text": "READ"
+         },
+         {
+          "type": "text",
+          "class": "do-w do-3",
+          "text": "PULL"
+         },
+         {
+          "type": "text",
+          "class": "do-w do-4",
+          "text": "{lift}"
+         },
+         {
+          "type": "list",
+          "class": "dorow",
+          "items": "$doRow",
+          "template": {
+           "type": "button",
+           "class": "dcell",
+           "onClick": [
+            {
+             "set": {
+              "cell": "{cell}"
+             }
+            }
+           ],
+           "children": [
+            {
+             "type": "image",
+             "class": "dicon",
+             "src": "$img",
+             "visibleIf": "$have"
+            }
+           ],
+           "classIf": {
+            "none": "$none"
+           }
+          }
+         },
+         {
+          "type": "box",
+          "class": "panel p-eq yellow",
+          "children": []
+         },
+         {
+          "type": "text",
+          "class": "plabel p-eq-l",
+          "text": "EQUIPMENT"
+         },
+         {
+          "type": "image",
+          "class": "eqi eq-sw",
+          "src": "$eq.sword",
+          "visibleIf": "$eq.hasSword"
+         },
+         {
+          "type": "image",
+          "class": "eqi eq-sh",
+          "src": "$eq.shield",
+          "visibleIf": "$eq.hasShield"
+         },
+         {
+          "type": "image",
+          "class": "eqi eq-ml",
+          "src": "$eq.mail"
+         },
+         {
+          "type": "box",
+          "class": "eq-dots",
+          "children": []
+         },
+         {
+          "type": "image",
+          "class": "eq-piece",
+          "src": "$eq.pieceImg"
+         },
+         {
+          "type": "text",
+          "class": "eq-cont",
+          "text": "x{st.containers}"
+         },
+         {
+          "type": "box",
+          "class": "info",
+          "children": [
+           {
+            "type": "text",
+            "class": "info-n",
+            "text": "{sel.name}"
+           },
+           {
+            "type": "text",
+            "class": "info-t",
+            "text": "{sel.what}"
+           }
+          ]
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-l",
+          "onClick": [
+           {
+            "navigate": "map"
+           }
+          ],
+          "children": [
+           {
+            "type": "image",
+            "class": "nplate",
+            "src": "asset:ui/nav-l.png"
+           },
+           {
+            "type": "text",
+            "class": "nb nb-l",
+            "text": "MAP"
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "nmid",
+          "children": [
+           {
+            "type": "image",
+            "class": "nplate-m",
+            "src": "asset:ui/nav-mid.png"
+           },
+           {
+            "type": "text",
+            "class": "ntitle",
+            "text": "ITEMS"
+           },
+           {
+            "type": "box",
+            "class": "pips",
+            "children": [
+             {
+              "type": "box",
+              "class": "pip on",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-r",
+          "onClick": [
+           {
+            "navigate": "status"
+           }
+          ],
+          "children": [
+           {
+            "type": "image",
+            "class": "nplate",
+            "src": "asset:ui/nav-r.png"
+           },
+           {
+            "type": "text",
+            "class": "nb nb-r",
+            "text": "STATUS"
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "name": "status",
+       "child": {
+        "type": "box",
+        "class": "page page-status",
+        "children": [
+         {
+          "type": "box",
+          "class": "panel p-life red",
+          "children": []
+         },
+         {
+          "type": "text",
+          "class": "plabel p-life-l",
+          "text": "LIFE"
+         },
+         {
+          "type": "list",
+          "class": "hearts",
+          "items": "$st.hearts",
+          "template": {
+           "type": "image",
+           "class": "heart",
+           "src": "$img"
+          }
+         },
+         {
+          "type": "text",
+          "class": "st-hp",
+          "text": "{st.hpText}"
+         },
+         {
+          "type": "box",
+          "class": "panel p-magic green",
+          "children": []
+         },
+         {
+          "type": "text",
+          "class": "plabel p-magic-l",
+          "text": "MAGIC"
+         },
+         {
+          "type": "bar",
+          "class": "mbar",
+          "value": "$st.magic",
+          "maxKey": "$st.magicMax"
+         },
+         {
+          "type": "text",
+          "class": "st-mp",
+          "text": "{st.magicText}"
+         },
+         {
+          "type": "text",
+          "class": "st-mu",
+          "text": "{st.magicUse}"
+         },
+         {
+          "type": "box",
+          "class": "panel p-bag yellow",
+          "children": []
+         },
+         {
+          "type": "text",
+          "class": "plabel p-bag-l",
+          "text": "CARRY"
+         },
+         {
+          "type": "image",
+          "class": "ci ci-1",
+          "src": "asset:icons/bombs.png"
+         },
+         {
+          "type": "text",
+          "class": "cl cl-1",
+          "text": "BOMBS"
+         },
+         {
+          "type": "text",
+          "class": "cv cv-1",
+          "text": "{st.bombs} / {st.bombsMax}"
+         },
+         {
+          "type": "image",
+          "class": "ci ci-2",
+          "src": "asset:icons/bow-2.png"
+         },
+         {
+          "type": "text",
+          "class": "cl cl-2",
+          "text": "ARROWS"
+         },
+         {
+          "type": "text",
+          "class": "cv cv-2",
+          "text": "{st.arrows} / {st.arrowsMax}"
+         },
+         {
+          "type": "box",
+          "class": "rupee ci-3",
+          "children": []
+         },
+         {
+          "type": "text",
+          "class": "cl cl-3",
+          "text": "RUPEES"
+         },
+         {
+          "type": "text",
+          "class": "cv cv-3",
+          "text": "{st.rupees}"
+         },
+         {
+          "type": "image",
+          "class": "ci ci-4",
+          "src": "asset:ui/piece-3.png"
+         },
+         {
+          "type": "text",
+          "class": "cl cl-4",
+          "text": "HEART PIECES"
+         },
+         {
+          "type": "text",
+          "class": "cv cv-4",
+          "text": "{st.pieces}"
+         },
+         {
+          "type": "text",
+          "class": "cl cl-5",
+          "text": "KEYS HERE"
+         },
+         {
+          "type": "text",
+          "class": "cv cv-5",
+          "text": "{st.keys}"
+         },
+         {
+          "type": "box",
+          "class": "panel p-gear yellow",
+          "children": []
+         },
+         {
+          "type": "text",
+          "class": "plabel p-gear-l",
+          "text": "EQUIPMENT"
+         },
+         {
+          "type": "image",
+          "class": "gi gi-1",
+          "src": "$eq.sword",
+          "visibleIf": "$eq.hasSword"
+         },
+         {
+          "type": "text",
+          "class": "gn gn-1",
+          "text": "{eq.swordName}"
+         },
+         {
+          "type": "image",
+          "class": "gi gi-2",
+          "src": "$eq.shield",
+          "visibleIf": "$eq.hasShield"
+         },
+         {
+          "type": "text",
+          "class": "gn gn-2",
+          "text": "{eq.shieldName}"
+         },
+         {
+          "type": "image",
+          "class": "gi gi-3",
+          "src": "$eq.mail"
+         },
+         {
+          "type": "text",
+          "class": "gn gn-3",
+          "text": "{eq.mailName}"
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-l",
+          "onClick": [
+           {
+            "navigate": "items"
+           }
+          ],
+          "children": [
+           {
+            "type": "image",
+            "class": "nplate",
+            "src": "asset:ui/nav-l.png"
+           },
+           {
+            "type": "text",
+            "class": "nb nb-l",
+            "text": "ITEMS"
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "nmid",
+          "children": [
+           {
+            "type": "image",
+            "class": "nplate-m",
+            "src": "asset:ui/nav-mid.png"
+           },
+           {
+            "type": "text",
+            "class": "ntitle",
+            "text": "STATUS"
+           },
+           {
+            "type": "box",
+            "class": "pips",
+            "children": [
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip on",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-r",
+          "onClick": [
+           {
+            "navigate": "dungeons"
+           }
+          ],
+          "children": [
+           {
+            "type": "image",
+            "class": "nplate",
+            "src": "asset:ui/nav-r.png"
+           },
+           {
+            "type": "text",
+            "class": "nb nb-r",
+            "text": "DUNGEONS"
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "name": "dungeons",
+       "child": {
+        "type": "box",
+        "class": "page page-dungeons",
+        "children": [
+         {
+          "type": "box",
+          "class": "panel p-dun green",
+          "children": []
+         },
+         {
+          "type": "text",
+          "class": "plabel p-dun-l",
+          "text": "DUNGEONS"
+         },
+         {
+          "type": "text",
+          "class": "dh dh-m",
+          "text": "MAP"
+         },
+         {
+          "type": "text",
+          "class": "dh dh-c",
+          "text": "COMP"
+         },
+         {
+          "type": "text",
+          "class": "dh dh-k",
+          "text": "KEY"
+         },
+         {
+          "type": "list",
+          "class": "dlist",
+          "items": "$dungeons",
+          "template": {
+           "type": "box",
+           "class": "drow",
+           "children": [
+            {
+             "type": "text",
+             "class": "dname",
+             "text": "{name}"
+            },
+            {
+             "type": "image",
+             "class": "dm",
+             "src": "asset:ui/map.png",
+             "visibleIf": "$map"
+            },
+            {
+             "type": "image",
+             "class": "dm",
+             "src": "asset:ui/map-off.png",
+             "visibleIf": "$noMap"
+            },
+            {
+             "type": "image",
+             "class": "dc",
+             "src": "asset:ui/compass.png",
+             "visibleIf": "$comp"
+            },
+            {
+             "type": "image",
+             "class": "dc",
+             "src": "asset:ui/compass-off.png",
+             "visibleIf": "$noComp"
+            },
+            {
+             "type": "image",
+             "class": "dk",
+             "src": "asset:ui/bigkey.png",
+             "visibleIf": "$key"
+            },
+            {
+             "type": "image",
+             "class": "dk",
+             "src": "asset:ui/bigkey-off.png",
+             "visibleIf": "$noKey"
+            },
+            {
+             "type": "image",
+             "class": "dr",
+             "src": "$reward",
+             "visibleIf": "$hasReward"
+            }
+           ],
+           "classIf": {
+            "dark": "$dark",
+            "done": "$done"
+           }
+          }
+         },
+         {
+          "type": "text",
+          "class": "dtally",
+          "text": "{dungeonTally}"
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-l",
+          "onClick": [
+           {
+            "navigate": "status"
+           }
+          ],
+          "children": [
+           {
+            "type": "image",
+            "class": "nplate",
+            "src": "asset:ui/nav-l.png"
+           },
+           {
+            "type": "text",
+            "class": "nb nb-l",
+            "text": "STATUS"
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "nmid",
+          "children": [
+           {
+            "type": "image",
+            "class": "nplate-m",
+            "src": "asset:ui/nav-mid.png"
+           },
+           {
+            "type": "text",
+            "class": "ntitle",
+            "text": "DUNGEONS"
+           },
+           {
+            "type": "box",
+            "class": "pips",
+            "children": [
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip on",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-r",
+          "onClick": [
+           {
+            "navigate": "map"
+           }
+          ],
+          "children": [
+           {
+            "type": "image",
+            "class": "nplate",
+            "src": "asset:ui/nav-r.png"
+           },
+           {
+            "type": "text",
+            "class": "nb nb-r",
+            "text": "MAP"
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "name": "map",
+       "child": {
+        "type": "box",
+        "class": "page page-map",
+        "children": [
+         {
+          "type": "box",
+          "class": "panel p-map green",
+          "children": []
+         },
+         {
+          "type": "text",
+          "class": "plabel p-map-l",
+          "text": "LIGHT WORLD"
+         },
+         {
+          "type": "box",
+          "class": "mapwin",
+          "children": [
+           {
+            "type": "image",
+            "class": "mapimg",
+            "src": "asset:map/light-world.png"
+           },
+           {
+            "type": "image",
+            "class": "marker",
+            "src": "asset:ui/marker.png",
+            "bindStyle": {
+             "left": "{map.x}",
+             "top": "{map.y}"
+            },
+            "visibleIf": "$map.known"
+           }
+          ]
+         },
+         {
+          "type": "text",
+          "class": "map-where",
+          "text": "{map.where}"
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-l",
+          "onClick": [
+           {
+            "navigate": "dungeons"
+           }
+          ],
+          "children": [
+           {
+            "type": "image",
+            "class": "nplate",
+            "src": "asset:ui/nav-l.png"
+           },
+           {
+            "type": "text",
+            "class": "nb nb-l",
+            "text": "DUNGEONS"
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "nmid",
+          "children": [
+           {
+            "type": "image",
+            "class": "nplate-m",
+            "src": "asset:ui/nav-mid.png"
+           },
+           {
+            "type": "text",
+            "class": "ntitle",
+            "text": "MAP"
+           },
+           {
+            "type": "box",
+            "class": "pips",
+            "children": [
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip on",
+              "children": []
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-r",
+          "onClick": [
+           {
+            "navigate": "items"
+           }
+          ],
+          "children": [
+           {
+            "type": "image",
+            "class": "nplate",
+            "src": "asset:ui/nav-r.png"
+           },
+           {
+            "type": "text",
+            "class": "nb nb-r",
+            "text": "ITEMS"
+           }
+          ]
+         }
+        ]
+       }
+      }
+     ]
+    }
+   ],
+   "visibleIf": "$ready"
+  }
+ ],
+ "id": "screen"
+}

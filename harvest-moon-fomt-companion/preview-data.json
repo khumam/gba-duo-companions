@@ -1,457 +1,1989 @@
 {
-  "bag": {
-    "handIcon": "asset:img/tool-hoe.png",
-    "handItem": "Nothing",
-    "handTool": "Copper Hoe",
-    "itemCount": 3,
-    "items": [
-      {
-        "icon": "asset:img/tool-basket.png",
-        "name": "Potato"
-      },
-      {
-        "icon": "asset:img/tool-crate.png",
-        "name": "Wool (S)"
-      },
-      {
-        "icon": "asset:img/tool-basket.png",
-        "name": "Good Quality Egg"
-      }
-    ],
-    "toolCount": 8,
-    "tools": [
-      {
-        "held": true,
-        "icon": "asset:img/tool-hoe.png",
-        "name": "Copper Hoe"
-      },
-      {
-        "held": false,
-        "icon": "asset:img/tool-sickle.png",
-        "name": "Sickle"
-      },
-      {
-        "held": false,
-        "icon": "asset:img/tool-axe.png",
-        "name": "Axe"
-      },
-      {
-        "held": false,
-        "icon": "asset:img/tool-hammer.png",
-        "name": "Hammer"
-      },
-      {
-        "held": false,
-        "icon": "asset:img/tool-can.png",
-        "name": "Watering Can"
-      },
-      {
-        "held": false,
-        "icon": "asset:img/tool-rod.png",
-        "name": "Fishing Rod"
-      },
-      {
-        "held": false,
-        "icon": "asset:img/tool-seeds.png",
-        "name": "Turnip Seeds"
-      },
-      {
-        "held": false,
-        "icon": "asset:img/tool-milker.png",
-        "name": "Milker"
-      }
-    ]
-  },
-  "corner": "asset:img/corner-spring.png",
-  "cornerR": "asset:img/corner-spring-r.png",
-  "day": 3,
-  "fatigue": 18,
-  "fatiguePct": 0.18,
-  "friends": [
+ "barn": [
+  {
+   "health": "Healthy",
+   "heartRow": [
     {
-      "name": "Lillia",
-      "pct": 0.26274509803922,
-      "value": 67
+     "src": "asset:_preview/b581d09adf05.png"
     },
     {
-      "name": "Rick",
-      "pct": 0.4078431372549,
-      "value": 104
+     "src": "asset:_preview/b581d09adf05.png"
     },
     {
-      "name": "Barley",
-      "pct": 0.55294117647059,
-      "value": 141
+     "src": "asset:_preview/b581d09adf05.png"
     },
     {
-      "name": "May",
-      "pct": 0.69803921568627,
-      "value": 178
+     "src": "asset:_preview/b581d09adf05.png"
     },
     {
-      "name": "Saibara",
-      "pct": 0.84313725490196,
-      "value": 215
+     "src": "asset:_preview/b581d09adf05.png"
     },
     {
-      "name": "Gray",
-      "pct": 0.20392156862745,
-      "value": 52
+     "src": "asset:_preview/b581d09adf05.png"
     },
     {
-      "name": "Duke",
-      "pct": 0.34901960784314,
-      "value": 89
+     "src": "asset:_preview/b581d09adf05.png"
     },
     {
-      "name": "Manna",
-      "pct": 0.49411764705882,
-      "value": 126
+     "src": "asset:_preview/b581d09adf05.png"
     },
     {
-      "name": "Basil",
-      "pct": 0.63921568627451,
-      "value": 163
+     "src": "asset:_preview/b581d09adf05.png"
     },
     {
-      "name": "Anna",
-      "pct": 0.7843137254902,
-      "value": 200
+     "src": "asset:_preview/b581d09adf05.png"
     },
     {
-      "name": "Thomas",
-      "pct": 0.14509803921569,
-      "value": 37
-    },
-    {
-      "name": "Harris",
-      "pct": 0.29019607843137,
-      "value": 74
-    },
-    {
-      "name": "Ellen",
-      "pct": 0.43529411764706,
-      "value": 111
-    },
-    {
-      "name": "Stu",
-      "pct": 0.58039215686275,
-      "value": 148
-    },
-    {
-      "name": "Jeff",
-      "pct": 0.72549019607843,
-      "value": 185
-    },
-    {
-      "name": "Sasha",
-      "pct": 0.87058823529412,
-      "value": 222
-    },
-    {
-      "name": "Doctor",
-      "pct": 0.23137254901961,
-      "value": 59
-    },
-    {
-      "name": "Carter",
-      "pct": 0.37647058823529,
-      "value": 96
-    },
-    {
-      "name": "Cliff",
-      "pct": 0.52156862745098,
-      "value": 133
-    },
-    {
-      "name": "Doug",
-      "pct": 0.66666666666667,
-      "value": 170
-    },
-    {
-      "name": "Kai",
-      "pct": 0.81176470588235,
-      "value": 207
-    },
-    {
-      "name": "Gotz",
-      "pct": 0.17254901960784,
-      "value": 44
-    },
-    {
-      "name": "Zack",
-      "pct": 0.31764705882353,
-      "value": 81
-    },
-    {
-      "name": "Won",
-      "pct": 0.46274509803922,
-      "value": 118
-    },
-    {
-      "name": "Lou",
-      "pct": 0.6078431372549,
-      "value": 155
-    },
-    {
-      "name": "Lu",
-      "pct": 0.75294117647059,
-      "value": 192
+     "src": "asset:_preview/b581d09adf05.png"
     }
-  ],
-  "frisbeeRecord": 0,
-  "horseRaceMedals": 0,
-  "isDusk": false,
-  "isFall": false,
-  "isNight": false,
-  "isSpring": true,
-  "isSummer": false,
-  "isWinter": false,
-  "loves": [
-    {
-      "heart": "Green heart",
-      "heartColor": "#6DBB7C",
-      "heartIcon": "asset:img/heart-green.png",
-      "name": "Popuri",
-      "pct": 0.52185854886702,
-      "value": 34200
-    },
-    {
-      "heart": "Purple heart",
-      "heartColor": "#A98BD8",
-      "heartIcon": "asset:img/heart-purple.png",
-      "name": "Mary",
-      "pct": 0.19531548027771,
-      "value": 12800
-    },
-    {
-      "heart": "Black heart",
-      "heartColor": "#6B5E57",
-      "heartIcon": "asset:img/heart-black.png",
-      "name": "Karen",
-      "pct": 0.079346913862821,
-      "value": 5200
-    },
-    {
-      "heart": "Red heart",
-      "heartColor": "#E8718F",
-      "heartIcon": "asset:img/heart-red.png",
-      "name": "Elli",
-      "pct": 0.93080033569848,
-      "value": 61000
-    },
-    {
-      "heart": "Blue heart",
-      "heartColor": "#6FA8DC",
-      "heartIcon": "asset:img/heart-blue.png",
-      "name": "Ann",
-      "pct": 0.33569848172732,
-      "value": 22000
-    },
-    {
-      "heart": "Black heart",
-      "heartColor": "#6B5E57",
-      "heartIcon": "asset:img/heart-black.png",
-      "name": "Harvest Goddess",
-      "pct": 0.012207217517357,
-      "value": 800
-    }
-  ],
-  "money": 12480,
-  "moneyText": "12,480",
-  "ready": true,
-  "season": "Spring",
-  "seasonKey": "spring",
-  "sprites": [
-    {
-      "friendPct": 0.23529411764706,
-      "friendship": 60,
-      "hat": "asset:img/sprite-staid.png",
-      "job": "Free",
-      "name": "Staid",
-      "working": false,
-      "xp": [
-        {
-          "name": "HARVEST",
-          "pct": 0.11764705882353,
-          "value": 30
-        },
-        {
-          "name": "WATER",
-          "pct": 0.70588235294118,
-          "value": 180
-        },
-        {
-          "name": "ANIMALS",
-          "pct": 0.047058823529412,
-          "value": 12
-        }
-      ]
-    },
-    {
-      "friendPct": 0.31372549019608,
-      "friendship": 80,
-      "hat": "asset:img/sprite-nappy.png",
-      "job": "Watering · 3 days",
-      "name": "Nappy",
-      "working": true,
-      "xp": [
-        {
-          "name": "HARVEST",
-          "pct": 0.23529411764706,
-          "value": 60
-        },
-        {
-          "name": "WATER",
-          "pct": 0.62745098039216,
-          "value": 160
-        },
-        {
-          "name": "ANIMALS",
-          "pct": 0.094117647058824,
-          "value": 24
-        }
-      ]
-    },
-    {
-      "friendPct": 0.3921568627451,
-      "friendship": 100,
-      "hat": "asset:img/sprite-bold.png",
-      "job": "Free",
-      "name": "Bold",
-      "working": false,
-      "xp": [
-        {
-          "name": "HARVEST",
-          "pct": 0.35294117647059,
-          "value": 90
-        },
-        {
-          "name": "WATER",
-          "pct": 0.54901960784314,
-          "value": 140
-        },
-        {
-          "name": "ANIMALS",
-          "pct": 0.14117647058824,
-          "value": 36
-        }
-      ]
-    },
-    {
-      "friendPct": 0.47058823529412,
-      "friendship": 120,
-      "hat": "asset:img/sprite-chef.png",
-      "job": "Watering · 3 days",
-      "name": "Chef",
-      "working": true,
-      "xp": [
-        {
-          "name": "HARVEST",
-          "pct": 0.47058823529412,
-          "value": 120
-        },
-        {
-          "name": "WATER",
-          "pct": 0.47058823529412,
-          "value": 120
-        },
-        {
-          "name": "ANIMALS",
-          "pct": 0.18823529411765,
-          "value": 48
-        }
-      ]
-    },
-    {
-      "friendPct": 0.54901960784314,
-      "friendship": 140,
-      "hat": "asset:img/sprite-aqua.png",
-      "job": "Free",
-      "name": "Aqua",
-      "working": false,
-      "xp": [
-        {
-          "name": "HARVEST",
-          "pct": 0.58823529411765,
-          "value": 150
-        },
-        {
-          "name": "WATER",
-          "pct": 0.3921568627451,
-          "value": 100
-        },
-        {
-          "name": "ANIMALS",
-          "pct": 0.23529411764706,
-          "value": 60
-        }
-      ]
-    },
-    {
-      "friendPct": 0.62745098039216,
-      "friendship": 160,
-      "hat": "asset:img/sprite-hoggy.png",
-      "job": "Watering · 3 days",
-      "name": "Hoggy",
-      "working": true,
-      "xp": [
-        {
-          "name": "HARVEST",
-          "pct": 0.70588235294118,
-          "value": 180
-        },
-        {
-          "name": "WATER",
-          "pct": 0.31372549019608,
-          "value": 80
-        },
-        {
-          "name": "ANIMALS",
-          "pct": 0.28235294117647,
-          "value": 72
-        }
-      ]
-    },
-    {
-      "friendPct": 0.70588235294118,
-      "friendship": 180,
-      "hat": "asset:img/sprite-timid.png",
-      "job": "Free",
-      "name": "Timid",
-      "working": false,
-      "xp": [
-        {
-          "name": "HARVEST",
-          "pct": 0.82352941176471,
-          "value": 210
-        },
-        {
-          "name": "WATER",
-          "pct": 0.23529411764706,
-          "value": 60
-        },
-        {
-          "name": "ANIMALS",
-          "pct": 0.32941176470588,
-          "value": 84
-        }
-      ]
-    }
-  ],
-  "stamina": 92,
-  "staminaPct": 0.736,
-  "time": "14:30",
-  "today": {
-    "icon": "asset:img/weather-sunny.png",
-    "name": "Sunny"
+   ],
+   "hearts": 11,
+   "icon": "asset:_preview/b3b23551b1a3.png",
+   "idx": 0,
+   "kind": "Cattle / Sheep",
+   "max": true,
+   "name": "Bessie",
+   "rec": 33575988,
+   "sick": false
   },
-  "tomorrow": {
-    "icon": "asset:img/weather-rainy.png",
-    "name": "Rainy"
+  {
+   "health": "Healthy",
+   "heartRow": [
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    }
+   ],
+   "hearts": 11,
+   "icon": "asset:_preview/23ed468e1cf5.png",
+   "idx": 1,
+   "kind": "Cattle / Sheep",
+   "max": true,
+   "name": "Wooly",
+   "rec": 33576048,
+   "sick": false
   },
-  "waiting": false,
-  "weatherToday": 0,
-  "weatherTomorrow": 1,
-  "year": 1
+  {
+   "health": "Healthy",
+   "heartRow": [
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    }
+   ],
+   "hearts": 0,
+   "icon": "asset:_preview/b3b23551b1a3.png",
+   "idx": 2,
+   "kind": "Cattle / Sheep",
+   "max": false,
+   "name": "Jennifer",
+   "rec": 33576108,
+   "sick": false
+  },
+  {
+   "health": "Healthy",
+   "heartRow": [
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    }
+   ],
+   "hearts": 0,
+   "icon": "asset:_preview/23ed468e1cf5.png",
+   "idx": 3,
+   "kind": "Cattle / Sheep",
+   "max": false,
+   "name": "Peppy",
+   "rec": 33576168,
+   "sick": false
+  },
+  {
+   "health": "Healthy",
+   "heartRow": [
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    }
+   ],
+   "hearts": 0,
+   "icon": "asset:_preview/b3b23551b1a3.png",
+   "idx": 4,
+   "kind": "Cattle / Sheep",
+   "max": false,
+   "name": "Moomoo",
+   "rec": 33576228,
+   "sick": false
+  },
+  {
+   "health": "Healthy",
+   "heartRow": [
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    }
+   ],
+   "hearts": 0,
+   "icon": "asset:_preview/b3b23551b1a3.png",
+   "idx": 5,
+   "kind": "Cattle / Sheep",
+   "max": false,
+   "name": "Baaba",
+   "rec": 33576288,
+   "sick": false
+  },
+  {
+   "health": "Healthy",
+   "heartRow": [
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    }
+   ],
+   "hearts": 0,
+   "icon": "asset:_preview/23ed468e1cf5.png",
+   "idx": 6,
+   "kind": "Cattle / Sheep",
+   "max": false,
+   "name": "Rebba",
+   "rec": 33576348,
+   "sick": false
+  },
+  {
+   "health": "Healthy",
+   "heartRow": [
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    }
+   ],
+   "hearts": 0,
+   "icon": "asset:_preview/b3b23551b1a3.png",
+   "idx": 7,
+   "kind": "Cattle / Sheep",
+   "max": false,
+   "name": "Beeba",
+   "rec": 33576408,
+   "sick": false
+  }
+ ],
+ "barnCount": 8,
+ "cattle": [
+  {
+   "health": "Healthy",
+   "heartRow": [
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    }
+   ],
+   "hearts": 11,
+   "icon": "asset:_preview/b3b23551b1a3.png",
+   "idx": 0,
+   "kind": "Cattle / Sheep",
+   "max": true,
+   "name": "Bessie",
+   "rec": 33575988,
+   "sick": false
+  },
+  {
+   "health": "Healthy",
+   "heartRow": [
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    }
+   ],
+   "hearts": 0,
+   "icon": "asset:_preview/b3b23551b1a3.png",
+   "idx": 2,
+   "kind": "Cattle / Sheep",
+   "max": false,
+   "name": "Jennifer",
+   "rec": 33576108,
+   "sick": false
+  },
+  {
+   "health": "Healthy",
+   "heartRow": [
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    }
+   ],
+   "hearts": 0,
+   "icon": "asset:_preview/b3b23551b1a3.png",
+   "idx": 4,
+   "kind": "Cattle / Sheep",
+   "max": false,
+   "name": "Moomoo",
+   "rec": 33576228,
+   "sick": false
+  },
+  {
+   "health": "Healthy",
+   "heartRow": [
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    }
+   ],
+   "hearts": 0,
+   "icon": "asset:_preview/b3b23551b1a3.png",
+   "idx": 5,
+   "kind": "Cattle / Sheep",
+   "max": false,
+   "name": "Baaba",
+   "rec": 33576288,
+   "sick": false
+  },
+  {
+   "health": "Healthy",
+   "heartRow": [
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    }
+   ],
+   "hearts": 0,
+   "icon": "asset:_preview/b3b23551b1a3.png",
+   "idx": 7,
+   "kind": "Cattle / Sheep",
+   "max": false,
+   "name": "Beeba",
+   "rec": 33576408,
+   "sick": false
+  }
+ ],
+ "cattleCount": 5,
+ "chickenCount": 8,
+ "chickens": [
+  {
+   "health": "Healthy",
+   "heartRow": [
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    }
+   ],
+   "hearts": 3,
+   "icon": "asset:_preview/c6493a2b288b.png",
+   "idx": 0,
+   "kind": "Chicken",
+   "max": false,
+   "name": "Popuri",
+   "rec": 33575488,
+   "sick": false
+  },
+  {
+   "health": "Healthy",
+   "heartRow": [
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    }
+   ],
+   "hearts": 4,
+   "icon": "asset:_preview/c6493a2b288b.png",
+   "idx": 1,
+   "kind": "Chicken",
+   "max": false,
+   "name": "Chip",
+   "rec": 33575536,
+   "sick": false
+  },
+  {
+   "health": "Healthy",
+   "heartRow": [
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    }
+   ],
+   "hearts": 1,
+   "icon": "asset:_preview/c6493a2b288b.png",
+   "idx": 2,
+   "kind": "Chicken",
+   "max": false,
+   "name": "Abba",
+   "rec": 33575584,
+   "sick": false
+  },
+  {
+   "health": "Healthy",
+   "heartRow": [
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    }
+   ],
+   "hearts": 1,
+   "icon": "asset:_preview/c6493a2b288b.png",
+   "idx": 3,
+   "kind": "Chicken",
+   "max": false,
+   "name": "Baba",
+   "rec": 33575632,
+   "sick": false
+  },
+  {
+   "health": "Healthy",
+   "heartRow": [
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    }
+   ],
+   "hearts": 1,
+   "icon": "asset:_preview/c6493a2b288b.png",
+   "idx": 4,
+   "kind": "Chicken",
+   "max": false,
+   "name": "Baby",
+   "rec": 33575680,
+   "sick": false
+  },
+  {
+   "health": "Healthy",
+   "heartRow": [
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    }
+   ],
+   "hearts": 1,
+   "icon": "asset:_preview/c6493a2b288b.png",
+   "idx": 5,
+   "kind": "Chicken",
+   "max": false,
+   "name": "Biba",
+   "rec": 33575728,
+   "sick": false
+  },
+  {
+   "health": "Healthy",
+   "heartRow": [
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    }
+   ],
+   "hearts": 1,
+   "icon": "asset:_preview/c6493a2b288b.png",
+   "idx": 6,
+   "kind": "Chicken",
+   "max": false,
+   "name": "Capp",
+   "rec": 33575776,
+   "sick": false
+  },
+  {
+   "health": "Healthy",
+   "heartRow": [
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    }
+   ],
+   "hearts": 1,
+   "icon": "asset:_preview/c6493a2b288b.png",
+   "idx": 7,
+   "kind": "Chicken",
+   "max": false,
+   "name": "Babb",
+   "rec": 33575824,
+   "sick": false
+  }
+ ],
+ "clock": "6:00 AM",
+ "coinIcon": "asset:_preview/17268bb9914b.png",
+ "day": 1,
+ "dogX": 38,
+ "dogY": 66,
+ "family": [
+  {
+   "berries": 4,
+   "berryRow": [
+    {
+     "src": "asset:_preview/fe6fca9e7660.png"
+    },
+    {
+     "src": "asset:_preview/fe6fca9e7660.png"
+    },
+    {
+     "src": "asset:_preview/fe6fca9e7660.png"
+    },
+    {
+     "src": "asset:_preview/fe6fca9e7660.png"
+    }
+   ],
+   "hasBerries": true,
+   "hasHearts": false,
+   "icon": "asset:_preview/9d2b38768a33.png",
+   "name": "Jack",
+   "role": "You"
+  },
+  {
+   "crown": false,
+   "hasBerries": false,
+   "hasHearts": true,
+   "heartRow": [
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    }
+   ],
+   "icon": "asset:_preview/c9b01989bfd3.png",
+   "name": "Popuri",
+   "role": "Wife"
+  },
+  {
+   "hasBerries": false,
+   "hasHearts": true,
+   "heartRow": [
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    }
+   ],
+   "icon": "asset:_preview/5e355eb91793.png",
+   "name": "Spunky",
+   "role": "Dog"
+  },
+  {
+   "crown": true,
+   "hasBerries": false,
+   "hasHearts": true,
+   "heartRow": [
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    }
+   ],
+   "icon": "asset:_preview/cf27e41ec392.png",
+   "name": "Speedy",
+   "role": "Horse"
+  }
+ ],
+ "farm": "Kakari",
+ "farmX": 22,
+ "farmY": 9,
+ "fishing": [
+  {
+   "count": 1,
+   "name": "Message Bottle",
+   "size": "-"
+  },
+  {
+   "count": 4,
+   "name": "Empty Can",
+   "size": "-"
+  },
+  {
+   "count": 2,
+   "name": "Branch",
+   "size": "-"
+  },
+  {
+   "count": 5,
+   "name": "Small Fish",
+   "size": "18cm"
+  },
+  {
+   "count": 10,
+   "name": "Medium Fish",
+   "size": "34cm"
+  },
+  {
+   "count": 11,
+   "name": "Large Fish",
+   "size": "52cm"
+  }
+ ],
+ "gold": 617271,
+ "hasClock": true,
+ "hasSick": false,
+ "horseX": 35,
+ "horseY": 78,
+ "income": [
+  {
+   "name": "Earned in one day",
+   "value": "9420400G"
+  },
+  {
+   "name": "Spent in one day",
+   "value": "??????"
+  }
+ ],
+ "itemCount": 8,
+ "itemGrid": [
+  {
+   "empty": false,
+   "icon": "asset:_preview/fea8c0cf0a12.png",
+   "id": 0,
+   "name": "Turnip",
+   "short": "Turnip",
+   "slot": 0
+  },
+  {
+   "empty": false,
+   "icon": "asset:_preview/f0f8da1f44a4.png",
+   "id": 1,
+   "name": "Potato",
+   "short": "Potato",
+   "slot": 1
+  },
+  {
+   "empty": false,
+   "icon": "asset:_preview/31a20af432d1.png",
+   "id": 2,
+   "name": "Cucumber",
+   "short": "Cucumber",
+   "slot": 2
+  },
+  {
+   "empty": false,
+   "icon": "asset:_preview/0baa83242220.png",
+   "id": 4,
+   "name": "Cabbage",
+   "short": "Cabbage",
+   "slot": 3
+  },
+  {
+   "empty": false,
+   "icon": "asset:_preview/9dfc789642e2.png",
+   "id": 15,
+   "name": "Regular Quality Egg",
+   "short": "Regular Qu",
+   "slot": 4
+  },
+  {
+   "empty": false,
+   "icon": "asset:_preview/ac1a83bad48d.png",
+   "id": 18,
+   "name": "Golden Egg",
+   "short": "Golden Egg",
+   "slot": 5
+  },
+  {
+   "empty": false,
+   "icon": "asset:_preview/9af0a4dd1db8.png",
+   "id": 40,
+   "name": "Apple",
+   "short": "Apple",
+   "slot": 6
+  },
+  {
+   "empty": false,
+   "icon": "asset:_preview/46441bf0d67c.png",
+   "id": 57,
+   "name": "Bodigizer",
+   "short": "Bodigizer",
+   "slot": 7
+  }
+ ],
+ "items": [
+  {
+   "empty": false,
+   "icon": "asset:_preview/fea8c0cf0a12.png",
+   "id": 0,
+   "name": "Turnip",
+   "short": "Turnip",
+   "slot": 0
+  },
+  {
+   "empty": false,
+   "icon": "asset:_preview/f0f8da1f44a4.png",
+   "id": 1,
+   "name": "Potato",
+   "short": "Potato",
+   "slot": 1
+  },
+  {
+   "empty": false,
+   "icon": "asset:_preview/31a20af432d1.png",
+   "id": 2,
+   "name": "Cucumber",
+   "short": "Cucumber",
+   "slot": 2
+  },
+  {
+   "empty": false,
+   "icon": "asset:_preview/0baa83242220.png",
+   "id": 4,
+   "name": "Cabbage",
+   "short": "Cabbage",
+   "slot": 3
+  },
+  {
+   "empty": false,
+   "icon": "asset:_preview/9dfc789642e2.png",
+   "id": 15,
+   "name": "Regular Quality Egg",
+   "short": "Regular Qu",
+   "slot": 4
+  },
+  {
+   "empty": false,
+   "icon": "asset:_preview/ac1a83bad48d.png",
+   "id": 18,
+   "name": "Golden Egg",
+   "short": "Golden Egg",
+   "slot": 5
+  },
+  {
+   "empty": false,
+   "icon": "asset:_preview/9af0a4dd1db8.png",
+   "id": 40,
+   "name": "Apple",
+   "short": "Apple",
+   "slot": 6
+  },
+  {
+   "empty": false,
+   "icon": "asset:_preview/46441bf0d67c.png",
+   "id": 57,
+   "name": "Bodigizer",
+   "short": "Bodigizer",
+   "slot": 7
+  }
+ ],
+ "mkDog": "asset:_preview/1d5b9136b965.png",
+ "mkHorse": "asset:_preview/cf27e41ec392.png",
+ "mkPlayer": "asset:_preview/5553e73a08f7.png",
+ "mpFarm": false,
+ "mpTown": true,
+ "navBarn": false,
+ "navFarm": true,
+ "navMaps": false,
+ "navMemo": false,
+ "navRuck": false,
+ "noItems": false,
+ "noShipped": false,
+ "player": "Jack",
+ "playerX": 30.5,
+ "playerY": 70,
+ "ready": true,
+ "records": [
+  {
+   "name": "Harvest",
+   "value": "8"
+  },
+  {
+   "name": "Animal Husbandry",
+   "value": "8"
+  },
+  {
+   "name": "Watering",
+   "value": "8"
+  },
+  {
+   "name": "Frisbee",
+   "value": "12m 1220cm"
+  }
+ ],
+ "season": "Spring",
+ "sheep": [
+  {
+   "health": "Healthy",
+   "heartRow": [
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    }
+   ],
+   "hearts": 11,
+   "icon": "asset:_preview/23ed468e1cf5.png",
+   "idx": 1,
+   "kind": "Cattle / Sheep",
+   "max": true,
+   "name": "Wooly",
+   "rec": 33576048,
+   "sick": false
+  },
+  {
+   "health": "Healthy",
+   "heartRow": [
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    }
+   ],
+   "hearts": 0,
+   "icon": "asset:_preview/23ed468e1cf5.png",
+   "idx": 3,
+   "kind": "Cattle / Sheep",
+   "max": false,
+   "name": "Peppy",
+   "rec": 33576168,
+   "sick": false
+  },
+  {
+   "health": "Healthy",
+   "heartRow": [
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    }
+   ],
+   "hearts": 0,
+   "icon": "asset:_preview/23ed468e1cf5.png",
+   "idx": 6,
+   "kind": "Cattle / Sheep",
+   "max": false,
+   "name": "Rebba",
+   "rec": 33576348,
+   "sick": false
+  }
+ ],
+ "sheepCount": 3,
+ "shipAll": 103,
+ "shipKinds": 34,
+ "shipSeen": 71,
+ "shipTotal": 1626,
+ "shipped": [
+  {
+   "count": 14,
+   "group": "Crops",
+   "icon": "asset:_preview/31a20af432d1.png",
+   "idx": 2,
+   "name": "Cucumber"
+  },
+  {
+   "count": 174,
+   "group": "Crops",
+   "icon": "asset:_preview/987db876c083.png",
+   "idx": 4,
+   "name": "Strawberry"
+  },
+  {
+   "count": 68,
+   "group": "Crops",
+   "icon": "asset:_preview/56ca96177653.png",
+   "idx": 8,
+   "name": "Pineapple"
+  },
+  {
+   "count": 7,
+   "group": "Crops",
+   "icon": "asset:_preview/92e3a7df846f.png",
+   "idx": 9,
+   "name": "Pumpkin"
+  },
+  {
+   "count": 139,
+   "group": "Crops",
+   "icon": "asset:_preview/3f4373d226c7.png",
+   "idx": 10,
+   "name": "Eggplant"
+  },
+  {
+   "count": 17,
+   "group": "Crops",
+   "icon": "asset:_preview/495404920f15.png",
+   "idx": 11,
+   "name": "Carrot"
+  },
+  {
+   "count": 227,
+   "group": "Crops",
+   "icon": "asset:_preview/55af40729ad4.png",
+   "idx": 12,
+   "name": "Sweet Potato"
+  },
+  {
+   "count": 333,
+   "group": "Eggs",
+   "icon": "asset:_preview/9dfc789642e2.png",
+   "idx": 15,
+   "name": "Regular Egg"
+  },
+  {
+   "count": 5,
+   "group": "Eggs",
+   "icon": "asset:_preview/3d3ab3b3a314.png",
+   "idx": 16,
+   "name": "Good Egg"
+  },
+  {
+   "count": 1,
+   "group": "Eggs",
+   "icon": "asset:_preview/ac1a83bad48d.png",
+   "idx": 18,
+   "name": "Golden Egg"
+  },
+  {
+   "count": 33,
+   "group": "Eggs",
+   "icon": "asset:_preview/6980ee3c058a.png",
+   "idx": 20,
+   "name": "X Egg"
+  },
+  {
+   "count": 7,
+   "group": "Milk",
+   "icon": "asset:_preview/3ce233e5d8fa.png",
+   "idx": 28,
+   "name": "Milk (S)"
+  },
+  {
+   "count": 19,
+   "group": "Milk",
+   "icon": "asset:_preview/c227bfbaa827.png",
+   "idx": 31,
+   "name": "Milk (G)"
+  },
+  {
+   "count": 32,
+   "group": "Milk",
+   "icon": "asset:_preview/793edd4b5054.png",
+   "idx": 32,
+   "name": "Milk (P)"
+  },
+  {
+   "count": 31,
+   "group": "Foraged",
+   "icon": "asset:_preview/7b893409f8f7.png",
+   "idx": 44,
+   "name": "Honey"
+  },
+  {
+   "count": 24,
+   "group": "Foraged",
+   "icon": "asset:_preview/b7fed3d269dd.png",
+   "idx": 45,
+   "name": "Bamboo Shoot"
+  },
+  {
+   "count": 24,
+   "group": "Foraged",
+   "icon": "asset:_preview/a733dca47489.png",
+   "idx": 50,
+   "name": "Blue Grass"
+  },
+  {
+   "count": 16,
+   "group": "Foraged",
+   "icon": "asset:_preview/dfd76eba9a40.png",
+   "idx": 53,
+   "name": "Yellow Grass"
+  },
+  {
+   "count": 15,
+   "group": "Foraged",
+   "icon": "asset:_preview/4b4ffd6433ae.png",
+   "idx": 54,
+   "name": "Orange Grass"
+  },
+  {
+   "count": 1,
+   "group": "Foraged",
+   "icon": "asset:_preview/0debad3e071f.png",
+   "idx": 55,
+   "name": "Purple Grass"
+  },
+  {
+   "count": 1,
+   "group": "Foraged",
+   "icon": "asset:_preview/8a2e174bc218.png",
+   "idx": 57,
+   "name": "Black Grass"
+  },
+  {
+   "count": 1,
+   "group": "Foraged",
+   "icon": "asset:_preview/771450e29537.png",
+   "idx": 58,
+   "name": "White Grass"
+  },
+  {
+   "count": 87,
+   "group": "Foraged",
+   "icon": "asset:_preview/c119c97804c7.png",
+   "idx": 60,
+   "name": "Relax Tea Leaves"
+  },
+  {
+   "count": 5,
+   "group": "Foraged",
+   "icon": "asset:_preview/aafbf978a74e.png",
+   "idx": 61,
+   "name": "Small Fish"
+  },
+  {
+   "count": 10,
+   "group": "Foraged",
+   "icon": "asset:_preview/8aefc76ff76a.png",
+   "idx": 62,
+   "name": "Medium Fish"
+  },
+  {
+   "count": 11,
+   "group": "Foraged",
+   "icon": "asset:_preview/8b0e29aca1cc.png",
+   "idx": 63,
+   "name": "Large Fish"
+  },
+  {
+   "count": 304,
+   "group": "Foraged",
+   "icon": "asset:_preview/17cbc1059e47.png",
+   "idx": 64,
+   "name": "Pirate Treasure"
+  },
+  {
+   "count": 2,
+   "group": "Wool and yarn",
+   "icon": "asset:_preview/d9a666f6df14.png",
+   "idx": 67,
+   "name": "Wool (S)"
+  },
+  {
+   "count": 6,
+   "group": "Wool and yarn",
+   "icon": "asset:_preview/4d6e0aff6383.png",
+   "idx": 70,
+   "name": "Wool (G)"
+  },
+  {
+   "count": 5,
+   "group": "Wool and yarn",
+   "icon": "asset:_preview/23daeb0b7953.png",
+   "idx": 71,
+   "name": "Wool (P)"
+  },
+  {
+   "count": 1,
+   "group": "Ores and gems",
+   "icon": "asset:_preview/62aee9809a83.png",
+   "idx": 84,
+   "name": "Copper"
+  },
+  {
+   "count": 3,
+   "group": "Ores and gems",
+   "icon": "asset:_preview/539f7841113d.png",
+   "idx": 85,
+   "name": "Silver"
+  },
+  {
+   "count": 1,
+   "group": "Ores and gems",
+   "icon": "asset:_preview/78fe3bd11e21.png",
+   "idx": 99,
+   "name": "Peridot"
+  },
+  {
+   "count": 2,
+   "group": "Ores and gems",
+   "icon": "asset:_preview/f91f2c39ba7c.png",
+   "idx": 102,
+   "name": "Amethyst"
+  }
+ ],
+ "sickCount": 0,
+ "sprites": [
+  {
+   "b1": 0,
+   "b2": 0,
+   "b3": 0,
+   "heartRow": [
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    }
+   ],
+   "hearts": 1,
+   "icon": "asset:_preview/5d16abcecd9d.png",
+   "job": "Work",
+   "name": "Staid",
+   "state": "N/A"
+  },
+  {
+   "b1": 0,
+   "b2": 0,
+   "b3": 0,
+   "heartRow": [
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    }
+   ],
+   "hearts": 1,
+   "icon": "asset:_preview/6ede55c908a0.png",
+   "job": "Work",
+   "name": "Nappy",
+   "state": "N/A"
+  },
+  {
+   "b1": 0.35,
+   "b2": 0,
+   "b3": 0,
+   "heartRow": [
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:_preview/b581d09adf05.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    },
+    {
+     "src": "asset:ui/heart-off.png"
+    }
+   ],
+   "hearts": 9,
+   "icon": "asset:_preview/a2deb6c4eeab.png",
+   "job": "Work",
+   "name": "Bold",
+   "state": "Ready"
+  }
+ ],
+ "tbCattle": false,
+ "tbChickens": true,
+ "tbSheep": false,
+ "tbSprites": false,
+ "tmFish": false,
+ "tmRec": false,
+ "tmShip": true,
+ "tools": [
+  {
+   "empty": false,
+   "icon": "asset:_preview/0c8b948c6ca6.png",
+   "id": 263,
+   "kind": "tool",
+   "name": "Mythic Sickle",
+   "short": "Mythic Sic",
+   "tag": "sickle"
+  },
+  {
+   "empty": false,
+   "icon": "asset:_preview/0780349d2359.png",
+   "id": 295,
+   "kind": "tool",
+   "name": "Mythic Watering Can",
+   "short": "Mythic Wat",
+   "tag": "t0"
+  },
+  {
+   "empty": false,
+   "icon": "asset:_preview/8742964ebec9.png",
+   "id": 333,
+   "kind": "gem",
+   "name": "Teleport Stone",
+   "short": "Teleport S",
+   "tag": "t1"
+  },
+  {
+   "empty": false,
+   "icon": "asset:_preview/24a19d45fb8c.png",
+   "id": 326,
+   "kind": "tool",
+   "name": "Brush",
+   "short": "Brush",
+   "tag": "t2"
+  },
+  {
+   "empty": false,
+   "icon": "asset:_preview/9b5c3007f3e4.png",
+   "id": 279,
+   "kind": "tool",
+   "name": "Mythic Axe",
+   "short": "Mythic Axe",
+   "tag": "t3"
+  },
+  {
+   "empty": false,
+   "icon": "asset:_preview/324201a47bb5.png",
+   "id": 329,
+   "kind": "tool",
+   "name": "Bell",
+   "short": "Bell",
+   "tag": "t4"
+  },
+  {
+   "empty": false,
+   "icon": "asset:_preview/adaf6c723d8b.png",
+   "id": 271,
+   "kind": "tool",
+   "name": "Mythic Hoe",
+   "short": "Mythic Hoe",
+   "tag": "t5"
+  },
+  {
+   "empty": false,
+   "icon": "asset:_preview/bd2c8623352c.png",
+   "id": 328,
+   "kind": "tool",
+   "name": "Clipper",
+   "short": "Clipper",
+   "tag": "t6"
+  },
+  {
+   "empty": false,
+   "icon": "asset:_preview/b1ff7441d83c.png",
+   "id": 327,
+   "kind": "tool",
+   "name": "Milker",
+   "short": "Milker",
+   "tag": "t7"
+  }
+ ],
+ "ui": {
+  "set": {}
+ },
+ "waiting": false,
+ "weather": "Sunny",
+ "weekday": "Thu",
+ "where": "Town Cottage",
+ "worldMarks": {
+  "dog": {
+   "x": 38,
+   "y": 66
+  },
+  "horse": {
+   "x": 35,
+   "y": 78
+  },
+  "player": {
+   "x": 30.5,
+   "y": 70
+  }
+ }
 }

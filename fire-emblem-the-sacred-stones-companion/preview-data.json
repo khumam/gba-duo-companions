@@ -1,0 +1,558 @@
+{
+ "army": {
+  "count": "43 units",
+  "next": 2,
+  "page": "1/4",
+  "prev": 4,
+  "rows": [
+   {
+    "hasMini": true,
+    "hp": "55/55",
+    "k": 1,
+    "lv": "LV 20",
+    "mini": "asset:_preview/7956a00b8d6f.png",
+    "name": "Seth",
+    "off": false,
+    "sel": true
+   },
+   {
+    "hasMini": true,
+    "hp": "36/36",
+    "k": 2,
+    "lv": "LV 20",
+    "mini": "asset:_preview/44ef5051b4db.png",
+    "name": "Ephraim",
+    "off": false,
+    "sel": false
+   },
+   {
+    "hasMini": true,
+    "hp": "26/26",
+    "k": 3,
+    "lv": "LV 14",
+    "mini": "asset:_preview/3f133728d915.png",
+    "name": "Eirika",
+    "off": false,
+    "sel": false
+   },
+   {
+    "hasMini": true,
+    "hp": "33/33",
+    "k": 4,
+    "lv": "LV 3",
+    "mini": "asset:_preview/225a1aaa4d66.png",
+    "name": "Innes",
+    "off": false,
+    "sel": false
+   },
+   {
+    "hasMini": true,
+    "hp": "30/30",
+    "k": 5,
+    "lv": "LV 9",
+    "mini": "asset:_preview/4899f2c18965.png",
+    "name": "Cormag",
+    "off": false,
+    "sel": false
+   },
+   {
+    "hasMini": true,
+    "hp": "41/41",
+    "k": 6,
+    "lv": "LV 8",
+    "mini": "asset:_preview/1b8b33044b97.png",
+    "name": "Duessel",
+    "off": false,
+    "sel": false
+   },
+   {
+    "hasMini": true,
+    "hp": "18/18",
+    "k": 7,
+    "lv": "LV 3",
+    "mini": "asset:_preview/f40c430e3e52.png",
+    "name": "L'Arachel",
+    "off": false,
+    "sel": false
+   },
+   {
+    "hasMini": true,
+    "hp": "43/43",
+    "k": 8,
+    "lv": "LV 1",
+    "mini": "asset:_preview/626ae2ff736c.png",
+    "name": "Dozla",
+    "off": false,
+    "sel": false
+   },
+   {
+    "hasMini": true,
+    "hp": "23/23",
+    "k": 9,
+    "lv": "LV 5",
+    "mini": "asset:_preview/5f862b56b998.png",
+    "name": "Marisa",
+    "off": true,
+    "sel": false
+   },
+   {
+    "hasMini": true,
+    "hp": "18/18",
+    "k": 10,
+    "lv": "LV 1",
+    "mini": "asset:_preview/6e648b319ee9.png",
+    "name": "Tethys",
+    "off": true,
+    "sel": false
+   },
+   {
+    "hasMini": true,
+    "hp": "32/32",
+    "k": 11,
+    "lv": "LV 10",
+    "mini": "asset:_preview/ac07f6e38a7d.png",
+    "name": "Gerik",
+    "off": true,
+    "sel": false
+   },
+   {
+    "hasMini": true,
+    "hp": "20/20",
+    "k": 12,
+    "lv": "LV 1",
+    "mini": "asset:_preview/1f1658dd1aad.png",
+    "name": "Franz",
+    "off": true,
+    "sel": false
+   }
+  ]
+ },
+ "hasNote": false,
+ "it": {
+  "atk": "32",
+  "avoid": "63",
+  "canEquip": false,
+  "canUse": false,
+  "crit": "23",
+  "empty": false,
+  "full": false,
+  "hasSel": true,
+  "hit": "146",
+  "rng": "1",
+  "rows": [
+   {
+    "canEquip": false,
+    "canUse": false,
+    "eq": true,
+    "icon": "asset:_preview/2f232fa96fc2.png",
+    "name": "Bright Lance",
+    "sel": true,
+    "slot": 0,
+    "uses": "60/60"
+   }
+  ],
+  "selName": "Bright Lance",
+  "selSlot": 0,
+  "source": "As the game shows"
+ },
+ "nextUnit": 2,
+ "note": "",
+ "pd": {
+  "affIcon": "asset:_preview/796fd46d7ca9.png",
+  "affin": "Anima",
+  "aid": "14",
+  "con": "11",
+  "cond": "---",
+  "hasAff": true,
+  "move": "8",
+  "moveBonus": "",
+  "rows": [
+   {
+    "label": "Str",
+    "max": true,
+    "pct": "100%",
+    "value": "25"
+   },
+   {
+    "label": "Skill",
+    "max": true,
+    "pct": "100%",
+    "value": "26"
+   },
+   {
+    "label": "Spd",
+    "max": false,
+    "pct": "91%",
+    "value": "22"
+   },
+   {
+    "label": "Luck",
+    "max": false,
+    "pct": "63%",
+    "value": "19"
+   },
+   {
+    "label": "Def",
+    "max": false,
+    "pct": "72%",
+    "value": "18"
+   },
+   {
+    "label": "Res",
+    "max": false,
+    "pct": "72%",
+    "value": "18"
+   }
+  ],
+  "trv": "---"
+ },
+ "prevUnit": 43,
+ "ready": true,
+ "st": {
+  "army": "43",
+  "enemy": "40",
+  "funds": "253391",
+  "goal": "Defeat all monsters",
+  "hasLead": true,
+  "lead": "Ephraim",
+  "leadHp": "36/36",
+  "leadLv": "20",
+  "leadMini": "asset:_preview/44ef5051b4db.png",
+  "mode": "Ephraim's route",
+  "player": "8",
+  "time": "4:37:21",
+  "title": "Lagdou Ruins 1",
+  "turn": "1"
+ },
+ "sup": {
+  "canGive": true,
+  "count": "46/100",
+  "empty": false,
+  "next": 2,
+  "page": "1/4",
+  "prev": 1,
+  "rows": [
+   {
+    "ci": 0,
+    "icon": "asset:_preview/bbedcf0577da.png",
+    "name": "Angelic Robe",
+    "sel": false,
+    "uses": "1/1"
+   },
+   {
+    "ci": 1,
+    "icon": "asset:_preview/9ac4fb441855.png",
+    "name": "Energy Ring",
+    "sel": false,
+    "uses": "1/1"
+   },
+   {
+    "ci": 2,
+    "icon": "asset:_preview/72a20c7f2074.png",
+    "name": "Secret Book",
+    "sel": true,
+    "uses": "1/1"
+   },
+   {
+    "ci": 3,
+    "icon": "asset:_preview/58b58f0ea3a5.png",
+    "name": "Speedwing",
+    "sel": false,
+    "uses": "1/1"
+   },
+   {
+    "ci": 4,
+    "icon": "asset:_preview/89af63996383.png",
+    "name": "Goddess Icon",
+    "sel": false,
+    "uses": "1/1"
+   },
+   {
+    "ci": 5,
+    "icon": "asset:_preview/5be4a095332a.png",
+    "name": "Dragonshield",
+    "sel": false,
+    "uses": "1/1"
+   },
+   {
+    "ci": 6,
+    "icon": "asset:_preview/4af003311c39.png",
+    "name": "Talisman",
+    "sel": false,
+    "uses": "1/1"
+   },
+   {
+    "ci": 7,
+    "icon": "asset:_preview/a52e9b3159b8.png",
+    "name": "Swiftsole",
+    "sel": false,
+    "uses": "1/1"
+   },
+   {
+    "ci": 8,
+    "icon": "asset:_preview/3a872f648a31.png",
+    "name": "Body Ring",
+    "sel": false,
+    "uses": "1/1"
+   },
+   {
+    "ci": 9,
+    "icon": "asset:_preview/2b1b7a421e28.png",
+    "name": "Hero Crest",
+    "sel": false,
+    "uses": "1/1"
+   },
+   {
+    "ci": 10,
+    "icon": "asset:_preview/f59e049116ac.png",
+    "name": "Knight Crest",
+    "sel": false,
+    "uses": "1/1"
+   },
+   {
+    "ci": 11,
+    "icon": "asset:_preview/b7de533275c9.png",
+    "name": "Orion's Bolt",
+    "sel": false,
+    "uses": "1/1"
+   }
+  ],
+  "selCi": 2,
+  "selName": "Secret Book",
+  "tabName": "All",
+  "tabs": [
+   {
+    "hasIcon": false,
+    "i": 1,
+    "icon": "",
+    "label": "All",
+    "noIcon": true,
+    "sel": true
+   },
+   {
+    "hasIcon": true,
+    "i": 2,
+    "icon": "asset:_preview/c2cabcd556f1.png",
+    "label": "Sword",
+    "noIcon": false,
+    "sel": false
+   },
+   {
+    "hasIcon": true,
+    "i": 3,
+    "icon": "asset:_preview/897612d46c1c.png",
+    "label": "Lance",
+    "noIcon": false,
+    "sel": false
+   },
+   {
+    "hasIcon": true,
+    "i": 4,
+    "icon": "asset:_preview/4a5dc5dafee1.png",
+    "label": "Axe",
+    "noIcon": false,
+    "sel": false
+   },
+   {
+    "hasIcon": true,
+    "i": 5,
+    "icon": "asset:_preview/82575bf7e4cd.png",
+    "label": "Bow",
+    "noIcon": false,
+    "sel": false
+   },
+   {
+    "hasIcon": true,
+    "i": 6,
+    "icon": "asset:_preview/4c827892e5af.png",
+    "label": "Staff",
+    "noIcon": false,
+    "sel": false
+   },
+   {
+    "hasIcon": true,
+    "i": 7,
+    "icon": "asset:_preview/9b646f0bc5fc.png",
+    "label": "Anima",
+    "noIcon": false,
+    "sel": false
+   },
+   {
+    "hasIcon": true,
+    "i": 8,
+    "icon": "asset:_preview/aaaff499eccf.png",
+    "label": "Light",
+    "noIcon": false,
+    "sel": false
+   },
+   {
+    "hasIcon": true,
+    "i": 9,
+    "icon": "asset:_preview/9f8514928932.png",
+    "label": "Dark",
+    "noIcon": false,
+    "sel": false
+   },
+   {
+    "hasIcon": false,
+    "i": 10,
+    "icon": "",
+    "label": "Item",
+    "noIcon": true,
+    "sel": false
+   }
+  ],
+  "unitFull": false,
+  "unitName": "Seth"
+ },
+ "toast": {
+  "hasMini": false,
+  "id": 0,
+  "k": 1,
+  "mini": "",
+  "name": "",
+  "sub": "",
+  "title": ""
+ },
+ "toastOn": false,
+ "u": {
+  "cls": "Paladin",
+  "exp": "--",
+  "hasSheet": true,
+  "hp": "55/55",
+  "k": 1,
+  "lv": "20",
+  "name": "Seth",
+  "pos": "1 / 43",
+  "sheet": "asset:_preview/c7e0f3688460.png"
+ },
+ "ui": {
+  "set": {
+   "cv": 2,
+   "slot": 0,
+   "unit": 1
+  }
+ },
+ "waiting": false,
+ "wp": {
+  "noSup": false,
+  "ranks": [
+   {
+    "has": true,
+    "icon": "asset:_preview/c2cabcd556f1.png",
+    "letter": "A",
+    "none": false,
+    "pct": "98%",
+    "s": false
+   },
+   {
+    "has": false,
+    "icon": "asset:_preview/4a5dc5dafee1.png",
+    "letter": "-",
+    "none": true,
+    "pct": "0%",
+    "s": false
+   },
+   {
+    "has": true,
+    "icon": "asset:_preview/897612d46c1c.png",
+    "letter": "S",
+    "none": false,
+    "pct": "100%",
+    "s": true
+   },
+   {
+    "has": false,
+    "icon": "asset:_preview/82575bf7e4cd.png",
+    "letter": "-",
+    "none": true,
+    "pct": "0%",
+    "s": false
+   },
+   {
+    "has": false,
+    "icon": "asset:_preview/4c827892e5af.png",
+    "letter": "-",
+    "none": true,
+    "pct": "0%",
+    "s": false
+   },
+   {
+    "has": false,
+    "icon": "asset:_preview/9b646f0bc5fc.png",
+    "letter": "-",
+    "none": true,
+    "pct": "0%",
+    "s": false
+   },
+   {
+    "has": false,
+    "icon": "asset:_preview/aaaff499eccf.png",
+    "letter": "-",
+    "none": true,
+    "pct": "0%",
+    "s": false
+   },
+   {
+    "has": false,
+    "icon": "asset:_preview/9f8514928932.png",
+    "letter": "-",
+    "none": true,
+    "pct": "0%",
+    "s": false
+   }
+  ],
+  "sups": [
+   {
+    "aff": "asset:_preview/31814d1c4785.png",
+    "got": false,
+    "hasAff": true,
+    "known": true,
+    "level": "-",
+    "name": "Franz",
+    "pct": "18%",
+    "unknown": false
+   },
+   {
+    "aff": "asset:_preview/31814d1c4785.png",
+    "got": false,
+    "hasAff": true,
+    "known": true,
+    "level": "-",
+    "name": "Eirika",
+    "pct": "30%",
+    "unknown": false
+   },
+   {
+    "aff": "asset:_preview/30b93135b3a7.png",
+    "got": false,
+    "hasAff": true,
+    "known": true,
+    "level": "-",
+    "name": "Garcia",
+    "pct": "12%",
+    "unknown": false
+   },
+   {
+    "aff": "asset:_preview/cfeb158b92cf.png",
+    "got": false,
+    "hasAff": true,
+    "known": true,
+    "level": "-",
+    "name": "Natasha",
+    "pct": "6%",
+    "unknown": false
+   },
+   {
+    "aff": "asset:_preview/30b93135b3a7.png",
+    "got": false,
+    "hasAff": true,
+    "known": true,
+    "level": "-",
+    "name": "Cormag",
+    "pct": "0%",
+    "unknown": false
+   }
+  ]
+ }
+}

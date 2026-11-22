@@ -1,0 +1,119 @@
+/*
+ * A Link to the Past companion: the GBA item screen (Items), Link's status and the dungeons, cycled by left / right
+ * plates. Item icons were cut from the game's item screen (assets/icons); frames are CSS in the screen's colours.
+ * 248 x 216 art-pixel grid, `10ap` expanded by `python3 art/css.py`. Edit this file, not style.css.
+ */
+:root { --green: #31ef39; --red: #ef0000; --yellow: #ffd600; --grey: #94949c; --blue: #6b9cff; }
+@font-face { font-family: "Jersey"; src: url("assets/fonts/Jersey10-Regular.ttf"); }
+@font-face { font-family: "Silk"; src: url("assets/fonts/Silkscreen-Bold.ttf"); }
+
+image { image-rendering: pixelated; }
+text { white-space: nowrap; }
+#screen { width: 100%; height: 100%; position: relative; overflow: hidden; background-color: #000000; }
+.waiting, .ready, .stage { width: 100%; height: 100%; position: relative; }
+.page { width: 248ap; height: 216ap; position: relative; overflow: hidden; background-color: #000000; font-family: "Jersey"; font-size: 10ap; color: #ffffff; }
+
+/* panels: the item screen's rounded colour frames with a white inner line, label cut into the top edge */
+.panel { position: absolute; border-radius: 4ap; border: 2ap solid #31ef39; background-color: #000000; }
+.panel.green { border-color: var(--green); } .panel.red { border-color: var(--red); } .panel.yellow { border-color: var(--yellow); }
+.plabel { position: absolute; font-family: "Silk"; font-size: 7ap; background-color: #000000; padding: 0 2ap; }
+.letter { position: absolute; font-family: "Silk"; font-size: 9ap; }
+.letter-a { left: 5ap; top: 10ap; color: var(--green); } .letter-r { left: 5ap; top: 120ap; color: var(--red); }
+
+/* ---- items ---- */
+.p-item { left: 2ap; top: 3ap; width: 160ap; height: 104ap; } .p-item-l { left: 14ap; top: 0; }
+.grid { position: absolute; left: 16ap; top: 11ap; width: 144ap; height: 96ap; display: grid; grid-template-columns: 24ap 24ap 24ap 24ap 24ap 24ap; }
+.cell { width: 24ap; height: 24ap; padding: 0; margin: 0; background: none; border: 0; border-radius: 0; position: relative; justify-content: center; align-items: center; }
+.cicon { width: 16ap; height: 16ap; }
+.bracket { position: absolute; left: 1ap; top: 1ap; width: 22ap; height: 22ap; border: 1ap solid #31ef39; border-radius: 6ap; }
+.ccount { position: absolute; left: 14ap; top: 14ap; font-family: "Silk"; font-size: 5ap; }
+.cell:pressed .cicon { opacity: 0.6; }
+.p-sel { left: 166ap; top: 3ap; width: 80ap; height: 40ap; }
+.sel-i { position: absolute; left: 198ap; top: 9ap; width: 16ap; height: 16ap; }
+.sel-n { position: absolute; left: 166ap; width: 80ap; top: 29ap; text-align: center; font-family: "Silk"; font-size: 5ap; }
+.p-pend { left: 166ap; top: 46ap; width: 80ap; height: 61ap; } .p-pend-l { left: 176ap; top: 43ap; }
+.pend { position: absolute; width: 16ap; height: 16ap; }
+.pend-0 { left: 198ap; top: 56ap; } .pend-1 { left: 182ap; top: 76ap; } .pend-2 { left: 214ap; top: 76ap; }
+.cry-n { position: absolute; left: 166ap; width: 80ap; top: 95ap; text-align: center; font-family: "Silk"; font-size: 4ap; color: #d070ff; }
+.p-do { left: 2ap; top: 110ap; width: 160ap; height: 60ap; } .p-do-l { left: 14ap; top: 107ap; }
+.do-w { position: absolute; font-family: "Silk"; font-size: 7ap; }
+.do-1 { left: 16ap; top: 116ap; } .do-2 { left: 64ap; top: 116ap; } .do-3 { left: 16ap; top: 130ap; } .do-4 { left: 64ap; top: 130ap; }
+.dorow { position: absolute; left: 16ap; top: 146ap; width: 140ap; height: 20ap; flex-direction: row; }
+.dcell { width: 32ap; height: 20ap; padding: 0; margin: 0; background: none; border: 0; border-radius: 0; justify-content: center; align-items: center; }
+.dicon { width: 16ap; height: 16ap; }
+.p-eq { left: 166ap; top: 110ap; width: 80ap; height: 60ap; } .p-eq-l { left: 170ap; top: 107ap; }
+.eqi { position: absolute; top: 117ap; width: 16ap; height: 16ap; }
+.eq-sw { left: 172ap; } .eq-sh { left: 196ap; } .eq-ml { left: 220ap; }
+.eq-dots { position: absolute; left: 172ap; top: 137ap; width: 66ap; height: 1ap; border-top: 1ap dotted #ffffff; }
+.eq-piece { position: absolute; left: 176ap; top: 145ap; width: 14ap; height: 11ap; }
+.eq-cont { position: absolute; left: 200ap; top: 144ap; font-family: "Silk"; font-size: 7ap; }
+.info { position: absolute; left: 2ap; top: 173ap; width: 244ap; height: 15ap; flex-direction: row; align-items: center; }
+.info-n { font-family: "Silk"; font-size: 6ap; color: var(--yellow); margin: 0 6ap 0 4ap; }
+.info-t { font-size: 9ap; }
+
+/* ---- status ---- */
+.p-life { left: 2ap; top: 3ap; width: 244ap; height: 40ap; } .p-life-l { left: 14ap; top: 0; }
+.hearts { position: absolute; left: 10ap; top: 12ap; width: 200ap; height: 26ap; display: grid; grid-template-columns: 14ap 14ap 14ap 14ap 14ap 14ap 14ap 14ap 14ap 14ap; }
+.heart { width: 14ap; height: 14ap; margin: 0 0 0 0; }
+.st-hp { position: absolute; left: 196ap; width: 44ap; top: 16ap; text-align: right; font-family: "Silk"; font-size: 6ap; }
+.p-magic { left: 2ap; top: 46ap; width: 244ap; height: 26ap; } .p-magic-l { left: 14ap; top: 43ap; }
+.mbar { position: absolute; left: 12ap; top: 55ap; width: 170ap; height: 8ap; background-color: #102010; border: 1ap solid #ffffff; border-radius: 0; }
+.mbar > fill { background-color: #31ef39; border-radius: 0; }
+.st-mp { position: absolute; left: 186ap; width: 54ap; top: 54ap; text-align: right; font-family: "Silk"; font-size: 6ap; }
+.st-mu { position: absolute; left: 120ap; top: 43ap; font-family: "Silk"; font-size: 5ap; color: var(--green); background-color: #000000; padding: 0 2ap; }
+.p-bag { left: 2ap; top: 75ap; width: 136ap; height: 112ap; } .p-bag-l { left: 14ap; top: 72ap; }
+.ci { position: absolute; left: 10ap; width: 16ap; height: 16ap; }
+.rupee { position: absolute; left: 14ap; width: 8ap; height: 12ap; background-color: #31ef39; border: 1ap solid #ffffff; border-radius: 3ap; }
+.cl { position: absolute; left: 30ap; font-family: "Silk"; font-size: 5ap; color: #d6d6d6; }
+.cv { position: absolute; left: 70ap; width: 62ap; text-align: right; font-family: "Silk"; font-size: 7ap; }
+.ci-1 { top: 84ap; } .cl-1 { top: 89ap; } .cv-1 { top: 87ap; }
+.ci-2 { top: 104ap; } .cl-2 { top: 109ap; } .cv-2 { top: 107ap; }
+.ci-3 { top: 126ap; } .cl-3 { top: 129ap; } .cv-3 { top: 127ap; }
+.ci-4 { top: 146ap; width: 14ap; height: 11ap; } .cl-4 { top: 149ap; } .cv-4 { top: 147ap; }
+.cl-5 { top: 169ap; } .cv-5 { top: 167ap; }
+.p-gear { left: 142ap; top: 75ap; width: 104ap; height: 112ap; } .p-gear-l { left: 150ap; top: 72ap; }
+.gi { position: absolute; left: 150ap; width: 16ap; height: 16ap; }
+.gn { position: absolute; left: 170ap; font-size: 9ap; }
+.gi-1 { top: 86ap; } .gn-1 { top: 88ap; } .gi-2 { top: 116ap; } .gn-2 { top: 118ap; } .gi-3 { top: 146ap; } .gn-3 { top: 148ap; }
+
+/* ---- dungeons ---- */
+.p-dun { left: 2ap; top: 3ap; width: 244ap; height: 172ap; } .p-dun-l { left: 14ap; top: 0; }
+.dh { position: absolute; top: 9ap; font-family: "Silk"; font-size: 4ap; color: #d6d6d6; }
+.dh-m { left: 134ap; } .dh-c { left: 156ap; } .dh-k { left: 182ap; }
+.dlist { position: absolute; left: 8ap; top: 16ap; width: 232ap; height: 156ap; flex-direction: column; }
+.drow { width: 232ap; height: 12ap; flex-direction: row; align-items: center; }
+.dname { width: 126ap; font-size: 9ap; }
+.drow.dark .dname { color: #c0a0ff; }
+.drow.done .dname { color: var(--yellow); }
+.dm, .dc, .dk { width: 7ap; height: 7ap; margin: 0 15ap 0 0; }
+.dr { width: 16ap; height: 16ap; margin: 0 0 0 6ap; }
+.page-dungeons .dr { width: 12ap; height: 12ap; }
+.dtally { position: absolute; left: 2ap; width: 244ap; top: 177ap; text-align: center; font-family: "Silk"; font-size: 5ap; color: var(--yellow); }
+
+/* ---- nav ---- */
+.nbtn { position: absolute; top: 190ap; width: 72ap; height: 24ap; padding: 0; margin: 0; background: none; border: 0; border-radius: 0; }
+.nbtn-l { left: 2ap; } .nbtn-r { left: 174ap; }
+.nplate { position: absolute; left: 0; top: 0; width: 72ap; height: 24ap; }
+.nb { position: absolute; top: 8ap; width: 52ap; text-align: center; font-family: "Silk"; font-size: 6ap; }
+.nb-l { left: 16ap; } .nb-r { left: 4ap; }
+.nbtn:pressed .nb { color: var(--green); }
+.nmid { position: absolute; left: 76ap; top: 190ap; width: 96ap; height: 24ap; }
+.nplate-m { position: absolute; left: 0; top: 0; width: 96ap; height: 24ap; }
+.ntitle { position: absolute; left: 0; width: 96ap; top: 4ap; text-align: center; font-family: "Silk"; font-size: 7ap; color: var(--yellow); }
+.pips { position: absolute; left: 38ap; top: 15ap; width: 20ap; height: 4ap; flex-direction: row; justify-content: space-between; }
+.pip { width: 4ap; height: 4ap; background-color: #404040; }
+.pip.on { background-color: var(--yellow); }
+
+/* ---- waiting ---- */
+.w-1 { position: absolute; left: 0; width: 248ap; top: 80ap; text-align: center; font-family: "Silk"; font-size: 11ap; color: var(--yellow); }
+.w-2 { position: absolute; left: 0; width: 248ap; top: 98ap; text-align: center; font-family: "Silk"; font-size: 6ap; color: var(--green); }
+.w-3 { position: absolute; left: 0; width: 248ap; top: 124ap; text-align: center; }
+.w-4 { position: absolute; left: 0; width: 248ap; top: 138ap; text-align: center; font-size: 9ap; color: var(--red); }
+
+/* ---- world map ---- */
+.p-map { left: 2ap; top: 3ap; width: 244ap; height: 184ap; } .p-map-l { left: 14ap; top: 0; }
+.mapwin { position: absolute; left: 36ap; top: 8ap; width: 176ap; height: 176ap; overflow: hidden; }
+.mapimg { position: absolute; left: 0; top: 0; width: 176ap; height: 176ap; }
+.marker { position: absolute; width: 7ap; height: 7ap; }
+.map-where { position: absolute; left: 120ap; width: 120ap; top: 1ap; text-align: right; font-family: "Silk"; font-size: 5ap; color: var(--yellow); background-color: #000000; padding: 0 2ap; }
+.pips { left: 36ap; width: 24ap; }

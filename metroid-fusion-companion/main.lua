@@ -112,12 +112,15 @@ local ARMS = {
     { "SPACE JUMP", SUIT_STATUS, 0x04 }, { "SCREW ATTACK", SUIT_STATUS, 0x08 } },
 }
 
+-- names of things not found / not beaten yet are hidden (spoilers), at one fixed length
+local HIDDEN = "?????????"
+
 local function armRows(group)
   local out, owned = {}, 0
   for i, r in ipairs(group) do
     local has = mem.u8(r[2]) & r[3] ~= 0
     if has then owned = owned + 1 end
-    out[i] = { name = r[1], on = has, off = not has }
+    out[i] = { name = has and r[1] or HIDDEN, on = has, off = not has }
   end
   return out, owned
 end
@@ -145,7 +148,8 @@ local MILESTONES = {
 
 local function nextMilestone(counter)
   for _, m in ipairs(MILESTONES) do
-    if m[1] > counter then return m[2] end
+    -- only the security levels are named ahead of time; upgrades and bosses stay a surprise
+    if m[1] > counter then return m[2]:find("^SECURITY") and m[2] or "???" end
   end
   return "ESCAPE THE STATION"
 end
@@ -232,7 +236,7 @@ function update()
   for i, b in ipairs(BOSSES) do
     local done = counter >= b[2]
     if done then bossesDown = bossesDown + 1 end
-    bosses[i] = { name = b[1], done = done, alive = not done }
+    bosses[i] = { name = done and b[1] or HIDDEN, done = done, alive = not done }
   end
   local security = hatchRows(level)
   for _, h in ipairs(security) do h.name = "LEVEL " .. h.name:sub(2) end

@@ -1,0 +1,631 @@
+{
+ "type": "box",
+ "class": "screen-root",
+ "children": [
+  {
+   "type": "box",
+   "class": "waiting",
+   "children": [
+    {
+     "type": "box",
+     "class": "page page-waiting",
+     "children": [
+      {
+       "type": "image",
+       "class": "logo p44_30_160_63",
+       "src": "asset:ui/logo.png"
+      },
+      {
+       "type": "text",
+       "class": "wait-big p0_110_248_0",
+       "text": "WAITING FOR A STAGE"
+      },
+      {
+       "type": "text",
+       "class": "wait-small p0_126_248_0",
+       "text": "GBADUO Companion Pack"
+      }
+     ]
+    }
+   ],
+   "classIf": {
+    "gone": "$ready"
+   }
+  },
+  {
+   "type": "box",
+   "class": "shell",
+   "children": [
+    {
+     "type": "pages",
+     "class": "pages",
+     "pages": [
+      {
+       "name": "status",
+       "child": {
+        "type": "box",
+        "class": "page page-status",
+        "children": [
+         {
+          "type": "text",
+          "class": "plate p70_4_0_0",
+          "text": "ZERO"
+         },
+         {
+          "type": "text",
+          "class": "plate lives p120_4_0_0",
+          "text": "x{lives}"
+         },
+         {
+          "type": "text",
+          "class": "plate lvl p70_19_0_0",
+          "text": "LEVEL {rankName}"
+         },
+         {
+          "type": "text",
+          "class": "k p150_6_0_0",
+          "text": "CRYSTAL"
+         },
+         {
+          "type": "text",
+          "class": "v r p150_6_90_0",
+          "text": "{crystals}"
+         },
+         {
+          "type": "text",
+          "class": "k p150_22_0_0",
+          "text": "PLAY TIME"
+         },
+         {
+          "type": "text",
+          "class": "v r p150_22_90_0",
+          "text": "{playTime}"
+         },
+         {
+          "type": "text",
+          "class": "lv p9_50_0_0",
+          "text": "LV"
+         },
+         {
+          "type": "text",
+          "class": "lv-r p24_49_0_0",
+          "text": "{rankName}"
+         },
+         {
+          "type": "list",
+          "class": "vcells p10_69_22_90",
+          "items": "$hpCellsV",
+          "template": {
+           "type": "box",
+           "class": "cell",
+           "children": [],
+           "classIf": {
+            "full": "$full"
+           }
+          }
+         },
+         {
+          "type": "text",
+          "class": "tab-t g p51_51_0_0",
+          "text": "MAIN"
+         },
+         {
+          "type": "image",
+          "class": "wicon p88_49_16_14",
+          "src": "asset:ui/icon-buster.png",
+          "classIf": {
+           "gone": "$notBuster"
+          }
+         },
+         {
+          "type": "image",
+          "class": "wicon p88_49_16_14",
+          "src": "asset:ui/icon-saber.png",
+          "classIf": {
+           "gone": "$notSaber"
+          }
+         },
+         {
+          "type": "text",
+          "class": "slot-name main p116_49_0_0",
+          "text": "{mainWeapon}"
+         },
+         {
+          "type": "button",
+          "class": "wide-btn p186_47_58_18",
+          "onClick": {
+           "call": "wideView",
+           "args": [
+            "toggle"
+           ]
+          },
+          "children": [
+           {
+            "type": "text",
+            "class": "wide-text",
+            "text": "WIDE {_wideLabel}"
+           }
+          ]
+         },
+         {
+          "type": "text",
+          "class": "slot-no p48_81_0_0",
+          "text": "1"
+         },
+         {
+          "type": "text",
+          "class": "slot-name p58_78_0_0",
+          "text": "{slot1}"
+         },
+         {
+          "type": "text",
+          "class": "slot-no p48_101_0_0",
+          "text": "2"
+         },
+         {
+          "type": "text",
+          "class": "slot-name p58_98_0_0",
+          "text": "{slot2}"
+         },
+         {
+          "type": "text",
+          "class": "slot-no p48_121_0_0",
+          "text": "3"
+         },
+         {
+          "type": "text",
+          "class": "slot-name p58_118_0_0",
+          "text": "{slot3}"
+         },
+         {
+          "type": "text",
+          "class": "slot-no p48_141_0_0",
+          "text": "4"
+         },
+         {
+          "type": "text",
+          "class": "slot-name p58_138_0_0",
+          "text": "{slot4}"
+         },
+         {
+          "type": "text",
+          "class": "rk p148_78_0_0",
+          "text": "LIFE"
+         },
+         {
+          "type": "text",
+          "class": "life-big p148_85_0_0",
+          "text": "{hpNow}"
+         },
+         {
+          "type": "text",
+          "class": "life-of p172_100_0_0",
+          "text": "/ {hpMax}"
+         },
+         {
+          "type": "text",
+          "class": "rk-l p148_122_0_0",
+          "text": "TIME"
+         },
+         {
+          "type": "text",
+          "class": "rk-v r p148_119_92_0",
+          "text": "{runTime}"
+         },
+         {
+          "type": "text",
+          "class": "rk-l p148_136_0_0",
+          "text": "HITS"
+         },
+         {
+          "type": "text",
+          "class": "rk-v r p148_133_92_0",
+          "text": "{hits}"
+         },
+         {
+          "type": "text",
+          "class": "rk-l p148_150_0_0",
+          "text": "LOW"
+         },
+         {
+          "type": "text",
+          "class": "rk-v r p148_147_92_0",
+          "text": "{lowest}"
+         },
+         {
+          "type": "text",
+          "class": "msg",
+          "text": "{message}"
+         },
+         {
+          "type": "button",
+          "class": "go go-l",
+          "onClick": [
+           {
+            "navigate": "option"
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "go-k",
+            "text": "L"
+           },
+           {
+            "type": "text",
+            "class": "go-t",
+            "text": "OPTION"
+           }
+          ]
+         },
+         {
+          "type": "button",
+          "class": "go go-r",
+          "onClick": [
+           {
+            "navigate": "elves"
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "go-k",
+            "text": "R"
+           },
+           {
+            "type": "text",
+            "class": "go-t",
+            "text": "ELF LIST"
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "name": "elves",
+       "child": {
+        "type": "box",
+        "class": "page page-elves",
+        "children": [
+         {
+          "type": "text",
+          "class": "tab-t p11_3_0_0",
+          "text": "ELF LIST"
+         },
+         {
+          "type": "text",
+          "class": "elf-no p16_25_0_0",
+          "text": "1"
+         },
+         {
+          "type": "text",
+          "class": "elf-name p30_23_0_0",
+          "text": "{elf1}"
+         },
+         {
+          "type": "text",
+          "class": "elf-no p16_45_0_0",
+          "text": "2"
+         },
+         {
+          "type": "text",
+          "class": "elf-name p30_43_0_0",
+          "text": "{elf2}"
+         },
+         {
+          "type": "text",
+          "class": "elf-no p16_65_0_0",
+          "text": "3"
+         },
+         {
+          "type": "text",
+          "class": "elf-name p30_63_0_0",
+          "text": "{elf3}"
+         },
+         {
+          "type": "text",
+          "class": "elf-no p16_85_0_0",
+          "text": "4"
+         },
+         {
+          "type": "text",
+          "class": "elf-name p30_83_0_0",
+          "text": "{elf4}"
+         },
+         {
+          "type": "text",
+          "class": "elf-no p16_105_0_0",
+          "text": "5"
+         },
+         {
+          "type": "text",
+          "class": "elf-name p30_103_0_0",
+          "text": "{elf5}"
+         },
+         {
+          "type": "text",
+          "class": "elf-no p16_125_0_0",
+          "text": "6"
+         },
+         {
+          "type": "text",
+          "class": "elf-name p30_123_0_0",
+          "text": "{elf6}"
+         },
+         {
+          "type": "text",
+          "class": "elf-no p16_145_0_0",
+          "text": "7"
+         },
+         {
+          "type": "text",
+          "class": "elf-name p30_143_0_0",
+          "text": "{elf7}"
+         },
+         {
+          "type": "text",
+          "class": "tab-t g p133_3_0_0",
+          "text": "{elfTitle}"
+         },
+         {
+          "type": "text",
+          "class": "elf-desc p132_20_108_0",
+          "text": "{elfDesc}"
+         },
+         {
+          "type": "text",
+          "class": "msg",
+          "text": "{elfHint}"
+         },
+         {
+          "type": "button",
+          "class": "go go-l",
+          "onClick": [
+           {
+            "navigate": "status"
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "go-k",
+            "text": "L"
+           },
+           {
+            "type": "text",
+            "class": "go-t",
+            "text": "STATUS"
+           }
+          ]
+         },
+         {
+          "type": "button",
+          "class": "go go-r",
+          "onClick": [
+           {
+            "navigate": "option"
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "go-k",
+            "text": "R"
+           },
+           {
+            "type": "text",
+            "class": "go-t",
+            "text": "OPTION"
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "name": "option",
+       "child": {
+        "type": "box",
+        "class": "page page-option",
+        "children": [
+         {
+          "type": "text",
+          "class": "tab-t p11_6_0_0",
+          "text": "TYPE A"
+         },
+         {
+          "type": "text",
+          "class": "o-k p10_22_0_0",
+          "text": "MAIN WEAPON"
+         },
+         {
+          "type": "text",
+          "class": "o-v r p10_22_104_0",
+          "text": "B BUTTON"
+         },
+         {
+          "type": "text",
+          "class": "o-k p10_39_0_0",
+          "text": "JUMP"
+         },
+         {
+          "type": "text",
+          "class": "o-v r p10_39_104_0",
+          "text": "A BUTTON"
+         },
+         {
+          "type": "text",
+          "class": "o-k p10_56_0_0",
+          "text": "DASH"
+         },
+         {
+          "type": "text",
+          "class": "o-v r p10_56_104_0",
+          "text": "L BUTTON"
+         },
+         {
+          "type": "text",
+          "class": "o-k p10_73_0_0",
+          "text": "SUB WEAPON"
+         },
+         {
+          "type": "text",
+          "class": "o-v r p10_73_104_0",
+          "text": "R BUTTON"
+         },
+         {
+          "type": "text",
+          "class": "tab-t p135_6_0_0",
+          "text": "TYPE B"
+         },
+         {
+          "type": "text",
+          "class": "o-k p134_22_0_0",
+          "text": "MAIN WEAPON"
+         },
+         {
+          "type": "text",
+          "class": "o-v r p134_22_104_0",
+          "text": "B BUTTON"
+         },
+         {
+          "type": "text",
+          "class": "o-k p134_39_0_0",
+          "text": "JUMP"
+         },
+         {
+          "type": "text",
+          "class": "o-v r p134_39_104_0",
+          "text": "A BUTTON"
+         },
+         {
+          "type": "text",
+          "class": "o-k p134_56_0_0",
+          "text": "DASH"
+         },
+         {
+          "type": "text",
+          "class": "o-v r p134_56_104_0",
+          "text": "R BUTTON"
+         },
+         {
+          "type": "text",
+          "class": "o-k p134_73_0_0",
+          "text": "SUB WEAPON"
+         },
+         {
+          "type": "text",
+          "class": "o-v r p134_73_104_0",
+          "text": "L BUTTON"
+         },
+         {
+          "type": "text",
+          "class": "tab-t p11_98_0_0",
+          "text": "SHOT A"
+         },
+         {
+          "type": "text",
+          "class": "o-k p10_114_0_0",
+          "text": "B BUTTON"
+         },
+         {
+          "type": "text",
+          "class": "o-v r p10_114_104_0",
+          "text": "MAIN"
+         },
+         {
+          "type": "text",
+          "class": "o-k p10_131_0_0",
+          "text": "R+B BUTTON"
+         },
+         {
+          "type": "text",
+          "class": "o-v r p10_131_104_0",
+          "text": "SUB"
+         },
+         {
+          "type": "text",
+          "class": "tab-t p135_98_0_0",
+          "text": "SHOT B"
+         },
+         {
+          "type": "text",
+          "class": "o-k p134_114_0_0",
+          "text": "B BUTTON"
+         },
+         {
+          "type": "text",
+          "class": "o-v r p134_114_104_0",
+          "text": "SUB"
+         },
+         {
+          "type": "text",
+          "class": "o-k p134_131_0_0",
+          "text": "R+B BUTTON"
+         },
+         {
+          "type": "text",
+          "class": "o-v r p134_131_104_0",
+          "text": "MAIN"
+         },
+         {
+          "type": "text",
+          "class": "msg",
+          "text": "Button layout."
+         },
+         {
+          "type": "button",
+          "class": "go go-l",
+          "onClick": [
+           {
+            "navigate": "elves"
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "go-k",
+            "text": "L"
+           },
+           {
+            "type": "text",
+            "class": "go-t",
+            "text": "ELF LIST"
+           }
+          ]
+         },
+         {
+          "type": "button",
+          "class": "go go-r",
+          "onClick": [
+           {
+            "navigate": "status"
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "go-k",
+            "text": "R"
+           },
+           {
+            "type": "text",
+            "class": "go-t",
+            "text": "STATUS"
+           }
+          ]
+         }
+        ]
+       }
+      }
+     ]
+    }
+   ],
+   "classIf": {
+    "on": "$ready"
+   }
+  }
+ ],
+ "id": "screen"
+}

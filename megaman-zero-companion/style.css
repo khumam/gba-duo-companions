@@ -1,0 +1,166 @@
+/*
+ * Mega Man Zero companion: the game's pause windows. Page pictures come from art/game_ui.py (chamfered peach frames,
+ * metal plates, black slots, green MAIN tab, L / R tabs); this file lays the live values over them. Lengths in art
+ * pixels (`17.34px`), expanded by art/css.py (2.17px = 2.168dp). Edit this file, not style.css.
+ */
+:root {
+  --bg: #160c0b; --peach: #e8a883; --peach-lt: #f1ccad; --peach-dk: #8d5f4e; --peach-dd: #5c3e33;
+  --white: #fffffb; --yellow: #e7cf6a; --red: #d95f6e; --green: #5cc454; --blue: #9ab8ff;
+}
+@font-face { font-family: "Silkscreen"; src: url("assets/fonts/Silkscreen-Regular.ttf"); font-weight: 400; }
+@font-face { font-family: "Silkscreen"; src: url("assets/fonts/Silkscreen-Bold.ttf"); font-weight: 700; }
+@font-face { font-family: "Jersey"; src: url("assets/fonts/Jersey10-Regular.ttf"); }
+
+image { image-rendering: pixelated; }
+text { white-space: nowrap; }
+#screen { width: 100%; height: 100%; overflow: hidden; background-color: var(--bg); font-family: "Silkscreen"; font-weight: 700; font-size: 17.34px; color: var(--white); }
+.shell, .waiting { flex: 1; min-height: 0; }
+.waiting.gone { display: none; }
+.shell { display: none; }
+.shell.on { display: flex; }
+.pages { flex: 1; min-height: 0; }
+.page { position: relative; flex: 1; min-height: 0; background-color: var(--bg); background-repeat: no-repeat; background-size: 537.66px 468.29px; }
+.page-status { background-image: url("assets/ui/status.png"); }
+.page-elves { background-image: url("assets/ui/elf.png"); }
+.page-option { background-image: url("assets/ui/option.png"); }
+.page-waiting { background-image: url("assets/ui/option.png"); background-size: 0 0; }
+.page > text, .page > .cells, .page > .vcells, .page > .go, .page > .wide-btn, .page > image { position: absolute; }
+.gone { display: none; }
+.r { text-align: right; }
+
+.wait-big { text-align: center; font-size: 21.68px; }
+.wait-small { text-align: center; font-family: "Jersey"; font-weight: 400; font-size: 26.02px; color: var(--peach-lt); }
+
+/* plates and info panel (top of STATUS) */
+.plate { font-size: 19.51px; color: var(--white); text-shadow: 1px 1px 0 #202536; }
+.plate.lives { color: var(--blue); }
+.plate.lvl { color: var(--peach-lt); }
+.k { font-size: 13.01px; color: var(--peach); }
+.v { font-family: "Jersey"; font-weight: 400; font-size: 26.02px; color: var(--white); }
+.tab-t { font-size: 15.18px; color: var(--bg); }
+.tab-t.g { color: var(--white); text-shadow: 1px 1px 0 #1d4d1c; }
+
+/* LIFE gauge */
+.cells { flex-direction: row; gap: 2.17px; }
+.cell { flex: 1; background-color: #3a2a24; }
+.cell.full { background-color: var(--yellow); }
+.vcells { flex-direction: column; gap: 2.17px; }
+.vcells .cell { background-color: #2a1c18; }
+.vcells .cell.full { background-color: #f0e050; border-bottom: 2.17px solid #50e070; }
+.lv { font-size: 13.01px; color: var(--white); }
+.lv-r { font-size: 23.85px; color: var(--red); }
+.wicon { image-rendering: pixelated; }
+.logo { image-rendering: pixelated; }
+.life-big { font-family: "Jersey"; font-weight: 400; font-size: 65.04px; color: var(--yellow); }
+.life-of { font-family: "Jersey"; font-weight: 400; font-size: 28.18px; color: var(--peach); }
+.life-num { font-size: 17.34px; color: var(--white); }
+
+/* weapons / slots */
+.slot-no { font-size: 13.01px; color: var(--peach-dk); }
+.slot-name { font-family: "Jersey"; font-weight: 400; font-size: 23.85px; color: var(--white); }
+.slot-name.main { font-size: 26.02px; color: var(--white); }
+.wide-btn { align-items: center; justify-content: center; background-color: var(--green); border: 2.17px solid #2d6b2c; border-radius: 4.34px; }
+.wide-btn:pressed { background-color: #8fe088; }
+.wide-text { font-size: 15.18px; color: var(--bg); }
+.rk { font-size: 13.01px; color: var(--peach); }
+.rk-l { font-size: 10.84px; color: var(--peach-dk); }
+.rk-v { font-family: "Jersey"; font-weight: 400; font-size: 23.85px; color: var(--white); }
+
+/* elves */
+.elf-no { font-size: 13.01px; color: var(--peach-dk); }
+.elf-name { font-family: "Jersey"; font-weight: 400; font-size: 26.02px; color: var(--white); }
+.elf-desc { font-family: "Jersey"; font-weight: 400; font-size: 26.02px; color: var(--peach-lt); white-space: normal; }
+
+/* option */
+.o-k { font-size: 13.01px; color: var(--peach); }
+.o-v { font-family: "Jersey"; font-weight: 400; font-size: 23.85px; color: var(--white); }
+
+/* bottom: message window + the game's L / R tabs */
+.msg { position: absolute; left: 21.68px; top: 414.09px; width: 494.3px; font-family: "Jersey"; font-weight: 400; font-size: 30.35px; color: var(--white); }
+.go { position: absolute; top: 359.89px; height: 39.02px; width: 203.79px; flex-direction: row; align-items: center; gap: 8.67px; padding: 0 17.34px; background-color: #00000000; border: 0; border-radius: 0; }
+.go-l { left: 0; padding-top: 8.67px; }
+.go-r { left: 333.87px; padding-top: 8.67px; }
+.go:pressed { background-color: #ffffff30; }
+.go-t { font-size: 15.18px; color: var(--bg); }
+.go-k { font-size: 17.34px; color: var(--white); background-color: var(--bg); padding: 2.17px 6.5px; }
+
+/* generated by layout.py */
+.p44_30_160_63 { left: 95.39px; top: 65.04px; width: 346.88px; height: 136.58px; }
+.p0_110_248_0 { left: 0px; top: 238.48px; width: 537.66px; }
+.p0_126_248_0 { left: 0px; top: 273.17px; width: 537.66px; }
+.p10_69_22_90 { left: 21.68px; top: 149.59px; width: 47.7px; height: 195.12px; }
+.p70_4_0_0 { left: 151.76px; top: 8.67px; }
+.p120_4_0_0 { left: 260.16px; top: 8.67px; }
+.p70_19_0_0 { left: 151.76px; top: 41.19px; }
+.p150_6_0_0 { left: 325.2px; top: 13.01px; }
+.p150_6_90_0 { left: 325.2px; top: 13.01px; width: 195.12px; }
+.p150_22_0_0 { left: 325.2px; top: 47.7px; }
+.p150_22_90_0 { left: 325.2px; top: 47.7px; width: 195.12px; }
+.p9_50_0_0 { left: 19.51px; top: 108.4px; }
+.p24_49_0_0 { left: 52.03px; top: 106.23px; }
+.p51_51_0_0 { left: 110.57px; top: 110.57px; }
+.p88_49_16_14 { left: 190.78px; top: 106.23px; width: 34.69px; height: 30.35px; }
+.p116_49_0_0 { left: 251.49px; top: 106.23px; }
+.p186_47_58_18 { left: 403.25px; top: 101.9px; width: 125.74px; height: 39.02px; }
+.p48_81_0_0 { left: 104.06px; top: 175.61px; }
+.p58_78_0_0 { left: 125.74px; top: 169.1px; }
+.p48_101_0_0 { left: 104.06px; top: 218.97px; }
+.p58_98_0_0 { left: 125.74px; top: 212.46px; }
+.p48_121_0_0 { left: 104.06px; top: 262.33px; }
+.p58_118_0_0 { left: 125.74px; top: 255.82px; }
+.p48_141_0_0 { left: 104.06px; top: 305.69px; }
+.p58_138_0_0 { left: 125.74px; top: 299.18px; }
+.p148_78_0_0 { left: 320.86px; top: 169.1px; }
+.p148_85_0_0 { left: 320.86px; top: 184.28px; }
+.p172_100_0_0 { left: 372.9px; top: 216.8px; }
+.p148_122_0_0 { left: 320.86px; top: 264.5px; }
+.p148_119_92_0 { left: 320.86px; top: 257.99px; width: 199.46px; }
+.p148_136_0_0 { left: 320.86px; top: 294.85px; }
+.p148_133_92_0 { left: 320.86px; top: 288.34px; width: 199.46px; }
+.p148_150_0_0 { left: 320.86px; top: 325.2px; }
+.p148_147_92_0 { left: 320.86px; top: 318.7px; width: 199.46px; }
+.p16_25_0_0 { left: 34.69px; top: 54.2px; }
+.p30_23_0_0 { left: 65.04px; top: 49.86px; }
+.p16_45_0_0 { left: 34.69px; top: 97.56px; }
+.p30_43_0_0 { left: 65.04px; top: 93.22px; }
+.p16_65_0_0 { left: 34.69px; top: 140.92px; }
+.p30_63_0_0 { left: 65.04px; top: 136.58px; }
+.p16_85_0_0 { left: 34.69px; top: 184.28px; }
+.p30_83_0_0 { left: 65.04px; top: 179.94px; }
+.p16_105_0_0 { left: 34.69px; top: 227.64px; }
+.p30_103_0_0 { left: 65.04px; top: 223.3px; }
+.p16_125_0_0 { left: 34.69px; top: 271px; }
+.p30_123_0_0 { left: 65.04px; top: 266.66px; }
+.p16_145_0_0 { left: 34.69px; top: 314.36px; }
+.p30_143_0_0 { left: 65.04px; top: 310.02px; }
+.p11_3_0_0 { left: 23.85px; top: 6.5px; }
+.p133_3_0_0 { left: 288.34px; top: 6.5px; }
+.p132_20_108_0 { left: 286.18px; top: 43.36px; width: 234.14px; }
+.p11_6_0_0 { left: 23.85px; top: 13.01px; }
+.p10_22_0_0 { left: 21.68px; top: 47.7px; }
+.p10_22_104_0 { left: 21.68px; top: 47.7px; width: 225.47px; }
+.p10_39_0_0 { left: 21.68px; top: 84.55px; }
+.p10_39_104_0 { left: 21.68px; top: 84.55px; width: 225.47px; }
+.p10_56_0_0 { left: 21.68px; top: 121.41px; }
+.p10_56_104_0 { left: 21.68px; top: 121.41px; width: 225.47px; }
+.p10_73_0_0 { left: 21.68px; top: 158.26px; }
+.p10_73_104_0 { left: 21.68px; top: 158.26px; width: 225.47px; }
+.p135_6_0_0 { left: 292.68px; top: 13.01px; }
+.p134_22_0_0 { left: 290.51px; top: 47.7px; }
+.p134_22_104_0 { left: 290.51px; top: 47.7px; width: 225.47px; }
+.p134_39_0_0 { left: 290.51px; top: 84.55px; }
+.p134_39_104_0 { left: 290.51px; top: 84.55px; width: 225.47px; }
+.p134_56_0_0 { left: 290.51px; top: 121.41px; }
+.p134_56_104_0 { left: 290.51px; top: 121.41px; width: 225.47px; }
+.p134_73_0_0 { left: 290.51px; top: 158.26px; }
+.p134_73_104_0 { left: 290.51px; top: 158.26px; width: 225.47px; }
+.p11_98_0_0 { left: 23.85px; top: 212.46px; }
+.p10_114_0_0 { left: 21.68px; top: 247.15px; }
+.p10_114_104_0 { left: 21.68px; top: 247.15px; width: 225.47px; }
+.p10_131_0_0 { left: 21.68px; top: 284.01px; }
+.p10_131_104_0 { left: 21.68px; top: 284.01px; width: 225.47px; }
+.p135_98_0_0 { left: 292.68px; top: 212.46px; }
+.p134_114_0_0 { left: 290.51px; top: 247.15px; }
+.p134_114_104_0 { left: 290.51px; top: 247.15px; width: 225.47px; }
+.p134_131_0_0 { left: 290.51px; top: 284.01px; }
+.p134_131_104_0 { left: 290.51px; top: 284.01px; width: 225.47px; }

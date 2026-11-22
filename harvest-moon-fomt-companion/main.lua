@@ -1,325 +1,295 @@
--- Harvest Moon: Friends of Mineral Town (GBA) memory map, from
--- https://datacrystal.tcrf.net/wiki/Harvest_Moon:_Friends_of_Mineral_Town/RAM_map
--- and samurai goroh's code guide (the source that page cites):
--- http://www.erick.guillen.com.mx/Codes/GBA%20Harvest%20Moon%20FoMT.txt
---
--- Every address below is a "Stage 1" address. The game keeps its data there
--- unless it was started by loading the in-game (battery) save, in which case it
--- all lives 0x2834 higher ("Stage 2"). Save states keep whichever stage the
--- session started in, so the stage is detected on every update -- see
--- detectStage().
+-- Harvest Moon: Friends of Mineral Town (US, A4NE) companion. Memory map and open items: NOTES.md.
+-- The game keeps its save block byte for byte in EWRAM: RAM address = SAVE + save-file offset.
+-- Names come from the ROM's own tables at run time (nothing is shipped).
 
-local item_names = pack.require("item_names")
+local ICONS       = pack.require("icons")
+local US_ROM      = mem.read(0x080000AC, 4) == "A4NE"
+local SAVE        = 0x02004DE0
+local GOLD        = SAVE + 0x1AD4
+local FARM_NAME   = SAVE + 0x40
+local PLAYER_NAME = SAVE + 0x1C04
+local SHIPPED     = SAVE + 0x84      -- u32 per item: bit31 = seen, low bits = count shipped
+local SICKLE      = SAVE + 0x1C60    -- u16 tool id
+local TOOLS       = SAVE + 0x1C8C    -- 8 x u16 tool id
+local ITEMS       = SAVE + 0x1C68    -- 8 x 4 bytes, byte1 = item id (>= N_ITEMS: empty), byte0 bit0 = gift wrapped
+local COOP        = SAVE + 0x460     -- chicken records, 0x30 each (name16, +0x10 age, +0x12 s16 affection, +0x14 health)
+local BARN        = SAVE + 0x654     -- cow / sheep records, 0x3C each (same field offsets)
+local TOOL_TABLE  = 0x080EAB0C       -- ROM, 12 bytes per tool id - 0x100, name pointer first
+local ITEM_TABLE  = 0x080EDCD8       -- ROM, 16 bytes per item id, name pointer first
+local N_ITEMS     = 171
+local GOLD_CAP    = 999999
 
-local STAGE_2_OFFSET = 0x2834
-local stageOffset = 0
-local function at(stage1) return stage1 + stageOffset end
-
-local MONEY_ADDR = 0x02004080
-local WEATHER_TODAY_ADDR = 0x020025E0
-local WEATHER_TOMORROW_ADDR = 0x020025E4
-local YEAR_ADDR = 0x020025E8
-local DAY_ADDR = 0x020025E9
-local HOUR_ADDR = 0x020025EA
-local HORSE_MEDALS_ADDR = 0x020065AC
-local FRISBEE_RECORD_ADDR = 0x02004274
-
--- ---- Farmer ------------------------------------------------------------------
--- Stamina counts down from 0x7D, fatigue up to 0x64; the guide notes +0x80 reads
--- the same, so the top bit is masked off.
-local STAMINA_ADDR = 0x020041F5
-local FATIGUE_ADDR = 0x020041F6
-local STAMINA_MAX = 0x7D
-local FATIGUE_MAX = 0x64
-
--- ---- Rucksack ----------------------------------------------------------------
--- In-hand tool: tool id, then a state byte (1 while held).
--- Tool slots: 2 bytes each, tool id then a state byte (0 = empty slot).
--- Item slots / in-hand item: 4 bytes; byte 0 = category (0 = food, the fridge
--- table; 1 = goods, the cabinet table), byte 1 = id, byte 2 = 0 for an empty slot.
-local HAND_ITEM_ADDR = 0x02004204
-local HAND_TOOL_ADDR = 0x0200420C
-local BAG_ITEMS_ADDR, BAG_ITEM_SIZE, BAG_ITEM_SLOTS = 0x02004214, 4, 8
-local BAG_TOOLS_ADDR, BAG_TOOL_SIZE, BAG_TOOL_SLOTS = 0x02004238, 2, 8
-local MAX_TOOL_ID = 0x50
-
--- Set true to log the raw bytes this script is least sure about
--- (adb logcat -s GBADuoPack).
-local DEBUG_BYTES = false
-
--- Scores how much a stage looks like live game data. Year, date and clock have
--- tight ranges, so zeroed RAM (year 0) and the 0xBF fill the game leaves
--- elsewhere both fail. Gold and the in-hand tool alone weren't enough: the
--- empty-hand byte is 0x51 with state 0, and zeroed RAM reads as 0 gold.
-local function stageScore(offset)
-  local score = 0
-  local year = mem.u8(YEAR_ADDR + offset)
-  if year >= 1 and year <= 99 then score = score + 2 end
-  local dayByte = mem.u8(DAY_ADDR + offset)
-  if dayByte < 0x80 and (dayByte >> 2) <= 29 then score = score + 1 end
-  local t = mem.u16(HOUR_ADDR + offset)
-  if (t & 0x1F) <= 23 and ((t >> 5) & 0x3F) <= 59 then score = score + 1 end
-  if mem.u32(MONEY_ADDR + offset) <= 999999 then score = score + 1 end
-  if mem.u8(HAND_TOOL_ADDR + 1 + offset) <= 1 then score = score + 1 end
-  return score
+local HEART_AT = { 3, 7, 10, 13, 15, 18, 20, 23, 26, 28, 31 }
+-- Memo "Number shipped" order (read off the game screen with every entry unlocked), index = position in the u32 array
+local SHIP_NAMES = {
+  "Turnip", "Potato", "Cucumber", "Cabbage", "Strawberry", "Tomato",
+  "Corn", "Onion", "Pineapple", "Pumpkin", "Eggplant", "Carrot",
+  "Sweet Potato", "Green Pepper", "Spinach", "Regular Egg", "Good Egg", "High Quality Egg",
+  "Golden Egg", "P Egg", "X Egg", "Spa-Boiled Egg", "Mayonnaise (S)", "Mayonnaise (M)",
+  "Mayonnaise (L)", "Mayonnaise (G)", "Mayonnaise (P)", "Mayonnaise (X)", "Milk (S)", "Milk (M)",
+  "Milk (L)", "Milk (G)", "Milk (P)", "Milk (X)", "Cheese (S)", "Cheese (M)",
+  "Cheese (L)", "Cheese (G)", "Cheese (P)", "Cheese (X)", "Apple", "SUGDW Apple",
+  "HMSGB Apple", "AEPFE Apple", "Honey", "Bamboo Shoot", "Wild Grapes", "Mushroom",
+  "Poisonous Mushroom", "Truffle", "Blue Grass", "Green Grass", "Red Grass", "Yellow Grass",
+  "Orange Grass", "Purple Grass", "Indigo Grass", "Black Grass", "White Grass", "Chocolate",
+  "Relax Tea Leaves", "Small Fish", "Medium Fish", "Large Fish", "Pirate Treasure", "Fossil of Fish",
+  "Red Magic Grass", "Wool (S)", "Wool (M)", "Wool (L)", "Wool (G)", "Wool (P)",
+  "Wool (X)", "Yarn (S)", "Yarn (M)", "Yarn (L)", "Yarn (G)", "Yarn (P)",
+  "Yarn (X)", "Bracelet", "Necklace", "Earrings", "Broach", "Junk Ore",
+  "Copper", "Silver", "Gold", "Mystrile", "Orichalc", "Adamantite",
+  "Moon Stone", "Sand Rose", "Pink Diamond", "Alexandrite", "Mythic Stone", "Diamond",
+  "Emerald", "Ruby", "Topaz", "Peridot", "Fluorite", "Agate",
+  "Amethyst",
+}
+local N_SHIP = #SHIP_NAMES
+local function shipGroup(i)
+  if i < 15 then return "Crops" elseif i < 22 then return "Eggs" elseif i < 28 then return "Mayonnaise" elseif i < 34 then return "Milk" elseif i < 40 then return "Cheese" elseif i < 66 then return "Foraged" elseif i < 79 then return "Wool and yarn" elseif i < 83 then return "Jewelry" else return "Ores and gems" end
 end
 
--- Stage 1 unless Stage 2 clearly scores higher. Checked on the EU cart: a game
--- continued from the battery save and one loaded from a save state both kept
--- their data at the Stage 1 addresses.
-local function detectStage()
-  if stageScore(STAGE_2_OFFSET) > stageScore(0) then return STAGE_2_OFFSET end
-  return 0
+-- the game's own 16x16 icon from the ROM (falls back to the pack's drawn one on another release)
+local function romIcon(entry, fallback)
+  if not US_ROM or not entry then return fallback end
+  local ok, key = pcall(gfx.decode, { tiles = ICONS.base + entry[1], palette = ICONS.base + entry[2], width = 16, height = 16 })
+  if ok and key then return key end
+  return fallback
 end
 
-local function toolName(id)
-  return item_names.tools[id] or string.format("Tool #%02X", id)
+local function romGfx(entry, size, fallback)
+  if not US_ROM or not entry then return fallback end
+  local ok, key = pcall(gfx.decode, { tiles = ICONS.base + entry[1], palette = ICONS.base + entry[2], width = size, height = size })
+  if ok and key then return key end
+  return fallback
 end
 
-local function itemName(category, id)
-  local names = category == 0 and item_names.food or item_names.goods
-  return names[id] or string.format("Item #%02X:%02X", category, id)
-end
-
-local function readItem(addr)
-  if mem.u8(addr + 2) == 0 then return nil end
-  local category, id = mem.u8(addr), mem.u8(addr + 1)
-  if category > 1 then return nil end
-  return itemName(category, id)
-end
-
-local function readTool(addr)
-  local id = mem.u8(addr)
-  if mem.u8(addr + 1) == 0 or id > MAX_TOOL_ID then return nil end
-  return toolName(id), id
-end
-
--- Tool ids come in blocks of eight upgrades (sickle 00-07, hoe 08-0F, ...),
--- then seeds and the animal tools; each block gets one icon.
-local IMG = "asset:img/"
-local TOOL_BLOCKS = { "sickle", "hoe", "axe", "hammer", "can", "rod" }
-local TOOL_SINGLES = { [0x46] = "brush", [0x47] = "milker", [0x48] = "clippers", [0x49] = "bell" }
-
-local function toolIcon(id)
-  local kind = TOOL_BLOCKS[id // 8 + 1]
-  if id >= 0x30 then kind = (id >= 0x32 and id <= 0x45) and "seeds" or TOOL_SINGLES[id] or "tool" end
-  return IMG .. "tool-" .. kind .. ".png"
-end
-
-local function readBag()
-  local handTool, handId = readTool(at(HAND_TOOL_ADDR))
-  -- The held tool isn't in a rucksack slot, but the in-game rucksack lists it,
-  -- so it leads the list here too.
-  local tools, items = {}, {}
-  if handTool then tools[1] = { name = handTool, held = true, icon = toolIcon(handId) } end
-  for i = 0, BAG_TOOL_SLOTS - 1 do
-    local name, id = readTool(at(BAG_TOOLS_ADDR) + i * BAG_TOOL_SIZE)
-    if name then tools[#tools + 1] = { name = name, held = false, icon = toolIcon(id) } end
+local function cstr(a, n)
+  local raw = mem.read(a, n or 16)
+  local s = {}
+  for i = 1, #raw do
+    local c = raw:byte(i)
+    if c == 0 or c == 13 then break end
+    if c < 0x20 or c > 0x7E then return nil end
+    s[#s + 1] = string.char(c)
   end
-  for i = 0, BAG_ITEM_SLOTS - 1 do
-    local addr = at(BAG_ITEMS_ADDR) + i * BAG_ITEM_SIZE
-    local name = readItem(addr)
-    if name then
-      items[#items + 1] = { name = name, icon = IMG .. (mem.u8(addr) == 0 and "tool-basket" or "tool-crate") .. ".png" }
+  if #s == 0 then return nil end
+  return table.concat(s)
+end
+
+local nameCache = {}
+local function romName(table_addr, stride, idx)
+  local key = table_addr + idx * stride
+  local n = nameCache[key]
+  if n then return n end
+  local p = mem.u32(key)
+  if p < 0x08000000 or p >= 0x08800000 then return "?" end
+  n = cstr(p, 32) or "?"
+  nameCache[key] = n
+  return n
+end
+local function toolName(id) return romName(TOOL_TABLE, 12, id - 0x100) end
+local function itemName(id) return romName(ITEM_TABLE, 16, id) end
+
+local function hearts(rec)
+  local p = mem.s16(rec + 0x12) + 32
+  local h = 0
+  for _, t in ipairs(HEART_AT) do if p >= t then h = h + 1 end end
+  return h
+end
+
+local function heartRow(n)
+  local row = {}
+  local full = romGfx(ICONS.heart, 8, "asset:ui/heart.png")
+  for i = 1, 11 do row[i] = { src = (i <= n) and full or "asset:ui/heart-off.png" } end
+  return row
+end
+
+local function animalList(base, size, count, kind, iconOf)
+  local out = {}
+  for i = 0, count - 1 do
+    local rec = base + i * size
+    local name = cstr(rec, 12)
+    if not name or mem.u8(rec + 0x13) ~= 0xFF then break end
+    local h = hearts(rec)
+    local ok = mem.u8(rec + 0x14) >= 0x17
+    out[#out + 1] = { kind = kind, idx = i, rec = rec, name = name, icon = iconOf(rec), hearts = h, heartRow = heartRow(h),
+      health = ok and "Healthy" or "Sick", sick = not ok, max = h >= 11 }
+  end
+  return out
+end
+
+local function toolSlot(id, tag)
+  if id < 0x100 or id > 0x150 then return { empty = true, name = "", short = "", icon = "asset:ui/crate.png", tag = tag } end
+  local n = toolName(id)
+  local kind = "tool"
+  if id >= 0x130 and id <= 0x145 then kind = "seed" elseif id >= 0x14D then kind = "gem" end
+  local icon = romIcon(ICONS.tools[id], (kind == "seed") and "asset:ui/seed.png" or (kind == "gem") and "asset:ui/gem.png" or "asset:ui/tool.png")
+  return { empty = false, name = n, id = id, kind = kind, tag = tag, icon = icon,
+    short = (n:gsub(" Seeds", "")):sub(1, 10) }
+end
+
+local function tools()
+  local out = { toolSlot(mem.u16(SICKLE), "sickle") }
+  for i = 0, 7 do out[#out + 1] = toolSlot(mem.u16(TOOLS + i * 2), "t" .. i) end
+  return out
+end
+
+local function items()
+  local out = {}
+  local grid = {}
+  for i = 0, 7 do
+    local a = ITEMS + i * 4
+    local id = mem.u8(a + 1)
+    if id < N_ITEMS and (mem.u8(a) & 0xFE) == 0 then
+      local n = itemName(id)
+      local w = (mem.u8(a) & 1) == 1
+      out[#out + 1] = { slot = i, id = id, name = w and (n .. " (gift)") or n, short = n:sub(1, 10), empty = false,
+        icon = w and romIcon(ICONS.gift, "asset:ui/gift.png") or romIcon(ICONS.items[id], "asset:ui/item.png") }
     end
   end
+  for i = 1, 8 do grid[i] = { empty = true, name = "", short = "", icon = "asset:ui/crate.png" } end
+  for _, it in ipairs(out) do grid[it.slot + 1] = it end
+  return out, grid
+end
+
+local function shipped()
+  local out, total, kinds, seen = {}, 0, 0, 0
+  for i = 0, N_SHIP - 1 do
+    local v = mem.u32(SHIPPED + i * 4)
+    local cnt = v & 0x7FFFFFFF
+    if cnt > 99999 then cnt = 0 end
+    if (v & 0x80000000) ~= 0 or cnt > 0 then
+      seen = seen + 1
+      if cnt > 0 then
+        total = total + cnt
+        kinds = kinds + 1
+        out[#out + 1] = { name = SHIP_NAMES[i + 1], count = cnt, group = shipGroup(i), idx = i, icon = romIcon(ICONS.ship[i], "asset:ui/crate.png") }
+      end
+    end
+  end
+  return out, total, kinds, seen
+end
+
+
+-- ===== DESIGN SAMPLE DATA =====
+-- Addresses for these are not mapped yet (see NOTES.md "Still open"); the values below only drive the layout.
+-- Replace each block with real reads, then delete DESIGN.
+local DESIGN = true
+
+local function heartRowN(n, total)
+  local row = {}
+  local full = romGfx(ICONS.heart, 8, "asset:ui/heart.png")
+  for i = 1, total do row[i] = { src = (i <= n) and full or "asset:ui/heart-off.png" } end
+  return row
+end
+
+local function designData()
   return {
-    handTool = handTool or "Nothing",
-    handIcon = handId and toolIcon(handId) or IMG .. "tool-tool.png",
-    handItem = readItem(at(HAND_ITEM_ADDR)) or "Nothing",
-    tools = tools,
-    items = items,
-    toolCount = #tools,
-    itemCount = #items,
+    hasClock = true, season = "Spring", day = 1, weekday = "Thu", clock = "6:00 AM", weather = "Sunny",
+    family = {
+      { name = "Jack", role = "You", berries = 4, berryRow = (function() local k = romGfx(ICONS.berry, 8, "asset:ui/apple.png"); return { {src=k},{src=k},{src=k},{src=k} } end)(), hasBerries = true, hasHearts = false, icon = romGfx(ICONS.jack, 16, "asset:ui/mk-player.png") },
+      { name = "Popuri", role = "Wife", hasBerries = false, hasHearts = true, heartRow = heartRowN(12, 12), icon = romGfx(ICONS.popuri, 16, "asset:ui/chicken.png"), crown = false },
+      { name = "Spunky", role = "Dog", hasBerries = false, hasHearts = true, heartRow = heartRowN(5, 11), icon = romGfx(ICONS.spunky, 16, "asset:ui/mk-dog.png") },
+      { name = "Speedy", role = "Horse", hasBerries = false, hasHearts = true, heartRow = heartRowN(10, 11), icon = romGfx(ICONS.speedy, 16, "asset:ui/mk-horse.png"), crown = true },
+    },
+    sprites = {
+      { name = "Staid", hearts = 1, heartRow = heartRowN(1, 11), job = "Work", b1 = 0.0, b2 = 0.0, b3 = 0.0, state = "N/A", icon = romGfx(ICONS.staid, 16, "asset:ui/sprite.png") },
+      { name = "Nappy", hearts = 1, heartRow = heartRowN(1, 11), job = "Work", b1 = 0.0, b2 = 0.0, b3 = 0.0, state = "N/A", icon = romGfx(ICONS.nappy, 16, "asset:ui/sprite.png") },
+      { name = "Bold", hearts = 9, heartRow = heartRowN(9, 11), job = "Work", b1 = 0.35, b2 = 0.0, b3 = 0.0, state = "Ready", icon = romGfx(ICONS.bold, 16, "asset:ui/sprite.png") },
+    },
+    fishing = {
+      { name = "Message Bottle", size = "-", count = 1 }, { name = "Empty Can", size = "-", count = 4 },
+      { name = "Branch", size = "-", count = 2 }, { name = "Small Fish", size = "18cm", count = 5 },
+      { name = "Medium Fish", size = "34cm", count = 10 }, { name = "Large Fish", size = "52cm", count = 11 },
+    },
+    records = {
+      { name = "Harvest", value = "8" }, { name = "Animal Husbandry", value = "8" },
+      { name = "Watering", value = "8" }, { name = "Frisbee", value = "12m 1220cm" },
+    },
+    income = { { name = "Earned in one day", value = "9420400G" }, { name = "Spent in one day", value = "??????" } },
+    where = "Town Cottage",
+    mkPlayer = romGfx(ICONS.markPlayer, 16, "asset:ui/mk-player.png"), mkDog = romGfx(ICONS.markDog, 16, "asset:ui/mk-dog.png"),
+    mkHorse = romGfx(ICONS.speedy, 16, "asset:ui/mk-horse.png"), coinIcon = romGfx(ICONS.coin, 16, "asset:ui/coin.png"),
+    worldMarks = { player = { x = 30.5, y = 70 }, dog = { x = 38, y = 66 }, horse = { x = 35, y = 78 } },
+    playerX = 30.5, playerY = 70, dogX = 38, dogY = 66, horseX = 35, horseY = 78,
+    farmX = 22, farmY = 9,
   }
 end
 
-local function hexBytes(addr, n)
-  local t = {}
-  for i = 0, n - 1 do t[#t + 1] = string.format("%02X", mem.u8(addr + i)) end
-  return table.concat(t, " ")
-end
-
--- ---- Date & time -----------------------------------------------------------
--- 0x020025E8 year; 0x020025E9 bits 0-1 season, bits 2-6 day of the season - 1;
--- 0x020025EA u16 bits 0-4 hour, bits 5-10 minute. (The guide lists the last two
--- as separate hour/minute bytes; on the device they're one bitfield.)
-local SEASONS = { [0] = "Spring", "Summer", "Fall", "Winter" }
-
-local function readDate()
-  local dayByte = mem.u8(at(DAY_ADDR))
-  return SEASONS[dayByte & 0x3], (dayByte >> 2) + 1
-end
-
-local function readTime()
-  local t = mem.u16(at(HOUR_ADDR))
-  return string.format("%02d:%02d", t & 0x1F, (t >> 5) & 0x3F)
-end
-
--- ---- Affection ---------------------------------------------------------------
--- Bachelorettes (and the Goddess): u16, 0-65535, one heart colour per 10,000.
-local GIRL_MAX = 65535
-local HEART_STEP = 10000
-local HEARTS = { "Black", "Purple", "Blue", "Green", "Yellow", "Orange", "Red" }
-local HEART_COLORS = { "#6B5E57", "#A98BD8", "#6FA8DC", "#6DBB7C", "#D9A520", "#EE9150", "#E8718F" }
-local BACHELORETTES = {
-  { "Popuri", 0x02004358 }, { "Mary", 0x02004414 }, { "Karen", 0x020044A4 },
-  { "Elli", 0x020044D0 }, { "Ann", 0x02004524 }, { "Harvest Goddess", 0x020045A4 },
-}
-
--- Everyone else: one byte, 0-255.
-local FRIEND_MAX = 255
-local VILLAGERS = {
-  { "Lillia", 0x02004324 }, { "Rick", 0x02004338 }, { "Barley", 0x02004364 }, { "May", 0x02004378 },
-  { "Saibara", 0x0200438C }, { "Gray", 0x020043A4 }, { "Duke", 0x020043B8 }, { "Manna", 0x020043CC },
-  { "Basil", 0x020043E0 }, { "Anna", 0x020043F4 }, { "Thomas", 0x02004420 }, { "Harris", 0x02004434 },
-  { "Ellen", 0x02004448 }, { "Stu", 0x0200445C }, { "Jeff", 0x02004470 }, { "Sasha", 0x02004484 },
-  { "Doctor", 0x020044B0 }, { "Carter", 0x020044DC }, { "Cliff", 0x020044F0 }, { "Doug", 0x02004504 },
-  { "Kai", 0x02004530 }, { "Gotz", 0x02004544 }, { "Zack", 0x0200455C }, { "Won", 0x02004570 },
-  { "Lou", 0x020045C4 }, { "Lu", 0x020045DC },
-}
-
-local function readLoves()
-  local loves = {}
-  for _, g in ipairs(BACHELORETTES) do
-    local raw = mem.u16(at(g[2]))
-    local heart = math.min(raw // HEART_STEP, #HEARTS - 1)
-    loves[#loves + 1] = {
-      name = g[1],
-      value = raw,
-      heart = HEARTS[heart + 1] .. " heart",
-      heartColor = HEART_COLORS[heart + 1],
-      heartIcon = IMG .. "heart-" .. HEARTS[heart + 1]:lower() .. ".png",
-      pct = raw / GIRL_MAX,
-    }
-  end
-  return loves
-end
-
-local function readFriends()
-  local friends = {}
-  for _, v in ipairs(VILLAGERS) do
-    local raw = mem.u8(at(v[2]))
-    friends[#friends + 1] = { name = v[1], value = raw, pct = raw / FRIEND_MAX }
-  end
-  return friends
-end
-
--- ---- Harvest Sprites ---------------------------------------------------------
--- From each sprite's affection byte: +0x0C/+0x0D/+0x0E work experience
--- (harvesting, watering, animal care; 0-255) and +0x12 the job byte: low two
--- bits = job (3 = none), the next three = days left.
-local XP_MAX = 255
-local JOBS = { [0] = "Harvesting", "Watering", "Animal care" }
-local SPRITES = {
-  { "Staid", 0x020045F0 }, { "Nappy", 0x02004614 }, { "Bold", 0x02004638 }, { "Chef", 0x0200465C },
-  { "Aqua", 0x02004680 }, { "Hoggy", 0x020046A4 }, { "Timid", 0x020046C8 },
-}
-local XP_KINDS = { { "HARVEST", 0x0C }, { "WATER", 0x0D }, { "ANIMALS", 0x0E } }
-
-local function readSprites()
-  local sprites = {}
-  for _, s in ipairs(SPRITES) do
-    local base = at(s[2])
-    local jobByte = mem.u8(base + 0x12)
-    local kind, days = jobByte & 0x3, (jobByte >> 2) & 0x7
-    local working = kind ~= 3 and days > 0
-    local xp = {}
-    for _, k in ipairs(XP_KINDS) do
-      local value = mem.u8(base + k[2])
-      xp[#xp + 1] = { name = k[1], value = value, pct = value / XP_MAX }
-    end
-    local friendship = mem.u8(base)
-    sprites[#sprites + 1] = {
-      name = s[1],
-      hat = IMG .. "sprite-" .. s[1]:lower() .. ".png",
-      friendship = friendship,
-      friendPct = friendship / FRIEND_MAX,
-      job = working and string.format("%s · %d day%s", JOBS[kind], days, days == 1 and "" or "s") or "Free",
-      working = working,
-      xp = xp,
-    }
-  end
-  return sprites
-end
-
--- -----------------------------------------------------------------------------
-
-local function fraction(value, max)
-  return math.max(0, math.min(1, value / max))
-end
-
--- Weather byte, from the code guide's "Set the Weather": 0 sunny, 1 rainy,
--- 2 snowy, 3 stormy and 4 blizzard (both keep you indoors).
-local WEATHER = { [0] = "sunny", "rainy", "snowy", "stormy", "blizzard" }
-
-local function weather(byte)
-  local key = WEATHER[byte]
-  return {
-    name = key and (key:sub(1, 1):upper() .. key:sub(2)) or string.format("Weather #%d", byte),
-    icon = IMG .. "weather-" .. (key or "unknown") .. ".png",
+function update(ui)
+  local farm, player = cstr(FARM_NAME), cstr(PLAYER_NAME)
+  local gold = mem.u32(GOLD)
+  if not farm or not player or gold > 99999999 then return { ready = false, waiting = true } end
+  local page = ui.page or "farm"
+  local chickIcon = romGfx(ICONS.chicken, 16, "asset:ui/chicken.png")
+  local cowIcon = romGfx(ICONS.cow, 16, "asset:ui/barn.png")
+  local sheepIcon = romGfx(ICONS.sheep, 16, "asset:ui/barn.png")
+  local chickens = animalList(COOP, 0x30, 12, "Chicken", function() return chickIcon end)
+  local barn = animalList(BARN, 0x3C, 12, "Cattle / Sheep", function(rec) return mem.u8(rec + 0x30) == 3 and sheepIcon or cowIcon end)
+  local sick = 0
+  for _, a in ipairs(chickens) do if a.sick then sick = sick + 1 end end
+  for _, a in ipairs(barn) do if a.sick then sick = sick + 1 end end
+  local ship, shipTotal, shipKinds, shipSeen = shipped()
+  local it, itemGrid = items()
+  local r = {
+    ready = true, waiting = false, farm = farm, player = player, gold = gold,
+    chickens = chickens, chickenCount = #chickens, barn = barn, barnCount = #barn,
+    sickCount = sick, hasSick = sick > 0,
+    tools = tools(), items = it, itemGrid = itemGrid, itemCount = #it, noItems = #it == 0,
+    shipped = ship, shipTotal = shipTotal, shipKinds = shipKinds, shipSeen = shipSeen, shipAll = N_SHIP, noShipped = #ship == 0,
+    navFarm = page == "farm", navRuck = page == "ruck", navBarn = page == "barn", navMaps = page == "maps", navMemo = page == "memo",
   }
-end
-
-local tick = 0
-
-function update()
-  stageOffset = detectStage()
-  -- On the title screen neither stage holds a real date yet: empty RAM reads
-  -- year 0, the title's leftovers read years like 180 or 220 (see stageScore).
-  local year = mem.u8(at(YEAR_ADDR))
-  if year < 1 or year > 99 or stageScore(stageOffset) < 4 then
-    return { ready = false, waiting = true }
+  local cattle, sheep = {}, {}
+  for _, a in ipairs(barn) do
+    local t = mem.u8(a.rec + 0x30)
+    if t == 3 then sheep[#sheep + 1] = a else cattle[#cattle + 1] = a end
   end
-  local season, day = readDate()
-  local hour = mem.u16(at(HOUR_ADDR)) & 0x1F
-  local stamina = mem.u8(at(STAMINA_ADDR)) & 0x7F
-  local fatigue = mem.u8(at(FATIGUE_ADDR)) & 0x7F
-
-  if DEBUG_BYTES then
-    tick = tick + 1
-    if tick % 8 == 0 then
-      log(string.format("HM stage %d | date %s | hand item %s | hand tool %s", stageOffset == 0 and 1 or 2,
-        hexBytes(at(WEATHER_TODAY_ADDR), 12), hexBytes(at(HAND_ITEM_ADDR), 4), hexBytes(at(HAND_TOOL_ADDR), 2)))
-      log("HM bag items " .. hexBytes(at(BAG_ITEMS_ADDR), 32) .. " | tools " .. hexBytes(at(BAG_TOOLS_ADDR), 16))
+  r.cattle, r.sheep, r.cattleCount, r.sheepCount = cattle, sheep, #cattle, #sheep
+  local bt, mt, st = ui.barnTab or "chickens", ui.memoTab or "ship", ui.mapTab or "town"
+  r.tbChickens, r.tbCattle, r.tbSheep, r.tbSprites = bt == "chickens", bt == "cattle", bt == "sheep", bt == "sprites"
+  r.tmShip, r.tmFish, r.tmRec = mt == "ship", mt == "fish", mt == "rec"
+  r.mpTown, r.mpFarm = st == "town", st == "farm"
+  if DESIGN then for k, v in pairs(designData()) do r[k] = v end end
+  -- popups: animal detail
+  if ui.tool and ui.tool ~= "" then r.tName = ui.tool end
+  local sel = tonumber(ui.animal)
+  if sel ~= nil then
+    local list = (ui.kind == "barn") and barn or (ui.kind == "cattle") and cattle or (ui.kind == "sheep") and sheep or chickens
+    local d = list[sel + 1]
+    if d then
+      r.dName, r.dHealth, r.dHearts, r.dRow, r.dSick, r.dKind = d.name, d.health, d.hearts, d.heartRow, d.sick, d.kind
     end
   end
+  return r
+end
 
-  local seasonKey = season:lower()
-  local money = mem.u32(at(MONEY_ADDR))
-  local moneyText = tostring(money):reverse():gsub("(%d%d%d)", "%1,"):reverse():gsub("^,", "")
-  return {
-    ready = true,
-    waiting = false,
-    money = money,
-    moneyText = moneyText,
-    year = mem.u8(at(YEAR_ADDR)),
-    season = season,
-    seasonKey = seasonKey,
-    isSpring = seasonKey == "spring",
-    isSummer = seasonKey == "summer",
-    isFall = seasonKey == "fall",
-    isWinter = seasonKey == "winter",
-    corner = IMG .. "corner-" .. seasonKey .. ".png",
-    cornerR = IMG .. "corner-" .. seasonKey .. "-r.png",
-    -- Evening glow from 17:00, the night sky from 19:00 until 6:00.
-    isDusk = hour >= 17 and hour < 19,
-    isNight = hour >= 19 or hour < 6,
-    day = day,
-    time = readTime(),
-    weatherToday = mem.u8(at(WEATHER_TODAY_ADDR)),
-    weatherTomorrow = mem.u8(at(WEATHER_TOMORROW_ADDR)),
-    today = weather(mem.u8(at(WEATHER_TODAY_ADDR))),
-    tomorrow = weather(mem.u8(at(WEATHER_TOMORROW_ADDR))),
-    horseRaceMedals = mem.u16(at(HORSE_MEDALS_ADDR)),
-    frisbeeRecord = mem.u16(at(FRISBEE_RECORD_ADDR)),
-    stamina = stamina,
-    staminaPct = fraction(stamina, STAMINA_MAX),
-    fatigue = fatigue,
-    fatiguePct = fraction(fatigue, FATIGUE_MAX),
-    bag = readBag(),
-    loves = readLoves(),
-    friends = readFriends(),
-    sprites = readSprites(),
-  }
+actions = {}
+
+local function animalRec(kind, i)
+  i = tonumber(i)
+  if i == nil then return nil end
+  if kind == "barn" then return BARN + i * 0x3C end
+  return COOP + i * 0x30
+end
+
+function actions.heal(kind, i)
+  local rec = animalRec(kind, i)
+  if not rec then return nil end
+  local ok, why = mem.write8(rec + 0x14, 0x1F)
+  if not ok then return { set = { note = "Couldn't heal: " .. tostring(why) } } end
+  return { set = { note = "Healed" } }
+end
+
+function actions.maxHearts(kind, i)
+  local rec = animalRec(kind, i)
+  if not rec then return nil end
+  local ok, why = mem.write8(rec + 0x12, 0xFF)
+  if ok then ok, why = mem.write8(rec + 0x13, 0xFF) end
+  if not ok then return { set = { note = "Couldn't change: " .. tostring(why) } } end
+  return { set = { note = "Hearts maxed" } }
+end
+
+function actions.addGold(n)
+  n = tonumber(n) or 0
+  local ok, why = mem.write32(GOLD, math.min(GOLD_CAP, mem.u32(GOLD) + n))
+  if not ok then return { set = { note = "Couldn't change: " .. tostring(why) } } end
+  return nil
 end

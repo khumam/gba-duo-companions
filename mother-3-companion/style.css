@@ -1,0 +1,164 @@
+/*
+ * Mother 3 companion: the game's own pause windows (black field, pale blush panels with a white rim and a
+ * dark wood edge, coral selection ring, boxed numerals) rebuilt for the second screen. Palette sampled from
+ * a Thor screenshot of the Goods menu. One art pixel of the game = 5 device px = 2.168dp, so portraits (20 art px)
+ * are 43.36dp and icons (14 art px) 30.35dp. Pixel font runs ~1.3x a normal face.
+ */
+:root {
+  --u: 2.168px;
+  --black: #000000;
+  --panel: #dccdc7;
+  --panel-d: #cbbab3;
+  --rim: #fffffb;
+  --wood: #301e1e;
+  --ink: #141010;
+  --muted: #8a7f7a;
+  --coral: #e4806c;
+  --gold: #f0d890;
+  --hp: #58c868;
+  --pp: #5898e0;
+}
+
+@font-face { font-family: "Jersey"; src: url("assets/fonts/Jersey10-Regular.ttf"); }
+
+image { image-rendering: pixelated; }
+text { white-space: nowrap; }
+
+#screen { width: 100%; height: 100%; background-color: var(--black); font-family: "Jersey"; font-size: 22px; color: var(--ink); }
+.grow { flex: 1; }
+.shell { flex: 1; display: none; }
+.shell.on { display: flex; }
+pages { flex: 1; }
+
+/* ---- waiting ---- */
+.waiting { flex: 1; align-items: center; justify-content: center; background-color: var(--black); }
+.waiting.gone { display: none; }
+.boot { align-items: center; gap: 8px; padding: 22px 34px; background-color: var(--panel); border: 4.336px solid var(--rim); box-shadow: 4.336px 4.336px 0 var(--wood); border-radius: 0; }
+.boot-title { font-size: 40px; letter-spacing: 2px; }
+.boot-sub { font-size: 24px; color: var(--muted); }
+.boot-pill { font-size: 15px; padding: 3px 10px; background-color: var(--wood); color: var(--panel); letter-spacing: 1px; }
+
+/* ---- page frame ---- */
+.page { flex: 1; padding: 8px 10px 10px 10px; gap: 8px; background-color: var(--black); position: relative; }
+.body { flex: 1; gap: 8px; min-height: 0; }
+
+/* ---- header: character tabs, page name, DP ---- */
+.hdr { flex-direction: row; align-items: center; height: 52px; flex-shrink: 0; }
+.ctabs { flex-direction: row; gap: 4px; }
+.ctab { width: 52px; height: 52px; padding: 0; background-color: transparent; align-items: center; justify-content: center; border: 4.336px solid transparent; border-radius: 6px; }
+.ctab.on { border-color: var(--coral); background-color: var(--coral); }
+.ctab:pressed { opacity: 0.8; }
+.ctab-img { width: 43.36px; height: 43.36px; }
+.ctab-init { width: 43.36px; height: 43.36px; align-items: center; justify-content: center; background-color: var(--rim); }
+.ctab-init-t { font-size: 26px; }
+.hdr-right { flex-direction: row; align-items: center; gap: 8px; }
+.pill { height: 38px; width: 132px; align-items: center; justify-content: center; background-color: var(--panel); border: 4.336px solid var(--rim); box-shadow: 0 2.168px 0 var(--wood); }
+.pill-t { font-size: 26px; }
+.dp { flex-direction: row; align-items: center; gap: 6px; }
+.dp-l { font-size: 22px; color: var(--gold); letter-spacing: 1px; }
+.dp-v { font-size: 26px; color: var(--rim); letter-spacing: 2px; }
+
+/* ---- windows ---- */
+.win { background-color: var(--panel); border: 4.336px solid var(--rim); border-radius: 4.336px; box-shadow: 0 2.168px 0 var(--wood); padding: 6px 8px; }
+.list-win { flex: 1; min-height: 0; }
+.grid-list { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; column-gap: 14px; align-content: start; overflow: auto; background-image: url("assets/ui/dash.png"); background-size: 2.168px 8.672px; background-repeat: repeat-y; background-position: center top; }
+.grow-row { flex-direction: row; align-items: center; height: 24.5px; gap: 6px; flex-shrink: 0; border-radius: 3px; }
+.grow-row.on, .slot.on { background-color: var(--panel-d); }
+.grow-row.empty { opacity: 0; }
+.cur { width: 6px; height: 14px; background-color: transparent; border-radius: 1px; flex-shrink: 0; }
+.cur.on { background-color: var(--coral); }
+.li-name { font-size: 22px; color: var(--ink); }
+.grow-row.on .li-name { color: #000000; }
+.grow-row:pressed { background-color: var(--panel-d); }
+.badge { width: 20px; height: 14px; border-radius: 7px; align-items: center; justify-content: center; background-color: var(--ink); flex-shrink: 0; }
+.badge-t { font-size: 13px; color: var(--rim); }
+.badge-gap { width: 20px; height: 14px; flex-shrink: 0; }
+.empty-note { position: absolute; top: 40px; left: 0; right: 0; align-items: center; }
+.empty-t { font-size: 22px; color: var(--muted); }
+.psi-row .li-name { font-size: 20px; }
+
+/* ---- description window ---- */
+.desc { flex-direction: row; align-items: center; gap: 10px; height: 96px; flex-shrink: 0; padding: 4px 10px; }
+.desc-text { flex: 1; gap: 2px; }
+.desc-name { font-size: 20px; color: var(--muted); }
+.desc-body { font-size: 19px; color: var(--ink); white-space: normal; line-height: 21px; }
+
+/* ---- boxed numerals ---- */
+.num { height: 20px; min-width: 38px; padding: 0 5px; align-items: center; justify-content: center; background-color: var(--rim); border: 2.168px solid var(--ink); border-radius: 2px; }
+.num.wide { min-width: 70px; }
+.num-t { font-size: 18px; color: var(--ink); letter-spacing: 1px; }
+
+/* ---- equip ---- */
+.equip-top { flex: 1; flex-direction: row; gap: 8px; min-height: 0; }
+.stat-win { flex: 1; gap: 2px; }
+.slot-win { flex: 1; }
+.name-line { font-size: 24px; color: var(--ink); height: 26px; }
+.srow { flex-direction: row; align-items: center; height: 26px; gap: 8px; padding-left: 10px; }
+.srow-l { font-size: 21px; color: var(--muted); }
+.slots { gap: 2px; }
+.slot { flex-direction: row; align-items: center; gap: 6px; height: 54px; flex-shrink: 0; border-radius: 3px; }
+.slot:pressed { background-color: var(--panel-d); }
+.slot-col { flex: 1; gap: 0; }
+.slot-label { font-size: 20px; color: var(--muted); }
+.slot-item { font-size: 22px; color: var(--ink); padding-left: 14px; }
+.slot-item.none { color: var(--muted); }
+
+/* ---- psi ---- */
+.psi-win { padding-bottom: 2px; }
+.pp-chip { align-items: center; gap: 1px; width: 84px; flex-shrink: 0; }
+.pp-chip-l { font-size: 15px; color: var(--muted); }
+
+/* ---- status ---- */
+.status-win { flex: 1; gap: 4px; min-height: 0; }
+.status-cols { flex: 1; flex-direction: row; gap: 14px; min-height: 0; }
+.scol { flex: 1; gap: 4px; }
+.scol-r { flex: 1.15; }
+.trow-gap { width: 6px; }
+.scol-r .srow-l { width: 78px; }
+.trow-v { font-size: 22px; color: var(--ink); }
+.gauges { flex-direction: column; gap: 6px; height: 88px; justify-content: center; align-items: stretch; }
+.gauge { flex-direction: row; align-items: center; gap: 8px; width: 100%; padding: 0 10px; }
+.gauge-l { font-size: 20px; width: 26px; color: var(--muted); }
+.gauge-v { font-size: 19px; width: 74px; color: var(--ink); }
+.meter { flex-grow: 1; width: 100px; height: 14px; background-color: var(--panel-d); border: 2.168px solid var(--ink); border-radius: 2px; overflow: hidden; }
+.meter > fill { background-color: var(--hp); }
+.meter.pp > fill { background-color: var(--pp); }
+
+/* ---- bottom bar: previous page | this page | next page ---- */
+.bar { flex-direction: row; justify-content: space-between; height: 44px; flex-shrink: 0; gap: 8px; }
+.bar-btn { flex-direction: row; align-items: center; justify-content: center; gap: 6px; width: 28%; height: 44px; background-color: var(--panel); border: 4.336px solid var(--rim); border-radius: 4.336px; box-shadow: 0 2.168px 0 var(--wood); }
+.bar-btn:pressed { background-color: var(--coral); }
+.bar-ico { width: 21.68px; height: 21.68px; }
+.bar-label { font-size: 21px; color: var(--ink); }
+.bar-chev { font-size: 22px; color: var(--coral); }
+.bar-mid { flex: 1; align-items: center; justify-content: center; background-color: var(--wood); border: 4.336px solid var(--rim); border-radius: 4.336px; }
+.bar-title { font-size: 24px; color: var(--panel); letter-spacing: 1px; }
+
+/* ---- goods actions: Use / Give / Drop and the "On whom?" window ---- */
+.body { position: relative; }
+.acts { flex-direction: row; gap: 6px; flex-shrink: 0; }
+.act { width: 56px; height: 38px; padding: 0; align-items: center; justify-content: center; background-color: var(--rim); border: 2.168px solid var(--ink); border-radius: 4px; box-shadow: 0 2.168px 0 var(--wood); }
+.act:pressed { background-color: var(--coral); }
+.act.off { opacity: 0.35; }
+.act-t { font-size: 20px; color: var(--ink); }
+.desc-note { font-size: 19px; color: var(--coral); }
+.sheet { position: absolute; left: 0; top: 0; right: 0; bottom: 0; align-items: center; justify-content: center; background-color: rgba(0, 0, 0, 0.6); }
+.dialog { width: 330px; gap: 6px; padding: 10px 12px; background-color: var(--panel); border: 4.336px solid var(--rim); border-radius: 4.336px; box-shadow: 0 2.168px 0 var(--wood); }
+.dlg-title { font-size: 24px; color: var(--ink); text-align: center; }
+.targets { gap: 2px; }
+.target { flex-direction: row; align-items: center; gap: 8px; padding: 2px 6px; height: 44px; background-color: transparent; border-radius: 3px; }
+.target:pressed { background-color: var(--panel-d); }
+.target-img { width: 36px; height: 36px; }
+.target-init { width: 36px; height: 36px; }
+.target-name { font-size: 22px; color: var(--ink); }
+.target-hp { font-size: 18px; color: var(--muted); }
+.dlg-row { flex-direction: row; justify-content: center; gap: 12px; }
+.dlg-btn { min-width: 96px; height: 36px; padding: 0 12px; align-items: center; justify-content: center; background-color: var(--rim); border: 2.168px solid var(--ink); border-radius: 4px; }
+.dlg-btn:pressed { background-color: var(--coral); }
+.dlg-btn-t { font-size: 21px; color: var(--ink); }
+.acts-col { gap: 4px; align-items: flex-end; flex-shrink: 0; }
+.perm { padding: 1px 8px; border-radius: 8px; background-color: var(--panel-d); border: 2.168px solid var(--wood); }
+.perm.on { background-color: var(--hp); }
+.perm:pressed { opacity: 0.7; }
+.perm-t { font-size: 14px; color: var(--ink); letter-spacing: 1px; }
+.grid-list.locked { pointer-events: none; }

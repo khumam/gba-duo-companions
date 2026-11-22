@@ -1,0 +1,85 @@
+/*
+ * Mega Man Zero companion: the game's pause windows. Page pictures come from art/game_ui.py (chamfered peach frames,
+ * metal plates, black slots, green MAIN tab, L / R tabs); this file lays the live values over them. Lengths in art
+ * pixels (`8ap`), expanded by art/css.py (1ap = 2.168dp). Edit this file, not style.css.
+ */
+:root {
+  --bg: #160c0b; --peach: #e8a883; --peach-lt: #f1ccad; --peach-dk: #8d5f4e; --peach-dd: #5c3e33;
+  --white: #fffffb; --yellow: #e7cf6a; --red: #d95f6e; --green: #5cc454; --blue: #9ab8ff;
+}
+@font-face { font-family: "Silkscreen"; src: url("assets/fonts/Silkscreen-Regular.ttf"); font-weight: 400; }
+@font-face { font-family: "Silkscreen"; src: url("assets/fonts/Silkscreen-Bold.ttf"); font-weight: 700; }
+@font-face { font-family: "Jersey"; src: url("assets/fonts/Jersey10-Regular.ttf"); }
+
+image { image-rendering: pixelated; }
+text { white-space: nowrap; }
+#screen { width: 100%; height: 100%; overflow: hidden; background-color: var(--bg); font-family: "Silkscreen"; font-weight: 700; font-size: 8ap; color: var(--white); }
+.shell, .waiting { flex: 1; min-height: 0; }
+.waiting.gone { display: none; }
+.shell { display: none; }
+.shell.on { display: flex; }
+.pages { flex: 1; min-height: 0; }
+.page { position: relative; flex: 1; min-height: 0; background-color: var(--bg); background-repeat: no-repeat; background-size: 248ap 216ap; }
+.page-status { background-image: url("assets/ui/status.png"); }
+.page-elves { background-image: url("assets/ui/elf.png"); }
+.page-option { background-image: url("assets/ui/option.png"); }
+.page-waiting { background-image: url("assets/ui/option.png"); background-size: 0 0; }
+.page > text, .page > .cells, .page > .vcells, .page > .go, .page > .wide-btn, .page > image { position: absolute; }
+.gone { display: none; }
+.r { text-align: right; }
+
+.wait-big { text-align: center; font-size: 10ap; }
+.wait-small { text-align: center; font-family: "Jersey"; font-weight: 400; font-size: 12ap; color: var(--peach-lt); }
+
+/* plates and info panel (top of STATUS) */
+.plate { font-size: 9ap; color: var(--white); text-shadow: 1px 1px 0 #202536; }
+.plate.lives { color: var(--blue); }
+.plate.lvl { color: var(--peach-lt); }
+.k { font-size: 6ap; color: var(--peach); }
+.v { font-family: "Jersey"; font-weight: 400; font-size: 12ap; color: var(--white); }
+.tab-t { font-size: 7ap; color: var(--bg); }
+.tab-t.g { color: var(--white); text-shadow: 1px 1px 0 #1d4d1c; }
+
+/* LIFE gauge */
+.cells { flex-direction: row; gap: 1ap; }
+.cell { flex: 1; background-color: #3a2a24; }
+.cell.full { background-color: var(--yellow); }
+.vcells { flex-direction: column; gap: 1ap; }
+.vcells .cell { background-color: #2a1c18; }
+.vcells .cell.full { background-color: #f0e050; border-bottom: 1ap solid #50e070; }
+.lv { font-size: 6ap; color: var(--white); }
+.lv-r { font-size: 11ap; color: var(--red); }
+.wicon { image-rendering: pixelated; }
+.logo { image-rendering: pixelated; }
+.life-big { font-family: "Jersey"; font-weight: 400; font-size: 30ap; color: var(--yellow); }
+.life-of { font-family: "Jersey"; font-weight: 400; font-size: 13ap; color: var(--peach); }
+.life-num { font-size: 8ap; color: var(--white); }
+
+/* weapons / slots */
+.slot-no { font-size: 6ap; color: var(--peach-dk); }
+.slot-name { font-family: "Jersey"; font-weight: 400; font-size: 11ap; color: var(--white); }
+.slot-name.main { font-size: 12ap; color: var(--white); }
+.wide-btn { align-items: center; justify-content: center; background-color: var(--green); border: 1ap solid #2d6b2c; border-radius: 2ap; }
+.wide-btn:pressed { background-color: #8fe088; }
+.wide-text { font-size: 7ap; color: var(--bg); }
+.rk { font-size: 6ap; color: var(--peach); }
+.rk-l { font-size: 5ap; color: var(--peach-dk); }
+.rk-v { font-family: "Jersey"; font-weight: 400; font-size: 11ap; color: var(--white); }
+
+/* elves */
+.elf-no { font-size: 6ap; color: var(--peach-dk); }
+.elf-name { font-family: "Jersey"; font-weight: 400; font-size: 12ap; color: var(--white); }
+.elf-desc { font-family: "Jersey"; font-weight: 400; font-size: 12ap; color: var(--peach-lt); white-space: normal; }
+
+/* option */
+.o-k { font-size: 6ap; color: var(--peach); }
+.o-v { font-family: "Jersey"; font-weight: 400; font-size: 11ap; color: var(--white); }
+
+/* bottom: message window + the game's L / R tabs */
+.msg { position: absolute; left: 10ap; top: 191ap; width: 228ap; font-family: "Jersey"; font-weight: 400; font-size: 14ap; color: var(--white); }
+.go { position: absolute; top: 166ap; height: 18ap; width: 94ap; flex-direction: row; align-items: center; gap: 4ap; padding: 0 8ap; background-color: #00000000; border: 0; border-radius: 0; }
+.go-l { left: 0; padding-top: 4ap; }
+.go-r { left: 154ap; padding-top: 4ap; }
+.go:pressed { background-color: #ffffff30; }
+.go-t { font-size: 7ap; color: var(--bg); }
+.go-k { font-size: 8ap; color: var(--white); background-color: var(--bg); padding: 1ap 3ap; }

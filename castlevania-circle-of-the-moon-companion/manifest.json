@@ -1,0 +1,23 @@
+{
+  "id": "castlevania-circle-of-the-moon-companion",
+  "name": "Castlevania: Circle of the Moon Companion",
+  "version": "0.1.0",
+  "author": "khumam",
+  "formatVersion": 3,
+  "match": {
+    "gameCode": [
+      "AAME"
+    ],
+    "crc32": []
+  },
+  "tickHz": 4,
+  "layout": "layout.json",
+  "styles": [
+    "style.css"
+  ],
+  "script": "main.lua",
+  "values": {},
+  "permissions": [
+    "memory-write"
+  ]
+}

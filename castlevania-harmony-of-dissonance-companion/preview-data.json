@@ -1,0 +1,508 @@
+{
+ "bookList": [
+  {
+   "have": true,
+   "img": "asset:ui/book-0.png",
+   "k": 1,
+   "locked": false,
+   "name": "Fire Book",
+   "set": true
+  },
+  {
+   "have": true,
+   "img": "asset:ui/book-1.png",
+   "k": 2,
+   "locked": false,
+   "name": "Ice Book",
+   "set": false
+  },
+  {
+   "have": true,
+   "img": "asset:ui/book-2.png",
+   "k": 3,
+   "locked": false,
+   "name": "Bolt Book",
+   "set": false
+  },
+  {
+   "have": true,
+   "img": "asset:ui/book-3.png",
+   "k": 4,
+   "locked": false,
+   "name": "Wind Book",
+   "set": false
+  },
+  {
+   "have": true,
+   "img": "asset:ui/book-4.png",
+   "k": 5,
+   "locked": false,
+   "name": "Summoning Tome",
+   "set": false
+  }
+ ],
+ "bookNow": {
+  "img": "asset:ui/book-0.png",
+  "name": "Fire Book",
+  "on": true
+ },
+ "bookPick": {
+  "canSet": true,
+  "desc": "When combined with a subweapon, user can cast many ice spells.",
+  "img": "asset:ui/bookbig-1.png",
+  "isSet": false,
+  "k": 2,
+  "name": "Ice Book"
+ },
+ "cfgClash": false,
+ "cfgRows": [
+  {
+   "key": "B",
+   "keyImg": "asset:ui/key-B.png",
+   "label": "ATTACK",
+   "row": 1
+  },
+  {
+   "key": "A",
+   "keyImg": "asset:ui/key-A.png",
+   "label": "JUMP",
+   "row": 2
+  },
+  {
+   "key": "L",
+   "keyImg": "asset:ui/key-L.png",
+   "label": "DASH LEFT",
+   "row": 3
+  },
+  {
+   "key": "R",
+   "keyImg": "asset:ui/key-R.png",
+   "label": "DASH RIGHT",
+   "row": 4
+  }
+ ],
+ "eqEmpty": false,
+ "eqList": [
+  {
+   "count": "1",
+   "icon": "asset:ui/ic-armor.png",
+   "id": 97,
+   "name": "Leather Armor",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "icon": "asset:ui/ic-armor.png",
+   "id": 98,
+   "name": "Rubber Armor",
+   "sel": false
+  },
+  {
+   "count": "2",
+   "icon": "asset:ui/ic-armor.png",
+   "id": 102,
+   "name": "Bronze Armor",
+   "sel": true
+  },
+  {
+   "count": "1",
+   "icon": "asset:ui/ic-armor.png",
+   "id": 108,
+   "name": "Chain Mail",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "icon": "asset:ui/ic-armor.png",
+   "id": 115,
+   "name": "Heavy Armor",
+   "sel": false
+  }
+ ],
+ "eqPick": {
+  "desc": "Armor made of bronze.",
+  "icon": "asset:ui/ic-armor.png",
+  "kind": "BODY",
+  "name": "Bronze Armor"
+ },
+ "eqSlots": [
+  {
+   "i": 1,
+   "icon": "asset:ui/ic-whip.png",
+   "id": 90,
+   "label": "WHIP",
+   "name": "Platinum Tip",
+   "none": false,
+   "sel": false
+  },
+  {
+   "i": 2,
+   "icon": "asset:ui/ic-armor.png",
+   "id": 108,
+   "label": "BODY",
+   "name": "Chain Mail",
+   "none": false,
+   "sel": true
+  },
+  {
+   "i": 3,
+   "icon": "asset:ui/ic-goods.png",
+   "id": 139,
+   "label": "GOODS",
+   "name": "JB's Bracelet",
+   "none": false,
+   "sel": false
+  },
+  {
+   "i": 4,
+   "icon": "asset:ui/ic-head.png",
+   "id": 148,
+   "label": "HEAD",
+   "name": "Leather Helmet",
+   "none": false,
+   "sel": false
+  },
+  {
+   "i": 5,
+   "icon": "asset:ui/ic-hands.png",
+   "id": 177,
+   "label": "HANDS",
+   "name": "Guardian Glove",
+   "none": false,
+   "sel": false
+  }
+ ],
+ "heal": {
+  "can": true,
+  "id": 65,
+  "name": "Drumstick x3",
+  "off": false
+ },
+ "ipick": {
+  "canUse": true,
+  "desc": "Restores some HP.",
+  "effect": "HP +70",
+  "full": false,
+  "icon": "asset:ui/ic-potion.png",
+  "id": 60,
+  "name": "Potion"
+ },
+ "itemEmpty": false,
+ "itemKeyTab": false,
+ "itemList": [
+  {
+   "count": "05",
+   "icon": "asset:ui/ic-potion.png",
+   "id": 60,
+   "name": "Potion",
+   "sel": true
+  },
+  {
+   "count": "03",
+   "icon": "asset:ui/ic-potion.png",
+   "id": 61,
+   "name": "High Potion",
+   "sel": false
+  },
+  {
+   "count": "01",
+   "icon": "asset:ui/ic-potion.png",
+   "id": 62,
+   "name": "Elixir",
+   "sel": false
+  },
+  {
+   "count": "04",
+   "icon": "asset:ui/ic-mana.png",
+   "id": 63,
+   "name": "Mana Prism",
+   "sel": false
+  },
+  {
+   "count": "02",
+   "icon": "asset:ui/ic-mana.png",
+   "id": 64,
+   "name": "Big Mana Prism",
+   "sel": false
+  },
+  {
+   "count": "03",
+   "icon": "asset:ui/ic-food.png",
+   "id": 65,
+   "name": "Drumstick",
+   "sel": false
+  },
+  {
+   "count": "01",
+   "icon": "asset:ui/ic-food.png",
+   "id": 66,
+   "name": "Turkey",
+   "sel": false
+  },
+  {
+   "count": "02",
+   "icon": "asset:ui/ic-cure.png",
+   "id": 67,
+   "name": "Anti-venom",
+   "sel": false
+  }
+ ],
+ "itemUseTab": true,
+ "map": {
+  "a": "0.1%",
+  "b": "0.0%",
+  "empty": false,
+  "isA": true,
+  "isB": false,
+  "name": "Castle A",
+  "total": "0.1%"
+ },
+ "mapRuns": [
+  {
+   "w": "6.50px",
+   "x": "7.80px",
+   "y": "171.71px"
+  }
+ ],
+ "menu": [
+  {
+   "hint": "Change equipped items.",
+   "label": "EQUIP",
+   "page": "equip"
+  },
+  {
+   "hint": "Examine or use items.",
+   "label": "ITEMS",
+   "page": "items"
+  },
+  {
+   "hint": "Select Spell Book.",
+   "label": "SPELLBOOK",
+   "page": "book"
+  },
+  {
+   "hint": "Switch Magic Item effects on and off.",
+   "label": "RELICS",
+   "page": "relics"
+  },
+  {
+   "hint": "Change button configuration.",
+   "label": "KEY CONFIG.",
+   "page": "config"
+  }
+ ],
+ "note": "",
+ "ready": true,
+ "relicList": [
+  {
+   "have": true,
+   "icon": "asset:ui/rl-0.png",
+   "k": 0,
+   "locked": false,
+   "name": "Lizard Tail",
+   "off": false,
+   "on": true,
+   "sel": false
+  },
+  {
+   "have": true,
+   "icon": "asset:ui/rl-1.png",
+   "k": 1,
+   "locked": false,
+   "name": "Sylph Feather",
+   "off": false,
+   "on": true,
+   "sel": true
+  },
+  {
+   "have": true,
+   "icon": "asset:ui/rl-2.png",
+   "k": 2,
+   "locked": false,
+   "name": "Griffin's Wing",
+   "off": false,
+   "on": true,
+   "sel": false
+  },
+  {
+   "have": true,
+   "icon": "asset:ui/rl-3.png",
+   "k": 3,
+   "locked": false,
+   "name": "Soul Orb",
+   "off": false,
+   "on": true,
+   "sel": false
+  },
+  {
+   "have": true,
+   "icon": "asset:ui/rl-4.png",
+   "k": 4,
+   "locked": false,
+   "name": "Fairy Journal",
+   "off": true,
+   "on": false,
+   "sel": false
+  },
+  {
+   "have": true,
+   "icon": "asset:ui/rl-5.png",
+   "k": 5,
+   "locked": false,
+   "name": "Monster Tome",
+   "off": true,
+   "on": false,
+   "sel": false
+  },
+  {
+   "have": true,
+   "icon": "asset:ui/rl-6.png",
+   "k": 6,
+   "locked": false,
+   "name": "Eye of Vlad",
+   "off": true,
+   "on": false,
+   "sel": false
+  },
+  {
+   "have": true,
+   "icon": "asset:ui/rl-7.png",
+   "k": 7,
+   "locked": false,
+   "name": "Heart of Vlad",
+   "off": true,
+   "on": false,
+   "sel": false
+  },
+  {
+   "have": true,
+   "icon": "asset:ui/rl-8.png",
+   "k": 8,
+   "locked": false,
+   "name": "Rib of Vlad",
+   "off": false,
+   "on": true,
+   "sel": false
+  },
+  {
+   "have": true,
+   "icon": "asset:ui/rl-9.png",
+   "k": 9,
+   "locked": false,
+   "name": "Nail of Vlad",
+   "off": false,
+   "on": true,
+   "sel": false
+  },
+  {
+   "have": true,
+   "icon": "asset:ui/rl-10.png",
+   "k": 10,
+   "locked": false,
+   "name": "Fang of Vlad",
+   "off": false,
+   "on": true,
+   "sel": false
+  },
+  {
+   "have": true,
+   "icon": "asset:ui/rl-11.png",
+   "k": 11,
+   "locked": false,
+   "name": "Vlad's Ring",
+   "off": false,
+   "on": true,
+   "sel": false
+  }
+ ],
+ "relicPick": {
+  "desc": "While in midair, user may perform an additional JUMP.",
+  "name": "Sylph Feather"
+ },
+ "slots": [
+  {
+   "i": 1,
+   "icon": "asset:ui/ic-whip.png",
+   "id": 90,
+   "label": "WHIP",
+   "name": "Platinum Tip",
+   "none": false
+  },
+  {
+   "i": 2,
+   "icon": "asset:ui/ic-armor.png",
+   "id": 108,
+   "label": "BODY",
+   "name": "Chain Mail",
+   "none": false
+  },
+  {
+   "i": 3,
+   "icon": "asset:ui/ic-goods.png",
+   "id": 139,
+   "label": "GOODS",
+   "name": "JB's Bracelet",
+   "none": false
+  },
+  {
+   "i": 4,
+   "icon": "asset:ui/ic-head.png",
+   "id": 148,
+   "label": "HEAD",
+   "name": "Leather Helmet",
+   "none": false
+  },
+  {
+   "i": 5,
+   "icon": "asset:ui/ic-hands.png",
+   "id": 177,
+   "label": "HANDS",
+   "name": "Guardian Glove",
+   "none": false
+  }
+ ],
+ "st": {
+  "def": 30,
+  "exp": "9000",
+  "expIn": 9000,
+  "expSpan": 9360,
+  "gold": "4500",
+  "heart": 55,
+  "heartText": "55/80",
+  "hp": 220,
+  "hpText": "220/300",
+  "int": 30,
+  "lck": 25,
+  "level": "12",
+  "lowHp": false,
+  "maxHeart": 80,
+  "maxHp": 300,
+  "maxMp": 200,
+  "mp": 150,
+  "mpText": "150/200",
+  "next": "360",
+  "str": 30,
+  "time": "0:00:08"
+ },
+ "toast": {
+  "book": -1,
+  "id": 0,
+  "img": "asset:ui/crest.png",
+  "name": "",
+  "page": "status",
+  "relic": -1,
+  "sub": "",
+  "title": ""
+ },
+ "toastOn": false,
+ "ui": {
+  "set": {
+   "book": 2,
+   "eqId": 102,
+   "eqSlot": 2,
+   "item": 60,
+   "relic": 1
+  }
+ },
+ "waiting": false
+}

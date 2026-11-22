@@ -1,0 +1,478 @@
+{
+ "anyCrystal": true,
+ "crystalCount": "2 / 7",
+ "doRow": [
+  {
+   "cell": 100,
+   "have": true,
+   "i": 1,
+   "img": "asset:icons/boots.png",
+   "name": "Pegasus Boots",
+   "none": false
+  },
+  {
+   "cell": 101,
+   "have": true,
+   "i": 2,
+   "img": "asset:icons/gloves-1.png",
+   "name": "Power Glove",
+   "none": false
+  },
+  {
+   "cell": 102,
+   "have": true,
+   "i": 3,
+   "img": "asset:icons/flippers.png",
+   "name": "Zora's Flippers",
+   "none": false
+  },
+  {
+   "cell": 103,
+   "have": true,
+   "i": 4,
+   "img": "asset:icons/pearl.png",
+   "name": "Moon Pearl",
+   "none": false
+  }
+ ],
+ "dungeonTally": "PENDANTS 3/3   CRYSTALS 2/7",
+ "dungeons": [
+  {
+   "comp": true,
+   "dark": false,
+   "done": false,
+   "hasReward": false,
+   "key": true,
+   "map": true,
+   "name": "Hyrule Castle",
+   "noComp": false,
+   "noKey": false,
+   "noMap": false,
+   "reward": ""
+  },
+  {
+   "comp": true,
+   "dark": false,
+   "done": true,
+   "hasReward": true,
+   "key": true,
+   "map": true,
+   "name": "Eastern Palace",
+   "noComp": false,
+   "noKey": false,
+   "noMap": false,
+   "reward": "asset:icons/pendant-green.png"
+  },
+  {
+   "comp": true,
+   "dark": false,
+   "done": true,
+   "hasReward": true,
+   "key": false,
+   "map": true,
+   "name": "Desert Palace",
+   "noComp": false,
+   "noKey": true,
+   "noMap": false,
+   "reward": "asset:icons/pendant-blue.png"
+  },
+  {
+   "comp": false,
+   "dark": false,
+   "done": true,
+   "hasReward": true,
+   "key": false,
+   "map": false,
+   "name": "Tower of Hera",
+   "noComp": true,
+   "noKey": true,
+   "noMap": true,
+   "reward": "asset:icons/pendant-red.png"
+  },
+  {
+   "comp": true,
+   "dark": false,
+   "done": false,
+   "hasReward": false,
+   "key": false,
+   "map": true,
+   "name": "Castle Tower",
+   "noComp": false,
+   "noKey": true,
+   "noMap": false,
+   "reward": ""
+  },
+  {
+   "comp": false,
+   "dark": true,
+   "done": true,
+   "hasReward": true,
+   "key": false,
+   "map": true,
+   "name": "Palace of Darkness",
+   "noComp": true,
+   "noKey": true,
+   "noMap": false,
+   "reward": "asset:ui/crystal.png"
+  },
+  {
+   "comp": false,
+   "dark": true,
+   "done": true,
+   "hasReward": true,
+   "key": true,
+   "map": false,
+   "name": "Swamp Palace",
+   "noComp": true,
+   "noKey": false,
+   "noMap": true,
+   "reward": "asset:ui/crystal.png"
+  },
+  {
+   "comp": false,
+   "dark": true,
+   "done": false,
+   "hasReward": true,
+   "key": false,
+   "map": false,
+   "name": "?????????",
+   "noComp": true,
+   "noKey": true,
+   "noMap": true,
+   "reward": "asset:ui/crystal-off.png"
+  },
+  {
+   "comp": false,
+   "dark": true,
+   "done": false,
+   "hasReward": true,
+   "key": false,
+   "map": false,
+   "name": "?????????",
+   "noComp": true,
+   "noKey": true,
+   "noMap": true,
+   "reward": "asset:ui/crystal-off.png"
+  },
+  {
+   "comp": false,
+   "dark": true,
+   "done": false,
+   "hasReward": true,
+   "key": false,
+   "map": false,
+   "name": "?????????",
+   "noComp": true,
+   "noKey": true,
+   "noMap": true,
+   "reward": "asset:ui/crystal-off.png"
+  },
+  {
+   "comp": false,
+   "dark": true,
+   "done": false,
+   "hasReward": true,
+   "key": false,
+   "map": false,
+   "name": "?????????",
+   "noComp": true,
+   "noKey": true,
+   "noMap": true,
+   "reward": "asset:ui/crystal-off.png"
+  },
+  {
+   "comp": false,
+   "dark": true,
+   "done": false,
+   "hasReward": true,
+   "key": false,
+   "map": false,
+   "name": "?????????",
+   "noComp": true,
+   "noKey": true,
+   "noMap": true,
+   "reward": "asset:ui/crystal-off.png"
+  },
+  {
+   "comp": false,
+   "dark": true,
+   "done": false,
+   "hasReward": false,
+   "key": false,
+   "map": false,
+   "name": "?????????",
+   "noComp": true,
+   "noKey": true,
+   "noMap": true,
+   "reward": ""
+  }
+ ],
+ "eq": {
+  "hasShield": true,
+  "hasSword": true,
+  "mail": "asset:icons/mail-1.png",
+  "mailName": "Blue Mail",
+  "pieceImg": "asset:ui/piece-2.png",
+  "pieces": 2,
+  "shield": "asset:icons/shield-2.png",
+  "shieldName": "Fire Shield",
+  "sword": "asset:icons/sword-2.png",
+  "swordName": "Master Sword"
+ },
+ "grid": [
+  {
+   "have": true,
+   "img": "asset:icons/bow-2.png",
+   "k": 0,
+   "name": "Bow & Arrows",
+   "sel": false
+  },
+  {
+   "have": true,
+   "img": "asset:icons/boomerang-2.png",
+   "k": 1,
+   "name": "Magical Boomerang",
+   "sel": false
+  },
+  {
+   "have": true,
+   "img": "asset:icons/hookshot.png",
+   "k": 2,
+   "name": "Hookshot",
+   "sel": true
+  },
+  {
+   "count": "12",
+   "have": true,
+   "img": "asset:icons/bombs.png",
+   "k": 3,
+   "name": "Bombs",
+   "sel": false
+  },
+  {
+   "have": true,
+   "img": "asset:icons/powder.png",
+   "k": 4,
+   "name": "Magic Powder",
+   "sel": false
+  },
+  {
+   "have": true,
+   "img": "asset:icons/bottle-3.png",
+   "k": 5,
+   "name": "Red Potion",
+   "sel": false
+  },
+  {
+   "have": true,
+   "img": "asset:icons/fire-rod.png",
+   "k": 6,
+   "name": "Fire Rod",
+   "sel": false
+  },
+  {
+   "have": false,
+   "img": "",
+   "k": 7,
+   "name": "",
+   "sel": false
+  },
+  {
+   "have": true,
+   "img": "asset:icons/bombos.png",
+   "k": 8,
+   "name": "Bombos Medallion",
+   "sel": false
+  },
+  {
+   "have": false,
+   "img": "",
+   "k": 9,
+   "name": "",
+   "sel": false
+  },
+  {
+   "have": false,
+   "img": "",
+   "k": 10,
+   "name": "",
+   "sel": false
+  },
+  {
+   "have": true,
+   "img": "asset:icons/bottle-6.png",
+   "k": 11,
+   "name": "Fairy",
+   "sel": false
+  },
+  {
+   "have": true,
+   "img": "asset:icons/lamp.png",
+   "k": 12,
+   "name": "Lamp",
+   "sel": false
+  },
+  {
+   "have": true,
+   "img": "asset:icons/hammer.png",
+   "k": 13,
+   "name": "Magic Hammer",
+   "sel": false
+  },
+  {
+   "have": true,
+   "img": "asset:icons/flute-2.png",
+   "k": 14,
+   "name": "Flute",
+   "sel": false
+  },
+  {
+   "have": true,
+   "img": "asset:icons/net.png",
+   "k": 15,
+   "name": "Bug-Catching Net",
+   "sel": false
+  },
+  {
+   "have": true,
+   "img": "asset:icons/book.png",
+   "k": 16,
+   "name": "Book of Mudora",
+   "sel": false
+  },
+  {
+   "have": true,
+   "img": "asset:icons/bottle-2.png",
+   "k": 17,
+   "name": "Empty Bottle",
+   "sel": false
+  },
+  {
+   "have": false,
+   "img": "",
+   "k": 18,
+   "name": "",
+   "sel": false
+  },
+  {
+   "have": false,
+   "img": "",
+   "k": 19,
+   "name": "",
+   "sel": false
+  },
+  {
+   "have": false,
+   "img": "",
+   "k": 20,
+   "name": "",
+   "sel": false
+  },
+  {
+   "have": true,
+   "img": "asset:icons/cape.png",
+   "k": 21,
+   "name": "Magic Cape",
+   "sel": false
+  },
+  {
+   "have": true,
+   "img": "asset:icons/mirror-2.png",
+   "k": 22,
+   "name": "Magic Mirror",
+   "sel": false
+  },
+  {
+   "have": false,
+   "img": "",
+   "k": 23,
+   "name": "",
+   "sel": false
+  }
+ ],
+ "lift": "LIFT.2",
+ "map": {
+  "indoors": false,
+  "known": true,
+  "outdoors": true,
+  "where": "Overworld",
+  "x": "198.06px",
+  "y": "134.99px"
+ },
+ "pend0": "asset:icons/pendant-red.png",
+ "pend1": "asset:icons/pendant-blue.png",
+ "pend2": "asset:icons/pendant-green.png",
+ "pendants": [
+  {
+   "have": true,
+   "img": "asset:icons/pendant-red.png"
+  },
+  {
+   "have": true,
+   "img": "asset:icons/pendant-blue.png"
+  },
+  {
+   "have": true,
+   "img": "asset:icons/pendant-green.png"
+  }
+ ],
+ "ready": true,
+ "sel": {
+  "has": true,
+  "img": "asset:icons/hookshot.png",
+  "name": "Hookshot",
+  "what": "Pulls Link across gaps to what it grabs."
+ },
+ "st": {
+  "arrows": "34",
+  "arrowsMax": "35",
+  "bombs": "12",
+  "bombsMax": "12",
+  "containers": "9",
+  "hearts": [
+   {
+    "img": "asset:ui/heart-full.png"
+   },
+   {
+    "img": "asset:ui/heart-full.png"
+   },
+   {
+    "img": "asset:ui/heart-full.png"
+   },
+   {
+    "img": "asset:ui/heart-full.png"
+   },
+   {
+    "img": "asset:ui/heart-full.png"
+   },
+   {
+    "img": "asset:ui/heart-full.png"
+   },
+   {
+    "img": "asset:ui/heart-half.png"
+   },
+   {
+    "img": "asset:ui/heart-empty.png"
+   },
+   {
+    "img": "asset:ui/heart-empty.png"
+   }
+  ],
+  "hp": 6.5,
+  "hpText": "6.5 / 9",
+  "keys": "--",
+  "magic": 96,
+  "magicMax": 128,
+  "magicText": "75%",
+  "magicUse": "",
+  "maxHp": 9,
+  "pieces": "2 / 4",
+  "rupees": "500"
+ },
+ "ui": {
+  "set": {
+   "cell": 1
+  }
+ },
+ "waiting": false
+}

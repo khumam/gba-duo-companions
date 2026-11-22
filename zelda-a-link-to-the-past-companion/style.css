@@ -1,0 +1,119 @@
+/*
+ * A Link to the Past companion: the GBA item screen (Items), Link's status and the dungeons, cycled by left / right
+ * plates. Item icons were cut from the game's item screen (assets/icons); frames are CSS in the screen's colours.
+ * 248 x 216 art-pixel grid, `21.68px` expanded by `python3 art/css.py`. Edit this file, not style.css.
+ */
+:root { --green: #31ef39; --red: #ef0000; --yellow: #ffd600; --grey: #94949c; --blue: #6b9cff; }
+@font-face { font-family: "Jersey"; src: url("assets/fonts/Jersey10-Regular.ttf"); }
+@font-face { font-family: "Silk"; src: url("assets/fonts/Silkscreen-Bold.ttf"); }
+
+image { image-rendering: pixelated; }
+text { white-space: nowrap; }
+#screen { width: 100%; height: 100%; position: relative; overflow: hidden; background-color: #000000; }
+.waiting, .ready, .stage { width: 100%; height: 100%; position: relative; }
+.page { width: 537.664px; height: 468.288px; position: relative; overflow: hidden; background-color: #000000; font-family: "Jersey"; font-size: 21.68px; color: #ffffff; }
+
+/* panels: the item screen's rounded colour frames with a white inner line, label cut into the top edge */
+.panel { position: absolute; border-radius: 8.672px; border: 4.336px solid #31ef39; background-color: #000000; }
+.panel.green { border-color: var(--green); } .panel.red { border-color: var(--red); } .panel.yellow { border-color: var(--yellow); }
+.plabel { position: absolute; font-family: "Silk"; font-size: 15.176px; background-color: #000000; padding: 0 4.336px; }
+.letter { position: absolute; font-family: "Silk"; font-size: 19.512px; }
+.letter-a { left: 10.84px; top: 21.68px; color: var(--green); } .letter-r { left: 10.84px; top: 260.16px; color: var(--red); }
+
+/* ---- items ---- */
+.p-item { left: 4.336px; top: 6.504px; width: 346.88px; height: 225.472px; } .p-item-l { left: 30.352px; top: 0; }
+.grid { position: absolute; left: 34.688px; top: 23.848px; width: 312.192px; height: 208.128px; display: grid; grid-template-columns: 52.032px 52.032px 52.032px 52.032px 52.032px 52.032px; }
+.cell { width: 52.032px; height: 52.032px; padding: 0; margin: 0; background: none; border: 0; border-radius: 0; position: relative; justify-content: center; align-items: center; }
+.cicon { width: 34.688px; height: 34.688px; }
+.bracket { position: absolute; left: 2.168px; top: 2.168px; width: 47.696px; height: 47.696px; border: 2.168px solid #31ef39; border-radius: 13.008px; }
+.ccount { position: absolute; left: 30.352px; top: 30.352px; font-family: "Silk"; font-size: 10.84px; }
+.cell:pressed .cicon { opacity: 0.6; }
+.p-sel { left: 359.888px; top: 6.504px; width: 173.44px; height: 86.72px; }
+.sel-i { position: absolute; left: 429.264px; top: 19.512px; width: 34.688px; height: 34.688px; }
+.sel-n { position: absolute; left: 359.888px; width: 173.44px; top: 62.872px; text-align: center; font-family: "Silk"; font-size: 10.84px; }
+.p-pend { left: 359.888px; top: 99.728px; width: 173.44px; height: 132.248px; } .p-pend-l { left: 381.568px; top: 93.224px; }
+.pend { position: absolute; width: 34.688px; height: 34.688px; }
+.pend-0 { left: 429.264px; top: 121.408px; } .pend-1 { left: 394.576px; top: 164.768px; } .pend-2 { left: 463.952px; top: 164.768px; }
+.cry-n { position: absolute; left: 359.888px; width: 173.44px; top: 205.96px; text-align: center; font-family: "Silk"; font-size: 8.672px; color: #d070ff; }
+.p-do { left: 4.336px; top: 238.48px; width: 346.88px; height: 130.08px; } .p-do-l { left: 30.352px; top: 231.976px; }
+.do-w { position: absolute; font-family: "Silk"; font-size: 15.176px; }
+.do-1 { left: 34.688px; top: 251.488px; } .do-2 { left: 138.752px; top: 251.488px; } .do-3 { left: 34.688px; top: 281.84px; } .do-4 { left: 138.752px; top: 281.84px; }
+.dorow { position: absolute; left: 34.688px; top: 316.528px; width: 303.52px; height: 43.36px; flex-direction: row; }
+.dcell { width: 69.376px; height: 43.36px; padding: 0; margin: 0; background: none; border: 0; border-radius: 0; justify-content: center; align-items: center; }
+.dicon { width: 34.688px; height: 34.688px; }
+.p-eq { left: 359.888px; top: 238.48px; width: 173.44px; height: 130.08px; } .p-eq-l { left: 368.56px; top: 231.976px; }
+.eqi { position: absolute; top: 253.656px; width: 34.688px; height: 34.688px; }
+.eq-sw { left: 372.896px; } .eq-sh { left: 424.928px; } .eq-ml { left: 476.96px; }
+.eq-dots { position: absolute; left: 372.896px; top: 297.016px; width: 143.088px; height: 2.168px; border-top: 2.168px dotted #ffffff; }
+.eq-piece { position: absolute; left: 381.568px; top: 314.36px; width: 30.352px; height: 23.848px; }
+.eq-cont { position: absolute; left: 433.6px; top: 312.192px; font-family: "Silk"; font-size: 15.176px; }
+.info { position: absolute; left: 4.336px; top: 375.064px; width: 528.992px; height: 32.52px; flex-direction: row; align-items: center; }
+.info-n { font-family: "Silk"; font-size: 13.008px; color: var(--yellow); margin: 0 13.008px 0 8.672px; }
+.info-t { font-size: 19.512px; }
+
+/* ---- status ---- */
+.p-life { left: 4.336px; top: 6.504px; width: 528.992px; height: 86.72px; } .p-life-l { left: 30.352px; top: 0; }
+.hearts { position: absolute; left: 21.68px; top: 26.016px; width: 433.6px; height: 56.368px; display: grid; grid-template-columns: 30.352px 30.352px 30.352px 30.352px 30.352px 30.352px 30.352px 30.352px 30.352px 30.352px; }
+.heart { width: 30.352px; height: 30.352px; margin: 0 0 0 0; }
+.st-hp { position: absolute; left: 424.928px; width: 95.392px; top: 34.688px; text-align: right; font-family: "Silk"; font-size: 13.008px; }
+.p-magic { left: 4.336px; top: 99.728px; width: 528.992px; height: 56.368px; } .p-magic-l { left: 30.352px; top: 93.224px; }
+.mbar { position: absolute; left: 26.016px; top: 119.24px; width: 368.56px; height: 17.344px; background-color: #102010; border: 2.168px solid #ffffff; border-radius: 0; }
+.mbar > fill { background-color: #31ef39; border-radius: 0; }
+.st-mp { position: absolute; left: 403.248px; width: 117.072px; top: 117.072px; text-align: right; font-family: "Silk"; font-size: 13.008px; }
+.st-mu { position: absolute; left: 260.16px; top: 93.224px; font-family: "Silk"; font-size: 10.84px; color: var(--green); background-color: #000000; padding: 0 4.336px; }
+.p-bag { left: 4.336px; top: 162.6px; width: 294.848px; height: 242.816px; } .p-bag-l { left: 30.352px; top: 156.096px; }
+.ci { position: absolute; left: 21.68px; width: 34.688px; height: 34.688px; }
+.rupee { position: absolute; left: 30.352px; width: 17.344px; height: 26.016px; background-color: #31ef39; border: 2.168px solid #ffffff; border-radius: 6.504px; }
+.cl { position: absolute; left: 65.04px; font-family: "Silk"; font-size: 10.84px; color: #d6d6d6; }
+.cv { position: absolute; left: 151.76px; width: 134.416px; text-align: right; font-family: "Silk"; font-size: 15.176px; }
+.ci-1 { top: 182.112px; } .cl-1 { top: 192.952px; } .cv-1 { top: 188.616px; }
+.ci-2 { top: 225.472px; } .cl-2 { top: 236.312px; } .cv-2 { top: 231.976px; }
+.ci-3 { top: 273.168px; } .cl-3 { top: 279.672px; } .cv-3 { top: 275.336px; }
+.ci-4 { top: 316.528px; width: 30.352px; height: 23.848px; } .cl-4 { top: 323.032px; } .cv-4 { top: 318.696px; }
+.cl-5 { top: 366.392px; } .cv-5 { top: 362.056px; }
+.p-gear { left: 307.856px; top: 162.6px; width: 225.472px; height: 242.816px; } .p-gear-l { left: 325.2px; top: 156.096px; }
+.gi { position: absolute; left: 325.2px; width: 34.688px; height: 34.688px; }
+.gn { position: absolute; left: 368.56px; font-size: 19.512px; }
+.gi-1 { top: 186.448px; } .gn-1 { top: 190.784px; } .gi-2 { top: 251.488px; } .gn-2 { top: 255.824px; } .gi-3 { top: 316.528px; } .gn-3 { top: 320.864px; }
+
+/* ---- dungeons ---- */
+.p-dun { left: 4.336px; top: 6.504px; width: 528.992px; height: 372.896px; } .p-dun-l { left: 30.352px; top: 0; }
+.dh { position: absolute; top: 19.512px; font-family: "Silk"; font-size: 8.672px; color: #d6d6d6; }
+.dh-m { left: 290.512px; } .dh-c { left: 338.208px; } .dh-k { left: 394.576px; }
+.dlist { position: absolute; left: 17.344px; top: 34.688px; width: 502.976px; height: 338.208px; flex-direction: column; }
+.drow { width: 502.976px; height: 26.016px; flex-direction: row; align-items: center; }
+.dname { width: 273.168px; font-size: 19.512px; }
+.drow.dark .dname { color: #c0a0ff; }
+.drow.done .dname { color: var(--yellow); }
+.dm, .dc, .dk { width: 15.176px; height: 15.176px; margin: 0 32.52px 0 0; }
+.dr { width: 34.688px; height: 34.688px; margin: 0 0 0 13.008px; }
+.page-dungeons .dr { width: 26.016px; height: 26.016px; }
+.dtally { position: absolute; left: 4.336px; width: 528.992px; top: 383.736px; text-align: center; font-family: "Silk"; font-size: 10.84px; color: var(--yellow); }
+
+/* ---- nav ---- */
+.nbtn { position: absolute; top: 411.92px; width: 156.096px; height: 52.032px; padding: 0; margin: 0; background: none; border: 0; border-radius: 0; }
+.nbtn-l { left: 4.336px; } .nbtn-r { left: 377.232px; }
+.nplate { position: absolute; left: 0; top: 0; width: 156.096px; height: 52.032px; }
+.nb { position: absolute; top: 17.344px; width: 112.736px; text-align: center; font-family: "Silk"; font-size: 13.008px; }
+.nb-l { left: 34.688px; } .nb-r { left: 8.672px; }
+.nbtn:pressed .nb { color: var(--green); }
+.nmid { position: absolute; left: 164.768px; top: 411.92px; width: 208.128px; height: 52.032px; }
+.nplate-m { position: absolute; left: 0; top: 0; width: 208.128px; height: 52.032px; }
+.ntitle { position: absolute; left: 0; width: 208.128px; top: 8.672px; text-align: center; font-family: "Silk"; font-size: 15.176px; color: var(--yellow); }
+.pips { position: absolute; left: 82.384px; top: 32.52px; width: 43.36px; height: 8.672px; flex-direction: row; justify-content: space-between; }
+.pip { width: 8.672px; height: 8.672px; background-color: #404040; }
+.pip.on { background-color: var(--yellow); }
+
+/* ---- waiting ---- */
+.w-1 { position: absolute; left: 0; width: 537.664px; top: 173.44px; text-align: center; font-family: "Silk"; font-size: 23.848px; color: var(--yellow); }
+.w-2 { position: absolute; left: 0; width: 537.664px; top: 212.464px; text-align: center; font-family: "Silk"; font-size: 13.008px; color: var(--green); }
+.w-3 { position: absolute; left: 0; width: 537.664px; top: 268.832px; text-align: center; }
+.w-4 { position: absolute; left: 0; width: 537.664px; top: 299.184px; text-align: center; font-size: 19.512px; color: var(--red); }
+
+/* ---- world map ---- */
+.p-map { left: 4.336px; top: 6.504px; width: 528.992px; height: 398.912px; } .p-map-l { left: 30.352px; top: 0; }
+.mapwin { position: absolute; left: 78.048px; top: 17.344px; width: 381.568px; height: 381.568px; overflow: hidden; }
+.mapimg { position: absolute; left: 0; top: 0; width: 381.568px; height: 381.568px; }
+.marker { position: absolute; width: 15.176px; height: 15.176px; }
+.map-where { position: absolute; left: 260.16px; width: 260.16px; top: 2.168px; text-align: right; font-family: "Silk"; font-size: 10.84px; color: var(--yellow); background-color: #000000; padding: 0 4.336px; }
+.pips { left: 78.048px; width: 52.032px; }

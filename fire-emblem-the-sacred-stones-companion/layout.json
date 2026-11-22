@@ -1,0 +1,2243 @@
+{
+ "type": "box",
+ "class": "main",
+ "children": [
+  {
+   "type": "box",
+   "class": "waiting",
+   "children": [
+    {
+     "type": "box",
+     "class": "page page-waiting",
+     "children": [
+      {
+       "type": "image",
+       "class": "leaves",
+       "src": "asset:ui/stone.png"
+      },
+      {
+       "type": "box",
+       "class": "wbox",
+       "children": [
+        {
+         "type": "text",
+         "class": "w-1",
+         "text": "THE SACRED STONES"
+        },
+        {
+         "type": "text",
+         "class": "w-2",
+         "text": "Fire Emblem companion"
+        },
+        {
+         "type": "text",
+         "class": "w-3",
+         "text": "Load a chapter to see your army."
+        },
+        {
+         "type": "text",
+         "class": "w-4",
+         "text": "This pack reads the USA cartridge (BE8E).",
+         "visibleIf": "$wrongRom"
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "visibleIf": "$waiting"
+  },
+  {
+   "type": "box",
+   "class": "ready",
+   "children": [
+    {
+     "type": "pages",
+     "class": "stage",
+     "initial": "personal",
+     "pages": [
+      {
+       "name": "units",
+       "child": {
+        "type": "box",
+        "class": "page page-units",
+        "children": [
+         {
+          "type": "image",
+          "class": "leaves",
+          "src": "asset:ui/stone.png"
+         },
+         {
+          "type": "box",
+          "class": "plate plate-units",
+          "children": [
+           {
+            "type": "text",
+            "class": "plate-t",
+            "text": "Units"
+           },
+           {
+            "type": "text",
+            "class": "plate-c",
+            "text": "{army.count}"
+           }
+          ]
+         },
+         {
+          "type": "button",
+          "class": "pg pg-l",
+          "onClick": [
+           {
+            "set": {
+             "upage": "{army.prev}"
+            }
+           }
+          ],
+          "children": [
+           {
+            "type": "image",
+            "class": "pg-i",
+            "src": "asset:ui/arrow-l.png"
+           }
+          ]
+         },
+         {
+          "type": "text",
+          "class": "pg-n",
+          "text": "{army.page}"
+         },
+         {
+          "type": "button",
+          "class": "pg pg-r",
+          "onClick": [
+           {
+            "set": {
+             "upage": "{army.next}"
+            }
+           }
+          ],
+          "children": [
+           {
+            "type": "image",
+            "class": "pg-i",
+            "src": "asset:ui/arrow-r.png"
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "win win-units",
+          "children": []
+         },
+         {
+          "type": "list",
+          "class": "ugrid",
+          "items": "$army.rows",
+          "template": {
+           "type": "button",
+           "class": "ucard",
+           "onClick": [
+            {
+             "set": {
+              "unit": "{k}",
+              "slot": -1
+             }
+            },
+            {
+             "navigate": "personal"
+            }
+           ],
+           "children": [
+            {
+             "type": "box",
+             "class": "umug",
+             "children": [
+              {
+               "type": "image",
+               "class": "umug-i",
+               "src": "$mini",
+               "visibleIf": "$hasMini"
+              }
+             ]
+            },
+            {
+             "type": "text",
+             "class": "uname",
+             "text": "{name}"
+            },
+            {
+             "type": "text",
+             "class": "ulv",
+             "text": "{lv}"
+            },
+            {
+             "type": "text",
+             "class": "uhp",
+             "text": "HP {hp}"
+            }
+           ],
+           "classIf": {
+            "sel": "$sel",
+            "off": "$off"
+           }
+          }
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-l",
+          "onClick": [
+           {
+            "navigate": "status"
+           }
+          ],
+          "children": [
+           {
+            "type": "image",
+            "class": "narrow narrow-l",
+            "src": "asset:ui/arrow-l.png"
+           },
+           {
+            "type": "text",
+            "class": "nb",
+            "text": "Status"
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "nmid",
+          "children": [
+           {
+            "type": "text",
+            "class": "ntitle",
+            "text": "Units"
+           },
+           {
+            "type": "box",
+            "class": "pips",
+            "children": [
+             {
+              "type": "box",
+              "class": "pip on",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-r",
+          "onClick": [
+           {
+            "navigate": "personal"
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "nb",
+            "text": "Personal"
+           },
+           {
+            "type": "image",
+            "class": "narrow narrow-r",
+            "src": "asset:ui/arrow-r.png"
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "name": "personal",
+       "child": {
+        "type": "box",
+        "class": "page page-personal",
+        "children": [
+         {
+          "type": "image",
+          "class": "leaves",
+          "src": "asset:ui/stone.png"
+         },
+         {
+          "type": "box",
+          "class": "pframe",
+          "children": [
+           {
+            "type": "box",
+            "class": "pbg-fill",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "pbg",
+            "children": [
+             {
+              "type": "box",
+              "class": "clip clip-a",
+              "children": [
+               {
+                "type": "image",
+                "class": "sheet sheet-a",
+                "src": "$u.sheet"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "clip clip-b",
+              "children": [
+               {
+                "type": "image",
+                "class": "sheet sheet-b",
+                "src": "$u.sheet"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "clip clip-c",
+              "children": [
+               {
+                "type": "image",
+                "class": "sheet sheet-c",
+                "src": "$u.sheet"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "clip clip-d",
+              "children": [
+               {
+                "type": "image",
+                "class": "sheet sheet-d",
+                "src": "$u.sheet"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "clip clip-e",
+              "children": [
+               {
+                "type": "image",
+                "class": "sheet sheet-e",
+                "src": "$u.sheet"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "clip clip-f",
+              "children": [
+               {
+                "type": "image",
+                "class": "sheet sheet-f",
+                "src": "$u.sheet"
+               }
+              ]
+             }
+            ],
+            "visibleIf": "$u.hasSheet"
+           },
+           {
+            "type": "text",
+            "class": "pname",
+            "text": "{u.name}"
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "lvbox",
+          "children": [
+           {
+            "type": "text",
+            "class": "lv-cls",
+            "text": "{u.cls}"
+           },
+           {
+            "type": "text",
+            "class": "lv-l lv-l1",
+            "text": "LV"
+           },
+           {
+            "type": "text",
+            "class": "lv-v lv-v1",
+            "text": "{u.lv}"
+           },
+           {
+            "type": "text",
+            "class": "lv-l lv-l2",
+            "text": "E"
+           },
+           {
+            "type": "text",
+            "class": "lv-v lv-v2",
+            "text": "{u.exp}"
+           },
+           {
+            "type": "text",
+            "class": "lv-l lv-l3",
+            "text": "HP"
+           },
+           {
+            "type": "text",
+            "class": "lv-v lv-v3",
+            "text": "{u.hp}"
+           }
+          ]
+         },
+         {
+          "type": "button",
+          "class": "ubtn ubtn-p",
+          "onClick": [
+           {
+            "set": {
+             "unit": "{prevUnit}",
+             "slot": -1
+            }
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "ubtn-t",
+            "text": "^"
+           }
+          ]
+         },
+         {
+          "type": "text",
+          "class": "upos",
+          "text": "{u.pos}"
+         },
+         {
+          "type": "button",
+          "class": "ubtn ubtn-n",
+          "onClick": [
+           {
+            "set": {
+             "unit": "{nextUnit}",
+             "slot": -1
+            }
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "ubtn-t",
+            "text": "v"
+           }
+          ]
+         },
+         {
+          "type": "button",
+          "class": "harrow harrow-l",
+          "onClick": [
+           {
+            "navigate": "weapons"
+           }
+          ],
+          "children": [
+           {
+            "type": "image",
+            "class": "harrow-i",
+            "src": "asset:ui/arrow-l.png"
+           }
+          ]
+         },
+         {
+          "type": "text",
+          "class": "htitle",
+          "text": "Personal data"
+         },
+         {
+          "type": "button",
+          "class": "harrow harrow-r",
+          "onClick": [
+           {
+            "navigate": "items"
+           }
+          ],
+          "children": [
+           {
+            "type": "image",
+            "class": "harrow-i",
+            "src": "asset:ui/arrow-r.png"
+           }
+          ]
+         },
+         {
+          "type": "text",
+          "class": "hnum",
+          "text": "1/3"
+         },
+         {
+          "type": "box",
+          "class": "win win-right",
+          "children": []
+         },
+         {
+          "type": "list",
+          "class": "srows",
+          "items": "$pd.rows",
+          "template": {
+           "type": "box",
+           "class": "srow",
+           "children": [
+            {
+             "type": "text",
+             "class": "s-l",
+             "text": "{label}"
+            },
+            {
+             "type": "box",
+             "class": "s-bar",
+             "children": [
+              {
+               "type": "box",
+               "class": "s-fill",
+               "children": [],
+               "bindStyle": {
+                "width": "{pct}"
+               }
+              }
+             ]
+            },
+            {
+             "type": "text",
+             "class": "s-v",
+             "text": "{value}",
+             "classIf": {
+              "max": "$max"
+             }
+            }
+           ]
+          }
+         },
+         {
+          "type": "text",
+          "class": "r-l r1",
+          "text": "Move"
+         },
+         {
+          "type": "text",
+          "class": "r-v r1",
+          "text": "{pd.move}"
+         },
+         {
+          "type": "text",
+          "class": "r-b r1",
+          "text": "{pd.moveBonus}"
+         },
+         {
+          "type": "text",
+          "class": "r-l r2",
+          "text": "Con"
+         },
+         {
+          "type": "text",
+          "class": "r-v r2",
+          "text": "{pd.con}"
+         },
+         {
+          "type": "text",
+          "class": "r-l r3",
+          "text": "Aid"
+         },
+         {
+          "type": "text",
+          "class": "r-v r3",
+          "text": "{pd.aid}"
+         },
+         {
+          "type": "text",
+          "class": "r-l r4",
+          "text": "Trv"
+         },
+         {
+          "type": "text",
+          "class": "r-v r4 small",
+          "text": "{pd.trv}"
+         },
+         {
+          "type": "text",
+          "class": "r-l r5",
+          "text": "Affin"
+         },
+         {
+          "type": "image",
+          "class": "r-icon r5",
+          "src": "$pd.affIcon",
+          "visibleIf": "$pd.hasAff"
+         },
+         {
+          "type": "text",
+          "class": "r-l r6",
+          "text": "Cond"
+         },
+         {
+          "type": "text",
+          "class": "r-v r6 small",
+          "text": "{pd.cond}"
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-l",
+          "onClick": [
+           {
+            "navigate": "units"
+           }
+          ],
+          "children": [
+           {
+            "type": "image",
+            "class": "narrow narrow-l",
+            "src": "asset:ui/arrow-l.png"
+           },
+           {
+            "type": "text",
+            "class": "nb",
+            "text": "Units"
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "nmid",
+          "children": [
+           {
+            "type": "text",
+            "class": "ntitle",
+            "text": "Personal"
+           },
+           {
+            "type": "box",
+            "class": "pips",
+            "children": [
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip on",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-r",
+          "onClick": [
+           {
+            "navigate": "items"
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "nb",
+            "text": "Items"
+           },
+           {
+            "type": "image",
+            "class": "narrow narrow-r",
+            "src": "asset:ui/arrow-r.png"
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "name": "items",
+       "child": {
+        "type": "box",
+        "class": "page page-items",
+        "children": [
+         {
+          "type": "image",
+          "class": "leaves",
+          "src": "asset:ui/stone.png"
+         },
+         {
+          "type": "box",
+          "class": "pframe",
+          "children": [
+           {
+            "type": "box",
+            "class": "pbg-fill",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "pbg",
+            "children": [
+             {
+              "type": "box",
+              "class": "clip clip-a",
+              "children": [
+               {
+                "type": "image",
+                "class": "sheet sheet-a",
+                "src": "$u.sheet"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "clip clip-b",
+              "children": [
+               {
+                "type": "image",
+                "class": "sheet sheet-b",
+                "src": "$u.sheet"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "clip clip-c",
+              "children": [
+               {
+                "type": "image",
+                "class": "sheet sheet-c",
+                "src": "$u.sheet"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "clip clip-d",
+              "children": [
+               {
+                "type": "image",
+                "class": "sheet sheet-d",
+                "src": "$u.sheet"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "clip clip-e",
+              "children": [
+               {
+                "type": "image",
+                "class": "sheet sheet-e",
+                "src": "$u.sheet"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "clip clip-f",
+              "children": [
+               {
+                "type": "image",
+                "class": "sheet sheet-f",
+                "src": "$u.sheet"
+               }
+              ]
+             }
+            ],
+            "visibleIf": "$u.hasSheet"
+           },
+           {
+            "type": "text",
+            "class": "pname",
+            "text": "{u.name}"
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "lvbox",
+          "children": [
+           {
+            "type": "text",
+            "class": "lv-cls",
+            "text": "{u.cls}"
+           },
+           {
+            "type": "text",
+            "class": "lv-l lv-l1",
+            "text": "LV"
+           },
+           {
+            "type": "text",
+            "class": "lv-v lv-v1",
+            "text": "{u.lv}"
+           },
+           {
+            "type": "text",
+            "class": "lv-l lv-l2",
+            "text": "E"
+           },
+           {
+            "type": "text",
+            "class": "lv-v lv-v2",
+            "text": "{u.exp}"
+           },
+           {
+            "type": "text",
+            "class": "lv-l lv-l3",
+            "text": "HP"
+           },
+           {
+            "type": "text",
+            "class": "lv-v lv-v3",
+            "text": "{u.hp}"
+           }
+          ]
+         },
+         {
+          "type": "button",
+          "class": "ubtn ubtn-p",
+          "onClick": [
+           {
+            "set": {
+             "unit": "{prevUnit}",
+             "slot": -1
+            }
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "ubtn-t",
+            "text": "^"
+           }
+          ]
+         },
+         {
+          "type": "text",
+          "class": "upos",
+          "text": "{u.pos}"
+         },
+         {
+          "type": "button",
+          "class": "ubtn ubtn-n",
+          "onClick": [
+           {
+            "set": {
+             "unit": "{nextUnit}",
+             "slot": -1
+            }
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "ubtn-t",
+            "text": "v"
+           }
+          ]
+         },
+         {
+          "type": "button",
+          "class": "harrow harrow-l",
+          "onClick": [
+           {
+            "navigate": "personal"
+           }
+          ],
+          "children": [
+           {
+            "type": "image",
+            "class": "harrow-i",
+            "src": "asset:ui/arrow-l.png"
+           }
+          ]
+         },
+         {
+          "type": "text",
+          "class": "htitle",
+          "text": "Items"
+         },
+         {
+          "type": "button",
+          "class": "harrow harrow-r",
+          "onClick": [
+           {
+            "navigate": "weapons"
+           }
+          ],
+          "children": [
+           {
+            "type": "image",
+            "class": "harrow-i",
+            "src": "asset:ui/arrow-r.png"
+           }
+          ]
+         },
+         {
+          "type": "text",
+          "class": "hnum",
+          "text": "2/3"
+         },
+         {
+          "type": "box",
+          "class": "win win-right",
+          "children": []
+         },
+         {
+          "type": "list",
+          "class": "irows",
+          "items": "$it.rows",
+          "template": {
+           "type": "button",
+           "class": "irow",
+           "onClick": [
+            {
+             "set": {
+              "slot": "{slot}"
+             }
+            }
+           ],
+           "children": [
+            {
+             "type": "image",
+             "class": "i-icon",
+             "src": "$icon"
+            },
+            {
+             "type": "text",
+             "class": "i-name",
+             "text": "{name}"
+            },
+            {
+             "type": "text",
+             "class": "i-uses",
+             "text": "{uses}"
+            },
+            {
+             "type": "text",
+             "class": "i-eq",
+             "text": "E",
+             "visibleIf": "$eq"
+            }
+           ],
+           "classIf": {
+            "sel": "$sel"
+           }
+          }
+         },
+         {
+          "type": "text",
+          "class": "i-empty",
+          "text": "No items.",
+          "visibleIf": "$it.empty"
+         },
+         {
+          "type": "box",
+          "class": "eqbox",
+          "children": [
+           {
+            "type": "text",
+            "class": "eq-h",
+            "text": "Equipment"
+           },
+           {
+            "type": "text",
+            "class": "eq-l e1",
+            "text": "Rng"
+           },
+           {
+            "type": "text",
+            "class": "eq-v e1",
+            "text": "{it.rng}"
+           },
+           {
+            "type": "text",
+            "class": "eq-l e2",
+            "text": "Atk"
+           },
+           {
+            "type": "text",
+            "class": "eq-v e2",
+            "text": "{it.atk}"
+           },
+           {
+            "type": "text",
+            "class": "eq-l e3",
+            "text": "Crit"
+           },
+           {
+            "type": "text",
+            "class": "eq-v e3",
+            "text": "{it.crit}"
+           },
+           {
+            "type": "text",
+            "class": "eq-l e4",
+            "text": "Hit"
+           },
+           {
+            "type": "text",
+            "class": "eq-v e4",
+            "text": "{it.hit}"
+           },
+           {
+            "type": "text",
+            "class": "eq-l e5",
+            "text": "Avoid"
+           },
+           {
+            "type": "text",
+            "class": "eq-v e5",
+            "text": "{it.avoid}"
+           },
+           {
+            "type": "text",
+            "class": "eq-src",
+            "text": "{it.source}"
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "acts",
+          "children": [
+           {
+            "type": "text",
+            "class": "act-n",
+            "text": "{it.selName}"
+           },
+           {
+            "type": "button",
+            "class": "abtn",
+            "onClick": [
+             {
+              "call": "equip",
+              "args": [
+               "{u.k}",
+               "{it.selSlot}"
+              ]
+             }
+            ],
+            "children": [
+             {
+              "type": "text",
+              "class": "abtn-t",
+              "text": "Equip"
+             }
+            ],
+            "visibleIf": "$it.canEquip"
+           },
+           {
+            "type": "button",
+            "class": "abtn",
+            "onClick": [
+             {
+              "call": "use",
+              "args": [
+               "{u.k}",
+               "{it.selSlot}"
+              ]
+             }
+            ],
+            "children": [
+             {
+              "type": "text",
+              "class": "abtn-t",
+              "text": "Use"
+             }
+            ],
+            "visibleIf": "$it.canUse"
+           },
+           {
+            "type": "button",
+            "class": "abtn",
+            "onClick": [
+             {
+              "call": "store",
+              "args": [
+               "{u.k}",
+               "{it.selSlot}"
+              ]
+             }
+            ],
+            "children": [
+             {
+              "type": "text",
+              "class": "abtn-t",
+              "text": "Supply"
+             }
+            ],
+            "visibleIf": "$it.hasSel"
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "note",
+          "children": [
+           {
+            "type": "text",
+            "class": "note-t",
+            "text": "{note}"
+           }
+          ],
+          "visibleIf": "$hasNote"
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-l",
+          "onClick": [
+           {
+            "navigate": "personal"
+           }
+          ],
+          "children": [
+           {
+            "type": "image",
+            "class": "narrow narrow-l",
+            "src": "asset:ui/arrow-l.png"
+           },
+           {
+            "type": "text",
+            "class": "nb",
+            "text": "Personal"
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "nmid",
+          "children": [
+           {
+            "type": "text",
+            "class": "ntitle",
+            "text": "Items"
+           },
+           {
+            "type": "box",
+            "class": "pips",
+            "children": [
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip on",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-r",
+          "onClick": [
+           {
+            "navigate": "weapons"
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "nb",
+            "text": "Weapons"
+           },
+           {
+            "type": "image",
+            "class": "narrow narrow-r",
+            "src": "asset:ui/arrow-r.png"
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "name": "weapons",
+       "child": {
+        "type": "box",
+        "class": "page page-weapons",
+        "children": [
+         {
+          "type": "image",
+          "class": "leaves",
+          "src": "asset:ui/stone.png"
+         },
+         {
+          "type": "box",
+          "class": "pframe",
+          "children": [
+           {
+            "type": "box",
+            "class": "pbg-fill",
+            "children": []
+           },
+           {
+            "type": "box",
+            "class": "pbg",
+            "children": [
+             {
+              "type": "box",
+              "class": "clip clip-a",
+              "children": [
+               {
+                "type": "image",
+                "class": "sheet sheet-a",
+                "src": "$u.sheet"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "clip clip-b",
+              "children": [
+               {
+                "type": "image",
+                "class": "sheet sheet-b",
+                "src": "$u.sheet"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "clip clip-c",
+              "children": [
+               {
+                "type": "image",
+                "class": "sheet sheet-c",
+                "src": "$u.sheet"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "clip clip-d",
+              "children": [
+               {
+                "type": "image",
+                "class": "sheet sheet-d",
+                "src": "$u.sheet"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "clip clip-e",
+              "children": [
+               {
+                "type": "image",
+                "class": "sheet sheet-e",
+                "src": "$u.sheet"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "clip clip-f",
+              "children": [
+               {
+                "type": "image",
+                "class": "sheet sheet-f",
+                "src": "$u.sheet"
+               }
+              ]
+             }
+            ],
+            "visibleIf": "$u.hasSheet"
+           },
+           {
+            "type": "text",
+            "class": "pname",
+            "text": "{u.name}"
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "lvbox",
+          "children": [
+           {
+            "type": "text",
+            "class": "lv-cls",
+            "text": "{u.cls}"
+           },
+           {
+            "type": "text",
+            "class": "lv-l lv-l1",
+            "text": "LV"
+           },
+           {
+            "type": "text",
+            "class": "lv-v lv-v1",
+            "text": "{u.lv}"
+           },
+           {
+            "type": "text",
+            "class": "lv-l lv-l2",
+            "text": "E"
+           },
+           {
+            "type": "text",
+            "class": "lv-v lv-v2",
+            "text": "{u.exp}"
+           },
+           {
+            "type": "text",
+            "class": "lv-l lv-l3",
+            "text": "HP"
+           },
+           {
+            "type": "text",
+            "class": "lv-v lv-v3",
+            "text": "{u.hp}"
+           }
+          ]
+         },
+         {
+          "type": "button",
+          "class": "ubtn ubtn-p",
+          "onClick": [
+           {
+            "set": {
+             "unit": "{prevUnit}",
+             "slot": -1
+            }
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "ubtn-t",
+            "text": "^"
+           }
+          ]
+         },
+         {
+          "type": "text",
+          "class": "upos",
+          "text": "{u.pos}"
+         },
+         {
+          "type": "button",
+          "class": "ubtn ubtn-n",
+          "onClick": [
+           {
+            "set": {
+             "unit": "{nextUnit}",
+             "slot": -1
+            }
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "ubtn-t",
+            "text": "v"
+           }
+          ]
+         },
+         {
+          "type": "button",
+          "class": "harrow harrow-l",
+          "onClick": [
+           {
+            "navigate": "items"
+           }
+          ],
+          "children": [
+           {
+            "type": "image",
+            "class": "harrow-i",
+            "src": "asset:ui/arrow-l.png"
+           }
+          ]
+         },
+         {
+          "type": "text",
+          "class": "htitle long",
+          "text": "Weapon & support"
+         },
+         {
+          "type": "button",
+          "class": "harrow harrow-r",
+          "onClick": [
+           {
+            "navigate": "personal"
+           }
+          ],
+          "children": [
+           {
+            "type": "image",
+            "class": "harrow-i",
+            "src": "asset:ui/arrow-r.png"
+           }
+          ]
+         },
+         {
+          "type": "text",
+          "class": "hnum",
+          "text": "3/3"
+         },
+         {
+          "type": "box",
+          "class": "win win-right",
+          "children": []
+         },
+         {
+          "type": "list",
+          "class": "wgrid",
+          "items": "$wp.ranks",
+          "template": {
+           "type": "box",
+           "class": "wcell",
+           "children": [
+            {
+             "type": "image",
+             "class": "w-icon",
+             "src": "$icon"
+            },
+            {
+             "type": "box",
+             "class": "w-bar",
+             "children": [
+              {
+               "type": "box",
+               "class": "w-fill",
+               "children": [],
+               "bindStyle": {
+                "width": "{pct}"
+               }
+              }
+             ]
+            },
+            {
+             "type": "text",
+             "class": "w-l",
+             "text": "{letter}",
+             "classIf": {
+              "s": "$s"
+             }
+            }
+           ],
+           "classIf": {
+            "none": "$none"
+           }
+          }
+         },
+         {
+          "type": "box",
+          "class": "wline",
+          "children": []
+         },
+         {
+          "type": "list",
+          "class": "suplist",
+          "items": "$wp.sups",
+          "template": {
+           "type": "box",
+           "class": "sup",
+           "children": [
+            {
+             "type": "image",
+             "class": "sup-a",
+             "src": "$aff",
+             "visibleIf": "$hasAff"
+            },
+            {
+             "type": "text",
+             "class": "sup-n",
+             "text": "{name}"
+            },
+            {
+             "type": "box",
+             "class": "sup-bar",
+             "children": [
+              {
+               "type": "box",
+               "class": "sup-fill",
+               "children": [],
+               "bindStyle": {
+                "width": "{pct}"
+               }
+              }
+             ]
+            },
+            {
+             "type": "text",
+             "class": "sup-l",
+             "text": "{level}"
+            }
+           ],
+           "classIf": {
+            "got": "$got",
+            "unknown": "$unknown"
+           }
+          }
+         },
+         {
+          "type": "text",
+          "class": "sup-none",
+          "text": "No support partners.",
+          "visibleIf": "$wp.noSup"
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-l",
+          "onClick": [
+           {
+            "navigate": "items"
+           }
+          ],
+          "children": [
+           {
+            "type": "image",
+            "class": "narrow narrow-l",
+            "src": "asset:ui/arrow-l.png"
+           },
+           {
+            "type": "text",
+            "class": "nb",
+            "text": "Items"
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "nmid",
+          "children": [
+           {
+            "type": "text",
+            "class": "ntitle",
+            "text": "Weapons"
+           },
+           {
+            "type": "box",
+            "class": "pips",
+            "children": [
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip on",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-r",
+          "onClick": [
+           {
+            "navigate": "supply"
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "nb",
+            "text": "Supply"
+           },
+           {
+            "type": "image",
+            "class": "narrow narrow-r",
+            "src": "asset:ui/arrow-r.png"
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "name": "supply",
+       "child": {
+        "type": "box",
+        "class": "page page-supply",
+        "children": [
+         {
+          "type": "image",
+          "class": "leaves",
+          "src": "asset:ui/stone.png"
+         },
+         {
+          "type": "list",
+          "class": "tabs",
+          "items": "$sup.tabs",
+          "template": {
+           "type": "button",
+           "class": "tab",
+           "onClick": [
+            {
+             "set": {
+              "tab": "{i}",
+              "cpage": 1,
+              "cv": -1
+             }
+            }
+           ],
+           "children": [
+            {
+             "type": "image",
+             "class": "tab-i",
+             "src": "$icon",
+             "visibleIf": "$hasIcon"
+            },
+            {
+             "type": "text",
+             "class": "tab-t",
+             "text": "{label}",
+             "visibleIf": "$noIcon"
+            }
+           ],
+           "classIf": {
+            "sel": "$sel"
+           }
+          }
+         },
+         {
+          "type": "box",
+          "class": "plate plate-sup",
+          "children": [
+           {
+            "type": "text",
+            "class": "plate-t",
+            "text": "{sup.tabName}"
+           },
+           {
+            "type": "text",
+            "class": "plate-c",
+            "text": "{sup.count}"
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "win win-sup",
+          "children": []
+         },
+         {
+          "type": "list",
+          "class": "cgrid",
+          "items": "$sup.rows",
+          "template": {
+           "type": "button",
+           "class": "crow",
+           "onClick": [
+            {
+             "set": {
+              "cv": "{ci}"
+             }
+            }
+           ],
+           "children": [
+            {
+             "type": "image",
+             "class": "c-icon",
+             "src": "$icon"
+            },
+            {
+             "type": "text",
+             "class": "c-name",
+             "text": "{name}"
+            },
+            {
+             "type": "text",
+             "class": "c-uses",
+             "text": "{uses}"
+            }
+           ],
+           "classIf": {
+            "sel": "$sel"
+           }
+          }
+         },
+         {
+          "type": "text",
+          "class": "c-empty",
+          "text": "Nothing here.",
+          "visibleIf": "$sup.empty"
+         },
+         {
+          "type": "button",
+          "class": "pg pg-cl",
+          "onClick": [
+           {
+            "set": {
+             "cpage": "{sup.prev}"
+            }
+           }
+          ],
+          "children": [
+           {
+            "type": "image",
+            "class": "pg-i",
+            "src": "asset:ui/arrow-l.png"
+           }
+          ]
+         },
+         {
+          "type": "text",
+          "class": "pg-cn",
+          "text": "{sup.page}"
+         },
+         {
+          "type": "button",
+          "class": "pg pg-cr",
+          "onClick": [
+           {
+            "set": {
+             "cpage": "{sup.next}"
+            }
+           }
+          ],
+          "children": [
+           {
+            "type": "image",
+            "class": "pg-i",
+            "src": "asset:ui/arrow-r.png"
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "acts acts-sup",
+          "children": [
+           {
+            "type": "text",
+            "class": "act-n",
+            "text": "{sup.selName}"
+           },
+           {
+            "type": "button",
+            "class": "abtn wide",
+            "onClick": [
+             {
+              "call": "give",
+              "args": [
+               "{u.k}",
+               "{sup.selCi}"
+              ]
+             }
+            ],
+            "children": [
+             {
+              "type": "text",
+              "class": "abtn-t",
+              "text": "Give to {sup.unitName}"
+             }
+            ],
+            "visibleIf": "$sup.canGive"
+           },
+           {
+            "type": "text",
+            "class": "act-full",
+            "text": "{sup.unitName} is full",
+            "visibleIf": "$sup.unitFull"
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "note",
+          "children": [
+           {
+            "type": "text",
+            "class": "note-t",
+            "text": "{note}"
+           }
+          ],
+          "visibleIf": "$hasNote"
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-l",
+          "onClick": [
+           {
+            "navigate": "weapons"
+           }
+          ],
+          "children": [
+           {
+            "type": "image",
+            "class": "narrow narrow-l",
+            "src": "asset:ui/arrow-l.png"
+           },
+           {
+            "type": "text",
+            "class": "nb",
+            "text": "Weapons"
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "nmid",
+          "children": [
+           {
+            "type": "text",
+            "class": "ntitle",
+            "text": "Supply"
+           },
+           {
+            "type": "box",
+            "class": "pips",
+            "children": [
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip on",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-r",
+          "onClick": [
+           {
+            "navigate": "status"
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "nb",
+            "text": "Status"
+           },
+           {
+            "type": "image",
+            "class": "narrow narrow-r",
+            "src": "asset:ui/arrow-r.png"
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "name": "status",
+       "child": {
+        "type": "box",
+        "class": "page page-status",
+        "children": [
+         {
+          "type": "image",
+          "class": "leaves",
+          "src": "asset:ui/stone.png"
+         },
+         {
+          "type": "box",
+          "class": "plate plate-st",
+          "children": [
+           {
+            "type": "text",
+            "class": "st-title",
+            "text": "{st.title}"
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "st-left",
+          "children": []
+         },
+         {
+          "type": "box",
+          "class": "st-goal",
+          "children": [
+           {
+            "type": "text",
+            "class": "st-goal-h",
+            "text": "Objective"
+           },
+           {
+            "type": "text",
+            "class": "st-goal-t",
+            "text": "{st.goal}"
+           }
+          ]
+         },
+         {
+          "type": "text",
+          "class": "st-k st-k1",
+          "text": "Turn"
+         },
+         {
+          "type": "text",
+          "class": "st-v st-v1",
+          "text": "{st.turn}"
+         },
+         {
+          "type": "text",
+          "class": "st-k st-k2",
+          "text": "Funds"
+         },
+         {
+          "type": "text",
+          "class": "st-v st-v2",
+          "text": "{st.funds}G"
+         },
+         {
+          "type": "box",
+          "class": "st-side st-player",
+          "children": [
+           {
+            "type": "text",
+            "class": "st-side-h",
+            "text": "PLAYER"
+           },
+           {
+            "type": "text",
+            "class": "st-side-v",
+            "text": "{st.player}"
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "st-side st-enemy",
+          "children": [
+           {
+            "type": "text",
+            "class": "st-side-h",
+            "text": "ENEMY"
+           },
+           {
+            "type": "text",
+            "class": "st-side-v",
+            "text": "{st.enemy}"
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "st-lead",
+          "children": [
+           {
+            "type": "box",
+            "class": "st-mug",
+            "children": [
+             {
+              "type": "image",
+              "class": "st-mug-i",
+              "src": "$st.leadMini",
+              "visibleIf": "$st.hasLead"
+             }
+            ]
+           },
+           {
+            "type": "text",
+            "class": "st-lname",
+            "text": "{st.lead}"
+           },
+           {
+            "type": "text",
+            "class": "st-ll st-ll1",
+            "text": "LV"
+           },
+           {
+            "type": "text",
+            "class": "st-lv st-lv1",
+            "text": "{st.leadLv}"
+           },
+           {
+            "type": "text",
+            "class": "st-ll st-ll2",
+            "text": "HP"
+           },
+           {
+            "type": "text",
+            "class": "st-lv st-lv2",
+            "text": "{st.leadHp}"
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "st-time",
+          "children": [
+           {
+            "type": "text",
+            "class": "st-time-h",
+            "text": "PLAY TIME"
+           },
+           {
+            "type": "text",
+            "class": "st-time-v",
+            "text": "{st.time}"
+           }
+          ]
+         },
+         {
+          "type": "text",
+          "class": "st-mode",
+          "text": "{st.mode}  -  {st.army} units"
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-l",
+          "onClick": [
+           {
+            "navigate": "supply"
+           }
+          ],
+          "children": [
+           {
+            "type": "image",
+            "class": "narrow narrow-l",
+            "src": "asset:ui/arrow-l.png"
+           },
+           {
+            "type": "text",
+            "class": "nb",
+            "text": "Supply"
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "nmid",
+          "children": [
+           {
+            "type": "text",
+            "class": "ntitle",
+            "text": "Status"
+           },
+           {
+            "type": "box",
+            "class": "pips",
+            "children": [
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "pip on",
+              "children": []
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-r",
+          "onClick": [
+           {
+            "navigate": "units"
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "nb",
+            "text": "Units"
+           },
+           {
+            "type": "image",
+            "class": "narrow narrow-r",
+            "src": "asset:ui/arrow-r.png"
+           }
+          ]
+         }
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "type": "button",
+     "class": "toast",
+     "onClick": [
+      {
+       "set": {
+        "toastHide": "{toast.id}",
+        "unit": "{toast.k}",
+        "slot": -1
+       }
+      },
+      {
+       "navigate": "personal"
+      }
+     ],
+     "children": [
+      {
+       "type": "box",
+       "class": "toast-mug",
+       "children": [
+        {
+         "type": "image",
+         "class": "toast-mug-i",
+         "src": "$toast.mini",
+         "visibleIf": "$toast.hasMini"
+        }
+       ]
+      },
+      {
+       "type": "text",
+       "class": "toast-title",
+       "text": "{toast.title}"
+      },
+      {
+       "type": "text",
+       "class": "toast-name",
+       "text": "{toast.name}"
+      },
+      {
+       "type": "text",
+       "class": "toast-sub",
+       "text": "{toast.sub}"
+      }
+     ],
+     "visibleIf": "$toastOn"
+    }
+   ],
+   "visibleIf": "$ready"
+  }
+ ],
+ "id": "screen"
+}

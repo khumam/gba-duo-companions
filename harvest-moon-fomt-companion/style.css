@@ -1,279 +1,99 @@
-/*
- * Design: The Mineral Town Almanac. A storybook farm whose backdrop follows the
- * in-game season (spring blossoms, summer sunflowers, fall woods, winter
- * pines), warmed at dusk and starlit at night. Cards are stitched linen paper
- * with a seasonal sprig on the corners; tabs are hanging wooden signs and
- * sections sit between fence posts. Follows the enchanted-forest pack system
- * (skill/enchanted-forest-pack-design) with a storybook palette.
- *
- * Fonts: Sniglet (titles, numbers), Mali (reading text). Art: art/build.mjs.
- * Engine: background-size px/cover only, art images need image-rendering: auto.
- */
+@font-face { font-family: "Jersey"; src: url("assets/fonts/Jersey10-Regular.ttf"); }
+:root { --paper:#fff773; --paper2:#ffef73; --hi:#ffffb5; --edge:#d6c65a; --edge2:#e7d663; --ink:#000000; --pink:#de007b; --alert:#d82020; --orange:#f08a1c; }
+:root { background: #fff773; color: #000000; font-family: "Jersey"; }
+.screen { width: 100%; height: 100%; font-family: "Jersey"; background: #fff773; }
+.main { width: 100%; height: 100%; flex-direction: column; }
+.stage { flex: 1; }
+.page { padding: 10px; gap: 10px; }
+.win { background: #fff773; border: 3px solid #d6c65a; border-radius: 4px; padding: 10px; gap: 6px; box-shadow: 0 2px 0 #e7d663; }
+.win.tap:pressed, .btn:pressed, .win.crow:pressed { background: #ffffb5; }
+.bar { background: #ffef73; border: 3px solid #d6c65a; border-radius: 4px; padding: 6px 10px; align-items: center; }
+.bar-title { font-size: 26px; color: #000000; }
+.waiting { margin: 40px 20px; align-items: center; }
+.w-title { font-size: 40px; } .w-sub { font-size: 24px; } .w-hint { font-size: 20px; color: #8a7a20; }
+.gold-row { flex-direction: row; gap: 10px; align-items: center; }
+.coin { width: 32px; height: 32px; image-rendering: pixelated; }
+.gold { font-size: 38px; }
+.dim { font-size: 20px; color: #8a7a20; } .pad { padding: 10px; }
+.val { font-size: 26px; }
+.alert { font-size: 22px; color: #d82020; }
+.chick { width: 32px; height: 32px; image-rendering: pixelated; }
+.coop-sum { gap: 10px; align-items: center; }
+.gold-btns, .pop-btns { gap: 8px; }
+.btn { background: #ffef73; border: 3px solid #d6c65a; border-radius: 4px; padding: 6px 12px; align-items: center; }
+.btn text { font-size: 22px; }
+.clist { gap: 8px; }
+.crow-top { gap: 10px; align-items: center; }
+.cname { font-size: 28px; flex: 1; }
+.chealth { font-size: 24px; } .chealth.sick { color: #d82020; }
+.win.crow.sick { border-color: #d82020; }
+.hrow { flex-direction: row; gap: 2px; margin-left: 46px; }
+.heart { width: 16px; height: 16px; image-rendering: pixelated; }
+.hrow.big { margin-left: 0; } .hrow.big .heart { width: 24px; height: 24px; }
+.sheet { position: absolute; left: 0; top: 0; right: 0; bottom: 0; background: rgba(0,0,0,.35); align-items: center; justify-content: center; }
+.pop { width: 440px; }
+.pop-name { font-size: 34px; }
+.nav { height: 70px; gap: 6px; padding: 6px; background: #ffef73; border-top: 3px solid #d6c65a; }
+.nav-btn { flex: 1; align-items: center; justify-content: center; gap: 2px; background: #fff773; border: 3px solid #d6c65a; border-radius: 4px; }
+.nav-btn.on { background: #ffffb5; border-color: #f08a1c; }
+.nav-text { font-size: 20px; } .nav-i { width: 20px; height: 20px; image-rendering: pixelated; }
 
-:root {
-  --paper:     #FFFCF3;
-  --paper-low: #FBF0D8;
-  --thread:    rgba(184, 132, 74, 0.55);
-  --ink:       #5A4030;
-  --ink-soft:  #9A7E62;
-  --wood:      #8E5E34;
-  --leaf:      #5EAA48;
-  --gold:      #E2A11E;
-  --sky:       #4A9AE0;
-  --rose:      #E8506F;
-}
+.scroll { overflow: auto; flex: 1; gap: 10px; padding-bottom: 6px; }
+.sec { font-size: 24px; color: #8a7a20; } .sec.pad { padding: 2px 10px; }
+.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.slot { align-items: center; gap: 2px; padding: 6px 2px; background: #cdeeaa; border: 2px solid #a8cc84; border-radius: 3px; }
+.slot.empty { opacity: .55; }
+.slot:pressed { background: #ffffb5; }
+.slot-icon { width: 48px; height: 48px; image-rendering: pixelated; }
+.slot-name { font-size: 15px; text-align: center; height: 34px; }
+.sum { gap: 10px; align-items: center; }
+.slist { gap: 6px; }
+.srow { flex-direction: row; align-items: center; padding: 6px 10px; }
+.sname-col { flex: 1; }
+.sname { font-size: 24px; } .sgroup { font-size: 15px; color: #8a7a20; }
+.scount { font-size: 28px; }
+.btn-t { font-size: 22px; }
 
-@font-face { font-family: "Sniglet"; src: url("assets/fonts/Sniglet-Regular.ttf"); }
-@font-face { font-family: "SnigletBold"; src: url("assets/fonts/Sniglet-ExtraBold.ttf"); }
-@font-face { font-family: "Mali"; src: url("assets/fonts/Mali-Medium.ttf"); }
-@font-face { font-family: "MaliBold"; src: url("assets/fonts/Mali-Bold.ttf"); }
+.bar { flex-direction: row; justify-content: space-between; align-items: center; }
+.bar-right { font-size: 20px; color: #5a4a00; } .bar-title { flex: 1; text-align: center; }
+.topline { gap: 8px; align-items: stretch; }
+.gold-win { flex: 1; }
+.gold-col { gap: 6px; justify-content: center; }
+.family { gap: 8px; }
+.fam { flex-direction: row; gap: 10px; align-items: center; padding: 4px 0; }
+.fam-icon { width: 32px; height: 32px; image-rendering: pixelated; }
+.fam-main { flex: 1; gap: 3px; }
+.fam-top { gap: 8px; align-items: center; }
+.fam-name { font-size: 26px; } .fam-role { font-size: 17px; color: #8a7a20; }
+.crown { width: 20px; height: 16px; image-rendering: pixelated; }
+.berry { width: 16px; height: 16px; image-rendering: pixelated; margin-right: 3px; }
+.hrow { margin-left: 0; }
+.crow .hrow { margin-left: 42px; }
+.tiles { gap: 8px; }
+.tile { flex: 1; align-items: center; gap: 2px; padding: 8px; }
+.tile-icon { width: 32px; height: 32px; image-rendering: pixelated; }
+.tile-big { font-size: 28px; } .tile-sm { font-size: 16px; color: #8a7a20; }
+.alert-tile { border-color: #d82020; } .alert-tile .tile-big { color: #d82020; }
+.pills { gap: 6px; padding: 0 10px 6px 10px; }
+.pill { flex: 1; align-items: center; padding: 5px 4px; background: #fff773; border: 3px solid #d6c65a; border-radius: 4px; }
+.pill.on { background: #ffffb5; border-color: #f08a1c; }
+.pill:pressed { background: #ffffb5; }
+.pill-t { font-size: 22px; }
+.tabbody { gap: 8px; padding: 0 10px; }
+.bars { gap: 6px; align-items: center; margin-left: 46px; }
+.bar-l { font-size: 16px; width: 44px; }
+.meter { flex: 1; height: 10px; background: #e7d663; border: 2px solid #d6c65a; border-radius: 2px; }
+.map-win { padding: 6px; align-items: center; }
+.map-view { position: relative; width: 498px; height: 216px; }
+.map-img { width: 498px; height: 216px; image-rendering: pixelated; }
+.mk { position: absolute; width: 32px; height: 32px; margin-left: -16px; margin-top: -16px; image-rendering: pixelated; }
+.farm-view { position: relative; width: 498px; height: 342px; }
+.farm-img { width: 498px; height: 342px; image-rendering: pixelated; }
+.where { gap: 10px; align-items: center; }
+.legend { gap: 14px; padding: 0 4px; justify-content: center; }
+.leg { gap: 6px; align-items: center; } .leg-i { width: 20px; height: 20px; image-rendering: pixelated; } .leg-t { font-size: 18px; }
 
-#screen {
-  position: relative;
-  background-color: #BDE3F7;
-  background-image: url("assets/img/season-spring.png");
-  background-size: cover;
-  color: var(--ink);
-  font-family: "Mali", sans-serif;
-  padding: 10px 12px 0 12px;
-}
-
-#screen.summer { background-image: url("assets/img/season-summer.png"); }
-#screen.fall   { background-image: url("assets/img/season-fall.png"); }
-#screen.winter { background-image: url("assets/img/season-winter.png"); }
-
-/* time of day, over the season and under everything else */
-.dusk-veil, .night-veil {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
-.dusk-veil { background: linear-gradient(180deg, rgba(255, 128, 64, 0.38), rgba(255, 180, 120, 0.12)); }
-
-.night-veil {
-  background-image: url("assets/img/night-veil.png");
-  background-size: cover;
-}
-
-/* ---- waiting: the town sign ---------------------------------------------------- */
-
-.waiting { align-items: center; justify-content: center; height: 100%; gap: 6px; }
-
-.welcome { display: stack; place-items: start center; width: 260px; height: 236px; }
-.welcome-img { width: 260px; height: 236px; image-rendering: auto; }
-.welcome-words { align-items: center; margin-top: 50px; gap: 0; transform: rotate(-3deg); }
-.welcome-small { font-family: "Mali", sans-serif; font-size: 13px; color: #6A4422; }
-.welcome-big { font-family: "SnigletBold", sans-serif; font-size: 26px; color: #5A3418; }
-
-.waiting-sub {
-  font-family: "MaliBold", sans-serif;
-  font-size: 14px;
-  color: var(--ink);
-  background-color: rgba(255, 252, 243, 0.85);
-  border-radius: 999px;
-  padding: 4px 14px;
-}
-
-/* ---- tabs: hanging wooden signs (84x34, px only) ---------------------------------- */
-
-tab-bar { gap: 0; justify-content: space-between; margin-bottom: 2px; }
-
-tab {
-  width: 84px;
-  height: 34px;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-family: "SnigletBold", sans-serif;
-  font-size: 13px;
-  color: #FFF4E0;
-  text-shadow: 0 1px 1px rgba(60, 30, 10, 0.7);
-  background-image: url("assets/img/sign.png");
-  background-size: 84px 34px;
-  padding: 7px 0 0 0;
-  transition: color 200ms ease-out, transform 150ms ease-out;
-}
-
-tab:active {
-  color: #6A3E14;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
-  background-image: url("assets/img/sign-active.png");
-}
-
-tab:pressed { transform: rotate(-3deg); }
-
-tab-content { padding-top: 0; }
-
-.tab-page { gap: 10px; overflow: auto; padding: 14px 2px 24px 2px; }
-
-/* ---- paper cards -------------------------------------------------------------------- */
-
-.paper {
-  position: relative;
-  background: linear-gradient(170deg, var(--paper), var(--paper-low));
-  border: 2px dashed var(--thread);
-  border-radius: 16px;
-  padding: 10px 12px;
-  box-shadow: 0 4px 12px rgba(70, 50, 30, 0.22);
-  gap: 4px;
-}
-
-.paper.hero {
-  border: 2px dashed rgba(150, 100, 50, 0.6);
-  border-radius: 22px 8px 22px 8px;
-  padding: 14px 16px 12px 16px;
-  gap: 10px;
-}
-
-.corner { position: absolute; width: 56px; height: 40px; image-rendering: auto; }
-.corner-l { top: -16px; left: -12px; }
-.corner-r { top: -16px; right: -12px; }
-
-.col { gap: 0; }
-.grow { flex: 1; }
-.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
-
-.icon { width: 26px; height: 26px; image-rendering: auto; }
-.icon-lg { width: 32px; height: 32px; image-rendering: auto; }
-
-.kicker { font-family: "SnigletBold", sans-serif; font-size: 9px; letter-spacing: 1px; color: var(--ink-soft); }
-.fine { font-size: 11px; color: var(--ink-soft); }
-
-.num { font-family: "SnigletBold", sans-serif; font-size: 20px; line-height: 22px; color: var(--ink); }
-.num.small { font-size: 18px; }
-.num.gold { color: var(--gold); }
-
-.fence-title { flex-direction: row; align-items: center; justify-content: center; gap: 4px; margin-top: 2px; }
-.fence { width: 80px; height: 16px; image-rendering: auto; }
-.fence-text {
-  font-family: "SnigletBold", sans-serif;
-  font-size: 14px;
-  color: #FFFFFF;
-  text-shadow: 0 1px 3px rgba(60, 40, 20, 0.85);
-}
-
-.gauge {
-  height: 9px;
-  border-radius: 999px;
-  background-color: rgba(120, 90, 60, 0.15);
-  border: 1px solid rgba(150, 110, 70, 0.35);
-}
-.gauge > fill { border-radius: 999px; transition: width 400ms ease-out; }
-.stamina-gauge > fill { background: linear-gradient(90deg, #5EAA48, #A6DC78); }
-.fatigue-gauge > fill { background: linear-gradient(90deg, #6EB0E0, #3A7AB0); }
-.friend-gauge > fill  { background: linear-gradient(90deg, #F2A23A, #F7C86A); }
-.xp-gauge { width: 100%; height: 6px; }
-.xp-gauge > fill      { background: linear-gradient(90deg, #6EB0E0, #A8D8F8); }
-
-.meter-head { flex-direction: row; justify-content: space-between; align-items: center; gap: 6px; }
-.meter-num { font-family: "MaliBold", sans-serif; font-size: 11px; color: var(--ink-soft); }
-
-/* ---- Farm ---------------------------------------------------------------------------- */
-
-.date-row { flex-direction: row; justify-content: space-between; align-items: center; }
-
-.date-big { font-family: "SnigletBold", sans-serif; font-size: 30px; line-height: 32px; color: #3F7A28; }
-.fall .date-big   { color: #B8562A; }
-.winter .date-big { color: #3A6AA8; }
-.summer .date-big { color: #2E8A3A; }
-
-.clock-chip {
-  flex-direction: row;
-  align-items: center;
-  gap: 4px;
-  background-color: #FFFFFF;
-  border: 2px solid #E8D2A8;
-  border-radius: 999px;
-  padding: 3px 10px 3px 4px;
-}
-.clock-text { font-family: "SnigletBold", sans-serif; font-size: 18px; color: var(--ink); }
-
-.weather-row {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
-  padding-top: 8px;
-  border-top: 2px dotted rgba(150, 110, 70, 0.35);
-}
-.weather { flex-direction: row; align-items: center; gap: 6px; }
-.weather-img { width: 34px; height: 34px; image-rendering: auto; }
-.weather-name { font-family: "MaliBold", sans-serif; font-size: 14px; color: var(--ink); }
-
-.stat { flex-direction: row; align-items: center; gap: 8px; }
-.hand-name { font-family: "MaliBold", sans-serif; font-size: 13px; line-height: 15px; color: var(--ink); }
-
-.energy { gap: 8px; }
-.meter { flex-direction: row; align-items: center; gap: 8px; }
-
-/* ---- Bag ----------------------------------------------------------------------------- */
-
-.hand { flex-direction: row; align-items: center; gap: 12px; }
-.hand-icon { width: 48px; height: 48px; image-rendering: auto; }
-.hand-big { font-family: "SnigletBold", sans-serif; font-size: 20px; line-height: 22px; color: var(--ink); }
-
-.tag {
-  flex-direction: row;
-  align-items: center;
-  gap: 6px;
-  background-color: rgba(255, 252, 243, 0.94);
-  border: 2px solid #E8D2A8;
-  border-radius: 12px 4px 12px 4px;
-  padding: 5px 8px;
-  box-shadow: 0 2px 6px rgba(70, 50, 30, 0.18);
-}
-
-.tag.held { background-color: #FFF2C8; border-color: var(--gold); }
-
-.tag-text { font-family: "MaliBold", sans-serif; font-size: 12px; line-height: 14px; color: var(--ink); flex: 1; }
-
-/* ---- Love ---------------------------------------------------------------------------- */
-
-.love-list { gap: 8px; }
-
-.love { flex-direction: row; align-items: center; gap: 10px; }
-.love-heart { width: 34px; height: 31px; image-rendering: auto; }
-.love-name { font-family: "SnigletBold", sans-serif; font-size: 16px; color: var(--ink); }
-
-.heart-chip {
-  font-family: "SnigletBold", sans-serif;
-  font-size: 10px;
-  color: #FFFFFF;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
-  border-radius: 999px;
-  padding: 1px 8px;
-}
-
-.friend { padding: 8px 10px; gap: 4px; border-radius: 12px; }
-.friend-name { font-family: "MaliBold", sans-serif; font-size: 13px; color: var(--ink); }
-
-/* ---- Sprites ------------------------------------------------------------------------- */
-
-.sprite { gap: 6px; }
-.sprite-head { flex-direction: row; align-items: center; gap: 10px; }
-.sprite-hat { width: 44px; height: 44px; image-rendering: auto; }
-
-.job-chip {
-  font-family: "MaliBold", sans-serif;
-  font-size: 10px;
-  color: var(--ink-soft);
-  background-color: #F2E8D4;
-  border-radius: 999px;
-  padding: 1px 8px;
-}
-
-.job-chip.working { color: #FFFFFF; background-color: var(--leaf); }
-
-.xp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
-
-.xp {
-  align-items: center;
-  gap: 1px;
-  background-color: rgba(255, 255, 255, 0.7);
-  border-radius: 10px;
-  padding: 5px 6px;
-}
-
-.xp-num { font-family: "SnigletBold", sans-serif; font-size: 16px; color: var(--ink); }
+.win { flex-shrink: 0; } .topline, .tiles, .family, .pills { flex-shrink: 0; }
+.scroll .topline, .scroll .win, .scroll .tiles { margin: 0 10px; }
+.page .scroll { padding-top: 0; }
+.bar { flex-shrink: 0; } .scroll { min-height: 0; }

@@ -142,6 +142,9 @@ end
 
 -- ---- helpers -------------------------------------------------------------------------
 
+-- names of things not found / not beaten yet are hidden (spoilers), at one fixed length
+local HIDDEN = "?????????"
+
 local function bossRows()
   local rows, down = {}, 0
   for i, b in ipairs(BOSSES) do
@@ -150,7 +153,7 @@ local function bossRows()
     local bits = mem.u8(word) | mem.u8(word + 1) << 8 | mem.u8(word + 2) << 16 | mem.u8(word + 3) << 24
     local done = bits & (1 << (event % 32)) ~= 0
     if done then down = down + 1 end
-    rows[i] = { name = b[1], done = done, alive = not done }
+    rows[i] = { name = done and b[1] or HIDDEN, done = done, alive = not done }
   end
   return rows, down
 end
@@ -173,14 +176,16 @@ local function switchRows(rows)
       on = has
     end
     if on then active = active + 1 end
-    out[#out + 1] = { id = id, name = name, on = on, off = has and not on, locked = not has }
+    out[#out + 1] = { id = id, name = has and name or HIDDEN, on = on, off = has and not on, locked = not has }
   end
   return out, active
 end
 
 local function itemRow(name, got, max, icon, kind)
   got = math.min(got, max)
-  return { name = name, got = got, max = max, pct = got / max, icon = icon, [kind] = true }
+  -- a tank kind not found yet stays unnamed (E-Tanks are no secret)
+  local shown = (got > 0 or kind == "tank") and name or HIDDEN
+  return { name = shown, got = got, max = max, pct = got / max, icon = icon, [kind] = true }
 end
 
 -- ---- update ----------------------------------------------------------------------------

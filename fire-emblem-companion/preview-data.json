@@ -1,0 +1,608 @@
+{
+ "army": {
+  "count": "37 units",
+  "next": 2,
+  "page": "1/4",
+  "prev": 4,
+  "rows": [
+   {
+    "hasMini": true,
+    "hp": "60/60",
+    "k": 1,
+    "lv": "LV 20",
+    "mini": "asset:_preview/9f2ef32d40c9.png",
+    "name": "Hector",
+    "off": false,
+    "sel": true
+   },
+   {
+    "hasMini": true,
+    "hp": "60/60",
+    "k": 2,
+    "lv": "LV 20",
+    "mini": "asset:_preview/faf9938f1a6a.png",
+    "name": "Lyn",
+    "off": false,
+    "sel": false
+   },
+   {
+    "hasMini": true,
+    "hp": "60/60",
+    "k": 3,
+    "lv": "LV 20",
+    "mini": "asset:_preview/507abf0eadc1.png",
+    "name": "Eliwood",
+    "off": false,
+    "sel": false
+   },
+   {
+    "hasMini": true,
+    "hp": "60/60",
+    "k": 4,
+    "lv": "LV 20",
+    "mini": "asset:_preview/aa70360cee06.png",
+    "name": "Wil",
+    "off": false,
+    "sel": false
+   },
+   {
+    "hasMini": true,
+    "hp": "60/60",
+    "k": 5,
+    "lv": "LV 20",
+    "mini": "asset:_preview/895b2b798ca0.png",
+    "name": "Wallace",
+    "off": false,
+    "sel": false
+   },
+   {
+    "hasMini": true,
+    "hp": "77/60",
+    "k": 6,
+    "lv": "LV 20",
+    "mini": "asset:_preview/b36b54ee1426.png",
+    "name": "Oswin",
+    "off": false,
+    "sel": false
+   },
+   {
+    "hasMini": true,
+    "hp": "50/50",
+    "k": 7,
+    "lv": "LV 4",
+    "mini": "asset:_preview/83a3cb1a7c77.png",
+    "name": "Hawkeye",
+    "off": false,
+    "sel": false
+   },
+   {
+    "hasMini": true,
+    "hp": "19/19",
+    "k": 8,
+    "lv": "LV 5",
+    "mini": "asset:_preview/1e8ed8072c05.png",
+    "name": "Nino",
+    "off": false,
+    "sel": false
+   },
+   {
+    "hasMini": true,
+    "hp": "60/60",
+    "k": 9,
+    "lv": "LV 20",
+    "mini": "asset:_preview/5d0c2edc5b1b.png",
+    "name": "Heath",
+    "off": false,
+    "sel": false
+   },
+   {
+    "hasMini": true,
+    "hp": "60/60",
+    "k": 10,
+    "lv": "LV 20",
+    "mini": "asset:_preview/4f6136fc6d51.png",
+    "name": "Bartre",
+    "off": false,
+    "sel": false
+   },
+   {
+    "hasMini": true,
+    "hp": "30/30",
+    "k": 11,
+    "lv": "LV 18",
+    "mini": "asset:_preview/f25065d1ca90.png",
+    "name": "Legault",
+    "off": true,
+    "sel": false
+   },
+   {
+    "hasMini": true,
+    "hp": "60/60",
+    "k": 12,
+    "lv": "LV 20",
+    "mini": "asset:_preview/b397bc0471fb.png",
+    "name": "Dart",
+    "off": true,
+    "sel": false
+   }
+  ]
+ },
+ "hasNote": false,
+ "it": {
+  "atk": "39",
+  "avoid": "89",
+  "canEquip": false,
+  "canUse": false,
+  "crit": "27",
+  "empty": false,
+  "full": false,
+  "hasSel": true,
+  "hit": "154",
+  "rng": "1",
+  "rows": [
+   {
+    "canEquip": false,
+    "canUse": false,
+    "eq": true,
+    "icon": "asset:_preview/e2a1f5827193.png",
+    "name": "Iron axe",
+    "sel": true,
+    "slot": 0,
+    "uses": "45/45"
+   },
+   {
+    "canEquip": true,
+    "canUse": false,
+    "eq": false,
+    "icon": "asset:_preview/e2a1f5827193.png",
+    "name": "Iron axe",
+    "sel": false,
+    "slot": 1,
+    "uses": "45/45"
+   },
+   {
+    "canEquip": true,
+    "canUse": false,
+    "eq": false,
+    "icon": "asset:_preview/e2a1f5827193.png",
+    "name": "Iron axe",
+    "sel": false,
+    "slot": 2,
+    "uses": "45/45"
+   },
+   {
+    "canEquip": false,
+    "canUse": false,
+    "eq": false,
+    "icon": "asset:_preview/700016e24df6.png",
+    "name": "Elixir",
+    "sel": false,
+    "slot": 3,
+    "uses": "3/3"
+   }
+  ],
+  "selName": "Iron axe",
+  "selSlot": 0,
+  "source": "As the game shows"
+ },
+ "nextUnit": 2,
+ "note": "",
+ "pd": {
+  "affIcon": "asset:_preview/11e01a55c51d.png",
+  "affin": "Thunder",
+  "aid": "14",
+  "con": "15",
+  "cond": "---",
+  "hasAff": true,
+  "move": "5",
+  "moveBonus": "+2",
+  "rows": [
+   {
+    "label": "Str",
+    "max": true,
+    "pct": "100%",
+    "value": "30"
+   },
+   {
+    "label": "Skill",
+    "max": true,
+    "pct": "100%",
+    "value": "24"
+   },
+   {
+    "label": "Spd",
+    "max": true,
+    "pct": "100%",
+    "value": "24"
+   },
+   {
+    "label": "Luck",
+    "max": true,
+    "pct": "100%",
+    "value": "30"
+   },
+   {
+    "label": "Def",
+    "max": true,
+    "pct": "100%",
+    "value": "29"
+   },
+   {
+    "label": "Res",
+    "max": true,
+    "pct": "100%",
+    "value": "20"
+   }
+  ],
+  "trv": "---"
+ },
+ "prevUnit": 37,
+ "ready": true,
+ "st": {
+  "army": "37",
+  "enemy": "0",
+  "funds": "126943",
+  "goal": "Get supplies\nwithin 5 turns",
+  "hasLead": true,
+  "lead": "Hector",
+  "leadHp": "60/60",
+  "leadLv": "20",
+  "leadMini": "asset:_preview/9f2ef32d40c9.png",
+  "mode": "Hector's tale",
+  "player": "10",
+  "time": "5:51:30",
+  "title": "Ch. 31x: Battle Preparations",
+  "turn": "1"
+ },
+ "sup": {
+  "canGive": true,
+  "count": "81/100",
+  "empty": false,
+  "next": 2,
+  "page": "1/7",
+  "prev": 1,
+  "rows": [
+   {
+    "ci": 0,
+    "icon": "asset:_preview/e2a1f5827193.png",
+    "name": "Iron axe",
+    "sel": false,
+    "uses": "45/45"
+   },
+   {
+    "ci": 1,
+    "icon": "asset:_preview/2312a3f10415.png",
+    "name": "Killer axe",
+    "sel": false,
+    "uses": "20/20"
+   },
+   {
+    "ci": 2,
+    "icon": "asset:_preview/93379a6e5075.png",
+    "name": "Halberd",
+    "sel": false,
+    "uses": "18/18"
+   },
+   {
+    "ci": 3,
+    "icon": "asset:_preview/8b636bb7e0cf.png",
+    "name": "Hand axe",
+    "sel": true,
+    "uses": "20/20"
+   },
+   {
+    "ci": 4,
+    "icon": "asset:_preview/8b636bb7e0cf.png",
+    "name": "Hand axe",
+    "sel": false,
+    "uses": "20/20"
+   },
+   {
+    "ci": 5,
+    "icon": "asset:_preview/7fe6a4490b74.png",
+    "name": "Tomahawk",
+    "sel": false,
+    "uses": "15/15"
+   },
+   {
+    "ci": 6,
+    "icon": "asset:_preview/096fa5fa7de7.png",
+    "name": "Swordreaver",
+    "sel": false,
+    "uses": "15/15"
+   },
+   {
+    "ci": 7,
+    "icon": "asset:_preview/a6f7d8a32896.png",
+    "name": "Swordslayer",
+    "sel": false,
+    "uses": "20/20"
+   },
+   {
+    "ci": 8,
+    "icon": "asset:_preview/f6c6bbae8bad.png",
+    "name": "Dragon axe",
+    "sel": false,
+    "uses": "40/40"
+   },
+   {
+    "ci": 9,
+    "icon": "asset:_preview/ddfa93d1a5a8.png",
+    "name": "Wolf Beil",
+    "sel": false,
+    "uses": "30/30"
+   },
+   {
+    "ci": 10,
+    "icon": "asset:_preview/78b538ba15f5.png",
+    "name": "Steel lance",
+    "sel": false,
+    "uses": "30/30"
+   },
+   {
+    "ci": 11,
+    "icon": "asset:_preview/0dd77b71e038.png",
+    "name": "Silver lance",
+    "sel": false,
+    "uses": "20/20"
+   }
+  ],
+  "selCi": 3,
+  "selName": "Hand axe",
+  "tabName": "All",
+  "tabs": [
+   {
+    "hasIcon": false,
+    "i": 1,
+    "icon": "",
+    "label": "All",
+    "noIcon": true,
+    "sel": true
+   },
+   {
+    "hasIcon": true,
+    "i": 2,
+    "icon": "asset:_preview/86fa61de4e88.png",
+    "label": "Sword",
+    "noIcon": false,
+    "sel": false
+   },
+   {
+    "hasIcon": true,
+    "i": 3,
+    "icon": "asset:_preview/f3660b194108.png",
+    "label": "Lance",
+    "noIcon": false,
+    "sel": false
+   },
+   {
+    "hasIcon": true,
+    "i": 4,
+    "icon": "asset:_preview/f57ae1850eac.png",
+    "label": "Axe",
+    "noIcon": false,
+    "sel": false
+   },
+   {
+    "hasIcon": true,
+    "i": 5,
+    "icon": "asset:_preview/b77236ec6f67.png",
+    "label": "Bow",
+    "noIcon": false,
+    "sel": false
+   },
+   {
+    "hasIcon": true,
+    "i": 6,
+    "icon": "asset:_preview/7b0527cfa0f9.png",
+    "label": "Staff",
+    "noIcon": false,
+    "sel": false
+   },
+   {
+    "hasIcon": true,
+    "i": 7,
+    "icon": "asset:_preview/d39820d18942.png",
+    "label": "Anima",
+    "noIcon": false,
+    "sel": false
+   },
+   {
+    "hasIcon": true,
+    "i": 8,
+    "icon": "asset:_preview/a79b31fa8449.png",
+    "label": "Light",
+    "noIcon": false,
+    "sel": false
+   },
+   {
+    "hasIcon": true,
+    "i": 9,
+    "icon": "asset:_preview/1a8612d07faa.png",
+    "label": "Dark",
+    "noIcon": false,
+    "sel": false
+   },
+   {
+    "hasIcon": false,
+    "i": 10,
+    "icon": "",
+    "label": "Item",
+    "noIcon": true,
+    "sel": false
+   }
+  ],
+  "unitFull": false,
+  "unitName": "Hector"
+ },
+ "toast": {
+  "hasMini": false,
+  "id": 0,
+  "k": 1,
+  "mini": "",
+  "name": "",
+  "sub": "",
+  "title": ""
+ },
+ "toastOn": false,
+ "u": {
+  "cls": "Great Lord",
+  "exp": "--",
+  "hasSheet": true,
+  "hp": "60/60",
+  "k": 1,
+  "lv": "20",
+  "name": "Hector",
+  "pos": "1 / 37",
+  "sheet": "asset:_preview/d174f11e2746.png"
+ },
+ "ui": {
+  "set": {
+   "cv": 3,
+   "slot": 0,
+   "unit": 1
+  }
+ },
+ "waiting": false,
+ "wp": {
+  "noSup": false,
+  "ranks": [
+   {
+    "has": true,
+    "icon": "asset:_preview/86fa61de4e88.png",
+    "letter": "A",
+    "none": false,
+    "pct": "5%",
+    "s": false
+   },
+   {
+    "has": true,
+    "icon": "asset:_preview/f57ae1850eac.png",
+    "letter": "S",
+    "none": false,
+    "pct": "100%",
+    "s": true
+   },
+   {
+    "has": false,
+    "icon": "asset:_preview/f3660b194108.png",
+    "letter": "-",
+    "none": true,
+    "pct": "0%",
+    "s": false
+   },
+   {
+    "has": false,
+    "icon": "asset:_preview/b77236ec6f67.png",
+    "letter": "-",
+    "none": true,
+    "pct": "0%",
+    "s": false
+   },
+   {
+    "has": false,
+    "icon": "asset:_preview/7b0527cfa0f9.png",
+    "letter": "-",
+    "none": true,
+    "pct": "0%",
+    "s": false
+   },
+   {
+    "has": false,
+    "icon": "asset:_preview/d39820d18942.png",
+    "letter": "-",
+    "none": true,
+    "pct": "0%",
+    "s": false
+   },
+   {
+    "has": false,
+    "icon": "asset:_preview/a79b31fa8449.png",
+    "letter": "-",
+    "none": true,
+    "pct": "0%",
+    "s": false
+   },
+   {
+    "has": false,
+    "icon": "asset:_preview/1a8612d07faa.png",
+    "letter": "-",
+    "none": true,
+    "pct": "0%",
+    "s": false
+   }
+  ],
+  "sups": [
+   {
+    "aff": "asset:_preview/3a5ae3bd6fc8.png",
+    "got": false,
+    "hasAff": true,
+    "known": true,
+    "level": "-",
+    "name": "Eliwood",
+    "pct": "98%",
+    "unknown": false
+   },
+   {
+    "aff": "asset:_preview/53b9c23cd9d9.png",
+    "got": true,
+    "hasAff": true,
+    "known": true,
+    "level": "B",
+    "name": "Lyn",
+    "pct": "98%",
+    "unknown": false
+   },
+   {
+    "aff": "asset:_preview/3a5ae3bd6fc8.png",
+    "got": true,
+    "hasAff": true,
+    "known": true,
+    "level": "A",
+    "name": "Oswin",
+    "pct": "100%",
+    "unknown": false
+   },
+   {
+    "aff": "asset:_preview/53b9c23cd9d9.png",
+    "got": false,
+    "hasAff": true,
+    "known": true,
+    "level": "-",
+    "name": "Matthew",
+    "pct": "24%",
+    "unknown": false
+   },
+   {
+    "aff": "asset:_preview/b7d0b545e46e.png",
+    "got": false,
+    "hasAff": true,
+    "known": true,
+    "level": "-",
+    "name": "Florina",
+    "pct": "6%",
+    "unknown": false
+   },
+   {
+    "aff": "asset:_preview/11e01a55c51d.png",
+    "got": false,
+    "hasAff": true,
+    "known": true,
+    "level": "-",
+    "name": "Serra",
+    "pct": "18%",
+    "unknown": false
+   },
+   {
+    "aff": "",
+    "got": false,
+    "hasAff": false,
+    "known": false,
+    "level": "-",
+    "name": "?????????",
+    "pct": "0%",
+    "unknown": true
+   }
+  ]
+ }
+}

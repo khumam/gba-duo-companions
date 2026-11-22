@@ -1,0 +1,20 @@
+{
+  "id": "zelda-a-link-to-the-past-companion",
+  "name": "The Legend of Zelda: A Link to the Past Companion",
+  "version": "0.1.0",
+  "author": "khumam",
+  "formatVersion": 2,
+  "match": {
+    "gameCode": [
+      "AZLE"
+    ],
+    "crc32": []
+  },
+  "tickHz": 4,
+  "layout": "layout.json",
+  "styles": [
+    "style.css"
+  ],
+  "script": "main.lua",
+  "values": {}
+}

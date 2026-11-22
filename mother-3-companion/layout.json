@@ -1,0 +1,1956 @@
+{
+  "type": "box",
+  "class": "screen-root",
+  "children": [
+    {
+      "type": "box",
+      "class": "waiting",
+      "children": [
+        {
+          "type": "box",
+          "class": "boot",
+          "children": [
+            {
+              "type": "text",
+              "class": "boot-title",
+              "text": "MOTHER 3"
+            },
+            {
+              "type": "text",
+              "class": "boot-sub",
+              "text": "Load a save to begin"
+            },
+            {
+              "type": "text",
+              "class": "boot-pill",
+              "text": "GBA DUO COMPANION PACK"
+            }
+          ]
+        }
+      ],
+      "classIf": {
+        "gone": "$ready"
+      }
+    },
+    {
+      "type": "box",
+      "class": "shell",
+      "children": [
+        {
+          "type": "pages",
+          "initial": "goods",
+          "pages": [
+            {
+              "name": "goods",
+              "child": {
+                "type": "box",
+                "class": "page page-goods",
+                "children": [
+                  {
+                    "type": "box",
+                    "class": "hdr",
+                    "children": [
+                      {
+                        "type": "list",
+                        "class": "ctabs",
+                        "items": "$chars",
+                        "template": {
+                          "type": "button",
+                          "class": "ctab",
+                          "classIf": {
+                            "on": "$on"
+                          },
+                          "onClick": [
+                            {
+                              "set": {
+                                "ch": "{idx}",
+                                "slot": 1,
+                                "eq": 0
+                              }
+                            }
+                          ],
+                          "children": [
+                            {
+                              "type": "image",
+                              "class": "ctab-img",
+                              "src": "$portrait",
+                              "visibleIf": "$hasPortrait"
+                            },
+                            {
+                              "type": "box",
+                              "class": "ctab-init",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "class": "ctab-init-t",
+                                  "text": "{initial}"
+                                }
+                              ],
+                              "visibleIf": "$noPortrait"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "type": "box",
+                        "class": "grow",
+                        "children": []
+                      },
+                      {
+                        "type": "box",
+                        "class": "hdr-right",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "pill",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "pill-t",
+                                "text": "Goods"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "dp",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dp-l",
+                                "text": "DP"
+                              },
+                              {
+                                "type": "text",
+                                "class": "dp-v",
+                                "text": "{dp}"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "body",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "win list-win",
+                        "children": [
+                          {
+                            "type": "list",
+                            "class": "grid-list",
+                            "items": "$goods.rows",
+                            "template": {
+                              "type": "box",
+                              "class": "grow-row",
+                              "children": [
+                                {
+                                  "type": "box",
+                                  "class": "cur",
+                                  "children": [],
+                                  "classIf": {
+                                    "on": "$on"
+                                  }
+                                },
+                                {
+                                  "type": "box",
+                                  "class": "badge",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "class": "badge-t",
+                                      "text": "E"
+                                    }
+                                  ],
+                                  "visibleIf": "$eq"
+                                },
+                                {
+                                  "type": "box",
+                                  "class": "badge-gap",
+                                  "children": [],
+                                  "visibleIf": "$noEq"
+                                },
+                                {
+                                  "type": "text",
+                                  "class": "li-name",
+                                  "text": "{name}"
+                                }
+                              ],
+                              "classIf": {
+                                "on": "$on",
+                                "empty": "$empty"
+                              },
+                              "onClick": [
+                                {
+                                  "set": {
+                                    "slot": "{slot}"
+                                  }
+                                }
+                              ]
+                            },
+                            "classIf": {
+                              "locked": "$goods.sheet"
+                            }
+                          },
+                          {
+                            "type": "box",
+                            "class": "empty-note",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "empty-t",
+                                "text": "No goods."
+                              }
+                            ],
+                            "visibleIf": "$goods.isEmpty"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "win desc",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "desc-text",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "desc-name",
+                                "text": "{goods.name}"
+                              },
+                              {
+                                "type": "text",
+                                "class": "desc-body",
+                                "text": "{goods.desc}"
+                              },
+                              {
+                                "type": "text",
+                                "class": "desc-note",
+                                "text": "{goods.note}",
+                                "visibleIf": "$goods.hasNote"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "acts-col",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "acts",
+                                "children": [
+                                  {
+                                    "type": "button",
+                                    "class": "act",
+                                    "classIf": {
+                                      "off": "$goods.noUse"
+                                    },
+                                    "onClick": [
+                                      {
+                                        "set": {
+                                          "mode": "use",
+                                          "msg": ""
+                                        }
+                                      }
+                                    ],
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "act-t",
+                                        "text": "Use"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "button",
+                                    "class": "act",
+                                    "classIf": {
+                                      "off": "$goods.noMove"
+                                    },
+                                    "onClick": [
+                                      {
+                                        "set": {
+                                          "mode": "give",
+                                          "msg": ""
+                                        }
+                                      }
+                                    ],
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "act-t",
+                                        "text": "Give"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "button",
+                                    "class": "act",
+                                    "classIf": {
+                                      "off": "$goods.noMove"
+                                    },
+                                    "onClick": [
+                                      {
+                                        "set": {
+                                          "mode": "drop",
+                                          "msg": ""
+                                        }
+                                      }
+                                    ],
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "act-t",
+                                        "text": "Drop"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "perm",
+                                "classIf": {
+                                  "on": "$_writePerm"
+                                },
+                                "onClick": {
+                                  "call": "writePermission"
+                                },
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "perm-t",
+                                    "text": "GAME CHANGES {_writePermLabel}"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ],
+                        "visibleIf": "$goods.hasSel"
+                      },
+                      {
+                        "type": "box",
+                        "class": "sheet",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "dialog",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dlg-title",
+                                "text": "{goods.sheetTitle}"
+                              },
+                              {
+                                "type": "list",
+                                "class": "targets",
+                                "items": "$targets",
+                                "template": {
+                                  "type": "button",
+                                  "class": "target",
+                                  "onClick": [
+                                    {
+                                      "call": "doUse",
+                                      "args": [
+                                        "{idx}"
+                                      ]
+                                    }
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "image",
+                                      "class": "target-img",
+                                      "src": "$portrait",
+                                      "visibleIf": "$hasPortrait"
+                                    },
+                                    {
+                                      "type": "box",
+                                      "class": "ctab-init target-init",
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "class": "ctab-init-t",
+                                          "text": "{initial}"
+                                        }
+                                      ],
+                                      "visibleIf": "$noPortrait"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "class": "target-name",
+                                      "text": "{name}"
+                                    },
+                                    {
+                                      "type": "box",
+                                      "class": "grow",
+                                      "children": []
+                                    },
+                                    {
+                                      "type": "text",
+                                      "class": "target-hp",
+                                      "text": "{hp}/{maxhp}"
+                                    }
+                                  ]
+                                },
+                                "visibleIf": "$goods.sheetUse"
+                              },
+                              {
+                                "type": "list",
+                                "class": "targets",
+                                "items": "$giveTargets",
+                                "template": {
+                                  "type": "button",
+                                  "class": "target",
+                                  "onClick": [
+                                    {
+                                      "call": "doGive",
+                                      "args": [
+                                        "{idx}"
+                                      ]
+                                    }
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "image",
+                                      "class": "target-img",
+                                      "src": "$portrait",
+                                      "visibleIf": "$hasPortrait"
+                                    },
+                                    {
+                                      "type": "box",
+                                      "class": "ctab-init target-init",
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "class": "ctab-init-t",
+                                          "text": "{initial}"
+                                        }
+                                      ],
+                                      "visibleIf": "$noPortrait"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "class": "target-name",
+                                      "text": "{name}"
+                                    },
+                                    {
+                                      "type": "box",
+                                      "class": "grow",
+                                      "children": []
+                                    },
+                                    {
+                                      "type": "text",
+                                      "class": "target-hp",
+                                      "text": "{hp}/{maxhp}"
+                                    }
+                                  ]
+                                },
+                                "visibleIf": "$goods.sheetGive"
+                              },
+                              {
+                                "type": "box",
+                                "class": "dlg-row",
+                                "children": [
+                                  {
+                                    "type": "button",
+                                    "class": "dlg-btn",
+                                    "onClick": [
+                                      {
+                                        "call": "doDrop"
+                                      }
+                                    ],
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "dlg-btn-t",
+                                        "text": "Yes"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "button",
+                                    "class": "dlg-btn",
+                                    "onClick": [
+                                      {
+                                        "set": {
+                                          "mode": ""
+                                        }
+                                      }
+                                    ],
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "dlg-btn-t",
+                                        "text": "No"
+                                      }
+                                    ]
+                                  }
+                                ],
+                                "visibleIf": "$goods.sheetDrop"
+                              },
+                              {
+                                "type": "box",
+                                "class": "dlg-row",
+                                "children": [
+                                  {
+                                    "type": "button",
+                                    "class": "dlg-btn",
+                                    "onClick": [
+                                      {
+                                        "set": {
+                                          "mode": ""
+                                        }
+                                      }
+                                    ],
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "dlg-btn-t",
+                                        "text": "Cancel"
+                                      }
+                                    ]
+                                  }
+                                ],
+                                "visibleIf": "$goods.sheetPick"
+                              }
+                            ],
+                            "onClick": [
+                              {
+                                "set": {
+                                  "_keep": 1
+                                }
+                              }
+                            ]
+                          }
+                        ],
+                        "visibleIf": "$goods.sheet",
+                        "onClick": [
+                          {
+                            "set": {
+                              "mode": ""
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "bar",
+                    "children": [
+                      {
+                        "type": "button",
+                        "class": "bar-btn bar-l",
+                        "onClick": [
+                          {
+                            "navigate": "status"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "bar-chev",
+                            "text": "<"
+                          },
+                          {
+                            "type": "image",
+                            "class": "bar-ico",
+                            "src": "asset:ui/i-status.png"
+                          },
+                          {
+                            "type": "text",
+                            "class": "bar-label",
+                            "text": "Status"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "bar-mid",
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "bar-title",
+                            "text": "Goods"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "bar-btn bar-r",
+                        "onClick": [
+                          {
+                            "navigate": "equip"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "image",
+                            "class": "bar-ico",
+                            "src": "asset:ui/i-equip.png"
+                          },
+                          {
+                            "type": "text",
+                            "class": "bar-label",
+                            "text": "Equip"
+                          },
+                          {
+                            "type": "text",
+                            "class": "bar-chev",
+                            "text": ">"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "equip",
+              "child": {
+                "type": "box",
+                "class": "page page-equip",
+                "children": [
+                  {
+                    "type": "box",
+                    "class": "hdr",
+                    "children": [
+                      {
+                        "type": "list",
+                        "class": "ctabs",
+                        "items": "$chars",
+                        "template": {
+                          "type": "button",
+                          "class": "ctab",
+                          "classIf": {
+                            "on": "$on"
+                          },
+                          "onClick": [
+                            {
+                              "set": {
+                                "ch": "{idx}",
+                                "slot": 1,
+                                "eq": 0
+                              }
+                            }
+                          ],
+                          "children": [
+                            {
+                              "type": "image",
+                              "class": "ctab-img",
+                              "src": "$portrait",
+                              "visibleIf": "$hasPortrait"
+                            },
+                            {
+                              "type": "box",
+                              "class": "ctab-init",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "class": "ctab-init-t",
+                                  "text": "{initial}"
+                                }
+                              ],
+                              "visibleIf": "$noPortrait"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "type": "box",
+                        "class": "grow",
+                        "children": []
+                      },
+                      {
+                        "type": "box",
+                        "class": "hdr-right",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "pill",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "pill-t",
+                                "text": "Equip"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "dp",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dp-l",
+                                "text": "DP"
+                              },
+                              {
+                                "type": "text",
+                                "class": "dp-v",
+                                "text": "{dp}"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "body",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "equip-top",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "win stat-win",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "name-line",
+                                "text": "{c.name}"
+                              },
+                              {
+                                "type": "box",
+                                "class": "srow",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "srow-l",
+                                    "text": "Level"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "grow",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "num",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "num-t",
+                                        "text": "{c.level}"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "srow",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "srow-l",
+                                    "text": "Max. HP"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "grow",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "num",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "num-t",
+                                        "text": "{c.maxhp}"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "srow",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "srow-l",
+                                    "text": "Max. PP"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "grow",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "num",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "num-t",
+                                        "text": "{c.maxpp}"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "srow",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "srow-l",
+                                    "text": "Offense"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "grow",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "num",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "num-t",
+                                        "text": "{c.offense}"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "srow",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "srow-l",
+                                    "text": "Defense"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "grow",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "num",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "num-t",
+                                        "text": "{c.defense}"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "srow",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "srow-l",
+                                    "text": "IQ"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "grow",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "num",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "num-t",
+                                        "text": "{c.iq}"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "srow",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "srow-l",
+                                    "text": "Speed"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "grow",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "num",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "num-t",
+                                        "text": "{c.speed}"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "win slot-win",
+                            "children": [
+                              {
+                                "type": "list",
+                                "class": "slots",
+                                "items": "$c.equip",
+                                "template": {
+                                  "type": "box",
+                                  "class": "slot",
+                                  "children": [
+                                    {
+                                      "type": "box",
+                                      "class": "cur",
+                                      "children": [],
+                                      "classIf": {
+                                        "on": "$on"
+                                      }
+                                    },
+                                    {
+                                      "type": "box",
+                                      "class": "slot-col",
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "class": "slot-label",
+                                          "text": "{label}"
+                                        },
+                                        {
+                                          "type": "text",
+                                          "class": "slot-item",
+                                          "text": "{name}",
+                                          "classIf": {
+                                            "none": "$none"
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  ],
+                                  "classIf": {
+                                    "on": "$on"
+                                  },
+                                  "onClick": [
+                                    {
+                                      "set": {
+                                        "eq": "{slot}"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "win desc",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "desc-text",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "desc-name",
+                                "text": "{eqName}"
+                              },
+                              {
+                                "type": "text",
+                                "class": "desc-body",
+                                "text": "{eqDesc}"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "bar",
+                    "children": [
+                      {
+                        "type": "button",
+                        "class": "bar-btn bar-l",
+                        "onClick": [
+                          {
+                            "navigate": "goods"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "bar-chev",
+                            "text": "<"
+                          },
+                          {
+                            "type": "image",
+                            "class": "bar-ico",
+                            "src": "asset:ui/i-goods.png"
+                          },
+                          {
+                            "type": "text",
+                            "class": "bar-label",
+                            "text": "Goods"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "bar-mid",
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "bar-title",
+                            "text": "Equip"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "bar-btn bar-r",
+                        "onClick": [
+                          {
+                            "navigate": "psi"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "image",
+                            "class": "bar-ico",
+                            "src": "asset:ui/i-psi.png"
+                          },
+                          {
+                            "type": "text",
+                            "class": "bar-label",
+                            "text": "PSI"
+                          },
+                          {
+                            "type": "text",
+                            "class": "bar-chev",
+                            "text": ">"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "psi",
+              "child": {
+                "type": "box",
+                "class": "page page-psi",
+                "children": [
+                  {
+                    "type": "box",
+                    "class": "hdr",
+                    "children": [
+                      {
+                        "type": "list",
+                        "class": "ctabs",
+                        "items": "$chars",
+                        "template": {
+                          "type": "button",
+                          "class": "ctab",
+                          "classIf": {
+                            "on": "$on"
+                          },
+                          "onClick": [
+                            {
+                              "set": {
+                                "ch": "{idx}",
+                                "slot": 1,
+                                "eq": 0
+                              }
+                            }
+                          ],
+                          "children": [
+                            {
+                              "type": "image",
+                              "class": "ctab-img",
+                              "src": "$portrait",
+                              "visibleIf": "$hasPortrait"
+                            },
+                            {
+                              "type": "box",
+                              "class": "ctab-init",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "class": "ctab-init-t",
+                                  "text": "{initial}"
+                                }
+                              ],
+                              "visibleIf": "$noPortrait"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "type": "box",
+                        "class": "grow",
+                        "children": []
+                      },
+                      {
+                        "type": "box",
+                        "class": "hdr-right",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "pill",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "pill-t",
+                                "text": "PSI"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "dp",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dp-l",
+                                "text": "DP"
+                              },
+                              {
+                                "type": "text",
+                                "class": "dp-v",
+                                "text": "{dp}"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "body",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "win list-win psi-win",
+                        "children": [
+                          {
+                            "type": "list",
+                            "class": "grid-list",
+                            "items": "$psi.rows",
+                            "template": {
+                              "type": "box",
+                              "class": "grow-row psi-row",
+                              "children": [
+                                {
+                                  "type": "box",
+                                  "class": "cur",
+                                  "children": [],
+                                  "classIf": {
+                                    "on": "$on"
+                                  }
+                                },
+                                {
+                                  "type": "text",
+                                  "class": "li-name",
+                                  "text": "{name}"
+                                },
+                                {
+                                  "type": "box",
+                                  "class": "grow",
+                                  "children": []
+                                },
+                                {
+                                  "type": "box",
+                                  "class": "num",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "class": "num-t",
+                                      "text": "{pp}"
+                                    }
+                                  ]
+                                }
+                              ],
+                              "classIf": {
+                                "on": "$on"
+                              },
+                              "onClick": [
+                                {
+                                  "set": {
+                                    "psi": "{id}"
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "win desc",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "pp-chip",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "pp-chip-l",
+                                "text": "PP COST"
+                              },
+                              {
+                                "type": "box",
+                                "class": "num",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "num-t",
+                                    "text": "{psi.pp}"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "text",
+                                "class": "pp-chip-l",
+                                "text": "{c.name}"
+                              },
+                              {
+                                "type": "box",
+                                "class": "num wide",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "num-t",
+                                    "text": "{c.pp}/{c.maxpp}"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "desc-text",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "desc-name",
+                                "text": "{psi.name}"
+                              },
+                              {
+                                "type": "text",
+                                "class": "desc-body",
+                                "text": "{psi.desc}"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "bar",
+                    "children": [
+                      {
+                        "type": "button",
+                        "class": "bar-btn bar-l",
+                        "onClick": [
+                          {
+                            "navigate": "equip"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "bar-chev",
+                            "text": "<"
+                          },
+                          {
+                            "type": "image",
+                            "class": "bar-ico",
+                            "src": "asset:ui/i-equip.png"
+                          },
+                          {
+                            "type": "text",
+                            "class": "bar-label",
+                            "text": "Equip"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "bar-mid",
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "bar-title",
+                            "text": "PSI"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "bar-btn bar-r",
+                        "onClick": [
+                          {
+                            "navigate": "status"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "image",
+                            "class": "bar-ico",
+                            "src": "asset:ui/i-status.png"
+                          },
+                          {
+                            "type": "text",
+                            "class": "bar-label",
+                            "text": "Status"
+                          },
+                          {
+                            "type": "text",
+                            "class": "bar-chev",
+                            "text": ">"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "status",
+              "child": {
+                "type": "box",
+                "class": "page page-status",
+                "children": [
+                  {
+                    "type": "box",
+                    "class": "hdr",
+                    "children": [
+                      {
+                        "type": "list",
+                        "class": "ctabs",
+                        "items": "$chars",
+                        "template": {
+                          "type": "button",
+                          "class": "ctab",
+                          "classIf": {
+                            "on": "$on"
+                          },
+                          "onClick": [
+                            {
+                              "set": {
+                                "ch": "{idx}",
+                                "slot": 1,
+                                "eq": 0
+                              }
+                            }
+                          ],
+                          "children": [
+                            {
+                              "type": "image",
+                              "class": "ctab-img",
+                              "src": "$portrait",
+                              "visibleIf": "$hasPortrait"
+                            },
+                            {
+                              "type": "box",
+                              "class": "ctab-init",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "class": "ctab-init-t",
+                                  "text": "{initial}"
+                                }
+                              ],
+                              "visibleIf": "$noPortrait"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "type": "box",
+                        "class": "grow",
+                        "children": []
+                      },
+                      {
+                        "type": "box",
+                        "class": "hdr-right",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "pill",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "pill-t",
+                                "text": "Status"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "dp",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "dp-l",
+                                "text": "DP"
+                              },
+                              {
+                                "type": "text",
+                                "class": "dp-v",
+                                "text": "{dp}"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "body",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "win status-win",
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "name-line",
+                            "text": "{c.name}"
+                          },
+                          {
+                            "type": "box",
+                            "class": "status-cols",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "scol",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "srow",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "srow-l",
+                                        "text": "Level"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "grow",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "num",
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "class": "num-t",
+                                            "text": "{c.level}"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "srow",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "srow-l",
+                                        "text": "Offense"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "grow",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "num",
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "class": "num-t",
+                                            "text": "{c.offense}"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "srow",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "srow-l",
+                                        "text": "Defense"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "grow",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "num",
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "class": "num-t",
+                                            "text": "{c.defense}"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "srow",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "srow-l",
+                                        "text": "IQ"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "grow",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "num",
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "class": "num-t",
+                                            "text": "{c.iq}"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "srow",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "srow-l",
+                                        "text": "Speed"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "grow",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "num",
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "class": "num-t",
+                                            "text": "{c.speed}"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "srow",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "srow-l",
+                                        "text": "EXP"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "grow",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "num wide",
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "class": "num-t",
+                                            "text": "{c.exp}"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "srow",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "srow-l",
+                                        "text": "Next Level"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "grow",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "num wide",
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "class": "num-t",
+                                            "text": "{c.next}"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "scol scol-r",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "srow",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "srow-l",
+                                        "text": "HP"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "grow",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "num wide",
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "class": "num-t",
+                                            "text": "{c.hp}/{c.maxhp}"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "srow",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "srow-l",
+                                        "text": "PP"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "grow",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "num wide",
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "class": "num-t",
+                                            "text": "{c.pp}/{c.maxpp}"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "srow",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "srow-l",
+                                        "text": "Weapon"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "trow-gap",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "trow-v",
+                                        "text": "{c.weapon}"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "srow",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "srow-l",
+                                        "text": "Body"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "trow-gap",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "trow-v",
+                                        "text": "{c.body}"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "srow",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "srow-l",
+                                        "text": "Head"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "trow-gap",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "trow-v",
+                                        "text": "{c.head}"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "srow",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "srow-l",
+                                        "text": "Other"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "trow-gap",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "trow-v",
+                                        "text": "{c.other}"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "srow",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "srow-l",
+                                        "text": "Skills"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "trow-gap",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "trow-v",
+                                        "text": "{c.skills}"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "win desc gauges",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "gauge",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "gauge-l",
+                                "text": "HP"
+                              },
+                              {
+                                "type": "bar",
+                                "class": "meter hp",
+                                "value": "$c.hpPct",
+                                "max": 1
+                              },
+                              {
+                                "type": "text",
+                                "class": "gauge-v",
+                                "text": "{c.hp}"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "gauge",
+                            "children": [
+                              {
+                                "type": "text",
+                                "class": "gauge-l",
+                                "text": "PP"
+                              },
+                              {
+                                "type": "bar",
+                                "class": "meter pp",
+                                "value": "$c.ppPct",
+                                "max": 1
+                              },
+                              {
+                                "type": "text",
+                                "class": "gauge-v",
+                                "text": "{c.pp}"
+                              }
+                            ],
+                            "visibleIf": "$c.hasPP"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "class": "bar",
+                    "children": [
+                      {
+                        "type": "button",
+                        "class": "bar-btn bar-l",
+                        "onClick": [
+                          {
+                            "navigate": "psi"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "bar-chev",
+                            "text": "<"
+                          },
+                          {
+                            "type": "image",
+                            "class": "bar-ico",
+                            "src": "asset:ui/i-psi.png"
+                          },
+                          {
+                            "type": "text",
+                            "class": "bar-label",
+                            "text": "PSI"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "bar-mid",
+                        "children": [
+                          {
+                            "type": "text",
+                            "class": "bar-title",
+                            "text": "Status"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "class": "bar-btn bar-r",
+                        "onClick": [
+                          {
+                            "navigate": "goods"
+                          }
+                        ],
+                        "children": [
+                          {
+                            "type": "image",
+                            "class": "bar-ico",
+                            "src": "asset:ui/i-goods.png"
+                          },
+                          {
+                            "type": "text",
+                            "class": "bar-label",
+                            "text": "Goods"
+                          },
+                          {
+                            "type": "text",
+                            "class": "bar-chev",
+                            "text": ">"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "classIf": {
+        "on": "$ready"
+      }
+    }
+  ],
+  "id": "screen"
+}

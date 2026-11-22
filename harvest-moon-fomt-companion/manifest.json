@@ -1,13 +1,17 @@
 {
   "id": "harvest-moon-fomt-companion",
   "name": "Harvest Moon: Friends of Mineral Town Companion",
-  "version": "1.1.2",
+  "version": "0.1.0",
   "author": "khumam",
-  "formatVersion": 2,
-  "match": { "gameCode": ["A4NP", "BHFE"], "crc32": [] },
+  "formatVersion": 3,
+  "match": {
+    "gameCode": ["A4NE"],
+    "crc32": []
+  },
   "tickHz": 4,
   "layout": "layout.json",
   "styles": ["style.css"],
   "script": "main.lua",
-  "values": {}
+  "values": {},
+  "permissions": ["memory-write"]
 }

@@ -1,0 +1,17 @@
+{
+  "id": "mother-3-companion",
+  "name": "Mother 3 Companion",
+  "version": "0.1.0",
+  "author": "khumam",
+  "formatVersion": 3,
+  "match": {
+    "gameCode": ["A3UJ"],
+    "crc32": []
+  },
+  "tickHz": 4,
+  "layout": "layout.json",
+  "styles": ["style.css"],
+  "script": "main.lua",
+  "values": {},
+  "permissions": ["memory-write"]
+}
