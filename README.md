@@ -65,7 +65,7 @@ GBADuo also offers it for the other regions and revisions of the same game (`BPR
 pick it as usual and GBADuo warns that the pack is mapped for another region, so it may glitch or show
 wrong data. A pack that pins a ROM checksum (`crc32`, like the hack packs) is only offered for that ROM.
 If an other-region pack misbehaves, please open an issue with the game code and what you saw. This needs
-the GBADuo release after v1.0.0.
+GBADuo **v1.0.1**.
 Most packs need GBADuo **v0.1.3** or newer; the Metroid and Oracle of Ages packs need **v0.1.8**. The **WIDE** button (Pokémon FireRed and LeafGreen, The Minish Cap, Golden Sun) paints the game's world beside the picture and needs **v0.1.9**, **v0.1.10** for The Minish Cap, or **v0.1.11** for Golden Sun. The Dragon Ball Z: Legacy of Goku II, Pokémon Monomyth, Light Platinum, Unbound, Golden Sun: The Lost Age, Castlevania, Fire Emblem, Harvest Moon, Mother 3 and A Link to the Past packs need **v0.1.15**.
 
 ## Packs
