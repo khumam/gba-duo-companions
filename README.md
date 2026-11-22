@@ -24,6 +24,33 @@ and Game Boy games on the top screen of a dual-screen handheld like the AYN Thor
 bottom screen shows a **companion pack**: a layout, CSS and a Lua script that read the
 game's memory as you play. This repo holds the packs, one folder each.
 
+## Gallery
+
+Every pack copies one screen of its game (the Bag window, the pause menu, the save list) and keeps it live from the game's memory. Tap a tile to open it, and in many packs change the game from the second screen. A few of the 12 shown here; every pack has an overview sheet in [`overview/`](https://github.com/khumam/gba-duo-companions/tree/main/overview).
+
+<table>
+<tr>
+<td align="center" width="33%"><a href="https://github.com/khumam/gba-duo-companions/tree/main/pokemon-firered-companion"><img src="https://raw.githubusercontent.com/khumam/gba-duo-companions/main/overview/pokemon-firered-companion-overview.png" alt="Pokémon FireRed companion pack"></a><br><sub><b>Pokémon FireRed</b></sub></td>
+<td align="center" width="33%"><a href="https://github.com/khumam/gba-duo-companions/tree/main/pokemon-emerald-companion"><img src="https://raw.githubusercontent.com/khumam/gba-duo-companions/main/overview/pokemon-emerald-companion-overview.png" alt="Pokémon Emerald companion pack"></a><br><sub><b>Pokémon Emerald</b></sub></td>
+<td align="center" width="33%"><a href="https://github.com/khumam/gba-duo-companions/tree/main/golden-sun-companion"><img src="https://raw.githubusercontent.com/khumam/gba-duo-companions/main/overview/golden-sun-companion-overview.png" alt="Golden Sun companion pack"></a><br><sub><b>Golden Sun</b></sub></td>
+</tr>
+<tr>
+<td align="center" width="33%"><a href="https://github.com/khumam/gba-duo-companions/tree/main/zelda-the-minish-cap-companion"><img src="https://raw.githubusercontent.com/khumam/gba-duo-companions/main/overview/zelda-the-minish-cap-companion-overview.png" alt="Zelda: The Minish Cap companion pack"></a><br><sub><b>Zelda: The Minish Cap</b></sub></td>
+<td align="center" width="33%"><a href="https://github.com/khumam/gba-duo-companions/tree/main/metroid-fusion-companion"><img src="https://raw.githubusercontent.com/khumam/gba-duo-companions/main/overview/metroid-fusion-companion-overview.png" alt="Metroid Fusion companion pack"></a><br><sub><b>Metroid Fusion</b></sub></td>
+<td align="center" width="33%"><a href="https://github.com/khumam/gba-duo-companions/tree/main/castlevania-aria-of-sorrow-companion"><img src="https://raw.githubusercontent.com/khumam/gba-duo-companions/main/overview/castlevania-aria-of-sorrow-companion-overview.png" alt="Castlevania: Aria of Sorrow companion pack"></a><br><sub><b>Castlevania: Aria of Sorrow</b></sub></td>
+</tr>
+<tr>
+<td align="center" width="33%"><a href="https://github.com/khumam/gba-duo-companions/tree/main/fire-emblem-the-sacred-stones-companion"><img src="https://raw.githubusercontent.com/khumam/gba-duo-companions/main/overview/fire-emblem-the-sacred-stones-companion-overview.png" alt="Fire Emblem: The Sacred Stones companion pack"></a><br><sub><b>Fire Emblem: The Sacred Stones</b></sub></td>
+<td align="center" width="33%"><a href="https://github.com/khumam/gba-duo-companions/tree/main/mario-luigi-superstar-saga-companion"><img src="https://raw.githubusercontent.com/khumam/gba-duo-companions/main/overview/mario-luigi-superstar-saga-companion-overview.png" alt="Mario & Luigi: Superstar Saga companion pack"></a><br><sub><b>Mario & Luigi: Superstar Saga</b></sub></td>
+<td align="center" width="33%"><a href="https://github.com/khumam/gba-duo-companions/tree/main/harvest-moon-fomt-companion"><img src="https://raw.githubusercontent.com/khumam/gba-duo-companions/main/overview/harvest-moon-fomt-companion-overview.png" alt="Harvest Moon: FoMT companion pack"></a><br><sub><b>Harvest Moon: FoMT</b></sub></td>
+</tr>
+<tr>
+<td align="center" width="33%"><a href="https://github.com/khumam/gba-duo-companions/tree/main/mother-3-companion"><img src="https://raw.githubusercontent.com/khumam/gba-duo-companions/main/overview/mother-3-companion-overview.png" alt="Mother 3 companion pack"></a><br><sub><b>Mother 3</b></sub></td>
+<td align="center" width="33%"><a href="https://github.com/khumam/gba-duo-companions/tree/main/zelda-a-link-to-the-past-companion"><img src="https://raw.githubusercontent.com/khumam/gba-duo-companions/main/overview/zelda-a-link-to-the-past-companion-overview.png" alt="Zelda: A Link to the Past companion pack"></a><br><sub><b>Zelda: A Link to the Past</b></sub></td>
+<td align="center" width="33%"><a href="https://github.com/khumam/gba-duo-companions/tree/main/final-fantasy-vi-advance-companion"><img src="https://raw.githubusercontent.com/khumam/gba-duo-companions/main/overview/final-fantasy-vi-advance-companion-overview.png" alt="Final Fantasy VI Advance companion pack"></a><br><sub><b>Final Fantasy VI Advance</b></sub></td>
+</tr>
+</table>
+
 ## Install a pack
 
 1. Download the pack's `.zip` from the
