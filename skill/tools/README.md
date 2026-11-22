@@ -1,4 +1,55 @@
-# Finding addresses: the memory tools
+# Pack tools: harness, memory search, build
+
+Everything used to research and build the Castlevania, Zelda: A Link to the Past and later packs. Run from the
+`gbaduo-companions` folder; Python scripts with `python3 -I`.
+
+## 0. The toolkit at a glance
+
+| Tool | Does |
+|---|---|
+| `harness/build.sh OUT` | Builds `gba-harness` (below) against the app repo's mGBA (`GBADUO_APP_DIR`, default `../gbaduo`) |
+| `harness/play.py` | Plays the game headless from short steps (`st a w60 x5d hold:80:200 shot:pause dump:pause wr:0201327A=64:2 rd:... vram:items`), loading a `.sav` copy (the original is never written). Screenshots land as 3x PNGs |
+| `harness/sheet.py` | Tiles many screenshots into one contact sheet (`--crop x,y,w,h` in GBA px) |
+| `harness/ramdiff.py` | `diff` / `diff3` between dumps, `hex` around an address, `find` values (`u16:1484`, `bytes:cc053205`) |
+| `harness/textfind.py` | Finds non-ASCII text: `pattern` search (repeated letters), 8- or 16-bit; `relative` for shifted tables |
+| `harness/gfxfind.py` | Which ROM data the screen's tiles come from (raw or LZ77), draws VRAM banks, LZ77 blocks and 8bpp affine maps |
+| `harness/lz77.py` | Strict GBA LZ77 decoder used by gfxfind (good for scanning a ROM) |
+| `packkit/run.lua` | Runs a pack's `main.lua` offline over ROM + dump: print `update()`, write `preview-data.json` from a states list, call `actions` and list their writes (`--writes w.txt`, replay with `play.py ... @w.txt`) |
+| `packkit/gfxmock.py ROM preview-data.json` | Draws the `gfx.decode` calls run.lua recorded into `assets/_preview/*.png` and points the preview data at them, so previews show the ROM's real portraits / icons (keep `assets/_preview` out of the zip) |
+| `packkit/css.py PACK` | `art/style.src.css` (in `ap`) -> `style.css` |
+| `packkit/overview.sh PACK pages` | Real-engine renders of the pages -> `overview/<pack-id>-overview.png` |
+
+### A research session, step by step (what worked for every pack so far)
+
+1. **Boot with the player's save.** `harness/build.sh /tmp/h/gba-harness`, then
+   `play.py --harness ... --rom game.gba --save game.sav --out run w600 shot:t1 st w120 shot:t2 a w120 shot:t3`.
+   Read the shots, add steps until the field shows, and keep that path in `base.steps` (`--base`).
+   A save from another region usually loads; a save from a special mode (Maxim mode in HoD) may have no menus:
+   start a new normal game in an empty slot and write the inventory in with `wr:` instead.
+2. **Screenshot every menu screen** the companion will copy (each sub-menu, a few cursor positions, tabs, the map).
+   Cursor positions carry over between sub-menus, and B twice may close the whole menu: one run per screen is safer.
+   Copy the shots into the pack's `art/ref/`. These are the design reference: build the pack *like these screens*.
+3. **Find the save block in RAM.** `ramdiff.py find run/pause.bin bytes:<16 bytes from the .sav>` (or values the
+   menu shows: HP, gold, EXP). Most games keep the save block byte for byte in EWRAM; some keep two copies (Circle of
+   the Moon plays on one and edits the other in its pause menu: write HP into each, pause, see which one shows).
+4. **Map each value by changing it.** Equip / use / move in the menu, `dump:` before and after, `ramdiff.py diff`.
+   Then prove it: `wr:` a new value and screenshot the game's own screen. For lists (items, cards, souls), fill a
+   range with each byte's own offset+1 and read the counts off the menu: one run maps the whole array.
+5. **Read names from the ROM.** ASCII: `grep`. Otherwise `textfind.py ROM "a long known name"` (pattern mode, try
+   `--width 2`), decode around the hit, fill missing letters from words you can guess, find the u32 pointer table
+   (pointers may aim a few bytes before the text: a header). Ship the decoding table, read the text at run time.
+6. **Tables in the ROM** (stats, costs, EXP): search the ROM for a sequence of values you saw (stride search), or
+   sample the value at several levels and fit a formula (Aria: 3L^3+20L^2+39L+22; HoD: 60L(L+1)). When a table
+   can't be found, read every value off the game's screen and keep it in the pack (CotM's 100 DSS costs).
+7. **Graphics.** `vram:` on the screen, `gfxfind.py ... find` and `banks`. Raw tiles: `gfx.sprite`/`gfx.decode`
+   at run time. LZ77 without flips: `gfx.decode{lz77=true}`. LZ77 with flipped tiles (ALttP icons): cut 16x16 icons
+   from screenshots and ship them (the user agreed to ship game icons for Zelda packs). Whole maps: an affine BG can
+   be rendered flat from VRAM (`gfxfind.py affine`).
+8. **Verify writes before the device.** `run.lua ... --act "equip(1, 25)"` lists the writes; replay them with
+   `wr:` steps after `--base`, open the game's menus, screenshot. Only ship a write the game's own screen agrees with.
+   16-bit writes to odd addresses land one byte early on the bus: write such words a byte at a time.
+
+# Finding addresses: the memory tools (older notes)
 
 Two ways to find where a game keeps a value (HP, rupees, a menu cursor, a map, a scroll register), like Cheat Engine.
 

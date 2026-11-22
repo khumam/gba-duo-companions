@@ -6,6 +6,23 @@ engine as the other five Pokémon variants), **Zelda: The Minish Cap**
 
 ## Folder layout
 
+Packs built since 2026-11 (Castlevania trilogy, Zelda: A Link to the Past) use this layout; copy one of them to start:
+
+```
+<pack>/
+  manifest.json  main.lua  layout.json  style.css  preview-data.json  NOTES.md
+  art/ref/            the game's own menu screenshots (from tools/harness/play.py): the design reference
+  art/ui.py           original pixel art (Pillow) -> assets/ui/*.png, palette sampled from art/ref
+  art/layout.py       builds layout.json (pages, left/right nav plates, panels); draws window PNGs at their exact sizes
+  art/style.src.css   styles in `ap` units (248 x 216 art-px grid) -> style.css via tools/packkit/css.py
+  assets/fonts        Jersey10 (text) + Silkscreen-Bold (labels)
+  assets/icons|map    only when the art can't be drawn from the ROM at run time (cut from emulator frames)
+```
+Build: `python3 art/ui.py && python3 art/layout.py && python3 ../skill/tools/packkit/css.py .`; check:
+`lua ../skill/tools/packkit/run.lua ROM DUMP --page <name>`; overview: `skill/tools/packkit/overview.sh <pack> <pages>`.
+
+Older packs:
+
 ```
 <pack>/
   manifest.json        id, name, version, formatVersion 2-4, match.gameCode[], tickHz 4, layout/styles/script/gameScript, permissions
