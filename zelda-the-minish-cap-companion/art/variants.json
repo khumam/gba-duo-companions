@@ -1,0 +1,133 @@
+[
+ {
+  "name": "map-clean",
+  "page": "map",
+  "after": "options",
+  "patch": {
+   "styleStone": false,
+   "styleClean": true,
+   "showStone": false,
+   "showClean": true
+  }
+ },
+ {
+  "name": "items-clean",
+  "page": "items",
+  "after": "map-clean",
+  "patch": {
+   "styleStone": false,
+   "styleClean": true,
+   "showStone": false,
+   "showClean": true,
+   "ui": {
+    "set": {
+     "pick": "Gust Jar",
+     "pickIcon": "asset:ui/item-unknown.png",
+     "pickKey": "3",
+     "picked": true
+    }
+   }
+  }
+ },
+ {
+  "name": "kinstone-clean",
+  "page": "kinstone",
+  "after": "items-clean",
+  "patch": {
+   "styleStone": false,
+   "styleClean": true,
+   "showStone": false,
+   "showClean": true,
+   "ui": {
+    "set": {
+     "kinName": "Red Crescent",
+     "kinIcon": "asset:ui/kinstone-red.png",
+     "kinId": "#6F",
+     "kinAmt": "4",
+     "kinPicked": true
+    }
+   }
+  }
+ },
+ {
+  "name": "quest-clean",
+  "page": "quest",
+  "after": "kinstone-clean",
+  "patch": {
+   "styleStone": false,
+   "styleClean": true,
+   "showStone": false,
+   "showClean": true
+  }
+ },
+ {
+  "name": "options-clean",
+  "page": "options",
+  "after": "quest-clean",
+  "patch": {
+   "styleStone": false,
+   "styleClean": true,
+   "showStone": false,
+   "showClean": true
+  }
+ },
+ {
+  "name": "items-clean-night",
+  "page": "items",
+  "after": "options-clean",
+  "patch": {
+   "styleStone": false,
+   "styleClean": true,
+   "showStone": false,
+   "showClean": true,
+   "themeForest": false,
+   "themeNight": true,
+   "ui": {
+    "set": {
+     "pick": "Gust Jar",
+     "pickIcon": "asset:ui/item-unknown.png",
+     "pickKey": "3",
+     "picked": true
+    }
+   }
+  }
+ },
+ {
+  "name": "kinstone-clean-parchment",
+  "page": "kinstone",
+  "after": "items-clean-night",
+  "patch": {
+   "styleStone": false,
+   "styleClean": true,
+   "showStone": false,
+   "showClean": true,
+   "themeForest": false,
+   "themeParchment": true,
+   "ui": {
+    "set": {
+     "kinName": "Red Crescent",
+     "kinIcon": "asset:ui/kinstone-red.png",
+     "kinId": "#6F",
+     "kinAmt": "4",
+     "kinPicked": true
+    }
+   }
+  }
+ },
+ {
+  "name": "map-clean-world",
+  "page": "map",
+  "after": "kinstone-clean-parchment",
+  "patch": {
+   "styleStone": false,
+   "styleClean": true,
+   "showStone": false,
+   "showClean": true,
+   "map": {
+    "inDungeon": false,
+    "showWorld": true,
+    "showDungeon": false
+   }
+  }
+ }
+]

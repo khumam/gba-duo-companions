@@ -68,340 +68,352 @@
         "class": "page page-status",
         "children": [
          {
-          "type": "image",
-          "class": "bg",
-          "src": "asset:ui/bg.png"
-         },
-         {
-          "type": "image",
-          "class": "tplate",
-          "src": "asset:ui/title.png"
-         },
-         {
-          "type": "text",
-          "class": "ttext",
-          "text": "Juste Belmont"
-         },
-         {
-          "type": "text",
-          "class": "lab lv-l",
-          "text": "LEVEL"
-         },
-         {
-          "type": "text",
-          "class": "val lv",
-          "text": "{st.level}"
-         },
-         {
-          "type": "text",
-          "class": "lab ex-l",
-          "text": "EXP"
-         },
-         {
-          "type": "text",
-          "class": "val ex",
-          "text": "{st.exp}"
-         },
-         {
-          "type": "text",
-          "class": "lab nx-l",
-          "text": "NEXT"
-         },
-         {
-          "type": "text",
-          "class": "val nx",
-          "text": "{st.next}"
-         },
-         {
-          "type": "bar",
-          "class": "expbar",
-          "value": "$st.expIn",
-          "maxKey": "$st.expSpan"
-         },
-         {
-          "type": "text",
-          "class": "lab tm-l",
-          "text": "TIME"
-         },
-         {
-          "type": "text",
-          "class": "val tm",
-          "text": "{st.time}"
-         },
-         {
-          "type": "text",
-          "class": "lab gd-l",
-          "text": "GOLD"
-         },
-         {
-          "type": "text",
-          "class": "val gd",
-          "text": "{st.gold}"
-         },
-         {
-          "type": "image",
-          "class": "crest",
-          "src": "asset:ui/crest.png"
-         },
-         {
-          "type": "button",
-          "class": "bookslot",
-          "onClick": [
-           {
-            "navigate": "book"
-           }
-          ],
+          "type": "box",
+          "class": "pscroll",
           "children": [
            {
             "type": "box",
-            "class": "bk-frame",
+            "class": "pcanvas",
             "children": [
              {
               "type": "image",
-              "class": "bk-img",
-              "src": "$bookNow.img"
+              "class": "bg",
+              "src": "asset:ui/bg.png"
+             },
+             {
+              "type": "image",
+              "class": "tplate",
+              "src": "asset:ui/title.png"
+             },
+             {
+              "type": "text",
+              "class": "ttext",
+              "text": "Juste Belmont"
+             },
+             {
+              "type": "text",
+              "class": "lab lv-l",
+              "text": "LEVEL"
+             },
+             {
+              "type": "text",
+              "class": "val lv",
+              "text": "{st.level}"
+             },
+             {
+              "type": "text",
+              "class": "lab ex-l",
+              "text": "EXP"
+             },
+             {
+              "type": "text",
+              "class": "val ex",
+              "text": "{st.exp}"
+             },
+             {
+              "type": "text",
+              "class": "lab nx-l",
+              "text": "NEXT"
+             },
+             {
+              "type": "text",
+              "class": "val nx",
+              "text": "{st.next}"
+             },
+             {
+              "type": "bar",
+              "class": "expbar",
+              "value": "$st.expIn",
+              "maxKey": "$st.expSpan"
+             },
+             {
+              "type": "text",
+              "class": "lab tm-l",
+              "text": "TIME"
+             },
+             {
+              "type": "text",
+              "class": "val tm",
+              "text": "{st.time}"
+             },
+             {
+              "type": "text",
+              "class": "lab gd-l",
+              "text": "GOLD"
+             },
+             {
+              "type": "text",
+              "class": "val gd",
+              "text": "{st.gold}"
+             },
+             {
+              "type": "image",
+              "class": "crest",
+              "src": "asset:ui/crest.png"
+             },
+             {
+              "type": "button",
+              "class": "bookslot",
+              "onClick": [
+               {
+                "navigate": "book"
+               }
+              ],
+              "children": [
+               {
+                "type": "box",
+                "class": "bk-frame",
+                "children": [
+                 {
+                  "type": "image",
+                  "class": "bk-img",
+                  "src": "$bookNow.img"
+                 }
+                ]
+               },
+               {
+                "type": "text",
+                "class": "lab bk-l",
+                "text": "SPELL"
+               },
+               {
+                "type": "text",
+                "class": "lab bk-l2",
+                "text": "BOOK"
+               }
+              ]
+             },
+             {
+              "type": "list",
+              "class": "menu",
+              "items": "$menu",
+              "template": {
+               "type": "button",
+               "class": "mrow",
+               "onClick": [
+                {
+                 "navigate": "{page}"
+                }
+               ],
+               "children": [
+                {
+                 "type": "text",
+                 "class": "mtext",
+                 "text": "{label}"
+                }
+               ]
+              }
+             },
+             {
+              "type": "text",
+              "class": "lab hp-l",
+              "text": "HP"
+             },
+             {
+              "type": "text",
+              "class": "val hp",
+              "text": "{st.hpText}"
+             },
+             {
+              "type": "text",
+              "class": "lab mp-l",
+              "text": "MP"
+             },
+             {
+              "type": "text",
+              "class": "val mp",
+              "text": "{st.mpText}"
+             },
+             {
+              "type": "text",
+              "class": "lab ht-l",
+              "text": "HEART"
+             },
+             {
+              "type": "text",
+              "class": "val ht",
+              "text": "{st.heartText}"
+             },
+             {
+              "type": "text",
+              "class": "lab s1",
+              "text": "STR"
+             },
+             {
+              "type": "box",
+              "class": "dots s1d",
+              "children": []
+             },
+             {
+              "type": "text",
+              "class": "val s1v",
+              "text": "{st.str}"
+             },
+             {
+              "type": "text",
+              "class": "lab s2",
+              "text": "DEF"
+             },
+             {
+              "type": "box",
+              "class": "dots s2d",
+              "children": []
+             },
+             {
+              "type": "text",
+              "class": "val s2v",
+              "text": "{st.def}"
+             },
+             {
+              "type": "text",
+              "class": "lab s3",
+              "text": "INT"
+             },
+             {
+              "type": "box",
+              "class": "dots s3d",
+              "children": []
+             },
+             {
+              "type": "text",
+              "class": "val s3v",
+              "text": "{st.int}"
+             },
+             {
+              "type": "text",
+              "class": "lab s4",
+              "text": "LCK"
+             },
+             {
+              "type": "box",
+              "class": "dots s4d",
+              "children": []
+             },
+             {
+              "type": "text",
+              "class": "val s4v",
+              "text": "{st.lck}"
+             },
+             {
+              "type": "text",
+              "class": "lab s5",
+              "text": "STATUS"
+             },
+             {
+              "type": "box",
+              "class": "dots s5d",
+              "children": []
+             },
+             {
+              "type": "text",
+              "class": "val s5v",
+              "text": "GOOD"
+             },
+             {
+              "type": "box",
+              "class": "rule rule-eq",
+              "children": []
+             },
+             {
+              "type": "text",
+              "class": "lab eq-h",
+              "text": "EQUIPMENT"
+             },
+             {
+              "type": "list",
+              "class": "slots",
+              "items": "$slots",
+              "template": {
+               "type": "button",
+               "class": "srow",
+               "onClick": [
+                {
+                 "set": {
+                  "eqSlot": "{i}",
+                  "eqId": -1
+                 }
+                },
+                {
+                 "navigate": "equip"
+                }
+               ],
+               "children": [
+                {
+                 "type": "text",
+                 "class": "slab",
+                 "text": "{label}"
+                },
+                {
+                 "type": "image",
+                 "class": "sic",
+                 "src": "$icon"
+                },
+                {
+                 "type": "text",
+                 "class": "sname",
+                 "text": "{name}"
+                }
+               ],
+               "classIf": {
+                "none": "$none"
+               }
+              }
+             },
+             {
+              "type": "button",
+              "class": "hbtn",
+              "onClick": [
+               {
+                "call": "quickHeal",
+                "args": [
+                 "{heal.id}"
+                ]
+               }
+              ],
+              "children": [
+               {
+                "type": "image",
+                "class": "abtn-p",
+                "src": "asset:ui/btn.png"
+               },
+               {
+                "type": "text",
+                "class": "abtn-t",
+                "text": "HEAL"
+               }
+              ],
+              "visibleIf": "$heal.can"
+             },
+             {
+              "type": "box",
+              "class": "hbtn abtn-done",
+              "children": [
+               {
+                "type": "image",
+                "class": "abtn-p",
+                "src": "asset:ui/btn-off.png"
+               },
+               {
+                "type": "text",
+                "class": "abtn-t",
+                "text": "HEAL"
+               }
+              ],
+              "visibleIf": "$heal.off"
+             },
+             {
+              "type": "text",
+              "class": "hname",
+              "text": "{heal.name}"
+             },
+             {
+              "type": "text",
+              "class": "note note-st",
+              "text": "{note}"
              }
             ]
-           },
-           {
-            "type": "text",
-            "class": "lab bk-l",
-            "text": "SPELL"
-           },
-           {
-            "type": "text",
-            "class": "lab bk-l2",
-            "text": "BOOK"
            }
           ]
-         },
-         {
-          "type": "list",
-          "class": "menu",
-          "items": "$menu",
-          "template": {
-           "type": "button",
-           "class": "mrow",
-           "onClick": [
-            {
-             "navigate": "{page}"
-            }
-           ],
-           "children": [
-            {
-             "type": "text",
-             "class": "mtext",
-             "text": "{label}"
-            }
-           ]
-          }
-         },
-         {
-          "type": "text",
-          "class": "lab hp-l",
-          "text": "HP"
-         },
-         {
-          "type": "text",
-          "class": "val hp",
-          "text": "{st.hpText}"
-         },
-         {
-          "type": "text",
-          "class": "lab mp-l",
-          "text": "MP"
-         },
-         {
-          "type": "text",
-          "class": "val mp",
-          "text": "{st.mpText}"
-         },
-         {
-          "type": "text",
-          "class": "lab ht-l",
-          "text": "HEART"
-         },
-         {
-          "type": "text",
-          "class": "val ht",
-          "text": "{st.heartText}"
-         },
-         {
-          "type": "text",
-          "class": "lab s1",
-          "text": "STR"
-         },
-         {
-          "type": "box",
-          "class": "dots s1d",
-          "children": []
-         },
-         {
-          "type": "text",
-          "class": "val s1v",
-          "text": "{st.str}"
-         },
-         {
-          "type": "text",
-          "class": "lab s2",
-          "text": "DEF"
-         },
-         {
-          "type": "box",
-          "class": "dots s2d",
-          "children": []
-         },
-         {
-          "type": "text",
-          "class": "val s2v",
-          "text": "{st.def}"
-         },
-         {
-          "type": "text",
-          "class": "lab s3",
-          "text": "INT"
-         },
-         {
-          "type": "box",
-          "class": "dots s3d",
-          "children": []
-         },
-         {
-          "type": "text",
-          "class": "val s3v",
-          "text": "{st.int}"
-         },
-         {
-          "type": "text",
-          "class": "lab s4",
-          "text": "LCK"
-         },
-         {
-          "type": "box",
-          "class": "dots s4d",
-          "children": []
-         },
-         {
-          "type": "text",
-          "class": "val s4v",
-          "text": "{st.lck}"
-         },
-         {
-          "type": "text",
-          "class": "lab s5",
-          "text": "STATUS"
-         },
-         {
-          "type": "box",
-          "class": "dots s5d",
-          "children": []
-         },
-         {
-          "type": "text",
-          "class": "val s5v",
-          "text": "GOOD"
-         },
-         {
-          "type": "box",
-          "class": "rule rule-eq",
-          "children": []
-         },
-         {
-          "type": "text",
-          "class": "lab eq-h",
-          "text": "EQUIPMENT"
-         },
-         {
-          "type": "list",
-          "class": "slots",
-          "items": "$slots",
-          "template": {
-           "type": "button",
-           "class": "srow",
-           "onClick": [
-            {
-             "set": {
-              "eqSlot": "{i}",
-              "eqId": -1
-             }
-            },
-            {
-             "navigate": "equip"
-            }
-           ],
-           "children": [
-            {
-             "type": "text",
-             "class": "slab",
-             "text": "{label}"
-            },
-            {
-             "type": "image",
-             "class": "sic",
-             "src": "$icon"
-            },
-            {
-             "type": "text",
-             "class": "sname",
-             "text": "{name}"
-            }
-           ],
-           "classIf": {
-            "none": "$none"
-           }
-          }
-         },
-         {
-          "type": "button",
-          "class": "hbtn",
-          "onClick": [
-           {
-            "call": "quickHeal",
-            "args": [
-             "{heal.id}"
-            ]
-           }
-          ],
-          "children": [
-           {
-            "type": "image",
-            "class": "abtn-p",
-            "src": "asset:ui/btn.png"
-           },
-           {
-            "type": "text",
-            "class": "abtn-t",
-            "text": "HEAL"
-           }
-          ],
-          "visibleIf": "$heal.can"
-         },
-         {
-          "type": "box",
-          "class": "hbtn abtn-done",
-          "children": [
-           {
-            "type": "image",
-            "class": "abtn-p",
-            "src": "asset:ui/btn-off.png"
-           },
-           {
-            "type": "text",
-            "class": "abtn-t",
-            "text": "HEAL"
-           }
-          ],
-          "visibleIf": "$heal.off"
-         },
-         {
-          "type": "text",
-          "class": "hname",
-          "text": "{heal.name}"
-         },
-         {
-          "type": "text",
-          "class": "note note-st",
-          "text": "{note}"
          },
          {
           "type": "button",

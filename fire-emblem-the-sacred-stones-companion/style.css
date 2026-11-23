@@ -102,7 +102,7 @@ text { white-space: nowrap; }
 .eq-l.e3 { left: 151.76px; top: 30.352px; } .eq-v.e3 { left: 212.464px; top: 30.352px; }
 .eq-l.e4 { left: 17.344px; top: 60.704px; } .eq-v.e4 { left: 73.712px; top: 60.704px; }
 .eq-l.e5 { left: 151.76px; top: 60.704px; } .eq-v.e5 { left: 212.464px; top: 60.704px; }
-.eq-src { position: absolute; left: 242.816px; top: 327.368px; width: 286.176px; text-align: right; font-family: "Silk"; font-size: 8.672px; color: #fff8c0; }
+.eq-src { position: absolute; left: 242.816px; top: 327.368px; width: 286.176px; text-align: right; font-family: "Silk"; font-size: 9.994px; color: #fff8c0; }
 .acts { position: absolute; left: 4.336px; top: 346.88px; width: 528.992px; height: 56.368px; flex-direction: row; align-items: center; background-color: #6b8cad; border-radius: 6.504px; padding: 0 8.672px; }
 .act-n { flex: 1; font-size: 23.848px; color: #ffffff; text-shadow: 2.168px 2.168px 0 var(--shade); }
 .abtn { height: 39.024px; padding: 0 13.008px; margin: 0 0 0 8.672px; background-color: var(--win); border: 2.168px solid var(--cream); border-radius: 6.504px; justify-content: center; align-items: center; }

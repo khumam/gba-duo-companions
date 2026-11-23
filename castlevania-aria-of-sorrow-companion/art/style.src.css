@@ -27,7 +27,7 @@ text { white-space: nowrap; }
 .gold-l, .gold { color: var(--gold); }
 .num.up { color: #70f0ff; }
 .num.down { color: #ff6060; }
-.sw-after { left: 210ap; top: 59ap; font-size: 4ap; color: #70f0ff; }
+.sw-after { left: 210ap; top: 59ap; font-size: 5.54ap; color: #70f0ff; }
 
 /* ---- title plaque (top left of every sub page) ---- */
 .tplate { position: absolute; left: 2ap; top: 1ap; width: 122ap; height: 15ap; }
@@ -74,7 +74,7 @@ bar > fill { border-radius: 0; transition: width 300ms; }
 .s1, .s5 { top: 34ap; } .s2, .s6 { top: 43ap; } .s3 { top: 52ap; } .s4 { top: 61ap; }
 .s1v, .s5v { top: 31ap; } .s2v, .s6v { top: 40ap; } .s3v { top: 49ap; } .s4v { top: 58ap; }
 .s5 { top: 33ap; } .s6 { top: 42ap; }
-.st-good { left: 136ap; top: 58ap; font-size: 5ap; color: #b0a8a0; }
+.st-good { left: 136ap; top: 58ap; font-size: 5.54ap; color: #b0a8a0; }
 .w-souls { left: 60ap; top: 72ap; width: 88ap; height: 34ap; }
 .so-l { left: 66ap; top: 78ap; } .so-v { left: 92ap; width: 50ap; top: 75ap; }
 .so-r { left: 66ap; top: 92ap; } .so-rv { left: 92ap; width: 50ap; top: 89ap; color: #ffd0c8; }
@@ -98,8 +98,8 @@ bar > fill { border-radius: 0; transition: width 300ms; }
 .mbtn:pressed { background-color: #b02030; }
 .mbtn:pressed .mtext { color: #ffffff; }
 .w-eq { left: 78ap; top: 134ap; width: 166ap; height: 52ap; }
-.eqh { left: 84ap; top: 137ap; font-size: 5ap; color: #b0a8a0; }
-.soh { left: 166ap; top: 137ap; font-size: 5ap; color: #b0a8a0; }
+.eqh { left: 84ap; top: 137ap; font-size: 5.54ap; color: #b0a8a0; }
+.soh { left: 166ap; top: 137ap; font-size: 5.54ap; color: #b0a8a0; }
 .glist { position: absolute; left: 82ap; top: 144ap; width: 82ap; height: 40ap; flex-direction: column; }
 .slist { position: absolute; left: 164ap; top: 144ap; width: 78ap; height: 40ap; flex-direction: column; }
 .grow, .srow { width: 80ap; height: 13ap; padding: 0; margin: 0; background: none; border: 0; border-radius: 0; flex-direction: row; justify-content: flex-start; align-items: center; }
@@ -176,7 +176,7 @@ bar > fill { border-radius: 0; transition: width 300ms; }
 .sotabs { position: absolute; left: 48ap; top: 18ap; width: 102ap; height: 44ap; flex-direction: column; }
 .sotab { width: 102ap; height: 14ap; padding: 0; margin: 0; background: none; border: 0; border-radius: 0; position: relative; }
 .sotab-orb { position: absolute; left: 1ap; top: 4ap; width: 7ap; height: 7ap; }
-.sotab-l { position: absolute; left: 10ap; top: 1ap; font-family: "Silk"; font-size: 4ap; color: #b0a8a0; }
+.sotab-l { position: absolute; left: 10ap; top: 1ap; font-family: "Silk"; font-size: 4.61ap; color: #b0a8a0; }
 .sotab-n { position: absolute; left: 10ap; top: 3ap; font-size: 10ap; color: #ffffff; }
 .sotab-u { position: absolute; left: 10ap; top: 12ap; width: 92ap; height: 1ap; background-color: var(--c); opacity: 0; }
 .sotab.sel .sotab-n { color: var(--c); }
@@ -199,7 +199,7 @@ bar > fill { border-radius: 0; transition: width 300ms; }
 .ih-l { left: 14ap; top: 27ap; color: var(--hp); font-size: 7ap; } .im-l { left: 14ap; top: 41ap; color: var(--mp); font-size: 7ap; }
 .ih-v { left: 26ap; width: 70ap; top: 24ap; } .im-v { left: 26ap; width: 70ap; top: 38ap; }
 .ihbar { left: 102ap; top: 27ap; width: 90ap; } .imbar { left: 102ap; top: 41ap; width: 90ap; }
-.ist { left: 198ap; top: 34ap; font-size: 4ap; color: #b0a8a0; }
+.ist { left: 198ap; top: 34ap; font-size: 5.54ap; color: #b0a8a0; }
 .itab { height: 9ap; padding: 0 5ap; margin: 0 4ap 0 0; background: none; border: 0; border-radius: 0; }
 .itab-t { font-family: "Silk"; font-size: 5ap; color: #a08080; }
 .itab.sel { background-color: var(--band-hi); }
@@ -220,7 +220,7 @@ bar > fill { border-radius: 0; transition: width 300ms; }
 .acell.locked .aname { color: #605050; }
 .acell.sel { background-color: #3a0006; }
 .acell:pressed .aname { color: var(--amber); }
-.ab-tip { left: 12ap; top: 122ap; font-size: 5ap; color: #806868; }
+.ab-tip { left: 12ap; top: 122ap; font-size: 5.54ap; color: #806868; }
 
 /* ---- enemy book ---- */
 .page-enemy, .page-enemyDetail { text-shadow: none; }
@@ -303,8 +303,61 @@ bar > fill { border-radius: 0; transition: width 300ms; }
 
 /* ---- map ---- */
 .mrate-l { left: 150ap; top: 6ap; } .mrate { position: absolute; left: 170ap; width: 30ap; top: 2ap; text-align: right; }
-.mcell-l { left: 204ap; top: 6ap; font-size: 5ap; } .mcell { position: absolute; left: 196ap; width: 48ap; top: 9ap; text-align: right; font-size: 7ap; color: #d8b0a8; }
+.mcell-l { left: 204ap; top: 6ap; font-size: 5.54ap; } .mcell { position: absolute; left: 196ap; width: 48ap; top: 9ap; text-align: right; font-size: 7ap; color: #d8b0a8; }
 .mapbox { position: absolute; left: 20ap; top: 24ap; width: 216ap; height: 162ap; }
 .maprows { position: absolute; left: 0; top: 0; width: 216ap; height: 162ap; }
 .run { position: absolute; background-color: #3100e7; border-top: 1ap solid #7b7bff; }
 .run-in { width: 1ap; height: 2.8ap; }
+
+/* ---- room to breathe on the Status page: the page is taller than the screen and scrolls above the plates; the blocks are spread apart ---- */
+.pscroll { position: absolute; left: 0; top: 0; width: 248ap; height: 190ap; overflow: auto; }
+.pcanvas { position: relative; width: 248ap; height: 232ap; background-color: #100000; }
+.page-status .bg { height: 232ap; }
+.page-status .w-souls { top: 80ap; } .page-status .so-l { top: 86ap; } .page-status .so-v { top: 83ap; } .page-status .so-r { top: 100ap; } .page-status .so-rv { top: 97ap; }
+.page-status .w-info { top: 80ap; } .page-status .i1 { top: 85ap; } .page-status .i2 { top: 94ap; } .page-status .i3 { top: 103ap; }
+.page-status .i1v { top: 82ap; } .page-status .i2v { top: 91ap; } .page-status .i3v { top: 100ap; }
+.page-status .expband { top: 124ap; } .page-status .ex-l { top: 127ap; } .page-status .nx-l { top: 136ap; }
+.page-status .ex-v { top: 125ap; } .page-status .nx-v { top: 134ap; } .page-status .expbar { top: 145ap; }
+.page-status .menu { top: 132ap; }
+.page-status .w-eq { top: 158ap; }
+.page-status .eqh, .page-status .soh { top: 161ap; }
+.page-status .glist, .page-status .slist { top: 168ap; }
+.page-status .hbtn { top: 92ap; } .page-status .hname { top: 107ap; }
+.page-status .lv-l { top: 78ap; } .page-status .lv { top: 70ap; }
+
+/* ---- room to breathe: Soul Set, Equip and Item Use are taller than the screen and scroll above the plates (top window 12ap taller, list and description pushed down) ---- */
+.page-soul .pcanvas, .page-equip .pcanvas, .page-items .pcanvas { height: 214ap; }
+.page-soul .bg, .page-equip .bg, .page-items .bg { height: 214ap; }
+.page-soul .w-stats, .page-equip .w-stats { width: 92ap; height: 56ap; }
+.page-soul .sw1, .page-soul .sw2, .page-equip .sw1, .page-equip .sw2 { top: 27ap; } .page-soul .sw3, .page-soul .sw4, .page-equip .sw3, .page-equip .sw4 { top: 43ap; } .page-soul .sw5, .page-soul .sw6, .page-equip .sw5, .page-equip .sw6 { top: 59ap; }
+.page-soul .sw1v, .page-soul .sw2v, .page-equip .sw1v, .page-equip .sw2v { top: 24ap; } .page-soul .sw3v, .page-soul .sw4v, .page-equip .sw3v, .page-equip .sw4v { top: 40ap; } .page-soul .sw5v, .page-soul .sw6v, .page-equip .sw5v, .page-equip .sw6v { top: 56ap; }
+.page-soul .sotabs { height: 56ap; } .page-soul .sotab { height: 18.67ap; }
+.page-soul .sotab-orb { top: 7ap; } .page-soul .sotab-l { top: 1ap; font-size: 5.54ap; } .page-soul .sotab-n { top: 6ap; } .page-soul .sotab-u { top: 17ap; }
+.page-soul .vortex-s { top: 26ap; } .page-soul .sobig { top: 32ap; }
+.page-equip .w-slots { height: 56ap; } .page-equip .eqslots { height: 54ap; top: 20ap; } .page-equip .eqslot { height: 18ap; }
+.page-equip .eqs-l { top: 7ap; font-size: 5.54ap; } .page-equip .eqs-i { top: 3ap; } .page-equip .eqs-n { top: 4ap; }
+.page-items .w-hpmp { height: 48ap; }
+.page-items .ih-l { top: 31ap; } .page-items .im-l { top: 45ap; } .page-items .ih-v { top: 28ap; } .page-items .im-v { top: 42ap; }
+.page-items .ihbar { top: 31ap; } .page-items .imbar { top: 45ap; } .page-items .ist { left: 102ap; top: 56ap; }
+.page-soul .bandhead, .page-equip .bandhead { top: 78ap; } .page-soul .bh-n, .page-equip .bh-n { top: 77ap; }
+.page-soul .band, .page-equip .band { top: 88ap; } .page-soul .band-empty, .page-equip .band-empty { top: 112ap; }
+.page-items .bandhead { top: 72ap; } .page-items .bh-n { top: 71ap; } .page-items .band { top: 82ap; } .page-items .band-empty { top: 106ap; }
+.page-soul .w-desc, .page-equip .w-desc { top: 156ap; } .page-soul .w-cost, .page-equip .w-cost { top: 161ap; }
+.page-soul .cost, .page-equip .cost { top: 161ap; } .page-soul .cost-u, .page-equip .cost-u { top: 175ap; }
+.page-soul .dicon, .page-equip .dicon { top: 162ap; } .page-soul .dname, .page-equip .dname { top: 158ap; }
+.page-soul .dtext, .page-equip .dtext { top: 168ap; } .page-soul .dextra, .page-equip .dextra { top: 189ap; }
+.page-soul .note, .page-equip .note { top: 191ap; } .page-soul .abtn, .page-equip .abtn { top: 161ap; }
+.page-items .w-desc { top: 150ap; } .page-items .w-cost { top: 155ap; } .page-items .dicon { top: 156ap; } .page-items .dname { top: 152ap; }
+.page-items .dtext { top: 162ap; } .page-items .dextra { top: 183ap; } .page-items .note { top: 185ap; } .page-items .abtn { top: 155ap; }
+.page-soul .sw-after, .page-equip .sw-after { top: 71ap; }
+
+/* ---- room to breathe: ability page is taller than the screen and scrolls above the plates (positions shifted by group) ---- */
+.page-ability .pcanvas { height: 224ap; } .page-ability .bg { height: 224ap; }
+.page-ability .w-desc { top: 162ap; }
+.page-ability .w-cost { top: 167ap; }
+.page-ability .dicon { top: 168ap; }
+.page-ability .dname { top: 164ap; }
+.page-ability .dtext { top: 174ap; }
+.page-ability .dextra { top: 195ap; }
+.page-ability .note { top: 197ap; }
+.page-ability .abtn { top: 167ap; }

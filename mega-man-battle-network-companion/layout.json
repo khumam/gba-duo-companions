@@ -1,0 +1,1402 @@
+{
+ "type": "box",
+ "children": [
+  {
+   "type": "box",
+   "class": "waiting",
+   "children": [
+    {
+     "type": "box",
+     "class": "wait-card",
+     "children": [
+      {
+       "type": "text",
+       "class": "wait-title",
+       "text": "MEGA MAN"
+      },
+      {
+       "type": "text",
+       "class": "wait-sub",
+       "text": "BATTLE NETWORK"
+      },
+      {
+       "type": "text",
+       "class": "wait-line",
+       "text": "Load your save to jog Lan's PET"
+      }
+     ]
+    }
+   ],
+   "visibleIf": "$waiting"
+  },
+  {
+   "type": "pages",
+   "class": "stage",
+   "visibleIf": "$ready",
+   "state": "page",
+   "initial": "folder",
+   "pages": [
+    {
+     "name": "folder",
+     "child": {
+      "type": "box",
+      "class": "page page-folder",
+      "children": [
+       {
+        "type": "box",
+        "class": "head",
+        "children": [
+         {
+          "type": "text",
+          "class": "head-title",
+          "text": "Folder"
+         },
+         {
+          "type": "text",
+          "class": "head-count",
+          "text": "30"
+         },
+         {
+          "type": "button",
+          "class": "head-tab",
+          "onClick": [
+           {
+            "navigate": "library"
+           }
+          ],
+          "children": [
+           {
+            "type": "text",
+            "class": "head-tab-t",
+            "text": "sack"
+           }
+          ]
+         },
+         {
+          "type": "text",
+          "class": "head-zenny",
+          "text": "{zenny}"
+         }
+        ]
+       },
+       {
+        "type": "box",
+        "class": "body",
+        "children": [
+         {
+          "type": "box",
+          "class": "card",
+          "children": [
+           {
+            "type": "text",
+            "class": "card-name",
+            "text": "{selChip.name}"
+           },
+           {
+            "type": "box",
+            "class": "art-wrap",
+            "children": [
+             {
+              "type": "image",
+              "class": "art",
+              "src": "$selChip.art"
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "card-bar",
+            "children": [
+             {
+              "type": "text",
+              "class": "card-code",
+              "text": "{selChip.code}"
+             },
+             {
+              "type": "box",
+              "class": "card-dot",
+              "children": []
+             },
+             {
+              "type": "text",
+              "class": "card-atk",
+              "text": "{selChip.atkText}"
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "desc",
+            "children": [
+             {
+              "type": "text",
+              "class": "desc-t",
+              "text": "{selChip.desc}"
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "codes",
+            "children": [
+             {
+              "type": "text",
+              "class": "codes-l",
+              "text": "CODE"
+             },
+             {
+              "type": "list",
+              "class": "codes-list",
+              "items": "$selCodes",
+              "template": {
+               "type": "button",
+               "class": "cpill",
+               "onClick": [
+                {
+                 "call": "setCode",
+                 "args": [
+                  "{slot}",
+                  "{code}"
+                 ]
+                }
+               ],
+               "children": [
+                {
+                 "type": "text",
+                 "class": "cpill-t",
+                 "text": "{ch}"
+                }
+               ],
+               "classIf": {
+                "on": "$on"
+               }
+              }
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "list-panel",
+          "children": [
+           {
+            "type": "list",
+            "class": "rows",
+            "items": "$folder",
+            "template": {
+             "type": "button",
+             "class": "row",
+             "onClick": [
+              {
+               "set": {
+                "slot": "{slot}"
+               }
+              }
+             ],
+             "children": [
+              {
+               "type": "image",
+               "class": "row-icon",
+               "src": "$icon"
+              },
+              {
+               "type": "text",
+               "class": "row-name",
+               "text": "{name}"
+              },
+              {
+               "type": "box",
+               "class": "row-dot",
+               "children": []
+              },
+              {
+               "type": "text",
+               "class": "row-code",
+               "text": "{code}"
+              }
+             ],
+             "classIf": {
+              "sel": "$sel",
+              "odd": "$odd"
+             }
+            }
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "type": "box",
+        "class": "nav",
+        "children": [
+         {
+          "type": "button",
+          "class": "nbtn nbtn-l",
+          "onClick": [
+           {
+            "navigate": "network"
+           }
+          ],
+          "children": [
+           {
+            "type": "box",
+            "class": "arrrow",
+            "children": [
+             {
+              "type": "image",
+              "class": "nb arr arr-l",
+              "src": "asset:ui/arr-l-fff7ce-292929.png"
+             },
+             {
+              "type": "text",
+              "class": "nb",
+              "text": "Network"
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "text",
+          "class": "ntitle",
+          "text": "Folder"
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-r",
+          "onClick": [
+           {
+            "navigate": "library"
+           }
+          ],
+          "children": [
+           {
+            "type": "box",
+            "class": "arrrow",
+            "children": [
+             {
+              "type": "text",
+              "class": "nb",
+              "text": "Library"
+             },
+             {
+              "type": "image",
+              "class": "nb arr arr-r",
+              "src": "asset:ui/arr-r-fff7ce-292929.png"
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "name": "library",
+     "child": {
+      "type": "box",
+      "class": "page page-library",
+      "children": [
+       {
+        "type": "box",
+        "class": "head",
+        "children": [
+         {
+          "type": "text",
+          "class": "head-title",
+          "text": "Library"
+         },
+         {
+          "type": "text",
+          "class": "head-count",
+          "text": "{libCount}"
+         },
+         {
+          "type": "box",
+          "class": "head-tab",
+          "children": [
+           {
+            "type": "text",
+            "class": "head-tab-t",
+            "text": "seen"
+           }
+          ]
+         },
+         {
+          "type": "text",
+          "class": "head-zenny",
+          "text": "{zenny}"
+         }
+        ]
+       },
+       {
+        "type": "box",
+        "class": "body",
+        "children": [
+         {
+          "type": "box",
+          "class": "card",
+          "children": [
+           {
+            "type": "text",
+            "class": "card-name",
+            "text": "{libChip.name}"
+           },
+           {
+            "type": "box",
+            "class": "art-wrap",
+            "children": [
+             {
+              "type": "image",
+              "class": "art",
+              "src": "$libChip.art"
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "card-bar",
+            "children": [
+             {
+              "type": "text",
+              "class": "card-no",
+              "text": "No.{libChip.no}"
+             },
+             {
+              "type": "box",
+              "class": "card-dot",
+              "children": []
+             },
+             {
+              "type": "text",
+              "class": "card-atk",
+              "text": "{libChip.atkText}"
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "desc",
+            "children": [
+             {
+              "type": "text",
+              "class": "desc-t",
+              "text": "{libChip.desc}"
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "codes",
+            "children": [
+             {
+              "type": "text",
+              "class": "codes-l",
+              "text": "CODES"
+             },
+             {
+              "type": "text",
+              "class": "codes-v",
+              "text": "{libCodes}"
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "owned",
+            "children": [
+             {
+              "type": "text",
+              "class": "owned-t",
+              "text": "In sack: {libChip.owned}"
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "list-panel",
+          "children": [
+           {
+            "type": "list",
+            "class": "rows",
+            "items": "$library",
+            "template": {
+             "type": "button",
+             "class": "row lrow",
+             "onClick": [
+              {
+               "set": {
+                "lib": "{id}"
+               }
+              }
+             ],
+             "children": [
+              {
+               "type": "text",
+               "class": "lrow-no",
+               "text": "{no}"
+              },
+              {
+               "type": "text",
+               "class": "row-name",
+               "text": "{name}"
+              },
+              {
+               "type": "text",
+               "class": "lrow-own",
+               "text": "{ownedText}"
+              }
+             ],
+             "classIf": {
+              "sel": "$sel",
+              "odd": "$odd"
+             }
+            }
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "type": "box",
+        "class": "nav",
+        "children": [
+         {
+          "type": "button",
+          "class": "nbtn nbtn-l",
+          "onClick": [
+           {
+            "navigate": "folder"
+           }
+          ],
+          "children": [
+           {
+            "type": "box",
+            "class": "arrrow",
+            "children": [
+             {
+              "type": "image",
+              "class": "nb arr arr-l",
+              "src": "asset:ui/arr-l-fff7ce-292929.png"
+             },
+             {
+              "type": "text",
+              "class": "nb",
+              "text": "Folder"
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "text",
+          "class": "ntitle",
+          "text": "Library"
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-r",
+          "onClick": [
+           {
+            "navigate": "megaman"
+           }
+          ],
+          "children": [
+           {
+            "type": "box",
+            "class": "arrrow",
+            "children": [
+             {
+              "type": "text",
+              "class": "nb",
+              "text": "MegaMan"
+             },
+             {
+              "type": "image",
+              "class": "nb arr arr-r",
+              "src": "asset:ui/arr-r-fff7ce-292929.png"
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "name": "megaman",
+     "child": {
+      "type": "box",
+      "class": "page page-megaman",
+      "children": [
+       {
+        "type": "box",
+        "class": "mm-head",
+        "children": [
+         {
+          "type": "text",
+          "class": "mm-title",
+          "text": "MegaMan.exe"
+         },
+         {
+          "type": "text",
+          "class": "mm-lv",
+          "text": "LV. {level}"
+         }
+        ]
+       },
+       {
+        "type": "box",
+        "class": "mm-body",
+        "children": [
+         {
+          "type": "box",
+          "class": "mm-left",
+          "children": [
+           {
+            "type": "box",
+            "class": "plate hp-plate",
+            "children": [
+             {
+              "type": "text",
+              "class": "hp-l",
+              "text": "HP"
+             },
+             {
+              "type": "text",
+              "class": "hp-v",
+              "text": "{hp}"
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "plate zen-plate",
+            "children": [
+             {
+              "type": "text",
+              "class": "hp-l",
+              "text": "Zenny"
+             },
+             {
+              "type": "text",
+              "class": "zen-v",
+              "text": "{zenny}"
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "mm-hint",
+            "children": [
+             {
+              "type": "text",
+              "class": "hint-t",
+              "text": "Tap a pip to boost a feature, tap an armor to wear it."
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "mm-right",
+          "children": [
+           {
+            "type": "text",
+            "class": "armor-l",
+            "text": "ARMOR"
+           },
+           {
+            "type": "list",
+            "class": "armors",
+            "items": "$armors",
+            "template": {
+             "type": "button",
+             "class": "armor",
+             "onClick": [
+              {
+               "call": "setArmor",
+               "args": [
+                "{id}"
+               ]
+              }
+             ],
+             "children": [
+              {
+               "type": "box",
+               "class": "armor-arrow",
+               "children": []
+              },
+              {
+               "type": "text",
+               "class": "armor-t",
+               "text": "{name}"
+              }
+             ],
+             "classIf": {
+              "on": "$on"
+             }
+            }
+           },
+           {
+            "type": "list",
+            "class": "stats",
+            "items": "$stats",
+            "template": {
+             "type": "box",
+             "class": "stat",
+             "children": [
+              {
+               "type": "text",
+               "class": "stat-name",
+               "text": "{name}"
+              },
+              {
+               "type": "list",
+               "class": "pips",
+               "items": "$pips",
+               "template": {
+                "type": "button",
+                "class": "pip",
+                "onClick": [
+                 {
+                  "call": "setStat",
+                  "args": [
+                   "{stat}",
+                   "{level}"
+                  ]
+                 }
+                ],
+                "children": [],
+                "classIf": {
+                 "on": "$on"
+                }
+               }
+              }
+             ]
+            }
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "type": "box",
+        "class": "nav",
+        "children": [
+         {
+          "type": "button",
+          "class": "nbtn nbtn-l",
+          "onClick": [
+           {
+            "navigate": "library"
+           }
+          ],
+          "children": [
+           {
+            "type": "box",
+            "class": "arrrow",
+            "children": [
+             {
+              "type": "image",
+              "class": "nb arr arr-l",
+              "src": "asset:ui/arr-l-fff7ce-292929.png"
+             },
+             {
+              "type": "text",
+              "class": "nb",
+              "text": "Library"
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "text",
+          "class": "ntitle",
+          "text": "MegaMan"
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-r",
+          "onClick": [
+           {
+            "navigate": "email"
+           }
+          ],
+          "children": [
+           {
+            "type": "box",
+            "class": "arrrow",
+            "children": [
+             {
+              "type": "text",
+              "class": "nb",
+              "text": "Email"
+             },
+             {
+              "type": "image",
+              "class": "nb arr arr-r",
+              "src": "asset:ui/arr-r-fff7ce-292929.png"
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "name": "email",
+     "child": {
+      "type": "box",
+      "class": "page page-email",
+      "children": [
+       {
+        "type": "box",
+        "class": "head",
+        "children": [
+         {
+          "type": "text",
+          "class": "head-title",
+          "text": "Email"
+         },
+         {
+          "type": "text",
+          "class": "head-count",
+          "text": "{mailCount}"
+         },
+         {
+          "type": "text",
+          "class": "head-zenny",
+          "text": "{zenny}"
+         }
+        ]
+       },
+       {
+        "type": "box",
+        "class": "body",
+        "children": [
+         {
+          "type": "box",
+          "class": "reader",
+          "children": [
+           {
+            "type": "box",
+            "class": "rd-bar",
+            "children": [
+             {
+              "type": "text",
+              "class": "rd-from",
+              "text": "{mail.sender}"
+             },
+             {
+              "type": "text",
+              "class": "rd-sub",
+              "text": "{mail.subject}"
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "rd-note",
+            "children": [
+             {
+              "type": "text",
+              "class": "rd-l",
+              "text": "{mail.l1}"
+             },
+             {
+              "type": "text",
+              "class": "rd-l",
+              "text": "{mail.l2}"
+             },
+             {
+              "type": "text",
+              "class": "rd-l",
+              "text": "{mail.l3}"
+             },
+             {
+              "type": "text",
+              "class": "rd-l",
+              "text": "{mail.l4}"
+             },
+             {
+              "type": "box",
+              "class": "rd-fill",
+              "children": []
+             },
+             {
+              "type": "image",
+              "class": "rd-face",
+              "src": "asset:ui/mm-face.png"
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "rd-pager",
+            "children": [
+             {
+              "type": "button",
+              "class": "rd-btn",
+              "onClick": [
+               {
+                "call": "mailStep",
+                "args": [
+                 -1
+                ]
+               }
+              ],
+              "children": [
+               {
+                "type": "image",
+                "class": "rd-arr arr arr-l",
+                "src": "asset:ui/arr-l-fff7ce-292929.png"
+               }
+              ],
+              "classIf": {
+               "off": "$mailFirst"
+              }
+             },
+             {
+              "type": "text",
+              "class": "rd-page",
+              "text": "{mail.pageText}"
+             },
+             {
+              "type": "button",
+              "class": "rd-btn",
+              "onClick": [
+               {
+                "call": "mailStep",
+                "args": [
+                 1
+                ]
+               }
+              ],
+              "children": [
+               {
+                "type": "image",
+                "class": "rd-arr arr arr-r",
+                "src": "asset:ui/arr-r-fff7ce-292929.png"
+               }
+              ],
+              "classIf": {
+               "off": "$mailLast"
+              }
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "list-panel",
+          "children": [
+           {
+            "type": "list",
+            "class": "rows",
+            "items": "$mails",
+            "template": {
+             "type": "button",
+             "class": "row mrow",
+             "onClick": [
+              {
+               "set": {
+                "mail": "{id}",
+                "mpage": "0"
+               }
+              }
+             ],
+             "children": [
+              {
+               "type": "text",
+               "class": "mrow-from",
+               "text": "{sender}"
+              },
+              {
+               "type": "text",
+               "class": "mrow-sub",
+               "text": "{subject}"
+              }
+             ],
+             "classIf": {
+              "sel": "$sel",
+              "odd": "$odd"
+             }
+            }
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "type": "box",
+        "class": "nav",
+        "children": [
+         {
+          "type": "button",
+          "class": "nbtn nbtn-l",
+          "onClick": [
+           {
+            "navigate": "megaman"
+           }
+          ],
+          "children": [
+           {
+            "type": "box",
+            "class": "arrrow",
+            "children": [
+             {
+              "type": "image",
+              "class": "nb arr arr-l",
+              "src": "asset:ui/arr-l-fff7ce-292929.png"
+             },
+             {
+              "type": "text",
+              "class": "nb",
+              "text": "MegaMan"
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "text",
+          "class": "ntitle",
+          "text": "Email"
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-r",
+          "onClick": [
+           {
+            "navigate": "items"
+           }
+          ],
+          "children": [
+           {
+            "type": "box",
+            "class": "arrrow",
+            "children": [
+             {
+              "type": "text",
+              "class": "nb",
+              "text": "Items"
+             },
+             {
+              "type": "image",
+              "class": "nb arr arr-r",
+              "src": "asset:ui/arr-r-fff7ce-292929.png"
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "name": "items",
+     "child": {
+      "type": "box",
+      "class": "page page-items",
+      "children": [
+       {
+        "type": "box",
+        "class": "head",
+        "children": [
+         {
+          "type": "text",
+          "class": "head-title",
+          "text": "Items"
+         },
+         {
+          "type": "text",
+          "class": "head-count",
+          "text": "{itemCount}"
+         },
+         {
+          "type": "box",
+          "class": "head-tab",
+          "children": [
+           {
+            "type": "text",
+            "class": "head-tab-t",
+            "text": "key"
+           }
+          ]
+         },
+         {
+          "type": "text",
+          "class": "head-zenny",
+          "text": "{zenny}"
+         }
+        ]
+       },
+       {
+        "type": "box",
+        "class": "body",
+        "children": [
+         {
+          "type": "box",
+          "class": "card",
+          "children": [
+           {
+            "type": "text",
+            "class": "card-name",
+            "text": "{item.name}"
+           },
+           {
+            "type": "box",
+            "class": "it-kind",
+            "children": [
+             {
+              "type": "text",
+              "class": "it-kind-t",
+              "text": "{item.kind}"
+             },
+             {
+              "type": "text",
+              "class": "it-count",
+              "text": "{item.countText}"
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "desc it-desc",
+            "children": [
+             {
+              "type": "text",
+              "class": "desc-t",
+              "text": "{item.desc}"
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "list-panel",
+          "children": [
+           {
+            "type": "list",
+            "class": "rows",
+            "items": "$items",
+            "template": {
+             "type": "button",
+             "class": "row irow",
+             "onClick": [
+              {
+               "set": {
+                "item": "{id}"
+               }
+              }
+             ],
+             "children": [
+              {
+               "type": "text",
+               "class": "row-name",
+               "text": "{name}"
+              },
+              {
+               "type": "text",
+               "class": "irow-n",
+               "text": "{countText}"
+              }
+             ],
+             "classIf": {
+              "sel": "$sel",
+              "odd": "$odd"
+             }
+            }
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "type": "box",
+        "class": "nav",
+        "children": [
+         {
+          "type": "button",
+          "class": "nbtn nbtn-l",
+          "onClick": [
+           {
+            "navigate": "email"
+           }
+          ],
+          "children": [
+           {
+            "type": "box",
+            "class": "arrrow",
+            "children": [
+             {
+              "type": "image",
+              "class": "nb arr arr-l",
+              "src": "asset:ui/arr-l-fff7ce-292929.png"
+             },
+             {
+              "type": "text",
+              "class": "nb",
+              "text": "Email"
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "text",
+          "class": "ntitle",
+          "text": "Items"
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-r",
+          "onClick": [
+           {
+            "navigate": "network"
+           }
+          ],
+          "children": [
+           {
+            "type": "box",
+            "class": "arrrow",
+            "children": [
+             {
+              "type": "text",
+              "class": "nb",
+              "text": "Network"
+             },
+             {
+              "type": "image",
+              "class": "nb arr arr-r",
+              "src": "asset:ui/arr-r-fff7ce-292929.png"
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "name": "network",
+     "child": {
+      "type": "box",
+      "class": "page page-network",
+      "children": [
+       {
+        "type": "box",
+        "class": "head",
+        "children": [
+         {
+          "type": "text",
+          "class": "head-title",
+          "text": "Network"
+         },
+         {
+          "type": "text",
+          "class": "head-count",
+          "text": ""
+         },
+         {
+          "type": "text",
+          "class": "head-zenny",
+          "text": "{zenny}"
+         }
+        ]
+       },
+       {
+        "type": "box",
+        "class": "net-body",
+        "children": [
+         {
+          "type": "box",
+          "class": "net-top",
+          "children": [
+           {
+            "type": "box",
+            "class": "net-menu",
+            "children": [
+             {
+              "type": "list",
+              "class": "net-rows",
+              "items": "$netRows",
+              "template": {
+               "type": "button",
+               "class": "row nrow",
+               "onClick": [
+                {
+                 "set": {
+                  "net": "{i}"
+                 }
+                }
+               ],
+               "children": [
+                {
+                 "type": "text",
+                 "class": "row-name",
+                 "text": "{name}"
+                }
+               ],
+               "classIf": {
+                "sel": "$sel",
+                "odd": "$odd"
+               }
+              }
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "net-stats",
+            "children": [
+             {
+              "type": "text",
+              "class": "ns-l",
+              "text": "Chips:"
+             },
+             {
+              "type": "text",
+              "class": "ns-v",
+              "text": "{chips}"
+             },
+             {
+              "type": "text",
+              "class": "ns-l",
+              "text": "Battles"
+             },
+             {
+              "type": "box",
+              "class": "ns-wl",
+              "children": [
+               {
+                "type": "text",
+                "class": "ns-w",
+                "text": "{wins}"
+               },
+               {
+                "type": "text",
+                "class": "ns-sep",
+                "text": "W/"
+               },
+               {
+                "type": "text",
+                "class": "ns-w",
+                "text": "{losses}"
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "net-note",
+          "children": [
+           {
+            "type": "image",
+            "class": "net-face",
+            "src": "asset:ui/mm-face.png"
+           },
+           {
+            "type": "text",
+            "class": "net-note-t",
+            "text": "{netNote}"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "type": "box",
+        "class": "nav",
+        "children": [
+         {
+          "type": "button",
+          "class": "nbtn nbtn-l",
+          "onClick": [
+           {
+            "navigate": "items"
+           }
+          ],
+          "children": [
+           {
+            "type": "box",
+            "class": "arrrow",
+            "children": [
+             {
+              "type": "image",
+              "class": "nb arr arr-l",
+              "src": "asset:ui/arr-l-fff7ce-292929.png"
+             },
+             {
+              "type": "text",
+              "class": "nb",
+              "text": "Items"
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "text",
+          "class": "ntitle",
+          "text": "Network"
+         },
+         {
+          "type": "button",
+          "class": "nbtn nbtn-r",
+          "onClick": [
+           {
+            "navigate": "folder"
+           }
+          ],
+          "children": [
+           {
+            "type": "box",
+            "class": "arrrow",
+            "children": [
+             {
+              "type": "text",
+              "class": "nb",
+              "text": "Folder"
+             },
+             {
+              "type": "image",
+              "class": "nb arr arr-r",
+              "src": "asset:ui/arr-r-fff7ce-292929.png"
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ]
+  }
+ ],
+ "id": "screen"
+}

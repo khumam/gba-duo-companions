@@ -7,6 +7,7 @@
 //   node art/layout.mjs
 
 import fs from "node:fs";
+import { buildClean } from "./clean.mjs";
 
 const box = (cls, children, extra = {}) => ({ type: "box", class: cls, children, ...extra });
 const text = (cls, t, extra = {}) => ({ type: "text", class: cls, text: t, ...extra });
@@ -310,9 +311,17 @@ const option = (title, desc, call, onKey, labelKey) =>
       box("opt-pill", [text("num opt-state", `{${labelKey}}`)], { classIf: { on: `$${onKey}` } }),
     ],
   );
+// The look: stone (this style) or clean (art/clean.mjs). UI state only, so it starts as Stone every time the pack loads.
+const styleBtn = (label, key, flag) =>
+  button("style-btn", [{ set: { style: key } }], [text("style-btn-t", label)], { classIf: { on: `$${flag}` } });
+const styleRow = box("opt style-row", [
+  box("opt-text", [text("opt-title", "STYLE"), text("opt-desc", "Stone, or the flat clean look with its own themes. Starts as Stone at every launch.")]),
+  box("style-pills", [styleBtn("STONE", "stone", "styleStone"), styleBtn("CLEAN", "clean", "styleClean")]),
+]);
 const optionsPage = box("content", [
   panel("p-options", [
     box("opt-list", [
+      styleRow,
       option("WIDE VIEW", "Paint the world beyond the game's frame. Tap again for extra wide.", "wideView", "_wide", "_wideLabel"),
       option("COLOR AMBIENT", "A richer grade with soft shadows, sunlit edges and drifting clouds.", "ambientView", "_ambient", "_ambientLabel"),
       option("GAME CHANGES", "Lets this pack hide the game's own HUD and equip items. Tap to be asked again.", "writePermission", "_writePerm", "_writePermLabel"),
@@ -329,6 +338,21 @@ const page = (name, content) => ({
     navBar(name),
   ]),
 });
+
+// Every class of the clean tree gets a c- prefix (class strings and classIf keys), so its css never touches the stone style.
+function prefixed(node, extra = {}) {
+  const pre = (s) => s.split(/\s+/).filter(Boolean).map((t) => "c-" + t).join(" ");
+  const walk = (n) => {
+    if (Array.isArray(n)) return n.forEach(walk);
+    if (!n || typeof n !== "object") return;
+    if (typeof n.class === "string") n.class = pre(n.class);
+    if (n.classIf) n.classIf = Object.fromEntries(Object.entries(n.classIf).map(([k, v]) => ["c-" + k, v]));
+    for (const v of Object.values(n)) walk(v);
+  };
+  walk(node);
+  node.class = "c-root";
+  return Object.assign(node, extra);
+}
 
 const layout = box(
   "bezel",
@@ -350,17 +374,13 @@ const layout = box(
       }]),
       pillar("l"),
       pillar("r"),
-      // Ivy creeping in from the top and bottom edges, over the pillars but under the plates and buttons.
-      img("vine vine-tl", ui("vine-tl")),
-      img("vine vine-tr", ui("vine-tr")),
-      img("vine vine-bl", ui("vine-bl")),
-      img("vine vine-br", ui("vine-br")),
       box("rail rail-l", [statLeft, ezlo]),
       box("rail rail-r", [statRight, equip("A", "equipA"), equip("B", "equipB")]),
       hint,
-    ], { visibleIf: "$ready" }),
+    ], { visibleIf: "$showStone" }),
+    prefixed(buildClean({ box, text, img, button, list, bar, ui, icon, grow }), { visibleIf: "$showClean" }),
   ],
-  { id: "screen" },
+  { id: "screen", classIf: { "theme-parchment": "$themeParchment", "theme-night": "$themeNight" } },
 );
 
 fs.writeFileSync(new URL("../layout.json", import.meta.url), JSON.stringify(layout, null, 2) + "\n");

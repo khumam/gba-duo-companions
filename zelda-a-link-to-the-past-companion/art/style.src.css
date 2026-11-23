@@ -34,7 +34,7 @@ text { white-space: nowrap; }
 .p-pend { left: 166ap; top: 46ap; width: 80ap; height: 61ap; } .p-pend-l { left: 176ap; top: 43ap; }
 .pend { position: absolute; width: 16ap; height: 16ap; }
 .pend-0 { left: 198ap; top: 56ap; } .pend-1 { left: 182ap; top: 76ap; } .pend-2 { left: 214ap; top: 76ap; }
-.cry-n { position: absolute; left: 166ap; width: 80ap; top: 95ap; text-align: center; font-family: "Silk"; font-size: 4ap; color: #d070ff; }
+.cry-n { position: absolute; left: 166ap; width: 80ap; top: 95ap; text-align: center; font-family: "Silk"; font-size: 4.61ap; color: #d070ff; }
 .p-do { left: 2ap; top: 110ap; width: 160ap; height: 60ap; } .p-do-l { left: 14ap; top: 107ap; }
 .do-w { position: absolute; font-family: "Silk"; font-size: 7ap; }
 .do-1 { left: 16ap; top: 116ap; } .do-2 { left: 64ap; top: 116ap; } .do-3 { left: 16ap; top: 130ap; } .do-4 { left: 64ap; top: 130ap; }
@@ -78,7 +78,7 @@ text { white-space: nowrap; }
 
 /* ---- dungeons ---- */
 .p-dun { left: 2ap; top: 3ap; width: 244ap; height: 172ap; } .p-dun-l { left: 14ap; top: 0; }
-.dh { position: absolute; top: 9ap; font-family: "Silk"; font-size: 4ap; color: #d6d6d6; }
+.dh { position: absolute; top: 9ap; font-family: "Silk"; font-size: 4.61ap; color: #d6d6d6; }
 .dh-m { left: 134ap; } .dh-c { left: 156ap; } .dh-k { left: 182ap; }
 .dlist { position: absolute; left: 8ap; top: 16ap; width: 232ap; height: 156ap; flex-direction: column; }
 .drow { width: 232ap; height: 12ap; flex-direction: row; align-items: center; }

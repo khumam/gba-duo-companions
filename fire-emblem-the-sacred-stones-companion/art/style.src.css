@@ -102,7 +102,7 @@ text { white-space: nowrap; }
 .eq-l.e3 { left: 70ap; top: 14ap; } .eq-v.e3 { left: 98ap; top: 14ap; }
 .eq-l.e4 { left: 8ap; top: 28ap; } .eq-v.e4 { left: 34ap; top: 28ap; }
 .eq-l.e5 { left: 70ap; top: 28ap; } .eq-v.e5 { left: 98ap; top: 28ap; }
-.eq-src { position: absolute; left: 112ap; top: 151ap; width: 132ap; text-align: right; font-family: "Silk"; font-size: 4ap; color: #fff8c0; }
+.eq-src { position: absolute; left: 112ap; top: 151ap; width: 132ap; text-align: right; font-family: "Silk"; font-size: 4.61ap; color: #fff8c0; }
 .acts { position: absolute; left: 2ap; top: 160ap; width: 244ap; height: 26ap; flex-direction: row; align-items: center; background-color: #6b8cad; border-radius: 3ap; padding: 0 4ap; }
 .act-n { flex: 1; font-size: 11ap; color: #ffffff; text-shadow: 1ap 1ap 0 var(--shade); }
 .abtn { height: 18ap; padding: 0 6ap; margin: 0 0 0 4ap; background-color: var(--win); border: 1ap solid var(--cream); border-radius: 3ap; justify-content: center; align-items: center; }

@@ -1454,6 +1454,70 @@
                                         "class": "opt-list",
                                         "children": [
                                           {
+                                            "type": "box",
+                                            "class": "opt style-row",
+                                            "children": [
+                                              {
+                                                "type": "box",
+                                                "class": "opt-text",
+                                                "children": [
+                                                  {
+                                                    "type": "text",
+                                                    "class": "opt-title",
+                                                    "text": "STYLE"
+                                                  },
+                                                  {
+                                                    "type": "text",
+                                                    "class": "opt-desc",
+                                                    "text": "Stone, or the flat clean look with its own themes. Starts as Stone at every launch."
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "type": "box",
+                                                "class": "style-pills",
+                                                "children": [
+                                                  {
+                                                    "type": "button",
+                                                    "class": "style-btn",
+                                                    "onClick": [
+                                                      {
+                                                        "set": {
+                                                          "style": "stone"
+                                                        }
+                                                      }
+                                                    ],
+                                                    "children": [
+                                                      {
+                                                        "type": "text",
+                                                        "class": "style-btn-t",
+                                                        "text": "STONE"
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "type": "button",
+                                                    "class": "style-btn",
+                                                    "onClick": [
+                                                      {
+                                                        "set": {
+                                                          "style": "clean"
+                                                        }
+                                                      }
+                                                    ],
+                                                    "children": [
+                                                      {
+                                                        "type": "text",
+                                                        "class": "style-btn-t",
+                                                        "text": "CLEAN"
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          },
+                                          {
                                             "type": "button",
                                             "class": "opt",
                                             "onClick": {
@@ -1663,26 +1727,6 @@
           "children": []
         },
         {
-          "type": "image",
-          "class": "vine vine-tl",
-          "src": "asset:ui/vine-tl.png"
-        },
-        {
-          "type": "image",
-          "class": "vine vine-tr",
-          "src": "asset:ui/vine-tr.png"
-        },
-        {
-          "type": "image",
-          "class": "vine vine-bl",
-          "src": "asset:ui/vine-bl.png"
-        },
-        {
-          "type": "image",
-          "class": "vine vine-br",
-          "src": "asset:ui/vine-br.png"
-        },
-        {
           "type": "box",
           "class": "rail rail-l",
           "children": [
@@ -1853,8 +1897,2180 @@
           ]
         }
       ],
-      "visibleIf": "$ready"
+      "visibleIf": "$showStone"
+    },
+    {
+      "type": "box",
+      "class": "c-root",
+      "children": [
+        {
+          "type": "box",
+          "class": "c-shell",
+          "children": [
+            {
+              "type": "box",
+              "class": "c-topbar",
+              "children": [
+                {
+                  "type": "button",
+                  "class": "c-ezlo-btn",
+                  "onClick": [
+                    {
+                      "set": {
+                        "hint": true
+                      }
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "image",
+                      "class": "c-ezlo",
+                      "src": "$ezlo"
+                    }
+                  ]
+                },
+                {
+                  "type": "box",
+                  "class": "c-chip c-chip-rupee",
+                  "children": [
+                    {
+                      "type": "image",
+                      "class": "c-hicon c-hicon-rupee",
+                      "src": "asset:ui/rupee-green.png"
+                    },
+                    {
+                      "type": "text",
+                      "class": "c-num",
+                      "text": "{rupees}"
+                    }
+                  ]
+                },
+                {
+                  "type": "box",
+                  "class": "c-chip c-chip-kin",
+                  "children": [
+                    {
+                      "type": "image",
+                      "class": "c-hicon",
+                      "src": "$icons.kinstoneRed"
+                    },
+                    {
+                      "type": "text",
+                      "class": "c-num",
+                      "text": "{kinstones}"
+                    }
+                  ]
+                },
+                {
+                  "type": "box",
+                  "class": "c-grow",
+                  "children": []
+                },
+                {
+                  "type": "box",
+                  "class": "c-equip c-equip-a",
+                  "children": [
+                    {
+                      "type": "box",
+                      "class": "c-disc",
+                      "children": [
+                        {
+                          "type": "image",
+                          "class": "c-equip-icon",
+                          "src": "$equipA.icon"
+                        },
+                        {
+                          "type": "box",
+                          "class": "c-equip-badge",
+                          "children": [
+                            {
+                              "type": "text",
+                              "class": "c-equip-key",
+                              "text": "A"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "class": "c-equip-name",
+                      "text": "{equipA.name}"
+                    }
+                  ],
+                  "onDrop": {
+                    "call": "equip",
+                    "args": [
+                      "A",
+                      "{drag}"
+                    ]
+                  }
+                },
+                {
+                  "type": "box",
+                  "class": "c-equip c-equip-b",
+                  "children": [
+                    {
+                      "type": "box",
+                      "class": "c-disc",
+                      "children": [
+                        {
+                          "type": "image",
+                          "class": "c-equip-icon",
+                          "src": "$equipB.icon"
+                        },
+                        {
+                          "type": "box",
+                          "class": "c-equip-badge",
+                          "children": [
+                            {
+                              "type": "text",
+                              "class": "c-equip-key",
+                              "text": "B"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "class": "c-equip-name",
+                      "text": "{equipB.name}"
+                    }
+                  ],
+                  "onDrop": {
+                    "call": "equip",
+                    "args": [
+                      "B",
+                      "{drag}"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "class": "c-pages-wrap",
+              "children": [
+                {
+                  "type": "pages",
+                  "class": "c-pages",
+                  "pages": [
+                    {
+                      "name": "map",
+                      "child": {
+                        "type": "box",
+                        "class": "c-page c-page-map",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "c-content c-content-row",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "c-master c-master-map",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-map-view",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "c-map-img",
+                                        "src": "$map.image"
+                                      },
+                                      {
+                                        "type": "image",
+                                        "class": "c-mark c-mark-link",
+                                        "src": "$icons.linkHead",
+                                        "bindStyle": {
+                                          "left": "{map.linkX}%",
+                                          "top": "{map.linkY}%"
+                                        }
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-dmap",
+                                        "children": [
+                                          {
+                                            "type": "box",
+                                            "class": "c-dmap-head",
+                                            "children": [
+                                              {
+                                                "type": "text",
+                                                "class": "c-dmap-name",
+                                                "text": "{dungeon.name}"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "c-dmap-body",
+                                            "children": [
+                                              {
+                                                "type": "list",
+                                                "class": "c-dmap-floors",
+                                                "items": "$dungeon.floors",
+                                                "template": {
+                                                  "type": "box",
+                                                  "class": "c-dfloor",
+                                                  "children": [
+                                                    {
+                                                      "type": "box",
+                                                      "class": "c-dfloor-mark",
+                                                      "children": [
+                                                        {
+                                                          "type": "image",
+                                                          "class": "c-dfloor-link",
+                                                          "src": "$icons.linkHead",
+                                                          "visibleIf": "$here"
+                                                        }
+                                                      ]
+                                                    },
+                                                    {
+                                                      "type": "text",
+                                                      "class": "c-num c-dfloor-name",
+                                                      "text": "{name}"
+                                                    },
+                                                    {
+                                                      "type": "box",
+                                                      "class": "c-dfloor-mark",
+                                                      "children": [
+                                                        {
+                                                          "type": "image",
+                                                          "class": "c-dfloor-boss",
+                                                          "src": "asset:ui/mark-boss.png",
+                                                          "visibleIf": "$boss"
+                                                        }
+                                                      ]
+                                                    }
+                                                  ],
+                                                  "classIf": {
+                                                    "c-here": "$here"
+                                                  }
+                                                }
+                                              },
+                                              {
+                                                "type": "box",
+                                                "class": "c-dmap-items",
+                                                "children": [
+                                                  {
+                                                    "type": "list",
+                                                    "class": "c-ditem-row",
+                                                    "items": "$dungeon.items",
+                                                    "template": {
+                                                      "type": "box",
+                                                      "class": "c-ditem",
+                                                      "children": [
+                                                        {
+                                                          "type": "box",
+                                                          "class": "c-ditem-slot",
+                                                          "children": [
+                                                            {
+                                                              "type": "image",
+                                                              "class": "c-ditem-icon",
+                                                              "src": "$icon"
+                                                            }
+                                                          ]
+                                                        },
+                                                        {
+                                                          "type": "text",
+                                                          "class": "c-ditem-name",
+                                                          "text": "{name}"
+                                                        }
+                                                      ],
+                                                      "classIf": {
+                                                        "c-missing": "$missing"
+                                                      }
+                                                    }
+                                                  },
+                                                  {
+                                                    "type": "box",
+                                                    "class": "c-dkeys",
+                                                    "children": [
+                                                      {
+                                                        "type": "image",
+                                                        "class": "c-dkey-icon",
+                                                        "src": "$dungeon.keyIcon"
+                                                      },
+                                                      {
+                                                        "type": "text",
+                                                        "class": "c-num c-dkey-num",
+                                                        "text": "{dungeon.keys}"
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ],
+                                        "visibleIf": "$map.showDungeon"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-detail",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-pane c-p-place",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "c-pane-title",
+                                        "text": "YOU ARE IN"
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "c-place-name",
+                                        "text": "{location}"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-map-tabs",
+                                        "children": [
+                                          {
+                                            "type": "button",
+                                            "class": "c-map-tab",
+                                            "onClick": [
+                                              {
+                                                "set": {
+                                                  "mapWorldAt": "{map.visit}"
+                                                }
+                                              }
+                                            ],
+                                            "classIf": {
+                                              "c-on": "$map.showWorld"
+                                            },
+                                            "children": [
+                                              {
+                                                "type": "text",
+                                                "class": "c-map-tab-label",
+                                                "text": "WORLD"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "button",
+                                            "class": "c-map-tab",
+                                            "onClick": [
+                                              {
+                                                "set": {
+                                                  "mapWorldAt": ""
+                                                }
+                                              }
+                                            ],
+                                            "classIf": {
+                                              "c-on": "$map.showDungeon"
+                                            },
+                                            "children": [
+                                              {
+                                                "type": "text",
+                                                "class": "c-map-tab-label",
+                                                "text": "DUNGEON"
+                                              }
+                                            ]
+                                          }
+                                        ],
+                                        "visibleIf": "$map.inDungeon"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-pane c-p-link",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "c-pane-title",
+                                        "text": "LINK"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-link-row",
+                                        "children": [
+                                          {
+                                            "type": "image",
+                                            "class": "c-link-sprite",
+                                            "src": "$link.sprite"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "list",
+                                        "class": "c-hearts",
+                                        "items": "$link.hearts",
+                                        "template": {
+                                          "type": "image",
+                                          "class": "c-heart",
+                                          "src": "$src"
+                                        },
+                                        "visibleIf": "$link.hasHearts"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "c-tabs",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "c-tab c-on",
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "c-tab-icon",
+                                    "src": "asset:ui/tab-map-on.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-tab-label",
+                                    "text": "MAPS"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "items"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "c-tab-icon",
+                                    "src": "asset:ui/tab-items-off.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-tab-label",
+                                    "text": "ITEMS"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "kinstone"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "c-tab-icon",
+                                    "src": "asset:ui/tab-kinstone-off.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-tab-label",
+                                    "text": "KINSTONE"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "c-tab-alert",
+                                    "src": "$icons.kinstoneRed",
+                                    "visibleIf": "$kinstone.ready"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "quest"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "c-tab-icon",
+                                    "src": "asset:ui/tab-quest-off.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-tab-label",
+                                    "text": "QUESTS"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "options"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "c-tab-icon",
+                                    "src": "asset:ui/tab-options-off.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-tab-label",
+                                    "text": "OPTIONS"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "items",
+                      "child": {
+                        "type": "box",
+                        "class": "c-page c-page-items",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "c-content c-content-row",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "c-master",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-pane c-p-tiles",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "c-pane-title",
+                                        "text": "ITEMS"
+                                      },
+                                      {
+                                        "type": "list",
+                                        "class": "c-item-grid",
+                                        "items": "$items",
+                                        "template": {
+                                          "type": "box",
+                                          "class": "c-slot",
+                                          "children": [
+                                            {
+                                              "type": "image",
+                                              "class": "c-slot-icon",
+                                              "src": "$icon",
+                                              "visibleIf": "$owned"
+                                            },
+                                            {
+                                              "type": "box",
+                                              "class": "c-slot-count",
+                                              "children": [
+                                                {
+                                                  "type": "text",
+                                                  "class": "c-num c-count",
+                                                  "text": "{count}"
+                                                }
+                                              ],
+                                              "visibleIf": "$hasCount"
+                                            }
+                                          ],
+                                          "classIf": {
+                                            "c-empty": "$empty",
+                                            "c-movable": "$canEquip"
+                                          },
+                                          "onClick": [
+                                            {
+                                              "set": {
+                                                "pick": "{name}",
+                                                "pickIcon": "{icon}",
+                                                "pickKey": "{equipKey}",
+                                                "picked": true
+                                              }
+                                            }
+                                          ],
+                                          "drag": "{equipKey}",
+                                          "dragIf": "$canEquip"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-detail",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-pane c-p-picked",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "c-pane-title",
+                                        "text": "SELECTED  (TAP A TILE)"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-picked-row",
+                                        "children": [
+                                          {
+                                            "type": "box",
+                                            "class": "c-picked-tile",
+                                            "children": [
+                                              {
+                                                "type": "image",
+                                                "class": "c-picked-icon",
+                                                "src": "$ui.pickIcon"
+                                              }
+                                            ],
+                                            "visibleIf": "$ui.picked"
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "c-picked-name",
+                                            "text": "{ui.pick}",
+                                            "visibleIf": "$ui.picked"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-eq-row",
+                                        "children": [
+                                          {
+                                            "type": "button",
+                                            "class": "c-eq-btn c-eq-a",
+                                            "onClick": [
+                                              {
+                                                "call": "equip",
+                                                "args": [
+                                                  "A",
+                                                  "{ui.pickKey}"
+                                                ]
+                                              }
+                                            ],
+                                            "children": [
+                                              {
+                                                "type": "text",
+                                                "class": "c-eq-btn-t",
+                                                "text": "SET A"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "button",
+                                            "class": "c-eq-btn c-eq-b",
+                                            "onClick": [
+                                              {
+                                                "call": "equip",
+                                                "args": [
+                                                  "B",
+                                                  "{ui.pickKey}"
+                                                ]
+                                              }
+                                            ],
+                                            "children": [
+                                              {
+                                                "type": "text",
+                                                "class": "c-eq-btn-t",
+                                                "text": "SET B"
+                                              }
+                                            ]
+                                          }
+                                        ],
+                                        "visibleIf": "$ui.pickKey"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-pane c-p-gear",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "c-pane-title",
+                                        "text": "GEAR"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-gear-row c-red",
+                                        "children": [
+                                          {
+                                            "type": "image",
+                                            "class": "c-gear-icon",
+                                            "src": "$icons.bombs"
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "c-gear-main",
+                                            "children": [
+                                              {
+                                                "type": "box",
+                                                "class": "c-gear-line",
+                                                "children": [
+                                                  {
+                                                    "type": "text",
+                                                    "class": "c-gear-label",
+                                                    "text": "BOMBS"
+                                                  },
+                                                  {
+                                                    "type": "box",
+                                                    "class": "c-grow",
+                                                    "children": []
+                                                  },
+                                                  {
+                                                    "type": "text",
+                                                    "class": "c-num c-gear-val",
+                                                    "text": "{gear.bombs}/{gear.bombMax}"
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "type": "bar",
+                                                "class": "c-gear-bar",
+                                                "value": "$gear.bombPct",
+                                                "max": 1
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-gear-row c-blue",
+                                        "children": [
+                                          {
+                                            "type": "image",
+                                            "class": "c-gear-icon",
+                                            "src": "$icons.quiver"
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "c-gear-main",
+                                            "children": [
+                                              {
+                                                "type": "box",
+                                                "class": "c-gear-line",
+                                                "children": [
+                                                  {
+                                                    "type": "text",
+                                                    "class": "c-gear-label",
+                                                    "text": "ARROWS"
+                                                  },
+                                                  {
+                                                    "type": "box",
+                                                    "class": "c-grow",
+                                                    "children": []
+                                                  },
+                                                  {
+                                                    "type": "text",
+                                                    "class": "c-num c-gear-val",
+                                                    "text": "{gear.arrows}/{gear.arrowMax}"
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "type": "bar",
+                                                "class": "c-gear-bar",
+                                                "value": "$gear.arrowPct",
+                                                "max": 1
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-gear-row c-plain",
+                                        "children": [
+                                          {
+                                            "type": "image",
+                                            "class": "c-gear-icon",
+                                            "src": "$icons.charm"
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "c-gear-main",
+                                            "children": [
+                                              {
+                                                "type": "box",
+                                                "class": "c-gear-line",
+                                                "children": [
+                                                  {
+                                                    "type": "text",
+                                                    "class": "c-gear-label",
+                                                    "text": "CHARM"
+                                                  },
+                                                  {
+                                                    "type": "box",
+                                                    "class": "c-grow",
+                                                    "children": []
+                                                  },
+                                                  {
+                                                    "type": "text",
+                                                    "class": "c-num c-gear-val",
+                                                    "text": "{gear.charmTime}"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-gear-row c-plain",
+                                        "children": [
+                                          {
+                                            "type": "image",
+                                            "class": "c-gear-icon",
+                                            "src": "$icons.shell"
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "c-gear-main",
+                                            "children": [
+                                              {
+                                                "type": "box",
+                                                "class": "c-gear-line",
+                                                "children": [
+                                                  {
+                                                    "type": "text",
+                                                    "class": "c-gear-label",
+                                                    "text": "SHELLS"
+                                                  },
+                                                  {
+                                                    "type": "box",
+                                                    "class": "c-grow",
+                                                    "children": []
+                                                  },
+                                                  {
+                                                    "type": "text",
+                                                    "class": "c-num c-gear-val",
+                                                    "text": "{gear.shells}"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-gear-row c-plain",
+                                        "children": [
+                                          {
+                                            "type": "image",
+                                            "class": "c-gear-icon",
+                                            "src": "$icons.heartPiece"
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "c-gear-main",
+                                            "children": [
+                                              {
+                                                "type": "box",
+                                                "class": "c-gear-line",
+                                                "children": [
+                                                  {
+                                                    "type": "text",
+                                                    "class": "c-gear-label",
+                                                    "text": "PIECES"
+                                                  },
+                                                  {
+                                                    "type": "box",
+                                                    "class": "c-grow",
+                                                    "children": []
+                                                  },
+                                                  {
+                                                    "type": "text",
+                                                    "class": "c-num c-gear-val",
+                                                    "text": "{gear.heartPieces}"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "c-tabs",
+                            "children": [
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "map"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "c-tab-icon",
+                                    "src": "asset:ui/tab-map-off.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-tab-label",
+                                    "text": "MAPS"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-tab c-on",
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "c-tab-icon",
+                                    "src": "asset:ui/tab-items-on.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-tab-label",
+                                    "text": "ITEMS"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "kinstone"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "c-tab-icon",
+                                    "src": "asset:ui/tab-kinstone-off.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-tab-label",
+                                    "text": "KINSTONE"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "c-tab-alert",
+                                    "src": "$icons.kinstoneRed",
+                                    "visibleIf": "$kinstone.ready"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "quest"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "c-tab-icon",
+                                    "src": "asset:ui/tab-quest-off.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-tab-label",
+                                    "text": "QUESTS"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "options"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "c-tab-icon",
+                                    "src": "asset:ui/tab-options-off.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-tab-label",
+                                    "text": "OPTIONS"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "kinstone",
+                      "child": {
+                        "type": "box",
+                        "class": "c-page c-page-kinstone",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "c-content c-content-row",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "c-master",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-pane c-p-pieces",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "c-pane-title",
+                                        "text": "KINSTONE BAG"
+                                      },
+                                      {
+                                        "type": "list",
+                                        "class": "c-piece-list",
+                                        "items": "$kinstone.pieces",
+                                        "template": {
+                                          "type": "button",
+                                          "class": "c-piece",
+                                          "onClick": [
+                                            {
+                                              "set": {
+                                                "kinName": "{name}",
+                                                "kinIcon": "{icon}",
+                                                "kinId": "{id}",
+                                                "kinAmt": "{amount}",
+                                                "kinPicked": true
+                                              }
+                                            }
+                                          ],
+                                          "children": [
+                                            {
+                                              "type": "image",
+                                              "class": "c-piece-icon",
+                                              "src": "$icon"
+                                            },
+                                            {
+                                              "type": "text",
+                                              "class": "c-piece-name",
+                                              "text": "{name}"
+                                            },
+                                            {
+                                              "type": "text",
+                                              "class": "c-num c-piece-id",
+                                              "text": "{id}"
+                                            },
+                                            {
+                                              "type": "text",
+                                              "class": "c-num c-piece-amt",
+                                              "text": "{amount}"
+                                            }
+                                          ]
+                                        },
+                                        "empty": "NO KINSTONE PIECES YET"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-detail",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-alert",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "c-alert-icon",
+                                        "src": "$icons.kinstoneRed"
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "c-alert-text",
+                                        "text": "{kinstone.readyHint}"
+                                      }
+                                    ],
+                                    "visibleIf": "$kinstone.ready"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-pane c-p-fusion",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "c-pane-title",
+                                        "text": "FUSED"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-fuse-count",
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "class": "c-num c-fuse-num",
+                                            "text": "{kinstone.fused}"
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "c-num c-fuse-of",
+                                            "text": "/{kinstone.fusionTotal}"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "bar",
+                                        "class": "c-fuse-bar",
+                                        "value": "$kinstone.fusedPct",
+                                        "max": 1
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-tally",
+                                        "children": [
+                                          {
+                                            "type": "box",
+                                            "class": "c-tally-cell",
+                                            "children": [
+                                              {
+                                                "type": "image",
+                                                "class": "c-tally-icon",
+                                                "src": "$icons.kinstoneRed"
+                                              },
+                                              {
+                                                "type": "text",
+                                                "class": "c-num c-tally-num",
+                                                "text": "{kinstone.red}"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "c-tally-cell",
+                                            "children": [
+                                              {
+                                                "type": "image",
+                                                "class": "c-tally-icon",
+                                                "src": "$icons.kinstoneBlue"
+                                              },
+                                              {
+                                                "type": "text",
+                                                "class": "c-num c-tally-num",
+                                                "text": "{kinstone.blue}"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "c-tally-cell",
+                                            "children": [
+                                              {
+                                                "type": "image",
+                                                "class": "c-tally-icon",
+                                                "src": "$icons.kinstoneGreen"
+                                              },
+                                              {
+                                                "type": "text",
+                                                "class": "c-num c-tally-num",
+                                                "text": "{kinstone.green}"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "c-tally-cell",
+                                            "children": [
+                                              {
+                                                "type": "image",
+                                                "class": "c-tally-icon",
+                                                "src": "$icons.kinstoneGold"
+                                              },
+                                              {
+                                                "type": "text",
+                                                "class": "c-num c-tally-num",
+                                                "text": "{kinstone.gold}"
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-pane c-p-kin-picked",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "c-pane-title",
+                                        "text": "PIECE  (TAP A ROW)"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-picked-row",
+                                        "children": [
+                                          {
+                                            "type": "box",
+                                            "class": "c-picked-tile",
+                                            "children": [
+                                              {
+                                                "type": "image",
+                                                "class": "c-picked-icon",
+                                                "src": "$ui.kinIcon"
+                                              }
+                                            ],
+                                            "visibleIf": "$ui.kinPicked"
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "c-kin-text",
+                                            "children": [
+                                              {
+                                                "type": "text",
+                                                "class": "c-kin-name",
+                                                "text": "{ui.kinName}"
+                                              },
+                                              {
+                                                "type": "text",
+                                                "class": "c-num c-kin-id",
+                                                "text": "{ui.kinId}  x{ui.kinAmt}"
+                                              }
+                                            ],
+                                            "visibleIf": "$ui.kinPicked"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "c-tabs",
+                            "children": [
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "map"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "c-tab-icon",
+                                    "src": "asset:ui/tab-map-off.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-tab-label",
+                                    "text": "MAPS"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "items"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "c-tab-icon",
+                                    "src": "asset:ui/tab-items-off.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-tab-label",
+                                    "text": "ITEMS"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-tab c-on",
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "c-tab-icon",
+                                    "src": "asset:ui/tab-kinstone-on.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-tab-label",
+                                    "text": "KINSTONE"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "c-tab-alert",
+                                    "src": "$icons.kinstoneRed",
+                                    "visibleIf": "$kinstone.ready"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "quest"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "c-tab-icon",
+                                    "src": "asset:ui/tab-quest-off.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-tab-label",
+                                    "text": "QUESTS"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "options"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "c-tab-icon",
+                                    "src": "asset:ui/tab-options-off.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-tab-label",
+                                    "text": "OPTIONS"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "quest",
+                      "child": {
+                        "type": "box",
+                        "class": "c-page c-page-quest",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "c-content c-content-row",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "c-master",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-q-scroll",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "c-pane c-p-dungeons",
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "class": "c-pane-title",
+                                            "text": "DUNGEONS"
+                                          },
+                                          {
+                                            "type": "list",
+                                            "class": "c-dungeon-list",
+                                            "items": "$quest.dungeons",
+                                            "template": {
+                                              "type": "box",
+                                              "class": "c-dungeon",
+                                              "children": [
+                                                {
+                                                  "type": "box",
+                                                  "class": "c-dg-mark",
+                                                  "children": [
+                                                    {
+                                                      "type": "image",
+                                                      "class": "c-dg-check",
+                                                      "src": "asset:ui/check.png",
+                                                      "visibleIf": "$cleared"
+                                                    },
+                                                    {
+                                                      "type": "image",
+                                                      "class": "c-dg-here",
+                                                      "src": "$icons.linkHead",
+                                                      "visibleIf": "$here"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "type": "text",
+                                                  "class": "c-dg-name",
+                                                  "text": "{name}"
+                                                }
+                                              ],
+                                              "classIf": {
+                                                "c-cleared": "$cleared",
+                                                "c-here": "$here"
+                                              }
+                                            }
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-pane c-p-side",
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "class": "c-pane-title",
+                                            "text": "SIDE QUESTS"
+                                          },
+                                          {
+                                            "type": "list",
+                                            "class": "c-side-list",
+                                            "items": "$quest.side",
+                                            "template": {
+                                              "type": "box",
+                                              "class": "c-side",
+                                              "children": [
+                                                {
+                                                  "type": "image",
+                                                  "class": "c-side-icon",
+                                                  "src": "$icon"
+                                                },
+                                                {
+                                                  "type": "text",
+                                                  "class": "c-side-name",
+                                                  "text": "{name}"
+                                                },
+                                                {
+                                                  "type": "text",
+                                                  "class": "c-side-done",
+                                                  "text": "DONE",
+                                                  "visibleIf": "$done"
+                                                }
+                                              ],
+                                              "classIf": {
+                                                "c-done": "$done"
+                                              }
+                                            },
+                                            "empty": "NO ERRANDS RIGHT NOW"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-detail",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-pane c-p-elements",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "c-pane-title",
+                                        "text": "ELEMENTS"
+                                      },
+                                      {
+                                        "type": "list",
+                                        "class": "c-element-row",
+                                        "items": "$quest.elements",
+                                        "template": {
+                                          "type": "box",
+                                          "class": "c-element",
+                                          "children": [
+                                            {
+                                              "type": "image",
+                                              "class": "c-element-icon",
+                                              "src": "$icon"
+                                            },
+                                            {
+                                              "type": "text",
+                                              "class": "c-element-name",
+                                              "text": "{name}"
+                                            }
+                                          ],
+                                          "classIf": {
+                                            "c-owned": "$owned",
+                                            "c-locked": "$locked"
+                                          }
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-pane c-p-counts",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "c-pane-title",
+                                        "text": "COLLECTION"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-stat",
+                                        "children": [
+                                          {
+                                            "type": "image",
+                                            "class": "c-stat-icon",
+                                            "src": "$icons.figurines"
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "c-stat-label",
+                                            "text": "FIGURINES"
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "c-grow",
+                                            "children": []
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "c-num c-stat-val",
+                                            "text": "{quest.figurines}"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-stat",
+                                        "children": [
+                                          {
+                                            "type": "image",
+                                            "class": "c-stat-icon",
+                                            "src": "$icons.tigerScroll"
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "c-stat-label",
+                                            "text": "SKILLS"
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "c-grow",
+                                            "children": []
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "c-num c-stat-val",
+                                            "text": "{quest.skills}"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "c-tabs",
+                            "children": [
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "map"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "c-tab-icon",
+                                    "src": "asset:ui/tab-map-off.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-tab-label",
+                                    "text": "MAPS"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "items"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "c-tab-icon",
+                                    "src": "asset:ui/tab-items-off.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-tab-label",
+                                    "text": "ITEMS"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "kinstone"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "c-tab-icon",
+                                    "src": "asset:ui/tab-kinstone-off.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-tab-label",
+                                    "text": "KINSTONE"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "c-tab-alert",
+                                    "src": "$icons.kinstoneRed",
+                                    "visibleIf": "$kinstone.ready"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-tab c-on",
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "c-tab-icon",
+                                    "src": "asset:ui/tab-quest-on.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-tab-label",
+                                    "text": "QUESTS"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "options"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "c-tab-icon",
+                                    "src": "asset:ui/tab-options-off.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-tab-label",
+                                    "text": "OPTIONS"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "options",
+                      "child": {
+                        "type": "box",
+                        "class": "c-page c-page-options",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "c-content",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "c-opt-list",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-look",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "c-opt-text",
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "class": "c-opt-title",
+                                            "text": "STYLE"
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "c-opt-desc",
+                                            "text": "The look of this companion. Starts as Stone at every launch."
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-choices",
+                                        "children": [
+                                          {
+                                            "type": "button",
+                                            "class": "c-choice",
+                                            "onClick": [
+                                              {
+                                                "set": {
+                                                  "style": "stone"
+                                                }
+                                              }
+                                            ],
+                                            "children": [
+                                              {
+                                                "type": "text",
+                                                "class": "c-choice-t",
+                                                "text": "STONE"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "button",
+                                            "class": "c-choice",
+                                            "onClick": [
+                                              {
+                                                "set": {
+                                                  "style": "clean"
+                                                }
+                                              }
+                                            ],
+                                            "children": [
+                                              {
+                                                "type": "text",
+                                                "class": "c-choice-t",
+                                                "text": "CLEAN"
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-look",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "c-opt-text",
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "class": "c-opt-title",
+                                            "text": "THEME"
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "c-opt-desc",
+                                            "text": "Colours of the clean style."
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-choices",
+                                        "children": [
+                                          {
+                                            "type": "button",
+                                            "class": "c-choice",
+                                            "onClick": [
+                                              {
+                                                "set": {
+                                                  "theme": "forest"
+                                                }
+                                              }
+                                            ],
+                                            "children": [
+                                              {
+                                                "type": "text",
+                                                "class": "c-choice-t",
+                                                "text": "FOREST"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "button",
+                                            "class": "c-choice",
+                                            "onClick": [
+                                              {
+                                                "set": {
+                                                  "theme": "parchment"
+                                                }
+                                              }
+                                            ],
+                                            "children": [
+                                              {
+                                                "type": "text",
+                                                "class": "c-choice-t",
+                                                "text": "PARCHMENT"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "button",
+                                            "class": "c-choice",
+                                            "onClick": [
+                                              {
+                                                "set": {
+                                                  "theme": "night"
+                                                }
+                                              }
+                                            ],
+                                            "children": [
+                                              {
+                                                "type": "text",
+                                                "class": "c-choice-t",
+                                                "text": "NIGHT"
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "button",
+                                    "class": "c-opt",
+                                    "onClick": {
+                                      "call": "wideView",
+                                      "args": [
+                                        "toggle"
+                                      ]
+                                    },
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "c-opt-text",
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "class": "c-opt-title",
+                                            "text": "WIDE VIEW"
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "c-opt-desc",
+                                            "text": "Paint the world beyond the game's frame. Tap again for extra wide."
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-opt-pill",
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "class": "c-num c-opt-state",
+                                            "text": "{_wideLabel}"
+                                          }
+                                        ],
+                                        "classIf": {
+                                          "c-on": "$_wide"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "button",
+                                    "class": "c-opt",
+                                    "onClick": {
+                                      "call": "ambientView",
+                                      "args": [
+                                        "toggle"
+                                      ]
+                                    },
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "c-opt-text",
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "class": "c-opt-title",
+                                            "text": "COLOR AMBIENT"
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "c-opt-desc",
+                                            "text": "A richer grade with soft shadows, sunlit edges and drifting clouds."
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-opt-pill",
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "class": "c-num c-opt-state",
+                                            "text": "{_ambientLabel}"
+                                          }
+                                        ],
+                                        "classIf": {
+                                          "c-on": "$_ambient"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "button",
+                                    "class": "c-opt",
+                                    "onClick": {
+                                      "call": "writePermission"
+                                    },
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "c-opt-text",
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "class": "c-opt-title",
+                                            "text": "GAME CHANGES"
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "c-opt-desc",
+                                            "text": "Lets this pack hide the game's own HUD and equip items. Tap to be asked again."
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-opt-pill",
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "class": "c-num c-opt-state",
+                                            "text": "{_writePermLabel}"
+                                          }
+                                        ],
+                                        "classIf": {
+                                          "c-on": "$_writePerm"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "c-tabs",
+                            "children": [
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "map"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "c-tab-icon",
+                                    "src": "asset:ui/tab-map-off.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-tab-label",
+                                    "text": "MAPS"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "items"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "c-tab-icon",
+                                    "src": "asset:ui/tab-items-off.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-tab-label",
+                                    "text": "ITEMS"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "kinstone"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "c-tab-icon",
+                                    "src": "asset:ui/tab-kinstone-off.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-tab-label",
+                                    "text": "KINSTONE"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "c-tab-alert",
+                                    "src": "$icons.kinstoneRed",
+                                    "visibleIf": "$kinstone.ready"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "quest"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "c-tab-icon",
+                                    "src": "asset:ui/tab-quest-off.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-tab-label",
+                                    "text": "QUESTS"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-tab c-on",
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "c-tab-icon",
+                                    "src": "asset:ui/tab-options-on.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-tab-label",
+                                    "text": "OPTIONS"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "class": "c-bubble",
+              "children": [
+                {
+                  "type": "image",
+                  "class": "c-bubble-ezlo",
+                  "src": "$ezlo"
+                },
+                {
+                  "type": "box",
+                  "class": "c-bubble-body",
+                  "children": [
+                    {
+                      "type": "text",
+                      "class": "c-bubble-name",
+                      "text": "EZLO"
+                    },
+                    {
+                      "type": "text",
+                      "class": "c-bubble-text",
+                      "text": "{ezloHint}"
+                    },
+                    {
+                      "type": "text",
+                      "class": "c-bubble-close",
+                      "text": "TAP TO CLOSE"
+                    }
+                  ]
+                }
+              ],
+              "visibleIf": "$ui.hint",
+              "onClick": [
+                {
+                  "set": {
+                    "hint": false
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "visibleIf": "$showClean"
     }
   ],
-  "id": "screen"
+  "id": "screen",
+  "classIf": {
+    "theme-parchment": "$themeParchment",
+    "theme-night": "$themeNight"
+  }
 }

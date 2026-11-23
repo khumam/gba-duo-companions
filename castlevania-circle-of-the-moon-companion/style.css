@@ -64,7 +64,7 @@ bar > fill { border-radius: 0; transition: width 300ms; }
 .s1, .s2, .s3, .s4 { left: 13.008px; } .s1v, .s2v, .s3v, .s4v { left: 60.704px; width: 82.384px; }
 .s1 { top: 80.216px; } .s2 { top: 99.728px; } .s3 { top: 119.24px; } .s4 { top: 138.752px; }
 .s1v { top: 71.544px; } .s2v { top: 91.056px; } .s3v { top: 110.568px; } .s4v { top: 130.08px; }
-.p-good { left: 0; top: 160.432px; width: 156.096px; height: 23.848px; } .good { left: 13.008px; top: 166.936px; font-size: 10.84px; }
+.p-good { left: 0; top: 160.432px; width: 156.096px; height: 23.848px; } .good { left: 13.008px; top: 166.936px; font-size: 12.011px; }
 .moon { position: absolute; left: 169.104px; top: 39.024px; width: 104.064px; height: 121.408px; }
 .nathan { left: 169.104px; width: 104.064px; top: 171.272px; text-align: center; }
 .f-hp { left: 290.512px; top: 69.376px; width: 238.48px; height: 95.392px; }
@@ -120,18 +120,18 @@ bar > fill { border-radius: 0; transition: width 300ms; }
 .cost-u { position: absolute; left: 17.344px; width: 73.712px; top: 273.168px; text-align: right; font-family: "Silk"; font-size: 10.84px; }
 .dtext { position: absolute; left: 117.072px; top: 249.32px; width: 303.52px; white-space: normal; font-size: 19.512px; line-height: 19.512px; }
 .dset { left: 437.936px; top: 251.488px; }
-.tip { left: 8.672px; top: 346.88px; width: 520.32px; white-space: normal; font-size: 10.84px; color: var(--dim); }
+.tip { left: 8.672px; top: 346.88px; width: 520.32px; white-space: normal; font-size: 12.011px; color: var(--dim); }
 
 /* ---- item ---- */
 .itabs { position: absolute; left: 0; top: 39.024px; width: 294.848px; height: 125.744px; flex-direction: column; }
 .itab { width: 294.848px; height: 28.184px; margin: 0 0 2.168px 0; padding: 0; background: none; border: 0; border-radius: 0; position: relative; }
 .itab-p, .itab-on { position: absolute; left: 0; top: 2.168px; width: 138.752px; height: 23.848px; }
-.itab-eqp { position: absolute; left: 6.504px; top: 4.336px; font-family: "Silk"; font-size: 8.672px; color: var(--gold); }
+.itab-eqp { position: absolute; left: 6.504px; top: 4.336px; font-family: "Silk"; font-size: 9.994px; color: var(--gold); }
 .itab-t { position: absolute; left: 30.352px; width: 91.056px; top: 6.504px; text-align: left; font-family: "Silk"; font-size: 13.008px; }
 .itab-n { position: absolute; left: 147.424px; top: 2.168px; font-size: 19.512px; }
 .itab:pressed .itab-t { color: var(--red); }
 .f-ihp { left: 299.184px; top: 34.688px; width: 234.144px; height: 65.04px; }
-.ih-l, .im-l, .it-l { left: 312.192px; font-size: 10.84px; } .ih, .im, .it { left: 372.896px; width: 147.424px; font-size: 19.512px; }
+.ih-l, .im-l, .it-l { left: 312.192px; font-size: 12.011px; } .ih, .im, .it { left: 372.896px; width: 147.424px; font-size: 19.512px; }
 .ih-l { top: 45.528px; } .ih { top: 36.856px; } .im-l { top: 65.04px; } .im { top: 56.368px; } .it-l { top: 84.552px; } .it { top: 75.88px; }
 .f-ist { left: 299.184px; top: 104.064px; width: 234.144px; height: 86.72px; }
 .is0, .is1, .is2, .is3 { left: 312.192px; }
@@ -140,7 +140,7 @@ bar > fill { border-radius: 0; transition: width 300ms; }
 .is0 { top: 114.904px; } .is1 { top: 134.416px; } .is2 { top: 153.928px; } .is3 { top: 173.44px; }
 .is0v, .is0t { top: 106.232px; } .is1v, .is1t { top: 125.744px; } .is2v, .is2t { top: 145.256px; } .is3v, .is3t { top: 164.768px; }
 .val.up { color: var(--up); } .val.down { color: var(--down); }
-.p-igood { left: 0; top: 164.768px; width: 156.096px; height: 23.848px; } .igood { left: 17.344px; top: 171.272px; font-size: 10.84px; }
+.p-igood { left: 0; top: 164.768px; width: 156.096px; height: 23.848px; } .igood { left: 17.344px; top: 171.272px; font-size: 12.011px; }
 .band { position: absolute; left: 0; top: 195.12px; width: 537.664px; height: 125.744px; overflow: auto; background-color: #00002a; }
 .blist { width: 537.664px; display: grid; grid-template-columns: 268.832px 268.832px; }
 .cell { width: 268.832px; height: 23.848px; padding: 0 13.008px 0 17.344px; margin: 0; background: none; border: 0; border-radius: 0; flex-direction: row; align-items: center; }
@@ -162,7 +162,7 @@ bar > fill { border-radius: 0; transition: width 300ms; }
 .f-cards { left: 0; top: 242.816px; width: 286.176px; height: 151.76px; }
 .cbig { position: absolute; left: 13.008px; top: 255.824px; width: 86.72px; height: 121.408px; }
 .p-cname { left: 108.4px; top: 251.488px; width: 177.776px; height: 23.848px; } .cname-t { left: 125.744px; top: 257.992px; font-size: 13.008px; }
-.ckind { left: 112.736px; top: 288.344px; font-size: 10.84px; color: var(--dim); }
+.ckind { left: 112.736px; top: 288.344px; font-size: 12.011px; color: var(--dim); }
 .ccount-t { position: absolute; left: 112.736px; top: 303.52px; font-size: 19.512px; color: var(--dim); }
 .cdesc { position: absolute; left: 299.184px; top: 247.152px; width: 229.808px; white-space: normal; font-size: 19.512px; line-height: 19.512px; }
 
@@ -223,3 +223,27 @@ bar > fill { border-radius: 0; transition: width 300ms; }
 .w-2 { position: absolute; left: 0; width: 537.664px; top: 242.816px; text-align: center; font-family: "Silk"; font-size: 13.008px; color: var(--red); }
 .w-3 { position: absolute; left: 0; width: 537.664px; top: 294.848px; text-align: center; }
 .w-4 { position: absolute; left: 0; width: 537.664px; top: 325.2px; text-align: center; font-size: 19.512px; color: var(--down); }
+
+/* ---- scrolling pages: the canvas scrolls above the fixed bottom plates ---- */
+.pscroll { position: absolute; left: 0; top: 0; width: 537.664px; height: 411.92px; overflow: auto; }
+.pcanvas { position: relative; width: 537.664px; height: 468.288px; background-color: #000028; }
+
+/* ---- room to breathe: status page is taller than the screen and scrolls above the plates (positions shifted by group) ---- */
+.page-status .pcanvas { height: 459.616px; } .page-status .bg { height: 459.616px; }
+.page-status .f-exp { top: 177.776px; }
+.page-status .ex-l { top: 188.616px; }
+.page-status .ex { top: 179.944px; }
+.page-status .nx-l { top: 210.296px; }
+.page-status .nx { top: 201.624px; }
+.page-status .expbar { top: 227.64px; }
+.page-status .menu { top: 208.128px; }
+.page-status .f-now { top: 255.824px; }
+.page-status .dsstap { top: 255.824px; }
+.page-status .glist { top: 377.232px; }
+.page-status .hbtn { top: 385.904px; }
+.page-status .hname { top: 414.088px; }
+
+/* ---- room to breathe: item page scrolls; the band (list) keeps its height, the description moves below it ---- */
+.page-item .pcanvas { height: 481.296px; } .page-item .bg { height: 481.296px; }
+.page-item .band { top: 208.128px; } .page-item .band-empty { top: 255.824px; } .page-item .p-igood { top: 169.104px; } .page-item .igood { top: 175.608px; }
+.page-item .rule-i { top: 351.216px; } .page-item .iname { top: 357.72px; } .page-item .idesc { top: 379.4px; } .page-item .ibonus { top: 418.424px; } .page-item .iset, .page-item .iuse { top: 362.056px; }

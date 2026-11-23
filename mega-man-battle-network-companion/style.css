@@ -1,0 +1,183 @@
+/* Mega Man Battle Network companion: the game's own pause-menu look.
+   Palette sampled from the menu screens (art/ref): slate #4A5A63 / #313939 bars, parchment #FFF7CE with #EFE7C6
+   stripes, orange frame #EF8452 / #F78C00, green cursor #21AD10, white-cream pixel text. */
+@font-face { font-family: "Jersey"; src: url("assets/fonts/Jersey10-Regular.ttf"); }
+
+:root {
+  --ground: #313939;
+  --slate: #4A5A63;
+  --slate-hi: #7B8C84;
+  --cream: #FFF7CE;
+  --cream-2: #EFE7C6;
+  --cream-3: #E7E7AD;
+  --ink: #292929;
+  --orange: #EF8452;
+  --orange-2: #F78C00;
+  --green: #21AD10;
+  --sel: #CFE8A8;
+  --cyan: #00ADFF;
+  background: #313939;
+}
+
+#screen { background: #313939; padding: 0; width: 100%; height: 100%; }
+text { font-family: "Jersey"; color: #292929; white-space: nowrap; }
+
+/* ---- waiting ---- */
+.waiting { flex: 1; align-items: center; justify-content: center; background: #313939; }
+.wait-card { width: 340px; padding: 26px 18px; align-items: center; gap: 8px; background: #FFF7CE;
+  border: 4px solid #EF8452; border-radius: 4px; box-shadow: 0 4px 0 #292929; }
+.wait-title { font-size: 54px; color: #107BCE; letter-spacing: 2px; text-shadow: 2px 2px 0 #F78C00; }
+.wait-sub { font-size: 28px; color: #4A5A63; letter-spacing: 4px; }
+.wait-line { font-size: 22px; color: #7B8C84; }
+
+/* ---- page shell ---- */
+.stage { flex: 1; width: 100%; height: 100%; }
+.page { width: 100%; height: 100%; background: #313939; }
+
+/* header: the slate title bar with the orange tab */
+.head { flex-direction: row; align-items: center; height: 46px; padding: 0 12px; gap: 12px; background: #4A5A63;
+  border-bottom: 3px solid #7B8C84; }
+.head-title { font-size: 38px; color: #FFF7CE; text-shadow: 2px 2px 0 #292929; letter-spacing: 1px; }
+.head-count { font-size: 36px; color: #FFF7CE; text-shadow: 2px 2px 0 #292929; flex: 1; }
+.head-tab { padding: 0 14px; height: 28px; align-items: center; justify-content: center; background: #F78C00;
+  border: 2px solid #EF8452; border-radius: 2px; }
+.head-tab-t { font-size: 22px; color: #313939; letter-spacing: 1px; }
+.head-zenny { font-size: 30px; color: #FFF7CE; text-shadow: 2px 2px 0 #292929; padding-left: 8px; }
+
+.body { flex: 1; flex-direction: row; gap: 10px; padding: 10px; }
+
+/* the chip card (left): art panel, attack bar, description note */
+.card { width: 196px; gap: 6px; }
+.card-name { font-size: 32px; color: #FFF7CE; text-shadow: 2px 2px 0 #292929; text-align: center; width: 100%; }
+.art-wrap { align-items: center; justify-content: center; height: 124px; background: #FFF7CE;
+  border: 4px solid #4A5A63; border-radius: 2px; box-shadow: 0 3px 0 #292929; }
+.art { width: 128px; height: 112px; image-rendering: pixelated; }
+.card-bar { flex-direction: row; align-items: center; height: 34px; padding: 0 10px; gap: 10px; background: #292929;
+  border-radius: 2px; }
+.card-code { font-size: 34px; color: #FFE000; width: 22px; }
+.card-no { font-size: 28px; color: #FFE000; flex: 1; }
+.card-dot { width: 22px; height: 22px; background: #313939; border: 3px solid #FFF7CE; border-radius: 2px; }
+.card-atk { font-size: 34px; color: #FFFFFF; flex: 1; text-align: right; }
+.desc { height: 76px; padding: 6px 8px; background: #FFF7CE; border: 3px solid #EF8452; border-radius: 2px; }
+.desc-t { font-size: 24px; color: #292929; white-space: normal; line-height: 22px; }
+.codes { flex-direction: row; align-items: center; height: 38px; gap: 6px; flex-wrap: wrap; }
+.codes-l { font-size: 22px; color: #7B8C84; letter-spacing: 1px; padding-right: 2px; }
+.codes-v { font-size: 26px; color: #FFE000; letter-spacing: 2px; }
+.owned { height: 30px; justify-content: center; padding: 0 4px; }
+.owned-t { font-size: 26px; color: #FFF7CE; text-shadow: 1px 1px 0 #292929; }
+.codes-list { flex-direction: row; gap: 6px; }
+.cpill { width: 32px; height: 34px; padding: 0; align-items: center; justify-content: center; background: #4A5A63;
+  border: 2px solid #7B8C84; border-radius: 2px; }
+.cpill:pressed { background: #F78C00; }
+.cpill.on { background: #FFF7CE; border-color: #21AD10; }
+.cpill.on .cpill-t { color: #292929; }
+.cpill-t { font-size: 26px; color: #FFF7CE; }
+
+/* the parchment list (right) */
+.list-panel { flex: 1; background: #FFF7CE; border: 4px solid #4A5A63; border-radius: 2px; box-shadow: 0 3px 0 #292929;
+  padding: 4px; overflow: hidden; }
+.rows { width: 100%; height: 100%; overflow: auto; }
+.row { flex-direction: row; align-items: center; height: 44px; padding: 0 8px; gap: 8px; background: #FFF7CE; border-radius: 0; }
+.row.odd { background: #EFE7C6; }
+.row.sel { background: #CFE8A8; border: 2px solid #21AD10; }
+.row:pressed { background: #E7E7AD; }
+.row-icon { width: 32px; height: 32px; image-rendering: pixelated; }
+.row-name { font-size: 31px; color: #292929; flex: 1; }
+.row-dot { width: 16px; height: 16px; background: #313939; border-radius: 2px; }
+.row-code { font-size: 31px; color: #292929; width: 26px; }
+.lrow-no { font-size: 27px; color: #4A5A63; width: 40px; text-align: right; }
+.lrow-own { font-size: 26px; color: #107BCE; width: 46px; text-align: right; }
+
+/* ---- bottom nav: < PREV | PAGE | NEXT > ---- */
+.nav { flex-direction: row; align-items: center; height: 54px; padding: 0 10px 6px; gap: 8px; background: #313939; }
+.nbtn { flex: 1; height: 42px; align-items: center; justify-content: center; background: #4A5A63;
+  border: 3px solid #7B8C84; border-radius: 3px; box-shadow: 0 3px 0 #292929; }
+.nbtn:pressed { background: #F78C00; border-color: #EF8452; }
+.nb { margin-top: -6px; font-size: 28px; line-height: 28px; color: #FFF7CE; text-shadow: 1px 1px 0 #292929; letter-spacing: 1px; }
+.ntitle { width: 130px; text-align: center; font-size: 32px; line-height: 34px; color: #FFE000; text-shadow: 2px 2px 0 #292929; }
+
+/* ---- MegaMan page ---- */
+.mm-head { flex-direction: row; align-items: center; height: 46px; padding: 0 14px; background: #4A5A63; border-bottom: 3px solid #7B8C84; }
+.mm-title { font-size: 38px; color: #FFF7CE; text-shadow: 2px 2px 0 #292929; flex: 1; }
+.mm-lv { font-size: 38px; color: #FFF7CE; text-shadow: 2px 2px 0 #292929; }
+.mm-body { flex: 1; flex-direction: row; gap: 12px; padding: 12px; background: #313939; }
+.mm-left { width: 190px; gap: 10px; }
+.plate { flex-direction: row; align-items: center; justify-content: space-between; height: 48px; padding: 0 14px;
+  background: #4A5A63; border: 3px solid #7B8C84; border-radius: 12px; }
+.hp-l { font-size: 30px; color: #FFF7CE; text-shadow: 2px 2px 0 #292929; }
+.hp-v, .zen-v { font-size: 34px; color: #FFF7CE; text-shadow: 2px 2px 0 #292929; }
+.zen-v { font-size: 28px; }
+.mm-hint { flex: 1; padding: 10px; background: #FFF7CE; border: 3px solid #EF8452; border-radius: 2px; }
+.hint-t { font-size: 26px; color: #292929; white-space: normal; line-height: 26px; }
+.mm-right { flex: 1; gap: 8px; }
+.armor-l { font-size: 24px; color: #7B8C84; letter-spacing: 2px; }
+.armors { flex-direction: row; gap: 6px; flex-wrap: wrap; }
+.armor { flex-direction: row; align-items: center; gap: 6px; height: 38px; padding: 0 12px 0 8px; background: #4A5A63;
+  border: 3px solid #7B8C84; border-radius: 10px; }
+.armor:pressed { background: #F78C00; }
+.armor.on { background: #FFF7CE; border-color: #21AD10; }
+.armor-arrow { width: 12px; height: 14px; background: #313939; border-radius: 1px; }
+.armor.on .armor-arrow { background: #21AD10; }
+.armor-t { font-size: 28px; color: #FFF7CE; text-shadow: 1px 1px 0 #292929; }
+.armor.on .armor-t { color: #292929; text-shadow: none; }
+.stats { gap: 10px; padding-top: 6px; }
+.stat { flex-direction: row; align-items: center; justify-content: space-between; height: 56px; padding: 0 12px;
+  background: #4A5A63; border: 3px solid #7B8C84; border-radius: 12px; }
+.stat-name { font-size: 32px; color: #FFF7CE; text-shadow: 2px 2px 0 #292929; letter-spacing: 1px; }
+.pips { flex-direction: row; gap: 6px; }
+.pip { width: 24px; height: 32px; background: #313939; border: 3px solid #292929; border-radius: 12px; }
+.pip.on { background: #21AD10; border-color: #107B10; }
+.pip:pressed { background: #5AD84A; }
+
+/* ---- Email page: reader (left) + received list (right) ---- */
+.reader { width: 232px; gap: 6px; }
+.rd-bar { height: 56px; padding: 2px 10px; justify-content: center; background: #292929; border-radius: 2px; }
+.rd-from { font-size: 22px; color: #FFE000; letter-spacing: 1px; }
+.rd-sub { font-size: 29px; color: #FFFFFF; }
+.rd-note { flex: 1; padding: 10px 10px; gap: 4px; background: #FFF7CE; border: 3px solid #EF8452; border-radius: 2px; }
+.rd-l { font-size: 25px; color: #292929; height: 28px; }
+.rd-fill { flex: 1; }
+.rd-face { width: 50px; height: 60px; image-rendering: pixelated; }
+.rd-pager { flex-direction: row; align-items: center; height: 42px; gap: 8px; }
+.rd-btn { width: 56px; height: 38px; padding: 0; align-items: center; justify-content: center; background: #4A5A63;
+  border: 3px solid #7B8C84; border-radius: 3px; box-shadow: 0 3px 0 #292929; }
+.rd-btn:pressed { background: #F78C00; border-color: #EF8452; }
+.rd-btn.off { opacity: 0.35; }
+.rd-arr { font-size: 28px; color: #FFF7CE; text-shadow: 1px 1px 0 #292929; }
+.rd-page { flex: 1; text-align: center; font-size: 30px; color: #FFF7CE; text-shadow: 2px 2px 0 #292929; }
+.mrow { flex-direction: column; align-items: flex-start; justify-content: center; height: 56px; gap: 0; padding: 0 10px; }
+.mrow-from { font-size: 22px; color: #107BCE; letter-spacing: 1px; }
+.mrow-sub { font-size: 30px; color: #292929; }
+
+/* ---- Items page ---- */
+.it-kind { flex-direction: row; align-items: center; height: 36px; padding: 0 10px; gap: 8px; background: #292929; border-radius: 2px; }
+.it-kind-t { font-size: 26px; color: #FFE000; flex: 1; letter-spacing: 1px; }
+.it-count { font-size: 32px; color: #FFFFFF; }
+.it-desc { height: 214px; padding: 10px 10px; }
+.it-desc .desc-t { font-size: 27px; line-height: 27px; }
+.irow-n { font-size: 28px; color: #107BCE; width: 48px; text-align: right; }
+
+/* ---- Network page ---- */
+.net-body { flex: 1; padding: 10px; gap: 10px; background: #313939; }
+.net-top { flex: 1; flex-direction: row; gap: 10px; }
+.net-menu { flex: 1; padding: 8px 4px; background: #FFF7CE; border: 4px solid #4A5A63; border-radius: 2px; box-shadow: 0 3px 0 #292929; }
+.net-rows { width: 100%; }
+.nrow { height: 54px; }
+.net-stats { width: 196px; padding: 10px 12px; gap: 0; background: #FFF7CE; border: 4px solid #4A5A63; border-radius: 2px; box-shadow: 0 3px 0 #292929; }
+.ns-l { font-size: 28px; color: #4A5A63; }
+.ns-v { font-size: 48px; color: #292929; width: 100%; text-align: right; padding-bottom: 12px; }
+.ns-wl { flex-direction: row; align-items: center; justify-content: flex-end; gap: 6px; }
+.ns-w { font-size: 38px; color: #292929; }
+.ns-sep { font-size: 26px; color: #4A5A63; }
+.net-note { height: 116px; flex-direction: row; align-items: center; gap: 12px; padding: 8px 14px; background: #FFF7CE;
+  border: 4px solid #4A5A63; border-radius: 2px; box-shadow: 0 3px 0 #292929; }
+.net-face { width: 66px; height: 80px; image-rendering: pixelated; }
+.net-note-t { flex: 1; font-size: 27px; line-height: 27px; color: #292929; white-space: normal; }
+
+/* arrowkit: pixel arrows replace typed < > ^ v (python3 skill/tools/arrowkit.py PACK) */
+.arrrow { flex-direction: row; align-items: center; justify-content: center; gap: 6px; }
+.arr { image-rendering: pixelated; }
+.nb.arr-l { width: 15.87px; height: 23.8px; }
+.nb.arr-r { width: 15.87px; height: 23.8px; }
+.rd-arr.arr-l { width: 15.87px; height: 23.8px; }
+.rd-arr.arr-r { width: 15.87px; height: 23.8px; }

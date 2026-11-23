@@ -525,3 +525,16 @@ function actions.equip(button, itemId)
   end
   return { set = { menu = false, pick = item_names.equip[id]:upper() .. " > " .. button, picked = true } }
 end
+
+-- Style and theme switch (the Options page sets ui.style / ui.theme; UI state is not remembered, so every launch starts as Stone / Forest).
+local baseUpdate = update
+function update(ui)
+  local out = baseUpdate(ui)
+  local clean = (ui.style == "clean")
+  out.styleClean, out.styleStone = clean, not clean
+  out.showClean, out.showStone = (out.ready == true and clean), (out.ready == true and not clean)
+  local t = ui.theme
+  out.themeParchment, out.themeNight = (t == "parchment"), (t == "night")
+  out.themeForest = not (out.themeParchment or out.themeNight)
+  return out
+end

@@ -31,8 +31,10 @@ def title(t):
     return [img("tplate", "asset:ui/title.png"), text("ttext", t)]
 
 
-def page(name, children, i=None):
+def page(name, children, i=None, scroll=False):
     kids = [img("bg", "asset:ui/bg.png")] + children
+    if scroll:      # taller than the screen: the content scrolls above the bottom plates, which stay put
+        kids = [box("pscroll", [box("pcanvas", kids)])]
     if i is not None:
         kids += nav(i)
     return box(f"page page-{name}", kids)
@@ -78,7 +80,7 @@ status = page("status", [
     box("hbtn abtn-done", [img("abtn-p", "asset:ui/btn-off.png"), text("abtn-t", "HEAL")], visibleIf="$heal.off"),
     text("hname", "{heal.name}"),
     text("note note-st", "{note}"),
-], 0)
+], 0, scroll=True)
 
 # ---- equip -------------------------------------------------------------------------------------
 equip = page("equip", [

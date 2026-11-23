@@ -75,7 +75,7 @@ pages { width: 100%; height: 100%; }
 .plate-icon { width: 20.8px; height: 20.8px; }
 .plate-heart { width: 24.28px; height: 24.28px; }
 .plate-num { font-family: "Press"; font-size: 12px; line-height: 14px; color: var(--cream); text-shadow: 1px 1px 0 var(--dark); }
-.plate-hearts { font-size: 10px; }
+.plate-hearts { font-size: 14px; }
 
 .equip { align-items: center; gap: 1px; }
 .disc {

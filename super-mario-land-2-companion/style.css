@@ -55,7 +55,7 @@ image { image-rendering: pixelated; }
   border: 3px solid var(--plate-dark);
   border-radius: 8px;
 }
-.warning { position: absolute; top: 0; left: 0; font-size: 8px; color: var(--ink); }
+.warning { position: absolute; top: 0; left: 0; font-size: 14px; color: var(--ink); }
 .rail { display: stack; height: 112px; place-items: end start; }
 .line {
   width: 100%; height: 6px;
@@ -80,7 +80,7 @@ image { image-rendering: pixelated; }
 .disc { display: stack; width: 80px; height: 80px; place-items: center; }
 .disc-img { width: 80px; height: 80px; }
 .initial { font-size: 18px; color: var(--muted); }
-.slot-name { font-size: 7px; color: var(--ink); }
+.slot-name { font-size: 14px; color: var(--ink); }
 
 /* ---- Current power-up ---- */
 .right { width: 164px; align-items: center; }
@@ -90,7 +90,7 @@ image { image-rendering: pixelated; }
   border: 3px solid var(--orange);
   border-radius: 8px;
 }
-.bubble-text { font-size: 13px; color: var(--orange); }
+.bubble-text { font-size: 14px; color: var(--orange); }
 .tail { width: 24px; height: 12px; margin-top: -2px; margin-bottom: 2px; }
 .power { display: stack; width: 164px; height: 164px; place-items: center; }
 .power-ring { width: 164px; height: 164px; }
@@ -111,13 +111,13 @@ image { image-rendering: pixelated; }
 }
 .save-card.selected { background: var(--gold); border: 3px solid var(--ink); }
 .save-name { font-size: 15px; color: var(--ink); }
-.save-new { margin-top: 110px; font-size: 13px; color: var(--ink); }
+.save-new { margin-top: 110px; font-size: 14px; color: var(--ink); }
 .save-stats { gap: 40px; }
 .save-stat .hud-icon { width: 32px; height: 32px; }
 .save-stat { align-items: center; gap: 8px; }
 .save-num { font-size: 20px; color: var(--ink); }
 .save-foot { width: 100%; align-items: center; }
-.save-hint { font-size: 8px; color: var(--ink); }
+.save-hint { font-size: 14px; color: var(--ink); }
 
 /* ---- World map view ---- */
 .zones-panel {
@@ -133,13 +133,13 @@ image { image-rendering: pixelated; }
 .map-slot { align-items: center; gap: 3px; }
 .map-disc { display: stack; width: 86px; height: 86px; place-items: center; }
 .map-disc-img { width: 86px; height: 86px; }
-.slot-progress { font-size: 9px; color: var(--ink); }
+.slot-progress { font-size: 14px; color: var(--ink); }
 
 .map-slot .initial { font-size: 30px; }
-.map-slot .slot-name { font-size: 9px; }
+.map-slot .slot-name { font-size: 14px; }
 .map-foot { align-items: center; gap: 8px; }
 .map-power { display: stack; width: 104px; height: 104px; place-items: center; }
 .map-power-ring { width: 104px; height: 104px; }
 .map-power-icon { width: 68px; height: 68px; }
 
-.panel-title { font-size: 9px; color: var(--ink); }
+.panel-title { font-size: 14px; color: var(--ink); }

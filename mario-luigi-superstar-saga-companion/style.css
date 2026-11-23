@@ -136,7 +136,7 @@ text { white-space: nowrap; }
 .mini.green .mrow { background-color: #b5ffc6; } .mini.red .mrow { background-color: #ffceb5; }
 .mini.green, .mini.red { background-color: var(--cream); border-color: var(--edge); }
 .mtag { height: 17.3px; padding: 0 4.336px; justify-content: center; border-radius: 2.168px; background-color: #55556b; }
-.mtagt { font-size: 13px; text-shadow: none; }
+.mtagt { font-size: 14px; text-shadow: none; }
 .mval { flex: 1; text-align: right; font-size: 21.68px; }
 .mphoto { width: 65px; padding: 4.336px; align-items: center; background-color: #fff7ef; border: 2.168px solid var(--edge); }
 
@@ -184,7 +184,7 @@ bar.bp > fill { background-color: #6fc3ff; }
 .green .bname { color: var(--ink); text-shadow: none; } .red .bname { text-shadow: 2.168px 2.168px 0 #5a0404; }
 .brow { flex: 1; flex-direction: row; align-items: center; gap: 6.504px; }
 .btag { height: 17.3px; padding: 0 4.336px; justify-content: center; border-radius: 2.168px; background-color: #55556b; }
-.btagt { font-size: 13px; text-shadow: none; }
+.btagt { font-size: 14px; text-shadow: none; }
 .bbar { flex: 1; }
 .bval { width: 30px; text-align: right; font-size: 19.5px; color: var(--ink); text-shadow: none; }
 

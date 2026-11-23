@@ -54,8 +54,10 @@ def title(t):
     return [img("tplate", "asset:ui/title.png"), text("ttext", t)]
 
 
-def page(name, children, i=None):
+def page(name, children, i=None, scroll=False):
     kids = [img("bg", "asset:ui/bg.png")] + children
+    if scroll:      # taller than the screen: the content scrolls above the bottom plates, which stay put
+        kids = [box("pscroll", [box("pcanvas", kids)])]
     if i is not None:
         kids += nav(i)
     return box(f"page page-{name}", kids)
@@ -103,7 +105,7 @@ status = page("status", [
     button("hbtn", [{"call": "quickHeal", "args": ["{heal.id}"]}], [img("abtn-p", "asset:ui/btn.png"), text("abtn-t", "HEAL")], visibleIf="$heal.can"),
     box("hbtn abtn-done", [img("abtn-p", "asset:ui/btn-off.png"), text("abtn-t", "HEAL")], visibleIf="$heal.off"),
     text("hname", "{heal.name}"),
-], 0)
+], 0, scroll=True)
 
 # ---- DSS ---------------------------------------------------------------------------------------
 def card_row(cls, items, key, label_t):
@@ -150,7 +152,7 @@ item = page("item", [
     *act_button("iset", "EQUIP", [{"call": "equip", "args": ["{ipick.tab}", "{ipick.id}"]}], "$ipick.canSet", "WORN", "$ipick.isSet"),
     *act_button("iuse", "USE", [{"call": "useItem", "args": ["{ipick.id}"]}], "$ipick.canUse", "FULL", "$ipick.full"),
     note(),
-], 2)
+], 2, scroll=True)
 
 # ---- card --------------------------------------------------------------------------------------
 card = page("card", [

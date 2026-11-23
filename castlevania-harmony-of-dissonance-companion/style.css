@@ -46,7 +46,7 @@ text { white-space: nowrap; }
 
 /* information panel (bottom of each page) */
 .rule-info { top: 316.528px; }
-.info-l { left: 8.672px; top: 314.36px; font-size: 10.84px; background-color: #0000b5; padding: 0 4.336px; }
+.info-l { left: 8.672px; top: 314.36px; font-size: 12.011px; background-color: #0000b5; padding: 0 4.336px; }
 .info-i { position: absolute; left: 13.008px; top: 333.872px; width: 26.016px; height: 26.016px; }
 .info-n { position: absolute; left: 47.696px; top: 325.2px; }
 .info-d { position: absolute; left: 47.696px; top: 346.88px; width: 381.568px; white-space: normal; font-size: 19.512px; line-height: 19.512px; color: #e0e4ff; }
@@ -68,8 +68,8 @@ bar > fill { border-radius: 0; transition: width 300ms; }
 .bookslot:pressed { background-color: #c09020; }
 .bk-frame { position: absolute; left: 6.504px; top: 34.688px; width: 30.352px; height: 39.024px; background-color: #0000b5; border: 2.168px solid #f0d060; justify-content: center; align-items: center; }
 .bk-img { width: 26.016px; height: 34.688px; }
-.bk-l { left: 2.168px; width: 43.36px; top: 8.672px; text-align: center; font-size: 8.672px; color: #fff0b0; }
-.bk-l2 { left: 2.168px; width: 43.36px; top: 21.68px; text-align: center; font-size: 8.672px; color: #fff0b0; }
+.bk-l { left: 2.168px; width: 43.36px; top: 8.672px; text-align: center; font-size: 12.011px; color: #fff0b0; }
+.bk-l2 { left: 2.168px; width: 43.36px; top: 21.68px; text-align: center; font-size: 12.011px; color: #fff0b0; }
 .menu { position: absolute; left: 177.776px; top: 117.072px; width: 138.752px; height: 121.408px; flex-direction: column; }
 .mrow { width: 138.752px; height: 23.848px; padding: 0; margin: 0; background: none; border: 0; border-radius: 0; justify-content: center; align-items: center; }
 .mtext { font-family: "Silk"; font-size: 13.008px; }
@@ -88,7 +88,7 @@ bar > fill { border-radius: 0; transition: width 300ms; }
 .s4 { top: 242.816px; } .s4v { top: 234.144px; } .s4d { top: 244.984px; }
 .s5 { top: 262.328px; } .s5v { top: 253.656px; font-size: 19.512px; } .s5d { top: 264.496px; left: 390.24px; width: 60.704px; }
 .rule-eq { top: 281.84px; }
-.eq-h { left: 8.672px; top: 279.672px; font-size: 10.84px; background-color: #0000b5; padding: 0 4.336px; }
+.eq-h { left: 8.672px; top: 279.672px; font-size: 12.011px; background-color: #0000b5; padding: 0 4.336px; }
 .slots { position: absolute; left: 8.672px; top: 290.512px; width: 520.32px; height: 86.72px; display: grid; grid-template-columns: 260.16px 260.16px; }
 .srow { width: 255.824px; height: 28.184px; padding: 0; margin: 0; background: none; border: 0; border-radius: 0; flex-direction: row; align-items: center; justify-content: flex-start; }
 .slab { width: 65.04px; font-family: "Silk"; font-size: 10.84px; color: var(--silver); }
@@ -213,3 +213,42 @@ bar > fill { border-radius: 0; transition: width 300ms; }
 .run { position: absolute; background-color: #00c000; border-top: 2.168px solid #90ff90; }
 .run-in { width: 2.168px; height: 5.203px; }
 .map-empty { position: absolute; left: 0; width: 537.664px; top: 216.8px; text-align: center; color: var(--dim); }
+
+/* ---- scrolling pages: the canvas scrolls above the fixed bottom plates ---- */
+.pscroll { position: absolute; left: 0; top: 0; width: 537.664px; height: 411.92px; overflow: auto; }
+.pcanvas { position: relative; width: 537.664px; height: 468.288px; background-color: #0000b5; }
+
+/* ---- room to breathe: status page is taller than the screen and scrolls above the plates (positions shifted by group) ---- */
+.page-status .pcanvas { height: 511.648px; } .page-status .bg { height: 511.648px; }
+.page-status .crest { top: 125.744px; }
+.page-status .bookslot { top: 125.744px; }
+.page-status .menu { top: 125.744px; }
+.page-status .hp-l { top: 132.248px; }
+.page-status .hp { top: 123.576px; }
+.page-status .mp-l { top: 151.76px; }
+.page-status .mp { top: 143.088px; }
+.page-status .ht-l { top: 171.272px; }
+.page-status .ht { top: 162.6px; }
+.page-status .hpbar { top: 140.92px; }
+.page-status .mpbar { top: 160.432px; }
+.page-status .s1 { top: 197.288px; }
+.page-status .s1v { top: 188.616px; }
+.page-status .s1d { top: 199.456px; }
+.page-status .s2 { top: 221.136px; }
+.page-status .s2v { top: 212.464px; }
+.page-status .s2d { top: 223.304px; }
+.page-status .s3 { top: 244.984px; }
+.page-status .s3v { top: 236.312px; }
+.page-status .s3d { top: 247.152px; }
+.page-status .s4 { top: 268.832px; }
+.page-status .s4v { top: 260.16px; }
+.page-status .s4d { top: 271px; }
+.page-status .s5 { top: 292.68px; }
+.page-status .s5v { top: 284.008px; }
+.page-status .s5d { top: 294.848px; }
+.page-status .rule-eq { top: 329.536px; }
+.page-status .eq-h { top: 327.368px; }
+.page-status .slots { top: 346.88px; }
+.page-status .hbtn { top: 424.928px; }
+.page-status .hname { top: 427.096px; }
+.page-status .note-st { top: 466.12px; }

@@ -62,376 +62,388 @@
         "class": "page page-status",
         "children": [
          {
-          "type": "image",
-          "class": "bg",
-          "src": "asset:ui/bg.png"
-         },
-         {
-          "type": "image",
-          "class": "win p-whip",
-          "src": "asset:ui/pl-108x11-e.png"
-         },
-         {
-          "type": "text",
-          "class": "lab whip",
-          "text": "VAMPIREKILLER"
-         },
-         {
-          "type": "image",
-          "class": "win p-time",
-          "src": "asset:ui/pl-110x11.png"
-         },
-         {
-          "type": "text",
-          "class": "lab time-l",
-          "text": "TIME"
-         },
-         {
-          "type": "text",
-          "class": "val time",
-          "text": "{st.time}"
-         },
-         {
-          "type": "image",
-          "class": "win p-lv",
-          "src": "asset:ui/pl-68x11-e.png"
-         },
-         {
-          "type": "text",
-          "class": "lab lv-l",
-          "text": "LV"
-         },
-         {
-          "type": "text",
-          "class": "val lv",
-          "text": "{st.level}"
-         },
-         {
-          "type": "image",
-          "class": "win p-rate",
-          "src": "asset:ui/pl-110x11.png"
-         },
-         {
-          "type": "text",
-          "class": "lab rate-l",
-          "text": "RATE"
-         },
-         {
-          "type": "text",
-          "class": "val rate",
-          "text": "{st.rate}"
-         },
-         {
-          "type": "image",
-          "class": "win f-stats",
-          "src": "asset:ui/fr-72x40.png"
-         },
-         {
-          "type": "text",
-          "class": "lab s1",
-          "text": "STR"
-         },
-         {
-          "type": "text",
-          "class": "val s1v",
-          "text": "{st.str}"
-         },
-         {
-          "type": "text",
-          "class": "lab s2",
-          "text": "DEF"
-         },
-         {
-          "type": "text",
-          "class": "val s2v",
-          "text": "{st.def}"
-         },
-         {
-          "type": "text",
-          "class": "lab s3",
-          "text": "INT"
-         },
-         {
-          "type": "text",
-          "class": "val s3v",
-          "text": "{st.int}"
-         },
-         {
-          "type": "text",
-          "class": "lab s4",
-          "text": "LCK"
-         },
-         {
-          "type": "text",
-          "class": "val s4v",
-          "text": "{st.lck}"
-         },
-         {
-          "type": "image",
-          "class": "win p-good",
-          "src": "asset:ui/pl-72x11-e.png"
-         },
-         {
-          "type": "text",
-          "class": "lab good",
-          "text": "STATUS/GOOD"
-         },
-         {
-          "type": "image",
-          "class": "moon",
-          "src": "asset:ui/moon.png"
-         },
-         {
-          "type": "text",
-          "class": "lab nathan",
-          "text": "NATHAN"
-         },
-         {
-          "type": "image",
-          "class": "win f-hp",
-          "src": "asset:ui/fr-110x44.png"
-         },
-         {
-          "type": "text",
-          "class": "lab hp-l",
-          "text": "HP"
-         },
-         {
-          "type": "text",
-          "class": "val hp",
-          "text": "{st.hpText}"
-         },
-         {
-          "type": "bar",
-          "class": "hpbar",
-          "value": "$st.hp",
-          "maxKey": "$st.maxHp",
-          "classIf": {
-           "low": "$st.lowHp"
-          }
-         },
-         {
-          "type": "text",
-          "class": "lab mp-l",
-          "text": "MP"
-         },
-         {
-          "type": "text",
-          "class": "val mp",
-          "text": "{st.mpText}"
-         },
-         {
-          "type": "bar",
-          "class": "mpbar",
-          "value": "$st.mp",
-          "maxKey": "$st.maxMp"
-         },
-         {
-          "type": "text",
-          "class": "lab ht-l",
-          "text": "HEART"
-         },
-         {
-          "type": "text",
-          "class": "val ht",
-          "text": "{st.heartText}"
-         },
-         {
-          "type": "bar",
-          "class": "htbar",
-          "value": "$st.heart",
-          "maxKey": "$st.maxHeart"
-         },
-         {
-          "type": "image",
-          "class": "win f-exp",
-          "src": "asset:ui/fr-110x28.png"
-         },
-         {
-          "type": "text",
-          "class": "lab ex-l",
-          "text": "EXP"
-         },
-         {
-          "type": "text",
-          "class": "val ex",
-          "text": "{st.exp}"
-         },
-         {
-          "type": "text",
-          "class": "lab nx-l",
-          "text": "NEXT"
-         },
-         {
-          "type": "text",
-          "class": "val nx",
-          "text": "{st.next}"
-         },
-         {
-          "type": "bar",
-          "class": "expbar",
-          "value": "$st.expIn",
-          "maxKey": "$st.expSpan"
-         },
-         {
-          "type": "list",
-          "class": "menu",
-          "items": "$menu",
-          "template": {
-           "type": "button",
-           "class": "mtab",
-           "onClick": [
-            {
-             "navigate": "{page}"
-            }
-           ],
-           "children": [
-            {
-             "type": "image",
-             "class": "mtab-p",
-             "src": "asset:ui/menu.png"
-            },
-            {
-             "type": "text",
-             "class": "mtab-t",
-             "text": "{label}"
-            }
-           ]
-          }
-         },
-         {
-          "type": "image",
-          "class": "win f-now",
-          "src": "asset:ui/fr-174x48.png"
-         },
-         {
-          "type": "button",
-          "class": "dsstap",
-          "onClick": [
-           {
-            "set": {
-             "pickAttr": -1,
-             "pickAct": -1
-            }
-           },
-           {
-            "navigate": "dss"
-           }
-          ],
+          "type": "box",
+          "class": "pscroll",
           "children": [
            {
-            "type": "image",
-            "class": "now-c1",
-            "src": "$dssNow.actImg"
-           },
-           {
-            "type": "image",
-            "class": "now-c2",
-            "src": "$dssNow.attrImg"
-           },
-           {
-            "type": "text",
-            "class": "now-a",
-            "text": "{dssNow.action}"
-           },
-           {
-            "type": "text",
-            "class": "now-b",
-            "text": "+ {dssNow.attr}"
-           },
-           {
-            "type": "text",
-            "class": "now-cost",
-            "text": "{dssNow.costN} {dssNow.costU}"
-           },
-           {
-            "type": "text",
-            "class": "now-t",
-            "text": "{dssNow.text}"
-           }
-          ]
-         },
-         {
-          "type": "list",
-          "class": "glist",
-          "items": "$gear",
-          "template": {
-           "type": "button",
-           "class": "grow",
-           "onClick": [
-            {
-             "set": {
-              "itemTab": "{slot}",
-              "itemId": -1
+            "type": "box",
+            "class": "pcanvas",
+            "children": [
+             {
+              "type": "image",
+              "class": "bg",
+              "src": "asset:ui/bg.png"
+             },
+             {
+              "type": "image",
+              "class": "win p-whip",
+              "src": "asset:ui/pl-108x11-e.png"
+             },
+             {
+              "type": "text",
+              "class": "lab whip",
+              "text": "VAMPIREKILLER"
+             },
+             {
+              "type": "image",
+              "class": "win p-time",
+              "src": "asset:ui/pl-110x11.png"
+             },
+             {
+              "type": "text",
+              "class": "lab time-l",
+              "text": "TIME"
+             },
+             {
+              "type": "text",
+              "class": "val time",
+              "text": "{st.time}"
+             },
+             {
+              "type": "image",
+              "class": "win p-lv",
+              "src": "asset:ui/pl-68x11-e.png"
+             },
+             {
+              "type": "text",
+              "class": "lab lv-l",
+              "text": "LV"
+             },
+             {
+              "type": "text",
+              "class": "val lv",
+              "text": "{st.level}"
+             },
+             {
+              "type": "image",
+              "class": "win p-rate",
+              "src": "asset:ui/pl-110x11.png"
+             },
+             {
+              "type": "text",
+              "class": "lab rate-l",
+              "text": "RATE"
+             },
+             {
+              "type": "text",
+              "class": "val rate",
+              "text": "{st.rate}"
+             },
+             {
+              "type": "image",
+              "class": "win f-stats",
+              "src": "asset:ui/fr-72x40.png"
+             },
+             {
+              "type": "text",
+              "class": "lab s1",
+              "text": "STR"
+             },
+             {
+              "type": "text",
+              "class": "val s1v",
+              "text": "{st.str}"
+             },
+             {
+              "type": "text",
+              "class": "lab s2",
+              "text": "DEF"
+             },
+             {
+              "type": "text",
+              "class": "val s2v",
+              "text": "{st.def}"
+             },
+             {
+              "type": "text",
+              "class": "lab s3",
+              "text": "INT"
+             },
+             {
+              "type": "text",
+              "class": "val s3v",
+              "text": "{st.int}"
+             },
+             {
+              "type": "text",
+              "class": "lab s4",
+              "text": "LCK"
+             },
+             {
+              "type": "text",
+              "class": "val s4v",
+              "text": "{st.lck}"
+             },
+             {
+              "type": "image",
+              "class": "win p-good",
+              "src": "asset:ui/pl-72x11-e.png"
+             },
+             {
+              "type": "text",
+              "class": "lab good",
+              "text": "STATUS/GOOD"
+             },
+             {
+              "type": "image",
+              "class": "moon",
+              "src": "asset:ui/moon.png"
+             },
+             {
+              "type": "text",
+              "class": "lab nathan",
+              "text": "NATHAN"
+             },
+             {
+              "type": "image",
+              "class": "win f-hp",
+              "src": "asset:ui/fr-110x44.png"
+             },
+             {
+              "type": "text",
+              "class": "lab hp-l",
+              "text": "HP"
+             },
+             {
+              "type": "text",
+              "class": "val hp",
+              "text": "{st.hpText}"
+             },
+             {
+              "type": "bar",
+              "class": "hpbar",
+              "value": "$st.hp",
+              "maxKey": "$st.maxHp",
+              "classIf": {
+               "low": "$st.lowHp"
+              }
+             },
+             {
+              "type": "text",
+              "class": "lab mp-l",
+              "text": "MP"
+             },
+             {
+              "type": "text",
+              "class": "val mp",
+              "text": "{st.mpText}"
+             },
+             {
+              "type": "bar",
+              "class": "mpbar",
+              "value": "$st.mp",
+              "maxKey": "$st.maxMp"
+             },
+             {
+              "type": "text",
+              "class": "lab ht-l",
+              "text": "HEART"
+             },
+             {
+              "type": "text",
+              "class": "val ht",
+              "text": "{st.heartText}"
+             },
+             {
+              "type": "bar",
+              "class": "htbar",
+              "value": "$st.heart",
+              "maxKey": "$st.maxHeart"
+             },
+             {
+              "type": "image",
+              "class": "win f-exp",
+              "src": "asset:ui/fr-110x28.png"
+             },
+             {
+              "type": "text",
+              "class": "lab ex-l",
+              "text": "EXP"
+             },
+             {
+              "type": "text",
+              "class": "val ex",
+              "text": "{st.exp}"
+             },
+             {
+              "type": "text",
+              "class": "lab nx-l",
+              "text": "NEXT"
+             },
+             {
+              "type": "text",
+              "class": "val nx",
+              "text": "{st.next}"
+             },
+             {
+              "type": "bar",
+              "class": "expbar",
+              "value": "$st.expIn",
+              "maxKey": "$st.expSpan"
+             },
+             {
+              "type": "list",
+              "class": "menu",
+              "items": "$menu",
+              "template": {
+               "type": "button",
+               "class": "mtab",
+               "onClick": [
+                {
+                 "navigate": "{page}"
+                }
+               ],
+               "children": [
+                {
+                 "type": "image",
+                 "class": "mtab-p",
+                 "src": "asset:ui/menu.png"
+                },
+                {
+                 "type": "text",
+                 "class": "mtab-t",
+                 "text": "{label}"
+                }
+               ]
+              }
+             },
+             {
+              "type": "image",
+              "class": "win f-now",
+              "src": "asset:ui/fr-174x48.png"
+             },
+             {
+              "type": "button",
+              "class": "dsstap",
+              "onClick": [
+               {
+                "set": {
+                 "pickAttr": -1,
+                 "pickAct": -1
+                }
+               },
+               {
+                "navigate": "dss"
+               }
+              ],
+              "children": [
+               {
+                "type": "image",
+                "class": "now-c1",
+                "src": "$dssNow.actImg"
+               },
+               {
+                "type": "image",
+                "class": "now-c2",
+                "src": "$dssNow.attrImg"
+               },
+               {
+                "type": "text",
+                "class": "now-a",
+                "text": "{dssNow.action}"
+               },
+               {
+                "type": "text",
+                "class": "now-b",
+                "text": "+ {dssNow.attr}"
+               },
+               {
+                "type": "text",
+                "class": "now-cost",
+                "text": "{dssNow.costN} {dssNow.costU}"
+               },
+               {
+                "type": "text",
+                "class": "now-t",
+                "text": "{dssNow.text}"
+               }
+              ]
+             },
+             {
+              "type": "list",
+              "class": "glist",
+              "items": "$gear",
+              "template": {
+               "type": "button",
+               "class": "grow",
+               "onClick": [
+                {
+                 "set": {
+                  "itemTab": "{slot}",
+                  "itemId": -1
+                 }
+                },
+                {
+                 "navigate": "item"
+                }
+               ],
+               "children": [
+                {
+                 "type": "text",
+                 "class": "glab",
+                 "text": "{label}"
+                },
+                {
+                 "type": "text",
+                 "class": "gname",
+                 "text": "{name}"
+                }
+               ],
+               "classIf": {
+                "none": "$none"
+               }
+              }
+             },
+             {
+              "type": "button",
+              "class": "hbtn",
+              "onClick": [
+               {
+                "call": "quickHeal",
+                "args": [
+                 "{heal.id}"
+                ]
+               }
+              ],
+              "children": [
+               {
+                "type": "image",
+                "class": "abtn-p",
+                "src": "asset:ui/btn.png"
+               },
+               {
+                "type": "text",
+                "class": "abtn-t",
+                "text": "HEAL"
+               }
+              ],
+              "visibleIf": "$heal.can"
+             },
+             {
+              "type": "box",
+              "class": "hbtn abtn-done",
+              "children": [
+               {
+                "type": "image",
+                "class": "abtn-p",
+                "src": "asset:ui/btn-off.png"
+               },
+               {
+                "type": "text",
+                "class": "abtn-t",
+                "text": "HEAL"
+               }
+              ],
+              "visibleIf": "$heal.off"
+             },
+             {
+              "type": "text",
+              "class": "hname",
+              "text": "{heal.name}"
              }
-            },
-            {
-             "navigate": "item"
-            }
-           ],
-           "children": [
-            {
-             "type": "text",
-             "class": "glab",
-             "text": "{label}"
-            },
-            {
-             "type": "text",
-             "class": "gname",
-             "text": "{name}"
-            }
-           ],
-           "classIf": {
-            "none": "$none"
-           }
-          }
-         },
-         {
-          "type": "button",
-          "class": "hbtn",
-          "onClick": [
-           {
-            "call": "quickHeal",
-            "args": [
-             "{heal.id}"
             ]
            }
-          ],
-          "children": [
-           {
-            "type": "image",
-            "class": "abtn-p",
-            "src": "asset:ui/btn.png"
-           },
-           {
-            "type": "text",
-            "class": "abtn-t",
-            "text": "HEAL"
-           }
-          ],
-          "visibleIf": "$heal.can"
-         },
-         {
-          "type": "box",
-          "class": "hbtn abtn-done",
-          "children": [
-           {
-            "type": "image",
-            "class": "abtn-p",
-            "src": "asset:ui/btn-off.png"
-           },
-           {
-            "type": "text",
-            "class": "abtn-t",
-            "text": "HEAL"
-           }
-          ],
-          "visibleIf": "$heal.off"
-         },
-         {
-          "type": "text",
-          "class": "hname",
-          "text": "{heal.name}"
+          ]
          },
          {
           "type": "button",
@@ -829,351 +841,363 @@
         "class": "page page-item",
         "children": [
          {
-          "type": "image",
-          "class": "bg",
-          "src": "asset:ui/bg.png"
-         },
-         {
-          "type": "image",
-          "class": "tplate",
-          "src": "asset:ui/title.png"
-         },
-         {
-          "type": "text",
-          "class": "ttext",
-          "text": "ITEM"
-         },
-         {
-          "type": "list",
-          "class": "itabs",
-          "items": "$itemTabs",
-          "template": {
-           "type": "button",
-           "class": "itab",
-           "onClick": [
-            {
-             "set": {
-              "itemTab": "{i}",
-              "itemId": -1
-             }
-            }
-           ],
-           "children": [
-            {
-             "type": "image",
-             "class": "itab-p",
-             "src": "asset:ui/menu.png"
-            },
-            {
-             "type": "image",
-             "class": "itab-on",
-             "src": "asset:ui/menu-on.png",
-             "visibleIf": "$sel"
-            },
-            {
-             "type": "text",
-             "class": "itab-eqp",
-             "text": "EQP",
-             "visibleIf": "$eqp"
-            },
-            {
-             "type": "text",
-             "class": "itab-t",
-             "text": "{label}"
-            },
-            {
-             "type": "text",
-             "class": "itab-n",
-             "text": "{name}"
-            }
-           ],
-           "classIf": {
-            "sel": "$sel"
-           }
-          }
-         },
-         {
-          "type": "image",
-          "class": "win f-ihp",
-          "src": "asset:ui/fr-108x30.png"
-         },
-         {
-          "type": "text",
-          "class": "lab ih-l",
-          "text": "HP"
-         },
-         {
-          "type": "text",
-          "class": "val ih",
-          "text": "{st.hpText}"
-         },
-         {
-          "type": "text",
-          "class": "lab im-l",
-          "text": "MP"
-         },
-         {
-          "type": "text",
-          "class": "val im",
-          "text": "{st.mpText}"
-         },
-         {
-          "type": "text",
-          "class": "lab it-l",
-          "text": "HEART"
-         },
-         {
-          "type": "text",
-          "class": "val it",
-          "text": "{st.heartText}"
-         },
-         {
-          "type": "image",
-          "class": "win f-ist",
-          "src": "asset:ui/fr-108x40.png"
-         },
-         {
-          "type": "text",
-          "class": "lab is0",
-          "text": "STR"
-         },
-         {
-          "type": "text",
-          "class": "val is0v",
-          "text": "{sw.str.v}"
-         },
-         {
-          "type": "text",
-          "class": "val is0t",
-          "text": "> {sw.str.to}",
-          "visibleIf": "$sw.str.cmp",
-          "classIf": {
-           "up": "$sw.str.up",
-           "down": "$sw.str.down"
-          }
-         },
-         {
-          "type": "text",
-          "class": "lab is1",
-          "text": "DEF"
-         },
-         {
-          "type": "text",
-          "class": "val is1v",
-          "text": "{sw.def.v}"
-         },
-         {
-          "type": "text",
-          "class": "val is1t",
-          "text": "> {sw.def.to}",
-          "visibleIf": "$sw.def.cmp",
-          "classIf": {
-           "up": "$sw.def.up",
-           "down": "$sw.def.down"
-          }
-         },
-         {
-          "type": "text",
-          "class": "lab is2",
-          "text": "INT"
-         },
-         {
-          "type": "text",
-          "class": "val is2v",
-          "text": "{sw.int.v}"
-         },
-         {
-          "type": "text",
-          "class": "val is2t",
-          "text": "> {sw.int.to}",
-          "visibleIf": "$sw.int.cmp",
-          "classIf": {
-           "up": "$sw.int.up",
-           "down": "$sw.int.down"
-          }
-         },
-         {
-          "type": "text",
-          "class": "lab is3",
-          "text": "LCK"
-         },
-         {
-          "type": "text",
-          "class": "val is3v",
-          "text": "{sw.lck.v}"
-         },
-         {
-          "type": "text",
-          "class": "val is3t",
-          "text": "> {sw.lck.to}",
-          "visibleIf": "$sw.lck.cmp",
-          "classIf": {
-           "up": "$sw.lck.up",
-           "down": "$sw.lck.down"
-          }
-         },
-         {
-          "type": "image",
-          "class": "win p-igood",
-          "src": "asset:ui/pl-72x11.png"
-         },
-         {
-          "type": "text",
-          "class": "lab igood",
-          "text": "STATUS/GOOD"
-         },
-         {
           "type": "box",
-          "class": "band",
+          "class": "pscroll",
           "children": [
            {
-            "type": "list",
-            "class": "blist",
-            "items": "$itemList",
-            "template": {
-             "type": "button",
-             "class": "cell",
-             "onClick": [
-              {
-               "set": {
-                "itemId": "{id}"
+            "type": "box",
+            "class": "pcanvas",
+            "children": [
+             {
+              "type": "image",
+              "class": "bg",
+              "src": "asset:ui/bg.png"
+             },
+             {
+              "type": "image",
+              "class": "tplate",
+              "src": "asset:ui/title.png"
+             },
+             {
+              "type": "text",
+              "class": "ttext",
+              "text": "ITEM"
+             },
+             {
+              "type": "list",
+              "class": "itabs",
+              "items": "$itemTabs",
+              "template": {
+               "type": "button",
+               "class": "itab",
+               "onClick": [
+                {
+                 "set": {
+                  "itemTab": "{i}",
+                  "itemId": -1
+                 }
+                }
+               ],
+               "children": [
+                {
+                 "type": "image",
+                 "class": "itab-p",
+                 "src": "asset:ui/menu.png"
+                },
+                {
+                 "type": "image",
+                 "class": "itab-on",
+                 "src": "asset:ui/menu-on.png",
+                 "visibleIf": "$sel"
+                },
+                {
+                 "type": "text",
+                 "class": "itab-eqp",
+                 "text": "EQP",
+                 "visibleIf": "$eqp"
+                },
+                {
+                 "type": "text",
+                 "class": "itab-t",
+                 "text": "{label}"
+                },
+                {
+                 "type": "text",
+                 "class": "itab-n",
+                 "text": "{name}"
+                }
+               ],
+               "classIf": {
+                "sel": "$sel"
                }
               }
-             ],
-             "children": [
-              {
-               "type": "text",
-               "class": "cname",
-               "text": "{name}"
-              },
-              {
-               "type": "text",
-               "class": "ccount",
-               "text": "{count}"
+             },
+             {
+              "type": "image",
+              "class": "win f-ihp",
+              "src": "asset:ui/fr-108x30.png"
+             },
+             {
+              "type": "text",
+              "class": "lab ih-l",
+              "text": "HP"
+             },
+             {
+              "type": "text",
+              "class": "val ih",
+              "text": "{st.hpText}"
+             },
+             {
+              "type": "text",
+              "class": "lab im-l",
+              "text": "MP"
+             },
+             {
+              "type": "text",
+              "class": "val im",
+              "text": "{st.mpText}"
+             },
+             {
+              "type": "text",
+              "class": "lab it-l",
+              "text": "HEART"
+             },
+             {
+              "type": "text",
+              "class": "val it",
+              "text": "{st.heartText}"
+             },
+             {
+              "type": "image",
+              "class": "win f-ist",
+              "src": "asset:ui/fr-108x40.png"
+             },
+             {
+              "type": "text",
+              "class": "lab is0",
+              "text": "STR"
+             },
+             {
+              "type": "text",
+              "class": "val is0v",
+              "text": "{sw.str.v}"
+             },
+             {
+              "type": "text",
+              "class": "val is0t",
+              "text": "> {sw.str.to}",
+              "visibleIf": "$sw.str.cmp",
+              "classIf": {
+               "up": "$sw.str.up",
+               "down": "$sw.str.down"
               }
-             ],
-             "classIf": {
-              "sel": "$sel"
+             },
+             {
+              "type": "text",
+              "class": "lab is1",
+              "text": "DEF"
+             },
+             {
+              "type": "text",
+              "class": "val is1v",
+              "text": "{sw.def.v}"
+             },
+             {
+              "type": "text",
+              "class": "val is1t",
+              "text": "> {sw.def.to}",
+              "visibleIf": "$sw.def.cmp",
+              "classIf": {
+               "up": "$sw.def.up",
+               "down": "$sw.def.down"
+              }
+             },
+             {
+              "type": "text",
+              "class": "lab is2",
+              "text": "INT"
+             },
+             {
+              "type": "text",
+              "class": "val is2v",
+              "text": "{sw.int.v}"
+             },
+             {
+              "type": "text",
+              "class": "val is2t",
+              "text": "> {sw.int.to}",
+              "visibleIf": "$sw.int.cmp",
+              "classIf": {
+               "up": "$sw.int.up",
+               "down": "$sw.int.down"
+              }
+             },
+             {
+              "type": "text",
+              "class": "lab is3",
+              "text": "LCK"
+             },
+             {
+              "type": "text",
+              "class": "val is3v",
+              "text": "{sw.lck.v}"
+             },
+             {
+              "type": "text",
+              "class": "val is3t",
+              "text": "> {sw.lck.to}",
+              "visibleIf": "$sw.lck.cmp",
+              "classIf": {
+               "up": "$sw.lck.up",
+               "down": "$sw.lck.down"
+              }
+             },
+             {
+              "type": "image",
+              "class": "win p-igood",
+              "src": "asset:ui/pl-72x11.png"
+             },
+             {
+              "type": "text",
+              "class": "lab igood",
+              "text": "STATUS/GOOD"
+             },
+             {
+              "type": "box",
+              "class": "band",
+              "children": [
+               {
+                "type": "list",
+                "class": "blist",
+                "items": "$itemList",
+                "template": {
+                 "type": "button",
+                 "class": "cell",
+                 "onClick": [
+                  {
+                   "set": {
+                    "itemId": "{id}"
+                   }
+                  }
+                 ],
+                 "children": [
+                  {
+                   "type": "text",
+                   "class": "cname",
+                   "text": "{name}"
+                  },
+                  {
+                   "type": "text",
+                   "class": "ccount",
+                   "text": "{count}"
+                  }
+                 ],
+                 "classIf": {
+                  "sel": "$sel"
+                 }
+                }
+               }
+              ]
+             },
+             {
+              "type": "text",
+              "class": "band-empty",
+              "text": "Nothing here.",
+              "visibleIf": "$itemEmpty"
+             },
+             {
+              "type": "box",
+              "class": "rule rule-i",
+              "children": []
+             },
+             {
+              "type": "text",
+              "class": "iname",
+              "text": "{ipick.name}"
+             },
+             {
+              "type": "text",
+              "class": "idesc",
+              "text": "{ipick.desc}"
+             },
+             {
+              "type": "text",
+              "class": "ibonus",
+              "text": "{ipick.bonus}"
+             },
+             {
+              "type": "button",
+              "class": "abtn iset",
+              "onClick": [
+               {
+                "call": "equip",
+                "args": [
+                 "{ipick.tab}",
+                 "{ipick.id}"
+                ]
+               }
+              ],
+              "children": [
+               {
+                "type": "image",
+                "class": "abtn-p",
+                "src": "asset:ui/btn.png"
+               },
+               {
+                "type": "text",
+                "class": "abtn-t",
+                "text": "EQUIP"
+               }
+              ],
+              "visibleIf": "$ipick.canSet"
+             },
+             {
+              "type": "box",
+              "class": "abtn iset abtn-done",
+              "children": [
+               {
+                "type": "image",
+                "class": "abtn-p",
+                "src": "asset:ui/btn-off.png"
+               },
+               {
+                "type": "text",
+                "class": "abtn-t",
+                "text": "WORN"
+               }
+              ],
+              "visibleIf": "$ipick.isSet"
+             },
+             {
+              "type": "button",
+              "class": "abtn iuse",
+              "onClick": [
+               {
+                "call": "useItem",
+                "args": [
+                 "{ipick.id}"
+                ]
+               }
+              ],
+              "children": [
+               {
+                "type": "image",
+                "class": "abtn-p",
+                "src": "asset:ui/btn.png"
+               },
+               {
+                "type": "text",
+                "class": "abtn-t",
+                "text": "USE"
+               }
+              ],
+              "visibleIf": "$ipick.canUse"
+             },
+             {
+              "type": "box",
+              "class": "abtn iuse abtn-done",
+              "children": [
+               {
+                "type": "image",
+                "class": "abtn-p",
+                "src": "asset:ui/btn-off.png"
+               },
+               {
+                "type": "text",
+                "class": "abtn-t",
+                "text": "FULL"
+               }
+              ],
+              "visibleIf": "$ipick.full"
+             },
+             {
+              "type": "text",
+              "class": "note",
+              "text": "{note}"
              }
-            }
+            ]
            }
           ]
-         },
-         {
-          "type": "text",
-          "class": "band-empty",
-          "text": "Nothing here.",
-          "visibleIf": "$itemEmpty"
-         },
-         {
-          "type": "box",
-          "class": "rule rule-i",
-          "children": []
-         },
-         {
-          "type": "text",
-          "class": "iname",
-          "text": "{ipick.name}"
-         },
-         {
-          "type": "text",
-          "class": "idesc",
-          "text": "{ipick.desc}"
-         },
-         {
-          "type": "text",
-          "class": "ibonus",
-          "text": "{ipick.bonus}"
-         },
-         {
-          "type": "button",
-          "class": "abtn iset",
-          "onClick": [
-           {
-            "call": "equip",
-            "args": [
-             "{ipick.tab}",
-             "{ipick.id}"
-            ]
-           }
-          ],
-          "children": [
-           {
-            "type": "image",
-            "class": "abtn-p",
-            "src": "asset:ui/btn.png"
-           },
-           {
-            "type": "text",
-            "class": "abtn-t",
-            "text": "EQUIP"
-           }
-          ],
-          "visibleIf": "$ipick.canSet"
-         },
-         {
-          "type": "box",
-          "class": "abtn iset abtn-done",
-          "children": [
-           {
-            "type": "image",
-            "class": "abtn-p",
-            "src": "asset:ui/btn-off.png"
-           },
-           {
-            "type": "text",
-            "class": "abtn-t",
-            "text": "WORN"
-           }
-          ],
-          "visibleIf": "$ipick.isSet"
-         },
-         {
-          "type": "button",
-          "class": "abtn iuse",
-          "onClick": [
-           {
-            "call": "useItem",
-            "args": [
-             "{ipick.id}"
-            ]
-           }
-          ],
-          "children": [
-           {
-            "type": "image",
-            "class": "abtn-p",
-            "src": "asset:ui/btn.png"
-           },
-           {
-            "type": "text",
-            "class": "abtn-t",
-            "text": "USE"
-           }
-          ],
-          "visibleIf": "$ipick.canUse"
-         },
-         {
-          "type": "box",
-          "class": "abtn iuse abtn-done",
-          "children": [
-           {
-            "type": "image",
-            "class": "abtn-p",
-            "src": "asset:ui/btn-off.png"
-           },
-           {
-            "type": "text",
-            "class": "abtn-t",
-            "text": "FULL"
-           }
-          ],
-          "visibleIf": "$ipick.full"
-         },
-         {
-          "type": "text",
-          "class": "note",
-          "text": "{note}"
          },
          {
           "type": "button",

@@ -49,19 +49,21 @@ def title(t):
     return [img("tplate", "asset:ui/title.png"), text("ttext", t)]
 
 
-def page(name, children, i=None, extra_cls=""):
+def page(name, children, i=None, extra_cls="", scroll=False):
     kids = [img("bg", "asset:ui/bg.png")] + children
+    if scroll:      # taller than the screen: the content scrolls above the bottom plates, which stay put
+        kids = [box("pscroll", [box("pcanvas", kids)])]
     if i is not None:
         kids += nav(i)
     return box(f"page page-{name} {extra_cls}".strip(), kids)
 
 
 # ---- shared pieces ------------------------------------------------------------------------------
-def stat_window(top=18):
+def stat_window(top=18, h=44):
     # the ATT / DEF / STR / CON / INT / LCK window the Soul Set and Equip screens share
     def v(cls, key):
         return text(f"num {cls}", "{sw.%s.v}" % key, classIf={"up": "$sw.%s.up" % key, "down": "$sw.%s.down" % key})
-    return [win(92, 44, "w-stats"),
+    return [win(92, h, "w-stats"),
             text("lab att-l sw1", "ATT"), v("sw1v", "att"),
             text("lab def-l sw2", "DEF"), v("sw2v", "def"),
             text("lab sw3", "STR"), v("sw3v", "str"),
@@ -138,7 +140,7 @@ status = page("status", [
                                 [img("gicon", "$icon"), text("gname", "{name}")], classIf={"none": "$none"})),
     lst("slist", "$souls", button("srow", [{"set": {"soulCat": "{i}", "soul": -1}}, {"navigate": "soul"}],
                                  [img("sorb", "$orb"), text("sname", "{name}")], classIf={"none": "$off"})),
-], 0)
+], 0, scroll=True)
 
 # ---- soul set ----------------------------------------------------------------------------------
 soul = page("soul", [
@@ -148,7 +150,7 @@ soul = page("soul", [
                                       [img("sotab-orb", "$orb"), text("sotab-l", "{label}"), text("sotab-n", "{name}"), box("sotab-u", [])],
                                       classIf={"sel": "$sel"}, bindStyle={"--c": "{hex}"})),
     img("sobig", "$soulBig"),
-    *stat_window(),
+    *stat_window(h=56),
     *band("{soulCatName}", "{soulOwned}", "$soulList",
           button("cell", [{"set": {"soul": "{id}"}}],
                  [img("cur", "asset:ui/cursor.png", visibleIf="$sel"), img("corb", "$orb"), text("cname", "{name}"), text("ccount", "{count}")],
@@ -156,16 +158,16 @@ soul = page("soul", [
     *desc_window(cost=("{soulPick.costN}", "{soulPick.costU}"), name="{soulPick.name}", desc="{soulPick.desc}", extra="{soulPick.from}",
                  btn=act_button("SET", [{"call": "setSoul", "args": ["{soulPick.cat}", "{soulPick.id}"]}], "$soulPick.canSet",
                                 "IN USE", "$soulPick.isSet")),
-], 1)
+], 1, scroll=True)
 
 # ---- equip -------------------------------------------------------------------------------------
 equip = page("equip", [
     *title("EQUIP"),
-    win(146, 44, "w-slots"),
+    win(146, 56, "w-slots"),
     lst("eqslots", "$eqSlots", button("eqslot", [{"set": {"eqSlot": "{i}", "eqItem": -1}}],
                                       [img("cur", "asset:ui/cursor.png", visibleIf="$sel"), text("eqs-l", "{label}"),
                                        img("eqs-i", "$icon"), text("eqs-n", "{name}")], classIf={"sel": "$sel"})),
-    *stat_window(),
+    *stat_window(h=56),
     *band("{eqSlotName}", "{eqCount}", "$eqList",
           button("cell", [{"set": {"eqItem": "{idx}"}}],
                  [img("cur", "asset:ui/cursor.png", visibleIf="$sel"), img("cicon", "$icon"), text("cname", "{name}"), text("ccount", "{count}")],
@@ -175,12 +177,12 @@ equip = page("equip", [
                  btn=act_button("EQUIP", [{"call": "equip", "args": ["{eqPick.slot}", "{eqPick.idx}"]}], "$eqPick.canSet",
                                 "WORN", "$eqPick.isSet")),
     box("abtn abtn-done", [img("abtn-p", "asset:ui/btn-off.png"), text("abtn-t", "NOT OWNED")], visibleIf="$eqPick.notOwned"),
-], 2)
+], 2, scroll=True)
 
 # ---- item use ----------------------------------------------------------------------------------
 items = page("items", [
     *title("ITEM USE"),
-    win(240, 40, "w-hpmp"),
+    win(240, 48, "w-hpmp"),
     text("lab ih-l", "HP"), text("num ih-v", "{st.hpText}"), bar("hpbar ihbar", "$st.hp", "$st.maxHp", classIf={"low": "$st.lowHp"}),
     text("lab im-l", "MP"), text("num im-v", "{st.mpText}"), bar("mpbar imbar", "$st.mp", "$st.maxMp"),
     text("lab ist", "STATUS / GOOD"),
@@ -195,7 +197,7 @@ items = page("items", [
                  btn=act_button("USE", [{"call": "useItem", "args": ["{itemPick.i}"]}], "$itemPick.canUse",
                                 "FULL", "$itemPick.full")),
     box("abtn abtn-done", [img("abtn-p", "asset:ui/btn-off.png"), text("abtn-t", "NOT OWNED")], visibleIf="$itemPick.notOwned"),
-], 3)
+], 3, scroll=True)
 
 # ---- ability -----------------------------------------------------------------------------------
 ability = page("ability", [
@@ -209,7 +211,7 @@ ability = page("ability", [
                                      classIf={"sel": "$sel", "locked": "$locked"})),
     text("lab ab-tip", "Tap a soul to switch it on or off."),
     *desc_window(icon_src="asset:ui/orbbig-grey.png", name="{abilPick.name}", desc="{abilPick.desc}"),
-], 4)
+], 4, scroll=True)
 
 # ---- enemy list --------------------------------------------------------------------------------
 enemy = page("enemy", [

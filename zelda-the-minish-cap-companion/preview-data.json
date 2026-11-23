@@ -481,5 +481,12 @@
   "_ambient": true,
   "_ambientLabel": "ON",
   "_writePerm": true,
-  "_writePermLabel": "ALLOWED"
+  "_writePermLabel": "ALLOWED",
+  "styleStone": true,
+  "styleClean": false,
+  "showStone": true,
+  "showClean": false,
+  "themeForest": true,
+  "themeParchment": false,
+  "themeNight": false
 }

@@ -64,7 +64,7 @@ bar > fill { border-radius: 0; transition: width 300ms; }
 .s1, .s2, .s3, .s4 { left: 6ap; } .s1v, .s2v, .s3v, .s4v { left: 28ap; width: 38ap; }
 .s1 { top: 37ap; } .s2 { top: 46ap; } .s3 { top: 55ap; } .s4 { top: 64ap; }
 .s1v { top: 33ap; } .s2v { top: 42ap; } .s3v { top: 51ap; } .s4v { top: 60ap; }
-.p-good { left: 0; top: 74ap; width: 72ap; height: 11ap; } .good { left: 6ap; top: 77ap; font-size: 5ap; }
+.p-good { left: 0; top: 74ap; width: 72ap; height: 11ap; } .good { left: 6ap; top: 77ap; font-size: 5.54ap; }
 .moon { position: absolute; left: 78ap; top: 18ap; width: 48ap; height: 56ap; }
 .nathan { left: 78ap; width: 48ap; top: 79ap; text-align: center; }
 .f-hp { left: 134ap; top: 32ap; width: 110ap; height: 44ap; }
@@ -120,18 +120,18 @@ bar > fill { border-radius: 0; transition: width 300ms; }
 .cost-u { position: absolute; left: 8ap; width: 34ap; top: 126ap; text-align: right; font-family: "Silk"; font-size: 5ap; }
 .dtext { position: absolute; left: 54ap; top: 115ap; width: 140ap; white-space: normal; font-size: 9ap; line-height: 9ap; }
 .dset { left: 202ap; top: 116ap; }
-.tip { left: 4ap; top: 160ap; width: 240ap; white-space: normal; font-size: 5ap; color: var(--dim); }
+.tip { left: 4ap; top: 160ap; width: 240ap; white-space: normal; font-size: 5.54ap; color: var(--dim); }
 
 /* ---- item ---- */
 .itabs { position: absolute; left: 0; top: 18ap; width: 136ap; height: 58ap; flex-direction: column; }
 .itab { width: 136ap; height: 13ap; margin: 0 0 1ap 0; padding: 0; background: none; border: 0; border-radius: 0; position: relative; }
 .itab-p, .itab-on { position: absolute; left: 0; top: 1ap; width: 64ap; height: 11ap; }
-.itab-eqp { position: absolute; left: 3ap; top: 2ap; font-family: "Silk"; font-size: 4ap; color: var(--gold); }
+.itab-eqp { position: absolute; left: 3ap; top: 2ap; font-family: "Silk"; font-size: 4.61ap; color: var(--gold); }
 .itab-t { position: absolute; left: 14ap; width: 42ap; top: 3ap; text-align: left; font-family: "Silk"; font-size: 6ap; }
 .itab-n { position: absolute; left: 68ap; top: 1ap; font-size: 9ap; }
 .itab:pressed .itab-t { color: var(--red); }
 .f-ihp { left: 138ap; top: 16ap; width: 108ap; height: 30ap; }
-.ih-l, .im-l, .it-l { left: 144ap; font-size: 5ap; } .ih, .im, .it { left: 172ap; width: 68ap; font-size: 9ap; }
+.ih-l, .im-l, .it-l { left: 144ap; font-size: 5.54ap; } .ih, .im, .it { left: 172ap; width: 68ap; font-size: 9ap; }
 .ih-l { top: 21ap; } .ih { top: 17ap; } .im-l { top: 30ap; } .im { top: 26ap; } .it-l { top: 39ap; } .it { top: 35ap; }
 .f-ist { left: 138ap; top: 48ap; width: 108ap; height: 40ap; }
 .is0, .is1, .is2, .is3 { left: 144ap; }
@@ -140,7 +140,7 @@ bar > fill { border-radius: 0; transition: width 300ms; }
 .is0 { top: 53ap; } .is1 { top: 62ap; } .is2 { top: 71ap; } .is3 { top: 80ap; }
 .is0v, .is0t { top: 49ap; } .is1v, .is1t { top: 58ap; } .is2v, .is2t { top: 67ap; } .is3v, .is3t { top: 76ap; }
 .val.up { color: var(--up); } .val.down { color: var(--down); }
-.p-igood { left: 0; top: 76ap; width: 72ap; height: 11ap; } .igood { left: 8ap; top: 79ap; font-size: 5ap; }
+.p-igood { left: 0; top: 76ap; width: 72ap; height: 11ap; } .igood { left: 8ap; top: 79ap; font-size: 5.54ap; }
 .band { position: absolute; left: 0; top: 90ap; width: 248ap; height: 58ap; overflow: auto; background-color: #00002a; }
 .blist { width: 248ap; display: grid; grid-template-columns: 124ap 124ap; }
 .cell { width: 124ap; height: 11ap; padding: 0 6ap 0 8ap; margin: 0; background: none; border: 0; border-radius: 0; flex-direction: row; align-items: center; }
@@ -162,7 +162,7 @@ bar > fill { border-radius: 0; transition: width 300ms; }
 .f-cards { left: 0; top: 112ap; width: 132ap; height: 70ap; }
 .cbig { position: absolute; left: 6ap; top: 118ap; width: 40ap; height: 56ap; }
 .p-cname { left: 50ap; top: 116ap; width: 82ap; height: 11ap; } .cname-t { left: 58ap; top: 119ap; font-size: 6ap; }
-.ckind { left: 52ap; top: 133ap; font-size: 5ap; color: var(--dim); }
+.ckind { left: 52ap; top: 133ap; font-size: 5.54ap; color: var(--dim); }
 .ccount-t { position: absolute; left: 52ap; top: 140ap; font-size: 9ap; color: var(--dim); }
 .cdesc { position: absolute; left: 138ap; top: 114ap; width: 106ap; white-space: normal; font-size: 9ap; line-height: 9ap; }
 
@@ -223,3 +223,27 @@ bar > fill { border-radius: 0; transition: width 300ms; }
 .w-2 { position: absolute; left: 0; width: 248ap; top: 112ap; text-align: center; font-family: "Silk"; font-size: 6ap; color: var(--red); }
 .w-3 { position: absolute; left: 0; width: 248ap; top: 136ap; text-align: center; }
 .w-4 { position: absolute; left: 0; width: 248ap; top: 150ap; text-align: center; font-size: 9ap; color: var(--down); }
+
+/* ---- scrolling pages: the canvas scrolls above the fixed bottom plates ---- */
+.pscroll { position: absolute; left: 0; top: 0; width: 248ap; height: 190ap; overflow: auto; }
+.pcanvas { position: relative; width: 248ap; height: 216ap; background-color: #000028; }
+
+/* ---- room to breathe: status page is taller than the screen and scrolls above the plates (positions shifted by group) ---- */
+.page-status .pcanvas { height: 212ap; } .page-status .bg { height: 212ap; }
+.page-status .f-exp { top: 82ap; }
+.page-status .ex-l { top: 87ap; }
+.page-status .ex { top: 83ap; }
+.page-status .nx-l { top: 97ap; }
+.page-status .nx { top: 93ap; }
+.page-status .expbar { top: 105ap; }
+.page-status .menu { top: 96ap; }
+.page-status .f-now { top: 118ap; }
+.page-status .dsstap { top: 118ap; }
+.page-status .glist { top: 174ap; }
+.page-status .hbtn { top: 178ap; }
+.page-status .hname { top: 191ap; }
+
+/* ---- room to breathe: item page scrolls; the band (list) keeps its height, the description moves below it ---- */
+.page-item .pcanvas { height: 222ap; } .page-item .bg { height: 222ap; }
+.page-item .band { top: 96ap; } .page-item .band-empty { top: 118ap; } .page-item .p-igood { top: 78ap; } .page-item .igood { top: 81ap; }
+.page-item .rule-i { top: 162ap; } .page-item .iname { top: 165ap; } .page-item .idesc { top: 175ap; } .page-item .ibonus { top: 193ap; } .page-item .iset, .page-item .iuse { top: 167ap; }

@@ -1,0 +1,2503 @@
+{
+ "armor": "HeatArmr",
+ "armors": [
+  {
+   "id": 0,
+   "name": "Armor",
+   "on": false
+  },
+  {
+   "id": 2,
+   "name": "HeatArmr",
+   "on": true
+  },
+  {
+   "id": 3,
+   "name": "AquaArmr",
+   "on": false
+  },
+  {
+   "id": 4,
+   "name": "WoodArmr",
+   "on": false
+  }
+ ],
+ "chips": "7820",
+ "folder": [
+  {
+   "art": "asset:_preview/d53ae6a4788a.png",
+   "atk": 120,
+   "atkText": "120",
+   "code": "L",
+   "codeN": 11,
+   "desc": "A nice, big cannon!",
+   "hasAtk": true,
+   "icon": "asset:_preview/c2e723ab047c.png",
+   "id": 3,
+   "name": "M-Cannon",
+   "no": "003",
+   "odd": false,
+   "sel": true,
+   "slot": 0
+  },
+  {
+   "art": "asset:_preview/d53ae6a4788a.png",
+   "atk": 120,
+   "atkText": "120",
+   "code": "L",
+   "codeN": 11,
+   "desc": "A nice, big cannon!",
+   "hasAtk": true,
+   "icon": "asset:_preview/c2e723ab047c.png",
+   "id": 3,
+   "name": "M-Cannon",
+   "no": "003",
+   "odd": true,
+   "sel": false,
+   "slot": 1
+  },
+  {
+   "art": "asset:_preview/d53ae6a4788a.png",
+   "atk": 120,
+   "atkText": "120",
+   "code": "L",
+   "codeN": 11,
+   "desc": "A nice, big cannon!",
+   "hasAtk": true,
+   "icon": "asset:_preview/c2e723ab047c.png",
+   "id": 3,
+   "name": "M-Cannon",
+   "no": "003",
+   "odd": false,
+   "sel": false,
+   "slot": 2
+  },
+  {
+   "art": "asset:_preview/19e900a763c8.png",
+   "atk": 200,
+   "atkText": "200",
+   "code": "B",
+   "codeN": 1,
+   "desc": "Legendary sword Range=3",
+   "hasAtk": true,
+   "icon": "asset:_preview/3201a87ec37c.png",
+   "id": 33,
+   "name": "HeroSwrd",
+   "no": "033",
+   "odd": true,
+   "sel": false,
+   "slot": 3
+  },
+  {
+   "art": "asset:_preview/19e900a763c8.png",
+   "atk": 200,
+   "atkText": "200",
+   "code": "B",
+   "codeN": 1,
+   "desc": "Legendary sword Range=3",
+   "hasAtk": true,
+   "icon": "asset:_preview/3201a87ec37c.png",
+   "id": 33,
+   "name": "HeroSwrd",
+   "no": "033",
+   "odd": false,
+   "sel": false,
+   "slot": 4
+  },
+  {
+   "art": "asset:_preview/19e900a763c8.png",
+   "atk": 200,
+   "atkText": "200",
+   "code": "B",
+   "codeN": 1,
+   "desc": "Legendary sword Range=3",
+   "hasAtk": true,
+   "icon": "asset:_preview/3201a87ec37c.png",
+   "id": 33,
+   "name": "HeroSwrd",
+   "no": "033",
+   "odd": true,
+   "sel": false,
+   "slot": 5
+  },
+  {
+   "art": "asset:_preview/19e900a763c8.png",
+   "atk": 200,
+   "atkText": "200",
+   "code": "B",
+   "codeN": 1,
+   "desc": "Legendary sword Range=3",
+   "hasAtk": true,
+   "icon": "asset:_preview/3201a87ec37c.png",
+   "id": 33,
+   "name": "HeroSwrd",
+   "no": "033",
+   "odd": false,
+   "sel": false,
+   "slot": 6
+  },
+  {
+   "art": "asset:_preview/19e900a763c8.png",
+   "atk": 200,
+   "atkText": "200",
+   "code": "B",
+   "codeN": 1,
+   "desc": "Legendary sword Range=3",
+   "hasAtk": true,
+   "icon": "asset:_preview/3201a87ec37c.png",
+   "id": 33,
+   "name": "HeroSwrd",
+   "no": "033",
+   "odd": true,
+   "sel": false,
+   "slot": 7
+  },
+  {
+   "art": "asset:_preview/19e900a763c8.png",
+   "atk": 200,
+   "atkText": "200",
+   "code": "B",
+   "codeN": 1,
+   "desc": "Legendary sword Range=3",
+   "hasAtk": true,
+   "icon": "asset:_preview/3201a87ec37c.png",
+   "id": 33,
+   "name": "HeroSwrd",
+   "no": "033",
+   "odd": false,
+   "sel": false,
+   "slot": 8
+  },
+  {
+   "art": "asset:_preview/19e900a763c8.png",
+   "atk": 200,
+   "atkText": "200",
+   "code": "B",
+   "codeN": 1,
+   "desc": "Legendary sword Range=3",
+   "hasAtk": true,
+   "icon": "asset:_preview/3201a87ec37c.png",
+   "id": 33,
+   "name": "HeroSwrd",
+   "no": "033",
+   "odd": true,
+   "sel": false,
+   "slot": 9
+  },
+  {
+   "art": "asset:_preview/2c14dac017cf.png",
+   "atk": 0,
+   "atkText": "",
+   "code": "C",
+   "codeN": 2,
+   "desc": "Do damage = to your HP loss",
+   "hasAtk": false,
+   "icon": "asset:_preview/daf6305d7107.png",
+   "id": 136,
+   "name": "Muramasa",
+   "no": "136",
+   "odd": false,
+   "sel": false,
+   "slot": 10
+  },
+  {
+   "art": "asset:_preview/2c14dac017cf.png",
+   "atk": 0,
+   "atkText": "",
+   "code": "C",
+   "codeN": 2,
+   "desc": "Do damage = to your HP loss",
+   "hasAtk": false,
+   "icon": "asset:_preview/daf6305d7107.png",
+   "id": 136,
+   "name": "Muramasa",
+   "no": "136",
+   "odd": true,
+   "sel": false,
+   "slot": 11
+  },
+  {
+   "art": "asset:_preview/ab6fcb8a53af.png",
+   "atk": 160,
+   "atkText": "160",
+   "code": "C",
+   "codeN": 2,
+   "desc": "Rolling 3-column explosion!",
+   "hasAtk": true,
+   "icon": "asset:_preview/dbe71ec4758b.png",
+   "id": 129,
+   "name": "Gaia3",
+   "no": "129",
+   "odd": false,
+   "sel": false,
+   "slot": 12
+  },
+  {
+   "art": "asset:_preview/ab6fcb8a53af.png",
+   "atk": 160,
+   "atkText": "160",
+   "code": "M",
+   "codeN": 12,
+   "desc": "Rolling 3-column explosion!",
+   "hasAtk": true,
+   "icon": "asset:_preview/dbe71ec4758b.png",
+   "id": 129,
+   "name": "Gaia3",
+   "no": "129",
+   "odd": true,
+   "sel": false,
+   "slot": 13
+  },
+  {
+   "art": "asset:_preview/e7f67f98c554.png",
+   "atk": 0,
+   "atkText": "",
+   "code": "A",
+   "codeN": 0,
+   "desc": "Recover 300HP",
+   "hasAtk": false,
+   "icon": "asset:_preview/4b38571d82bc.png",
+   "id": 74,
+   "name": "Recov300",
+   "no": "074",
+   "odd": false,
+   "sel": false,
+   "slot": 14
+  },
+  {
+   "art": "asset:_preview/e7f67f98c554.png",
+   "atk": 0,
+   "atkText": "",
+   "code": "A",
+   "codeN": 0,
+   "desc": "Recover 300HP",
+   "hasAtk": false,
+   "icon": "asset:_preview/4b38571d82bc.png",
+   "id": 74,
+   "name": "Recov300",
+   "no": "074",
+   "odd": true,
+   "sel": false,
+   "slot": 15
+  },
+  {
+   "art": "asset:_preview/e7f67f98c554.png",
+   "atk": 0,
+   "atkText": "",
+   "code": "A",
+   "codeN": 0,
+   "desc": "Recover 300HP",
+   "hasAtk": false,
+   "icon": "asset:_preview/4b38571d82bc.png",
+   "id": 74,
+   "name": "Recov300",
+   "no": "074",
+   "odd": false,
+   "sel": false,
+   "slot": 16
+  },
+  {
+   "art": "asset:_preview/e7f67f98c554.png",
+   "atk": 0,
+   "atkText": "",
+   "code": "A",
+   "codeN": 0,
+   "desc": "Recover 300HP",
+   "hasAtk": false,
+   "icon": "asset:_preview/4b38571d82bc.png",
+   "id": 74,
+   "name": "Recov300",
+   "no": "074",
+   "odd": true,
+   "sel": false,
+   "slot": 17
+  },
+  {
+   "art": "asset:_preview/4d9122f4d99d.png",
+   "atk": 0,
+   "atkText": "",
+   "code": "F",
+   "codeN": 5,
+   "desc": "Escape from most enemies",
+   "hasAtk": false,
+   "icon": "asset:_preview/1bb379c74641.png",
+   "id": 82,
+   "name": "Escape",
+   "no": "082",
+   "odd": false,
+   "sel": false,
+   "slot": 18
+  },
+  {
+   "art": "asset:_preview/558b17fe28ec.png",
+   "atk": 0,
+   "atkText": "",
+   "code": "T",
+   "codeN": 19,
+   "desc": "Set Anubis statue to reduce HP",
+   "hasAtk": false,
+   "icon": "asset:_preview/385182830114.png",
+   "id": 142,
+   "name": "Anubis",
+   "no": "142",
+   "odd": true,
+   "sel": false,
+   "slot": 19
+  },
+  {
+   "art": "asset:_preview/81f16fdbd10c.png",
+   "atk": 0,
+   "atkText": "",
+   "code": "R",
+   "codeN": 17,
+   "desc": "Aqua wall Comes back if damaged",
+   "hasAtk": false,
+   "icon": "asset:_preview/c19c66fe99db.png",
+   "id": 132,
+   "name": "BblWrap3",
+   "no": "132",
+   "odd": false,
+   "sel": false,
+   "slot": 20
+  },
+  {
+   "art": "asset:_preview/81f16fdbd10c.png",
+   "atk": 0,
+   "atkText": "",
+   "code": "R",
+   "codeN": 17,
+   "desc": "Aqua wall Comes back if damaged",
+   "hasAtk": false,
+   "icon": "asset:_preview/c19c66fe99db.png",
+   "id": 132,
+   "name": "BblWrap3",
+   "no": "132",
+   "odd": true,
+   "sel": false,
+   "slot": 21
+  },
+  {
+   "art": "asset:_preview/17bc48e4b167.png",
+   "atk": 0,
+   "atkText": "",
+   "code": "A",
+   "codeN": 0,
+   "desc": "Negate all attacks w/ damage:100",
+   "hasAtk": false,
+   "icon": "asset:_preview/842adb4543d6.png",
+   "id": 84,
+   "name": "LifeAura",
+   "no": "084",
+   "odd": false,
+   "sel": false,
+   "slot": 22
+  },
+  {
+   "art": "asset:_preview/17bc48e4b167.png",
+   "atk": 0,
+   "atkText": "",
+   "code": "A",
+   "codeN": 0,
+   "desc": "Negate all attacks w/ damage:100",
+   "hasAtk": false,
+   "icon": "asset:_preview/842adb4543d6.png",
+   "id": 84,
+   "name": "LifeAura",
+   "no": "084",
+   "odd": true,
+   "sel": false,
+   "slot": 23
+  },
+  {
+   "art": "asset:_preview/17bc48e4b167.png",
+   "atk": 0,
+   "atkText": "",
+   "code": "A",
+   "codeN": 0,
+   "desc": "Negate all attacks w/ damage:100",
+   "hasAtk": false,
+   "icon": "asset:_preview/842adb4543d6.png",
+   "id": 84,
+   "name": "LifeAura",
+   "no": "084",
+   "odd": false,
+   "sel": false,
+   "slot": 24
+  },
+  {
+   "art": "asset:_preview/b9c9287155da.png",
+   "atk": 100,
+   "atkText": "100",
+   "code": "R",
+   "codeN": 17,
+   "desc": "Hit enemy and heal some HP",
+   "hasAtk": true,
+   "icon": "asset:_preview/0473a0463f91.png",
+   "id": 162,
+   "name": "Roll3",
+   "no": "162",
+   "odd": true,
+   "sel": false,
+   "slot": 25
+  },
+  {
+   "art": "asset:_preview/34b69f9eb2d6.png",
+   "atk": 180,
+   "atkText": "180",
+   "code": "B",
+   "codeN": 1,
+   "desc": "Hit column w/ nearest enemy",
+   "hasAtk": true,
+   "icon": "asset:_preview/87f37c7b8108.png",
+   "id": 168,
+   "name": "ProtoMn3",
+   "no": "168",
+   "odd": false,
+   "sel": false,
+   "slot": 26
+  },
+  {
+   "art": "asset:_preview/b048a91520dd.png",
+   "atk": 130,
+   "atkText": "130",
+   "code": "S",
+   "codeN": 18,
+   "desc": "3-row shark fin attack",
+   "hasAtk": true,
+   "icon": "asset:_preview/b12e3432c30c.png",
+   "id": 195,
+   "name": "SharkMn3",
+   "no": "195",
+   "odd": true,
+   "sel": false,
+   "slot": 27
+  },
+  {
+   "art": "asset:_preview/c115a3e56098.png",
+   "atk": 100,
+   "atkText": "100",
+   "code": "S",
+   "codeN": 18,
+   "desc": "Split into 3 for star attack",
+   "hasAtk": true,
+   "icon": "asset:_preview/2b386348ecaa.png",
+   "id": 153,
+   "name": "ShadoMn3",
+   "no": "153",
+   "odd": false,
+   "sel": false,
+   "slot": 28
+  },
+  {
+   "art": "asset:_preview/434d4aed3d08.png",
+   "atk": 200,
+   "atkText": "200",
+   "code": "F",
+   "codeN": 5,
+   "desc": "Explodes on entire area!",
+   "hasAtk": true,
+   "icon": "asset:_preview/0463aa182842.png",
+   "id": 199,
+   "name": "Bass",
+   "no": "199",
+   "odd": true,
+   "sel": false,
+   "slot": 29
+  }
+ ],
+ "hasMail": true,
+ "hp": "1000",
+ "item": {
+  "countText": "",
+  "desc": "Lan's terminal program MegaMan.EXE is installed.",
+  "kind": "Key item",
+  "name": "PET"
+ },
+ "itemCount": "23",
+ "items": [
+  {
+   "count": 1,
+   "countText": "",
+   "id": 0,
+   "name": "PET",
+   "odd": false,
+   "sel": true
+  },
+  {
+   "count": 4,
+   "countText": "x4",
+   "id": 1,
+   "name": "IceBlock",
+   "odd": true,
+   "sel": false
+  },
+  {
+   "count": 5,
+   "countText": "",
+   "id": 2,
+   "name": "WaterGun",
+   "odd": false,
+   "sel": false
+  },
+  {
+   "count": 1,
+   "countText": "",
+   "id": 3,
+   "name": "SchoolID",
+   "odd": true,
+   "sel": false
+  },
+  {
+   "count": 1,
+   "countText": "",
+   "id": 4,
+   "name": "SciLabID",
+   "odd": false,
+   "sel": false
+  },
+  {
+   "count": 1,
+   "countText": "",
+   "id": 6,
+   "name": "Message",
+   "odd": true,
+   "sel": false
+  },
+  {
+   "count": 1,
+   "countText": "",
+   "id": 8,
+   "name": "WWW PIN",
+   "odd": false,
+   "sel": false
+  },
+  {
+   "count": 1,
+   "countText": "",
+   "id": 15,
+   "name": "WWW Pass",
+   "odd": true,
+   "sel": false
+  },
+  {
+   "count": 1,
+   "countText": "",
+   "id": 33,
+   "name": "@Mayl",
+   "odd": false,
+   "sel": false
+  },
+  {
+   "count": 1,
+   "countText": "",
+   "id": 34,
+   "name": "@Yai",
+   "odd": true,
+   "sel": false
+  },
+  {
+   "count": 1,
+   "countText": "",
+   "id": 35,
+   "name": "@Dex",
+   "odd": false,
+   "sel": false
+  },
+  {
+   "count": 1,
+   "countText": "",
+   "id": 37,
+   "name": "@Dad",
+   "odd": true,
+   "sel": false
+  },
+  {
+   "count": 1,
+   "countText": "",
+   "id": 38,
+   "name": "@Sal",
+   "odd": false,
+   "sel": false
+  },
+  {
+   "count": 1,
+   "countText": "",
+   "id": 40,
+   "name": "@Miyu",
+   "odd": true,
+   "sel": false
+  },
+  {
+   "count": 1,
+   "countText": "",
+   "id": 43,
+   "name": "@Masa",
+   "odd": false,
+   "sel": false
+  },
+  {
+   "count": 1,
+   "countText": "",
+   "id": 45,
+   "name": "@WWW",
+   "odd": true,
+   "sel": false
+  },
+  {
+   "count": 1,
+   "countText": "",
+   "id": 48,
+   "name": "/Dex",
+   "odd": false,
+   "sel": false
+  },
+  {
+   "count": 1,
+   "countText": "",
+   "id": 49,
+   "name": "/Sal",
+   "odd": true,
+   "sel": false
+  },
+  {
+   "count": 1,
+   "countText": "",
+   "id": 50,
+   "name": "/Miyu",
+   "odd": false,
+   "sel": false
+  },
+  {
+   "count": 1,
+   "countText": "",
+   "id": 52,
+   "name": "Hig Memo",
+   "odd": true,
+   "sel": false
+  },
+  {
+   "count": 1,
+   "countText": "",
+   "id": 53,
+   "name": "Lab Memo",
+   "odd": false,
+   "sel": false
+  },
+  {
+   "count": 1,
+   "countText": "",
+   "id": 54,
+   "name": "YuriMemo",
+   "odd": true,
+   "sel": false
+  },
+  {
+   "count": 1,
+   "countText": "",
+   "id": 55,
+   "name": "Pa'sMemo",
+   "odd": false,
+   "sel": false
+  }
+ ],
+ "level": "100",
+ "libChip": {
+  "art": "asset:_preview/9eaf9412e33c.png",
+  "atk": 40,
+  "atkText": "40",
+  "code": "A",
+  "codeN": 0,
+  "desc": "A nice, big cannon!",
+  "hasAtk": true,
+  "icon": "asset:_preview/eb8110db6c4d.png",
+  "id": 1,
+  "name": "Cannon",
+  "no": "1",
+  "owned": 1
+ },
+ "libCodes": "F G H I J",
+ "libCount": 136,
+ "library": [
+  {
+   "hasOwned": true,
+   "id": 1,
+   "name": "Cannon",
+   "no": "1",
+   "odd": false,
+   "owned": 1,
+   "ownedText": "x1",
+   "sel": true
+  },
+  {
+   "hasOwned": true,
+   "id": 2,
+   "name": "HiCannon",
+   "no": "2",
+   "odd": true,
+   "owned": 4,
+   "ownedText": "x4",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 3,
+   "name": "M-Cannon",
+   "no": "3",
+   "odd": false,
+   "owned": 5,
+   "ownedText": "x5",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 14,
+   "name": "Shotgun",
+   "no": "4",
+   "odd": true,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 15,
+   "name": "CrossGun",
+   "no": "5",
+   "odd": false,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 10,
+   "name": "Spreader",
+   "no": "6",
+   "odd": true,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 11,
+   "name": "Bubbler",
+   "no": "7",
+   "odd": false,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 12,
+   "name": "Heater",
+   "no": "8",
+   "odd": true,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 13,
+   "name": "MiniBomb",
+   "no": "9",
+   "odd": false,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 7,
+   "name": "LilBomb",
+   "no": "10",
+   "odd": true,
+   "owned": 1,
+   "ownedText": "x1",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 8,
+   "name": "CrosBomb",
+   "no": "11",
+   "odd": false,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 9,
+   "name": "BigBomb",
+   "no": "12",
+   "odd": true,
+   "owned": 1,
+   "ownedText": "x1",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 4,
+   "name": "Sword",
+   "no": "13",
+   "odd": false,
+   "owned": 1,
+   "ownedText": "x1",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 5,
+   "name": "WideSwrd",
+   "no": "14",
+   "odd": true,
+   "owned": 1,
+   "ownedText": "x1",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 6,
+   "name": "LongSwrd",
+   "no": "15",
+   "odd": false,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 30,
+   "name": "FtrSword",
+   "no": "16",
+   "odd": true,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 32,
+   "name": "KngtSwrd",
+   "no": "17",
+   "odd": false,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 33,
+   "name": "HeroSwrd",
+   "no": "18",
+   "odd": true,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 25,
+   "name": "FireSwrd",
+   "no": "19",
+   "odd": false,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 27,
+   "name": "AquaSwrd",
+   "no": "20",
+   "odd": true,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 26,
+   "name": "ElecSwrd",
+   "no": "21",
+   "odd": false,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 136,
+   "name": "Muramasa",
+   "no": "22",
+   "odd": true,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 16,
+   "name": "ShokWave",
+   "no": "23",
+   "odd": false,
+   "owned": 1,
+   "ownedText": "x1",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 17,
+   "name": "SoniWave",
+   "no": "24",
+   "odd": true,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 18,
+   "name": "DynaWave",
+   "no": "25",
+   "odd": false,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 19,
+   "name": "FireTowr",
+   "no": "26",
+   "odd": true,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 20,
+   "name": "AquaTowr",
+   "no": "27",
+   "odd": false,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 21,
+   "name": "WoodTowr",
+   "no": "28",
+   "odd": true,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 22,
+   "name": "Quake1",
+   "no": "29",
+   "odd": false,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 23,
+   "name": "Quake2",
+   "no": "30",
+   "odd": true,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 24,
+   "name": "Quake3",
+   "no": "31",
+   "odd": false,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 28,
+   "name": "GutsPnch",
+   "no": "32",
+   "odd": true,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 29,
+   "name": "IcePunch",
+   "no": "33",
+   "odd": false,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 31,
+   "name": "Dash",
+   "no": "34",
+   "odd": true,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 43,
+   "name": "Howitzer",
+   "no": "35",
+   "odd": false,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 37,
+   "name": "TriArrow",
+   "no": "36",
+   "odd": true,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 38,
+   "name": "TriSpear",
+   "no": "37",
+   "odd": false,
+   "owned": 1,
+   "ownedText": "x1",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 39,
+   "name": "TriLance",
+   "no": "38",
+   "odd": true,
+   "owned": 1,
+   "ownedText": "x1",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 58,
+   "name": "Ratton1",
+   "no": "39",
+   "odd": false,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 59,
+   "name": "Ratton2",
+   "no": "40",
+   "odd": true,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 60,
+   "name": "Ratton3",
+   "no": "41",
+   "odd": false,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 133,
+   "name": "Wave",
+   "no": "42",
+   "odd": true,
+   "owned": 184,
+   "ownedText": "x184",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 134,
+   "name": "RedWave",
+   "no": "43",
+   "odd": false,
+   "owned": 11,
+   "ownedText": "x11",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 135,
+   "name": "BigWave",
+   "no": "44",
+   "odd": true,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 127,
+   "name": "Gaia1",
+   "no": "45",
+   "odd": false,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 128,
+   "name": "Gaia2",
+   "no": "46",
+   "odd": true,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 129,
+   "name": "Gaia3",
+   "no": "47",
+   "odd": false,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 44,
+   "name": "Thunder1",
+   "no": "48",
+   "odd": true,
+   "owned": 1,
+   "ownedText": "x1",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 45,
+   "name": "Thunder2",
+   "no": "49",
+   "odd": false,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 46,
+   "name": "Thunder3",
+   "no": "50",
+   "odd": true,
+   "owned": 1,
+   "ownedText": "x1",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 112,
+   "name": "RingZap1",
+   "no": "51",
+   "odd": false,
+   "owned": 1,
+   "ownedText": "x1",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 113,
+   "name": "RingZap2",
+   "no": "52",
+   "odd": true,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 114,
+   "name": "RingZap3",
+   "no": "53",
+   "odd": false,
+   "owned": 5,
+   "ownedText": "x5",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 40,
+   "name": "Typhoon",
+   "no": "54",
+   "odd": true,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 41,
+   "name": "Huricane",
+   "no": "55",
+   "odd": false,
+   "owned": 1,
+   "ownedText": "x1",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 42,
+   "name": "Cyclone",
+   "no": "56",
+   "odd": true,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 49,
+   "name": "Snakegg1",
+   "no": "57",
+   "odd": false,
+   "owned": 1,
+   "ownedText": "x1",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 50,
+   "name": "Snakegg2",
+   "no": "58",
+   "odd": true,
+   "owned": 1,
+   "ownedText": "x1",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 51,
+   "name": "Snakegg3",
+   "no": "59",
+   "odd": false,
+   "owned": 1,
+   "ownedText": "x1",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 121,
+   "name": "Drain1",
+   "no": "60",
+   "odd": true,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 122,
+   "name": "Drain2",
+   "no": "61",
+   "odd": false,
+   "owned": 52,
+   "ownedText": "x52",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 123,
+   "name": "Drain3",
+   "no": "62",
+   "odd": true,
+   "owned": 8,
+   "ownedText": "x8",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 55,
+   "name": "BodyBurn",
+   "no": "63",
+   "odd": false,
+   "owned": 1,
+   "ownedText": "x1",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 64,
+   "name": "X-Panel1",
+   "no": "64",
+   "odd": true,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 65,
+   "name": "X-Panel3",
+   "no": "65",
+   "odd": false,
+   "owned": 45,
+   "ownedText": "x45",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 52,
+   "name": "Hammer",
+   "no": "66",
+   "odd": true,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 34,
+   "name": "MetGuard",
+   "no": "67",
+   "odd": false,
+   "owned": 1,
+   "ownedText": "x1",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 67,
+   "name": "Recov10",
+   "no": "68",
+   "odd": true,
+   "owned": 1,
+   "ownedText": "x1",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 68,
+   "name": "Recov30",
+   "no": "69",
+   "odd": false,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 69,
+   "name": "Recov50",
+   "no": "70",
+   "odd": true,
+   "owned": 1,
+   "ownedText": "x1",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 70,
+   "name": "Recov80",
+   "no": "71",
+   "odd": false,
+   "owned": 1,
+   "ownedText": "x1",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 71,
+   "name": "Recov120",
+   "no": "72",
+   "odd": true,
+   "owned": 1,
+   "ownedText": "x1",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 72,
+   "name": "Recov150",
+   "no": "73",
+   "odd": false,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 73,
+   "name": "Recov200",
+   "no": "74",
+   "odd": true,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 74,
+   "name": "Recov300",
+   "no": "75",
+   "odd": false,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 76,
+   "name": "Steal",
+   "no": "76",
+   "odd": true,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 79,
+   "name": "Geddon1",
+   "no": "77",
+   "odd": false,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 80,
+   "name": "Geddon2",
+   "no": "78",
+   "odd": true,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 82,
+   "name": "Escape",
+   "no": "79",
+   "odd": false,
+   "owned": 1,
+   "ownedText": "x1",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 83,
+   "name": "Interupt",
+   "no": "80",
+   "odd": true,
+   "owned": 1,
+   "ownedText": "x1",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 88,
+   "name": "Repair",
+   "no": "81",
+   "odd": false,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 97,
+   "name": "TimeBom1",
+   "no": "82",
+   "odd": true,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 98,
+   "name": "TimeBom2",
+   "no": "83",
+   "odd": false,
+   "owned": 5,
+   "ownedText": "x5",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 99,
+   "name": "TimeBom3",
+   "no": "84",
+   "odd": true,
+   "owned": 5,
+   "ownedText": "x5",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 91,
+   "name": "Cloud",
+   "no": "85",
+   "odd": false,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 92,
+   "name": "Cloudier",
+   "no": "86",
+   "odd": true,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 93,
+   "name": "Cloudest",
+   "no": "87",
+   "odd": false,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 124,
+   "name": "Mine1",
+   "no": "88",
+   "odd": true,
+   "owned": 3,
+   "ownedText": "x3",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 125,
+   "name": "Mine2",
+   "no": "89",
+   "odd": false,
+   "owned": 184,
+   "ownedText": "x184",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 126,
+   "name": "Mine3",
+   "no": "90",
+   "odd": true,
+   "owned": 11,
+   "ownedText": "x11",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 139,
+   "name": "Dynamyt1",
+   "no": "91",
+   "odd": false,
+   "owned": 11,
+   "ownedText": "x11",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 140,
+   "name": "Dynamyt2",
+   "no": "92",
+   "odd": true,
+   "owned": 3,
+   "ownedText": "x3",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 141,
+   "name": "Dynamyt3",
+   "no": "93",
+   "odd": false,
+   "owned": 16,
+   "ownedText": "x16",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 105,
+   "name": "Remobit1",
+   "no": "94",
+   "odd": true,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 106,
+   "name": "Remobit2",
+   "no": "95",
+   "odd": false,
+   "owned": 2,
+   "ownedText": "x2",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 107,
+   "name": "Remobit3",
+   "no": "96",
+   "odd": true,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 61,
+   "name": "Lockon1",
+   "no": "97",
+   "odd": false,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 62,
+   "name": "Lockon2",
+   "no": "98",
+   "odd": true,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 63,
+   "name": "Lockon3",
+   "no": "99",
+   "odd": false,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 115,
+   "name": "Candle1",
+   "no": "100",
+   "odd": true,
+   "owned": 18,
+   "ownedText": "x18",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 116,
+   "name": "Candle2",
+   "no": "101",
+   "odd": false,
+   "owned": 3,
+   "ownedText": "x3",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 117,
+   "name": "Candle3",
+   "no": "102",
+   "odd": true,
+   "owned": 184,
+   "ownedText": "x184",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 142,
+   "name": "Anubis",
+   "no": "103",
+   "odd": false,
+   "owned": 39,
+   "ownedText": "x39",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 94,
+   "name": "IceCube",
+   "no": "104",
+   "odd": true,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 95,
+   "name": "RockCube",
+   "no": "105",
+   "odd": false,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 108,
+   "name": "BstrGard",
+   "no": "106",
+   "odd": true,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 109,
+   "name": "BstrBomb",
+   "no": "107",
+   "odd": false,
+   "owned": 1,
+   "ownedText": "x1",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 110,
+   "name": "BstrSwrd",
+   "no": "108",
+   "odd": true,
+   "owned": 1,
+   "ownedText": "x1",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 111,
+   "name": "BstrPnch",
+   "no": "109",
+   "odd": false,
+   "owned": 2,
+   "ownedText": "x2",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 118,
+   "name": "SloGauge",
+   "no": "110",
+   "odd": true,
+   "owned": 11,
+   "ownedText": "x11",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 119,
+   "name": "FstGauge",
+   "no": "111",
+   "odd": false,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 100,
+   "name": "Invis1",
+   "no": "112",
+   "odd": true,
+   "owned": 5,
+   "ownedText": "x5",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 101,
+   "name": "Invis2",
+   "no": "113",
+   "odd": false,
+   "owned": 4,
+   "ownedText": "x4",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 102,
+   "name": "Invis3",
+   "no": "114",
+   "odd": true,
+   "owned": 4,
+   "ownedText": "x4",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 137,
+   "name": "Dropdown",
+   "no": "115",
+   "odd": false,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 138,
+   "name": "Popup",
+   "no": "116",
+   "odd": true,
+   "owned": 3,
+   "ownedText": "x3",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 103,
+   "name": "IronBody",
+   "no": "117",
+   "odd": false,
+   "owned": 4,
+   "ownedText": "x4",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 147,
+   "name": "Barrier",
+   "no": "118",
+   "odd": true,
+   "owned": 6,
+   "ownedText": "x6",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 130,
+   "name": "BblWrap1",
+   "no": "119",
+   "odd": false,
+   "owned": 65,
+   "ownedText": "x65",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 131,
+   "name": "BblWrap2",
+   "no": "120",
+   "odd": true,
+   "owned": 6,
+   "ownedText": "x6",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 132,
+   "name": "BblWrap3",
+   "no": "121",
+   "odd": false,
+   "owned": 3,
+   "ownedText": "x3",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 146,
+   "name": "LeafShld",
+   "no": "122",
+   "odd": true,
+   "owned": 65,
+   "ownedText": "x65",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 85,
+   "name": "AquaAura",
+   "no": "123",
+   "odd": false,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 86,
+   "name": "FireAura",
+   "no": "124",
+   "odd": true,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 87,
+   "name": "WoodAura",
+   "no": "125",
+   "odd": false,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 84,
+   "name": "LifeAura",
+   "no": "126",
+   "odd": true,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 160,
+   "name": "Roll",
+   "no": "127",
+   "odd": false,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 157,
+   "name": "MagicMan",
+   "no": "128",
+   "odd": true,
+   "owned": 16,
+   "ownedText": "x16",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 158,
+   "name": "MagicMn2",
+   "no": "129",
+   "odd": false,
+   "owned": 39,
+   "ownedText": "x39",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 159,
+   "name": "MagicMn3",
+   "no": "130",
+   "odd": true,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 148,
+   "name": "PharoMan",
+   "no": "131",
+   "odd": false,
+   "owned": 3,
+   "ownedText": "x3",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 149,
+   "name": "PharoMn2",
+   "no": "132",
+   "odd": true,
+   "owned": 184,
+   "ownedText": "x184",
+   "sel": false
+  },
+  {
+   "hasOwned": true,
+   "id": 150,
+   "name": "PharoMn3",
+   "no": "133",
+   "odd": false,
+   "owned": 11,
+   "ownedText": "x11",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 151,
+   "name": "ShadoMan",
+   "no": "134",
+   "odd": true,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 152,
+   "name": "ShadoMn2",
+   "no": "135",
+   "odd": false,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  },
+  {
+   "hasOwned": false,
+   "id": 153,
+   "name": "ShadoMn3",
+   "no": "136",
+   "odd": true,
+   "owned": 0,
+   "ownedText": "",
+   "sel": false
+  }
+ ],
+ "losses": "0",
+ "mail": {
+  "l1": "Did you all see the",
+  "l2": "WWW broadcast?Things",
+  "l3": "are getting sticky!",
+  "l4": "",
+  "pageText": "1/11",
+  "sender": "BattleML",
+  "subject": "The LifeVirus"
+ },
+ "mailCount": "32",
+ "mailFirst": true,
+ "mailLast": false,
+ "mailNext": 1,
+ "mailPrev": 0,
+ "mails": [
+  {
+   "id": 31,
+   "odd": false,
+   "sel": true,
+   "sender": "BattleML",
+   "subject": "The LifeVirus"
+  },
+  {
+   "id": 27,
+   "odd": true,
+   "sel": false,
+   "sender": "BattleML",
+   "subject": "Rare chips!"
+  },
+  {
+   "id": 26,
+   "odd": false,
+   "sel": false,
+   "sender": "BattleML",
+   "subject": "Re:Aura, cont."
+  },
+  {
+   "id": 25,
+   "odd": true,
+   "sel": false,
+   "sender": "BattleML",
+   "subject": "Aura, cont."
+  },
+  {
+   "id": 17,
+   "odd": false,
+   "sel": false,
+   "sender": "Dad",
+   "subject": "Lab location"
+  },
+  {
+   "id": 16,
+   "odd": true,
+   "sel": false,
+   "sender": "Higsby",
+   "subject": "Old friend"
+  },
+  {
+   "id": 24,
+   "odd": false,
+   "sel": false,
+   "sender": "BattleML",
+   "subject": "Aura virus?"
+  },
+  {
+   "id": 14,
+   "odd": true,
+   "sel": false,
+   "sender": "Dad",
+   "subject": "About Chaud"
+  },
+  {
+   "id": 30,
+   "odd": false,
+   "sel": false,
+   "sender": "Dad",
+   "subject": "R U OK?"
+  },
+  {
+   "id": 23,
+   "odd": true,
+   "sel": false,
+   "sender": "BattleML",
+   "subject": "Advances"
+  },
+  {
+   "id": 29,
+   "odd": false,
+   "sel": false,
+   "sender": "Dad",
+   "subject": "Dinner?"
+  },
+  {
+   "id": 22,
+   "odd": true,
+   "sel": false,
+   "sender": "BattleML",
+   "subject": "Mystery op?"
+  },
+  {
+   "id": 18,
+   "odd": false,
+   "sel": false,
+   "sender": "Froid",
+   "subject": "For you..."
+  },
+  {
+   "id": 13,
+   "odd": true,
+   "sel": false,
+   "sender": "Mayl",
+   "subject": "Whattodo!?"
+  },
+  {
+   "id": 12,
+   "odd": false,
+   "sel": false,
+   "sender": "Your WWW",
+   "subject": "Accidents?"
+  },
+  {
+   "id": 21,
+   "odd": true,
+   "sel": false,
+   "sender": "BattleML",
+   "subject": "Re:virus"
+  },
+  {
+   "id": 11,
+   "odd": false,
+   "sel": false,
+   "sender": "Mayl",
+   "subject": "Meeting place"
+  },
+  {
+   "id": 20,
+   "odd": true,
+   "sel": false,
+   "sender": "BattleML",
+   "subject": "Water virus"
+  },
+  {
+   "id": 19,
+   "odd": false,
+   "sel": false,
+   "sender": "Froid",
+   "subject": "Official ML"
+  },
+  {
+   "id": 10,
+   "odd": true,
+   "sel": false,
+   "sender": "NetNews",
+   "subject": "New Metroline"
+  },
+  {
+   "id": 9,
+   "odd": false,
+   "sel": false,
+   "sender": "Mayl",
+   "subject": "Yai's present"
+  },
+  {
+   "id": 28,
+   "odd": true,
+   "sel": false,
+   "sender": "Yai",
+   "subject": "The truth!"
+  },
+  {
+   "id": 6,
+   "odd": false,
+   "sel": false,
+   "sender": "NetNews",
+   "subject": "No Water!"
+  },
+  {
+   "id": 8,
+   "odd": true,
+   "sel": false,
+   "sender": "Yai",
+   "subject": "Kidnapped!"
+  },
+  {
+   "id": 7,
+   "odd": false,
+   "sel": false,
+   "sender": "Dad",
+   "subject": "Sorry Lan"
+  },
+  {
+   "id": 5,
+   "odd": true,
+   "sel": false,
+   "sender": "Dex",
+   "subject": "A challenge!"
+  },
+  {
+   "id": 4,
+   "odd": false,
+   "sel": false,
+   "sender": "Yai",
+   "subject": "Roll call"
+  },
+  {
+   "id": 3,
+   "odd": true,
+   "sel": false,
+   "sender": "NetNews",
+   "subject": "Student Crime"
+  },
+  {
+   "id": 32,
+   "odd": false,
+   "sel": false,
+   "sender": "Ms.Mari",
+   "subject": "Class notes"
+  },
+  {
+   "id": 2,
+   "odd": true,
+   "sel": false,
+   "sender": "Dad",
+   "subject": "PowerUp!"
+  },
+  {
+   "id": 1,
+   "odd": false,
+   "sel": false,
+   "sender": "Dad",
+   "subject": "Sorry!"
+  },
+  {
+   "id": 0,
+   "odd": true,
+   "sel": false,
+   "sender": "NetNews",
+   "subject": "WWW Crime!"
+  }
+ ],
+ "netNote": "Trade chips with a friend. Needs a link cable.",
+ "netRows": [
+  {
+   "i": 0,
+   "name": "Trade",
+   "odd": false,
+   "sel": true
+  },
+  {
+   "i": 1,
+   "name": "Battle(test)",
+   "odd": true,
+   "sel": false
+  },
+  {
+   "i": 2,
+   "name": "Battle(real!)",
+   "odd": false,
+   "sel": false
+  }
+ ],
+ "noMail": false,
+ "ready": true,
+ "selChip": {
+  "art": "asset:_preview/d53ae6a4788a.png",
+  "atk": 120,
+  "atkText": "120",
+  "code": "L",
+  "codeN": 11,
+  "desc": "A nice, big cannon!",
+  "hasAtk": true,
+  "icon": "asset:_preview/c2e723ab047c.png",
+  "id": 3,
+  "name": "M-Cannon",
+  "no": "003",
+  "odd": false,
+  "sel": true,
+  "slot": 0
+ },
+ "selCodes": [
+  {
+   "ch": "B",
+   "code": 1,
+   "idx": 3,
+   "on": false,
+   "slot": 0
+  },
+  {
+   "ch": "K",
+   "code": 10,
+   "idx": 3,
+   "on": false,
+   "slot": 0
+  },
+  {
+   "ch": "L",
+   "code": 11,
+   "idx": 3,
+   "on": true,
+   "slot": 0
+  },
+  {
+   "ch": "P",
+   "code": 15,
+   "idx": 3,
+   "on": false,
+   "slot": 0
+  },
+  {
+   "ch": "S",
+   "code": 18,
+   "idx": 3,
+   "on": false,
+   "slot": 0
+  }
+ ],
+ "stats": [
+  {
+   "name": "ATTACK",
+   "pips": [
+    {
+     "level": 0,
+     "on": true,
+     "stat": 0
+    },
+    {
+     "level": 1,
+     "on": true,
+     "stat": 0
+    },
+    {
+     "level": 2,
+     "on": true,
+     "stat": 0
+    },
+    {
+     "level": 3,
+     "on": true,
+     "stat": 0
+    },
+    {
+     "level": 4,
+     "on": true,
+     "stat": 0
+    }
+   ],
+   "stat": 0,
+   "value": 5
+  },
+  {
+   "name": "RAPID",
+   "pips": [
+    {
+     "level": 0,
+     "on": true,
+     "stat": 1
+    },
+    {
+     "level": 1,
+     "on": true,
+     "stat": 1
+    },
+    {
+     "level": 2,
+     "on": true,
+     "stat": 1
+    },
+    {
+     "level": 3,
+     "on": true,
+     "stat": 1
+    },
+    {
+     "level": 4,
+     "on": true,
+     "stat": 1
+    }
+   ],
+   "stat": 1,
+   "value": 5
+  },
+  {
+   "name": "CHARGE",
+   "pips": [
+    {
+     "level": 0,
+     "on": true,
+     "stat": 2
+    },
+    {
+     "level": 1,
+     "on": true,
+     "stat": 2
+    },
+    {
+     "level": 2,
+     "on": true,
+     "stat": 2
+    },
+    {
+     "level": 3,
+     "on": true,
+     "stat": 2
+    },
+    {
+     "level": 4,
+     "on": true,
+     "stat": 2
+    }
+   ],
+   "stat": 2,
+   "value": 5
+  }
+ ],
+ "ui": {
+  "set": {}
+ },
+ "waiting": false,
+ "wins": "0",
+ "zenny": "624249Z"
+}
