@@ -378,9 +378,9 @@ const layout = box(
       box("rail rail-r", [statRight, equip("A", "equipA"), equip("B", "equipB")]),
       hint,
     ], { visibleIf: "$showStone" }),
-    prefixed(buildClean({ box, text, img, button, list, bar, ui, icon, grow }), { visibleIf: "$showClean" }),
+    prefixed(buildClean({ box, text, img, button, list, bar, ui, icon, grow }), { visibleIf: "$showClean", classIf: { "theme-parchment": "$themeParchment", "theme-night": "$themeNight" } }),
   ],
-  { id: "screen", classIf: { "theme-parchment": "$themeParchment", "theme-night": "$themeNight" } },
+  { id: "screen" },
 );
 
 fs.writeFileSync(new URL("../layout.json", import.meta.url), JSON.stringify(layout, null, 2) + "\n");

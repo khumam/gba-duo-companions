@@ -1,0 +1,1873 @@
+{
+ "type": "box",
+ "class": "main",
+ "children": [
+  {
+   "type": "box",
+   "class": "waiting",
+   "children": [
+    {
+     "type": "box",
+     "class": "wait",
+     "children": [
+      {
+       "type": "text",
+       "class": "w1",
+       "text": "ADVANCE"
+      },
+      {
+       "type": "text",
+       "class": "w2",
+       "text": "WARS"
+      },
+      {
+       "type": "text",
+       "class": "w3",
+       "text": "GBADUO Companion Pack"
+      }
+     ]
+    }
+   ],
+   "visibleIf": "$waiting"
+  },
+  {
+   "type": "box",
+   "class": "ready",
+   "children": [
+    {
+     "type": "box",
+     "class": "dock",
+     "children": [
+      {
+       "type": "button",
+       "class": "dbtn",
+       "onClick": [
+        {
+         "navigate": "home"
+        }
+       ],
+       "children": [
+        {
+         "type": "text",
+         "class": "dt",
+         "text": "FRONT"
+        }
+       ],
+       "classIf": {
+        "on": "$on1"
+       },
+       "visibleIf": "$L1"
+      },
+      {
+       "type": "button",
+       "class": "dbtn",
+       "onClick": [
+        {
+         "navigate": "units"
+        }
+       ],
+       "children": [
+        {
+         "type": "text",
+         "class": "dt",
+         "text": "UNITS"
+        }
+       ],
+       "classIf": {
+        "on": "$on2"
+       },
+       "visibleIf": "$L2"
+      },
+      {
+       "type": "button",
+       "class": "dbtn",
+       "onClick": [
+        {
+         "navigate": "map"
+        }
+       ],
+       "children": [
+        {
+         "type": "text",
+         "class": "dt",
+         "text": "MAP"
+        }
+       ],
+       "classIf": {
+        "on": "$on3"
+       },
+       "visibleIf": "$L3"
+      },
+      {
+       "type": "button",
+       "class": "dbtn",
+       "onClick": [
+        {
+         "navigate": "armies"
+        }
+       ],
+       "children": [
+        {
+         "type": "text",
+         "class": "dt",
+         "text": "VS"
+        }
+       ],
+       "classIf": {
+        "on": "$on4"
+       },
+       "visibleIf": "$L4"
+      },
+      {
+       "type": "button",
+       "class": "dbtn",
+       "onClick": [
+        {
+         "navigate": "guide"
+        }
+       ],
+       "children": [
+        {
+         "type": "text",
+         "class": "dt",
+         "text": "GUIDE"
+        }
+       ],
+       "classIf": {
+        "on": "$on5"
+       },
+       "visibleIf": "$L5"
+      },
+      {
+       "type": "button",
+       "class": "dbtn",
+       "onClick": [
+        {
+         "navigate": "log"
+        }
+       ],
+       "children": [
+        {
+         "type": "text",
+         "class": "dt",
+         "text": "LOG"
+        }
+       ],
+       "classIf": {
+        "on": "$on6"
+       },
+       "visibleIf": "$L6"
+      },
+      {
+       "type": "button",
+       "class": "dbtn",
+       "onClick": [
+        {
+         "navigate": "options"
+        }
+       ],
+       "children": [
+        {
+         "type": "text",
+         "class": "dt",
+         "text": "OPT"
+        }
+       ],
+       "classIf": {
+        "on": "$on7"
+       },
+       "visibleIf": "$L7"
+      }
+     ],
+     "visibleIf": "$dockL"
+    },
+    {
+     "type": "box",
+     "class": "center",
+     "children": [
+      {
+       "type": "pages",
+       "class": "stage",
+       "initial": "home",
+       "pages": [
+        {
+         "name": "home",
+         "child": {
+          "type": "box",
+          "class": "page",
+          "children": [
+           {
+            "type": "box",
+            "class": "top",
+            "children": [
+             {
+              "type": "box",
+              "class": "daybox",
+              "children": [
+               {
+                "type": "text",
+                "class": "daylab",
+                "text": "DAY"
+               },
+               {
+                "type": "text",
+                "class": "dayn",
+                "text": "{day}"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "turnbox",
+              "children": [
+               {
+                "type": "text",
+                "class": "tlab",
+                "text": "TURN"
+               },
+               {
+                "type": "text",
+                "class": "tname",
+                "text": "{turnName}",
+                "bindStyle": {
+                 "color": "{turnColor}"
+                }
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "fundbox",
+              "children": [
+               {
+                "type": "box",
+                "class": "flabrow",
+                "children": [
+                 {
+                  "type": "image",
+                  "class": "coin",
+                  "src": "asset:icons/ui/coin.png"
+                 },
+                 {
+                  "type": "text",
+                  "class": "flab",
+                  "text": "FUNDS"
+                 }
+                ]
+               },
+               {
+                "type": "text",
+                "class": "fnum",
+                "text": "{funds}"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "type": "list",
+            "class": "alist",
+            "items": "$armies",
+            "template": {
+             "type": "button",
+             "class": "acard",
+             "onClick": [
+              {
+               "set": {
+                "army": "{n}"
+               }
+              },
+              {
+               "navigate": "units"
+              }
+             ],
+             "children": [
+              {
+               "type": "box",
+               "class": "aflag",
+               "children": [],
+               "bindStyle": {
+                "background-color": "{color}"
+               }
+              },
+              {
+               "type": "box",
+               "class": "abody",
+               "children": [
+                {
+                 "type": "text",
+                 "class": "aname",
+                 "text": "{name}"
+                },
+                {
+                 "type": "box",
+                 "class": "arow",
+                 "children": [
+                  {
+                   "type": "box",
+                   "class": "alabrow",
+                   "children": [
+                    {
+                     "type": "image",
+                     "class": "uico",
+                     "src": "asset:icons/ui/units.png"
+                    },
+                    {
+                     "type": "text",
+                     "class": "alab",
+                     "text": "Units"
+                    }
+                   ]
+                  },
+                  {
+                   "type": "text",
+                   "class": "aval",
+                   "text": "{count}"
+                  }
+                 ]
+                },
+                {
+                 "type": "box",
+                 "class": "arow",
+                 "children": [
+                  {
+                   "type": "text",
+                   "class": "alab",
+                   "text": "Value"
+                  },
+                  {
+                   "type": "text",
+                   "class": "aval",
+                   "text": "{value}"
+                  }
+                 ]
+                }
+               ]
+              },
+              {
+               "type": "text",
+               "class": "aturn",
+               "text": "TURN",
+               "visibleIf": "$mine"
+              }
+             ],
+             "classIf": {
+              "on": "$on"
+             }
+            }
+           },
+           {
+            "type": "box",
+            "class": "gtitle",
+            "children": [
+             {
+              "type": "text",
+              "class": "gt",
+              "text": "{sel.name}: unit types"
+             }
+            ]
+           },
+           {
+            "type": "list",
+            "class": "glist",
+            "items": "$groups",
+            "template": {
+             "type": "box",
+             "class": "grp",
+             "children": [
+              {
+               "type": "image",
+               "class": "grpic",
+               "src": "$icon"
+              },
+              {
+               "type": "text",
+               "class": "gname",
+               "text": "{name}"
+              },
+              {
+               "type": "text",
+               "class": "gn",
+               "text": "x{n}"
+              }
+             ]
+            }
+           }
+          ]
+         }
+        },
+        {
+         "name": "units",
+         "child": {
+          "type": "box",
+          "class": "page",
+          "children": [
+           {
+            "type": "list",
+            "class": "tabs",
+            "items": "$armies",
+            "template": {
+             "type": "button",
+             "class": "tab",
+             "onClick": [
+              {
+               "set": {
+                "army": "{n}"
+               }
+              }
+             ],
+             "children": [
+              {
+               "type": "box",
+               "class": "tflag",
+               "children": [],
+               "bindStyle": {
+                "background-color": "{color}"
+               }
+              },
+              {
+               "type": "text",
+               "class": "tt",
+               "text": "{name}"
+              }
+             ],
+             "classIf": {
+              "on": "$on"
+             }
+            }
+           },
+           {
+            "type": "box",
+            "class": "uhead",
+            "children": [
+             {
+              "type": "text",
+              "class": "h1",
+              "text": "Unit"
+             },
+             {
+              "type": "box",
+              "class": "h2 hrow",
+              "children": [
+               {
+                "type": "image",
+                "class": "hic",
+                "src": "asset:icons/ui/hp.png"
+               },
+               {
+                "type": "text",
+                "class": "h2t",
+                "text": "HP"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "h3 hrow",
+              "children": [
+               {
+                "type": "image",
+                "class": "hic",
+                "src": "asset:icons/ui/fuel.png"
+               },
+               {
+                "type": "text",
+                "class": "h3t",
+                "text": "Fuel"
+               }
+              ]
+             },
+             {
+              "type": "text",
+              "class": "h4",
+              "text": "At"
+             }
+            ]
+           },
+           {
+            "type": "list",
+            "class": "ulist",
+            "items": "$units",
+            "template": {
+             "type": "button",
+             "class": "urow",
+             "onClick": [
+              {
+               "set": {
+                "unit": "{n}"
+               }
+              },
+              {
+               "navigate": "unit"
+              }
+             ],
+             "children": [
+              {
+               "type": "image",
+               "class": "uic",
+               "src": "$icon"
+              },
+              {
+               "type": "text",
+               "class": "un",
+               "text": "{name}"
+              },
+              {
+               "type": "box",
+               "class": "hpw",
+               "children": [
+                {
+                 "type": "text",
+                 "class": "hpn",
+                 "text": "{tens}"
+                },
+                {
+                 "type": "bar",
+                 "class": "hp ubar",
+                 "value": "$hpPct",
+                 "max": 1
+                }
+               ],
+               "classIf": {
+                "low": "$low"
+               }
+              },
+              {
+               "type": "box",
+               "class": "fw",
+               "children": [
+                {
+                 "type": "text",
+                 "class": "fl",
+                 "text": "{fuel}"
+                },
+                {
+                 "type": "bar",
+                 "class": "fuel ubar",
+                 "value": "$fuelPct",
+                 "max": 1
+                }
+               ]
+              },
+              {
+               "type": "text",
+               "class": "pos",
+               "text": "{x},{y}"
+              }
+             ]
+            }
+           }
+          ]
+         }
+        },
+        {
+         "name": "unit",
+         "child": {
+          "type": "box",
+          "class": "page",
+          "children": [
+           {
+            "type": "box",
+            "class": "uhead2",
+            "children": [
+             {
+              "type": "button",
+              "class": "back",
+              "onClick": [
+               {
+                "navigate": "units"
+               }
+              ],
+              "children": [
+               {
+                "type": "text",
+                "class": "bt",
+                "text": "< Units"
+               }
+              ]
+             },
+             {
+              "type": "image",
+              "class": "bigic",
+              "src": "$focus.icon"
+             },
+             {
+              "type": "text",
+              "class": "dname",
+              "text": "{focus.name}"
+             },
+             {
+              "type": "text",
+              "class": "dpos",
+              "text": "at {focus.x},{focus.y}"
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "dpanel",
+            "children": [
+             {
+              "type": "box",
+              "class": "vrow",
+              "children": [
+               {
+                "type": "image",
+                "class": "vic",
+                "src": "asset:icons/ui/hp.png"
+               },
+               {
+                "type": "text",
+                "class": "vlab",
+                "text": "HP"
+               },
+               {
+                "type": "text",
+                "class": "vnum",
+                "text": "{focus.tens}"
+               },
+               {
+                "type": "bar",
+                "class": "hp dbar",
+                "value": "$focus.hpPct",
+                "max": 1
+               }
+              ],
+              "classIf": {
+               "low": "$focus.low"
+              }
+             },
+             {
+              "type": "box",
+              "class": "vrow",
+              "children": [
+               {
+                "type": "image",
+                "class": "vic",
+                "src": "asset:icons/ui/fuel.png"
+               },
+               {
+                "type": "text",
+                "class": "vlab",
+                "text": "Fuel"
+               },
+               {
+                "type": "text",
+                "class": "vnum",
+                "text": "{focus.fuel}"
+               },
+               {
+                "type": "bar",
+                "class": "fuel dbar",
+                "value": "$focus.fuelPct",
+                "max": 1
+               },
+               {
+                "type": "text",
+                "class": "vmax",
+                "text": "/ {focus.maxFuel}"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "chips",
+            "children": [
+             {
+              "type": "box",
+              "class": "chip",
+              "children": [
+               {
+                "type": "text",
+                "class": "clab",
+                "text": "Move"
+               },
+               {
+                "type": "text",
+                "class": "cval",
+                "text": "{focus.move}"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "chip",
+              "children": [
+               {
+                "type": "text",
+                "class": "clab",
+                "text": "Vision"
+               },
+               {
+                "type": "text",
+                "class": "cval",
+                "text": "{focus.vision}"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "chip",
+              "children": [
+               {
+                "type": "text",
+                "class": "clab",
+                "text": "Range"
+               },
+               {
+                "type": "text",
+                "class": "cval",
+                "text": "{focus.range}"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "chip",
+              "children": [
+               {
+                "type": "box",
+                "class": "clabrow",
+                "children": [
+                 {
+                  "type": "image",
+                  "class": "cic",
+                  "src": "asset:icons/ui/ammo.png"
+                 },
+                 {
+                  "type": "text",
+                  "class": "clab",
+                  "text": "Ammo"
+                 }
+                ]
+               },
+               {
+                "type": "text",
+                "class": "cval",
+                "text": "{focus.ammo}"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "chip",
+              "children": [
+               {
+                "type": "text",
+                "class": "clab",
+                "text": "Cost"
+               },
+               {
+                "type": "text",
+                "class": "cval",
+                "text": "{focus.cost}"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "chip",
+              "children": [
+               {
+                "type": "text",
+                "class": "clab",
+                "text": "Worth now"
+               },
+               {
+                "type": "text",
+                "class": "cval",
+                "text": "{focus.worth}0"
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        },
+        {
+         "name": "guide",
+         "child": {
+          "type": "box",
+          "class": "page",
+          "children": [
+           {
+            "type": "box",
+            "class": "gpanel",
+            "children": [
+             {
+              "type": "box",
+              "class": "grow",
+              "children": [
+               {
+                "type": "image",
+                "class": "gbig",
+                "src": "$gsel.icon"
+               },
+               {
+                "type": "text",
+                "class": "gnm",
+                "text": "{gsel.name}"
+               },
+               {
+                "type": "text",
+                "class": "gown",
+                "text": "own {gsel.owned}"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "chips six",
+              "children": [
+               {
+                "type": "box",
+                "class": "chip",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "clab",
+                  "text": "Cost"
+                 },
+                 {
+                  "type": "text",
+                  "class": "cval",
+                  "text": "{gsel.cost}"
+                 }
+                ]
+               },
+               {
+                "type": "box",
+                "class": "chip",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "clab",
+                  "text": "Move"
+                 },
+                 {
+                  "type": "text",
+                  "class": "cval",
+                  "text": "{gsel.move}"
+                 }
+                ]
+               },
+               {
+                "type": "box",
+                "class": "chip",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "clab",
+                  "text": "Vision"
+                 },
+                 {
+                  "type": "text",
+                  "class": "cval",
+                  "text": "{gsel.vision}"
+                 }
+                ]
+               },
+               {
+                "type": "box",
+                "class": "chip",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "clab",
+                  "text": "Range"
+                 },
+                 {
+                  "type": "text",
+                  "class": "cval",
+                  "text": "{gsel.range}"
+                 }
+                ]
+               },
+               {
+                "type": "box",
+                "class": "chip",
+                "children": [
+                 {
+                  "type": "box",
+                  "class": "clabrow",
+                  "children": [
+                   {
+                    "type": "image",
+                    "class": "cic",
+                    "src": "asset:icons/ui/ammo.png"
+                   },
+                   {
+                    "type": "text",
+                    "class": "clab",
+                    "text": "Ammo"
+                   }
+                  ]
+                 },
+                 {
+                  "type": "text",
+                  "class": "cval",
+                  "text": "{gsel.ammo}"
+                 }
+                ]
+               },
+               {
+                "type": "box",
+                "class": "chip",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "clab",
+                  "text": "Fuel"
+                 },
+                 {
+                  "type": "text",
+                  "class": "cval",
+                  "text": "{gsel.fuel}"
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "type": "text",
+              "class": "buy",
+              "text": "{buyText}"
+             }
+            ]
+           },
+           {
+            "type": "list",
+            "class": "glist2",
+            "items": "$guide",
+            "template": {
+             "type": "button",
+             "class": "grow2",
+             "onClick": [
+              {
+               "set": {
+                "type": "{id}"
+               }
+              }
+             ],
+             "children": [
+              {
+               "type": "image",
+               "class": "gic",
+               "src": "$icon"
+              },
+              {
+               "type": "text",
+               "class": "g2n",
+               "text": "{name}"
+              },
+              {
+               "type": "text",
+               "class": "g2o",
+               "text": "x{owned}",
+               "visibleIf": "$hasOwned"
+              },
+              {
+               "type": "text",
+               "class": "g2c",
+               "text": "{cost}"
+              }
+             ],
+             "classIf": {
+              "on": "$on",
+              "can": "$afford"
+             }
+            }
+           }
+          ]
+         }
+        },
+        {
+         "name": "map",
+         "child": {
+          "type": "box",
+          "class": "page",
+          "children": [
+           {
+            "type": "box",
+            "class": "band",
+            "children": [
+             {
+              "type": "text",
+              "class": "ttl",
+              "text": "MAP"
+             },
+             {
+              "type": "text",
+              "class": "count",
+              "text": "{mapNote}"
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "mapframe",
+            "children": [
+             {
+              "type": "box",
+              "class": "mapwrap",
+              "children": [
+               {
+                "type": "image",
+                "class": "mapbg",
+                "src": "$mapImg"
+               },
+               {
+                "type": "list",
+                "class": "mprops",
+                "items": "$mapProps",
+                "template": {
+                 "type": "box",
+                 "class": "mp",
+                 "children": [],
+                 "bindStyle": {
+                  "left": "{left}",
+                  "top": "{top}",
+                  "width": "{size}",
+                  "height": "{size}",
+                  "background-color": "{color}"
+                 },
+                 "classIf": {
+                  "hq": "$hq"
+                 }
+                }
+               },
+               {
+                "type": "list",
+                "class": "munits",
+                "items": "$mapUnits",
+                "template": {
+                 "type": "box",
+                 "class": "mu",
+                 "children": [
+                  {
+                   "type": "image",
+                   "class": "mui",
+                   "src": "$icon"
+                  }
+                 ],
+                 "bindStyle": {
+                  "left": "{left}",
+                  "top": "{top}",
+                  "width": "{size}",
+                  "height": "{sizeH}"
+                 }
+                }
+               }
+              ],
+              "bindStyle": {
+               "width": "{mapW}",
+               "height": "{mapH}"
+              },
+              "visibleIf": "$hasMap"
+             },
+             {
+              "type": "text",
+              "class": "nomap",
+              "text": "Open the game's map screen once and the terrain appears here.",
+              "visibleIf": "$noMap"
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "legend",
+            "children": [
+             {
+              "type": "box",
+              "class": "lg",
+              "children": [
+               {
+                "type": "box",
+                "class": "ldot",
+                "children": [],
+                "bindStyle": {
+                 "background-color": "{vsL.color}"
+                }
+               },
+               {
+                "type": "text",
+                "class": "lt",
+                "text": "{vsL.name}"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "lg",
+              "children": [
+               {
+                "type": "box",
+                "class": "ldot",
+                "children": [],
+                "bindStyle": {
+                 "background-color": "{vsR.color}"
+                }
+               },
+               {
+                "type": "text",
+                "class": "lt",
+                "text": "{vsR.name}"
+               }
+              ]
+             },
+             {
+              "type": "text",
+              "class": "lnote",
+              "text": "terrain drawn from the game's own map data"
+             }
+            ]
+           }
+          ]
+         }
+        },
+        {
+         "name": "armies",
+         "child": {
+          "type": "box",
+          "class": "page",
+          "children": [
+           {
+            "type": "box",
+            "class": "band",
+            "children": [
+             {
+              "type": "text",
+              "class": "ttl",
+              "text": "ARMIES"
+             },
+             {
+              "type": "text",
+              "class": "count",
+              "text": "day {day}"
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "vheads",
+            "children": [
+             {
+              "type": "box",
+              "class": "vh",
+              "children": [
+               {
+                "type": "box",
+                "class": "vd",
+                "children": [],
+                "bindStyle": {
+                 "background-color": "{vsL.color}"
+                }
+               },
+               {
+                "type": "text",
+                "class": "vn",
+                "text": "{vsL.name}"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "vh",
+              "children": [
+               {
+                "type": "box",
+                "class": "vd",
+                "children": [],
+                "bindStyle": {
+                 "background-color": "{vsR.color}"
+                }
+               },
+               {
+                "type": "text",
+                "class": "vn",
+                "text": "{vsR.name}"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "type": "list",
+            "class": "vlist",
+            "items": "$versus",
+            "template": {
+             "type": "box",
+             "class": "vrow2",
+             "children": [
+              {
+               "type": "text",
+               "class": "va",
+               "text": "{a}",
+               "classIf": {
+                "win": "$aWin"
+               }
+              },
+              {
+               "type": "text",
+               "class": "vl",
+               "text": "{label}"
+              },
+              {
+               "type": "text",
+               "class": "vb",
+               "text": "{b}",
+               "classIf": {
+                "win": "$bWin"
+               }
+              }
+             ]
+            }
+           }
+          ]
+         }
+        },
+        {
+         "name": "log",
+         "child": {
+          "type": "box",
+          "class": "page",
+          "children": [
+           {
+            "type": "box",
+            "class": "band",
+            "children": [
+             {
+              "type": "text",
+              "class": "ttl",
+              "text": "LOG"
+             },
+             {
+              "type": "text",
+              "class": "count",
+              "text": "kept while the game runs"
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "lhead",
+            "children": [
+             {
+              "type": "text",
+              "class": "lh1",
+              "text": "Day"
+             },
+             {
+              "type": "text",
+              "class": "lh2",
+              "text": "Units"
+             },
+             {
+              "type": "text",
+              "class": "lh3",
+              "text": "Orange funds"
+             }
+            ]
+           },
+           {
+            "type": "list",
+            "class": "llist",
+            "items": "$log",
+            "template": {
+             "type": "box",
+             "class": "lrow",
+             "children": [
+              {
+               "type": "text",
+               "class": "ld",
+               "text": "Day {day}"
+              },
+              {
+               "type": "text",
+               "class": "ll",
+               "text": "{line}"
+              },
+              {
+               "type": "text",
+               "class": "lf",
+               "text": "{funds}"
+              }
+             ]
+            }
+           }
+          ]
+         }
+        },
+        {
+         "name": "options",
+         "child": {
+          "type": "box",
+          "class": "page",
+          "children": [
+           {
+            "type": "box",
+            "class": "band",
+            "children": [
+             {
+              "type": "text",
+              "class": "ttl",
+              "text": "OPTIONS"
+             },
+             {
+              "type": "text",
+              "class": "count",
+              "text": "where the page buttons sit"
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "opanel",
+            "children": [
+             {
+              "type": "text",
+              "class": "oh",
+              "text": "Navigation buttons"
+             },
+             {
+              "type": "box",
+              "class": "ocards",
+              "children": [
+               {
+                "type": "button",
+                "class": "ocard",
+                "onClick": [
+                 {
+                  "set": {
+                   "navpos": "bottom"
+                  }
+                 }
+                ],
+                "children": [
+                 {
+                  "type": "box",
+                  "class": "odiag d-bottom",
+                  "children": [
+                   {
+                    "type": "box",
+                    "class": "obar b1",
+                    "children": []
+                   },
+                   {
+                    "type": "box",
+                    "class": "obar b2",
+                    "children": []
+                   },
+                   {
+                    "type": "box",
+                    "class": "opage",
+                    "children": []
+                   }
+                  ]
+                 },
+                 {
+                  "type": "text",
+                  "class": "olab",
+                  "text": "Bottom"
+                 }
+                ],
+                "classIf": {
+                 "on": "$posBottom"
+                }
+               },
+               {
+                "type": "button",
+                "class": "ocard",
+                "onClick": [
+                 {
+                  "set": {
+                   "navpos": "left"
+                  }
+                 }
+                ],
+                "children": [
+                 {
+                  "type": "box",
+                  "class": "odiag d-left",
+                  "children": [
+                   {
+                    "type": "box",
+                    "class": "obar b1",
+                    "children": []
+                   },
+                   {
+                    "type": "box",
+                    "class": "obar b2",
+                    "children": []
+                   },
+                   {
+                    "type": "box",
+                    "class": "opage",
+                    "children": []
+                   }
+                  ]
+                 },
+                 {
+                  "type": "text",
+                  "class": "olab",
+                  "text": "Left"
+                 }
+                ],
+                "classIf": {
+                 "on": "$posLeft"
+                }
+               },
+               {
+                "type": "button",
+                "class": "ocard",
+                "onClick": [
+                 {
+                  "set": {
+                   "navpos": "right"
+                  }
+                 }
+                ],
+                "children": [
+                 {
+                  "type": "box",
+                  "class": "odiag d-right",
+                  "children": [
+                   {
+                    "type": "box",
+                    "class": "obar b1",
+                    "children": []
+                   },
+                   {
+                    "type": "box",
+                    "class": "obar b2",
+                    "children": []
+                   },
+                   {
+                    "type": "box",
+                    "class": "opage",
+                    "children": []
+                   }
+                  ]
+                 },
+                 {
+                  "type": "text",
+                  "class": "olab",
+                  "text": "Right"
+                 }
+                ],
+                "classIf": {
+                 "on": "$posRight"
+                }
+               },
+               {
+                "type": "button",
+                "class": "ocard",
+                "onClick": [
+                 {
+                  "set": {
+                   "navpos": "split"
+                  }
+                 }
+                ],
+                "children": [
+                 {
+                  "type": "box",
+                  "class": "odiag d-split",
+                  "children": [
+                   {
+                    "type": "box",
+                    "class": "obar b1",
+                    "children": []
+                   },
+                   {
+                    "type": "box",
+                    "class": "obar b2",
+                    "children": []
+                   },
+                   {
+                    "type": "box",
+                    "class": "opage",
+                    "children": []
+                   }
+                  ]
+                 },
+                 {
+                  "type": "text",
+                  "class": "olab",
+                  "text": "Split"
+                 }
+                ],
+                "classIf": {
+                 "on": "$posSplit"
+                }
+               }
+              ]
+             },
+             {
+              "type": "text",
+              "class": "onote",
+              "text": "Side docks scroll when there are many pages. The bottom bar shows 5 buttons: use < > for the rest."
+             },
+             {
+              "type": "text",
+              "class": "onote",
+              "text": "Kept until the game is closed."
+             }
+            ]
+           }
+          ]
+         }
+        }
+       ]
+      },
+      {
+       "type": "box",
+       "class": "nav",
+       "children": [
+        {
+         "type": "button",
+         "class": "narrow",
+         "onClick": [
+          {
+           "call": "navShift",
+           "args": [
+            -1
+           ]
+          }
+         ],
+         "children": [
+          {
+           "type": "text",
+           "class": "nt",
+           "text": "<"
+          }
+         ],
+         "visibleIf": "$navMore",
+         "classIf": {
+          "off": "$noPrev"
+         }
+        },
+        {
+         "type": "button",
+         "class": "nbtn",
+         "onClick": [
+          {
+           "navigate": "home"
+          }
+         ],
+         "children": [
+          {
+           "type": "text",
+           "class": "nt",
+           "text": "FRONT"
+          }
+         ],
+         "classIf": {
+          "on": "$on1"
+         },
+         "visibleIf": "$B1"
+        },
+        {
+         "type": "button",
+         "class": "nbtn",
+         "onClick": [
+          {
+           "navigate": "units"
+          }
+         ],
+         "children": [
+          {
+           "type": "text",
+           "class": "nt",
+           "text": "UNITS"
+          }
+         ],
+         "classIf": {
+          "on": "$on2"
+         },
+         "visibleIf": "$B2"
+        },
+        {
+         "type": "button",
+         "class": "nbtn",
+         "onClick": [
+          {
+           "navigate": "map"
+          }
+         ],
+         "children": [
+          {
+           "type": "text",
+           "class": "nt",
+           "text": "MAP"
+          }
+         ],
+         "classIf": {
+          "on": "$on3"
+         },
+         "visibleIf": "$B3"
+        },
+        {
+         "type": "button",
+         "class": "nbtn",
+         "onClick": [
+          {
+           "navigate": "armies"
+          }
+         ],
+         "children": [
+          {
+           "type": "text",
+           "class": "nt",
+           "text": "VS"
+          }
+         ],
+         "classIf": {
+          "on": "$on4"
+         },
+         "visibleIf": "$B4"
+        },
+        {
+         "type": "button",
+         "class": "nbtn",
+         "onClick": [
+          {
+           "navigate": "guide"
+          }
+         ],
+         "children": [
+          {
+           "type": "text",
+           "class": "nt",
+           "text": "GUIDE"
+          }
+         ],
+         "classIf": {
+          "on": "$on5"
+         },
+         "visibleIf": "$B5"
+        },
+        {
+         "type": "button",
+         "class": "nbtn",
+         "onClick": [
+          {
+           "navigate": "log"
+          }
+         ],
+         "children": [
+          {
+           "type": "text",
+           "class": "nt",
+           "text": "LOG"
+          }
+         ],
+         "classIf": {
+          "on": "$on6"
+         },
+         "visibleIf": "$B6"
+        },
+        {
+         "type": "button",
+         "class": "nbtn",
+         "onClick": [
+          {
+           "navigate": "options"
+          }
+         ],
+         "children": [
+          {
+           "type": "text",
+           "class": "nt",
+           "text": "OPT"
+          }
+         ],
+         "classIf": {
+          "on": "$on7"
+         },
+         "visibleIf": "$B7"
+        },
+        {
+         "type": "button",
+         "class": "narrow",
+         "onClick": [
+          {
+           "call": "navShift",
+           "args": [
+            1
+           ]
+          }
+         ],
+         "children": [
+          {
+           "type": "text",
+           "class": "nt",
+           "text": ">"
+          }
+         ],
+         "visibleIf": "$navMore",
+         "classIf": {
+          "off": "$noNext"
+         }
+        }
+       ],
+       "visibleIf": "$posBottom"
+      }
+     ]
+    },
+    {
+     "type": "box",
+     "class": "dock",
+     "children": [
+      {
+       "type": "button",
+       "class": "dbtn",
+       "onClick": [
+        {
+         "navigate": "home"
+        }
+       ],
+       "children": [
+        {
+         "type": "text",
+         "class": "dt",
+         "text": "FRONT"
+        }
+       ],
+       "classIf": {
+        "on": "$on1"
+       },
+       "visibleIf": "$R1"
+      },
+      {
+       "type": "button",
+       "class": "dbtn",
+       "onClick": [
+        {
+         "navigate": "units"
+        }
+       ],
+       "children": [
+        {
+         "type": "text",
+         "class": "dt",
+         "text": "UNITS"
+        }
+       ],
+       "classIf": {
+        "on": "$on2"
+       },
+       "visibleIf": "$R2"
+      },
+      {
+       "type": "button",
+       "class": "dbtn",
+       "onClick": [
+        {
+         "navigate": "map"
+        }
+       ],
+       "children": [
+        {
+         "type": "text",
+         "class": "dt",
+         "text": "MAP"
+        }
+       ],
+       "classIf": {
+        "on": "$on3"
+       },
+       "visibleIf": "$R3"
+      },
+      {
+       "type": "button",
+       "class": "dbtn",
+       "onClick": [
+        {
+         "navigate": "armies"
+        }
+       ],
+       "children": [
+        {
+         "type": "text",
+         "class": "dt",
+         "text": "VS"
+        }
+       ],
+       "classIf": {
+        "on": "$on4"
+       },
+       "visibleIf": "$R4"
+      },
+      {
+       "type": "button",
+       "class": "dbtn",
+       "onClick": [
+        {
+         "navigate": "guide"
+        }
+       ],
+       "children": [
+        {
+         "type": "text",
+         "class": "dt",
+         "text": "GUIDE"
+        }
+       ],
+       "classIf": {
+        "on": "$on5"
+       },
+       "visibleIf": "$R5"
+      },
+      {
+       "type": "button",
+       "class": "dbtn",
+       "onClick": [
+        {
+         "navigate": "log"
+        }
+       ],
+       "children": [
+        {
+         "type": "text",
+         "class": "dt",
+         "text": "LOG"
+        }
+       ],
+       "classIf": {
+        "on": "$on6"
+       },
+       "visibleIf": "$R6"
+      },
+      {
+       "type": "button",
+       "class": "dbtn",
+       "onClick": [
+        {
+         "navigate": "options"
+        }
+       ],
+       "children": [
+        {
+         "type": "text",
+         "class": "dt",
+         "text": "OPT"
+        }
+       ],
+       "classIf": {
+        "on": "$on7"
+       },
+       "visibleIf": "$R7"
+      }
+     ],
+     "visibleIf": "$dockR"
+    }
+   ],
+   "visibleIf": "$ready"
+  }
+ ],
+ "id": "screen"
+}

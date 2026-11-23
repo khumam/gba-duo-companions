@@ -1,15 +1,11 @@
 #!/usr/bin/env python3
-"""Writes layout.json: Aria of Sorrow's pause menu (Status, Soul Set, Equip, Item Use, Ability, Enemy, Config) for the
-second screen, joined by left / right plates that cycle through the pages, plus an enemy entry page. Also draws every
-window size it uses (art/ui.py). Edit here, not layout.json:
+"""Writes layout.json: Aria of Sorrow's pause menu, simplified. Same colours, art and data as before (originals: art/orig/), but each page is
+a title plaque, ONE scrolling body of plain bands and rows, and the left / right plates fixed at the bottom. No absolutely placed labels
+and no drawn window frames: the body flows, so text never overlaps and long lists simply scroll.
     python3 art/layout.py
 """
 import json
 import os
-import sys
-
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import ui  # noqa: E402
 
 
 def box(cls, ch=(), **kw): return {"type": "box", "class": cls, "children": list(ch), **kw}
@@ -20,17 +16,6 @@ def lst(cls, items, tpl, **kw): return {"type": "list", "class": cls, "items": i
 def bar(cls, value, mx, **kw): return {"type": "bar", "class": cls, "value": value, "maxKey": mx, **kw}
 
 
-SIZES = set()
-
-
-def win(w, h, cls):
-    """A window PNG of exactly w x h art px, placed by the CSS class."""
-    if (w, h) not in SIZES:
-        SIZES.add((w, h))
-        ui.window(w, h)
-    return img(f"win {cls}", f"asset:ui/win-{w}x{h}.png")
-
-
 PAGES = [("status", "Status"), ("soul", "Soul Set"), ("equip", "Equip"), ("items", "Item Use"),
          ("ability", "Ability"), ("enemy", "Enemy"), ("config", "Config"), ("map", "Map")]
 
@@ -38,252 +23,233 @@ PAGES = [("status", "Status"), ("soul", "Soul Set"), ("equip", "Equip"), ("items
 def nav(i):
     prev, nxt = PAGES[(i - 1) % len(PAGES)], PAGES[(i + 1) % len(PAGES)]
     pips = [img("pip" + (" on" if k == i else ""), "asset:ui/orb-red.png" if k == i else "asset:ui/pip.png") for k in range(len(PAGES))]
-    return [
-        button("nbtn nbtn-l", [{"navigate": prev[0]}], [img("nplate", "asset:ui/nav-l.png"), text("nb nb-l", prev[1].upper())]),
+    return box("nav", [
+        button("nbtn", [{"navigate": prev[0]}], [img("nplate", "asset:ui/nav-l.png"), text("nb nb-l", prev[1].upper())]),
         box("nmid", [img("nplate-m", "asset:ui/nav-mid.png"), text("ntitle", PAGES[i][1].upper()), box("pips", pips)]),
-        button("nbtn nbtn-r", [{"navigate": nxt[0]}], [img("nplate", "asset:ui/nav-r.png"), text("nb nb-r", nxt[1].upper())]),
-    ]
+        button("nbtn", [{"navigate": nxt[0]}], [img("nplate", "asset:ui/nav-r.png"), text("nb nb-r", nxt[1].upper())]),
+    ])
 
 
 def title(t):
-    return [img("tplate", "asset:ui/title.png"), text("ttext", t)]
+    return box("title", [img("tplate", "asset:ui/title.png"), text("ttext", t)])
 
 
-def page(name, children, i=None, extra_cls="", scroll=False):
-    kids = [img("bg", "asset:ui/bg.png")] + children
-    if scroll:      # taller than the screen: the content scrolls above the bottom plates, which stay put
-        kids = [box("pscroll", [box("pcanvas", kids)])]
-    if i is not None:
-        kids += nav(i)
-    return box(f"page page-{name} {extra_cls}".strip(), kids)
+def page(name, body, i=None, head=None, cls=""):
+    kids = [head if head is not None else title(PAGES[i][1].upper())]
+    kids.append(box("body", body))
+    kids.append(nav(i))
+    return box(f"page page-{name} {cls}".strip(), kids)
 
 
 # ---- shared pieces ------------------------------------------------------------------------------
-def stat_window(top=18, h=44):
-    # the ATT / DEF / STR / CON / INT / LCK window the Soul Set and Equip screens share
-    def v(cls, key):
-        return text(f"num {cls}", "{sw.%s.v}" % key, classIf={"up": "$sw.%s.up" % key, "down": "$sw.%s.down" % key})
-    return [win(92, h, "w-stats"),
-            text("lab att-l sw1", "ATT"), v("sw1v", "att"),
-            text("lab def-l sw2", "DEF"), v("sw2v", "def"),
-            text("lab sw3", "STR"), v("sw3v", "str"),
-            text("lab sw4", "CON"), v("sw4v", "con"),
-            text("lab sw5", "INT"), v("sw5v", "int"),
-            text("lab sw6", "LCK"), v("sw6v", "lck"),
-            text("lab sw-after", "AFTER", visibleIf="$cmpOn")]
+def pair(label, value, cls="", lab_cls=""):
+    return box("pair", [text("lab " + lab_cls, label), text("num " + cls, value)])
 
 
-def desc_window(icon_src=None, cost=None, name="", desc="", extra=None, btn=None):
-    kids = [win(240, 48, "w-desc")]
+def stat_pair(label, key, lab_cls=""):
+    return box("pair", [text("lab " + lab_cls, label),
+                        text("num", "{sw.%s.v}" % key, classIf={"up": "$sw.%s.up" % key, "down": "$sw.%s.down" % key})])
+
+
+def stat_strip():
+    # the ATT / DEF / STR / CON / INT / LCK strip the Soul Set and Equip screens share (shows the change when a pick is previewed)
+    return box("panel", [
+        box("strip-row", [stat_pair("ATT", "att", "att-l"), stat_pair("DEF", "def", "def-l"), stat_pair("STR", "str")]),
+        box("strip-row", [stat_pair("CON", "con"), stat_pair("INT", "int"), stat_pair("LCK", "lck")]),
+        text("lab after", "AFTER CHANGE", visibleIf="$cmpOn"),
+    ])
+
+
+def desc_panel(icon_src=None, cost=None, name="", desc="", extra=None, btn=None):
+    lead = []
     if cost:
-        kids += [win(34, 26, "w-cost"), text("cost", cost[0]), text("cost-u", cost[1])]
+        lead = [box("dcost", [text("cost", cost[0]), text("cost-u", cost[1])])]
     if icon_src:
-        kids += [win(34, 26, "w-cost"), img("dicon", icon_src)]
-    kids += [text("dname", name), text("dtext", desc)]
-    if extra:
-        kids += [text("dextra", extra)]
-    if btn:
-        kids += btn
-    kids += [text("note", "{note}")]
-    return kids
+        lead = [img("dicon", icon_src)]
+    kids = [box("dtop", [*lead, box("dtitle", [text("dname", name), *([text("dextra", extra)] if extra else [])]), *(btn or [])]),
+            text("dtext", desc), text("note", "{note}")]
+    return box("panel desc", kids)
 
 
 def act_button(label, on, can, done_label, done):
-    return [button("abtn", on, [img("abtn-p", "asset:ui/btn.png"), text("abtn-t", label)], visibleIf=can),
-            box("abtn abtn-done", [img("abtn-p", "asset:ui/btn-off.png"), text("abtn-t", done_label)], visibleIf=done)]
+    return [button("abtn", on, [text("abtn-t", label)], visibleIf=can),
+            box("abtn abtn-done", [text("abtn-t", done_label)], visibleIf=done)]
 
 
 def band(header, count, items, tpl, empty=None, header_kids=None):
-    kids = [box("bandhead", header_kids or [text("bh-t", header)]), text("bh-n", count),
-            box("band", [lst("blist", items, tpl)])]
+    out = [box("bandhead", [*(header_kids or [text("bh-t", header)]), box("grow", []), text("bh-n", count)]),
+           box("band", [lst("blist", items, tpl)])]
     if empty:
-        kids.append(text("band-empty", empty[0], visibleIf=empty[1]))
-    return kids
+        out.append(text("band-empty", empty[0], visibleIf=empty[1]))
+    return out
 
+
+cursor = lambda: img("cur", "asset:ui/cursor.png", visibleIf="$sel")
 
 # ---- status -------------------------------------------------------------------------------------
 status = page("status", [
-    img("vortex", "asset:ui/vortex.png"),
-    img("vorb vorb-1", "$orb1"), img("vorb vorb-2", "$orb2"), img("vorb vorb-3", "$orb3"),
-    text("soma", "SOMA"),
-    text("lv-l", "LV."), text("lv", "{st.level}"),
-    button("hbtn", [{"call": "quickHeal"}], [img("hbtn-p", "asset:ui/btn.png"), img("hbtn-i", "asset:ui/ic-potion.png"), text("hbtn-t", "HEAL")],
-           visibleIf="$heal.can"),
-    box("hbtn hbtn-off", [img("hbtn-p", "asset:ui/btn-off.png"), text("hbtn-t", "HEAL")], visibleIf="$heal.full"),
-    box("hbtn hbtn-off", [img("hbtn-p", "asset:ui/btn-off.png"), text("hbtn-t", "HEAL")], visibleIf="$heal.none"),
-    text("hname", "{heal.name}"),
-    win(184, 66, "w-st"),
-    text("lab hp-l", "HP"), text("num hp-v", "{st.hpText}"), bar("hpbar", "$st.hp", "$st.maxHp", classIf={"low": "$st.lowHp"}),
-    text("lab mp-l", "MP"), text("num mp-v", "{st.mpText}"), bar("mpbar", "$st.mp", "$st.maxMp"),
-    text("lab s1", "STR"), text("num s1v", "{st.str}"),
-    text("lab s2", "CON"), text("num s2v", "{st.con}"),
-    text("lab s3", "INT"), text("num s3v", "{st.int}"),
-    text("lab s4", "LCK"), text("num s4v", "{st.lck}"),
-    text("lab att-l s5", "ATT"), text("num s5v", "{st.att}"),
-    text("lab def-l s6", "DEF"), text("num s6v", "{st.def}"),
-    text("lab st-good", "STATUS / GOOD"),
-    win(88, 34, "w-souls"),
-    text("lab so-l", "SOULS"), text("num so-v", "{st.souls}"), text("lab so-r", "RATE"), text("num so-rv", "{st.soulRate}"),
-    win(94, 34, "w-info"),
-    text("lab i1", "TIME"), text("num i1v", "{st.time}"),
-    text("lab i2", "RATE"), text("num i2v", "{st.rate}"),
-    text("lab gold-l i3", "GOLD"), text("num gold i3v", "{st.gold}"),
-    img("expband", "asset:ui/exp.png"),
-    text("lab ex-l", "EXP"), text("num ex-v", "{st.exp}"),
-    text("lab nx-l", "NEXT"), text("num nx-v", "{st.next}"),
-    bar("expbar", "$st.expIn", "$st.expSpan"),
-    # the pause menu: every entry opens its page
-    box("menu", [lst("mlist", "$menu", button("mbtn", [{"navigate": "{page}"}], [text("mtext", "{label}")]))]),
-    win(166, 52, "w-eq"),
-    text("lab eqh", "EQUIPMENT"), text("lab soh", "SOULS"),
-    lst("glist", "$gear", button("grow", [{"set": {"eqSlot": "{i}", "eqItem": -1}}, {"navigate": "equip"}],
-                                [img("gicon", "$icon"), text("gname", "{name}")], classIf={"none": "$none"})),
-    lst("slist", "$souls", button("srow", [{"set": {"soulCat": "{i}", "soul": -1}}, {"navigate": "soul"}],
-                                 [img("sorb", "$orb"), text("sname", "{name}")], classIf={"none": "$off"})),
-], 0, scroll=True)
+    box("hero", [
+        box("vwrap", [img("vortex", "asset:ui/vortex.png"), img("vorb vorb-1", "$orb1"), img("vorb vorb-2", "$orb2"), img("vorb vorb-3", "$orb3")]),
+        box("hero-in", [
+            box("namerow", [text("soma", "SOMA"), text("lv-l", "LV."), text("lv", "{st.level}"), box("grow", []),
+                            button("hbtn", [{"call": "quickHeal"}], [img("hbtn-i", "asset:ui/ic-potion.png"), text("hbtn-t", "HEAL")], visibleIf="$heal.can"),
+                            box("hbtn hbtn-off", [text("hbtn-t", "HEAL")], visibleIf="$heal.full"),
+                            box("hbtn hbtn-off", [text("hbtn-t", "HEAL")], visibleIf="$heal.none")]),
+            box("barrow", [text("lab", "HP"), bar("hpbar", "$st.hp", "$st.maxHp", classIf={"low": "$st.lowHp"}), text("num bn", "{st.hpText}")]),
+            box("barrow", [text("lab", "MP"), bar("mpbar", "$st.mp", "$st.maxMp"), text("num bn", "{st.mpText}")]),
+            text("hname", "{heal.name}"),
+        ]),
+    ]),
+    box("panel", [
+        box("strip-row", [pair("STR", "{st.str}"), pair("CON", "{st.con}"), pair("INT", "{st.int}")]),
+        box("strip-row", [pair("LCK", "{st.lck}"), pair("ATT", "{st.att}", lab_cls="att-l"), pair("DEF", "{st.def}", lab_cls="def-l")]),
+        text("lab", "STATUS / GOOD"),
+    ]),
+    box("panel", [
+        box("strip-row", [pair("EXP", "{st.exp}"), pair("NEXT", "{st.next}")]),
+        bar("expbar", "$st.expIn", "$st.expSpan"),
+    ]),
+    box("strip-row wide", [
+        box("panel half", [pair("SOULS", "{st.souls}"), pair("RATE", "{st.soulRate}")]),
+        box("panel half", [pair("TIME", "{st.time}"), pair("RATE", "{st.rate}"), pair("GOLD", "{st.gold}", "gold", "gold-l")]),
+    ]),
+    box("panel", [text("lab", "EQUIPMENT"),
+                  lst("glist", "$gear", button("grow2", [{"set": {"eqSlot": "{i}", "eqItem": -1}}, {"navigate": "equip"}],
+                                               [img("gicon", "$icon"), text("gname", "{name}")], classIf={"none": "$none"}))]),
+    box("panel", [text("lab", "SOULS"),
+                  lst("slist", "$souls", button("grow2", [{"set": {"soulCat": "{i}", "soul": -1}}, {"navigate": "soul"}],
+                                               [img("sorb", "$orb"), text("gname", "{name}")], classIf={"none": "$off"}))]),
+    text("lab", "MENU"),
+    lst("mlist", "$menu", button("mbtn", [{"navigate": "{page}"}], [text("mtext", "{label}")])),
+], 0)
 
 # ---- soul set ----------------------------------------------------------------------------------
 soul = page("soul", [
-    *title("SOUL SET"),
-    img("vortex-s", "asset:ui/vortex-s.png"),
     lst("sotabs", "$soulTabs", button("sotab", [{"set": {"soulCat": "{c}", "soul": -1}}],
-                                      [img("sotab-orb", "$orb"), text("sotab-l", "{label}"), text("sotab-n", "{name}"), box("sotab-u", [])],
+                                      [img("sotab-orb", "$orb"), box("sotab-t", [text("sotab-l", "{label}"), text("sotab-n", "{name}")])],
                                       classIf={"sel": "$sel"}, bindStyle={"--c": "{hex}"})),
-    img("sobig", "$soulBig"),
-    *stat_window(h=56),
+    stat_strip(),
     *band("{soulCatName}", "{soulOwned}", "$soulList",
           button("cell", [{"set": {"soul": "{id}"}}],
-                 [img("cur", "asset:ui/cursor.png", visibleIf="$sel"), img("corb", "$orb"), text("cname", "{name}"), text("ccount", "{count}")],
+                 [cursor(), img("corb", "$orb"), text("cname", "{name}"), text("ccount", "{count}")],
                  classIf={"sel": "$sel", "eqd": "$equipped"})),
-    *desc_window(cost=("{soulPick.costN}", "{soulPick.costU}"), name="{soulPick.name}", desc="{soulPick.desc}", extra="{soulPick.from}",
-                 btn=act_button("SET", [{"call": "setSoul", "args": ["{soulPick.cat}", "{soulPick.id}"]}], "$soulPick.canSet",
-                                "IN USE", "$soulPick.isSet")),
-], 1, scroll=True)
+    desc_panel(cost=("{soulPick.costN}", "{soulPick.costU}"), name="{soulPick.name}", desc="{soulPick.desc}", extra="{soulPick.from}",
+               btn=act_button("SET", [{"call": "setSoul", "args": ["{soulPick.cat}", "{soulPick.id}"]}], "$soulPick.canSet", "IN USE", "$soulPick.isSet")),
+], 1)
 
 # ---- equip -------------------------------------------------------------------------------------
 equip = page("equip", [
-    *title("EQUIP"),
-    win(146, 56, "w-slots"),
     lst("eqslots", "$eqSlots", button("eqslot", [{"set": {"eqSlot": "{i}", "eqItem": -1}}],
-                                      [img("cur", "asset:ui/cursor.png", visibleIf="$sel"), text("eqs-l", "{label}"),
-                                       img("eqs-i", "$icon"), text("eqs-n", "{name}")], classIf={"sel": "$sel"})),
-    *stat_window(h=56),
+                                      [cursor(), text("eqs-l", "{label}"), img("eqs-i", "$icon"), text("eqs-n", "{name}")], classIf={"sel": "$sel"})),
+    stat_strip(),
     *band("{eqSlotName}", "{eqCount}", "$eqList",
           button("cell", [{"set": {"eqItem": "{idx}"}}],
-                 [img("cur", "asset:ui/cursor.png", visibleIf="$sel"), img("cicon", "$icon"), text("cname", "{name}"), text("ccount", "{count}")],
-                 classIf={"sel": "$sel"}),
+                 [cursor(), img("cicon", "$icon"), text("cname", "{name}"), text("ccount", "{count}")], classIf={"sel": "$sel"}),
           empty=("Nothing to change to.", "$eqEmpty")),
-    *desc_window(icon_src="$eqPick.icon", name="{eqPick.name}", desc="{eqPick.desc}", extra="{eqPick.stats}",
-                 btn=act_button("EQUIP", [{"call": "equip", "args": ["{eqPick.slot}", "{eqPick.idx}"]}], "$eqPick.canSet",
-                                "WORN", "$eqPick.isSet")),
-    box("abtn abtn-done", [img("abtn-p", "asset:ui/btn-off.png"), text("abtn-t", "NOT OWNED")], visibleIf="$eqPick.notOwned"),
-], 2, scroll=True)
+    desc_panel(icon_src="$eqPick.icon", name="{eqPick.name}", desc="{eqPick.desc}", extra="{eqPick.stats}",
+               btn=[*act_button("EQUIP", [{"call": "equip", "args": ["{eqPick.slot}", "{eqPick.idx}"]}], "$eqPick.canSet", "WORN", "$eqPick.isSet"),
+                    box("abtn abtn-done", [text("abtn-t", "NOT OWNED")], visibleIf="$eqPick.notOwned")]),
+], 2)
 
 # ---- item use ----------------------------------------------------------------------------------
 items = page("items", [
-    *title("ITEM USE"),
-    win(240, 48, "w-hpmp"),
-    text("lab ih-l", "HP"), text("num ih-v", "{st.hpText}"), bar("hpbar ihbar", "$st.hp", "$st.maxHp", classIf={"low": "$st.lowHp"}),
-    text("lab im-l", "MP"), text("num im-v", "{st.mpText}"), bar("mpbar imbar", "$st.mp", "$st.maxMp"),
-    text("lab ist", "STATUS / GOOD"),
+    box("panel", [
+        box("barrow", [text("lab", "HP"), bar("hpbar", "$st.hp", "$st.maxHp", classIf={"low": "$st.lowHp"}), text("num bn", "{st.hpText}")]),
+        box("barrow", [text("lab", "MP"), bar("mpbar", "$st.mp", "$st.maxMp"), text("num bn", "{st.mpText}")]),
+        text("lab", "STATUS / GOOD"),
+    ]),
     *band("", "{itemCount}", "$itemList",
           button("cell", [{"set": {"item": "{i}"}}],
-                 [img("cur", "asset:ui/cursor.png", visibleIf="$sel"), img("cicon", "$icon"), text("cname", "{name}"), text("ccount", "{count}")],
-                 classIf={"sel": "$sel"}),
+                 [cursor(), img("cicon", "$icon"), text("cname", "{name}"), text("ccount", "{count}")], classIf={"sel": "$sel"}),
           empty=("No items here.", "$itemEmpty"),
           header_kids=[button("itab", [{"set": {"itemTab": "use", "item": -1}}], [text("itab-t", "ITEMS")], classIf={"sel": "$itemUseTab"}),
                        button("itab", [{"set": {"itemTab": "key", "item": -1}}], [text("itab-t", "KEY ITEMS")], classIf={"sel": "$itemKeyTab"})]),
-    *desc_window(icon_src="$itemPick.icon", name="{itemPick.name}", desc="{itemPick.desc}", extra="{itemPick.effect}",
-                 btn=act_button("USE", [{"call": "useItem", "args": ["{itemPick.i}"]}], "$itemPick.canUse",
-                                "FULL", "$itemPick.full")),
-    box("abtn abtn-done", [img("abtn-p", "asset:ui/btn-off.png"), text("abtn-t", "NOT OWNED")], visibleIf="$itemPick.notOwned"),
-], 3, scroll=True)
+    desc_panel(icon_src="$itemPick.icon", name="{itemPick.name}", desc="{itemPick.desc}", extra="{itemPick.effect}",
+               btn=[*act_button("USE", [{"call": "useItem", "args": ["{itemPick.i}"]}], "$itemPick.canUse", "FULL", "$itemPick.full"),
+                    box("abtn abtn-done", [text("abtn-t", "NOT OWNED")], visibleIf="$itemPick.notOwned")]),
+], 3)
 
 # ---- ability -----------------------------------------------------------------------------------
 ability = page("ability", [
-    *title("ABILITY"),
-    win(240, 112, "w-abil"),
-    text("lab ab-h", "ABILITY SOULS  {abilOwned}"),
-    lst("alist", "$abilList", button("acell", [{"set": {"abil": "{i}"}}, {"call": "toggleAbility", "args": ["{i}"]}],
-                                     [img("cur", "asset:ui/cursor.png", visibleIf="$sel"), img("aorb", "$orb"), text("aname", "{name}"),
-                                      box("pill on", [text("pill-t", "ON")], visibleIf="$on"),
-                                      box("pill off", [text("pill-t", "OFF")], visibleIf="$off")],
-                                     classIf={"sel": "$sel", "locked": "$locked"})),
-    text("lab ab-tip", "Tap a soul to switch it on or off."),
-    *desc_window(icon_src="asset:ui/orbbig-grey.png", name="{abilPick.name}", desc="{abilPick.desc}"),
-], 4, scroll=True)
+    box("bandhead", [text("bh-t", "ABILITY SOULS"), box("grow", []), text("bh-n", "{abilOwned}")]),
+    box("band tall", [lst("alist", "$abilList", button("acell", [{"set": {"abil": "{i}"}}, {"call": "toggleAbility", "args": ["{i}"]}],
+                                                       [cursor(), img("aorb", "$orb"), text("aname", "{name}"),
+                                                        box("pill on", [text("pill-t", "ON")], visibleIf="$on"),
+                                                        box("pill off", [text("pill-t", "OFF")], visibleIf="$off")],
+                                                       classIf={"sel": "$sel", "locked": "$locked"}))]),
+    text("hint", "Tap a soul to switch it on or off."),
+    desc_panel(icon_src="asset:ui/orbbig-grey.png", name="{abilPick.name}", desc="{abilPick.desc}"),
+], 4)
 
 # ---- enemy list --------------------------------------------------------------------------------
 enemy = page("enemy", [
-    img("book", "asset:ui/book.png"),
-    text("bk-h", "ENEMY DATA"),
-    lst("elist", "$enemyRows", button("erow", [{"set": {"enemy": "{k}"}}, {"navigate": "enemyDetail"}],
-                                      [text("eno", "{no}"), text("ename", "{name}")], classIf={"unseen": "$unseen"})),
-    text("bk-lab bk-seen-l", "SEEN"), text("bk-val bk-seen", "{enemySeen}"),
-    text("bk-lab bk-soul-l", "SOUL"), text("bk-val bk-soul", "{st.soulRate}"),
-    button("pgbtn pg-l", [{"set": {"epage": "{epagePrev}"}}], [img("key-i", "asset:ui/key-L.png"), text("pg-t", "PREV")]),
-    text("pg-n", "{epageText}"),
-    button("pgbtn pg-r", [{"set": {"epage": "{epageNext}"}}], [text("pg-t", "NEXT"), img("key-i", "asset:ui/key-R.png")]),
-    text("bk-tip", "Tap an enemy to open its page."),
+    box("paper", [
+        box("bookhead", [text("bk-h", "ENEMY DATA"), box("grow", []), text("bk-lab", "SEEN"), text("bk-val", "{enemySeen}"),
+                         text("bk-lab", "SOUL"), text("bk-val", "{st.soulRate}")]),
+        lst("elist", "$enemyRows", button("erow", [{"set": {"enemy": "{k}"}}, {"navigate": "enemyDetail"}],
+                                          [text("eno", "{no}"), text("ename", "{name}")], classIf={"unseen": "$unseen"})),
+        box("pager", [button("pgbtn", [{"set": {"epage": "{epagePrev}"}}], [img("key-i", "asset:ui/key-L.png"), text("pg-t", "PREV")]),
+                      text("pg-n", "{epageText}"),
+                      button("pgbtn", [{"set": {"epage": "{epageNext}"}}], [text("pg-t", "NEXT"), img("key-i", "asset:ui/key-R.png")])]),
+        text("bk-tip", "Tap an enemy to open its page."),
+    ]),
 ], 5)
 
 enemy_detail = page("enemyDetail", [
-    img("book", "asset:ui/book.png"),
-    text("bk-no", "NO. {ed.no}"),
-    img("ed-frame", "asset:ui/book-frame.png"), img("ed-orb", "$ed.orbBig"),
-    text("ed-name", "{ed.name}"),
-    text("bk-lab ed-hp-l", "HP"), text("ed-hp", "{ed.hp}"),
-    text("bk-lab ed-exp-l", "EXP"), text("ed-exp", "{ed.exp}"),
-    text("bk-lab ed-soul-l", "SOUL"), img("ed-sorb", "$ed.orb"),
-    button("ed-link ed-soul-b", [{"set": {"soulCat": "{ed.soulLink.cat}", "soul": "{ed.soulLink.soul}", "abil": "{ed.soulLink.abil}"}},
-                                  {"navigate": "{ed.soulLink.page}"}],
-           [text("ed-soul", "{ed.soul}", classIf={"owned": "$ed.soulOwned"})], classIf={"dead": "$ed.unseen"}),
-    text("ed-check", "OWNED", visibleIf="$ed.soulOwned"),
-    text("bk-lab ed-tol-l", "TOLERANCE"),
-    lst("ed-tol", "$ed.tol", img("el", "$icon")), text("ed-none ed-tol-n", "---", visibleIf="$ed.noTol"),
-    text("bk-lab ed-weak-l", "WEAKNESS"),
-    lst("ed-weak", "$ed.weak", img("el", "$icon")), text("ed-none ed-weak-n", "---", visibleIf="$ed.noWeak"),
-    text("bk-lab ed-drop-l", "DROP"),
-    button("ed-link ed-d1", [{"set": {"eqSlot": "{ed.l1.eqSlot}", "eqItem": "{ed.l1.eqItem}", "item": "{ed.l1.item}", "itemTab": "{ed.l1.itemTab}"}},
-                             {"navigate": "{ed.l1.page}"}], [text("ed-drop", "{ed.drop1}")], visibleIf="$ed.l1.ok"),
-    text("ed-drop ed-d1t", "{ed.drop1}", visibleIf="$ed.l1.off"),
-    button("ed-link ed-d2", [{"set": {"eqSlot": "{ed.l2.eqSlot}", "eqItem": "{ed.l2.eqItem}", "item": "{ed.l2.item}", "itemTab": "{ed.l2.itemTab}"}},
-                             {"navigate": "{ed.l2.page}"}], [text("ed-drop", "{ed.drop2}")], visibleIf="$ed.l2.ok"),
-    text("ed-drop ed-d2t", "{ed.drop2}", visibleIf="$ed.l2.off"),
-    text("bk-tip ed-tip", "Tap the soul or a drop to open it."),
-    text("ed-desc", "{ed.desc}"),
-    button("pgbtn pg-l", [{"set": {"enemy": "{ed.prev}"}}], [text("pg-t", "< NO. {ed.prevNo}")]),
-    button("pgbtn pg-c", [{"set": {"epage": "{ed.page}"}}, {"navigate": "enemy"}], [text("pg-t", "LIST")]),
-    button("pgbtn pg-r", [{"set": {"enemy": "{ed.next}"}}], [text("pg-t", "NO. {ed.nextNo} >")]),
-], 5)
+    box("paper", [
+        box("bookhead", [text("bk-h", "NO. {ed.no}"), box("grow", [])]),
+        box("edtop", [
+            box("edframe", [img("ed-frame", "asset:ui/book-frame.png"), img("ed-orb", "$ed.orbBig")]),
+            box("edinfo", [
+                text("ed-name", "{ed.name}"),
+                box("pairline", [text("bk-lab", "HP"), text("ed-v", "{ed.hp}"), text("bk-lab", "EXP"), text("ed-v", "{ed.exp}")]),
+                box("pairline", [text("bk-lab", "SOUL"), img("ed-sorb", "$ed.orb"),
+                                 button("ed-link", [{"set": {"soulCat": "{ed.soulLink.cat}", "soul": "{ed.soulLink.soul}", "abil": "{ed.soulLink.abil}"}},
+                                                    {"navigate": "{ed.soulLink.page}"}],
+                                        [text("ed-soul", "{ed.soul}", classIf={"owned": "$ed.soulOwned"})], classIf={"dead": "$ed.unseen"}),
+                                 text("ed-check", "OWNED", visibleIf="$ed.soulOwned")]),
+            ]),
+        ]),
+        box("pairline", [text("bk-lab w", "TOLERANCE"), lst("eltags", "$ed.tol", img("el", "$icon")), text("ed-none", "---", visibleIf="$ed.noTol")]),
+        box("pairline", [text("bk-lab w", "WEAKNESS"), lst("eltags", "$ed.weak", img("el", "$icon")), text("ed-none", "---", visibleIf="$ed.noWeak")]),
+        box("pairline", [text("bk-lab w", "DROP"),
+                         button("ed-link", [{"set": {"eqSlot": "{ed.l1.eqSlot}", "eqItem": "{ed.l1.eqItem}", "item": "{ed.l1.item}", "itemTab": "{ed.l1.itemTab}"}},
+                                            {"navigate": "{ed.l1.page}"}], [text("ed-drop", "{ed.drop1}")], visibleIf="$ed.l1.ok"),
+                         text("ed-drop", "{ed.drop1}", visibleIf="$ed.l1.off"),
+                         button("ed-link", [{"set": {"eqSlot": "{ed.l2.eqSlot}", "eqItem": "{ed.l2.eqItem}", "item": "{ed.l2.item}", "itemTab": "{ed.l2.itemTab}"}},
+                                            {"navigate": "{ed.l2.page}"}], [text("ed-drop", "{ed.drop2}")], visibleIf="$ed.l2.ok"),
+                         text("ed-drop", "{ed.drop2}", visibleIf="$ed.l2.off")]),
+        text("ed-desc", "{ed.desc}"),
+        text("bk-tip", "Tap the soul or a drop to open it."),
+        box("pager", [button("pgbtn", [{"set": {"enemy": "{ed.prev}"}}], [text("pg-t", "< NO. {ed.prevNo}")]),
+                      button("pgbtn", [{"set": {"epage": "{ed.page}"}}, {"navigate": "enemy"}], [text("pg-t", "LIST")]),
+                      button("pgbtn", [{"set": {"enemy": "{ed.next}"}}], [text("pg-t", "NO. {ed.nextNo} >")])]),
+    ]),
+], 5, head=title("ENEMY DATA"))
 
 # ---- config ------------------------------------------------------------------------------------
 config = page("config", [
-    *title("CONFIG"),
-    win(240, 92, "w-cfg"),
-    lst("cfglist", "$cfgRows", box("crow", [
-        text("clab", "{label}"),
-        button("carr carr-l", [{"call": "cycleKey", "args": ["{row}", -1]}], [text("carr-t", "<")]),
+    box("panel", [lst("cfglist", "$cfgRows", box("crow", [
+        text("clab", "{label}"), box("grow", []),
+        button("carr", [{"call": "cycleKey", "args": ["{row}", -1]}], [text("carr-t", "<")]),
         img("ckey", "$keyImg"),
-        button("carr carr-r", [{"call": "cycleKey", "args": ["{row}", 1]}], [text("carr-t", ">")]),
-    ])),
+        button("carr", [{"call": "cycleKey", "args": ["{row}", 1]}], [text("carr-t", ">")]),
+    ]))]),
     text("cfg-clash", "The control settings are conflicting.", visibleIf="$cfgClash"),
-    button("obtn o-def", [{"call": "defaultKeys"}], [img("abtn-p", "asset:ui/btn.png"), text("abtn-t", "DEFAULT")]),
-    button("perm", [{"call": "writePermission"}], [text("perm-t", "GAME CHANGES: {_writePermLabel}")]),
-    *desc_window(icon_src="asset:ui/orbbig-blue.png", name="Buttons", desc="Tap the arrows to change a button. Two actions never share one: they swap.",
-                 extra="Needs Settings > Packs can change games."),
+    box("btnrow", [button("obtn", [{"call": "defaultKeys"}], [text("abtn-t", "DEFAULT")]),
+                   button("perm", [{"call": "writePermission"}], [text("perm-t", "GAME CHANGES: {_writePermLabel}")])]),
+    desc_panel(icon_src="asset:ui/orbbig-blue.png", name="Buttons", desc="Tap the arrows to change a button. Two actions never share one: they swap.",
+               extra="Needs Settings > Packs can change games."),
 ], 6)
 
 # ---- map (the game's SELECT map) ---------------------------------------------------------------
 cmap = page("map", [
-    *title("MAP"),
-    text("lab mrate-l", "RATE"), text("mrate", "{st.rate}"),
-    text("lab mcell-l", "ROOMS"), text("mcell", "{mapCells}"),
-    box("mapbox", [lst("maprows", "$mapRuns", box("run", [box("run-in", [])], bindStyle={"left": "{x}", "top": "{y}", "width": "{w}"}))]),
+    box("bookhead plain", [text("lab", "RATE"), text("mrate", "{st.rate}"), box("grow", []), text("lab", "ROOMS"), text("mcell", "{mapCells}")]),
+    box("mapfield", [box("mapbox", [lst("maprows", "$mapRuns", box("run", [box("run-in", [])], bindStyle={"left": "{x}", "top": "{y}", "width": "{w}"}))])]),
 ], 7)
 
 # ---- waiting -----------------------------------------------------------------------------------
-waiting = page("waiting", [
+waiting = box("page page-waiting", [
     img("w-vortex", "asset:ui/vortex.png"), img("w-orb", "asset:ui/orbbig-red.png"),
     text("w-1", "ARIA OF SORROW"), text("w-2", "COMPANION"),
     text("w-3", "Load a save to see Soma's souls."),
@@ -298,12 +264,12 @@ root = box("main", [
                    "pages": [{"name": n, "child": c} for n, c in body]},
                   button("toast", [{"set": {"toastHide": "{toast.id}", "soulCat": "{toast.cat}", "soul": "{toast.soul}",
                                             "abil": "{toast.abil}", "enemy": "{toast.enemy}"}}, {"navigate": "{toast.page}"}],
-                         [img("toast-orb", "$toast.orb"), text("toast-title", "{toast.title}", bindStyle={"color": "{toast.hex}"}),
-                          text("toast-name", "{toast.name}"), text("toast-sub", "{toast.sub}"),
+                         [img("toast-orb", "$toast.orb"), box("toast-t", [text("toast-title", "{toast.title}", bindStyle={"color": "{toast.hex}"}),
+                                                                           text("toast-name", "{toast.name}"), text("toast-sub", "{toast.sub}")]),
                           button("toast-x", [{"set": {"toastHide": "{toast.id}"}}], [text("toast-x-t", "X")])],
                          visibleIf="$toastOn")], visibleIf="$ready")], id="screen")
 
 if __name__ == "__main__":
     here = os.path.dirname(os.path.abspath(__file__))
     json.dump(root, open(os.path.join(here, "..", "layout.json"), "w"), indent=1)
-    print("ok", len(json.dumps(root)), "windows", sorted(SIZES))
+    print("ok", len(json.dumps(root)))

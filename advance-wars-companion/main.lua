@@ -282,6 +282,10 @@ local function navState(ui)
     if r then right = right + 1 end
   end
   out.dockL, out.dockR = left > 0, right > 0
+  -- the bottom bar cycles: < previous page | this page | next page >
+  local pi, ni = (curIdx - 2) % #NAV + 1, curIdx % #NAV + 1
+  out.navName = NAV[curIdx][1]
+  for i = 1, #NAV do out["P" .. i], out["N" .. i] = (i == pi), (i == ni) end
   return out
 end
 

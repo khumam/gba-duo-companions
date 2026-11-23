@@ -4065,12 +4065,12 @@
           ]
         }
       ],
-      "visibleIf": "$showClean"
+      "visibleIf": "$showClean",
+      "classIf": {
+        "theme-parchment": "$themeParchment",
+        "theme-night": "$themeNight"
+      }
     }
   ],
-  "id": "screen",
-  "classIf": {
-    "theme-parchment": "$themeParchment",
-    "theme-night": "$themeNight"
-  }
+  "id": "screen"
 }
