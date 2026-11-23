@@ -1,0 +1,22 @@
+{
+  "id": "pokemon-emerald-seaglass-companion",
+  "name": "Pokemon Emerald Seaglass Companion",
+  "version": "0.1.0",
+  "author": "built for GBA Duo",
+  "formatVersion": 4,
+  "match": {
+    "gameCode": [
+      "BPEE"
+    ],
+    "crc32": [
+      "14465a33"
+    ]
+  },
+  "tickHz": 4,
+  "layout": "layout.json",
+  "styles": [
+    "style.css"
+  ],
+  "script": "main.lua",
+  "values": {}
+}

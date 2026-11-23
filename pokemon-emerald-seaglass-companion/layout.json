@@ -1,0 +1,2514 @@
+{
+ "type": "box",
+ "class": "screen",
+ "children": [
+  {
+   "type": "box",
+   "class": "waiting",
+   "children": [
+    {
+     "type": "box",
+     "class": "boot",
+     "children": [
+      {
+       "type": "image",
+       "class": "boot-ball",
+       "src": "asset:ui/pk-balls.png"
+      },
+      {
+       "type": "text",
+       "class": "boot-title",
+       "text": "SEAGLASS"
+      },
+      {
+       "type": "text",
+       "class": "boot-sub",
+       "text": "{waitNote}"
+      },
+      {
+       "type": "text",
+       "class": "boot-dim",
+       "text": "GBA DUO COMPANION · v0.1.0"
+      }
+     ]
+    }
+   ],
+   "visibleIf": "$waiting"
+  },
+  {
+   "type": "box",
+   "class": "shell",
+   "children": [
+    {
+     "type": "pages",
+     "initial": "party",
+     "pages": [
+      {
+       "name": "party",
+       "child": {
+        "type": "box",
+        "class": "page page-party",
+        "children": [
+         {
+          "type": "box",
+          "class": "hdr",
+          "children": [
+           {
+            "type": "box",
+            "class": "hdr-title",
+            "children": [
+             {
+              "type": "text",
+              "class": "hdr-name",
+              "text": "POKÉMON"
+             },
+             {
+              "type": "box",
+              "class": "hdr-dots",
+              "children": [
+               {
+                "type": "box",
+                "class": "dot on",
+                "children": []
+               },
+               {
+                "type": "box",
+                "class": "dot",
+                "children": []
+               },
+               {
+                "type": "box",
+                "class": "dot",
+                "children": []
+               },
+               {
+                "type": "box",
+                "class": "dot",
+                "children": []
+               },
+               {
+                "type": "box",
+                "class": "dot",
+                "children": []
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "hdr-tail",
+            "children": [
+             {
+              "type": "box",
+              "class": "hstat",
+              "children": [
+               {
+                "type": "image",
+                "class": "hicon",
+                "src": "asset:ui/clock.png"
+               },
+               {
+                "type": "text",
+                "class": "hval",
+                "text": "{time}"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "hstat",
+              "children": [
+               {
+                "type": "image",
+                "class": "hicon",
+                "src": "asset:ui/coin.png"
+               },
+               {
+                "type": "text",
+                "class": "hval",
+                "text": "{money}"
+               }
+              ]
+             },
+             {
+              "type": "list",
+              "class": "gems",
+              "items": "$badges",
+              "template": {
+               "type": "image",
+               "class": "gem",
+               "src": "$src",
+               "classIf": {
+                "off": "$locked"
+               }
+              }
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "team-strip",
+          "children": [
+           {
+            "type": "text",
+            "class": "team-k",
+            "text": "TEAM HP"
+           },
+           {
+            "type": "bar",
+            "class": "hp team-bar",
+            "value": "$team.hpPct",
+            "max": 1,
+            "classIf": {
+             "mid": "$team.hpMid",
+             "low": "$team.hpLow"
+            }
+           },
+           {
+            "type": "text",
+            "class": "team-v",
+            "text": "{team.hp}/{team.maxHp}"
+           },
+           {
+            "type": "box",
+            "class": "chip chip-sea",
+            "children": [
+             {
+              "type": "text",
+              "class": "chip-text",
+              "text": "{partyCount}/{partyMax}"
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "chip chip-cream",
+            "children": [
+             {
+              "type": "text",
+              "class": "chip-text",
+              "text": "AVG Lv{team.avg}"
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "win list-win",
+          "children": [
+           {
+            "type": "box",
+            "class": "wtop",
+            "children": [
+             {
+              "type": "box",
+              "class": "wtab",
+              "children": [
+               {
+                "type": "text",
+                "class": "wtab-text",
+                "text": "YOUR TEAM"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "grow",
+              "children": []
+             },
+             {
+              "type": "box",
+              "class": "chip chip-cream",
+              "children": [
+               {
+                "type": "text",
+                "class": "chip-text",
+                "text": "{partyCount} IN PARTY"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "wbody",
+            "children": [
+             {
+              "type": "list",
+              "class": "mon-list",
+              "items": "$party",
+              "template": {
+               "type": "box",
+               "class": "mon-row",
+               "children": [
+                {
+                 "type": "box",
+                 "class": "slot",
+                 "children": [
+                  {
+                   "type": "image",
+                   "class": "sprite",
+                   "src": "$sprite"
+                  }
+                 ]
+                },
+                {
+                 "type": "text",
+                 "class": "mon-name",
+                 "text": "{name}"
+                },
+                {
+                 "type": "text",
+                 "class": "lv",
+                 "text": "Lv{level}"
+                },
+                {
+                 "type": "image",
+                 "class": "gender",
+                 "src": "asset:ui/male.png",
+                 "visibleIf": "$male"
+                },
+                {
+                 "type": "image",
+                 "class": "gender",
+                 "src": "asset:ui/female.png",
+                 "visibleIf": "$female"
+                },
+                {
+                 "type": "box",
+                 "class": "status",
+                 "children": [
+                  {
+                   "type": "text",
+                   "class": "status-text",
+                   "text": "{status}"
+                  }
+                 ],
+                 "visibleIf": "$hasStatus"
+                },
+                {
+                 "type": "list",
+                 "class": "type-row",
+                 "items": "$types",
+                 "template": {
+                  "type": "box",
+                  "class": "tchip",
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "tchip-text",
+                    "text": "{label}"
+                   }
+                  ],
+                  "bindStyle": {
+                   "--c": "{color}"
+                  }
+                 }
+                },
+                {
+                 "type": "box",
+                 "class": "grow",
+                 "children": []
+                },
+                {
+                 "type": "text",
+                 "class": "hp-num",
+                 "text": "{hpText}"
+                },
+                {
+                 "type": "bar",
+                 "class": "hp",
+                 "value": "$hpPct",
+                 "max": 1,
+                 "classIf": {
+                  "mid": "$hpMid",
+                  "low": "$hpLow"
+                 }
+                },
+                {
+                 "type": "text",
+                 "class": "row-go",
+                 "text": ">"
+                }
+               ],
+               "onClick": [
+                {
+                 "set": {
+                  "detailIndex": "{idx}"
+                 }
+                },
+                {
+                 "navigate": "detail"
+                }
+               ]
+              },
+              "visibleIf": "$hasParty"
+             },
+             {
+              "type": "box",
+              "class": "empty",
+              "children": [
+               {
+                "type": "text",
+                "class": "empty-t",
+                "text": "NO POKÉMON YET"
+               },
+               {
+                "type": "text",
+                "class": "empty-s",
+                "text": "YOUR TEAM SHOWS UP HERE ONCE YOU HAVE ONE"
+               }
+              ],
+              "visibleIf": "$noParty"
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "bar",
+          "children": [
+           {
+            "type": "button",
+            "class": "bar-btn bar-l",
+            "onClick": [
+             {
+              "navigate": "diag"
+             }
+            ],
+            "children": [
+             {
+              "type": "image",
+              "class": "chev",
+              "src": "asset:ui/chev-l.png"
+             },
+             {
+              "type": "text",
+              "class": "bar-label",
+              "text": "DIAG"
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "bar-mid",
+            "children": [
+             {
+              "type": "text",
+              "class": "bar-title",
+              "text": "POKÉMON"
+             }
+            ]
+           },
+           {
+            "type": "button",
+            "class": "bar-btn bar-r",
+            "onClick": [
+             {
+              "navigate": "bag"
+             }
+            ],
+            "children": [
+             {
+              "type": "text",
+              "class": "bar-label",
+              "text": "BAG"
+             },
+             {
+              "type": "image",
+              "class": "chev",
+              "src": "asset:ui/chev-r.png"
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "name": "detail",
+       "child": {
+        "type": "box",
+        "class": "page page-detail",
+        "children": [
+         {
+          "type": "box",
+          "class": "hdr",
+          "children": [
+           {
+            "type": "box",
+            "class": "hdr-title",
+            "children": [
+             {
+              "type": "text",
+              "class": "hdr-name",
+              "text": "SUMMARY"
+             },
+             {
+              "type": "box",
+              "class": "hdr-dots",
+              "children": [
+               {
+                "type": "box",
+                "class": "dot on",
+                "children": []
+               },
+               {
+                "type": "box",
+                "class": "dot",
+                "children": []
+               },
+               {
+                "type": "box",
+                "class": "dot",
+                "children": []
+               },
+               {
+                "type": "box",
+                "class": "dot",
+                "children": []
+               },
+               {
+                "type": "box",
+                "class": "dot",
+                "children": []
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "hdr-tail",
+            "children": [
+             {
+              "type": "box",
+              "class": "hstat",
+              "children": [
+               {
+                "type": "image",
+                "class": "hicon",
+                "src": "asset:ui/clock.png"
+               },
+               {
+                "type": "text",
+                "class": "hval",
+                "text": "{time}"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "hstat",
+              "children": [
+               {
+                "type": "image",
+                "class": "hicon",
+                "src": "asset:ui/coin.png"
+               },
+               {
+                "type": "text",
+                "class": "hval",
+                "text": "{money}"
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "detail-body",
+          "children": [
+           {
+            "type": "box",
+            "class": "detail-top",
+            "children": [
+             {
+              "type": "box",
+              "class": "portrait",
+              "children": [
+               {
+                "type": "image",
+                "class": "sprite-xl",
+                "src": "$detail.sprite"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "detail-id",
+              "children": [
+               {
+                "type": "box",
+                "class": "name-row",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "mon-name big",
+                  "text": "{detail.name}"
+                 },
+                 {
+                  "type": "text",
+                  "class": "lv",
+                  "text": "Lv{detail.level}"
+                 },
+                 {
+                  "type": "image",
+                  "class": "gender",
+                  "src": "asset:ui/male.png",
+                  "visibleIf": "$detail.male"
+                 },
+                 {
+                  "type": "image",
+                  "class": "gender",
+                  "src": "asset:ui/female.png",
+                  "visibleIf": "$detail.female"
+                 },
+                 {
+                  "type": "box",
+                  "class": "status",
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "status-text",
+                    "text": "{detail.status}"
+                   }
+                  ],
+                  "visibleIf": "$detail.hasStatus"
+                 }
+                ]
+               },
+               {
+                "type": "box",
+                "class": "name-row",
+                "children": [
+                 {
+                  "type": "list",
+                  "class": "type-row",
+                  "items": "$detail.types",
+                  "template": {
+                   "type": "box",
+                   "class": "tchip",
+                   "children": [
+                    {
+                     "type": "text",
+                     "class": "tchip-text",
+                     "text": "{label}"
+                    }
+                   ],
+                   "bindStyle": {
+                    "--c": "{color}"
+                   }
+                  }
+                 },
+                 {
+                  "type": "box",
+                  "class": "grow",
+                  "children": []
+                 },
+                 {
+                  "type": "text",
+                  "class": "dexno",
+                  "text": "No.{detail.dexno}"
+                 }
+                ]
+               },
+               {
+                "type": "box",
+                "class": "name-row",
+                "children": [
+                 {
+                  "type": "bar",
+                  "class": "hp",
+                  "value": "$detail.hpPct",
+                  "max": 1,
+                  "classIf": {
+                   "mid": "$detail.hpMid",
+                   "low": "$detail.hpLow"
+                  }
+                 },
+                 {
+                  "type": "text",
+                  "class": "hp-num",
+                  "text": "{detail.hpText}"
+                 }
+                ]
+               },
+               {
+                "type": "box",
+                "class": "name-row",
+                "children": [
+                 {
+                  "type": "box",
+                  "class": "chip chip-sea",
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "chip-text",
+                    "text": "ABILITY {detail.ability}"
+                   }
+                  ]
+                 },
+                 {
+                  "type": "box",
+                  "class": "chip chip-cream",
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "chip-text",
+                    "text": "{detail.nature}"
+                   }
+                  ]
+                 },
+                 {
+                  "type": "box",
+                  "class": "chip chip-cream",
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "chip-text",
+                    "text": "ITEM {detail.heldItem}"
+                   }
+                  ]
+                 },
+                 {
+                  "type": "box",
+                  "class": "grow",
+                  "children": []
+                 },
+                 {
+                  "type": "text",
+                  "class": "foot-dim",
+                  "text": "{detail.height} {detail.weight}"
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "detail-cols",
+            "children": [
+             {
+              "type": "box",
+              "class": "win stat-win",
+              "children": [
+               {
+                "type": "box",
+                "class": "wtop",
+                "children": [
+                 {
+                  "type": "box",
+                  "class": "wtab",
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "wtab-text",
+                    "text": "STATS"
+                   }
+                  ]
+                 }
+                ]
+               },
+               {
+                "type": "box",
+                "class": "wbody",
+                "children": [
+                 {
+                  "type": "list",
+                  "class": "stat-list",
+                  "items": "$detail.stats",
+                  "template": {
+                   "type": "box",
+                   "class": "stat-row",
+                   "children": [
+                    {
+                     "type": "text",
+                     "class": "stat-k",
+                     "text": "{label}"
+                    },
+                    {
+                     "type": "bar",
+                     "class": "stat-bar",
+                     "value": "$pct",
+                     "max": 1,
+                     "classIf": {
+                      "low": "$low"
+                     }
+                    },
+                    {
+                     "type": "text",
+                     "class": "stat-v",
+                     "text": "{value}"
+                    },
+                    {
+                     "type": "text",
+                     "class": "stat-ev",
+                     "text": "{ev}"
+                    }
+                   ]
+                  }
+                 },
+                 {
+                  "type": "text",
+                  "class": "dex-text",
+                  "text": "{detail.dexText}"
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "win move-win",
+              "children": [
+               {
+                "type": "box",
+                "class": "wtop",
+                "children": [
+                 {
+                  "type": "box",
+                  "class": "wtab",
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "wtab-text",
+                    "text": "MOVES"
+                   }
+                  ]
+                 }
+                ]
+               },
+               {
+                "type": "box",
+                "class": "wbody",
+                "children": [
+                 {
+                  "type": "list",
+                  "class": "move-list",
+                  "items": "$detail.moves",
+                  "template": {
+                   "type": "box",
+                   "class": "move-row",
+                   "children": [
+                    {
+                     "type": "box",
+                     "class": "tchip wide",
+                     "children": [
+                      {
+                       "type": "text",
+                       "class": "tchip-text",
+                       "text": "{label}"
+                      }
+                     ],
+                     "bindStyle": {
+                      "--c": "{color}"
+                     }
+                    },
+                    {
+                     "type": "box",
+                     "class": "move-main",
+                     "children": [
+                      {
+                       "type": "box",
+                       "class": "name-row",
+                       "children": [
+                        {
+                         "type": "text",
+                         "class": "move-name",
+                         "text": "{name}"
+                        },
+                        {
+                         "type": "box",
+                         "class": "grow",
+                         "children": []
+                        },
+                        {
+                         "type": "text",
+                         "class": "move-x",
+                         "text": "{power}/{acc}"
+                        }
+                       ]
+                      },
+                      {
+                       "type": "box",
+                       "class": "name-row",
+                       "children": [
+                        {
+                         "type": "bar",
+                         "class": "pp-bar",
+                         "value": "$ppPct",
+                         "max": 1,
+                         "classIf": {
+                          "low": "$ppLow"
+                         }
+                        },
+                        {
+                         "type": "text",
+                         "class": "move-pp",
+                         "text": "{pp}"
+                        }
+                       ]
+                      }
+                     ]
+                    }
+                   ]
+                  }
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "bar",
+          "children": [
+           {
+            "type": "button",
+            "class": "bar-btn bar-full",
+            "onClick": "back",
+            "children": [
+             {
+              "type": "text",
+              "class": "bar-label",
+              "text": "BACK TO TEAM"
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "name": "bag",
+       "child": {
+        "type": "box",
+        "class": "page page-bag",
+        "children": [
+         {
+          "type": "box",
+          "class": "hdr",
+          "children": [
+           {
+            "type": "box",
+            "class": "hdr-title",
+            "children": [
+             {
+              "type": "text",
+              "class": "hdr-name",
+              "text": "BAG"
+             },
+             {
+              "type": "box",
+              "class": "hdr-dots",
+              "children": [
+               {
+                "type": "box",
+                "class": "dot",
+                "children": []
+               },
+               {
+                "type": "box",
+                "class": "dot on",
+                "children": []
+               },
+               {
+                "type": "box",
+                "class": "dot",
+                "children": []
+               },
+               {
+                "type": "box",
+                "class": "dot",
+                "children": []
+               },
+               {
+                "type": "box",
+                "class": "dot",
+                "children": []
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "hdr-tail",
+            "children": [
+             {
+              "type": "box",
+              "class": "hstat",
+              "children": [
+               {
+                "type": "image",
+                "class": "hicon",
+                "src": "asset:ui/clock.png"
+               },
+               {
+                "type": "text",
+                "class": "hval",
+                "text": "{time}"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "hstat",
+              "children": [
+               {
+                "type": "image",
+                "class": "hicon",
+                "src": "asset:ui/coin.png"
+               },
+               {
+                "type": "text",
+                "class": "hval",
+                "text": "{money}"
+               }
+              ]
+             },
+             {
+              "type": "list",
+              "class": "gems",
+              "items": "$badges",
+              "template": {
+               "type": "image",
+               "class": "gem",
+               "src": "$src",
+               "classIf": {
+                "off": "$locked"
+               }
+              }
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "bag-grid",
+          "children": [
+           {
+            "type": "box",
+            "class": "win list-win",
+            "children": [
+             {
+              "type": "box",
+              "class": "wtop",
+              "children": [
+               {
+                "type": "box",
+                "class": "wtab",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "wtab-text",
+                  "text": "POCKETS"
+                 }
+                ]
+               },
+               {
+                "type": "box",
+                "class": "grow",
+                "children": []
+               },
+               {
+                "type": "box",
+                "class": "chip chip-sea",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "chip-text",
+                  "text": "{bagTotal} TOTAL"
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "wbody",
+              "children": [
+               {
+                "type": "tabs",
+                "class": "pockets",
+                "tabs": [
+                 {
+                  "title": "ITEMS",
+                  "child": {
+                   "type": "list",
+                   "class": "item-list",
+                   "items": "$bag.items",
+                   "template": {
+                    "type": "box",
+                    "class": "item-row",
+                    "children": [
+                     {
+                      "type": "text",
+                      "class": "item-name",
+                      "text": "{name}"
+                     },
+                     {
+                      "type": "box",
+                      "class": "grow",
+                      "children": []
+                     },
+                     {
+                      "type": "text",
+                      "class": "item-count",
+                      "text": "{count}"
+                     }
+                    ],
+                    "onClick": [
+                     {
+                      "set": {
+                       "selName": "{name}",
+                       "selDesc": "{desc}",
+                       "selCount": "{count}"
+                      }
+                     }
+                    ]
+                   }
+                  }
+                 },
+                 {
+                  "title": "KEY",
+                  "child": {
+                   "type": "list",
+                   "class": "item-list",
+                   "items": "$bag.keyItems",
+                   "template": {
+                    "type": "box",
+                    "class": "item-row",
+                    "children": [
+                     {
+                      "type": "text",
+                      "class": "item-name",
+                      "text": "{name}"
+                     },
+                     {
+                      "type": "box",
+                      "class": "grow",
+                      "children": []
+                     },
+                     {
+                      "type": "text",
+                      "class": "item-count",
+                      "text": "{count}"
+                     }
+                    ],
+                    "onClick": [
+                     {
+                      "set": {
+                       "selName": "{name}",
+                       "selDesc": "{desc}",
+                       "selCount": "{count}"
+                      }
+                     }
+                    ]
+                   }
+                  }
+                 },
+                 {
+                  "title": "BALLS",
+                  "child": {
+                   "type": "list",
+                   "class": "item-list",
+                   "items": "$bag.balls",
+                   "template": {
+                    "type": "box",
+                    "class": "item-row",
+                    "children": [
+                     {
+                      "type": "text",
+                      "class": "item-name",
+                      "text": "{name}"
+                     },
+                     {
+                      "type": "box",
+                      "class": "grow",
+                      "children": []
+                     },
+                     {
+                      "type": "text",
+                      "class": "item-count",
+                      "text": "{count}"
+                     }
+                    ],
+                    "onClick": [
+                     {
+                      "set": {
+                       "selName": "{name}",
+                       "selDesc": "{desc}",
+                       "selCount": "{count}"
+                      }
+                     }
+                    ]
+                   }
+                  }
+                 },
+                 {
+                  "title": "TM/HM",
+                  "child": {
+                   "type": "list",
+                   "class": "item-list",
+                   "items": "$bag.tmHm",
+                   "template": {
+                    "type": "box",
+                    "class": "item-row",
+                    "children": [
+                     {
+                      "type": "text",
+                      "class": "item-name",
+                      "text": "{name}"
+                     },
+                     {
+                      "type": "box",
+                      "class": "grow",
+                      "children": []
+                     },
+                     {
+                      "type": "text",
+                      "class": "item-count",
+                      "text": "{count}"
+                     }
+                    ],
+                    "onClick": [
+                     {
+                      "set": {
+                       "selName": "{name}",
+                       "selDesc": "{desc}",
+                       "selCount": "{count}"
+                      }
+                     }
+                    ]
+                   }
+                  }
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "win insp-win",
+            "children": [
+             {
+              "type": "box",
+              "class": "wtop",
+              "children": [
+               {
+                "type": "box",
+                "class": "wtab",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "wtab-text",
+                  "text": "ITEM"
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "wbody",
+              "children": [
+               {
+                "type": "box",
+                "class": "insp-body",
+                "children": [
+                 {
+                  "type": "box",
+                  "class": "name-row",
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "insp-name",
+                    "text": "{bag.sel.name}"
+                   },
+                   {
+                    "type": "box",
+                    "class": "grow",
+                    "children": []
+                   },
+                   {
+                    "type": "text",
+                    "class": "item-count",
+                    "text": "{bag.sel.count}"
+                   }
+                  ]
+                 },
+                 {
+                  "type": "box",
+                  "class": "insp-desc",
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "insp-text",
+                    "text": "{bag.sel.desc}"
+                   }
+                  ]
+                 }
+                ],
+                "visibleIf": "$bag.hasSel"
+               },
+               {
+                "type": "box",
+                "class": "empty",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "empty-t",
+                  "text": "TAP AN ITEM"
+                 },
+                 {
+                  "type": "text",
+                  "class": "empty-s",
+                  "text": "{bag.used} OF {bag.capacity} SLOTS USED"
+                 }
+                ],
+                "visibleIf": "$bag.noSel"
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "bar",
+          "children": [
+           {
+            "type": "button",
+            "class": "bar-btn bar-l",
+            "onClick": [
+             {
+              "navigate": "party"
+             }
+            ],
+            "children": [
+             {
+              "type": "image",
+              "class": "chev",
+              "src": "asset:ui/chev-l.png"
+             },
+             {
+              "type": "text",
+              "class": "bar-label",
+              "text": "POKÉMON"
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "bar-mid",
+            "children": [
+             {
+              "type": "text",
+              "class": "bar-title",
+              "text": "BAG"
+             }
+            ]
+           },
+           {
+            "type": "button",
+            "class": "bar-btn bar-r",
+            "onClick": [
+             {
+              "navigate": "dex"
+             }
+            ],
+            "children": [
+             {
+              "type": "text",
+              "class": "bar-label",
+              "text": "SPECIES"
+             },
+             {
+              "type": "image",
+              "class": "chev",
+              "src": "asset:ui/chev-r.png"
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "name": "dex",
+       "child": {
+        "type": "box",
+        "class": "page page-dex",
+        "children": [
+         {
+          "type": "box",
+          "class": "hdr",
+          "children": [
+           {
+            "type": "box",
+            "class": "hdr-title",
+            "children": [
+             {
+              "type": "text",
+              "class": "hdr-name",
+              "text": "SPECIES"
+             },
+             {
+              "type": "box",
+              "class": "hdr-dots",
+              "children": [
+               {
+                "type": "box",
+                "class": "dot",
+                "children": []
+               },
+               {
+                "type": "box",
+                "class": "dot",
+                "children": []
+               },
+               {
+                "type": "box",
+                "class": "dot on",
+                "children": []
+               },
+               {
+                "type": "box",
+                "class": "dot",
+                "children": []
+               },
+               {
+                "type": "box",
+                "class": "dot",
+                "children": []
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "hdr-tail",
+            "children": [
+             {
+              "type": "box",
+              "class": "hstat",
+              "children": [
+               {
+                "type": "image",
+                "class": "hicon",
+                "src": "asset:ui/clock.png"
+               },
+               {
+                "type": "text",
+                "class": "hval",
+                "text": "{time}"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "hstat",
+              "children": [
+               {
+                "type": "image",
+                "class": "hicon",
+                "src": "asset:ui/coin.png"
+               },
+               {
+                "type": "text",
+                "class": "hval",
+                "text": "{money}"
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "dex-grid",
+          "children": [
+           {
+            "type": "box",
+            "class": "win dex-list-win",
+            "children": [
+             {
+              "type": "box",
+              "class": "wtop",
+              "children": [
+               {
+                "type": "box",
+                "class": "wtab",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "wtab-text",
+                  "text": "SEAGLASS DEX"
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "wbody",
+              "children": [
+               {
+                "type": "box",
+                "class": "pager",
+                "children": [
+                 {
+                  "type": "button",
+                  "class": "pg-btn",
+                  "onClick": [
+                   {
+                    "call": "dexPrev"
+                   }
+                  ],
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "pg-t",
+                    "text": "<"
+                   }
+                  ]
+                 },
+                 {
+                  "type": "text",
+                  "class": "pager-range",
+                  "text": "{dex.range}"
+                 },
+                 {
+                  "type": "button",
+                  "class": "pg-btn",
+                  "onClick": [
+                   {
+                    "call": "dexNext"
+                   }
+                  ],
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "pg-t",
+                    "text": ">"
+                   }
+                  ]
+                 }
+                ]
+               },
+               {
+                "type": "list",
+                "class": "dex-list",
+                "items": "$dex.entries",
+                "template": {
+                 "type": "box",
+                 "class": "dex-row",
+                 "children": [
+                  {
+                   "type": "box",
+                   "class": "slot s",
+                   "children": [
+                    {
+                     "type": "image",
+                     "class": "sprite",
+                     "src": "$sprite"
+                    }
+                   ]
+                  },
+                  {
+                   "type": "text",
+                   "class": "dexno",
+                   "text": "{no}"
+                  },
+                  {
+                   "type": "text",
+                   "class": "dex-name",
+                   "text": "{name}"
+                  },
+                  {
+                   "type": "box",
+                   "class": "grow",
+                   "children": []
+                  },
+                  {
+                   "type": "text",
+                   "class": "row-go",
+                   "text": ">"
+                  }
+                 ],
+                 "onClick": [
+                  {
+                   "set": {
+                    "dexSel": "{species}"
+                   }
+                  }
+                 ]
+                }
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "win dex-info-win",
+            "children": [
+             {
+              "type": "box",
+              "class": "wtop",
+              "children": [
+               {
+                "type": "box",
+                "class": "wtab",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "wtab-text",
+                  "text": "ENTRY"
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "wbody",
+              "children": [
+               {
+                "type": "box",
+                "class": "dex-head",
+                "children": [
+                 {
+                  "type": "box",
+                  "class": "slot",
+                  "children": [
+                   {
+                    "type": "image",
+                    "class": "sprite-xl",
+                    "src": "$dex.sel.sprite"
+                   }
+                  ]
+                 },
+                 {
+                  "type": "box",
+                  "class": "dex-head-t",
+                  "children": [
+                   {
+                    "type": "box",
+                    "class": "name-row",
+                    "children": [
+                     {
+                      "type": "text",
+                      "class": "dexno",
+                      "text": "No.{dex.sel.no}"
+                     },
+                     {
+                      "type": "text",
+                      "class": "mon-name",
+                      "text": "{dex.sel.name}"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "box",
+                    "class": "name-row",
+                    "children": [
+                     {
+                      "type": "list",
+                      "class": "type-row",
+                      "items": "$dex.sel.types",
+                      "template": {
+                       "type": "box",
+                       "class": "tchip",
+                       "children": [
+                        {
+                         "type": "text",
+                         "class": "tchip-text",
+                         "text": "{label}"
+                        }
+                       ],
+                       "bindStyle": {
+                        "--c": "{color}"
+                       }
+                      }
+                     }
+                    ]
+                   },
+                   {
+                    "type": "text",
+                    "class": "dex-cat",
+                    "text": "{dex.sel.category}"
+                   },
+                   {
+                    "type": "text",
+                    "class": "dex-dim",
+                    "text": "{dex.sel.height}  {dex.sel.weight}  BST {dex.sel.total}"
+                   }
+                  ]
+                 }
+                ]
+               },
+               {
+                "type": "box",
+                "class": "dex-stats",
+                "children": [
+                 {
+                  "type": "list",
+                  "class": "stat-list mini",
+                  "items": "$dex.sel.stats",
+                  "template": {
+                   "type": "box",
+                   "class": "stat-row",
+                   "children": [
+                    {
+                     "type": "text",
+                     "class": "stat-k",
+                     "text": "{label}"
+                    },
+                    {
+                     "type": "bar",
+                     "class": "stat-bar",
+                     "value": "$pct",
+                     "max": 1
+                    },
+                    {
+                     "type": "text",
+                     "class": "stat-v",
+                     "text": "{value}"
+                    }
+                   ]
+                  }
+                 }
+                ]
+               },
+               {
+                "type": "text",
+                "class": "dex-abil",
+                "text": "ABILITY: {dex.sel.abilities}"
+               },
+               {
+                "type": "box",
+                "class": "dex-desc",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "dex-text",
+                  "text": "{dex.sel.desc}"
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "bar",
+          "children": [
+           {
+            "type": "button",
+            "class": "bar-btn bar-l",
+            "onClick": [
+             {
+              "navigate": "bag"
+             }
+            ],
+            "children": [
+             {
+              "type": "image",
+              "class": "chev",
+              "src": "asset:ui/chev-l.png"
+             },
+             {
+              "type": "text",
+              "class": "bar-label",
+              "text": "BAG"
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "bar-mid",
+            "children": [
+             {
+              "type": "text",
+              "class": "bar-title",
+              "text": "SPECIES"
+             }
+            ]
+           },
+           {
+            "type": "button",
+            "class": "bar-btn bar-r",
+            "onClick": [
+             {
+              "navigate": "card"
+             }
+            ],
+            "children": [
+             {
+              "type": "text",
+              "class": "bar-label",
+              "text": "TRAINER"
+             },
+             {
+              "type": "image",
+              "class": "chev",
+              "src": "asset:ui/chev-r.png"
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "name": "card",
+       "child": {
+        "type": "box",
+        "class": "page page-card",
+        "children": [
+         {
+          "type": "box",
+          "class": "hdr",
+          "children": [
+           {
+            "type": "box",
+            "class": "hdr-title",
+            "children": [
+             {
+              "type": "text",
+              "class": "hdr-name",
+              "text": "TRAINER"
+             },
+             {
+              "type": "box",
+              "class": "hdr-dots",
+              "children": [
+               {
+                "type": "box",
+                "class": "dot",
+                "children": []
+               },
+               {
+                "type": "box",
+                "class": "dot",
+                "children": []
+               },
+               {
+                "type": "box",
+                "class": "dot",
+                "children": []
+               },
+               {
+                "type": "box",
+                "class": "dot on",
+                "children": []
+               },
+               {
+                "type": "box",
+                "class": "dot",
+                "children": []
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "hdr-tail",
+            "children": [
+             {
+              "type": "box",
+              "class": "hstat",
+              "children": [
+               {
+                "type": "image",
+                "class": "hicon",
+                "src": "asset:ui/clock.png"
+               },
+               {
+                "type": "text",
+                "class": "hval",
+                "text": "{time}"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "hstat",
+              "children": [
+               {
+                "type": "image",
+                "class": "hicon",
+                "src": "asset:ui/coin.png"
+               },
+               {
+                "type": "text",
+                "class": "hval",
+                "text": "{money}"
+               }
+              ]
+             },
+             {
+              "type": "list",
+              "class": "gems",
+              "items": "$badges",
+              "template": {
+               "type": "image",
+               "class": "gem",
+               "src": "$src",
+               "classIf": {
+                "off": "$locked"
+               }
+              }
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "card-grid",
+          "children": [
+           {
+            "type": "box",
+            "class": "win id-win",
+            "children": [
+             {
+              "type": "box",
+              "class": "wtop",
+              "children": [
+               {
+                "type": "box",
+                "class": "wtab",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "wtab-text",
+                  "text": "TRAINER CARD"
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "wbody",
+              "children": [
+               {
+                "type": "box",
+                "class": "name-row",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "mon-name big",
+                  "text": "{trainer.name}"
+                 },
+                 {
+                  "type": "image",
+                  "class": "gender",
+                  "src": "asset:ui/male.png",
+                  "visibleIf": "$trainer.male"
+                 },
+                 {
+                  "type": "image",
+                  "class": "gender",
+                  "src": "asset:ui/female.png",
+                  "visibleIf": "$trainer.female"
+                 }
+                ]
+               },
+               {
+                "type": "box",
+                "class": "id-rows",
+                "children": [
+                 {
+                  "type": "box",
+                  "class": "irow",
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "ikey",
+                    "text": "ID No."
+                   },
+                   {
+                    "type": "box",
+                    "class": "grow",
+                    "children": []
+                   },
+                   {
+                    "type": "text",
+                    "class": "ival",
+                    "text": "{trainer.id}"
+                   }
+                  ]
+                 },
+                 {
+                  "type": "box",
+                  "class": "irow",
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "ikey",
+                    "text": "MONEY"
+                   },
+                   {
+                    "type": "box",
+                    "class": "grow",
+                    "children": []
+                   },
+                   {
+                    "type": "text",
+                    "class": "ival",
+                    "text": "¥{money}"
+                   }
+                  ]
+                 },
+                 {
+                  "type": "box",
+                  "class": "irow",
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "ikey",
+                    "text": "COINS"
+                   },
+                   {
+                    "type": "box",
+                    "class": "grow",
+                    "children": []
+                   },
+                   {
+                    "type": "text",
+                    "class": "ival",
+                    "text": "{coins}"
+                   }
+                  ]
+                 },
+                 {
+                  "type": "box",
+                  "class": "irow",
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "ikey",
+                    "text": "PLAY TIME"
+                   },
+                   {
+                    "type": "box",
+                    "class": "grow",
+                    "children": []
+                   },
+                   {
+                    "type": "text",
+                    "class": "ival",
+                    "text": "{time}"
+                   }
+                  ]
+                 },
+                 {
+                  "type": "box",
+                  "class": "irow",
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "ikey",
+                    "text": "TEAM"
+                   },
+                   {
+                    "type": "box",
+                    "class": "grow",
+                    "children": []
+                   },
+                   {
+                    "type": "text",
+                    "class": "ival",
+                    "text": "{partyCount}/{partyMax}"
+                   }
+                  ]
+                 },
+                 {
+                  "type": "box",
+                  "class": "irow",
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "ikey",
+                    "text": "BAG"
+                   },
+                   {
+                    "type": "box",
+                    "class": "grow",
+                    "children": []
+                   },
+                   {
+                    "type": "text",
+                    "class": "ival",
+                    "text": "{bag.used}/{bag.capacity}"
+                   }
+                  ]
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "win badge-win",
+            "children": [
+             {
+              "type": "box",
+              "class": "wtop",
+              "children": [
+               {
+                "type": "box",
+                "class": "wtab",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "wtab-text",
+                  "text": "BADGES"
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "wbody",
+              "children": [
+               {
+                "type": "list",
+                "class": "badge-grid",
+                "items": "$badges",
+                "template": {
+                 "type": "box",
+                 "class": "badge",
+                 "children": [
+                  {
+                   "type": "image",
+                   "class": "badge-img",
+                   "src": "$src"
+                  }
+                 ],
+                 "classIf": {
+                  "locked": "$locked"
+                 }
+                }
+               },
+               {
+                "type": "box",
+                "class": "name-row",
+                "children": [
+                 {
+                  "type": "text",
+                  "class": "badge-k",
+                  "text": "EARNED"
+                 },
+                 {
+                  "type": "box",
+                  "class": "grow",
+                  "children": []
+                 },
+                 {
+                  "type": "text",
+                  "class": "badge-v",
+                  "text": "{badgeCount}/8"
+                 }
+                ]
+               },
+               {
+                "type": "box",
+                "class": "badge-rule",
+                "children": []
+               },
+               {
+                "type": "text",
+                "class": "badge-note",
+                "text": "BADGES COME FROM THE GAME'S OWN FLAG BITS"
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "win card-team-win",
+          "children": [
+           {
+            "type": "box",
+            "class": "wtop",
+            "children": [
+             {
+              "type": "box",
+              "class": "wtab",
+              "children": [
+               {
+                "type": "text",
+                "class": "wtab-text",
+                "text": "TEAM"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "wbody",
+            "children": [
+             {
+              "type": "list",
+              "class": "card-team",
+              "items": "$party",
+              "template": {
+               "type": "box",
+               "class": "mini-mon",
+               "children": [
+                {
+                 "type": "box",
+                 "class": "slot xs",
+                 "children": [
+                  {
+                   "type": "image",
+                   "class": "sprite",
+                   "src": "$sprite"
+                  }
+                 ]
+                },
+                {
+                 "type": "text",
+                 "class": "mini-name",
+                 "text": "{name}"
+                },
+                {
+                 "type": "text",
+                 "class": "mini-lv",
+                 "text": "L{level}"
+                }
+               ]
+              }
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "bar",
+          "children": [
+           {
+            "type": "button",
+            "class": "bar-btn bar-l",
+            "onClick": [
+             {
+              "navigate": "dex"
+             }
+            ],
+            "children": [
+             {
+              "type": "image",
+              "class": "chev",
+              "src": "asset:ui/chev-l.png"
+             },
+             {
+              "type": "text",
+              "class": "bar-label",
+              "text": "SPECIES"
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "bar-mid",
+            "children": [
+             {
+              "type": "text",
+              "class": "bar-title",
+              "text": "TRAINER"
+             }
+            ]
+           },
+           {
+            "type": "button",
+            "class": "bar-btn bar-r",
+            "onClick": [
+             {
+              "navigate": "diag"
+             }
+            ],
+            "children": [
+             {
+              "type": "text",
+              "class": "bar-label",
+              "text": "DIAG"
+             },
+             {
+              "type": "image",
+              "class": "chev",
+              "src": "asset:ui/chev-r.png"
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "name": "diag",
+       "child": {
+        "type": "box",
+        "class": "page page-diag",
+        "children": [
+         {
+          "type": "box",
+          "class": "hdr",
+          "children": [
+           {
+            "type": "box",
+            "class": "hdr-title",
+            "children": [
+             {
+              "type": "text",
+              "class": "hdr-name",
+              "text": "DIAGNOSTICS"
+             },
+             {
+              "type": "box",
+              "class": "hdr-dots",
+              "children": [
+               {
+                "type": "box",
+                "class": "dot",
+                "children": []
+               },
+               {
+                "type": "box",
+                "class": "dot",
+                "children": []
+               },
+               {
+                "type": "box",
+                "class": "dot",
+                "children": []
+               },
+               {
+                "type": "box",
+                "class": "dot",
+                "children": []
+               },
+               {
+                "type": "box",
+                "class": "dot on",
+                "children": []
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "hdr-tail",
+            "children": [
+             {
+              "type": "box",
+              "class": "hstat",
+              "children": [
+               {
+                "type": "image",
+                "class": "hicon",
+                "src": "asset:ui/clock.png"
+               },
+               {
+                "type": "text",
+                "class": "hval",
+                "text": "{time}"
+               }
+              ]
+             },
+             {
+              "type": "box",
+              "class": "hstat",
+              "children": [
+               {
+                "type": "image",
+                "class": "hicon",
+                "src": "asset:ui/coin.png"
+               },
+               {
+                "type": "text",
+                "class": "hval",
+                "text": "{money}"
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "win diag-win",
+          "children": [
+           {
+            "type": "box",
+            "class": "wtop",
+            "children": [
+             {
+              "type": "box",
+              "class": "wtab",
+              "children": [
+               {
+                "type": "text",
+                "class": "wtab-text",
+                "text": "WHAT THE PACK FOUND"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "wbody",
+            "children": [
+             {
+              "type": "list",
+              "class": "diag-list",
+              "items": "$diag.lines",
+              "template": {
+               "type": "box",
+               "class": "irow",
+               "children": [
+                {
+                 "type": "text",
+                 "class": "ikey",
+                 "text": "{k}"
+                },
+                {
+                 "type": "box",
+                 "class": "grow",
+                 "children": []
+                },
+                {
+                 "type": "text",
+                 "class": "ival",
+                 "text": "{v}"
+                }
+               ]
+              }
+             },
+             {
+              "type": "box",
+              "class": "diag-note",
+              "children": [
+               {
+                "type": "text",
+                "class": "diag-note-t",
+                "text": "IF A VALUE HERE LOOKS WRONG, SEND THIS PAGE TO THE PACK AUTHOR."
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "type": "box",
+          "class": "bar",
+          "children": [
+           {
+            "type": "button",
+            "class": "bar-btn bar-l",
+            "onClick": [
+             {
+              "navigate": "card"
+             }
+            ],
+            "children": [
+             {
+              "type": "image",
+              "class": "chev",
+              "src": "asset:ui/chev-l.png"
+             },
+             {
+              "type": "text",
+              "class": "bar-label",
+              "text": "TRAINER"
+             }
+            ]
+           },
+           {
+            "type": "box",
+            "class": "bar-mid",
+            "children": [
+             {
+              "type": "text",
+              "class": "bar-title",
+              "text": "DIAG"
+             }
+            ]
+           },
+           {
+            "type": "button",
+            "class": "bar-btn bar-r",
+            "onClick": [
+             {
+              "navigate": "party"
+             }
+            ],
+            "children": [
+             {
+              "type": "text",
+              "class": "bar-label",
+              "text": "POKÉMON"
+             },
+             {
+              "type": "image",
+              "class": "chev",
+              "src": "asset:ui/chev-r.png"
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      }
+     ]
+    }
+   ],
+   "visibleIf": "$ready"
+  }
+ ]
+}

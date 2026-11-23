@@ -1,0 +1,956 @@
+{
+  "partyCount": "6",
+  "detail": {
+    "stats": [
+      {
+        "ev": "18",
+        "base": "59",
+        "label": "HP",
+        "pct": 0.18,
+        "value": "54"
+      },
+      {
+        "ev": "16",
+        "base": "63",
+        "label": "ATTACK",
+        "pct": 0.15333333333333332,
+        "value": "46"
+      },
+      {
+        "ev": "0",
+        "base": "80",
+        "label": "DEFENSE",
+        "pct": 0.18333333333333332,
+        "value": "55"
+      },
+      {
+        "ev": "0",
+        "base": "80",
+        "label": "SP. ATK",
+        "pct": 0.17333333333333334,
+        "value": "52"
+      },
+      {
+        "ev": "0",
+        "base": "58",
+        "label": "SP. DEF",
+        "pct": 0.18,
+        "value": "54"
+      },
+      {
+        "ev": "0",
+        "base": "65",
+        "label": "SPEED",
+        "pct": 0.12666666666666668,
+        "value": "38"
+      }
+    ],
+    "hpLow": false,
+    "sprite": "preview/sprites/008.png",
+    "hpText": "54/78",
+    "hpHigh": true,
+    "level": "28",
+    "name": "Wartortle",
+    "types": [
+      {
+        "color": "#6890F0",
+        "label": "WATER"
+      }
+    ],
+    "weight": "22.5kg",
+    "hpMid": false,
+    "friendship": "166",
+    "dexText": "Its large tail is covered with rich thick fur that deepens in color with age. The scratches on its shell are evidence of this Pokémon's toughness in battle.",
+    "height": "1.0m",
+    "status": "",
+    "exp": "18569",
+    "heldItem": "-",
+    "nature": "QUIET",
+    "ability": "Torrent",
+    "female": true,
+    "dexno": "008",
+    "empty": false,
+    "hasStatus": false,
+    "hpPct": 0.6923076923076923,
+    "male": false,
+    "category": "TURTLE POKéMON",
+    "moves": [
+      {
+        "power": "28",
+        "ppLow": false,
+        "pp": "24/30",
+        "color": "#6890F0",
+        "ppPct": 0.8,
+        "label": "WATER",
+        "name": "Bubble",
+        "acc": "100"
+      },
+      {
+        "power": "60",
+        "ppLow": false,
+        "pp": "25/25",
+        "color": "#705848",
+        "ppPct": 1,
+        "label": "DARK",
+        "name": "Bite",
+        "acc": "100"
+      },
+      {
+        "power": "48",
+        "ppLow": false,
+        "pp": "40/40",
+        "color": "#A8A878",
+        "ppPct": 1,
+        "label": "NORMAL",
+        "name": "Rapid Spin",
+        "acc": "100"
+      },
+      {
+        "power": "--",
+        "ppLow": false,
+        "pp": "40/40",
+        "color": "#6890F0",
+        "ppPct": 1,
+        "label": "WATER",
+        "name": "Withdraw",
+        "acc": "--"
+      }
+    ]
+  },
+  "noParty": false,
+  "waitNote": "NO SAVE LOADED YET",
+  "hasParty": true,
+  "time": "17:50",
+  "team": {
+    "maxHp": "448",
+    "hpLow": false,
+    "avg": "23",
+    "hpPct": 0.9464285714285714,
+    "hpHigh": true,
+    "hp": "424",
+    "hpMid": false
+  },
+  "badges": [
+    {
+      "src": "asset:ui/badge1.png",
+      "locked": true
+    },
+    {
+      "src": "asset:ui/badge2.png",
+      "locked": true
+    },
+    {
+      "src": "asset:ui/badge3.png",
+      "locked": true
+    },
+    {
+      "src": "asset:ui/badge4.png",
+      "locked": true
+    },
+    {
+      "src": "asset:ui/badge5.png",
+      "locked": true
+    },
+    {
+      "src": "asset:ui/badge6.png",
+      "locked": true
+    },
+    {
+      "src": "asset:ui/badge7.png",
+      "locked": true
+    },
+    {
+      "src": "asset:ui/badge8.png",
+      "locked": true
+    }
+  ],
+  "trainer": {
+    "female": true,
+    "male": false,
+    "name": "Emerald",
+    "id": "21260"
+  },
+  "diag": {
+    "tables": "SPECIES, MOVES, ITEMS OK",
+    "sprite": "ROM",
+    "sb2": "02024000",
+    "lines": [
+      {
+        "v": "02025000",
+        "k": "SAVEBLOCK 1"
+      },
+      {
+        "v": "02024000",
+        "k": "SAVEBLOCK 2"
+      },
+      {
+        "v": "LIVE",
+        "k": "PARTY SOURCE"
+      },
+      {
+        "v": "02030000",
+        "k": "LIVE PARTY"
+      },
+      {
+        "v": "6/6",
+        "k": "PARTY"
+      },
+      {
+        "v": "79",
+        "k": "BAG SLOTS"
+      },
+      {
+        "v": "ROM",
+        "k": "SPRITES"
+      },
+      {
+        "v": "-",
+        "k": "SPRITE ERR"
+      },
+      {
+        "v": "0/8",
+        "k": "BADGES"
+      }
+    ],
+    "spriteError": "-",
+    "partyAddr": "02030000",
+    "rom": "BPEE / SEAGLASS v3.0",
+    "sb1": "02025000",
+    "money": "53224",
+    "partySource": "LIVE"
+  },
+  "badgeCount": "0",
+  "dex": {
+    "entries": [
+      {
+        "types": [
+          {
+            "color": "#78C850",
+            "label": "GRASS"
+          },
+          {
+            "color": "#A040A0",
+            "label": "POISON"
+          }
+        ],
+        "sprite": "preview/sprites/001.png",
+        "no": "001",
+        "name": "Bulbasaur",
+        "species": "1"
+      },
+      {
+        "types": [
+          {
+            "color": "#78C850",
+            "label": "GRASS"
+          },
+          {
+            "color": "#A040A0",
+            "label": "POISON"
+          }
+        ],
+        "sprite": "preview/sprites/002.png",
+        "no": "002",
+        "name": "Ivysaur",
+        "species": "2"
+      },
+      {
+        "types": [
+          {
+            "color": "#78C850",
+            "label": "GRASS"
+          },
+          {
+            "color": "#A040A0",
+            "label": "POISON"
+          }
+        ],
+        "sprite": "preview/sprites/003.png",
+        "no": "003",
+        "name": "Venusaur",
+        "species": "3"
+      },
+      {
+        "types": [
+          {
+            "color": "#F08030",
+            "label": "FIRE"
+          }
+        ],
+        "sprite": "preview/sprites/004.png",
+        "no": "004",
+        "name": "Charmander",
+        "species": "4"
+      },
+      {
+        "types": [
+          {
+            "color": "#F08030",
+            "label": "FIRE"
+          }
+        ],
+        "sprite": "preview/sprites/005.png",
+        "no": "005",
+        "name": "Charmeleon",
+        "species": "5"
+      },
+      {
+        "types": [
+          {
+            "color": "#F08030",
+            "label": "FIRE"
+          },
+          {
+            "color": "#A890F0",
+            "label": "FLYING"
+          }
+        ],
+        "sprite": "preview/sprites/006.png",
+        "no": "006",
+        "name": "Charizard",
+        "species": "6"
+      }
+    ],
+    "range": "001-006",
+    "sel": {
+      "stats": [
+        {
+          "label": "HP",
+          "pct": 0.3,
+          "value": "45"
+        },
+        {
+          "label": "ATTACK",
+          "pct": 0.32666666666666666,
+          "value": "49"
+        },
+        {
+          "label": "DEFENSE",
+          "pct": 0.32666666666666666,
+          "value": "49"
+        },
+        {
+          "label": "SP. ATK",
+          "pct": 0.43333333333333335,
+          "value": "65"
+        },
+        {
+          "label": "SP. DEF",
+          "pct": 0.3,
+          "value": "45"
+        },
+        {
+          "label": "SPEED",
+          "pct": 0.43333333333333335,
+          "value": "65"
+        }
+      ],
+      "sprite": "preview/sprites/001.png",
+      "desc": "Bulbasaur can be seen napping in bright sunlight. There is a seed on its back. By soaking up the sun's rays the seed grows progressively larger.",
+      "no": "001",
+      "name": "Bulbasaur",
+      "total": "318",
+      "types": [
+        {
+          "color": "#78C850",
+          "label": "GRASS"
+        },
+        {
+          "color": "#A040A0",
+          "label": "POISON"
+        }
+      ],
+      "height": "0.7m",
+      "weight": "6.9kg",
+      "category": "SEED POKéMON",
+      "abilities": "Overgrow / Chlorophyll"
+    }
+  },
+  "coins": "0",
+  "bagTotal": "189",
+  "waiting": false,
+  "ready": true,
+  "partyMax": "6",
+  "party": [
+    {
+      "hpLow": false,
+      "sprite": "preview/sprites/008.png",
+      "hpText": "54/78",
+      "hpHigh": true,
+      "species": "8",
+      "name": "Wartortle",
+      "idx": "1",
+      "types": [
+        {
+          "color": "#6890F0",
+          "label": "WATER"
+        }
+      ],
+      "hpMid": false,
+      "itemNone": true,
+      "female": true,
+      "heldItem": "-",
+      "status": "",
+      "hasStatus": false,
+      "hpPct": 0.6923076923076923,
+      "male": false,
+      "dexno": "008",
+      "level": "28"
+    },
+    {
+      "hpLow": false,
+      "sprite": "preview/sprites/279.png",
+      "hpText": "93/93",
+      "hpHigh": true,
+      "species": "279",
+      "name": "Pelipper",
+      "idx": "2",
+      "types": [
+        {
+          "color": "#6890F0",
+          "label": "WATER"
+        },
+        {
+          "color": "#A890F0",
+          "label": "FLYING"
+        }
+      ],
+      "hpMid": false,
+      "itemNone": true,
+      "female": true,
+      "heldItem": "-",
+      "status": "",
+      "hasStatus": false,
+      "hpPct": 1,
+      "male": false,
+      "dexno": "279",
+      "level": "30"
+    },
+    {
+      "hpLow": false,
+      "sprite": "preview/sprites/033.png",
+      "hpText": "85/85",
+      "hpHigh": true,
+      "species": "33",
+      "name": "Nidorino",
+      "idx": "3",
+      "types": [
+        {
+          "color": "#A040A0",
+          "label": "POISON"
+        }
+      ],
+      "hpMid": false,
+      "itemNone": true,
+      "female": false,
+      "heldItem": "-",
+      "status": "",
+      "hasStatus": false,
+      "hpPct": 1,
+      "male": true,
+      "dexno": "033",
+      "level": "30"
+    },
+    {
+      "hpLow": false,
+      "sprite": "preview/sprites/232.png",
+      "hpText": "100/100",
+      "hpHigh": true,
+      "species": "232",
+      "name": "Donphan",
+      "idx": "4",
+      "types": [
+        {
+          "color": "#E0C068",
+          "label": "GROUND"
+        }
+      ],
+      "hpMid": false,
+      "itemNone": true,
+      "female": true,
+      "heldItem": "-",
+      "status": "",
+      "hasStatus": false,
+      "hpPct": 1,
+      "male": false,
+      "dexno": "232",
+      "level": "27"
+    },
+    {
+      "hpLow": false,
+      "sprite": "preview/sprites/259.png",
+      "hpText": "79/79",
+      "hpHigh": true,
+      "species": "259",
+      "name": "Marshtomp",
+      "idx": "5",
+      "types": [
+        {
+          "color": "#6890F0",
+          "label": "WATER"
+        },
+        {
+          "color": "#E0C068",
+          "label": "GROUND"
+        }
+      ],
+      "hpMid": false,
+      "itemNone": true,
+      "female": false,
+      "heldItem": "-",
+      "status": "",
+      "hasStatus": false,
+      "hpPct": 1,
+      "male": true,
+      "dexno": "259",
+      "level": "27"
+    },
+    {
+      "hpLow": false,
+      "sprite": "preview/sprites/360.png",
+      "hpText": "13/13",
+      "hpHigh": true,
+      "species": "360",
+      "name": "Wynaut",
+      "idx": "6",
+      "types": [
+        {
+          "color": "#F85888",
+          "label": "PSYCHIC"
+        }
+      ],
+      "hpMid": false,
+      "itemNone": true,
+      "female": true,
+      "heldItem": "-",
+      "status": "",
+      "hasStatus": false,
+      "hpPct": 1,
+      "male": false,
+      "dexno": "360",
+      "level": "1"
+    }
+  ],
+  "money": "53,224",
+  "bag": {
+    "keyItems": [
+      {
+        "count": "",
+        "name": "Shiny Charm",
+        "desc": "A charm that will raise the chance of Shiny Pokémon."
+      },
+      {
+        "count": "",
+        "name": "Exp. Share",
+        "desc": "This device gives exp. to other party members."
+      },
+      {
+        "count": "",
+        "name": "Wailmer Pail",
+        "desc": "A tool used for watering Berries and plants."
+      },
+      {
+        "count": "",
+        "name": "Itemfinder",
+        "desc": "A device that signals an invisible item by sound."
+      },
+      {
+        "count": "",
+        "name": "Acro Bike",
+        "desc": "A folding bicycle capable of jumps and wheelies."
+      },
+      {
+        "count": "",
+        "name": "Powder Jar",
+        "desc": "Stores Berry Powder made using a Berry Crusher."
+      },
+      {
+        "count": "",
+        "name": "Coin Case",
+        "desc": "A case that holds up to 9999 Coins."
+      },
+      {
+        "count": "",
+        "name": " Case",
+        "desc": "A case for holding s made with a Berry Blender."
+      },
+      {
+        "count": "",
+        "name": "Good Rod",
+        "desc": "A decent fishing rod for catching wild Pokémon."
+      },
+      {
+        "count": "",
+        "name": "Soot Sack",
+        "desc": "A sack used to gather and hold volcanic ash."
+      },
+      {
+        "count": "",
+        "name": "Meteorite",
+        "desc": "A meteorite found at Meteor Falls."
+      }
+    ],
+    "items": [
+      {
+        "count": "x30",
+        "name": "Potion",
+        "desc": "Restores the HP of a Pokémon by 20 points."
+      },
+      {
+        "count": "x6",
+        "name": "Antidote",
+        "desc": "Heals a poisoned Pokémon."
+      },
+      {
+        "count": "x7",
+        "name": "Paralyze Heal",
+        "desc": "Heals a paralyzed Pokémon."
+      },
+      {
+        "count": "x6",
+        "name": "Awakening",
+        "desc": "Awakens a sleeping Pokémon."
+      },
+      {
+        "count": "x2",
+        "name": "Ether",
+        "desc": "Restores the PP of a selected move by 10."
+      },
+      {
+        "count": "x2",
+        "name": "Escape Rope",
+        "desc": "Use to escape instantly from a cave or a dungeon."
+      },
+      {
+        "count": "x10",
+        "name": "Super Potion",
+        "desc": "Restores the HP of a Pokémon by 60 points."
+      },
+      {
+        "count": "x1",
+        "name": "Quick Claw",
+        "desc": "A hold item that occasionally allows the first strike."
+      },
+      {
+        "count": "x2",
+        "name": "Repel",
+        "desc": "Repels weak wild Pokémon for 100 steps."
+      },
+      {
+        "count": "x1",
+        "name": "X Accuracy",
+        "desc": "Sharply raises move accuracy during one battle."
+      },
+      {
+        "count": "x1",
+        "name": "Tiny Mushroom",
+        "desc": "A plain mushroom that would sell at a cheap price."
+      },
+      {
+        "count": "x1",
+        "name": "X Attack",
+        "desc": "Sharply raises stat Attack during one battle."
+      },
+      {
+        "count": "x1",
+        "name": "X Sp. Atk",
+        "desc": "Sharply raises stat Sp. Atk during one battle."
+      },
+      {
+        "count": "x1",
+        "name": "Silk Scarf",
+        "desc": "A hold item that raises the power of Normal-type moves."
+      },
+      {
+        "count": "x2",
+        "name": "Pretty Feather",
+        "desc": "A beautiful yet plain feather that does nothing."
+      },
+      {
+        "count": "x1",
+        "name": "King's Rock",
+        "desc": "A hold item that may cause flinching when the foe is hit."
+      },
+      {
+        "count": "x1",
+        "name": "Everstone",
+        "desc": "A wondrous hold item that prevents evolution."
+      },
+      {
+        "count": "x1",
+        "name": "Miracle Seed",
+        "desc": "A hold item that raises the power of Grass-type moves."
+      },
+      {
+        "count": "x7",
+        "name": "Soda Pop",
+        "desc": "A fizzy soda drink that restores HP by 50 points."
+      },
+      {
+        "count": "x1",
+        "name": "Soft Sand",
+        "desc": "A hold item that raises the power of Ground-type moves."
+      },
+      {
+        "count": "x1",
+        "name": "Dire Hit",
+        "desc": "Raises the critical-hit ratio during one battle."
+      },
+      {
+        "count": "x1",
+        "name": "Orange Mail",
+        "desc": "A Zigzagoon-print Mail to be held by a Pokémon."
+      },
+      {
+        "count": "x1",
+        "name": "Rare Candy",
+        "desc": "Raises the level of a Pokémon by one."
+      },
+      {
+        "count": "x2",
+        "name": "PP Up",
+        "desc": "Raises the maximum PP of a selected move."
+      },
+      {
+        "count": "x1",
+        "name": "Guard Spec.",
+        "desc": "Prevents stat reduction when used in battle."
+      },
+      {
+        "count": "x2",
+        "name": "Full Heal",
+        "desc": "Heals all the status problems of one Pokémon."
+      },
+      {
+        "count": "x3",
+        "name": "Revive",
+        "desc": "Revives a fainted Pokémon with half its HP."
+      },
+      {
+        "count": "x2",
+        "name": "Elixir",
+        "desc": "Restores the PP of all moves by 10."
+      },
+      {
+        "count": "x1",
+        "name": "X Speed",
+        "desc": "Sharply raises stat Speed during one battle."
+      },
+      {
+        "count": "x1",
+        "name": "Metal Coat",
+        "desc": "A hold item that raises the power of Steel-type moves."
+      },
+      {
+        "count": "x1",
+        "name": "Black Glasses",
+        "desc": "A hold item that raises the power of Dark-type moves."
+      },
+      {
+        "count": "x1",
+        "name": "HP Up",
+        "desc": "Raises the base HP of one Pokémon."
+      },
+      {
+        "count": "x2",
+        "name": "Max Ether",
+        "desc": "Fully restores the PP of a selected move."
+      },
+      {
+        "count": "x1",
+        "name": "Heart Scale",
+        "desc": "A lovely scale. It is coveted by collectors."
+      },
+      {
+        "count": "x1",
+        "name": "Macho Brace",
+        "desc": "A hold item that promotes growth but reduces Speed."
+      },
+      {
+        "count": "x1",
+        "name": "Wave Mail",
+        "desc": "A Wailmer-print Mail to be held by a Pokémon."
+      },
+      {
+        "count": "x1",
+        "name": "Harbor Mail",
+        "desc": "A Wingull-print Mail to be held by a Pokémon."
+      },
+      {
+        "count": "x1",
+        "name": "Super Repel",
+        "desc": "Repels weak wild Pokémon for 200 steps."
+      },
+      {
+        "count": "x1",
+        "name": "Hyper Potion",
+        "desc": "Restores the HP of a Pokémon by 120 points."
+      },
+      {
+        "count": "x1",
+        "name": "Energy Powder",
+        "desc": "A bitter powder that restores HP by 60 points."
+      },
+      {
+        "count": "x1",
+        "name": "Linking Cord",
+        "desc": "A mysterious string that makes some Pokémon evolve."
+      },
+      {
+        "count": "x1",
+        "name": "Carbos",
+        "desc": "Raises the base Speed stat of one Pokémon."
+      },
+      {
+        "count": "x1",
+        "name": "Protein",
+        "desc": "Raises the base Attack stat of one Pokémon."
+      },
+      {
+        "count": "x1",
+        "name": "Moon Stone",
+        "desc": "Makes certain species of Pokémon evolve."
+      },
+      {
+        "count": "x1",
+        "name": "Lava Cookie",
+        "desc": "A local specialty that heals all status problems."
+      },
+      {
+        "count": "x1",
+        "name": "Wishing Star",
+        "desc": "Can be thrown into a Wishing Well for a surprise."
+      },
+      {
+        "count": "x1",
+        "name": "Magmarizer",
+        "desc": "Loved by a certain Pokémon. It's full of magma energy."
+      },
+      {
+        "count": "x1",
+        "name": "Ice Heal",
+        "desc": "Defrosts a frozen Pokémon."
+      },
+      {
+        "count": "x1",
+        "name": "Snowball",
+        "desc": "Raises Atk if its holder is hit by an Ice-type move."
+      }
+    ],
+    "first": {
+      "count": "x30",
+      "name": "Potion",
+      "desc": "Restores the HP of a Pokémon by 20 points."
+    },
+    "sel": {
+      "count": "",
+      "name": "",
+      "desc": ""
+    },
+    "total": 189,
+    "hasSel": false,
+    "noSel": true,
+    "used": 79,
+    "isEmpty": false,
+    "capacity": 186,
+    "tmHm": [
+      {
+        "count": "x1",
+        "name": "TM05",
+        "desc": "A savage roar that makes the foe flee  to end the battle."
+      },
+      {
+        "count": "x1",
+        "name": "TM08",
+        "desc": "Bulks up the body to boost both Attack  Defense."
+      },
+      {
+        "count": "x1",
+        "name": "TM09",
+        "desc": "Shoots 2 to 5 seeds in a row to strike the foe."
+      },
+      {
+        "count": "x1",
+        "name": "TM28",
+        "desc": "Digs underground the 1st turn then strikes next turn."
+      },
+      {
+        "count": "x1",
+        "name": "TM32",
+        "desc": "Creates illusory copies to enhance elusiveness."
+      },
+      {
+        "count": "x1",
+        "name": "TM34",
+        "desc": "Zaps the foe with a jolt of electricity that never misses."
+      },
+      {
+        "count": "x1",
+        "name": "TM39",
+        "desc": "Stops the foe from moving with rocks. May lower Speed."
+      },
+      {
+        "count": "x1",
+        "name": "TM43",
+        "desc": "Adds an effect to attack depending on the location."
+      },
+      {
+        "count": "x1",
+        "name": "TM46",
+        "desc": "While attacking it may steal the foe's held item."
+      },
+      {
+        "count": "x1",
+        "name": "TM47",
+        "desc": "Spreads hard- edged wings and slams into the foe."
+      },
+      {
+        "count": "x1",
+        "name": "HM01",
+        "desc": "Attacks the foe with sharp blades or claws."
+      },
+      {
+        "count": "x1",
+        "name": "HM04",
+        "desc": "Builds enormous power then slams the foe."
+      },
+      {
+        "count": "x1",
+        "name": "HM05",
+        "desc": "Looses a powerful blast of light that reduces accuracy."
+      },
+      {
+        "count": "x1",
+        "name": "HM06",
+        "desc": "A rock-crushingly tough attack that may lower Defense."
+      }
+    ],
+    "balls": [
+      {
+        "count": "x30",
+        "name": "Poké Ball",
+        "desc": "A tool used for catching wild Pokémon."
+      },
+      {
+        "count": "x21",
+        "name": "Great Ball",
+        "desc": "A good Ball with a higher catch rate than a Poké Ball."
+      },
+      {
+        "count": "x1",
+        "name": "Timer Ball",
+        "desc": "A Ball that gains power in battles taking many turns."
+      },
+      {
+        "count": "x3",
+        "name": "Premier Ball",
+        "desc": "A rare Ball made in commemoration of some event."
+      },
+      {
+        "count": "x1",
+        "name": "Repeat Ball",
+        "desc": "A Ball that works better on Pokémon caught before."
+      }
+    ]
+  }
+}

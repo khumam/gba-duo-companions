@@ -1316,5 +1316,50 @@
 			"canModifyGame": false,
 			"overview": "overview/summon-night-swordcraft-companion-overview.png"
 		}
+,
+		{
+			"id": "pokemon-emerald-seaglass-companion",
+			"title": "Pokémon Emerald Seaglass Companion",
+			"description": "Seaglass in its own GBC look: party, summary, a four-pocket bag, a 386-species dex browser and a trainer card. Reads the ROM and the save; nothing is written.",
+			"version": "0.1.0",
+			"author": "angry-dad",
+			"official": false,
+			"repo": "khumam/gba-duo-companions",
+			"path": "pokemon-emerald-seaglass-companion",
+			"tag": "v3.5.0",
+			"url": "https://github.com/khumam/gba-duo-companions/tree/main/pokemon-emerald-seaglass-companion",
+			"download": "https://github.com/khumam/gba-duo-companions/releases/download/v3.5.0/pokemon-emerald-seaglass-companion-0.1.0.zip",
+			"games": [
+				{
+					"title": "Pokémon Emerald Seaglass",
+					"region": "World",
+					"gameCode": "BPEE"
+				}
+			],
+			"design": "Pokémon Emerald Seaglass",
+			"pages": [
+				"Party",
+				"Summary",
+				"Bag",
+				"Dex",
+				"Trainer",
+				"Diag"
+			],
+			"tags": [
+				"pokemon",
+				"romhack",
+				"rpg",
+				"party",
+				"bag",
+				"pokedex",
+				"gbc",
+				"rom-graphics",
+				"community"
+			],
+			"minAppVersion": "0.1.3",
+			"recommendedAppVersion": "0.1.3",
+			"canModifyGame": false,
+			"overview": "overview/pokemon-emerald-seaglass-companion-overview.png"
+		}
 	]
 }
