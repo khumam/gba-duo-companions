@@ -137,7 +137,7 @@ function update(ui)
   local out = {
     ready = false, waiting = true,
     waitSub = "GBADUO COMPANION PACK",
-    navItems = page == "items", navMap = page == "map", navSeeds = page == "seeds", navRings = page == "rings", navStatus = page == "status",
+    navItems = page == "items", navMap = page == "map", navSeeds = page == "seeds", navRings = page == "rings", navStatus = page == "status", navOptions = page == "options",
   }
   if max < 12 or max > 64 or max % 4 ~= 0 or health > max then return out end
 
@@ -217,14 +217,14 @@ function update(ui)
   return out
 end
 
--- ---- Style and theme (the Clean style's Options page sets ui.style / ui.theme; the brick LOOK plate sets style = clean) ----
--- UI state is not remembered, so every launch starts as Brick / Present. The clean style also needs a few values the layout
+-- ---- Style and theme (both styles' Options pages set ui.style; the clean one also sets ui.theme) ----
+-- UI state is not remembered, so every launch starts as Clean / Present. The clean style also needs a few values the layout
 -- can't compute (a layout can't compare): the selection in each grid and the inspector's lines.
 local baseUpdate = update
 function update(ui)
   ui = ui or {}
   local out = baseUpdate(ui)
-  local clean = ui.style == "clean"
+  local clean = ui.style ~= "brick"
   out.styleBrick, out.styleClean = not clean, clean
   out.showBrick, out.showClean = out.ready == true and not clean, out.ready == true and clean
   out.themePast, out.themeNight = ui.theme == "past", ui.theme == "night"

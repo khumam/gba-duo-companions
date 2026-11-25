@@ -365,7 +365,9 @@ local function pageMap(out)
   local px, py = mem.u16(0x02000036), mem.u16(0x0200003A)
   local cx, cy = ox + px // 256, oy + (py + 255) // 256
   local on = (ox > 0 or oy > 0) and ox < 64 and oy < 42 and px < 4096 and py < 2048 and cx < 64 and cy < 42
-  out.me = { on = on, left = string.format("%.2fpx", (cx + 0.5) * CELLPX - 5 * 2.168), top = string.format("%.2fpx", (cy + 0.5) * CELLPX - 5 * 2.168) }
+  local mx0, my0, mx1, my1 = GM.bounds(MAPDATA)
+  on = on and cx >= mx0 and cx <= mx1 and cy >= my0 and cy <= my1   -- the drawn window is cropped to the rooms (gamemap.bounds)
+  out.me = { on = on, left = string.format("%.2fpx", (cx - mx0 + 0.5) * CELLPX - 5 * 2.168), top = string.format("%.2fpx", (cy - my0 + 0.5) * CELLPX - 5 * 2.168) }
   out.meText = on and string.format("%d,%d", cx, cy) or "--"
 end
 

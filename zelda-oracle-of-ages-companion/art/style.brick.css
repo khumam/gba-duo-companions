@@ -131,7 +131,7 @@ pages { width: 100%; height: 100%; }
 
 /* ---- nav: one upright brick slab per page on the pillars (three left, two right and the era plate) ---------------- */
 
-.tabs { align-items: center; gap: 6px; margin-top: 6px; }
+.tabs { align-items: center; gap: 3px; margin-top: 2px; }
 .vslab {
   position: relative;
   flex: none;
@@ -151,6 +151,7 @@ pages { width: 100%; height: 100%; }
 .vslab.on { background-image: url("assets/ui/brick-vslab-here.png"); }
 .vslab-label { font-size: 24px; line-height: 24px; color: var(--cream); text-shadow: 2px 2px 0 var(--dark); transform: rotate(-90deg); }
 .vslab.on .vslab-label { font-size: 26px; line-height: 26px; }
+.vslab.long .vslab-label, .vslab.long.on .vslab-label { font-size: 19px; line-height: 19px; }
 .plate-dark { background-image: url("assets/ui/brick-plate-dark.png"); gap: 0; }
 .era-plate-label { font-size: 15px; line-height: 14px; color: var(--peach); text-shadow: 1px 1px 0 var(--dark); }
 .era-plate-text { font-size: 17px; line-height: 17px; color: var(--cream); text-shadow: 1px 1px 0 var(--dark); }
@@ -245,3 +246,14 @@ pages { width: 100%; height: 100%; }
 .look .era-plate-label { font-size: 12px; line-height: 12px; }
 .look .era-plate-text { font-size: 14px; line-height: 14px; }
 .look:pressed { opacity: 0.75; }
+
+/* ---- OPTIONS: the style switch, two brick-rimmed choices ------------------------------------------------------------- */
+
+.body-options { gap: 10px; padding: 14px 16px; }
+.opt-desc { white-space: normal; font-size: 22px; line-height: 24px; color: var(--soft); }
+.opt-choices { flex-direction: row; gap: 12px; margin-top: 8px; }
+.opt-choice { flex: 1; height: 60px; align-items: center; justify-content: center; padding: 0; background-color: var(--cream); border: 3px solid var(--dark); border-radius: 0; }
+.opt-choice:pressed { transform: translate(1px, 1px); }
+.opt-choice.on { background-color: var(--pink); }
+.opt-choice-t { font-family: "Press"; font-size: 14px; color: var(--ink); }
+.opt-choice.on .opt-choice-t { color: var(--cream); text-shadow: 1px 1px 0 var(--dark); }

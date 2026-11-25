@@ -279,7 +279,7 @@ end
 local function pct(n) return math.floor(n * 1000 / MAP_TOTAL) end   -- tenths, truncated like the game
 
 local GM, MAPDATA = pack.require("gamemap"), pack.require("mapdata")
-local CELLPX = 6.9376   -- 4 game px x 4 device px, one font glyph per cell
+local CELLPX = 6.0704   -- 7/8 of the 6.9376 cell (14 device px) so the 60 cropped columns fit the frame; one font glyph per cell
 local EXPLORED = 0x0200008C   -- two blocks of 2560 bits: map columns 0-31, then 32-63; in each 64-bit row bits 0-31 = castle A, 32-63 = castle B
 local mapSig, mapBuilt = {}, {}
 local function pageMap(out, ui)
@@ -294,7 +294,9 @@ local function pageMap(out, ui)
   local pos = mem.u8(0x02000070)
   local cx, cy, cb = pos >> 1, mem.u8(0x02000071), pos & 1
   local on = cb == castle and cx >= 1 and cx <= 59 and cy >= 5 and cy <= 35
-  out.me = { on = on, left = string.format("%.2fpx", (cx + 0.5) * CELLPX - 5 * 2.168), top = string.format("%.2fpx", (cy + 0.5) * CELLPX - 5 * 2.168) }
+  local mx0, my0, mx1, my1 = GM.bounds(MAPDATA)
+  on = on and cx >= mx0 and cx <= mx1 and cy >= my0 and cy <= my1   -- the drawn window is cropped to the rooms (gamemap.bounds)
+  out.me = { on = on, left = string.format("%.2fpx", (cx - mx0 + 0.5) * CELLPX - 4 * 2.168), top = string.format("%.2fpx", (cy - my0 + 0.5) * CELLPX - 4 * 2.168) }
   out.meText = on and string.format("%d,%d", cx, cy) or "--"
   local na, nb = castleCount(0), castleCount(1)
   local a, b = pct(na), pct(nb)

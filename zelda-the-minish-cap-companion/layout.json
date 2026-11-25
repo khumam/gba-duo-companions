@@ -1469,7 +1469,7 @@
                                                   {
                                                     "type": "text",
                                                     "class": "opt-desc",
-                                                    "text": "Stone, or the flat clean look with its own themes. Starts as Stone at every launch."
+                                                    "text": "Stone, or the flat clean look with its own themes. Starts as Clean at every launch."
                                                   }
                                                 ]
                                               },
@@ -1930,11 +1930,6 @@
                                 "class": "c-tab c-on",
                                 "children": [
                                   {
-                                    "type": "text",
-                                    "class": "c-tab-label",
-                                    "text": "Map"
-                                  },
-                                  {
                                     "type": "image",
                                     "class": "c-tab-glyph",
                                     "src": "asset:ui/cg-map-on.png"
@@ -1956,14 +1951,14 @@
                                 ],
                                 "children": [
                                   {
-                                    "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
                                     "type": "image",
                                     "class": "c-tab-glyph",
                                     "src": "asset:ui/cg-items-off.png"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-line-space",
+                                    "children": []
                                   }
                                 ]
                               },
@@ -1977,14 +1972,14 @@
                                 ],
                                 "children": [
                                   {
-                                    "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
                                     "type": "image",
                                     "class": "c-tab-glyph",
                                     "src": "asset:ui/cg-kinstone-off.png"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-line-space",
+                                    "children": []
                                   },
                                   {
                                     "type": "box",
@@ -2004,14 +1999,14 @@
                                 ],
                                 "children": [
                                   {
-                                    "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
                                     "type": "image",
                                     "class": "c-tab-glyph",
                                     "src": "asset:ui/cg-quest-off.png"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-line-space",
+                                    "children": []
                                   }
                                 ]
                               },
@@ -2025,14 +2020,14 @@
                                 ],
                                 "children": [
                                   {
-                                    "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
                                     "type": "image",
                                     "class": "c-tab-glyph",
                                     "src": "asset:ui/cg-options-off.png"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-line-space",
+                                    "children": []
                                   }
                                 ]
                               }
@@ -2433,14 +2428,14 @@
                                 ],
                                 "children": [
                                   {
-                                    "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
                                     "type": "image",
                                     "class": "c-tab-glyph",
                                     "src": "asset:ui/cg-map-off.png"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-line-space",
+                                    "children": []
                                   }
                                 ]
                               },
@@ -2448,11 +2443,6 @@
                                 "type": "box",
                                 "class": "c-tab c-on",
                                 "children": [
-                                  {
-                                    "type": "text",
-                                    "class": "c-tab-label",
-                                    "text": "Gear"
-                                  },
                                   {
                                     "type": "image",
                                     "class": "c-tab-glyph",
@@ -2475,14 +2465,14 @@
                                 ],
                                 "children": [
                                   {
-                                    "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
                                     "type": "image",
                                     "class": "c-tab-glyph",
                                     "src": "asset:ui/cg-kinstone-off.png"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-line-space",
+                                    "children": []
                                   },
                                   {
                                     "type": "box",
@@ -2502,14 +2492,14 @@
                                 ],
                                 "children": [
                                   {
-                                    "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
                                     "type": "image",
                                     "class": "c-tab-glyph",
                                     "src": "asset:ui/cg-quest-off.png"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-line-space",
+                                    "children": []
                                   }
                                 ]
                               },
@@ -2523,14 +2513,14 @@
                                 ],
                                 "children": [
                                   {
-                                    "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
                                     "type": "image",
                                     "class": "c-tab-glyph",
                                     "src": "asset:ui/cg-options-off.png"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-line-space",
+                                    "children": []
                                   }
                                 ]
                               }
@@ -2959,14 +2949,14 @@
                                 ],
                                 "children": [
                                   {
-                                    "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
                                     "type": "image",
                                     "class": "c-tab-glyph",
                                     "src": "asset:ui/cg-map-off.png"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-line-space",
+                                    "children": []
                                   }
                                 ]
                               },
@@ -2980,14 +2970,14 @@
                                 ],
                                 "children": [
                                   {
-                                    "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
                                     "type": "image",
                                     "class": "c-tab-glyph",
                                     "src": "asset:ui/cg-items-off.png"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-line-space",
+                                    "children": []
                                   }
                                 ]
                               },
@@ -2995,11 +2985,6 @@
                                 "type": "box",
                                 "class": "c-tab c-on",
                                 "children": [
-                                  {
-                                    "type": "text",
-                                    "class": "c-tab-label",
-                                    "text": "Kinstones"
-                                  },
                                   {
                                     "type": "image",
                                     "class": "c-tab-glyph",
@@ -3022,14 +3007,14 @@
                                 ],
                                 "children": [
                                   {
-                                    "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
                                     "type": "image",
                                     "class": "c-tab-glyph",
                                     "src": "asset:ui/cg-quest-off.png"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-line-space",
+                                    "children": []
                                   }
                                 ]
                               },
@@ -3043,14 +3028,14 @@
                                 ],
                                 "children": [
                                   {
-                                    "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
                                     "type": "image",
                                     "class": "c-tab-glyph",
                                     "src": "asset:ui/cg-options-off.png"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-line-space",
+                                    "children": []
                                   }
                                 ]
                               }
@@ -3451,14 +3436,14 @@
                                 ],
                                 "children": [
                                   {
-                                    "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
                                     "type": "image",
                                     "class": "c-tab-glyph",
                                     "src": "asset:ui/cg-map-off.png"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-line-space",
+                                    "children": []
                                   }
                                 ]
                               },
@@ -3472,14 +3457,14 @@
                                 ],
                                 "children": [
                                   {
-                                    "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
                                     "type": "image",
                                     "class": "c-tab-glyph",
                                     "src": "asset:ui/cg-items-off.png"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-line-space",
+                                    "children": []
                                   }
                                 ]
                               },
@@ -3493,14 +3478,14 @@
                                 ],
                                 "children": [
                                   {
-                                    "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
                                     "type": "image",
                                     "class": "c-tab-glyph",
                                     "src": "asset:ui/cg-kinstone-off.png"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-line-space",
+                                    "children": []
                                   },
                                   {
                                     "type": "box",
@@ -3514,11 +3499,6 @@
                                 "type": "box",
                                 "class": "c-tab c-on",
                                 "children": [
-                                  {
-                                    "type": "text",
-                                    "class": "c-tab-label",
-                                    "text": "Quest"
-                                  },
                                   {
                                     "type": "image",
                                     "class": "c-tab-glyph",
@@ -3541,14 +3521,14 @@
                                 ],
                                 "children": [
                                   {
-                                    "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
                                     "type": "image",
                                     "class": "c-tab-glyph",
                                     "src": "asset:ui/cg-options-off.png"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-line-space",
+                                    "children": []
                                   }
                                 ]
                               }
@@ -3987,14 +3967,14 @@
                                 ],
                                 "children": [
                                   {
-                                    "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
                                     "type": "image",
                                     "class": "c-tab-glyph",
                                     "src": "asset:ui/cg-map-off.png"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-line-space",
+                                    "children": []
                                   }
                                 ]
                               },
@@ -4008,14 +3988,14 @@
                                 ],
                                 "children": [
                                   {
-                                    "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
                                     "type": "image",
                                     "class": "c-tab-glyph",
                                     "src": "asset:ui/cg-items-off.png"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-line-space",
+                                    "children": []
                                   }
                                 ]
                               },
@@ -4029,14 +4009,14 @@
                                 ],
                                 "children": [
                                   {
-                                    "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
                                     "type": "image",
                                     "class": "c-tab-glyph",
                                     "src": "asset:ui/cg-kinstone-off.png"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-line-space",
+                                    "children": []
                                   },
                                   {
                                     "type": "box",
@@ -4056,14 +4036,14 @@
                                 ],
                                 "children": [
                                   {
-                                    "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
                                     "type": "image",
                                     "class": "c-tab-glyph",
                                     "src": "asset:ui/cg-quest-off.png"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-line-space",
+                                    "children": []
                                   }
                                 ]
                               },
@@ -4071,11 +4051,6 @@
                                 "type": "box",
                                 "class": "c-tab c-on",
                                 "children": [
-                                  {
-                                    "type": "text",
-                                    "class": "c-tab-label",
-                                    "text": "Options"
-                                  },
                                   {
                                     "type": "image",
                                     "class": "c-tab-glyph",
@@ -4235,7 +4210,7 @@
                                       {
                                         "type": "text",
                                         "class": "c-opt-desc",
-                                        "text": "The look of this companion. Starts as Stone at every launch."
+                                        "text": "The look of this companion. Starts as Clean at every launch."
                                       }
                                     ]
                                   },

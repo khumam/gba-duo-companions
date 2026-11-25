@@ -154,7 +154,7 @@ bar > fill { border-radius: 0; transition: width 300ms; }
 
 /* ---- map --------------------------------------------------------------------------------------------------------------------- */
 .mapwin { flex: 1; min-height: 0; align-items: center; justify-content: center; background-color: #29007b; }
-.mapbox { width: 444px; height: 277.5px; position: relative; overflow: hidden; }
+.mapbox { width: 353.8176px; height: 249.7536px; flex-shrink: 0; position: relative; overflow: hidden; }
 .ml { position: absolute; left: 0; top: 0; gap: 0; }
 .mt { font-family: "Map"; font-size: 6.9376px; line-height: 6.9376px; height: 6.9376px; letter-spacing: 0; white-space: nowrap; }
 .m-fill .mt { color: #0000e6; }

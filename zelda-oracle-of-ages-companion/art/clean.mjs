@@ -22,8 +22,8 @@ export function buildClean(h) {
   ];
   const tab = ([name, label, src], on) =>
     on
-      ? box("tab on", [text("tab-label", label), box("tab-pic", [...brk(), img("tab-icon", src)])])
-      : button("tab", [{ navigate: name }], [box("tab-label-space", []), box("tab-pic", [img("tab-icon", src)])]);
+      ? box("tab on", [box("tab-pic", [...brk(), img("tab-icon", src)])])
+      : button("tab", [{ navigate: name }], [box("tab-pic", [img("tab-icon", src)])]);
   const slotHud = (letter, key) =>
     box("hud-eq", [text("hud-key", letter), box("hud-well", [...brk(), img("hud-icon", `$hud.${key}Icon`)])]);
   const topbar = (name) =>
@@ -153,7 +153,7 @@ export function buildClean(h) {
   const row = (title, desc, choices) => box("opt", [box("opt-text", [text("opt-title", title), text("opt-desc", desc)]), box("choices", choices)]);
   const optionsPage = box("content", [
     box("opt-list", [
-      row("STYLE", "The look of this companion. Starts as Brick at every launch.", [({ ...button("choice", [{ set: { style: "brick", page: "items" } }], [...brk({ visibleIf: "$styleBrick" }), text("choice-t", "Brick")]), classIf: { on: "$styleBrick" } }), choice("Clean", "style", "clean", "styleClean")]),
+      row("STYLE", "The look of this companion. Starts as Clean at every launch.", [({ ...button("choice", [{ set: { style: "brick", page: "items" } }], [...brk({ visibleIf: "$styleBrick" }), text("choice-t", "Brick")]), classIf: { on: "$styleBrick" } }), choice("Clean", "style", "clean", "styleClean")]),
       row("THEME", "Colours of the clean style.", [choice("Present", "theme", "present", "themePresent"), choice("Past", "theme", "past", "themePast"), choice("Night", "theme", "night", "themeNight")]),
     ]),
   ]);

@@ -7,6 +7,7 @@
 .equip-level { letter-spacing: 0.60px; }
 .vslab-label { letter-spacing: 0.96px; }
 .vslab.on .vslab-label { letter-spacing: 1.04px; }
+.vslab.long .vslab-label, .vslab.long.on .vslab-label { letter-spacing: 0.76px; }
 .era-plate-label { letter-spacing: 0.60px; }
 .era-plate-text { letter-spacing: 0.68px; }
 .tag { letter-spacing: 0.84px; }
@@ -24,8 +25,9 @@
 .fact-label { letter-spacing: 0.68px; }
 .look .era-plate-label { letter-spacing: 0.48px; }
 .look .era-plate-text { letter-spacing: 0.56px; }
+.opt-desc { letter-spacing: 0.88px; line-height: 25.3px; }
+.opt-choice-t { letter-spacing: 0.84px; }
 .c-root { letter-spacing: 0.76px; }
-.c-tab-label { letter-spacing: 0.60px; }
 .c-hud-key { letter-spacing: 0.60px; }
 .c-hud-num { letter-spacing: 0.60px; }
 .c-insp-name { letter-spacing: 0.72px; }
@@ -49,4 +51,3 @@
 .c-choice-t { letter-spacing: 0.54px; }
 .c-tall-num { letter-spacing: 0.84px; }
 .c-supply-l { letter-spacing: 0.42px; }
-.c-tab-label, .c-tab-label-space { letter-spacing: 0.56px; }

@@ -1,7 +1,7 @@
 // Writes layout.json for the Oracle of Ages pack, laid in brick: two brick pillars and a brick-rimmed window for the
 // page between them. The pillars carry everything else: rupees and the B item on the left, hearts and the A item on the
-// right, and under the A and B buttons upright slabs, one per page (three on the left, two on the right with the era
-// plate below them), so every page is one tap away and the window takes the whole height.
+// right, and under the A and B buttons upright slabs, one per page (three on each side, the era plate under the right
+// ones), so every page is one tap away and the window takes the whole height. OPTIONS switches to the Clean style.
 //
 //   node art/layout.mjs
 
@@ -29,9 +29,9 @@ const heartPlate = box("plate plate-pink", [img("plate-icon plate-heart", ui("he
 
 // ---- the nav: one upright slab per page on the pillars ---------------------------------------------------------
 
-const TABS = [["items", "ITEMS", "navItems"], ["map", "MAP", "navMap"], ["seeds", "SEEDS", "navSeeds"], ["rings", "RINGS", "navRings"], ["status", "STATUS", "navStatus"]];
+const TABS = [["items", "ITEMS", "navItems"], ["map", "MAP", "navMap"], ["seeds", "SEEDS", "navSeeds"], ["rings", "RINGS", "navRings"], ["status", "STATUS", "navStatus"], ["options", "OPTIONS", "navOptions"]];
 const tab = ([page, label, flag]) =>
-  button("vslab", [{ navigate: page }], [text("vslab-label", label)], { classIf: { on: `$${flag}` } });
+  button(label.length > 6 ? "vslab long" : "vslab", [{ navigate: page }], [text("vslab-label", label)], { classIf: { on: `$${flag}` } });
 const eraPlate = box("plate plate-dark", [text("era-plate-label", "ERA"), text("era-plate-text", "{map.era}")]);
 const rim = (part) => box(`rim rim-${part}`, []);
 const page = (name, content) => ({
@@ -106,8 +106,21 @@ const status = box("body body-status", [
   list("facts", "$status.facts", box("fact", [text("fact-value", "{value}"), text("fact-label", "{label}")])),
 ]);
 
+// ---- OPTIONS: the style switch (Brick here, Clean is the default look) ----------------------------------------------
+
+const styleChoice = (label, set, flag) =>
+  button("opt-choice", [{ set }], [text("opt-choice-t", label)], { classIf: { on: `$${flag}` } });
+const options = box("body body-options", [
+  text("title", "STYLE"),
+  text("opt-desc", "The look of this companion. It starts as Clean at every launch."),
+  box("opt-choices", [
+    styleChoice("BRICK", { style: "brick" }, "styleBrick"),
+    styleChoice("CLEAN", { style: "clean", page: "coptions" }, "styleClean"),
+  ]),
+]);
+
 const pages = { type: "pages", state: "page", initial: "items", pages: [
-  page("items", items), page("map", map), page("seeds", seeds), page("rings", rings), page("status", status),
+  page("items", items), page("map", map), page("seeds", seeds), page("rings", rings), page("status", status), page("options", options),
 ] };
 
 // Every class of the clean tree gets a c- prefix (class strings and classIf keys), so its css never touches the brick style.
@@ -131,9 +144,7 @@ const layout = box("screen", [
     box("pages-wrap", [pages]),
     box("pillar pillar-l", []),
     box("pillar pillar-r", []),
-    rail("l", [rupeePlate, equip("B", "b"), box("tabs", TABS.slice(0, 3).map(tab)),
-      // the way to the clean style (its Options page brings you back)
-      button("plate plate-dark look", [{ set: { style: "clean", page: "citems" } }], [text("era-plate-label", "LOOK"), text("era-plate-text", "CLEAN")])]),
+    rail("l", [rupeePlate, equip("B", "b"), box("tabs", TABS.slice(0, 3).map(tab))]),
     rail("r", [heartPlate, equip("A", "a"), box("tabs", TABS.slice(3).map(tab)), eraPlate]),
   ], { visibleIf: "$showBrick" }),
   prefixed(buildClean({ box, text, img, button, list, ui }), { visibleIf: "$showClean", classIf: { "theme-past": "$themePast", "theme-night": "$themeNight" } }),

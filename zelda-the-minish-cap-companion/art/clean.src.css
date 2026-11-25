@@ -36,13 +36,12 @@
 /* ---- top bar ------------------------------------------------------------------------------------------------------------- */
 .topbar { flex-direction: row; align-items: center; flex-shrink: 0; height: 52px; padding: 0 6px; background-color: var(--bar); border-bottom: 1px solid var(--bar-line); }
 .tabs { flex-direction: row; height: 52px; }
-.tab { width: 48px; height: 52px; flex-direction: column; align-items: center; justify-content: flex-start; padding: 3px 0 0; margin: 0; position: relative; background-color: transparent; border: 0; border-radius: 0; }
+.tab { width: 56px; height: 52px; flex-direction: column; align-items: center; justify-content: center; padding: 0; margin: 0; position: relative; background-color: transparent; border: 0; border-radius: 0; }
 .tab:pressed { background-color: var(--bar-cell); }
-.tab-label { height: 14px; font-family: "NunitoB"; font-size: 12px; line-height: 14px; color: var(--bar-text); }
-.tab-label-space { height: 14px; }
-.tab-glyph { width: 23.86px; height: 23.86px; margin-top: 3px; image-rendering: auto; }
-.tab-line { width: 28px; height: 3px; margin-top: 5px; background-color: var(--acc); }
-.tab-dot { position: absolute; right: 9px; top: 15px; width: 8px; height: 8px; background-color: var(--red); border-radius: 4px; }
+.tab-glyph { width: 30px; height: 30px; margin-top: 8px; image-rendering: auto; }
+.tab-line, .tab-line-space { width: 30px; height: 3px; margin-top: 5px; background-color: var(--acc); }
+.tab-line-space { background-color: transparent; }
+.tab-dot { position: absolute; right: 8px; top: 7px; width: 8px; height: 8px; background-color: var(--red); border-radius: 4px; }
 .ezlo-btn { width: 40px; height: 40px; padding: 0; margin: 0 6px 0 0; align-items: center; justify-content: center; background-color: var(--bar-cell); border: 1px solid var(--bar-line); border-radius: 0; }
 .ezlo-btn:pressed { border-color: var(--acc); }
 .ezlo { width: 27.77px; height: 27.77px; }
@@ -200,7 +199,6 @@
 
 /* ---- readability: tracking and line height per text role (Nunito Sans italic) ---------------------------------------------------
    small caps-like labels get the most tracking, body text a little, big names almost none; every multi-line text runs at ~1.3. */
-.tab-label { font-size: 12px; line-height: 14px; letter-spacing: 0.6px; }
 .fact-key { letter-spacing: 0.6px; }
 .fact-num { letter-spacing: 0.4px; }
 .insp-name { line-height: 25px; letter-spacing: 0.3px; }
@@ -223,5 +221,3 @@
 .say-t { line-height: 20px; letter-spacing: 0.3px; }
 .bubble-close { letter-spacing: 0.6px; }
 .dfloor-name { letter-spacing: 1px; }
-/* the open tab carries its name: give it room so the tracked label is never clipped */
-.tab.on { width: 70px; }

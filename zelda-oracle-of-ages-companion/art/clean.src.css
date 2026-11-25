@@ -38,16 +38,14 @@
 /* ---- top bar: the HUD strip ---------------------------------------------------------------------------------------------- */
 .topbar { flex-direction: row; align-items: center; flex-shrink: 0; height: 52px; padding: 0 6px; background-color: var(--bar); border-bottom: 2px solid var(--bar-line); }
 .tabs { flex-direction: row; height: 52px; }
-.tab { width: 42px; height: 52px; flex-direction: column; align-items: center; justify-content: flex-start; padding: 3px 0 0; margin: 0; background-color: transparent; border: 0; border-radius: 0; }
+.tab { width: 50px; height: 52px; flex-direction: column; align-items: center; justify-content: center; padding: 0; margin: 0; background-color: transparent; border: 0; border-radius: 0; }
 .tab:pressed { background-color: var(--bar-line); }
-.tab-label { height: 12px; font-size: 15px; line-height: 12px; color: var(--bar-text); }
-.tab-label-space { height: 12px; }
-.tab-pic { width: 40px; height: 34px; position: relative; align-items: center; justify-content: center; }
+.tab-pic { width: 46px; height: 42px; position: relative; align-items: center; justify-content: center; }
 .tab-pic .brk { top: 0; bottom: 0; width: 6px; border-width: 2px; border-color: var(--bar-text); }
 .tab-pic .brk-l { left: 0; border-right-width: 0; }
 .tab-pic .brk-r { right: 0; border-left-width: 0; }
-.tab-icon { width: 17.35px; height: 17.35px; opacity: 0.5; }
-.tab.on .tab-icon { width: 24.29px; height: 24.29px; opacity: 1; }
+.tab-icon { width: 24.29px; height: 24.29px; opacity: 0.5; }
+.tab.on .tab-icon { width: 31.23px; height: 31.23px; opacity: 1; }
 .hud { flex-direction: row; align-items: center; gap: 8px; }
 .hud-eq { flex-direction: row; align-items: center; gap: 2px; }
 .hud-key { font-family: "Press"; font-size: 10px; color: var(--bar-text); }
@@ -159,7 +157,6 @@
 /* ---- readability: tracking and line height per text role ------------------------------------------------------------------------
    Press Start 2P is the game's own wide pixel face: never below 8 px here, 0.5-1 px tracking, line height 1.5. Jersey 10 is narrow:
    0.5-0.8 px tracking and ~1.15 line height so wrapped lines do not touch. */
-.tab-label { letter-spacing: 0.6px; }
 .hud-key, .hud-num { font-size: 10px; letter-spacing: 0.8px; }
 .insp-name { font-size: 12px; line-height: 18px; letter-spacing: 0.8px; }
 .insp-sub { font-size: 18px; line-height: 21px; letter-spacing: 0.6px; }
@@ -182,8 +179,3 @@
 .choice-t { letter-spacing: 0.8px; }
 .tall-num { letter-spacing: 1px; }
 .supply-l { font-size: 8px; letter-spacing: 0.8px; }
-/* the open tab's name on its own line above the bracketed icon */
-.tab { padding-top: 1px; }
-.tab-label, .tab-label-space { height: 13px; font-size: 14px; line-height: 13px; }
-.tab.on { width: 54px; }
-.tab-pic { height: 33px; margin-top: 1px; }

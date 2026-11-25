@@ -11,18 +11,41 @@ for n = 0, 70 do DOT[n] = string.rep(".", n); BLANK[n] = string.rep("A", n) end
 
 local function lit(lo, hi, x) if x < 32 then return (lo >> x) & 1 == 1 end return (hi >> (x - 32)) & 1 == 1 end
 
---- data: the mapdata table; words(y) -> lo, hi (cells 0-31, 32-63 of row y, low bit left). Returns the layer lists.
+--- The drawn window: the bounding box of every room cell plus one column / row for the right and bottom walls, so the map's empty margin
+--- is cut and the box fits its frame. Returns x0, y0, x1, y1 (inclusive glyph columns / rows); cols = x1 - x0 + 1, rows = y1 - y0 + 1.
+function M.bounds(data)
+  local b = data._bounds
+  if b then return b[1], b[2], b[3], b[4] end
+  local x0, y0, x1, y1 = data.w, data.h, 0, 0
+  for y = 0, data.h - 1 do
+    local s = data.r[y + 1]
+    for x = 0, data.w - 1 do
+      if s:byte(x + 1) == 49 then
+        if x < x0 then x0 = x end
+        if x > x1 then x1 = x end
+        if y < y0 then y0 = y end
+        if y > y1 then y1 = y end
+      end
+    end
+  end
+  b = { x0, y0, math.min(x1 + 1, data.w), math.min(y1 + 1, data.h) }
+  data._bounds = b
+  return b[1], b[2], b[3], b[4]
+end
+
+--- data: the mapdata table; words(y) -> lo, hi (cells 0-31, 32-63 of row y, low bit left). Returns the layer lists, cropped to M.bounds.
 function M.build(data, words)
   local W, H = data.w, data.h
+  local X0, Y0, X1, Y1 = M.bounds(data)
   local lo, hi = {}, {}
   for y = 0, H - 1 do lo[y], hi[y] = words(y) end
   lo[-1], hi[-1], lo[H], hi[H] = 0, 0, 0, 0
   local fill, save, warp, walls, doors = {}, {}, {}, {}, {}
-  for y = 0, H do
+  for y = Y0, Y1 do
     local gS, dS, rS, kS, rU = data.g[y + 1], data.d[y + 1], data.r[y + 1], data.k[y + 1], data.r[y]
     local fp, sp, wp, bp, dp = {}, {}, {}, {}, {}
-    local fpos, spos, wpos, bpos, dpos = 0, 0, 0, 0, 0
-    for x = 0, W do
+    local fpos, spos, wpos, bpos, dpos = X0, X0, X0, X0, X0
+    for x = X0, X1 do
       local room = rS:byte(x + 1) == 49
       local e = room and y < H and lit(lo[y], hi[y], x)
       local lv = x > 0 and rS:byte(x) == 49 and lit(lo[y] or 0, hi[y] or 0, x - 1) and y < H

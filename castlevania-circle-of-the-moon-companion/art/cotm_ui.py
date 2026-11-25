@@ -46,7 +46,7 @@ def caps(h):
     return l, r
 
 
-save(plate(60, 20, True), "plate-on"); save(plate(60, 20, False), "plate-off")
+save(plate(60, 28, True), "plate-on"); save(plate(60, 28, False), "plate-off")
 for h in (12, 16, 20):
     l, r = caps(h); save(l, "cap-l-%d" % h); save(r, "cap-r-%d" % h)
 print("ok")

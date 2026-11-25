@@ -15,10 +15,10 @@ export function buildClean(h) {
   const TITLES = { map: "Map", items: "Gear", kinstone: "Kinstones", quest: "Quest", options: "Options" };
   const tab = (t, on) =>
     on
-      ? box("tab on", [text("tab-label", TITLES[t]), img("tab-glyph", ui(`cg-${t}-on`)), box("tab-line", [])])
+      ? box("tab on", [img("tab-glyph", ui(`cg-${t}-on`)), box("tab-line", [])])
       : btn("tab", [{ navigate: t }], [
-          box("tab-label-space", []),
           img("tab-glyph", ui(`cg-${t}-off`)),
+          box("tab-line-space", []),
           ...(t === "kinstone" ? [box("tab-dot", [], { visibleIf: "$kinstone.ready" })] : []),
         ]);
   const equipCell = (key, path) =>
@@ -185,7 +185,7 @@ export function buildClean(h) {
   const lookRow = (title, desc, choices) => box("opt", [box("opt-text", [text("opt-title", title), text("opt-desc", desc)]), box("choices", choices)]);
   const optionsPage = box("content", [
     box("opt-list", [
-      lookRow("Style", "The look of this companion. Starts as Stone at every launch.", [
+      lookRow("Style", "The look of this companion. Starts as Clean at every launch.", [
         choice("Stone", "style", "stone", "styleStone"), choice("Clean", "style", "clean", "styleClean"),
       ]),
       lookRow("Theme", "Colours of the clean style.", [

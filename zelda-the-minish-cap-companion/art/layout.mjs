@@ -315,7 +315,7 @@ const option = (title, desc, call, onKey, labelKey) =>
 const styleBtn = (label, key, flag) =>
   button("style-btn", [{ set: { style: key } }], [text("style-btn-t", label)], { classIf: { on: `$${flag}` } });
 const styleRow = box("opt style-row", [
-  box("opt-text", [text("opt-title", "STYLE"), text("opt-desc", "Stone, or the flat clean look with its own themes. Starts as Stone at every launch.")]),
+  box("opt-text", [text("opt-title", "STYLE"), text("opt-desc", "Stone, or the flat clean look with its own themes. Starts as Clean at every launch.")]),
   box("style-pills", [styleBtn("STONE", "stone", "styleStone"), styleBtn("CLEAN", "clean", "styleClean")]),
 ]);
 const optionsPage = box("content", [

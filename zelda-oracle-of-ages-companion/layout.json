@@ -715,6 +715,132 @@
                       }
                     ]
                   }
+                },
+                {
+                  "name": "options",
+                  "child": {
+                    "type": "box",
+                    "class": "page page-options",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "window",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "panel",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "body body-options",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "title",
+                                    "text": "STYLE"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "opt-desc",
+                                    "text": "The look of this companion. It starts as Clean at every launch."
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "opt-choices",
+                                    "children": [
+                                      {
+                                        "type": "button",
+                                        "class": "opt-choice",
+                                        "onClick": [
+                                          {
+                                            "set": {
+                                              "style": "brick"
+                                            }
+                                          }
+                                        ],
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "class": "opt-choice-t",
+                                            "text": "BRICK"
+                                          }
+                                        ],
+                                        "classIf": {
+                                          "on": "$styleBrick"
+                                        }
+                                      },
+                                      {
+                                        "type": "button",
+                                        "class": "opt-choice",
+                                        "onClick": [
+                                          {
+                                            "set": {
+                                              "style": "clean",
+                                              "page": "coptions"
+                                            }
+                                          }
+                                        ],
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "class": "opt-choice-t",
+                                            "text": "CLEAN"
+                                          }
+                                        ],
+                                        "classIf": {
+                                          "on": "$styleClean"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-t",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-b",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-l",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-r",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-tl",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-tr",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-bl",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "rim rim-br",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
                 }
               ]
             }
@@ -844,30 +970,6 @@
                   }
                 }
               ]
-            },
-            {
-              "type": "button",
-              "class": "plate plate-dark look",
-              "onClick": [
-                {
-                  "set": {
-                    "style": "clean",
-                    "page": "citems"
-                  }
-                }
-              ],
-              "children": [
-                {
-                  "type": "text",
-                  "class": "era-plate-label",
-                  "text": "LOOK"
-                },
-                {
-                  "type": "text",
-                  "class": "era-plate-text",
-                  "text": "CLEAN"
-                }
-              ]
             }
           ]
         },
@@ -964,6 +1066,25 @@
                   "classIf": {
                     "on": "$navStatus"
                   }
+                },
+                {
+                  "type": "button",
+                  "class": "vslab long",
+                  "onClick": [
+                    {
+                      "navigate": "options"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "class": "vslab-label",
+                      "text": "OPTIONS"
+                    }
+                  ],
+                  "classIf": {
+                    "on": "$navOptions"
+                  }
                 }
               ]
             },
@@ -1021,11 +1142,6 @@
                                 "class": "c-tab c-on",
                                 "children": [
                                   {
-                                    "type": "text",
-                                    "class": "c-tab-label",
-                                    "text": "Items"
-                                  },
-                                  {
                                     "type": "box",
                                     "class": "c-tab-pic",
                                     "children": [
@@ -1059,11 +1175,6 @@
                                 "children": [
                                   {
                                     "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
-                                    "type": "box",
                                     "class": "c-tab-pic",
                                     "children": [
                                       {
@@ -1084,11 +1195,6 @@
                                   }
                                 ],
                                 "children": [
-                                  {
-                                    "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
                                   {
                                     "type": "box",
                                     "class": "c-tab-pic",
@@ -1113,11 +1219,6 @@
                                 "children": [
                                   {
                                     "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
-                                    "type": "box",
                                     "class": "c-tab-pic",
                                     "children": [
                                       {
@@ -1140,11 +1241,6 @@
                                 "children": [
                                   {
                                     "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
-                                    "type": "box",
                                     "class": "c-tab-pic",
                                     "children": [
                                       {
@@ -1165,11 +1261,6 @@
                                   }
                                 ],
                                 "children": [
-                                  {
-                                    "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
                                   {
                                     "type": "box",
                                     "class": "c-tab-pic",
@@ -1526,11 +1617,6 @@
                                 "children": [
                                   {
                                     "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
-                                    "type": "box",
                                     "class": "c-tab-pic",
                                     "children": [
                                       {
@@ -1546,11 +1632,6 @@
                                 "type": "box",
                                 "class": "c-tab c-on",
                                 "children": [
-                                  {
-                                    "type": "text",
-                                    "class": "c-tab-label",
-                                    "text": "Map"
-                                  },
                                   {
                                     "type": "box",
                                     "class": "c-tab-pic",
@@ -1585,11 +1666,6 @@
                                 "children": [
                                   {
                                     "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
-                                    "type": "box",
                                     "class": "c-tab-pic",
                                     "children": [
                                       {
@@ -1610,11 +1686,6 @@
                                   }
                                 ],
                                 "children": [
-                                  {
-                                    "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
                                   {
                                     "type": "box",
                                     "class": "c-tab-pic",
@@ -1639,11 +1710,6 @@
                                 "children": [
                                   {
                                     "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
-                                    "type": "box",
                                     "class": "c-tab-pic",
                                     "children": [
                                       {
@@ -1664,11 +1730,6 @@
                                   }
                                 ],
                                 "children": [
-                                  {
-                                    "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
                                   {
                                     "type": "box",
                                     "class": "c-tab-pic",
@@ -1962,11 +2023,6 @@
                                 "children": [
                                   {
                                     "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
-                                    "type": "box",
                                     "class": "c-tab-pic",
                                     "children": [
                                       {
@@ -1989,11 +2045,6 @@
                                 "children": [
                                   {
                                     "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
-                                    "type": "box",
                                     "class": "c-tab-pic",
                                     "children": [
                                       {
@@ -2009,11 +2060,6 @@
                                 "type": "box",
                                 "class": "c-tab c-on",
                                 "children": [
-                                  {
-                                    "type": "text",
-                                    "class": "c-tab-label",
-                                    "text": "Seeds"
-                                  },
                                   {
                                     "type": "box",
                                     "class": "c-tab-pic",
@@ -2048,11 +2094,6 @@
                                 "children": [
                                   {
                                     "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
-                                    "type": "box",
                                     "class": "c-tab-pic",
                                     "children": [
                                       {
@@ -2075,11 +2116,6 @@
                                 "children": [
                                   {
                                     "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
-                                    "type": "box",
                                     "class": "c-tab-pic",
                                     "children": [
                                       {
@@ -2100,11 +2136,6 @@
                                   }
                                 ],
                                 "children": [
-                                  {
-                                    "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
                                   {
                                     "type": "box",
                                     "class": "c-tab-pic",
@@ -2414,11 +2445,6 @@
                                 "children": [
                                   {
                                     "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
-                                    "type": "box",
                                     "class": "c-tab-pic",
                                     "children": [
                                       {
@@ -2439,11 +2465,6 @@
                                   }
                                 ],
                                 "children": [
-                                  {
-                                    "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
                                   {
                                     "type": "box",
                                     "class": "c-tab-pic",
@@ -2468,11 +2489,6 @@
                                 "children": [
                                   {
                                     "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
-                                    "type": "box",
                                     "class": "c-tab-pic",
                                     "children": [
                                       {
@@ -2488,11 +2504,6 @@
                                 "type": "box",
                                 "class": "c-tab c-on",
                                 "children": [
-                                  {
-                                    "type": "text",
-                                    "class": "c-tab-label",
-                                    "text": "Rings"
-                                  },
                                   {
                                     "type": "box",
                                     "class": "c-tab-pic",
@@ -2527,11 +2538,6 @@
                                 "children": [
                                   {
                                     "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
-                                    "type": "box",
                                     "class": "c-tab-pic",
                                     "children": [
                                       {
@@ -2552,11 +2558,6 @@
                                   }
                                 ],
                                 "children": [
-                                  {
-                                    "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
                                   {
                                     "type": "box",
                                     "class": "c-tab-pic",
@@ -2866,11 +2867,6 @@
                                 "children": [
                                   {
                                     "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
-                                    "type": "box",
                                     "class": "c-tab-pic",
                                     "children": [
                                       {
@@ -2891,11 +2887,6 @@
                                   }
                                 ],
                                 "children": [
-                                  {
-                                    "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
                                   {
                                     "type": "box",
                                     "class": "c-tab-pic",
@@ -2920,11 +2911,6 @@
                                 "children": [
                                   {
                                     "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
-                                    "type": "box",
                                     "class": "c-tab-pic",
                                     "children": [
                                       {
@@ -2947,11 +2933,6 @@
                                 "children": [
                                   {
                                     "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
-                                    "type": "box",
                                     "class": "c-tab-pic",
                                     "children": [
                                       {
@@ -2967,11 +2948,6 @@
                                 "type": "box",
                                 "class": "c-tab c-on",
                                 "children": [
-                                  {
-                                    "type": "text",
-                                    "class": "c-tab-label",
-                                    "text": "Status"
-                                  },
                                   {
                                     "type": "box",
                                     "class": "c-tab-pic",
@@ -3004,11 +2980,6 @@
                                   }
                                 ],
                                 "children": [
-                                  {
-                                    "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
                                   {
                                     "type": "box",
                                     "class": "c-tab-pic",
@@ -3335,11 +3306,6 @@
                                 "children": [
                                   {
                                     "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
-                                    "type": "box",
                                     "class": "c-tab-pic",
                                     "children": [
                                       {
@@ -3360,11 +3326,6 @@
                                   }
                                 ],
                                 "children": [
-                                  {
-                                    "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
                                   {
                                     "type": "box",
                                     "class": "c-tab-pic",
@@ -3389,11 +3350,6 @@
                                 "children": [
                                   {
                                     "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
-                                    "type": "box",
                                     "class": "c-tab-pic",
                                     "children": [
                                       {
@@ -3414,11 +3370,6 @@
                                   }
                                 ],
                                 "children": [
-                                  {
-                                    "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
                                   {
                                     "type": "box",
                                     "class": "c-tab-pic",
@@ -3443,11 +3394,6 @@
                                 "children": [
                                   {
                                     "type": "box",
-                                    "class": "c-tab-label-space",
-                                    "children": []
-                                  },
-                                  {
-                                    "type": "box",
                                     "class": "c-tab-pic",
                                     "children": [
                                       {
@@ -3463,11 +3409,6 @@
                                 "type": "box",
                                 "class": "c-tab c-on",
                                 "children": [
-                                  {
-                                    "type": "text",
-                                    "class": "c-tab-label",
-                                    "text": "Options"
-                                  },
                                   {
                                     "type": "box",
                                     "class": "c-tab-pic",
@@ -3626,7 +3567,7 @@
                                       {
                                         "type": "text",
                                         "class": "c-opt-desc",
-                                        "text": "The look of this companion. Starts as Brick at every launch."
+                                        "text": "The look of this companion. Starts as Clean at every launch."
                                       }
                                     ]
                                   },

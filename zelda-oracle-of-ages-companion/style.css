@@ -131,7 +131,7 @@ pages { width: 100%; height: 100%; }
 
 /* ---- nav: one upright brick slab per page on the pillars (three left, two right and the era plate) ---------------- */
 
-.tabs { align-items: center; gap: 6px; margin-top: 6px; }
+.tabs { align-items: center; gap: 3px; margin-top: 2px; }
 .vslab {
   position: relative;
   flex: none;
@@ -151,6 +151,7 @@ pages { width: 100%; height: 100%; }
 .vslab.on { background-image: url("assets/ui/brick-vslab-here.png"); }
 .vslab-label { font-size: 24px; line-height: 24px; color: var(--cream); text-shadow: 2px 2px 0 var(--dark); transform: rotate(-90deg); }
 .vslab.on .vslab-label { font-size: 26px; line-height: 26px; }
+.vslab.long .vslab-label, .vslab.long.on .vslab-label { font-size: 19px; line-height: 19px; }
 .plate-dark { background-image: url("assets/ui/brick-plate-dark.png"); gap: 0; }
 .era-plate-label { font-size: 15px; line-height: 14px; color: var(--peach); text-shadow: 1px 1px 0 var(--dark); }
 .era-plate-text { font-size: 17px; line-height: 17px; color: var(--cream); text-shadow: 1px 1px 0 var(--dark); }
@@ -246,6 +247,17 @@ pages { width: 100%; height: 100%; }
 .look .era-plate-text { font-size: 14px; line-height: 14px; }
 .look:pressed { opacity: 0.75; }
 
+/* ---- OPTIONS: the style switch, two brick-rimmed choices ------------------------------------------------------------- */
+
+.body-options { gap: 10px; padding: 14px 16px; }
+.opt-desc { white-space: normal; font-size: 22px; line-height: 24px; color: var(--soft); }
+.opt-choices { flex-direction: row; gap: 12px; margin-top: 8px; }
+.opt-choice { flex: 1; height: 60px; align-items: center; justify-content: center; padding: 0; background-color: var(--cream); border: 3px solid var(--dark); border-radius: 0; }
+.opt-choice:pressed { transform: translate(1px, 1px); }
+.opt-choice.on { background-color: var(--pink); }
+.opt-choice-t { font-family: "Press"; font-size: 14px; color: var(--ink); }
+.opt-choice.on .opt-choice-t { color: var(--cream); text-shadow: 1px 1px 0 var(--dark); }
+
 /* ======== clean style (art/clean.src.css, built by art/build_css.py) ======== */
 /*
  * Clean style of the Oracle of Ages companion (source). art/build_css.py prefixes every class with c- and every custom property
@@ -284,16 +296,14 @@ pages { width: 100%; height: 100%; }
 /* ---- top bar: the HUD strip ---------------------------------------------------------------------------------------------- */
 .c-topbar { flex-direction: row; align-items: center; flex-shrink: 0; height: 52px; padding: 0 6px; background-color: var(--c-bar); border-bottom: 2px solid var(--c-bar-line); }
 .c-tabs { flex-direction: row; height: 52px; }
-.c-tab { width: 42px; height: 52px; flex-direction: column; align-items: center; justify-content: flex-start; padding: 3px 0 0; margin: 0; background-color: transparent; border: 0; border-radius: 0; }
+.c-tab { width: 50px; height: 52px; flex-direction: column; align-items: center; justify-content: center; padding: 0; margin: 0; background-color: transparent; border: 0; border-radius: 0; }
 .c-tab:pressed { background-color: var(--c-bar-line); }
-.c-tab-label { height: 12px; font-size: 15px; line-height: 12px; color: var(--c-bar-text); }
-.c-tab-label-space { height: 12px; }
-.c-tab-pic { width: 40px; height: 34px; position: relative; align-items: center; justify-content: center; }
+.c-tab-pic { width: 46px; height: 42px; position: relative; align-items: center; justify-content: center; }
 .c-tab-pic .c-brk { top: 0; bottom: 0; width: 6px; border-width: 2px; border-color: var(--c-bar-text); }
 .c-tab-pic .c-brk-l { left: 0; border-right-width: 0; }
 .c-tab-pic .c-brk-r { right: 0; border-left-width: 0; }
-.c-tab-icon { width: 17.35px; height: 17.35px; opacity: 0.5; }
-.c-tab.c-on .c-tab-icon { width: 24.29px; height: 24.29px; opacity: 1; }
+.c-tab-icon { width: 24.29px; height: 24.29px; opacity: 0.5; }
+.c-tab.c-on .c-tab-icon { width: 31.23px; height: 31.23px; opacity: 1; }
 .c-hud { flex-direction: row; align-items: center; gap: 8px; }
 .c-hud-eq { flex-direction: row; align-items: center; gap: 2px; }
 .c-hud-key { font-family: "Press"; font-size: 10px; color: var(--c-bar-text); }
@@ -405,7 +415,6 @@ pages { width: 100%; height: 100%; }
 /* ---- readability: tracking and line height per text role ------------------------------------------------------------------------
    Press Start 2P is the game's own wide pixel face: never below 8 px here, 0.5-1 px tracking, line height 1.5. Jersey 10 is narrow:
    0.5-0.8 px tracking and ~1.15 line height so wrapped lines do not touch. */
-.c-tab-label { letter-spacing: 0.6px; }
 .c-hud-key, .c-hud-num { font-size: 10px; letter-spacing: 0.8px; }
 .c-insp-name { font-size: 12px; line-height: 18px; letter-spacing: 0.8px; }
 .c-insp-sub { font-size: 18px; line-height: 21px; letter-spacing: 0.6px; }
@@ -428,8 +437,3 @@ pages { width: 100%; height: 100%; }
 .c-choice-t { letter-spacing: 0.8px; }
 .c-tall-num { letter-spacing: 1px; }
 .c-supply-l { font-size: 8px; letter-spacing: 0.8px; }
-/* the open tab's name on its own line above the bracketed icon */
-.c-tab { padding-top: 1px; }
-.c-tab-label, .c-tab-label-space { height: 13px; font-size: 14px; line-height: 13px; }
-.c-tab.c-on { width: 54px; }
-.c-tab-pic { height: 33px; margin-top: 1px; }
