@@ -239,3 +239,197 @@ pages { width: 100%; height: 100%; }
 .fact { flex: 1; align-items: center; gap: 2px; padding: 6px 0; background-color: #E2E0DC; border: 3px solid #D0CCD0; }
 .fact-value { font-size: 30px; line-height: 28px; }
 .fact-label { font-size: 17px; line-height: 15px; color: var(--soft); }
+
+/* the LOOK plate (left rail, under the page slabs): a button laid on a plate */
+.look { height: 40px; flex-direction: column; justify-content: center; gap: 0; padding: 0; margin: 0; border: 0; border-radius: 0; background-color: transparent; background-size: 56px 40px; }
+.look .era-plate-label { font-size: 12px; line-height: 12px; }
+.look .era-plate-text { font-size: 14px; line-height: 14px; }
+.look:pressed { opacity: 0.75; }
+
+/* ======== clean style (art/clean.src.css, built by art/build_css.py) ======== */
+/*
+ * Clean style of the Oracle of Ages companion (source). art/build_css.py prefixes every class with c- and every custom property
+ * with --c-, and appends it to art/style.brick.css, so it never touches the brick style.
+ * Layout: the Minish Cap slate (top bar, 347.1 dp master of 65.42 dp cells, one inspector). Identity: the game's pause panel
+ * (off-white), brick mauve hairlines, the peach HUD strip on top, the [ ] bracket cursor, Press Start 2P + Jersey 10.
+ * Icons are baked at 10 px per game pixel (160 px): shown at 34.69 dp (80 px) and 69.4 dp (160 px), essences (112 px) at 48.6 dp.
+ * 60 / 30 / 10: --bg / --cell surfaces; --line hairlines, --bar strip, ink text and brackets; --acc (pink) only for the active
+ * tab line, the inspector line and the explored meter.
+ */
+@font-face { font-family: "Jersey"; src: url("assets/fonts/Jersey10-Regular.ttf"); }
+@font-face { font-family: "Press"; src: url("assets/fonts/PressStart2P-Regular.ttf"); }
+.c-root {
+  --c-bg: #E5E5E2; --c-cell: #FFFFFB; --c-line: #98596F; --c-line2: #D9CBD0; --c-text: #251C27; --c-muted: #6F6272; --c-dim: #B3A8B5;
+  --c-acc: #C8587A; --c-acc-bg: #F6DDE5; --c-bar: #F4D4AF; --c-bar-line: #DCBF9E; --c-bar-text: #251C27; --c-ink: #251C27; --c-shade: #251C27AD;
+}
+.c-root.theme-past {
+  --c-bg: #E6D9BF; --c-cell: #FBF3E2; --c-line: #8A6440; --c-line2: #D9C8A6; --c-text: #2E2212; --c-muted: #6E5636; --c-dim: #B5A07A;
+  --c-acc: #B5832B; --c-acc-bg: #F1E2BF; --c-bar: #DCBF9E; --c-bar-line: #C4A47A; --c-bar-text: #2E2212; --c-ink: #2E2212; --c-shade: #2E2212AD;
+}
+.c-root.theme-night {
+  --c-bg: #251C27; --c-cell: #3A2C3D; --c-line: #8A6A8D; --c-line2: #4F3D52; --c-text: #FFFFFB; --c-muted: #C9B8CC; --c-dim: #6F6272;
+  --c-acc: #E07A9A; --c-acc-bg: #452F48; --c-bar: #452F48; --c-bar-line: #6F5272; --c-bar-text: #FFFFFB; --c-ink: #FFFFFB; --c-shade: #000000B0;
+}
+.c-root { position: absolute; left: 0; top: 0; right: 0; bottom: 0; background-color: var(--c-bg); font-family: "Jersey"; font-size: 19px; color: var(--c-text); }
+.c-grow { flex: 1; }
+.c-pages-wrap { flex: 1; min-height: 0; position: relative; }
+.c-pages { width: 100%; height: 100%; }
+.c-page { position: relative; width: 100%; height: 100%; }
+
+/* the game's bracket cursor */
+.c-brk { position: absolute; top: 4px; bottom: 4px; width: 8px; border-top: 3px solid var(--c-ink); border-bottom: 3px solid var(--c-ink); }
+.c-brk-l { left: 4px; border-left: 3px solid var(--c-ink); }
+.c-brk-r { right: 4px; border-right: 3px solid var(--c-ink); }
+
+/* ---- top bar: the HUD strip ---------------------------------------------------------------------------------------------- */
+.c-topbar { flex-direction: row; align-items: center; flex-shrink: 0; height: 52px; padding: 0 6px; background-color: var(--c-bar); border-bottom: 2px solid var(--c-bar-line); }
+.c-tabs { flex-direction: row; height: 52px; }
+.c-tab { width: 42px; height: 52px; flex-direction: column; align-items: center; justify-content: flex-start; padding: 3px 0 0; margin: 0; background-color: transparent; border: 0; border-radius: 0; }
+.c-tab:pressed { background-color: var(--c-bar-line); }
+.c-tab-label { height: 12px; font-size: 15px; line-height: 12px; color: var(--c-bar-text); }
+.c-tab-label-space { height: 12px; }
+.c-tab-pic { width: 40px; height: 34px; position: relative; align-items: center; justify-content: center; }
+.c-tab-pic .c-brk { top: 0; bottom: 0; width: 6px; border-width: 2px; border-color: var(--c-bar-text); }
+.c-tab-pic .c-brk-l { left: 0; border-right-width: 0; }
+.c-tab-pic .c-brk-r { right: 0; border-left-width: 0; }
+.c-tab-icon { width: 17.35px; height: 17.35px; opacity: 0.5; }
+.c-tab.c-on .c-tab-icon { width: 24.29px; height: 24.29px; opacity: 1; }
+.c-hud { flex-direction: row; align-items: center; gap: 8px; }
+.c-hud-eq { flex-direction: row; align-items: center; gap: 2px; }
+.c-hud-key { font-family: "Press"; font-size: 10px; color: var(--c-bar-text); }
+.c-hud-well { width: 40px; height: 40px; position: relative; align-items: center; justify-content: center; }
+.c-hud-well .c-brk { top: 2px; bottom: 2px; width: 6px; border-width: 2px; border-color: var(--c-bar-text); }
+.c-hud-well .c-brk-l { left: 0; border-right-width: 0; }
+.c-hud-well .c-brk-r { right: 0; border-left-width: 0; }
+.c-hud-icon { width: 34.69px; height: 34.69px; }
+.c-hud-fact { flex-direction: row; align-items: center; gap: 4px; }
+.c-hud-rupee { width: 17.35px; height: 17.35px; }
+.c-hud-heart { width: 24.29px; height: 24.29px; }
+.c-hud-num { font-family: "Press"; font-size: 10px; color: var(--c-bar-text); }
+
+/* ---- master / inspector -------------------------------------------------------------------------------------------------- */
+.c-content { flex: 1; min-height: 0; flex-direction: row; gap: 6px; padding: 6px; }
+.c-master { width: 347.1px; flex-shrink: 0; min-height: 0; gap: 6px; }
+.c-insp { flex: 1; min-width: 0; min-height: 0; flex-direction: row; background-color: var(--c-cell); border: 1px solid var(--c-line); }
+.c-insp-line { width: 3px; flex-shrink: 0; background-color: var(--c-acc); }
+.c-insp-body { flex: 1; min-width: 0; min-height: 0; gap: 6px; padding: 10px 10px; }
+.c-insp-pic { height: 80px; flex-shrink: 0; align-items: center; justify-content: center; }
+.c-insp-icon { width: 69.4px; height: 69.4px; }
+.c-insp-ess { width: 48.6px; height: 48.6px; }
+.c-insp-name { font-family: "Press"; font-size: 12px; line-height: 16px; color: var(--c-text); white-space: normal; }
+.c-insp-sub { font-size: 18px; line-height: 18px; color: var(--c-muted); white-space: normal; }
+.c-insp-text { font-size: 19px; line-height: 19px; color: var(--c-text); white-space: normal; }
+.c-hair { height: 1px; flex-shrink: 0; background-color: var(--c-line); }
+.c-sect { font-family: "Press"; font-size: 8px; line-height: 12px; color: var(--c-muted); flex-shrink: 0; }
+.c-big-num { font-family: "Press"; font-size: 16px; line-height: 20px; color: var(--c-text); }
+
+/* the grid: 5 columns of 65.42 dp cells */
+.c-grid { display: grid; grid-template-columns: repeat(5, 65.42px); gap: 5px; flex-shrink: 0; }
+.c-grid-scroll { flex: 1; min-height: 0; overflow: auto; }
+.c-cell { width: 65.42px; height: 65.42px; position: relative; padding: 0; margin: 0; align-items: center; justify-content: center; background-color: var(--c-cell); border: 1px solid var(--c-line2); border-radius: 0; }
+.c-cell:pressed { background-color: var(--c-acc-bg); }
+.c-cell.c-empty { background-color: transparent; border-color: var(--c-line2); }
+.c-cell-icon { width: 34.69px; height: 34.69px; }
+.c-cell-icon.c-off, .c-cell-ess.c-off { opacity: 0.25; }
+.c-cell-ess { width: 48.6px; height: 48.6px; }
+.c-cell-tag { position: absolute; left: 5px; top: 4px; font-family: "Press"; font-size: 8px; color: var(--c-acc); }
+.c-badge { position: absolute; right: 4px; bottom: 3px; font-family: "Press"; font-size: 7px; color: var(--c-muted); }
+
+/* ---- items --------------------------------------------------------------------------------------------------------------- */
+.c-eqrow { flex: 1; min-height: 0; flex-direction: row; gap: 6px; }
+.c-eqcard { flex: 1; min-width: 0; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 6px 10px; background-color: var(--c-cell); border: 1px solid var(--c-line); }
+.c-eq-key { font-family: "Press"; font-size: 12px; color: var(--c-acc); }
+.c-eq-icon { width: 69.4px; height: 69.4px; }
+.c-eq-text { align-items: center; gap: 2px; }
+.c-eq-name { font-size: 24px; line-height: 22px; color: var(--c-text); }
+.c-eq-lv { font-family: "Press"; font-size: 8px; color: var(--c-muted); }
+
+/* ---- map ----------------------------------------------------------------------------------------------------------------- */
+.c-content-col { flex-direction: column; }
+.c-map-row { flex-direction: row; gap: 6px; height: 333.2px; flex-shrink: 0; }
+.c-map-view { width: 416.5px; height: 333.2px; flex-shrink: 0; position: relative; overflow: hidden; background-color: var(--c-cell); border: 1px solid var(--c-line); }
+.c-map-img { position: absolute; left: 0; top: 0; width: 416.5px; height: 333.2px; image-rendering: auto; }
+.c-map-rows { position: absolute; left: 0; top: 0; }
+.c-map-line { flex-direction: row; }
+.c-mcell { width: 29.75px; height: 23.8px; }
+.c-mcell.c-unseen { background-color: var(--c-shade); }
+.c-mcell.c-here { border: 3px solid var(--c-ink); }
+.c-strip { flex: 1; min-height: 0; flex-direction: row; align-items: center; gap: 10px; padding: 0 12px 0 0; background-color: var(--c-cell); border: 1px solid var(--c-line); }
+.c-strip .c-insp-line { align-self: stretch; }
+.c-strip-l { font-family: "Press"; font-size: 8px; color: var(--c-muted); }
+.c-meter { flex: 1; height: 8px; background-color: var(--c-line2); }
+.c-meter-fill { height: 8px; background-color: var(--c-acc); }
+.c-strip-n { font-family: "Press"; font-size: 10px; color: var(--c-text); }
+
+/* ---- seeds / rings ------------------------------------------------------------------------------------------------------- */
+.c-sup-list { gap: 4px; flex-shrink: 0; }
+.c-sup { flex-direction: row; align-items: center; gap: 6px; height: 26px; flex-shrink: 0; }
+.c-sup-icon { width: 17.35px; height: 17.35px; }
+.c-sup-l { font-size: 18px; color: var(--c-muted); white-space: normal; }
+.c-sup-n { font-family: "Press"; font-size: 8px; color: var(--c-text); }
+.c-box-row { flex-direction: row; flex-wrap: wrap; gap: 4px; flex-shrink: 0; }
+.c-box-cell { width: 26px; height: 26px; align-items: center; justify-content: center; border: 1px solid var(--c-line2); }
+.c-box-cell.c-filled { border-color: var(--c-line); }
+.c-box-icon { width: 17.35px; height: 17.35px; }
+
+/* ---- status -------------------------------------------------------------------------------------------------------------- */
+.c-life { flex-direction: row; align-items: center; gap: 8px; height: 52px; flex-shrink: 0; padding: 0 10px; background-color: var(--c-cell); border: 1px solid var(--c-line); }
+.c-life-hearts { flex-direction: row; flex-wrap: wrap; gap: 1px; width: 220px; }
+.c-lheart { width: 24.29px; height: 24.29px; }
+.c-pieces { flex-direction: row; gap: 1px; }
+.c-piece { width: 12.15px; height: 12.15px; }
+.c-facts { flex-direction: row; gap: 6px; flex: 1; min-height: 0; }
+.c-fact { flex: 1; min-width: 0; justify-content: center; align-items: center; gap: 6px; background-color: var(--c-cell); border: 1px solid var(--c-line); }
+.c-fact-l { font-family: "Press"; font-size: 7px; color: var(--c-muted); }
+.c-fact-v { font-family: "Press"; font-size: 11px; color: var(--c-text); }
+
+/* ---- options ------------------------------------------------------------------------------------------------------------- */
+.c-opt-list { flex: 1; min-height: 0; gap: 6px; }
+.c-opt { flex-direction: row; align-items: center; gap: 12px; height: 92px; padding: 0 14px; background-color: var(--c-cell); border: 1px solid var(--c-line); }
+.c-opt-text { flex: 1; min-width: 0; gap: 6px; }
+.c-opt-title { font-family: "Press"; font-size: 12px; color: var(--c-text); }
+.c-opt-desc { font-size: 18px; line-height: 18px; color: var(--c-muted); white-space: normal; }
+.c-choices { flex-direction: row; gap: 6px; flex-shrink: 0; }
+.c-choice { height: 48px; padding: 0 16px; margin: 0; position: relative; align-items: center; justify-content: center; background-color: transparent; border: 1px solid var(--c-line2); border-radius: 0; }
+.c-choice:pressed { background-color: var(--c-acc-bg); }
+.c-choice.c-on { border-color: var(--c-line); }
+.c-choice-t { font-family: "Press"; font-size: 9px; color: var(--c-text); }
+
+/* seeds: tall pouches and wide supply cards fill the master */
+.c-grid.c-tall .c-cell { height: 170px; flex-direction: column; gap: 14px; }
+.c-tall-num { font-family: "Press"; font-size: 14px; color: var(--c-text); }
+.c-supplies { flex: 1; min-height: 0; flex-direction: row; gap: 5px; }
+.c-supply { flex: 1; min-width: 0; align-items: center; justify-content: center; gap: 8px; background-color: var(--c-cell); border: 1px solid var(--c-line2); }
+.c-supply-l { font-family: "Press"; font-size: 7px; color: var(--c-muted); }
+
+/* ---- readability: tracking and line height per text role ------------------------------------------------------------------------
+   Press Start 2P is the game's own wide pixel face: never below 8 px here, 0.5-1 px tracking, line height 1.5. Jersey 10 is narrow:
+   0.5-0.8 px tracking and ~1.15 line height so wrapped lines do not touch. */
+.c-tab-label { letter-spacing: 0.6px; }
+.c-hud-key, .c-hud-num { font-size: 10px; letter-spacing: 0.8px; }
+.c-insp-name { font-size: 12px; line-height: 18px; letter-spacing: 0.8px; }
+.c-insp-sub { font-size: 18px; line-height: 21px; letter-spacing: 0.6px; }
+.c-insp-text { font-size: 19px; line-height: 22px; letter-spacing: 0.6px; }
+.c-sect { font-size: 8px; line-height: 14px; letter-spacing: 1px; }
+.c-big-num { letter-spacing: 1px; }
+.c-cell-tag { font-size: 8px; letter-spacing: 0.5px; }
+.c-badge { font-size: 8px; letter-spacing: 0.5px; }
+.c-eq-key { letter-spacing: 1px; }
+.c-eq-name { letter-spacing: 0.8px; }
+.c-eq-lv { font-size: 8px; letter-spacing: 0.8px; }
+.c-strip-l { letter-spacing: 1px; }
+.c-strip-n { letter-spacing: 0.8px; }
+.c-sup-l { letter-spacing: 0.6px; }
+.c-sup-n { letter-spacing: 0.6px; }
+.c-fact-l { font-size: 8px; line-height: 12px; letter-spacing: 1px; }
+.c-fact-v { letter-spacing: 0.8px; }
+.c-opt-title { letter-spacing: 1px; }
+.c-opt-desc { line-height: 21px; letter-spacing: 0.6px; }
+.c-choice-t { letter-spacing: 0.8px; }
+.c-tall-num { letter-spacing: 1px; }
+.c-supply-l { font-size: 8px; letter-spacing: 0.8px; }
+/* the open tab's name on its own line above the bracketed icon */
+.c-tab { padding-top: 1px; }
+.c-tab-label, .c-tab-label-space { height: 13px; font-size: 14px; line-height: 13px; }
+.c-tab.c-on { width: 54px; }
+.c-tab-pic { height: 33px; margin-top: 1px; }

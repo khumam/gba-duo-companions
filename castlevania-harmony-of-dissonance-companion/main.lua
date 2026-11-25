@@ -141,7 +141,7 @@ local function status(out)
   }
   local book = b8(O.book)
   out.bookNow = { on = book >= 1 and book <= 5, name = (book >= 1 and book <= 5) and D.name[S_BOOK_FIRST + book - 1] or "",
-                  img = (book >= 1 and book <= 5) and ("asset:ui/book-" .. (book - 1) .. ".png") or "asset:ui/book-none.png" }
+                  img = (book >= 1 and book <= 5) and ("asset:game/book-" .. (book - 1) .. ".png") or "asset:ui/book-none.png" }
   out.menu = MENU
 end
 
@@ -216,13 +216,13 @@ local function pageBook(out, ui)
   for k = 0, 4 do
     local have = (bits >> k) & 1 == 1
     list[k + 1] = { k = k + 1, name = have and D.name[S_BOOK_FIRST + k] or "??????????", have = have, locked = not have, set = set == k + 1,
-                    img = have and ("asset:ui/book-" .. k .. ".png") or "asset:ui/book-none.png" }
+                    img = have and ("asset:game/book-" .. k .. ".png") or "asset:ui/book-none.png" }
   end
   out.bookList = list
   local pick = clampInt(ui.book or (set >= 1 and set or 1), 1, 5)
   local have = (bits >> (pick - 1)) & 1 == 1
   out.bookPick = { name = have and D.name[S_BOOK_FIRST + pick - 1] or "??????????", desc = have and D.desc[S_BOOK_FIRST + pick - 1] or "??????????",
-                   k = pick, canSet = have and set ~= pick, isSet = have and set == pick, img = have and ("asset:ui/bookbig-" .. (pick - 1) .. ".png") or "asset:ui/bookbig-none.png" }
+                   k = pick, canSet = have and set ~= pick, isSet = have and set == pick, img = have and ("asset:game/book-" .. (pick - 1) .. ".png") or "asset:ui/book-none.png" }
 end
 
 local function pageRelics(out, ui)
@@ -257,7 +257,7 @@ end
 -- the explored castle: 64 x 42 cells. Each row is 8 bytes (Castle A word, Castle B word, low bit = left);
 -- the left 32 columns are at R_MAP_L, the right 32 at R_MAP_R (36 rows). 674 cells per castle = 100%.
 local R_MAP_L, R_MAP_R, MAP_TOTAL = 0x02000094, 0x020001E4, 674
-local CELL, AP = 3.6, 2.168
+local CELL, AP = 3.1, 2.168
 
 local function mapWord(castle, col32half, row)
   local base = col32half == 0 and R_MAP_L or R_MAP_R
@@ -278,27 +278,28 @@ end
 
 local function pct(n) return math.floor(n * 1000 / MAP_TOTAL) end   -- tenths, truncated like the game
 
+local GM, MAPDATA = pack.require("gamemap"), pack.require("mapdata")
+local CELLPX = 6.9376   -- 4 game px x 4 device px, one font glyph per cell
+local EXPLORED = 0x0200008C   -- two blocks of 2560 bits: map columns 0-31, then 32-63; in each 64-bit row bits 0-31 = castle A, 32-63 = castle B
+local mapSig, mapBuilt = {}, {}
 local function pageMap(out, ui)
   local castle = clampInt(ui.castle or 0, 0, 1)
-  local runs = {}
-  for r = 0, 41 do
-    local row = { mapWord(castle, 0, r), mapWord(castle, 1, r) }
-    local function lit(c) return (row[(c >> 5) + 1] >> (c & 31)) & 1 == 1 end
-    local c = 0
-    while c < 64 do
-      if lit(c) then
-        local s = c
-        while c < 64 and lit(c) do c = c + 1 end
-        runs[#runs + 1] = { x = string.format("%.2fpx", s * CELL * AP), y = string.format("%.2fpx", r * CELL * AP),
-                            w = string.format("%.2fpx", ((c - s) * CELL - 0.6) * AP) }
-      else c = c + 1 end
-    end
-  end
-  out.mapRuns = runs
+  local function words(y) return mem.u32(EXPLORED + y * 8 + castle * 4), mem.u32(EXPLORED + 320 + y * 8 + castle * 4) end
+  local sig = GM.signature(MAPDATA, words)
+  if sig ~= mapSig[castle] or not mapBuilt[castle] then mapBuilt[castle], mapSig[castle] = GM.build(MAPDATA, words), sig end
+  local mb = mapBuilt[castle]
+  out.mapFill, out.mapSave, out.mapWarp, out.mapWalls, out.mapDoors = mb.fill, mb.save, mb.warp, mb.walls, mb.doors
+  out.mapB = castle == 1
+  -- Juste's room: the game keeps it at 0x02000070 (bit 0 = castle B, bits 1-7 = map x) and +1 (map y)
+  local pos = mem.u8(0x02000070)
+  local cx, cy, cb = pos >> 1, mem.u8(0x02000071), pos & 1
+  local on = cb == castle and cx >= 1 and cx <= 59 and cy >= 5 and cy <= 35
+  out.me = { on = on, left = string.format("%.2fpx", (cx + 0.5) * CELLPX - 5 * 2.168), top = string.format("%.2fpx", (cy + 0.5) * CELLPX - 5 * 2.168) }
+  out.meText = on and string.format("%d,%d", cx, cy) or "--"
   local na, nb = castleCount(0), castleCount(1)
   local a, b = pct(na), pct(nb)
   out.map = { a = string.format("%.1f%%", a / 10), b = string.format("%.1f%%", b / 10), total = string.format("%.1f%%", pct(na + nb) / 10),
-              isA = castle == 0, isB = castle == 1, name = castle == 0 and "Castle A" or "Castle B", empty = #runs == 0 }
+              isA = castle == 0, isB = castle == 1, name = castle == 0 and "Castle A" or "Castle B", empty = false }
 end
 
 -- live alerts: a relic or spell book found, a level gained
@@ -317,18 +318,18 @@ local function watch(out, ui)
     for k = 0, 4 do
       if (now.books >> k) & 1 == 1 and (prev.books >> k) & 1 == 0 then
         n = n + 1
-        found = { title = "SPELL BOOK", name = D.name[S_BOOK_FIRST + k], sub = D.desc[S_BOOK_FIRST + k], img = "asset:ui/book-" .. k .. ".png", page = "book", relic = -1, book = k + 1 }
+        found = { title = "SPELL BOOK", name = D.name[S_BOOK_FIRST + k], sub = D.desc[S_BOOK_FIRST + k], img = "asset:game/book-" .. k .. ".png", page = "book", relic = -1, book = k + 1 }
       end
     end
     if now.level > prev.level then
       n = n + 1
-      found = { title = "LEVEL UP", name = "LEVEL " .. now.level, sub = "Max HP " .. prev.maxHp .. " > " .. now.maxHp, img = "asset:ui/crest.png", page = "status", relic = -1, book = -1 }
+      found = { title = "LEVEL UP", name = "LEVEL " .. now.level, sub = "Max HP " .. prev.maxHp .. " > " .. now.maxHp, img = "asset:game/portrait-juste.png", page = "status", relic = -1, book = -1 }
     end
     if found and n <= 3 then found.id = tick; found.untilTick = tick + 24; toast = found end
   end
   prev = now
   out.toastOn = toast ~= nil and tick < toast.untilTick and (tonumber(ui.toastHide) or -1) ~= toast.id
-  out.toast = toast or { id = 0, title = "", name = "", sub = "", img = "asset:ui/crest.png", page = "status", relic = -1, book = -1 }
+  out.toast = toast or { id = 0, title = "", name = "", sub = "", img = "asset:game/portrait-juste.png", page = "status", relic = -1, book = -1 }
 end
 
 function update(ui)
@@ -364,6 +365,8 @@ function update(ui)
   elseif page == "relics" then pageRelics(out, ui)
   elseif page == "config" then pageConfig(out)
   elseif page == "map" then pageMap(out, ui) end
+  out.onStatus, out.onEquip, out.onItems, out.onBook, out.onRelics, out.onMap = page == "status", page == "equip", page == "items", page == "book", page == "relics", page == "map"
+  out.onConfig = page == "config"
   out.note = ui.note or ""
   watch(out, ui)
   return out

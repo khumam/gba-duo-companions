@@ -526,6 +526,37 @@ function actions.equip(button, itemId)
   return { set = { menu = false, pick = item_names.equip[id]:upper() .. " > " .. button, picked = true } }
 end
 
+-- Fields only the clean (slate) style binds: the selection in each grid, which button an item is on, and the inspector's lines.
+-- Layouts can't compare values, so the comparisons are made here.
+local function cleanFields(out, ui)
+  local a, b = mem.u8(EQUIPPED_A), mem.u8(EQUIPPED_B)
+  for _, s in ipairs(out.items or {}) do
+    local id = tonumber(s.equipKey)
+    s.onKey = (id and id == a and "A") or (id and id == b and "B") or ""
+    s.sel = ui.picked == true and s.name ~= "" and s.name == ui.pick
+  end
+  local pid = tonumber(ui.pickKey)
+  out.pickNone = ui.picked ~= true
+  out.pickNoEquip = pid == nil
+  if ui.picked ~= true then
+    out.pickOn, out.pickHelp = "Tap an item", "Pick an item, then Set to A or Set to B. You can also drag it onto A or B at the top."
+  elseif not pid then
+    out.pickOn, out.pickHelp = "Can't be equipped", "This one works on its own: there's nothing to put on a button."
+  else
+    out.pickOn = (pid == a and "On A") or (pid == b and "On B") or "Not equipped"
+    out.pickHelp = "Set it to A or B. If the other button holds it, the two swap."
+  end
+  for _, p in ipairs((out.kinstone and out.kinstone.pieces) or {}) do
+    p.sel = ui.kinPicked == true and p.name == ui.kinName and p.id == ui.kinId
+  end
+  out.kinNone = ui.kinPicked ~= true
+  local done = 0
+  for _, d in ipairs((out.quest and out.quest.dungeons) or {}) do if d.cleared then done = done + 1 end end
+  out.questDone = done .. " of 6 cleared"
+  for _, e in ipairs((out.quest and out.quest.elements) or {}) do e.state = e.owned and "Found" or "Not found yet" end
+  out.qNone = ui.qPicked ~= true
+end
+
 -- Style and theme switch (the Options page sets ui.style / ui.theme; UI state is not remembered, so every launch starts as Stone / Forest).
 local baseUpdate = update
 function update(ui)
@@ -536,5 +567,6 @@ function update(ui)
   local t = ui.theme
   out.themeParchment, out.themeNight = (t == "parchment"), (t == "night")
   out.themeForest = not (out.themeParchment or out.themeNight)
+  if clean and out.ready == true then cleanFields(out, ui) end
   return out
 end

@@ -148,9 +148,8 @@ local function keyText(v) for _, k in ipairs(KEYS) do if k.v == v then return k.
 local function stat(s, k) return b16(O.stats + s * 8 + k * 2) end   -- s 0-3, k 0 base .. 3 final
 local function owned(card) return b8(O.cards + card) ~= 0 end       -- 0-9 attributes, 10-19 actions
 
-local function cardImg(k, have)
-  if not have then return "asset:ui/card-back.png" end
-  return "asset:ui/card-" .. k .. ".png"
+local function cardImg(k, have)          -- the game's own card art (cut from its Card screen); unowned cards are dimmed by the layout
+  return "asset:game/cardt-" .. k .. ".png"
 end
 
 local function comboOf(attr1, act1)  -- 1-based as in RAM; returns text, cost n, cost unit
@@ -205,13 +204,21 @@ local function status(out)
   local text, n, u = comboOf(attr, act)
   out.dssNow = {
     action = act >= 1 and ACTION_NAMES[act - 1]:upper() or "---", attr = attr >= 1 and ATTR_NAMES[attr - 1]:upper() or "---",
-    actImg = act >= 1 and cardImg(10 + act - 1, true) or "asset:ui/card-back.png", attrImg = attr >= 1 and cardImg(attr - 1, true) or "asset:ui/card-back.png",
+    actImg = act >= 1 and ("asset:game/card-" .. (10 + act - 1) .. ".png") or "asset:ui/card-back.png", attrImg = attr >= 1 and ("asset:game/card-" .. (attr - 1) .. ".png") or "asset:ui/card-back.png",
     text = text, costN = n, costU = u, on = attr >= 1 and act >= 1,
   }
   local function gear(label, id, slot)
     local e = id >= 1 and D.equip[id] or nil
     return { label = label, name = e and e.name or "---", none = e == nil, slot = slot }
   end
+  out.mg = {}
+  for i = 0, 8 do
+    local have = b8(O.magic + i) ~= 0
+    out.mg[i + 1] = { i = i, have = have, locked = not have, img = (i == 5) and "asset:ui/tab-map.png" or ("asset:game/mgt-" .. i .. ".png") }
+  end
+  local nm = 0
+  for i = 0, 8 do if b8(O.magic + i) ~= 0 then nm = nm + 1 end end
+  out.mgCount = nm .. "/9"
   out.gear = { gear("BODY", b8(O.body), 1), gear("ARM R", b8(O.armR), 2), gear("ARM L", b8(O.armL), 3) }
   out.menu = {}
   for i, m in ipairs(MENU) do out.menu[i] = { label = m.label, page = m.page, hint = m.hint } end
@@ -229,10 +236,13 @@ local function pageDss(out, ui)
     attrs[k + 1] = { i = k + 1, img = cardImg(k, owned(k)), have = owned(k), locked = not owned(k), set = attr == k + 1, sel = pa == k + 1 }
   end
   out.dssActs, out.dssAttrs = acts, attrs
+  out.kindAct = (tonumber(ui.dssKind) or 1) ~= 2
+  out.kindAttr = not out.kindAct
   local text, n, u = comboOf(pa, pc)
   out.dssPick = {
     action = pc >= 1 and ACTION_NAMES[pc - 1]:upper() or "---", attr = pa >= 1 and ATTR_NAMES[pa - 1]:upper() or "---",
     text = text, costN = n, costU = u, attr1 = pa, act1 = pc,
+    actImg = pc >= 1 and ("asset:game/card-" .. (10 + pc - 1) .. ".png") or "asset:ui/card-back.png", attrImg = pa >= 1 and ("asset:game/card-" .. (pa - 1) .. ".png") or "asset:ui/card-back.png",
     canSet = pa >= 1 and pc >= 1 and owned(pa - 1) and owned(10 + pc - 1) and (pa ~= attr or pc ~= act),
     isSet = pa == attr and pc == act and pa >= 1,
   }
@@ -246,7 +256,7 @@ local function pageItem(out, ui)
   for i = 1, 4 do
     local slot = SLOTS[i]
     local id = slot and b8(slot.off) or 0
-    out.itemTabs[i] = { i = i, sel = i == tab, eqp = i <= 3, use = i == 4, label = slot and slot.label or "USE",
+    out.itemTabs[i] = { i = i, sel = i == tab, eqp = i <= 3, use = i == 4, label = slot and slot.label or "USE", icon = (i == 1) and "asset:ui/ic-armor.png" or "asset:ui/ic-fist.png",
                         name = slot and (id >= 1 and D.equip[id].name or "---") or "" }
   end
   local pick = tonumber(ui.itemId) or -1
@@ -340,25 +350,23 @@ local function pageConfig(out)
   out.cfgRows, out.cfgClash = rows, clash
 end
 
--- the explored map as runs of lit cells per row (layout draws each run as one box)
-local CELL = 3.6    -- art px per cell on the companion
-local AP = 2.168
+-- the explored map, drawn like the game's own (gamemap.lua + mapdata.lua): one font glyph per cell, 6.9376 px = 4 game px x 4 device px
+local GM, MAPDATA = pack.require("gamemap"), pack.require("mapdata")
+local CELLPX = 6.9376
+local mapSig, mapBuilt
+local function mapWords(r) return mem.u32(R_MAP + r * 8), mem.u32(R_MAP + r * 8 + 4) end
 local function pageMap(out)
-  local map = mem.read(R_MAP, 42 * 8)
-  local runs = {}
-  for r = 0, 41 do
-    local c = 0
-    while c < 64 do
-      local function lit(x) local b = map:byte(r * 8 + (x >> 3) + 1) or 0; return (b >> (x & 7)) & 1 == 1 end
-      if lit(c) then
-        local s = c
-        while c < 64 and lit(c) do c = c + 1 end
-        runs[#runs + 1] = { x = string.format("%.2fpx", (s * CELL) * AP), y = string.format("%.2fpx", (r * CELL) * AP),
-                            w = string.format("%.2fpx", ((c - s) * CELL - 0.6) * AP), h = string.format("%.2fpx", (CELL - 0.6) * AP) }
-      else c = c + 1 end
-    end
-  end
-  out.mapRuns = runs
+  local sig = GM.signature(MAPDATA, mapWords)
+  if sig ~= mapSig or not mapBuilt then mapBuilt, mapSig = GM.build(MAPDATA, mapWords), sig end
+  out.mapFill, out.mapSave, out.mapWarp, out.mapWalls, out.mapDoors = mapBuilt.fill, mapBuilt.save, mapBuilt.warp, mapBuilt.walls, mapBuilt.doors
+  -- Soma's cell. The room's origin cell is kept at 0x020274B4 (x) / B5 (y); Soma's position inside the room is in pixels at 0x02000036 (x) / 3A (y);
+  -- a cell is 256 px wide (x: origin + px // 256) and, measured against the game re-marking the cell he stands in, y = origin + ceil(py / 256).
+  local ox, oy = mem.u8(0x020274B4), mem.u8(0x020274B5)
+  local px, py = mem.u16(0x02000036), mem.u16(0x0200003A)
+  local cx, cy = ox + px // 256, oy + (py + 255) // 256
+  local on = (ox > 0 or oy > 0) and ox < 64 and oy < 42 and px < 4096 and py < 2048 and cx < 64 and cy < 42
+  out.me = { on = on, left = string.format("%.2fpx", (cx + 0.5) * CELLPX - 5 * 2.168), top = string.format("%.2fpx", (cy + 0.5) * CELLPX - 5 * 2.168) }
+  out.meText = on and string.format("%d,%d", cx, cy) or "--"
 end
 
 -- ---------------------------------------------------------------------------------------------
@@ -372,24 +380,24 @@ local function watch(out, ui)
     for k = 0, 19 do
       if now.cards:byte(k + 1) ~= 0 and prev.cards:byte(k + 1) == 0 then
         n = n + 1
-        found = { title = "CARD GET", name = D.cards[k].name, sub = D.cards[k].desc, img = "asset:ui/card-" .. k .. ".png", page = "card", card = k, magic = -1 }
+        found = { title = "CARD GET", name = D.cards[k].name, sub = D.cards[k].desc, img = "asset:game/cardt-" .. k .. ".png", page = "dss", card = k, magic = -1 }
       end
     end
     for i = 0, 8 do
       if now.magic:byte(i + 1) ~= 0 and prev.magic:byte(i + 1) == 0 then
         n = n + 1
-        found = { title = "MAGIC ITEM", name = D.magic[i].name, sub = D.magic[i].desc, img = "asset:ui/mg-" .. i .. ".png", page = "magic", card = -1, magic = i }
+        found = { title = "MAGIC ITEM", name = D.magic[i].name, sub = D.magic[i].desc, img = (i == 5) and "asset:ui/tab-map.png" or ("asset:game/mgt-" .. i .. ".png"), page = "status", card = -1, magic = i }
       end
     end
     if now.level > prev.level then
       n = n + 1
-      found = { title = "LEVEL UP", name = "LV " .. now.level, sub = "Max HP " .. prev.maxHp .. " > " .. now.maxHp, img = "asset:ui/moon.png", page = "status", card = -1, magic = -1 }
+      found = { title = "LEVEL UP", name = "LV " .. now.level, sub = "Max HP " .. prev.maxHp .. " > " .. now.maxHp, img = "asset:game/portrait-nathan.png", page = "status", card = -1, magic = -1 }
     end
     if found and n <= 3 then found.id = tick; found.untilTick = tick + 24; toast = found end
   end
   prev = now
   out.toastOn = toast ~= nil and tick < toast.untilTick and (tonumber(ui.toastHide) or -1) ~= toast.id
-  out.toast = toast or { id = 0, title = "", name = "", sub = "", img = "asset:ui/moon.png", page = "status", card = -1, magic = -1 }
+  out.toast = toast or { id = 0, title = "", name = "", sub = "", img = "asset:game/portrait-nathan.png", page = "status", card = -1, magic = -1 }
 end
 
 function update(ui)
@@ -417,11 +425,14 @@ function update(ui)
   out.heal = { can = best ~= nil, off = best == nil, name = best and (D.equip[best].name .. " x" .. b8(O.count + best)) or (hp >= mx and "HP full" or "No potions"), id = best or -1 }
   local page = ui.page or "status"
   if page == "dss" then pageDss(out, ui)
-  elseif page == "item" then pageItem(out, ui)
+  elseif page == "gear" then local u2 = setmetatable({ itemTab = clampInt(ui.itemTab or 1, 1, 3) }, { __index = ui }); pageItem(out, u2); out.itemTabs[4] = nil
+  elseif page == "items" then local u2 = setmetatable({ itemTab = 4 }, { __index = ui }); pageItem(out, u2)
   elseif page == "card" then pageCard(out, ui)
   elseif page == "magic" then pageMagic(out, ui)
   elseif page == "config" then pageConfig(out)
   elseif page == "map" then pageMap(out) end
+  out.onStatus, out.onDss, out.onGear, out.onItems, out.onMap = page == "status", page == "dss" or page == "card", page == "gear", page == "items", page == "map"
+  out.onConfig = page == "config"
   out.note = ui.note or ""
   watch(out, ui)
   return out

@@ -1,0 +1,23 @@
+/* readability.css: written by skill/tools/packkit/readability.py from style.css. Do not edit by hand: run the tool again.
+   Adds tracking (and line height for wrapped text) by font and size; rules that set letter-spacing themselves are left alone. */
+#screen { letter-spacing: 1.04px; }
+.num { letter-spacing: 1.04px; }
+.num.big { letter-spacing: 0.65px; }
+.info-name { letter-spacing: 1.13px; }
+.info-t { letter-spacing: 1.04px; line-height: 29.9px; }
+.info-x { letter-spacing: 0.95px; line-height: 27.4px; }
+.barrow .bar-n { letter-spacing: 0.95px; }
+.book-l { letter-spacing: 0.52px; }
+.gnum { letter-spacing: 1.04px; }
+.empty { letter-spacing: 1.04px; }
+.slot-l { letter-spacing: 0.52px; }
+.clab { letter-spacing: 0.69px; }
+.carr-t { letter-spacing: 0.61px; }
+.clash { letter-spacing: 1.04px; }
+.toast-name { letter-spacing: 0.61px; }
+.toast-sub { letter-spacing: 0.95px; }
+.toast-x-t { letter-spacing: 1.21px; }
+.wait-1 { letter-spacing: 0.40px; }
+.wait-3 { letter-spacing: 1.04px; }
+.wait-4 { letter-spacing: 0.95px; }
+.slotname .slot-n { letter-spacing: 1.13px; }

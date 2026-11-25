@@ -216,3 +216,45 @@ function update(ui)
   }
   return out
 end
+
+-- ---- Style and theme (the Clean style's Options page sets ui.style / ui.theme; the brick LOOK plate sets style = clean) ----
+-- UI state is not remembered, so every launch starts as Brick / Present. The clean style also needs a few values the layout
+-- can't compute (a layout can't compare): the selection in each grid and the inspector's lines.
+local baseUpdate = update
+function update(ui)
+  ui = ui or {}
+  local out = baseUpdate(ui)
+  local clean = ui.style == "clean"
+  out.styleBrick, out.styleClean = not clean, clean
+  out.showBrick, out.showClean = out.ready == true and not clean, out.ready == true and clean
+  out.themePast, out.themeNight = ui.theme == "past", ui.theme == "night"
+  out.themePresent = not (out.themePast or out.themeNight)
+  if not (clean and out.ready == true) then return out end
+
+  for _, s in ipairs(out.slots or {}) do s.sel = ui.picked == true and not s.empty and s.name == ui.pick end
+  -- the clean grid is 5 x 4: pad the 16 inventory slots with 4 empty wells so the last row is whole
+  while #out.slots < 20 do out.slots[#out.slots + 1] = { empty = true, equipped = false, tag = "", name = "", level = "", icon = ART .. "blank.png", sel = false } end
+  out.pickNone = ui.picked ~= true
+  out.pickInBag = ui.picked == true and (ui.pickTag == nil or ui.pickTag == "")
+  for _, s in ipairs(out.seeds or {}) do s.sel = ui.seedPicked == true and s.name == ui.seedName end
+  out.seedNone = ui.seedPicked ~= true
+  local ringList = {}
+  for _, row in ipairs((out.ring and out.ring.dotRows) or {}) do
+    for _, c in ipairs(row.cells) do
+      local id = #ringList
+      ringList[#ringList + 1] = { src = c.src, on = c.on, off = not c.on, name = (RING_NAMES[id] or "?") .. " RING",
+        state = c.on and "In your collection" or "Not found yet", sel = ui.ringPicked == true and ui.ringId == tostring(id), id = tostring(id) }
+    end
+  end
+  out.ringList, out.ringNone = ringList, ui.ringPicked ~= true
+  out.ringCount = tostring(out.ring and out.ring.count or 0) .. " / 64"
+  for _, e in ipairs((out.status and out.status.essences) or {}) do
+    e.sel = ui.essPicked == true and e.name == ui.essName
+    e.state = e.on and "Collected" or "Not yet"
+    e.off = not e.on
+  end
+  out.essNone = ui.essPicked ~= true
+  out.explored = (out.map and out.map.count or "0") .. " / 196"
+  out.exploredPctStr = string.format("%.1f%%", 100 * (tonumber(out.map and out.map.count) or 0) / 196)
+  return out
+end

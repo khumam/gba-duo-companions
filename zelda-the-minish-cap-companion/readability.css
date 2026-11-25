@@ -1,0 +1,68 @@
+/* readability.css: written by skill/tools/packkit/readability.py from style.css. Do not edit by hand: run the tool again.
+   Adds tracking (and line height for wrapped text) by font and size; rules that set letter-spacing themselves are left alone. */
+.num { letter-spacing: 0.84px; }
+#screen { letter-spacing: 0.64px; }
+.rupees { letter-spacing: 0.60px; }
+.kin { letter-spacing: 0.60px; }
+.equip-key { letter-spacing: 0.78px; }
+.slab-label.f5 { letter-spacing: 0.62px; }
+.slab-label.f7 { letter-spacing: 1.00px; }
+.slab-label.f8 { letter-spacing: 0.88px; }
+.slab-label-here.f5 { letter-spacing: 0.74px; }
+.slab-label-here.f7 { letter-spacing: 0.64px; }
+.slab-label-here.f8 { letter-spacing: 1.12px; }
+.bubble-name { letter-spacing: 0.68px; }
+.bubble-text { letter-spacing: 0.72px; line-height: 20.7px; }
+.bubble-close { letter-spacing: 0.60px; }
+.count { letter-spacing: 0.56px; }
+.map-tab-label { letter-spacing: 0.64px; }
+.dfloor-name { letter-spacing: 0.60px; }
+.ditem-name { letter-spacing: 0.60px; }
+.dkey-num { letter-spacing: 0.64px; }
+.picked-name { letter-spacing: 0.64px; }
+.gear-val { letter-spacing: 0.48px; }
+.fuse-num { letter-spacing: 1.12px; }
+.fuse-of { letter-spacing: 0.60px; }
+.tally-num { letter-spacing: 0.68px; }
+.alert-text { letter-spacing: 0.64px; line-height: 18.4px; }
+.piece-amt { letter-spacing: 0.60px; }
+.piece-id { letter-spacing: 0.52px; }
+.dg-name { letter-spacing: 0.64px; }
+.element-name { letter-spacing: 0.64px; }
+.stat-val { letter-spacing: 0.60px; }
+.side-done { letter-spacing: 0.60px; }
+.boot-title { letter-spacing: 1.12px; }
+.boot-pill-text { letter-spacing: 0.64px; }
+.opt-title { letter-spacing: 0.80px; }
+.opt-desc { letter-spacing: 0.64px; line-height: 18.4px; }
+.opt-state { letter-spacing: 0.56px; }
+.style-btn-t { letter-spacing: 0.60px; }
+.c-root { letter-spacing: 0.40px; }
+.c-tab-label { letter-spacing: 0.40px; }
+.c-fact-num { letter-spacing: 0.40px; }
+.c-fact-key { letter-spacing: 0.40px; }
+.c-insp-name { letter-spacing: 0.42px; }
+.c-insp-sub { letter-spacing: 0.40px; }
+.c-insp-text { letter-spacing: 0.40px; }
+.c-insp-row-t { letter-spacing: 0.40px; }
+.c-cell-tag { letter-spacing: 0.40px; }
+.c-badge { letter-spacing: 0.40px; }
+.c-grid empty, .c-grid-scroll empty, .c-grid-side empty { letter-spacing: 0.40px; }
+.c-fbtn-t { letter-spacing: 0.40px; }
+.c-insp-name-s { letter-spacing: 0.40px; }
+.c-map-tabs .c-fbtn-t { letter-spacing: 0.40px; }
+.c-say-t { letter-spacing: 0.40px; }
+.c-dfloor-name { letter-spacing: 0.44px; }
+.c-gauge-val { letter-spacing: 0.40px; }
+.c-alert-t { letter-spacing: 0.40px; line-height: 18.2px; }
+.c-fused-l { letter-spacing: 0.40px; }
+.c-fused-n { letter-spacing: 0.40px; }
+.c-fused-of { letter-spacing: 0.40px; }
+.c-tally-num { letter-spacing: 0.40px; }
+.c-sect { letter-spacing: 0.40px; }
+.c-drow-name { letter-spacing: 0.40px; }
+.c-opt-title { letter-spacing: 0.40px; }
+.c-opt-desc { letter-spacing: 0.40px; }
+.c-opt-state { letter-spacing: 0.40px; }
+.c-choice-t { letter-spacing: 0.40px; }
+.c-bubble-close { letter-spacing: 0.40px; }

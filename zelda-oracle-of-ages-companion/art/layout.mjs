@@ -6,6 +6,7 @@
 //   node art/layout.mjs
 
 import fs from "node:fs";
+import { buildClean } from "./clean.mjs";
 
 const box = (cls, children, extra = {}) => ({ type: "box", class: cls, children, ...extra });
 const text = (cls, t, extra = {}) => ({ type: "text", class: cls, text: t, ...extra });
@@ -109,15 +110,33 @@ const pages = { type: "pages", state: "page", initial: "items", pages: [
   page("items", items), page("map", map), page("seeds", seeds), page("rings", rings), page("status", status),
 ] };
 
+// Every class of the clean tree gets a c- prefix (class strings and classIf keys), so its css never touches the brick style.
+function prefixed(node, extra = {}) {
+  const pre = (s) => s.split(/\s+/).filter(Boolean).map((t) => "c-" + t).join(" ");
+  const walk = (n) => {
+    if (Array.isArray(n)) return n.forEach(walk);
+    if (!n || typeof n !== "object") return;
+    if (typeof n.class === "string") n.class = pre(n.class);
+    if (n.classIf) n.classIf = Object.fromEntries(Object.entries(n.classIf).map(([k, v]) => ["c-" + k, v]));
+    for (const v of Object.values(n)) walk(v);
+  };
+  walk(node);
+  node.class = "c-root";
+  return Object.assign(node, extra);
+}
+
 const layout = box("screen", [
   box("waiting", [box("wait", [text("wait-title", "ORACLE OF AGES"), text("wait-sub", "{waitSub}")])], { visibleIf: "$waiting" }),
   box("shell", [
     box("pages-wrap", [pages]),
     box("pillar pillar-l", []),
     box("pillar pillar-r", []),
-    rail("l", [rupeePlate, equip("B", "b"), box("tabs", TABS.slice(0, 3).map(tab))]),
+    rail("l", [rupeePlate, equip("B", "b"), box("tabs", TABS.slice(0, 3).map(tab)),
+      // the way to the clean style (its Options page brings you back)
+      button("plate plate-dark look", [{ set: { style: "clean", page: "citems" } }], [text("era-plate-label", "LOOK"), text("era-plate-text", "CLEAN")])]),
     rail("r", [heartPlate, equip("A", "a"), box("tabs", TABS.slice(3).map(tab)), eraPlate]),
-  ], { visibleIf: "$ready" }),
+  ], { visibleIf: "$showBrick" }),
+  prefixed(buildClean({ box, text, img, button, list, ui }), { visibleIf: "$showClean", classIf: { "theme-past": "$themePast", "theme-night": "$themeNight" } }),
 ], { id: "screen" });
 
 fs.writeFileSync(new URL("../layout.json", import.meta.url), JSON.stringify(layout, null, 2) + "\n");

@@ -1,0 +1,164 @@
+/* Advance Wars companion 0.3.0: the game's intel screens re-laid for touch (design: .idea/plans/aw-design2 in the app repo).
+   Units: ap = one art pixel of the 248 x 216 grid (2.168 dp, 5 device px), expanded by skill/tools/packkit/css.py. 0.2 source: art/v2/.
+
+   Identity, sampled from the game (USA Rev 1, Vs. Mode captures): wallpaper #efd6a5, paper #ffe7c6 with row bands #ffdebd / #ffd6b5,
+   ink #100808, salmon rules #f7a57b, the grey-green bevel #849c94, the dark field info panel #2d3542, the yellow bars #fff708, the white
+   glove, the army emblems. ONE accent: the colour of the army whose turn it is (--acc; --foe for the other side) from the script.
+   Readability: captions Silkscreen 7 ap with 0.8 ap tracking on an ink tab, names Jersey 13-14 ap with 0.4 ap tracking, numbers Jersey
+   13-16 ap, small labels Jersey 11 ap with 0.5 ap tracking in a muted brown. Taps are 20 ap (43 dp) or more.
+   60 / 30 / 10: paper and wallpaper / ink, rules, bevel, the dark panel / the turn army's colour. */
+:root { --wall: #efd6a5; --wall2: #e8cc98; --paper: #ffe7c6; --band: #ffdebd; --band2: #ffd6b5; --ink: #100808; --salmon: #f7a57b; --bevel: #849c94;
+  --panel: #2d3542; --panel2: #1e2432; --mute: #8a6a52; --yel: #fff708; --white: #ffffff; --acc: #e85428; --pill: #de6b52; --foe: #3068d8; }
+@font-face { font-family: "Jersey"; src: url("assets/fonts/Jersey10-Regular.ttf"); }
+@font-face { font-family: "Silk"; src: url("assets/fonts/Silkscreen-Bold.ttf"); }
+
+image { image-rendering: pixelated; }
+text { white-space: nowrap; }
+#screen { width: 100%; height: 100%; background-color: var(--wall); font-family: "Jersey"; font-size: 13ap; color: var(--ink); }
+.main, .waiting, .ready { width: 100%; height: 100%; }
+.grow { flex: 1; }
+.rule { height: 1ap; flex-shrink: 0; background-color: var(--salmon); }
+
+/* ---- shell ------------------------------------------------------------------------------------------------------------------- */
+.ready { flex-direction: row; gap: 6ap; padding: 8ap 4ap 4ap 5ap; }
+.stage-w { flex: 1; min-width: 0; }
+.stage { width: 100%; height: 100%; }
+.page { width: 100%; height: 100%; gap: 10ap; }
+
+/* the game's window: bevel, ink line, paper; the caption sits on the top edge */
+.win { position: relative; flex-shrink: 0; padding: 1ap; background-color: var(--bevel); border-radius: 2ap; }
+.win.grow { flex: 1; min-height: 0; }
+.win-in { flex: 1; min-height: 0; gap: 3ap; padding: 7ap 5ap 4ap; background-color: var(--paper); border: 1ap solid var(--ink); border-radius: 2ap; }
+.cap { position: absolute; left: 5ap; top: -6ap; height: 11ap; padding: 0 3ap; justify-content: center; background-color: var(--ink); border-radius: 1ap; z-index: 2; }
+.cap-t { font-family: "Silk"; font-size: 7ap; letter-spacing: 0.8ap; color: var(--white); }
+.cap-none { height: 0; }
+
+/* the map menu and the DAY plate */
+.side { width: 64ap; flex-shrink: 0; gap: 10ap; }
+.menu .win-in { gap: 2ap; padding: 8ap 3ap 3ap; }
+.nrow { height: 26ap; position: relative; flex-direction: row; align-items: center; gap: 3ap; padding: 0 2ap 0 3ap; margin: 0; justify-content: flex-start;
+  background-color: transparent; border: 0; border-radius: 2ap; }
+.nrow:pressed { background-color: var(--band); }
+.nrow.on { background-color: var(--band2); border-bottom: 2ap solid var(--acc); }
+.nglove-w { position: absolute; left: -16ap; top: 7ap; width: 13ap; height: 12ap; }
+.glove { width: 13ap; height: 12ap; }
+.n-ic { width: 14ap; height: 14ap; flex-shrink: 0; }
+.n-ic.n-units { width: 17ap; height: 13ap; }
+.n-ic.n-terrain { width: 14ap; height: 14ap; }
+.n-ic.n-map { width: 16ap; height: 13ap; }
+.n-t { font-size: 12ap; letter-spacing: 0.4ap; color: var(--mute); }
+.nrow.on .n-t { color: var(--ink); }
+.day .win-in { padding: 5ap 4ap 4ap; gap: 3ap; }
+.day-top { flex-direction: row; align-items: center; gap: 4ap; height: 18ap; }
+.emblem { width: 15ap; height: 15ap; flex-shrink: 0; }
+.day-l { font-size: 13ap; letter-spacing: 0.4ap; }
+.day-n { font-size: 20ap; line-height: 18ap; }
+.day-army { font-size: 12ap; letter-spacing: 0.4ap; color: var(--mute); white-space: normal; }
+.day-funds { flex-direction: row; align-items: center; height: 16ap; }
+.d-coin { width: 14ap; height: 13ap; flex-shrink: 0; }
+.funds { font-size: 15ap; }
+.income { font-size: 11ap; letter-spacing: 0.4ap; color: var(--mute); text-align: right; }
+
+/* ---- INTEL ------------------------------------------------------------------------------------------------------------------ */
+.thead { flex-direction: row; align-items: center; gap: 5ap; height: 13ap; padding: 0 3ap; }
+.th { width: 18ap; align-items: flex-end; text-align: right; font-size: 11ap; letter-spacing: 0.5ap; color: var(--mute); }
+.th.wide, .anum.wide { width: 30ap; }
+.arow { height: 24ap; position: relative; flex-direction: row; align-items: center; gap: 5ap; padding: 0 3ap 0 4ap; background-color: var(--band); border-radius: 2ap; }
+.arow.turn { background-color: var(--band2); border-bottom: 2ap solid var(--acc); }
+.glove-w { position: absolute; left: -15ap; top: 6ap; width: 13ap; height: 12ap; }
+.aname { min-width: 0; font-size: 13ap; letter-spacing: 0.3ap; text-overflow: ellipsis; }
+.anum { width: 18ap; text-align: right; font-size: 14ap; }
+.bintel .win-in { gap: 4ap; }
+.bars { flex: 1; justify-content: space-around; }
+.tug { flex-direction: row; align-items: center; gap: 5ap; height: 22ap; }
+.tug-ic { width: 14ap; height: 14ap; flex-shrink: 0; }
+.tug-n { width: 26ap; font-size: 15ap; color: var(--acc); }
+.tug-n.foe { text-align: right; color: var(--foe); }
+.track { flex: 1; height: 9ap; flex-direction: row; border: 1ap solid var(--ink); background-color: var(--foe); }
+.tug-a { height: 7ap; background-color: var(--acc); }
+.tug-b { flex: 1; }
+
+/* ---- UNIT ------------------------------------------------------------------------------------------------------------------- */
+.th-ic { width: 14ap; height: 13ap; }
+.utable .thead { padding: 0 10ap 0 30ap; }
+.ulist { height: 64ap; overflow: auto; display: grid; grid-template-columns: repeat(2, 1fr); gap: 2ap 4ap; }
+.urow { height: 20ap; position: relative; flex-direction: row; align-items: center; gap: 4ap; padding: 0 4ap 0 3ap; margin: 0; justify-content: flex-start;
+  background-color: var(--band); border: 0; border-radius: 2ap; }
+.urow:pressed { background-color: var(--band2); }
+.urow.on { background-color: var(--band2); border-bottom: 2ap solid var(--acc); }
+.urow .glove-w { left: -12ap; top: 5ap; }
+.u-ic { width: 16ap; height: 16ap; flex-shrink: 0; }
+.u-t { flex: 1; min-width: 0; gap: 0; }
+.u-name { font-size: 12ap; line-height: 10ap; letter-spacing: 0.3ap; }
+.u-cost { font-size: 11ap; line-height: 10ap; letter-spacing: 0.3ap; color: var(--mute); }
+.u-cost.poor { color: #c03018; }
+.u-own { font-size: 13ap; }
+.dtop { flex-direction: row; gap: 6ap; flex-shrink: 0; }
+.dwell { width: 36ap; height: 36ap; align-items: center; justify-content: center; background-color: var(--panel); border-radius: 2ap; flex-shrink: 0; }
+.d-big { width: 32ap; height: 32ap; }
+.dhead { flex: 1; min-width: 0; gap: 3ap; }
+.dname-row { flex-direction: row; align-items: center; gap: 4ap; height: 16ap; }
+.dhead { justify-content: center; gap: 2ap; }
+.d-name { font-size: 15ap; letter-spacing: 0.4ap; }
+.d-cost { font-size: 15ap; color: var(--acc); }
+.d-cost.poor { color: #c03018; }
+.dstats { flex-direction: row; justify-content: space-between; flex-shrink: 0; }
+.ds { gap: 0; align-items: center; }
+.ds-l { font-size: 10ap; letter-spacing: 0.3ap; color: var(--mute); }
+.ds-v { font-size: 13ap; line-height: 12ap; }
+.dmg { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 2ap 8ap; align-content: center; }
+.drow { flex-direction: row; align-items: center; gap: 4ap; height: 16ap; }
+.dm-ic { width: 16ap; height: 16ap; flex-shrink: 0; }
+.dtrack { flex: 1; height: 8ap; background-color: var(--ink); padding: 1ap; }
+.dfill { height: 6ap; background-color: var(--yel); }
+.dfill.best { background-color: var(--acc); }
+.dm-n { width: 22ap; text-align: right; font-size: 14ap; }
+.dm-n.none { color: var(--mute); }
+
+/* ---- TERRAIN ------------------------------------------------------------------------------------------------------------------ */
+.tiles { display: grid; grid-template-columns: repeat(5, 1fr); gap: 3ap; }
+.ttile { height: 26ap; padding: 0; margin: 0; align-items: center; justify-content: center; background-color: var(--bevel); border: 1ap solid var(--bevel); border-radius: 2ap; }
+.ttile:pressed { border-color: var(--ink); }
+.ttile.on { background-color: var(--acc); border: 2ap solid var(--acc); }
+.t-img { width: 22ap; height: 22ap; }
+.panel { min-height: 0; gap: 3ap; padding: 5ap 8ap; background-color: var(--panel); border: 1ap solid var(--ink); border-radius: 2ap; }
+.ptop { flex-direction: row; align-items: center; gap: 8ap; flex-shrink: 0; }
+.p-tile { width: 40ap; height: 40ap; }
+.p-t { gap: 4ap; }
+.p-name { font-size: 20ap; letter-spacing: 0.5ap; color: var(--white); }
+.p-def { flex-direction: row; align-items: center; gap: 4ap; }
+.p-defl { width: 24ap; height: 14ap; }
+.starrow { flex-direction: row; gap: 1ap; }
+.star { width: 10ap; height: 10ap; }
+.p-defn { font-size: 15ap; color: var(--white); }
+.prule { height: 1ap; background-color: #5a6878; flex-shrink: 0; }
+.p-lab { font-size: 11ap; letter-spacing: 0.5ap; color: #a8b4c4; }
+.costs { flex-direction: row; justify-content: space-between; height: 32ap; flex-shrink: 0; }
+.cost { align-items: center; gap: 2ap; width: 24ap; }
+.c-ic { width: 16ap; height: 16ap; }
+.c-n { font-size: 15ap; color: var(--white); }
+.cost.blocked .c-n { color: #6a7888; }
+.cost.blocked .c-ic { opacity: 0.4; }
+
+/* ---- MAP ------------------------------------------------------------------------------------------------------------------- */
+.mapwin .win-in { padding: 8ap 3ap 3ap; }
+.mapwell { flex: 1; min-height: 0; align-items: center; justify-content: center; background-color: var(--panel2); border-radius: 1ap; }
+.mapwrap { position: relative; }
+.mapbg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+.mp { position: absolute; border: 1px solid var(--ink); border-radius: 1ap; }
+.mp.hq { border-color: #ffffff; }
+.mu { position: absolute; }
+.mui { width: 100%; height: 100%; }
+.view { position: absolute; border: 2px solid #ffffff; }
+.nomap { font-size: 13ap; letter-spacing: 0.4ap; color: #a8b4c4; }
+.mrows { flex-direction: row; gap: 6ap; height: 26ap; flex-shrink: 0; }
+.mrow { flex: 1; flex-direction: row; align-items: center; justify-content: space-between; gap: 2ap; padding: 0 5ap; background-color: var(--paper); border: 1ap solid var(--ink); border-radius: 2ap; }
+.mrow.turn { background-color: var(--band2); border-bottom: 2ap solid var(--acc); }
+.m-ic { width: 14ap; height: 14ap; flex-shrink: 0; }
+.m-n { min-width: 14ap; font-size: 15ap; }
+
+/* ---- waiting ------------------------------------------------------------------------------------------------------------- */
+.wait { flex: 1; align-items: center; justify-content: center; gap: 6ap; }
+.w1 { font-family: "Silk"; font-size: 14ap; letter-spacing: 1ap; color: var(--ink); }
+.w2 { font-size: 15ap; letter-spacing: 0.4ap; color: var(--ink); }
+.w3 { font-size: 12ap; letter-spacing: 0.4ap; color: var(--mute); }

@@ -1,238 +1,227 @@
 /*
- * Clean style (source). art/build.py prefixes every class with c- and every custom property with --c-, and puts it after
- * art/style.stone.css in style.css, so it never touches the stone style.
- * Flat and minimalist: a deep-forest ground, flat panes with a 2 dp moss rim, parchment tiles for items, triforce gold for "current".
- * Layout: top bar (Ezlo, rupees, kinstones, A / B), five icon tabs, and on every page a master (map, tile grid, list) beside a
- * detail pane. dp for the Thor's ~538 x 468 screen, 4/8 dp rhythm, tap targets >= 44, text >= 16 (Jersey 10).
+ * Clean style, the slate (source). art/build.py prefixes every class with c- and every custom property with --c-, and puts it after
+ * art/style.stone.css in style.css, so it never touches the stone style. Old clean style: art/clean-v1/.
+ * Sizes in dp for the Thor's 538 x 468 screen (1 dp = 2.3048 device px). Pixel art is sized in whole device-pixel multiples:
+ * a 16 px sprite at 4x = 27.77 dp, 6x = 41.65 dp, 8x = 55.54 dp; the ROM world map at 5x = 347.1 x 277.7 dp.
+ * Grid: 6 dp outer margin, 5 / 6 dp gaps, 65.42 dp cells (5 columns fill the 347.1 dp master exactly).
+ * 60 / 30 / 10: --bg / --bar surfaces; --cell wells, --line hairlines and the text; --acc only for the active tab, the selection,
+ * the inspector line and switches that are on.
  */
 
-:root {
-  --ground: #0F2217; --ground-deep: #12291C; --bar: #0B1A11; --card: #1A3626; --card-2: #214330; --rim: #2F5C42; --rim-hi: #4C8A63;
-  --text: #F4EBCB; --muted: #9DB8A5; --dim: #6E8C79; --gold: #E8B923; --gold-dk: #B8860B; --green: #4CC36B; --red: #E5484D; --blue: #4A8FE7;
-  --track: #0B1A11; --parch: #EFE3BC; --parch-edge: #9A7A3A; --ink: #2B2616; --ink-2: #5C5230;
-  --bar-card: #1A3626; --bar-card2: #214330; --bar-rim: #2F5C42; --bar-text: #F4EBCB; --bar-muted: #9DB8A5; --bar-gold: #E8B923; --bar-gold-dk: #B8860B;
-}
+@font-face { font-family: "Nunito"; src: url("assets/fonts/NunitoSans-SemiBoldItalic.ttf"); }
+@font-face { font-family: "NunitoB"; src: url("assets/fonts/NunitoSans-BoldItalic.ttf"); }
 
-/* Themes (Options page): the root box has theme-parchment / theme-night, none = Forest. They only swap tokens. */
+:root {
+  --bg: #0D0F11; --bar: #151A1C; --cell: #050607; --sel: #11160F; --btn: #0B0D04; --line: #34342B; --line2: #24261F;
+  --text: #FDFACB; --muted: #B8B59A; --dim: #6C6F66; --acc: #62C35A; --acc-bg: #1C3A1A; --red: #E5484D; --blue: #4A8FE7;
+  --bar-line: #34342B; --bar-text: #FDFACB; --bar-muted: #B8B59A; --bar-cell: #0D0F11;
+}
 .root.theme-parchment {
-  --ground: #E8DCB0; --ground-deep: #DCCF9C; --card: #F6EDCC; --card-2: #EADFB8; --rim: #C2A862; --rim-hi: #8A6A2F;
-  --text: #2B2616; --muted: #6A5C34; --dim: #8A7C50; --gold: #9A6400; --gold-dk: #8A5A00;
-  --green: #2E7D32; --red: #C2272D; --blue: #2563EB; --track: #CDBE8A;
-  --bar: #3A2E17; --bar-card: #4C3D20; --bar-card2: #5C4A27; --bar-rim: #7A6230; --bar-muted: #C9B98A;
+  --bg: #E9E3CE; --cell: #F7F2E1; --sel: #E3EDD6; --btn: #EFE8D2; --line: #B9AE8B; --line2: #D3C9A6;
+  --text: #2B2616; --muted: #6A5C34; --dim: #9A8C60; --acc: #3C8A35; --acc-bg: #DDEBCF;
 }
 .root.theme-night {
-  --ground: #0E1022; --ground-deep: #12152E; --card: #181B38; --card-2: #20244A; --rim: #2E3466; --rim-hi: #5560B8;
-  --text: #E8EAFB; --muted: #9AA3D6; --dim: #6C75A8; --gold: #F2C94C; --gold-dk: #B8962E; --green: #5BD89A; --track: #090A18;
-  --bar: #080916; --bar-card: #181B38; --bar-card2: #20244A; --bar-rim: #2E3466; --bar-muted: #9AA3D6; --bar-gold: #F2C94C;
+  --bg: #0B0D1A; --cell: #06070F; --sel: #0F1430; --btn: #090B18; --line: #2C3158; --line2: #1D2140;
+  --text: #E8EAFB; --muted: #9AA3D6; --dim: #5C649A; --acc: #6F9BFF; --acc-bg: #16214A;
+  --bar: #10132A; --bar-line: #2C3158; --bar-cell: #0B0D1A;
 }
 
-.root { position: absolute; left: 0; top: 0; right: 0; bottom: 0; background-color: var(--ground); font-family: "Jersey"; font-size: 20px; color: var(--text); }
+.root { position: absolute; left: 0; top: 0; right: 0; bottom: 0; background-color: var(--bg); font-family: "Nunito"; font-size: 15px; color: var(--text); }
 .grow { flex: 1; }
-.num { font-size: 22px; line-height: 22px; }
-
-.shell { flex: 1 1 auto; min-height: 0; position: relative; }
+.num { font-family: "NunitoB"; }
 .pages-wrap { flex: 1; min-height: 0; position: relative; }
 .pages { width: 100%; height: 100%; }
 .page { position: relative; width: 100%; height: 100%; }
 
-/* ---- top bar ---- */
-.topbar { flex-direction: row; align-items: center; flex-shrink: 0; gap: 8px; height: 60px; padding: 0 10px; background-color: var(--bar); border-bottom: 2px solid var(--bar-rim); }
-.ezlo-btn { width: 44px; height: 44px; padding: 0; align-items: center; justify-content: center; background-color: var(--bar-card); border: 2px solid var(--bar-rim); border-radius: 22px; }
-.ezlo-btn:pressed { background-color: var(--bar-card2); border-color: var(--bar-gold); }
-.ezlo { width: 30px; height: 29px; }
-.chip { flex-direction: row; align-items: center; gap: 6px; height: 36px; padding: 0 10px 0 8px; background-color: var(--bar-card); border: 2px solid var(--bar-rim); border-radius: 18px; }
-.chip .num { font-size: 24px; line-height: 24px; color: var(--bar-text); }
-.chip-rupee .num { color: #7BE495; }
-.hicon { width: 22px; height: 22px; flex-shrink: 0; }
-.hicon-rupee { width: 14px; height: 20px; }
-.equip { flex-direction: row; align-items: center; gap: 6px; height: 48px; width: 142px; padding: 0 8px 0 4px; background-color: var(--bar-card); border: 2px solid var(--bar-rim); border-radius: 24px; }
-.disc { position: relative; width: 38px; height: 38px; flex-shrink: 0; align-items: center; justify-content: center; background-color: var(--parch); border: 2px solid var(--parch-edge); border-radius: 19px; }
-.equip-icon { width: 24px; height: 24px; }
-.equip-badge { position: absolute; left: -4px; top: -4px; width: 18px; height: 18px; align-items: center; justify-content: center; background-color: var(--bar-gold); border-radius: 9px; }
-.equip-key { font-size: 15px; line-height: 15px; color: #2B2616; }
-.equip-name { flex: 1; min-width: 0; height: 32px; font-size: 17px; line-height: 16px; color: var(--bar-muted); white-space: normal; }
-.equip:drop-over { background-color: var(--bar-card2); border-color: var(--bar-gold); }
-.equip:drop-over .equip-name { color: var(--bar-gold); }
+/* ---- top bar ------------------------------------------------------------------------------------------------------------- */
+.topbar { flex-direction: row; align-items: center; flex-shrink: 0; height: 52px; padding: 0 6px; background-color: var(--bar); border-bottom: 1px solid var(--bar-line); }
+.tabs { flex-direction: row; height: 52px; }
+.tab { width: 48px; height: 52px; flex-direction: column; align-items: center; justify-content: flex-start; padding: 3px 0 0; margin: 0; position: relative; background-color: transparent; border: 0; border-radius: 0; }
+.tab:pressed { background-color: var(--bar-cell); }
+.tab-label { height: 14px; font-family: "NunitoB"; font-size: 12px; line-height: 14px; color: var(--bar-text); }
+.tab-label-space { height: 14px; }
+.tab-glyph { width: 23.86px; height: 23.86px; margin-top: 3px; image-rendering: auto; }
+.tab-line { width: 28px; height: 3px; margin-top: 5px; background-color: var(--acc); }
+.tab-dot { position: absolute; right: 9px; top: 15px; width: 8px; height: 8px; background-color: var(--red); border-radius: 4px; }
+.ezlo-btn { width: 40px; height: 40px; padding: 0; margin: 0 6px 0 0; align-items: center; justify-content: center; background-color: var(--bar-cell); border: 1px solid var(--bar-line); border-radius: 0; }
+.ezlo-btn:pressed { border-color: var(--acc); }
+.ezlo { width: 27.77px; height: 27.77px; }
+.facts { flex-direction: row; align-items: center; height: 40px; gap: 8px; padding: 0 6px; background-color: var(--bar-cell); border: 1px solid var(--bar-line); }
+.fact { flex-direction: row; align-items: center; gap: 4px; }
+.fact-rupee { width: 10.41px; height: 13.88px; }
+.fact-kin { width: 17.35px; height: 13.88px; }
+.fact-num { font-size: 16px; line-height: 18px; color: var(--bar-text); }
+.fact-eq { flex-direction: row; align-items: center; gap: 3px; }
+.fact-eq:drop-over .fact-well { border-color: var(--acc); }
+.fact-key { font-family: "NunitoB"; font-size: 13px; color: var(--bar-muted); }
+.fact-well { width: 32px; height: 32px; align-items: center; justify-content: center; background-color: var(--bar); border: 1px solid var(--bar-line); }
+.fact-icon { width: 27.77px; height: 27.77px; }
 
-.bubble { position: absolute; top: 66px; left: 16px; right: 16px; z-index: 10; flex-direction: row; align-items: flex-start; gap: 10px; padding: 10px 12px; background-color: #EFE3BC; border: 3px solid #9A7A3A; border-radius: 10px; box-shadow: 0 4px 0 #070F09; }
-.bubble-ezlo { width: 38px; height: 37px; flex-shrink: 0; }
-.bubble-body { flex: 1; min-width: 0; gap: 3px; }
-.bubble-name { font-size: 20px; line-height: 18px; color: #1F7A8C; }
-.bubble-text { white-space: normal; font-size: 22px; line-height: 21px; color: #2B2616; }
-.bubble-close { font-size: 16px; line-height: 16px; color: #5C5230; text-align: right; }
+/* ---- master / inspector -------------------------------------------------------------------------------------------------- */
+.content { flex: 1; min-height: 0; flex-direction: row; gap: 6px; padding: 6px; }
+.master { width: 347.1px; flex-shrink: 0; min-height: 0; gap: 6px; }
+.insp { flex: 1; min-width: 0; min-height: 0; flex-direction: row; background-color: var(--cell); }
+.insp-line { width: 3px; flex-shrink: 0; background-color: var(--acc); }
+.insp-body { flex: 1; min-width: 0; min-height: 0; gap: 6px; padding: 10px 12px; }
+.insp-pic { height: 84px; flex-shrink: 0; align-items: center; justify-content: center; }
+.insp-pic-s { height: 64px; }
+.insp-icon { width: 55.54px; height: 55.54px; }
+.insp-sprite { width: 41.65px; height: 55.54px; }
+.insp-kin { width: 69.42px; height: 56.4px; }
+.insp-name { font-family: "NunitoB"; font-size: 21px; line-height: 24px; color: var(--text); white-space: normal; }
+.insp-sub { font-size: 14px; line-height: 17px; color: var(--muted); white-space: normal; }
+.hair { height: 1px; flex-shrink: 0; background-color: var(--line); }
+.insp-text { font-size: 15px; line-height: 19px; color: var(--text); white-space: normal; }
+.insp-row { flex-direction: row; align-items: center; gap: 6px; min-height: 32px; flex-shrink: 0; }
+.insp-row-icon { width: 27.77px; height: 27.77px; }
+.insp-row-t { flex: 1; min-width: 0; font-size: 13px; line-height: 15px; color: var(--muted); white-space: normal; }
 
-/* ---- tabs ---- */
-.tabs { flex-direction: row; flex-shrink: 0; height: 58px; gap: 4px; padding: 4px 8px 6px; background-color: var(--bar); border-top: 2px solid var(--bar-rim); }
-.tab { flex: 1; min-width: 0; position: relative; flex-direction: column; align-items: center; justify-content: center; gap: 1px; padding: 0; background-color: transparent; border: 2px solid transparent; border-radius: 8px; }
-.tab:pressed { background-color: var(--bar-card); }
-.tab.on { background-color: var(--bar-card); border-color: var(--bar-gold-dk); }
-.tab-icon { width: 24px; height: 24px; }
-.tab-label { font-size: 17px; line-height: 16px; letter-spacing: 1px; color: var(--bar-muted); }
-.tab.on .tab-label { color: var(--bar-gold); }
-.tab-alert { position: absolute; right: 10px; top: 2px; width: 16px; height: 16px; }
+/* the grid: 5 columns of 65.42 dp cells */
+.grid { display: grid; grid-template-columns: repeat(5, 65.42px); gap: 5px; flex-shrink: 0; }
+.grid-scroll { flex: 1; min-height: 0; overflow: auto; }
+.cell { width: 65.42px; height: 65.42px; position: relative; padding: 0; margin: 0; align-items: center; justify-content: center; background-color: var(--cell); border: 1px solid var(--line); border-radius: 0; }
+.cell:pressed { background-color: var(--sel); }
+.cell.sel { background-color: var(--sel); border: 2px solid var(--acc); }
+.cell.empty { border-color: var(--line2); }
+.cell.locked .cell-icon { opacity: 0.2; }
+.cell-icon { width: 41.65px; height: 41.65px; }
+.cell-kin { width: 43.39px; height: 35.25px; }
+.cell-tag { position: absolute; left: 5px; top: 2px; font-family: "NunitoB"; font-size: 13px; color: var(--acc); }
+.badge { position: absolute; right: 4px; bottom: 1px; font-size: 13px; color: var(--text); text-shadow: 1px 1px 0 #000000; }
+.cell:dragging { transform: scale(1.2); border-color: var(--acc); }
+.grid empty, .grid-scroll empty, .grid-side empty { font-size: 15px; color: var(--dim); }
 
-/* ---- master / detail ---- */
-.content { flex: 1; min-height: 0; gap: 8px; padding: 8px 10px; }
-.content-row { flex-direction: row; }
-.master { flex: 1; min-width: 0; min-height: 0; gap: 8px; }
-.detail { width: 196px; flex-shrink: 0; min-height: 0; gap: 8px; overflow: auto; }
-.pane { flex-direction: column; align-items: stretch; min-width: 0; min-height: 0; gap: 8px; padding: 10px; background-color: var(--card); border: 2px solid var(--rim); border-radius: 10px; }
-.pane-title { font-size: 17px; line-height: 16px; letter-spacing: 2px; color: var(--muted); }
+/* flat outlined buttons under the master */
+.actions { flex-direction: row; gap: 6px; flex: 1; min-height: 48px; }
+.fbtn { flex: 1; min-height: 40px; padding: 0; margin: 0; align-items: center; justify-content: center; background-color: var(--btn); border: 2px solid var(--line); border-radius: 0; }
+.fbtn:pressed { border-color: var(--acc); }
+.fbtn.on { border-color: var(--acc); }
+.fbtn.off { opacity: 0.4; }
+.fbtn-t { font-family: "NunitoB"; font-size: 19px; color: var(--text); }
 
-/* ---- maps ---- */
-.master-map { align-items: center; justify-content: center; }
-.map-view { width: 320px; height: 256px; flex-shrink: 0; position: relative; overflow: hidden; background-color: #D6B98A; border: 2px solid var(--rim-hi); border-radius: 10px; }
-.map-img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: fill; }
-.mark { position: absolute; }
-.mark-link { width: 22px; height: 22px; transform: translate(-11px, -11px); }
-.p-place { flex-shrink: 0; }
-.place-name { font-size: 24px; line-height: 24px; color: var(--gold); white-space: normal; }
-.map-tabs { flex-direction: row; gap: 6px; }
-.map-tab { flex: 1; height: 44px; padding: 0; align-items: center; justify-content: center; background-color: var(--card-2); border: 2px solid var(--rim); border-radius: 8px; }
-.map-tab:pressed { background-color: var(--rim); }
-.map-tab.on { background-color: var(--gold); border-color: var(--gold); }
-.map-tab-label { font-size: 16px; line-height: 16px; letter-spacing: 1px; color: var(--muted); }
-.map-tab.on .map-tab-label { color: #2B2616; }
-.p-link { flex: 1; }
-.link-row { align-items: center; }
-.link-sprite { width: 42px; height: 32px; }
-.hearts { width: 160px; flex-direction: row; flex-wrap: wrap; gap: 2px; }
-.heart { width: 14px; height: 14px; }
-
-.dmap { position: absolute; left: 0; top: 0; right: 0; bottom: 0; gap: 8px; padding: 10px; background-color: var(--ground-deep); }
-.dmap-head { flex-shrink: 0; align-items: center; }
-.dmap-name { font-size: 24px; line-height: 24px; letter-spacing: 1px; color: var(--gold); }
-.dmap-body { flex: 1; min-height: 0; flex-direction: row; align-items: center; gap: 10px; }
-.dmap-floors { flex-shrink: 0; justify-content: center; gap: 6px; }
-.dfloor { flex-direction: row; align-items: center; gap: 3px; height: 34px; padding: 0 4px; background-color: var(--card); border: 2px solid var(--rim); border-radius: 6px; }
-.dfloor.here { background-color: var(--card-2); border-color: var(--gold); }
-.dfloor-mark { width: 18px; height: 18px; align-items: center; justify-content: center; }
-.dfloor-link { width: 16px; height: 16px; }
-.dfloor-boss { width: 18px; height: 18px; }
-.dfloor-name { width: 32px; font-size: 18px; line-height: 18px; text-align: center; color: var(--muted); }
+/* ---- map ------------------------------------------------------------------------------------------------------------------ */
+.content-col { flex-direction: column; }
+.map-row { flex-direction: row; gap: 6px; height: 333.2px; flex-shrink: 0; }
+.map-view { width: 416.5px; height: 333.2px; flex-shrink: 0; position: relative; overflow: hidden; background-color: var(--cell); }
+.map-img { position: absolute; left: 0; top: 0; width: 416.5px; height: 333.2px; }
+.mark-link { position: absolute; width: 27.77px; height: 27.77px; transform: translate(-13.88px, -13.88px); }
+.insp-name-s { font-size: 15px; line-height: 18px; }
+.map-row .insp-body { padding: 10px 8px; }
+.map-tabs { gap: 6px; flex-shrink: 0; }
+.map-tabs .fbtn { flex: 0; height: 40px; min-height: 40px; }
+.map-tabs .fbtn-t { font-size: 15px; }
+.say { flex: 1; min-height: 0; flex-direction: row; align-items: center; gap: 10px; padding: 0 12px 0 0; margin: 0; background-color: var(--cell); border: 0; border-radius: 0; }
+.say .insp-line { align-self: stretch; }
+.say:pressed { background-color: var(--sel); }
+.say-ezlo { width: 41.65px; height: 41.65px; flex-shrink: 0; }
+.say-t { flex: 1; min-width: 0; font-size: 15px; line-height: 19px; color: var(--text); white-space: normal; }
+.hearts { flex-direction: row; flex-wrap: wrap; gap: 2px; flex-shrink: 0; }
+.heart { width: 13.88px; height: 13.88px; }
+.dmap { position: absolute; left: 0; top: 0; right: 0; bottom: 0; flex-direction: row; gap: 8px; padding: 8px; background-color: var(--bg); }
+.dfloors { width: 170px; flex-shrink: 0; justify-content: center; gap: 6px; }
+.dfloor { flex-direction: row; align-items: center; height: 52px; padding: 0 10px; background-color: var(--cell); border: 1px solid var(--line); }
+.dfloor.here { background-color: var(--sel); border: 2px solid var(--acc); }
+.dfloor-name { font-family: "NunitoB"; font-size: 22px; color: var(--dim); }
 .dfloor.here .dfloor-name { color: var(--text); }
-.dmap-items { flex: 1; min-width: 0; justify-content: center; align-items: center; gap: 10px; }
-.ditem-row { flex-direction: row; justify-content: center; gap: 8px; }
-.ditem { align-items: center; gap: 3px; }
-.ditem-slot { width: 44px; height: 44px; align-items: center; justify-content: center; background-color: var(--parch); border: 2px solid var(--parch-edge); border-radius: 8px; }
-.ditem-icon { width: 30px; height: 30px; }
-.ditem-name { font-size: 16px; line-height: 15px; color: var(--text); }
-.ditem.missing .ditem-slot { background-color: var(--card); border-color: var(--rim); }
-.ditem.missing .ditem-icon { opacity: 0.25; }
-.ditem.missing .ditem-name { color: var(--dim); }
-.dkeys { flex-direction: row; align-items: center; gap: 6px; }
-.dkey-icon { width: 24px; height: 24px; }
-.dkey-num { font-size: 24px; line-height: 24px; color: var(--text); }
+.dfloor-boss, .dfloor-link { width: 27.77px; height: 27.77px; }
+.ditems { flex: 1; min-width: 0; justify-content: center; gap: 6px; }
+.ditem-row { flex-direction: row; gap: 6px; }
+.dcell { width: 54px; height: 54px; position: relative; align-items: center; justify-content: center; background-color: var(--cell); border: 1px solid var(--line); }
+.dcell.missing .dcell-icon { opacity: 0.22; }
+.dcell-icon { width: 41.65px; height: 41.65px; }
 
-/* ---- items ---- */
-.p-tiles { flex: 1; }
-.item-grid { flex: 1; min-height: 0; overflow: auto; display: grid; grid-template-columns: repeat(5, 1fr); grid-template-rows: repeat(5, 54px); gap: 6px; }
-.slot { position: relative; align-items: center; justify-content: center; background-color: var(--parch); border: 2px solid var(--parch-edge); border-radius: 8px; }
-.slot.empty { background-color: var(--card-2); border-color: var(--rim); }
-.slot:pressed { background-color: #FFF4CF; border-color: var(--gold); }
-.slot:dragging { transform: scale(1.3); opacity: 0.92; border-color: var(--gold); }
-.slot-icon { width: 30px; height: 30px; }
-.slot-count { position: absolute; right: 4px; bottom: 1px; }
-.count { font-size: 16px; line-height: 16px; color: #2B2616; }
-.p-picked { flex-shrink: 0; }
-.picked-row { flex-direction: row; align-items: center; gap: 10px; min-height: 44px; }
-.picked-tile { width: 44px; height: 44px; flex-shrink: 0; align-items: center; justify-content: center; background-color: var(--parch); border: 2px solid var(--parch-edge); border-radius: 8px; }
-.picked-icon { width: 30px; height: 30px; }
-.picked-name { flex: 1; min-width: 0; font-size: 22px; line-height: 21px; color: var(--gold); white-space: normal; }
-.eq-row { flex-direction: row; gap: 6px; }
-.eq-btn { flex: 1; height: 44px; padding: 0; align-items: center; justify-content: center; background-color: var(--gold); border: 2px solid var(--gold); border-radius: 8px; }
-.eq-btn:pressed { background-color: var(--card-2); }
-.eq-btn-t { font-size: 20px; line-height: 20px; letter-spacing: 1px; color: #2B2616; }
-.p-gear { flex: 1; gap: 6px; overflow: auto; }
-.p-gear > * { flex-shrink: 0; }
-.gear-row { flex-direction: row; align-items: center; gap: 8px; min-height: 30px; }
-.gear-icon { width: 22px; height: 22px; flex-shrink: 0; }
-.gear-main { flex: 1; min-width: 0; gap: 3px; }
-.gear-line { flex-direction: row; align-items: center; }
-.gear-label { font-size: 16px; line-height: 16px; letter-spacing: 1px; color: var(--muted); }
-.gear-val { font-size: 20px; line-height: 20px; color: var(--text); }
-.gear-bar { height: 6px; background-color: var(--track); border-radius: 3px; transition: width 400ms ease-out; }
-.gear-row.red .gear-bar { accent-color: var(--red); }
-.gear-row.blue .gear-bar { accent-color: var(--blue); }
+/* ---- gear ----------------------------------------------------------------------------------------------------------------- */
+.gauges { flex-direction: row; gap: 5px; height: 54px; flex-shrink: 0; }
+.gauge { flex: 1; min-width: 0; flex-direction: row; align-items: center; gap: 6px; padding: 0 8px; background-color: var(--cell); border: 1px solid var(--line); }
+.gauge-icon { width: 27.77px; height: 27.77px; flex-shrink: 0; }
+.gauge-main { flex: 1; min-width: 0; gap: 4px; }
+.gauge-val { font-size: 15px; line-height: 17px; color: var(--text); }
+.gauge-bar { height: 4px; background-color: var(--line2); border-radius: 0; transition: width 400ms ease-out; }
+.gauge.red .gauge-bar { accent-color: var(--red); }
+.gauge.blue .gauge-bar { accent-color: var(--blue); }
 
-/* ---- kinstone ---- */
-.p-pieces { flex: 1; }
-.piece-list { flex: 1; min-height: 0; overflow: auto; gap: 6px; }
-.piece { flex-direction: row; align-items: center; flex-shrink: 0; gap: 10px; height: 48px; padding: 0 12px 0 8px; background-color: var(--card-2); border: 2px solid var(--rim); border-left-width: 5px; border-radius: 8px; }
-.piece:pressed { border-color: var(--gold); }
-.piece.red { border-left-color: var(--red); }
-.piece.blue { border-left-color: var(--blue); }
-.piece.green { border-left-color: var(--green); }
-.piece.gold { border-left-color: var(--gold); }
-.piece-icon { width: 30px; height: 30px; flex-shrink: 0; }
-.piece-name { flex: 1; min-width: 0; font-size: 20px; line-height: 20px; color: var(--text); text-overflow: ellipsis; }
-.piece-id { font-size: 16px; line-height: 16px; color: var(--dim); }
-.piece-amt { width: 36px; text-align: right; font-size: 22px; line-height: 22px; color: var(--gold); }
-.alert { flex-direction: row; align-items: center; flex-shrink: 0; gap: 8px; padding: 8px 10px; background-color: #5A2328; border: 2px solid var(--red); border-radius: 10px; }
-.alert-icon { width: 24px; height: 24px; flex-shrink: 0; }
-.alert-text { flex: 1; height: 32px; white-space: normal; font-size: 16px; line-height: 16px; color: #F4EBCB; }
-.p-fusion { flex-shrink: 0; }
-.fuse-count { flex-direction: row; align-items: flex-end; gap: 4px; }
-.fuse-num { font-size: 40px; line-height: 40px; color: var(--gold); }
-.fuse-of { font-size: 22px; line-height: 26px; color: var(--muted); }
-.fuse-bar { height: 12px; background-color: var(--track); border-radius: 6px; accent-color: var(--green); transition: width 400ms ease-out; }
-.tally { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
-.tally-cell { height: 38px; flex-direction: row; align-items: center; justify-content: space-between; padding: 0 8px 0 6px; background-color: var(--card-2); border-radius: 8px; }
-.tally-icon { width: 24px; height: 24px; }
-.tally-num { font-size: 24px; line-height: 24px; color: var(--text); }
-.p-kin-picked { flex: 1; }
-.kin-text { flex: 1; min-width: 0; gap: 2px; }
-.kin-name { font-size: 20px; line-height: 20px; color: var(--gold); white-space: normal; }
-.kin-id { font-size: 16px; line-height: 16px; color: var(--muted); }
+/* ---- kinstones ---------------------------------------------------------------------------------------------------------- */
+.alert { flex-direction: row; align-items: center; gap: 8px; flex-shrink: 0; padding: 8px 10px; background-color: var(--acc-bg); border: 1px solid var(--acc); }
+.alert-icon { width: 17.35px; height: 13.88px; }
+.alert-t { flex: 1; min-width: 0; font-size: 14px; color: var(--text); white-space: normal; }
+.fused { flex-shrink: 0; gap: 6px; padding: 8px 10px; background-color: var(--cell); border: 1px solid var(--line); }
+.fused-line { flex-direction: row; align-items: center; }
+.fused-l { font-size: 15px; color: var(--muted); }
+.fused-n { font-size: 20px; line-height: 22px; color: var(--text); }
+.fused-of { font-size: 15px; color: var(--muted); }
+.fused-bar { height: 6px; background-color: var(--line2); border-radius: 0; accent-color: var(--acc); transition: width 400ms ease-out; }
+.tallies { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; flex-shrink: 0; }
+.tally { flex-direction: row; align-items: center; gap: 6px; height: 26px; }
+.tally-icon { width: 17.35px; height: 13.88px; }
+.tally-num { font-size: 16px; color: var(--text); }
 
-/* ---- quests ---- */
-.q-scroll { flex: 1; min-height: 0; overflow: auto; gap: 8px; }
-.q-scroll > * { flex-shrink: 0; }
-.dungeon-list { gap: 2px; }
-.dungeon { flex-direction: row; align-items: center; gap: 8px; height: 32px; padding: 0 8px 0 6px; border: 2px solid transparent; border-radius: 6px; }
-.dungeon.here { background-color: var(--card-2); border-color: var(--gold-dk); }
-.dg-mark { width: 20px; height: 20px; display: stack; place-items: center; }
-.dg-check { width: 16px; height: 12px; }
-.dg-here { width: 16px; height: 16px; }
-.dg-name { font-size: 20px; line-height: 20px; color: var(--muted); }
-.dungeon.cleared .dg-name { color: var(--green); }
-.dungeon.here .dg-name { color: var(--text); }
-.side-list { gap: 4px; }
-.side { flex-direction: row; align-items: center; flex-shrink: 0; height: 40px; gap: 8px; padding: 0 10px 0 6px; min-width: 0; background-color: var(--card-2); border-radius: 8px; }
-.side.done { opacity: 0.6; }
-.side-icon { width: 24px; height: 24px; flex-shrink: 0; }
-.side-name { flex: 1; min-width: 0; font-size: 20px; line-height: 20px; color: var(--text); text-overflow: ellipsis; }
-.side-done { font-size: 16px; line-height: 16px; letter-spacing: 1px; color: var(--green); }
-.p-elements { flex-shrink: 0; }
-.element-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
-.element { height: 68px; align-items: center; justify-content: center; gap: 2px; background-color: var(--card-2); border: 2px solid var(--rim); border-radius: 8px; }
-.element.owned { background-color: var(--parch); border-color: var(--parch-edge); }
-.element.owned .element-name { color: #2B2616; }
-.element.locked { opacity: 0.45; }
-.element-icon { width: 30px; height: 30px; }
-.element-name { font-size: 16px; line-height: 16px; color: var(--muted); }
-.p-counts { flex: 1; }
-.stat { flex-direction: row; align-items: center; gap: 8px; height: 36px; padding: 0 8px; background-color: var(--card-2); border-radius: 8px; }
-.stat-icon { width: 22px; height: 22px; }
-.stat-label { font-size: 16px; line-height: 16px; letter-spacing: 1px; color: var(--muted); }
-.stat-val { font-size: 22px; line-height: 22px; color: var(--text); }
+/* ---- quest ---------------------------------------------------------------------------------------------------------------- */
+.q-grid { flex-direction: row; gap: 5px; flex-shrink: 0; }
+.q-elements { flex-direction: row; gap: 5px; }
+.sect { font-family: "NunitoB"; font-size: 15px; color: var(--muted); margin-top: 2px; }
+.grid-side { flex-shrink: 0; }
+.dlist { gap: 4px; flex-shrink: 0; }
+.drow { flex-direction: row; align-items: center; gap: 4px; min-height: 26px; }
+.drow-mark { width: 18px; height: 18px; display: stack; place-items: center; }
+.drow-check { width: 13.88px; height: 10.41px; }
+.drow-here { width: 17.35px; height: 17.35px; }
+.drow-name { flex: 1; min-width: 0; font-size: 14px; line-height: 16px; color: var(--dim); white-space: normal; }
+.drow.cleared .drow-name { color: var(--acc); }
+.drow.here .drow-name { color: var(--text); }
 
-/* ---- options ---- */
+/* ---- options -------------------------------------------------------------------------------------------------------------- */
 .opt-list { flex: 1; min-height: 0; overflow: auto; gap: 6px; }
-.opt, .look { flex-direction: row; align-items: center; justify-content: space-between; flex-shrink: 0; gap: 12px; padding: 8px 12px; background-color: var(--card); border: 2px solid var(--rim); border-radius: 10px; }
-.opt:pressed { background-color: var(--card-2); border-color: var(--gold-dk); }
-.opt-text { flex: 1; min-width: 0; gap: 3px; }
-.opt-title { font-size: 22px; line-height: 20px; letter-spacing: 1px; color: var(--text); }
-.opt-desc { height: 34px; white-space: normal; font-size: 17px; line-height: 17px; color: var(--muted); }
-.opt-pill { min-width: 84px; height: 36px; align-items: center; justify-content: center; padding: 0 10px; background-color: var(--track); border: 2px solid var(--rim); border-radius: 18px; }
-.opt-pill.on { background-color: var(--green); border-color: var(--green); }
-.opt-state { font-size: 20px; line-height: 20px; letter-spacing: 1px; color: var(--muted); }
-.opt-pill.on .opt-state { color: #2B2616; }
+.opt { flex-direction: row; align-items: center; flex: 1; min-height: 64px; gap: 12px; padding: 0 14px; margin: 0; background-color: var(--cell); border: 1px solid var(--line); border-radius: 0; }
+.opt:pressed { border-color: var(--acc); }
+.opt-text { flex: 1; min-width: 0; gap: 2px; }
+.opt-title { font-family: "NunitoB"; font-size: 19px; line-height: 22px; color: var(--text); }
+.opt-desc { height: 34px; font-size: 13px; line-height: 17px; color: var(--muted); white-space: normal; }
+.opt-state { font-family: "NunitoB"; font-size: 13px; color: var(--muted); }
+.switch { width: 52px; height: 28px; flex-shrink: 0; flex-direction: row; align-items: center; padding: 0 3px; background-color: var(--bg); border: 2px solid var(--line); border-radius: 14px; }
+.switch.on { justify-content: flex-end; background-color: var(--acc-bg); border-color: var(--acc); }
+.knob { width: 18px; height: 18px; background-color: var(--dim); border-radius: 9px; }
+.switch.on .knob { background-color: var(--acc); }
 .choices { flex-direction: row; gap: 6px; flex-shrink: 0; }
-.choice { height: 40px; padding: 0 10px; align-items: center; justify-content: center; background-color: var(--track); border: 2px solid var(--rim); border-radius: 20px; }
-.choice:pressed { background-color: var(--card-2); }
-.choice.on { background-color: var(--gold); border-color: var(--gold); }
-.choice-t { font-size: 16px; line-height: 16px; letter-spacing: 1px; color: var(--muted); }
-.choice.on .choice-t { color: #2B2616; }
+.choice { height: 40px; padding: 0 12px; margin: 0; align-items: center; justify-content: center; background-color: var(--btn); border: 2px solid var(--line); border-radius: 0; }
+.choice:pressed { border-color: var(--acc); }
+.choice.on { border-color: var(--acc); background-color: var(--acc-bg); }
+.choice-t { font-family: "NunitoB"; font-size: 15px; color: var(--text); }
 
-.piece-list empty, .side-list empty { align-self: center; font-size: 19px; line-height: 18px; letter-spacing: 1px; color: var(--dim); }
+/* ---- Ezlo's hint ---------------------------------------------------------------------------------------------------------- */
+.veil { position: absolute; left: 0; top: 0; right: 0; bottom: 0; z-index: 10; align-items: center; justify-content: center; background-color: #000000aa; }
+.bubble { width: 440px; flex-direction: row; background-color: var(--cell); border: 1px solid var(--line); }
+.bubble-pic { width: 96px; align-items: center; justify-content: center; }
+.bubble-ezlo { width: 55.54px; height: 55.54px; }
+.bubble-body { flex: 1; min-width: 0; gap: 6px; padding: 14px 14px 12px 0; }
+.bubble-close { font-size: 13px; color: var(--dim); text-align: right; }
+
+/* light theme: badges and counts sit on light cells, no dark drop shadow */
+.root.theme-parchment .badge { text-shadow: none; }
+
+/* ---- readability: tracking and line height per text role (Nunito Sans italic) ---------------------------------------------------
+   small caps-like labels get the most tracking, body text a little, big names almost none; every multi-line text runs at ~1.3. */
+.tab-label { font-size: 12px; line-height: 14px; letter-spacing: 0.6px; }
+.fact-key { letter-spacing: 0.6px; }
+.fact-num { letter-spacing: 0.4px; }
+.insp-name { line-height: 25px; letter-spacing: 0.3px; }
+.insp-sub { font-size: 14px; line-height: 18px; letter-spacing: 0.4px; }
+.insp-text { font-size: 15px; line-height: 20px; letter-spacing: 0.3px; }
+.insp-row-t { font-size: 13px; line-height: 17px; letter-spacing: 0.4px; }
+.badge, .cell-tag { letter-spacing: 0.5px; }
+.fbtn-t { letter-spacing: 0.6px; }
+.gauge-val { letter-spacing: 0.5px; }
+.alert-t { line-height: 18px; letter-spacing: 0.3px; }
+.fused-l, .fused-of { letter-spacing: 0.5px; }
+.fused-n { letter-spacing: 0.6px; }
+.tally-num { letter-spacing: 0.5px; }
+.sect { letter-spacing: 0.8px; }
+.drow-name { line-height: 17px; letter-spacing: 0.3px; }
+.opt-title { letter-spacing: 0.4px; }
+.opt-desc { font-size: 13px; line-height: 17px; letter-spacing: 0.3px; }
+.opt-state { letter-spacing: 0.8px; }
+.choice-t { letter-spacing: 0.6px; }
+.say-t { line-height: 20px; letter-spacing: 0.3px; }
+.bubble-close { letter-spacing: 0.6px; }
+.dfloor-name { letter-spacing: 1px; }
+/* the open tab carries its name: give it room so the tracked label is never clipped */
+.tab.on { width: 70px; }

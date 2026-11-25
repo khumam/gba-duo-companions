@@ -1,0 +1,15 @@
+/* readability.css: written by skill/tools/packkit/readability.py from style.css. Do not edit by hand: run the tool again.
+   Adds tracking (and line height for wrapped text) by font and size; rules that set letter-spacing themselves are left alone. */
+#screen { letter-spacing: 1.13px; }
+.day-n { letter-spacing: 0.87px; }
+.day-army { line-height: 29.9px; }
+.funds { letter-spacing: 0.65px; }
+.anum { letter-spacing: 0.61px; }
+.tug-n { letter-spacing: 0.65px; }
+.u-own { letter-spacing: 1.13px; }
+.d-cost { letter-spacing: 0.65px; }
+.ds-v { letter-spacing: 1.13px; }
+.dm-n { letter-spacing: 0.61px; }
+.p-defn { letter-spacing: 0.65px; }
+.c-n { letter-spacing: 0.65px; }
+.m-n { letter-spacing: 0.65px; }

@@ -844,6 +844,30 @@
                   }
                 }
               ]
+            },
+            {
+              "type": "button",
+              "class": "plate plate-dark look",
+              "onClick": [
+                {
+                  "set": {
+                    "style": "clean",
+                    "page": "citems"
+                  }
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "class": "era-plate-label",
+                  "text": "LOOK"
+                },
+                {
+                  "type": "text",
+                  "class": "era-plate-text",
+                  "text": "CLEAN"
+                }
+              ]
             }
           ]
         },
@@ -962,7 +986,2869 @@
           ]
         }
       ],
-      "visibleIf": "$ready"
+      "visibleIf": "$showBrick"
+    },
+    {
+      "type": "box",
+      "class": "c-root",
+      "children": [
+        {
+          "type": "box",
+          "class": "c-pages-wrap",
+          "children": [
+            {
+              "type": "pages",
+              "class": "c-pages",
+              "state": "page",
+              "initial": "citems",
+              "pages": [
+                {
+                  "name": "citems",
+                  "child": {
+                    "type": "box",
+                    "class": "c-page",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "c-topbar",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "c-tabs",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "c-tab c-on",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "c-tab-label",
+                                    "text": "Items"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-pic",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "c-brk c-brk-l",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-brk c-brk-r",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "image",
+                                        "class": "c-tab-icon",
+                                        "src": "asset:ui/sword.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "cmap"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-label-space",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-pic",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "c-tab-icon",
+                                        "src": "asset:ui/cg-map.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "cseeds"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-label-space",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-pic",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "c-tab-icon",
+                                        "src": "asset:ui/seed-ember.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "crings"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-label-space",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-pic",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "c-tab-icon",
+                                        "src": "asset:ui/ring.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "cstatus"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-label-space",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-pic",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "c-tab-icon",
+                                        "src": "asset:ui/heart-full.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "coptions"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-label-space",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-pic",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "c-tab-icon",
+                                        "src": "asset:ui/cg-options.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "c-grow",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "c-hud",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "c-hud-eq",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "c-hud-key",
+                                    "text": "B"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-hud-well",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "c-brk c-brk-l",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-brk c-brk-r",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "image",
+                                        "class": "c-hud-icon",
+                                        "src": "$hud.bIcon"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-hud-eq",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "c-hud-key",
+                                    "text": "A"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-hud-well",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "c-brk c-brk-l",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-brk c-brk-r",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "image",
+                                        "class": "c-hud-icon",
+                                        "src": "$hud.aIcon"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-hud-fact",
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "c-hud-rupee",
+                                    "src": "asset:ui/rupee.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-hud-num",
+                                    "text": "{rupees}"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-hud-fact",
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "c-hud-heart",
+                                    "src": "asset:ui/heart-full.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-hud-num",
+                                    "text": "{status.hearts}"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "c-content",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "c-master",
+                            "children": [
+                              {
+                                "type": "list",
+                                "class": "c-grid",
+                                "items": "$slots",
+                                "template": {
+                                  "type": "button",
+                                  "class": "c-cell",
+                                  "onClick": [
+                                    {
+                                      "set": {
+                                        "pick": "{name}",
+                                        "pickIcon": "{icon}",
+                                        "pickLevel": "{level}",
+                                        "pickTag": "{tag}",
+                                        "picked": true
+                                      }
+                                    }
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "box",
+                                      "class": "c-brk c-brk-l",
+                                      "children": [],
+                                      "visibleIf": "$sel"
+                                    },
+                                    {
+                                      "type": "box",
+                                      "class": "c-brk c-brk-r",
+                                      "children": [],
+                                      "visibleIf": "$sel"
+                                    },
+                                    {
+                                      "type": "image",
+                                      "class": "c-cell-icon",
+                                      "src": "$icon"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "class": "c-cell-tag",
+                                      "text": "{tag}"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "class": "c-badge",
+                                      "text": "{level}"
+                                    }
+                                  ],
+                                  "classIf": {
+                                    "c-empty": "$empty"
+                                  }
+                                }
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-eqrow",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-eqcard",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "c-eq-key",
+                                        "text": "B"
+                                      },
+                                      {
+                                        "type": "image",
+                                        "class": "c-eq-icon",
+                                        "src": "$hud.bIcon"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-eq-text",
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "class": "c-eq-name",
+                                            "text": "{hud.bName}"
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "c-eq-lv",
+                                            "text": "{hud.bLevel}"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-eqcard",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "c-eq-key",
+                                        "text": "A"
+                                      },
+                                      {
+                                        "type": "image",
+                                        "class": "c-eq-icon",
+                                        "src": "$hud.aIcon"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-eq-text",
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "class": "c-eq-name",
+                                            "text": "{hud.aName}"
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "c-eq-lv",
+                                            "text": "{hud.aLevel}"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "c-insp",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "c-insp-line",
+                                "children": []
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-insp-body",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-insp-pic",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "c-insp-icon",
+                                        "src": "$ui.pickIcon"
+                                      }
+                                    ],
+                                    "visibleIf": "$ui.picked"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-insp-name",
+                                    "text": "{ui.pick}",
+                                    "visibleIf": "$ui.picked"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-insp-sub",
+                                    "text": "{ui.pickLevel}",
+                                    "visibleIf": "$ui.picked"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-insp-name",
+                                    "text": "ITEMS",
+                                    "visibleIf": "$pickNone"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-hair",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-insp-text",
+                                    "text": "Tap an item to look at it. B and A are what Link holds now.",
+                                    "visibleIf": "$pickNone"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-insp-text",
+                                    "text": "On button {ui.pickTag}",
+                                    "visibleIf": "$ui.pickTag"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-insp-text",
+                                    "text": "In the bag. Equip it from the game's item screen.",
+                                    "visibleIf": "$pickInBag"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "cmap",
+                  "child": {
+                    "type": "box",
+                    "class": "c-page",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "c-topbar",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "c-tabs",
+                            "children": [
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "citems"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-label-space",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-pic",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "c-tab-icon",
+                                        "src": "asset:ui/sword.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-tab c-on",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "c-tab-label",
+                                    "text": "Map"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-pic",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "c-brk c-brk-l",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-brk c-brk-r",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "image",
+                                        "class": "c-tab-icon",
+                                        "src": "asset:ui/cg-map.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "cseeds"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-label-space",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-pic",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "c-tab-icon",
+                                        "src": "asset:ui/seed-ember.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "crings"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-label-space",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-pic",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "c-tab-icon",
+                                        "src": "asset:ui/ring.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "cstatus"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-label-space",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-pic",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "c-tab-icon",
+                                        "src": "asset:ui/heart-full.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "coptions"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-label-space",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-pic",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "c-tab-icon",
+                                        "src": "asset:ui/cg-options.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "c-grow",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "c-hud",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "c-hud-eq",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "c-hud-key",
+                                    "text": "B"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-hud-well",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "c-brk c-brk-l",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-brk c-brk-r",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "image",
+                                        "class": "c-hud-icon",
+                                        "src": "$hud.bIcon"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-hud-eq",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "c-hud-key",
+                                    "text": "A"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-hud-well",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "c-brk c-brk-l",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-brk c-brk-r",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "image",
+                                        "class": "c-hud-icon",
+                                        "src": "$hud.aIcon"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-hud-fact",
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "c-hud-rupee",
+                                    "src": "asset:ui/rupee.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-hud-num",
+                                    "text": "{rupees}"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-hud-fact",
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "c-hud-heart",
+                                    "src": "asset:ui/heart-full.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-hud-num",
+                                    "text": "{status.hearts}"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "c-content c-content-col",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "c-map-row",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "c-map-view",
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "c-map-img",
+                                    "src": "asset:ui/map-present.png",
+                                    "visibleIf": "$map.present"
+                                  },
+                                  {
+                                    "type": "image",
+                                    "class": "c-map-img",
+                                    "src": "asset:ui/map-past.png",
+                                    "visibleIf": "$map.past"
+                                  },
+                                  {
+                                    "type": "list",
+                                    "class": "c-map-rows",
+                                    "items": "$map.rows",
+                                    "template": {
+                                      "type": "list",
+                                      "class": "c-map-line",
+                                      "items": "$cells",
+                                      "template": {
+                                        "type": "box",
+                                        "class": "c-mcell",
+                                        "children": [],
+                                        "classIf": {
+                                          "c-unseen": "$unseen",
+                                          "c-here": "$here"
+                                        }
+                                      }
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-insp",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-insp-line",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-insp-body",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "c-insp-name",
+                                        "text": "{map.era}"
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "c-insp-sub",
+                                        "text": "Era"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-hair",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "c-big-num",
+                                        "text": "{map.count}"
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "c-insp-sub",
+                                        "text": "rooms seen of 196"
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-hair",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "c-big-num",
+                                        "text": "{map.room}"
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "c-insp-sub",
+                                        "text": "room"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "c-strip",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "c-insp-line",
+                                "children": []
+                              },
+                              {
+                                "type": "text",
+                                "class": "c-strip-l",
+                                "text": "EXPLORED"
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-meter",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-meter-fill",
+                                    "children": [],
+                                    "bindStyle": {
+                                      "width": "{exploredPctStr}"
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "text",
+                                "class": "c-strip-n",
+                                "text": "{explored}"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "cseeds",
+                  "child": {
+                    "type": "box",
+                    "class": "c-page",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "c-topbar",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "c-tabs",
+                            "children": [
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "citems"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-label-space",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-pic",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "c-tab-icon",
+                                        "src": "asset:ui/sword.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "cmap"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-label-space",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-pic",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "c-tab-icon",
+                                        "src": "asset:ui/cg-map.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-tab c-on",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "c-tab-label",
+                                    "text": "Seeds"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-pic",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "c-brk c-brk-l",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-brk c-brk-r",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "image",
+                                        "class": "c-tab-icon",
+                                        "src": "asset:ui/seed-ember.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "crings"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-label-space",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-pic",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "c-tab-icon",
+                                        "src": "asset:ui/ring.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "cstatus"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-label-space",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-pic",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "c-tab-icon",
+                                        "src": "asset:ui/heart-full.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "coptions"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-label-space",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-pic",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "c-tab-icon",
+                                        "src": "asset:ui/cg-options.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "c-grow",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "c-hud",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "c-hud-eq",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "c-hud-key",
+                                    "text": "B"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-hud-well",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "c-brk c-brk-l",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-brk c-brk-r",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "image",
+                                        "class": "c-hud-icon",
+                                        "src": "$hud.bIcon"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-hud-eq",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "c-hud-key",
+                                    "text": "A"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-hud-well",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "c-brk c-brk-l",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-brk c-brk-r",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "image",
+                                        "class": "c-hud-icon",
+                                        "src": "$hud.aIcon"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-hud-fact",
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "c-hud-rupee",
+                                    "src": "asset:ui/rupee.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-hud-num",
+                                    "text": "{rupees}"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-hud-fact",
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "c-hud-heart",
+                                    "src": "asset:ui/heart-full.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-hud-num",
+                                    "text": "{status.hearts}"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "c-content",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "c-master",
+                            "children": [
+                              {
+                                "type": "list",
+                                "class": "c-grid c-tall",
+                                "items": "$seeds",
+                                "template": {
+                                  "type": "button",
+                                  "class": "c-cell",
+                                  "onClick": [
+                                    {
+                                      "set": {
+                                        "seedName": "{name}",
+                                        "seedIcon": "{icon}",
+                                        "seedCount": "{count}",
+                                        "seedTag": "{tag}",
+                                        "seedPicked": true
+                                      }
+                                    }
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "box",
+                                      "class": "c-brk c-brk-l",
+                                      "children": [],
+                                      "visibleIf": "$sel"
+                                    },
+                                    {
+                                      "type": "box",
+                                      "class": "c-brk c-brk-r",
+                                      "children": [],
+                                      "visibleIf": "$sel"
+                                    },
+                                    {
+                                      "type": "image",
+                                      "class": "c-cell-icon",
+                                      "src": "$icon"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "class": "c-tall-num",
+                                      "text": "{count}"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "class": "c-cell-tag",
+                                      "text": "S",
+                                      "visibleIf": "$picked"
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "type": "text",
+                                "class": "c-sect",
+                                "text": "SUPPLIES"
+                              },
+                              {
+                                "type": "list",
+                                "class": "c-supplies",
+                                "items": "$supplies",
+                                "template": {
+                                  "type": "box",
+                                  "class": "c-supply",
+                                  "children": [
+                                    {
+                                      "type": "image",
+                                      "class": "c-cell-icon",
+                                      "src": "$icon"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "class": "c-tall-num",
+                                      "text": "{value}"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "class": "c-supply-l",
+                                      "text": "{label}"
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "c-insp",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "c-insp-line",
+                                "children": []
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-insp-body",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-insp-pic",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "c-insp-icon",
+                                        "src": "$ui.seedIcon"
+                                      }
+                                    ],
+                                    "visibleIf": "$ui.seedPicked"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-insp-name",
+                                    "text": "{ui.seedName}",
+                                    "visibleIf": "$ui.seedPicked"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-insp-sub",
+                                    "text": "{ui.seedCount} in the satchel",
+                                    "visibleIf": "$ui.seedPicked"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-insp-sub",
+                                    "text": "Shooter / satchel pick",
+                                    "visibleIf": "$ui.seedTag"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-insp-name",
+                                    "text": "SEEDS",
+                                    "visibleIf": "$seedNone"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-hair",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-insp-text",
+                                    "text": "S marks the seed the satchel throws.",
+                                    "visibleIf": "$seedNone"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "crings",
+                  "child": {
+                    "type": "box",
+                    "class": "c-page",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "c-topbar",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "c-tabs",
+                            "children": [
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "citems"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-label-space",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-pic",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "c-tab-icon",
+                                        "src": "asset:ui/sword.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "cmap"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-label-space",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-pic",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "c-tab-icon",
+                                        "src": "asset:ui/cg-map.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "cseeds"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-label-space",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-pic",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "c-tab-icon",
+                                        "src": "asset:ui/seed-ember.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-tab c-on",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "c-tab-label",
+                                    "text": "Rings"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-pic",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "c-brk c-brk-l",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-brk c-brk-r",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "image",
+                                        "class": "c-tab-icon",
+                                        "src": "asset:ui/ring.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "cstatus"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-label-space",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-pic",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "c-tab-icon",
+                                        "src": "asset:ui/heart-full.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "coptions"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-label-space",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-pic",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "c-tab-icon",
+                                        "src": "asset:ui/cg-options.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "c-grow",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "c-hud",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "c-hud-eq",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "c-hud-key",
+                                    "text": "B"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-hud-well",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "c-brk c-brk-l",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-brk c-brk-r",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "image",
+                                        "class": "c-hud-icon",
+                                        "src": "$hud.bIcon"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-hud-eq",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "c-hud-key",
+                                    "text": "A"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-hud-well",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "c-brk c-brk-l",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-brk c-brk-r",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "image",
+                                        "class": "c-hud-icon",
+                                        "src": "$hud.aIcon"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-hud-fact",
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "c-hud-rupee",
+                                    "src": "asset:ui/rupee.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-hud-num",
+                                    "text": "{rupees}"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-hud-fact",
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "c-hud-heart",
+                                    "src": "asset:ui/heart-full.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-hud-num",
+                                    "text": "{status.hearts}"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "c-content",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "c-master",
+                            "children": [
+                              {
+                                "type": "list",
+                                "class": "c-grid c-grid-scroll",
+                                "items": "$ringList",
+                                "template": {
+                                  "type": "button",
+                                  "class": "c-cell",
+                                  "onClick": [
+                                    {
+                                      "set": {
+                                        "ringName": "{name}",
+                                        "ringIcon": "{src}",
+                                        "ringState": "{state}",
+                                        "ringId": "{id}",
+                                        "ringPicked": true
+                                      }
+                                    }
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "box",
+                                      "class": "c-brk c-brk-l",
+                                      "children": [],
+                                      "visibleIf": "$sel"
+                                    },
+                                    {
+                                      "type": "box",
+                                      "class": "c-brk c-brk-r",
+                                      "children": [],
+                                      "visibleIf": "$sel"
+                                    },
+                                    {
+                                      "type": "image",
+                                      "class": "c-cell-icon",
+                                      "src": "$src",
+                                      "classIf": {
+                                        "c-off": "$off"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "c-insp",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "c-insp-line",
+                                "children": []
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-insp-body",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-insp-pic",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "c-insp-icon",
+                                        "src": "$ui.ringIcon"
+                                      }
+                                    ],
+                                    "visibleIf": "$ui.ringPicked"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-insp-name",
+                                    "text": "{ui.ringName}",
+                                    "visibleIf": "$ui.ringPicked"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-insp-sub",
+                                    "text": "{ui.ringState}",
+                                    "visibleIf": "$ui.ringPicked"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-insp-name",
+                                    "text": "RINGS",
+                                    "visibleIf": "$ringNone"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-insp-sub",
+                                    "text": "{ringCount}",
+                                    "visibleIf": "$ringNone"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-hair",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-sect",
+                                    "text": "WORN"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-sup",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "c-sup-icon",
+                                        "src": "$ring.wornIcon"
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "c-sup-l",
+                                        "text": "{ring.worn}"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-sect",
+                                    "text": "RING BOX {ring.boxLevel}"
+                                  },
+                                  {
+                                    "type": "list",
+                                    "class": "c-box-row",
+                                    "items": "$ring.box",
+                                    "template": {
+                                      "type": "box",
+                                      "class": "c-box-cell",
+                                      "children": [
+                                        {
+                                          "type": "image",
+                                          "class": "c-box-icon",
+                                          "src": "$icon"
+                                        }
+                                      ],
+                                      "classIf": {
+                                        "c-filled": "$filled"
+                                      }
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "cstatus",
+                  "child": {
+                    "type": "box",
+                    "class": "c-page",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "c-topbar",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "c-tabs",
+                            "children": [
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "citems"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-label-space",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-pic",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "c-tab-icon",
+                                        "src": "asset:ui/sword.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "cmap"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-label-space",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-pic",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "c-tab-icon",
+                                        "src": "asset:ui/cg-map.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "cseeds"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-label-space",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-pic",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "c-tab-icon",
+                                        "src": "asset:ui/seed-ember.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "crings"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-label-space",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-pic",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "c-tab-icon",
+                                        "src": "asset:ui/ring.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-tab c-on",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "c-tab-label",
+                                    "text": "Status"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-pic",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "c-brk c-brk-l",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-brk c-brk-r",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "image",
+                                        "class": "c-tab-icon",
+                                        "src": "asset:ui/heart-full.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "coptions"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-label-space",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-pic",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "c-tab-icon",
+                                        "src": "asset:ui/cg-options.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "c-grow",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "c-hud",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "c-hud-eq",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "c-hud-key",
+                                    "text": "B"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-hud-well",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "c-brk c-brk-l",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-brk c-brk-r",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "image",
+                                        "class": "c-hud-icon",
+                                        "src": "$hud.bIcon"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-hud-eq",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "c-hud-key",
+                                    "text": "A"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-hud-well",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "c-brk c-brk-l",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-brk c-brk-r",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "image",
+                                        "class": "c-hud-icon",
+                                        "src": "$hud.aIcon"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-hud-fact",
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "c-hud-rupee",
+                                    "src": "asset:ui/rupee.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-hud-num",
+                                    "text": "{rupees}"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-hud-fact",
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "c-hud-heart",
+                                    "src": "asset:ui/heart-full.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-hud-num",
+                                    "text": "{status.hearts}"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "c-content",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "c-master",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "c-life",
+                                "children": [
+                                  {
+                                    "type": "list",
+                                    "class": "c-life-hearts",
+                                    "items": "$status.lifeHearts",
+                                    "template": {
+                                      "type": "image",
+                                      "class": "c-lheart",
+                                      "src": "$src"
+                                    }
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-grow",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "list",
+                                    "class": "c-pieces",
+                                    "items": "$status.pieces",
+                                    "template": {
+                                      "type": "image",
+                                      "class": "c-piece",
+                                      "src": "$src"
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "text",
+                                "class": "c-sect",
+                                "text": "ESSENCES  {status.essenceCount} / 8"
+                              },
+                              {
+                                "type": "list",
+                                "class": "c-grid",
+                                "items": "$status.essences",
+                                "template": {
+                                  "type": "button",
+                                  "class": "c-cell",
+                                  "onClick": [
+                                    {
+                                      "set": {
+                                        "essName": "{name}",
+                                        "essIcon": "{src}",
+                                        "essState": "{state}",
+                                        "essPicked": true
+                                      }
+                                    }
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "box",
+                                      "class": "c-brk c-brk-l",
+                                      "children": [],
+                                      "visibleIf": "$sel"
+                                    },
+                                    {
+                                      "type": "box",
+                                      "class": "c-brk c-brk-r",
+                                      "children": [],
+                                      "visibleIf": "$sel"
+                                    },
+                                    {
+                                      "type": "image",
+                                      "class": "c-cell-ess",
+                                      "src": "$src",
+                                      "classIf": {
+                                        "c-off": "$off"
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "type": "list",
+                                "class": "c-facts",
+                                "items": "$status.facts",
+                                "template": {
+                                  "type": "box",
+                                  "class": "c-fact",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "class": "c-fact-l",
+                                      "text": "{label}"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "class": "c-fact-v",
+                                      "text": "{value}"
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "c-insp",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "c-insp-line",
+                                "children": []
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-insp-body",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-insp-pic",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "c-insp-ess",
+                                        "src": "$ui.essIcon"
+                                      }
+                                    ],
+                                    "visibleIf": "$ui.essPicked"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-insp-name",
+                                    "text": "{ui.essName}",
+                                    "visibleIf": "$ui.essPicked"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-insp-sub",
+                                    "text": "{ui.essState}",
+                                    "visibleIf": "$ui.essPicked"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-insp-name",
+                                    "text": "LINK",
+                                    "visibleIf": "$essNone"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-insp-sub",
+                                    "text": "{status.hearts} hearts",
+                                    "visibleIf": "$essNone"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-hair",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-insp-text",
+                                    "text": "The eight Essences of Time, one in each dungeon.",
+                                    "visibleIf": "$essNone"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "coptions",
+                  "child": {
+                    "type": "box",
+                    "class": "c-page",
+                    "children": [
+                      {
+                        "type": "box",
+                        "class": "c-topbar",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "c-tabs",
+                            "children": [
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "citems"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-label-space",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-pic",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "c-tab-icon",
+                                        "src": "asset:ui/sword.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "cmap"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-label-space",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-pic",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "c-tab-icon",
+                                        "src": "asset:ui/cg-map.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "cseeds"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-label-space",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-pic",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "c-tab-icon",
+                                        "src": "asset:ui/seed-ember.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "crings"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-label-space",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-pic",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "c-tab-icon",
+                                        "src": "asset:ui/ring.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "c-tab",
+                                "onClick": [
+                                  {
+                                    "navigate": "cstatus"
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-label-space",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-pic",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "c-tab-icon",
+                                        "src": "asset:ui/heart-full.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-tab c-on",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "c-tab-label",
+                                    "text": "Options"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-tab-pic",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "c-brk c-brk-l",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-brk c-brk-r",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "image",
+                                        "class": "c-tab-icon",
+                                        "src": "asset:ui/cg-options.png"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "class": "c-grow",
+                            "children": []
+                          },
+                          {
+                            "type": "box",
+                            "class": "c-hud",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "c-hud-eq",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "c-hud-key",
+                                    "text": "B"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-hud-well",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "c-brk c-brk-l",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-brk c-brk-r",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "image",
+                                        "class": "c-hud-icon",
+                                        "src": "$hud.bIcon"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-hud-eq",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "c-hud-key",
+                                    "text": "A"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-hud-well",
+                                    "children": [
+                                      {
+                                        "type": "box",
+                                        "class": "c-brk c-brk-l",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "box",
+                                        "class": "c-brk c-brk-r",
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "image",
+                                        "class": "c-hud-icon",
+                                        "src": "$hud.aIcon"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-hud-fact",
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "c-hud-rupee",
+                                    "src": "asset:ui/rupee.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-hud-num",
+                                    "text": "{rupees}"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-hud-fact",
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "c-hud-heart",
+                                    "src": "asset:ui/heart-full.png"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "class": "c-hud-num",
+                                    "text": "{status.hearts}"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "class": "c-content",
+                        "children": [
+                          {
+                            "type": "box",
+                            "class": "c-opt-list",
+                            "children": [
+                              {
+                                "type": "box",
+                                "class": "c-opt",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-opt-text",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "c-opt-title",
+                                        "text": "STYLE"
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "c-opt-desc",
+                                        "text": "The look of this companion. Starts as Brick at every launch."
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-choices",
+                                    "children": [
+                                      {
+                                        "type": "button",
+                                        "class": "c-choice",
+                                        "onClick": [
+                                          {
+                                            "set": {
+                                              "style": "brick",
+                                              "page": "items"
+                                            }
+                                          }
+                                        ],
+                                        "children": [
+                                          {
+                                            "type": "box",
+                                            "class": "c-brk c-brk-l",
+                                            "children": [],
+                                            "visibleIf": "$styleBrick"
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "c-brk c-brk-r",
+                                            "children": [],
+                                            "visibleIf": "$styleBrick"
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "c-choice-t",
+                                            "text": "Brick"
+                                          }
+                                        ],
+                                        "classIf": {
+                                          "c-on": "$styleBrick"
+                                        }
+                                      },
+                                      {
+                                        "type": "button",
+                                        "class": "c-choice",
+                                        "onClick": [
+                                          {
+                                            "set": {
+                                              "style": "clean"
+                                            }
+                                          }
+                                        ],
+                                        "children": [
+                                          {
+                                            "type": "box",
+                                            "class": "c-brk c-brk-l",
+                                            "children": [],
+                                            "visibleIf": "$styleClean"
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "c-brk c-brk-r",
+                                            "children": [],
+                                            "visibleIf": "$styleClean"
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "c-choice-t",
+                                            "text": "Clean"
+                                          }
+                                        ],
+                                        "classIf": {
+                                          "c-on": "$styleClean"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "box",
+                                "class": "c-opt",
+                                "children": [
+                                  {
+                                    "type": "box",
+                                    "class": "c-opt-text",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "class": "c-opt-title",
+                                        "text": "THEME"
+                                      },
+                                      {
+                                        "type": "text",
+                                        "class": "c-opt-desc",
+                                        "text": "Colours of the clean style."
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-choices",
+                                    "children": [
+                                      {
+                                        "type": "button",
+                                        "class": "c-choice",
+                                        "onClick": [
+                                          {
+                                            "set": {
+                                              "theme": "present"
+                                            }
+                                          }
+                                        ],
+                                        "children": [
+                                          {
+                                            "type": "box",
+                                            "class": "c-brk c-brk-l",
+                                            "children": [],
+                                            "visibleIf": "$themePresent"
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "c-brk c-brk-r",
+                                            "children": [],
+                                            "visibleIf": "$themePresent"
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "c-choice-t",
+                                            "text": "Present"
+                                          }
+                                        ],
+                                        "classIf": {
+                                          "c-on": "$themePresent"
+                                        }
+                                      },
+                                      {
+                                        "type": "button",
+                                        "class": "c-choice",
+                                        "onClick": [
+                                          {
+                                            "set": {
+                                              "theme": "past"
+                                            }
+                                          }
+                                        ],
+                                        "children": [
+                                          {
+                                            "type": "box",
+                                            "class": "c-brk c-brk-l",
+                                            "children": [],
+                                            "visibleIf": "$themePast"
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "c-brk c-brk-r",
+                                            "children": [],
+                                            "visibleIf": "$themePast"
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "c-choice-t",
+                                            "text": "Past"
+                                          }
+                                        ],
+                                        "classIf": {
+                                          "c-on": "$themePast"
+                                        }
+                                      },
+                                      {
+                                        "type": "button",
+                                        "class": "c-choice",
+                                        "onClick": [
+                                          {
+                                            "set": {
+                                              "theme": "night"
+                                            }
+                                          }
+                                        ],
+                                        "children": [
+                                          {
+                                            "type": "box",
+                                            "class": "c-brk c-brk-l",
+                                            "children": [],
+                                            "visibleIf": "$themeNight"
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "c-brk c-brk-r",
+                                            "children": [],
+                                            "visibleIf": "$themeNight"
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "c-choice-t",
+                                            "text": "Night"
+                                          }
+                                        ],
+                                        "classIf": {
+                                          "c-on": "$themeNight"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "visibleIf": "$showClean",
+      "classIf": {
+        "theme-past": "$themePast",
+        "theme-night": "$themeNight"
+      }
     }
   ],
   "id": "screen"

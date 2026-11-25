@@ -114,9 +114,39 @@ local function terrain(day)
   return nil
 end
 
-local history = {}            -- one line per day seen in this session: units and funds
-local CLASSES = { { "Foot", { [1] = 1, [2] = 1 } }, { "Vehicle", { [3] = 1, [5] = 1, [6] = 1, [7] = 1, [10] = 1, [11] = 1, [14] = 1, [15] = 1 } },
-  { "Air", { [16] = 1, [17] = 1, [19] = 1, [20] = 1 } }, { "Sea", { [21] = 1, [22] = 1, [23] = 1, [24] = 1 } } }
+-- ROM tables (all read at run time, nothing copied into the pack) --------------------------------------------------------------------
+-- damage: two 24 x 24 byte tables, one row per attacker unit id, one column per defender id (minus 1). The first is the main gun, the second the
+-- machine gun; the game uses the main gun while the unit has ammo and the number is not 0, so the best of the two is the damage at full HP.
+local DMG_MAIN, DMG_MG, DMG_ROW = 0x08283B48, 0x08283D88, 24
+local DEF_TAB  = 0x08284314     -- defence stars x 10, by terrain id
+local MOVE_OFF = 0x4C           -- inside a unit record: move cost by terrain id (255 = cannot enter)
+local function dmg(a, d)
+  local o = (a - 1) * DMG_ROW + (d - 1)
+  return math.max(mem.u8(DMG_MAIN + o), mem.u8(DMG_MG + o))
+end
+local TARGETS = { 1, 5, 3, 10, 19, 21 }                              -- infantry, tank, md tank, artillery, b copter, battleship
+local TERR = { { 1, "Plain", "plain" }, { 5, "Road", "road" }, { 4, "Wood", "wood" }, { 3, "Mountain", "mountain" }, { 2, "River", "river" },
+  { 12, "Bridge", "bridge" }, { 13, "Shoal", "shoal" }, { 7, "Sea", "sea" }, { 19, "Reef", "reef" }, { 6, "City", "city" },
+  { 14, "Base", "base" }, { 10, "Airport", "airport" }, { 11, "Port", "port" }, { 8, "HQ", "hq" } }
+local MOVERS = { { 1, "infantry" }, { 5, "tank" }, { 6, "recon" }, { 19, "b-copter" }, { 21, "battleship" } }   -- foot, tread, tire, air, sea
+local INCOME_KINDS = { [6] = true, [8] = true, [10] = true, [11] = true, [14] = true }   -- city, HQ, airport, port, base: 1000 a day each
+
+local ACC  = { "#e85428", "#3068d8", "#48b840", "#f8d018" }
+local PILL = { "#de6b52", "#5882de", "#58b858", "#e8c820" }
+
+local history = {}
+local function props(w, h)         -- properties per owner (0 = neutral), from the game's own terrain codes
+  local n = { [0] = 0, 0, 0, 0, 0 }
+  if not w then return n end
+  for i = 0, w * h - 1 do
+    local code = mem.u8(MAP_CODES + i)
+    if INCOME_KINDS[code & 0x1F] and (code >> 5) <= 4 then n[code >> 5] = n[code >> 5] + 1 end
+  end
+  return n
+end
+
+local function pct(v, max) return string.format("%d%%", math.max(0, math.min(100, math.floor(v * 100 / max + 0.5)))) end
+local function px(v) return string.format("%.1fpx", v) end
 
 local function baseUpdate(ui)
   if mem.read(0x080000AC, 4) ~= GAME then return { ready = false, waiting = true } end
@@ -128,165 +158,127 @@ local function baseUpdate(ui)
   local armies = {}
   for n = 0, 3 do
     local list, value = army(n)
-    if #list > 0 then
-      armies[#armies + 1] = { n = n, name = ARMY_NAMES[n + 1], color = ARMY_COLORS[n + 1], count = #list, value = value, list = list, mine = (n == turn) }
-    end
+    if #list > 0 then armies[#armies + 1] = { n = n, count = #list, value = value, list = list } end
   end
   if #armies == 0 then return { ready = false, waiting = true } end
-
-  local chosen = tonumber(ui.army) or armies[1].n
-  local sel = armies[1]
-  for _, a in ipairs(armies) do
-    a.on = (a.n == chosen)
-    if a.on then sel = a end
-  end
-  -- the unit types of the shown army, counted
-  local counts, order = {}, {}
-  for _, u in ipairs(sel.list) do
-    local c = counts[u.id]
-    if not c then c = { name = u.name, icon = u.icon, n = 0 }; counts[u.id] = c; order[#order + 1] = c end
-    c.n = c.n + 1
-  end
-
+  local me = armies[1]
+  for _, a in ipairs(armies) do if a.n == turn then me = a end end
+  local foe = armies[1]
+  if foe == me then foe = armies[2] or armies[1] end
   local funds = mem.u32(FUNDS)
-  local pos = tonumber(ui.unit) or 0
-  local focus = sel.list[pos + 1] or sel.list[1]
-  local have = {}
-  for _, a in ipairs(armies) do
-    if a.on then for _, u in ipairs(a.list) do have[u.id] = (have[u.id] or 0) + 1 end end
+
+  -- the map (needed for properties, cities and the minimap)
+  local mw, mh = mem.u8(MAP_DIMS), mem.u8(MAP_DIMS + 1)
+  if mw < 8 or mw > 30 or mh < 8 or mh > 30 then mw, mh = nil, nil end
+  local pr = props(mw, mh)
+  local income = (pr[me.n + 1] or 0) * 1000
+
+  -- FIELD: three tug-of-war bars, my army (left) against the other
+  local function bar(a, b, icon)
+    local t = math.max(1, a + b)
+    return { a = a, b = b, aw = pct(a, t), icon = icon }
   end
-  local guide, pickType = {}, tonumber(ui.type) or 1
+  local bars = { bar(me.count, foe.count, "asset:ui/chip-units.png"), bar(me.value // 1000, foe.value // 1000, "asset:ui/chip-coin.png"),
+    bar(pr[me.n + 1] or 0, pr[foe.n + 1] or 0, "asset:terrain/city.png") }
+  if me == foe then bars = {} end
+
+  -- UNITS: every unit type as a tile; the picked one in the inspector
+  local have = {}
+  for _, u in ipairs(me.list) do have[u.id] = (have[u.id] or 0) + 1 end
+  local pick = tonumber(ui.type) or 5
+  if not utype(pick) then pick = 1 end
+  local tiles, canBuy = {}, 0
   for id = 1, TYPES - 1 do
     local t = utype(id)
     if t then
-      guide[#guide + 1] = { id = id, icon = iconOf(id, sel.n), name = t.name, cost = t.cost, move = t.move, vision = t.vision, fuel = t.fuel, ammo = (t.ammo > 0) and tostring(t.ammo) or "none",
-        range = (t.rmax > 1 or t.rmin > 1) and string.format("%d-%d", t.rmin, t.rmax) or "1", afford = funds >= t.cost, owned = have[id] or 0,
-        hasOwned = (have[id] or 0) > 0, on = (id == pickType) }
+      local afford = funds >= t.cost
+      if afford then canBuy = canBuy + 1 end
+      tiles[#tiles + 1] = { id = id, icon = iconOf(id, me.n), owned = have[id] or 0, hasOwned = (have[id] or 0) > 0, afford = afford, poor = not afford, on = (id == pick),
+                            name = t.name, cost = t.cost, ownedTxt = "x" .. (have[id] or 0) }
     end
   end
-  table.sort(guide, function(p, q) if p.cost ~= q.cost then return p.cost < q.cost end return p.id < q.id end)
-  local gsel = guide[1]
-  for _, g in ipairs(guide) do if g.on then gsel = g end end
-  local canBuy = 0
-  for _, g in ipairs(guide) do if g.afford then canBuy = canBuy + 1 end end
+  local pt = utype(pick)
+  local foeSlug = (me.n == 1) and 0 or 1
+  local dmgRows, best, bestV = {}, 0, 0
+  for k, d in ipairs(TARGETS) do
+    local v = dmg(pick, d)
+    if v > bestV then best, bestV = k, v end
+    dmgRows[k] = { icon = iconOf(d, foeSlug), v = v, txt = (v > 0) and tostring(v) or "-", w = pct(v, 120), none = v == 0 }
+  end
+  for k, r in ipairs(dmgRows) do r.best = (k == best) end
+  local pickRange = (pt.rmax > 1 or pt.rmin > 1) and string.format("%d-%d", pt.rmin, pt.rmax) or "1"
 
-  -- map: the terrain picture, and every unit's icon on it
-  local mapImg, mw, mh = terrain(day)
-  local mapUnits, mapSize, mapProps, propCount = {}, {}, {}, {}
+  -- TERRAIN: tiles, the picked one with its DEF stars and the move cost of each kind of unit
+  local tpick = tonumber(ui.terr) or 3
+  local terr, tsel = {}, TERR[4]
+  for _, t in ipairs(TERR) do
+    local on = (t[1] == tpick)
+    if on then tsel = t end
+    terr[#terr + 1] = { id = t[1], img = "asset:terrain/" .. t[3] .. ".png", on = on }
+  end
+  local stars, nStars = {}, mem.u8(DEF_TAB + tsel[1]) // 10
+  for i = 1, 4 do stars[i] = { src = (i <= nStars) and "asset:ui/star-on.png" or "asset:ui/star-off.png" } end
+  local costs = {}
+  for i, m in ipairs(MOVERS) do
+    local c = mem.u8(UTAB + USIZE * m[1] + MOVE_OFF + tsel[1])
+    local ok = c > 0 and c < 99
+    costs[i] = { icon = iconOf(m[1], me.n), txt = ok and tostring(c) or "-", blocked = not ok }
+  end
+
+  -- MAP: the terrain picture, every unit on it, the properties by owner, and the box the top screen shows
+  local mapImg, mw2, mh2 = terrain(day)
+  local mapUnits, mapProps, mapSize = {}, {}, {}
+  local viewBox, hasView = {}, false
   if mapImg then
-    local s = math.min(500 / (mw * 16), 292 / (mh * 16))     -- dp per map pixel
+    local s = math.min(336 / (mw2 * 16), 270 / (mh2 * 16))      -- dp per map pixel
     local cell = 16 * s
-    mapSize = { w = string.format("%.1fpx", mw * cell), h = string.format("%.1fpx", mh * cell) }
-    for y = 0, mh - 1 do                                    -- cities and HQs, by owner
-      for x = 0, mw - 1 do
-        local code = mem.u8(MAP_CODES + y * mw + x)
+    mapSize = { w = px(mw2 * cell), h = px(mh2 * cell) }
+    for y = 0, mh2 - 1 do
+      for x = 0, mw2 - 1 do
+        local code = mem.u8(MAP_CODES + y * mw2 + x)
         local kind = code & 0x1F
         if kind == 6 or kind == 8 then
           local owner = code >> 5
           if owner <= 4 then
             local sz = cell * ((kind == 8) and 0.62 or 0.46)
-            mapProps[#mapProps + 1] = { left = string.format("%.1fpx", x * cell + cell - sz - 1), top = string.format("%.1fpx", y * cell + cell - sz - 1),
-              size = string.format("%.1fpx", sz), color = OWNER_COLORS[owner + 1], hq = kind == 8 }
-            propCount[owner] = (propCount[owner] or 0) + 1
+            mapProps[#mapProps + 1] = { left = px(x * cell + cell - sz - 1), top = px(y * cell + cell - sz - 1), size = px(sz), color = OWNER_COLORS[owner + 1], hq = kind == 8 }
           end
         end
       end
     end
     for _, a in ipairs(armies) do
       for _, u in ipairs(a.list) do
-        mapUnits[#mapUnits + 1] = { left = string.format("%.1fpx", (u.x - 1) * cell), top = string.format("%.1fpx", (u.y - 1) * cell),
-          size = string.format("%.1fpx", cell), sizeH = string.format("%.1fpx", cell * 0.9), icon = u.icon }
+        mapUnits[#mapUnits + 1] = { left = px((u.x - 1) * cell), top = px((u.y - 1) * cell), size = px(cell), sizeH = px(cell * 0.9), icon = u.icon }
       end
     end
-  end
-
-  -- armies: the first two side by side
-  local L, R = armies[1], armies[2] or armies[1]
-  local function profile(a)
-    local hpSum, fuelSum = 0, 0
-    local cls = { 0, 0, 0, 0 }
-    for _, u in ipairs(a.list) do
-      hpSum = hpSum + u.tens
-      fuelSum = fuelSum + u.fuelPct
-      for k, c in ipairs(CLASSES) do if c[2][u.id] then cls[k] = cls[k] + 1 end end
+    -- the top screen shows 15 x 10 tiles; BG3's scroll says where (a map that fits shows no box)
+    if mw2 > 15 or mh2 > 10 then
+      local hx, vy = mem.u16(0x0400001C) & 0x1FF, mem.u16(0x0400001E) & 0x1FF
+      viewBox = { left = px(hx / 16 * cell), top = px(vy / 16 * cell), width = px(15 * cell), height = px(10 * cell) }
+      hasView = true
     end
-    return { count = a.count, value = a.value, avgHp = string.format("%.1f", hpSum / a.count), avgFuel = string.format("%d%%", math.floor(fuelSum / a.count * 100 + 0.5)), cls = cls }
-  end
-  local pl, pr = profile(L), profile(R)
-  local versus = {
-    { label = "Units", a = pl.count, b = pr.count, aWin = pl.count > pr.count, bWin = pr.count > pl.count },
-    { label = "Army value", a = pl.value, b = pr.value, aWin = pl.value > pr.value, bWin = pr.value > pl.value },
-    { label = "Average HP", a = pl.avgHp, b = pr.avgHp, aWin = tonumber(pl.avgHp) > tonumber(pr.avgHp), bWin = tonumber(pr.avgHp) > tonumber(pl.avgHp) },
-    { label = "Average fuel", a = pl.avgFuel, b = pr.avgFuel, aWin = false, bWin = false },
-  }
-  if next(propCount) then
-    local a, b = propCount[L.n + 1] or 0, propCount[R.n + 1] or 0
-    versus[#versus + 1] = { label = "Cities & HQ", a = a, b = b, aWin = a > b, bWin = b > a }
-  end
-  for k, c in ipairs(CLASSES) do
-    versus[#versus + 1] = { label = c[1], a = pl.cls[k], b = pr.cls[k], aWin = pl.cls[k] > pr.cls[k], bWin = pr.cls[k] > pl.cls[k] }
   end
 
-  -- log: a line per day
-  local line = { day = day, o = armies[1].count, b = (armies[2] or armies[1]).count, funds = funds }
+  -- remember the end of each day for the log (kept in memory while the game runs)
+  local line = { day = day, o = me.count, b = foe.count, funds = funds }
   if #history > 0 and history[#history].day == day then history[#history] = line else history[#history + 1] = line end
   while #history > 40 do table.remove(history, 1) end
-  local log = {}
-  for i = #history, 1, -1 do
-    local h = history[i]
-    log[#log + 1] = { day = h.day, line = string.format("%s %d  vs  %s %d", armies[1].name, h.o, (armies[2] or armies[1]).name, h.b), funds = h.funds }
-  end
 
+  local page = ui.page or "field"
   return {
-    mapImg = mapImg or "", noMap = (mapImg == nil), hasMap = (mapImg ~= nil), mapW = mapSize.w or "10px", mapH = mapSize.h or "10px", mapUnits = mapUnits, mapProps = mapProps, mapNote = mapImg and string.format("%d x %d", mw, mh) or "open the map screen", versus = versus, vsL = L, vsR = R, log = log, 
-    onMap = (ui.page == "map"), onVs = (ui.page == "armies"), onLog = (ui.page == "log"),
-    onFront = (ui.page == nil or ui.page == "home"), onUnits = (ui.page == "units" or ui.page == "unit"), onGuide = (ui.page == "guide"),
-    focus = focus, guide = guide, gsel = gsel, gselAfford = gsel.afford, gselNot = not gsel.afford,
-    buyText = string.format("Funds %d: you can afford %d of %d unit types", funds, canBuy, #guide),
-    ready = true, waiting = false, day = day, funds = funds, turnName = ARMY_NAMES[turn + 1], turnColor = ARMY_COLORS[turn + 1],
-    armies = armies, sel = sel, units = sel.list, groups = order, hasUnits = #sel.list > 0,
+    ready = true, waiting = false, day = day, funds = funds, income = income, hasIncome = income > 0,
+    turnName = ARMY_NAMES[me.n + 1], accent = ACC[me.n + 1], foeAcc = ACC[foe.n + 1], pill = PILL[me.n + 1], crate = "asset:icons/ui/crate-" .. ARMY_SLUGS[me.n + 1] .. ".png",
+    bars = bars, hasBars = #bars > 0,
+    tiles = tiles, pickName = pt.name, pickIcon = iconOf(pick, me.n), pickCost = pt.cost, pickAfford = funds >= pt.cost, pickPoor = funds < pt.cost,
+    pickMove = pt.move, pickVision = pt.vision, pickRange = pickRange, pickAmmo = (pt.ammo > 0) and tostring(pt.ammo) or "-", pickFuel = pt.fuel, pickOwned = have[pick] or 0,
+    dmg = dmgRows, canBuy = canBuy,
+    terr = terr, defN = tostring(nStars), terrName = tsel[2], terrImg = "asset:terrain/" .. tsel[3] .. ".png", stars = stars, costs = costs,
+    mapImg = mapImg or "", noMap = (mapImg == nil), hasMap = (mapImg ~= nil), mapW = mapSize.w or "10px", mapH = mapSize.h or "10px",
+    mapUnits = mapUnits, mapProps = mapProps, hasView = hasView, view = viewBox,
+    chipL = { icon = iconOf(1, me.n), n = me.count, name = ARMY_NAMES[me.n + 1], value = me.value, valueTxt = string.format("%dk", me.value // 1000), turn = me == me, crate = "asset:icons/ui/crate-" .. ARMY_SLUGS[me.n + 1] .. ".png", p = pr[me.n + 1] or 0, color = ACC[me.n + 1] },
+    chipR = { icon = iconOf(1, foe.n), n = foe.count, name = ARMY_NAMES[foe.n + 1], value = foe.value, valueTxt = string.format("%dk", foe.value // 1000), turn = foe == me, crate = "asset:icons/ui/crate-" .. ARMY_SLUGS[foe.n + 1] .. ".png", p = pr[foe.n + 1] or 0, color = ACC[foe.n + 1] },
+    onField = (page == "field"), onUnits = (page == "units"), onTerrain = (page == "terrain"), onMap = (page == "map"),
   }
-end
-
--- the movable navigation: where the buttons sit is the UI key navpos (bottom, left, right, split), chosen on the Options page
-local NAV = { { "FRONT", "home" }, { "UNITS", "units" }, { "MAP", "map" }, { "VS", "armies" }, { "GUIDE", "guide" }, { "LOG", "log" }, { "OPT", "options" } }
-local NAV_ALIAS = { unit = "units" }
-local NAV_WINDOW = 5          -- the bottom bar shows this many buttons; < > page through the rest. The side docks scroll.
-local navOffset = 0
-local navLastPage
-actions = actions or {}
-function actions.navShift(d) navOffset = navOffset + (tonumber(d) or 0) end
-local function navState(ui)
-  local pos = ui.navpos or "bottom"
-  local cur = ui.page or "home"
-  cur = NAV_ALIAS[cur] or cur
-  local out = { posBottom = (pos == "bottom"), posLeft = (pos == "left"), posRight = (pos == "right"), posSplit = (pos == "split") }
-  local curIdx = 1
-  for i, n in ipairs(NAV) do if n[2] == cur then curIdx = i end end
-  local maxOff = math.max(0, #NAV - NAV_WINDOW)
-  if tostring(ui.page) ~= tostring(navLastPage) then          -- a new page: bring its button into view
-    if curIdx <= navOffset then navOffset = curIdx - 1 elseif curIdx > navOffset + NAV_WINDOW then navOffset = curIdx - NAV_WINDOW end
-    navLastPage = ui.page
-  end
-  navOffset = math.max(0, math.min(maxOff, navOffset))
-  out.navMore, out.noPrev, out.noNext = #NAV > NAV_WINDOW, navOffset <= 0, navOffset >= maxOff
-  local half = (#NAV + 1) // 2
-  local left, right = 0, 0
-  for i, n in ipairs(NAV) do
-    out["on" .. i] = (n[2] == cur)
-    out["B" .. i] = (i > navOffset and i <= navOffset + NAV_WINDOW)
-    local l = (pos == "left") or (pos == "split" and i <= half)
-    local r = (pos == "right") or (pos == "split" and i > half)
-    out["L" .. i], out["R" .. i] = l, r
-    if l then left = left + 1 end
-    if r then right = right + 1 end
-  end
-  out.dockL, out.dockR = left > 0, right > 0
-  -- the bottom bar cycles: < previous page | this page | next page >
-  local pi, ni = (curIdx - 2) % #NAV + 1, curIdx % #NAV + 1
-  out.navName = NAV[curIdx][1]
-  for i = 1, #NAV do out["P" .. i], out["N" .. i] = (i == pi), (i == ni) end
-  return out
 end
 
 local lastGood
@@ -296,6 +288,5 @@ function update(ui)
     if log then log("update error: " .. tostring(r)) end       -- keep showing the last good screen instead of going blank
     r = lastGood
   end
-  if r and r.ready then for k, v in pairs(navState(ui)) do r[k] = v end end
   return r
 end

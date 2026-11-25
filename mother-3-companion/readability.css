@@ -1,0 +1,28 @@
+/* readability.css: written by skill/tools/packkit/readability.py from style.css. Do not edit by hand: run the tool again.
+   Adds tracking (and line height for wrapped text) by font and size; rules that set letter-spacing themselves are left alone. */
+#screen { letter-spacing: 0.88px; }
+.boot-sub { letter-spacing: 0.96px; }
+.ctab-init-t { letter-spacing: 1.04px; }
+.pill-t { letter-spacing: 1.04px; }
+.li-name { letter-spacing: 0.88px; }
+.badge-t { letter-spacing: 0.56px; }
+.empty-t { letter-spacing: 0.88px; }
+.psi-row .li-name { letter-spacing: 0.80px; }
+.desc-name { letter-spacing: 0.80px; }
+.desc-body { letter-spacing: 0.76px; }
+.name-line { letter-spacing: 0.96px; }
+.srow-l { letter-spacing: 0.84px; }
+.slot-label { letter-spacing: 0.80px; }
+.slot-item { letter-spacing: 0.88px; }
+.pp-chip-l { letter-spacing: 0.60px; }
+.trow-v { letter-spacing: 0.88px; }
+.gauge-l { letter-spacing: 0.80px; }
+.gauge-v { letter-spacing: 0.76px; }
+.bar-label { letter-spacing: 0.84px; }
+.bar-chev { letter-spacing: 0.88px; }
+.act-t { letter-spacing: 0.80px; }
+.desc-note { letter-spacing: 0.76px; }
+.dlg-title { letter-spacing: 0.96px; }
+.target-name { letter-spacing: 0.88px; }
+.target-hp { letter-spacing: 0.72px; }
+.dlg-btn-t { letter-spacing: 0.84px; }

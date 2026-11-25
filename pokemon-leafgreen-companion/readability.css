@@ -1,0 +1,61 @@
+/* readability.css: written by skill/tools/packkit/readability.py from style.css. Do not edit by hand: run the tool again.
+   Adds tracking (and line height for wrapped text) by font and size; rules that set letter-spacing themselves are left alone. */
+#screen { letter-spacing: 0.88px; }
+.num { letter-spacing: 0.72px; }
+.chip-text { letter-spacing: 0.72px; }
+.lv { letter-spacing: 0.64px; }
+.status-text { letter-spacing: 0.64px; }
+.hp-tag-text { letter-spacing: 0.56px; }
+.hp-num { letter-spacing: 0.64px; }
+.hp-big { letter-spacing: 0.68px; }
+.wild-label { letter-spacing: 0.56px; }
+.wild-method-text { letter-spacing: 0.84px; }
+.wild-level { letter-spacing: 0.64px; }
+.wild-chance-text { letter-spacing: 0.68px; }
+.wild-none-text { letter-spacing: 0.84px; }
+.pockets tab { letter-spacing: 0.80px; }
+.item-grid empty { letter-spacing: 0.72px; }
+.dex-of { letter-spacing: 0.64px; }
+.dex-num { letter-spacing: 0.68px; }
+.complete-num { letter-spacing: 0.88px; }
+.complete-sub { letter-spacing: 0.72px; }
+.last-no { letter-spacing: 0.64px; }
+.last-name { letter-spacing: 0.96px; }
+.id-no { letter-spacing: 1.04px; }
+.id-val { letter-spacing: 1.12px; }
+.badge-name { letter-spacing: 0.52px; }
+.stat-name { letter-spacing: 0.80px; }
+.stat-val { letter-spacing: 0.68px; }
+.stage-text { letter-spacing: 0.56px; }
+.no-battle-sub { letter-spacing: 0.72px; }
+.dex-no { letter-spacing: 0.56px; }
+.meter-key { letter-spacing: 0.72px; }
+.meter-val { letter-spacing: 0.56px; }
+.info-key { letter-spacing: 0.72px; }
+.info-val { letter-spacing: 0.88px; }
+.dstat-name { letter-spacing: 0.80px; }
+.dstat-val { letter-spacing: 0.64px; }
+.move-pp { letter-spacing: 0.52px; }
+.opt-state { letter-spacing: 0.72px; }
+.pg-label { letter-spacing: 0.96px; }
+.pager-text { letter-spacing: 0.76px; }
+.pager-sub { letter-spacing: 0.52px; }
+.dex-q { letter-spacing: 1.04px; }
+.dex-row .dex-no { letter-spacing: 0.52px; }
+.dex-big-q { letter-spacing: 0.88px; }
+.dex-sel-no { letter-spacing: 0.56px; }
+.dex-cat { letter-spacing: 0.64px; }
+.meas-k { letter-spacing: 0.56px; }
+.dex-desc-text { letter-spacing: 0.64px; line-height: 18.4px; }
+.dex-stats .dstat-name { letter-spacing: 0.56px; }
+.dex-stats .dstat-val { letter-spacing: 0.56px; }
+.combatant .mon-name, .bside .mon-name { letter-spacing: 0.80px; }
+.mchip-pp { letter-spacing: 0.40px; }
+.bside .stat-name { letter-spacing: 0.68px; }
+.bside .stat-val { letter-spacing: 0.60px; }
+.skill-sub { letter-spacing: 0.52px; }
+.eff-text { letter-spacing: 0.56px; }
+.skill-pp { letter-spacing: 0.56px; }
+.town-off-text { letter-spacing: 0.76px; }
+.search-input { letter-spacing: 0.80px; }
+.search-clear-x { letter-spacing: 0.88px; }

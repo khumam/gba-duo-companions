@@ -1,0 +1,28 @@
+/* readability.css: written by skill/tools/packkit/readability.py from style.css. Do not edit by hand: run the tool again.
+   Adds tracking (and line height for wrapped text) by font and size; rules that set letter-spacing themselves are left alone. */
+.note { letter-spacing: 0.88px; }
+.portrait-letter { letter-spacing: 1.04px; }
+.hero-name { letter-spacing: 0.64px; }
+.hero-lv { letter-spacing: 1.04px; }
+.hero-class { letter-spacing: 0.88px; }
+.gauge-key { letter-spacing: 0.88px; }
+.gauge-val { letter-spacing: 0.96px; }
+.rcard-name { letter-spacing: 1.04px; }
+.rcard-lv { letter-spacing: 0.80px; }
+.rcard-hp { letter-spacing: 0.80px; }
+.stat-key { letter-spacing: 0.80px; }
+.stat-val { letter-spacing: 0.96px; }
+.elem-pow { letter-spacing: 1.04px; }
+.item-name { letter-spacing: 0.96px; }
+.item-qty { letter-spacing: 0.88px; }
+.item-eq { letter-spacing: 0.80px; }
+list > empty { letter-spacing: 0.88px; }
+.cell-key { letter-spacing: 0.68px; }
+.cell-val { letter-spacing: 0.84px; }
+.djinn-name { letter-spacing: 0.96px; }
+.djinn-tag { letter-spacing: 0.80px; }
+.nav-text { letter-spacing: 0.96px; }
+.map-off { letter-spacing: 1.04px; }
+.opt-title { letter-spacing: 1.12px; }
+.opt-desc { letter-spacing: 0.76px; line-height: 21.8px; }
+.opt-state { letter-spacing: 0.88px; }

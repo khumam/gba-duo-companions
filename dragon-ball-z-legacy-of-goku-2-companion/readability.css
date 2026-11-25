@@ -1,0 +1,11 @@
+/* readability.css: written by skill/tools/packkit/readability.py from style.css. Do not edit by hand: run the tool again.
+   Adds tracking (and line height for wrapped text) by font and size; rules that set letter-spacing themselves are left alone. */
+.page { letter-spacing: 1.39px; }
+.tab-name { letter-spacing: 1.39px; }
+.nav-title { letter-spacing: 1.73px; }
+.pick-name { letter-spacing: 1.21px; }
+.jhint { letter-spacing: 1.21px; }
+.page-waiting .who { letter-spacing: 2.00px; }
+.oname { letter-spacing: 1.39px; }
+.oval { letter-spacing: 1.39px; }
+.ohint { letter-spacing: 1.04px; }

@@ -1,220 +1,217 @@
-// The flat "Clean" style of the Minish Cap companion: top bar (Ezlo, rupees, kinstones, A / B), five icon tabs and, on every page,
-// a master (map, tile grid, list) beside a detail panel. Same bindings as the stone style (main.lua is shared).
-// buildClean(h) returns the shell node; h = { box, text, img, button, list, bar, ui, icon, grow } from layout.mjs.
+// The "Clean" style of the Minish Cap companion: a slate (design: .idea/plans/mc-design4 in the app repo, after a Sheikah-slate inventory).
+// One flat near-black surface. Top bar: five flat category glyphs (the active one white, its name above it), Ezlo, and one fact box
+// (rupees, kinstones, the B and A items). Under it every page is a master (grid, map, list) on the left and ONE inspector on the right
+// that holds the text (big picture, italic name, hairline, details), marked by a single accent line. Flat outlined buttons sit under
+// the master for the page's actions. Same bindings as the stone style (main.lua is shared; the clean-only fields are added at its end).
+// The old clean style is in art/clean-v1/.
+// buildClean(h) returns the root node; h = { box, text, img, button, list, bar, ui, icon, grow } from layout.mjs.
 
 export function buildClean(h) {
   const { box, text, img, button, list, bar, ui, icon, grow } = h;
+  const btn = (cls, onClick, children, extra = {}) => ({ ...button(cls, onClick, children), ...extra });
 
-  const chip = (cls, iconNode, bind) => box(`chip ${cls}`, [iconNode, text("num", bind)]);
-  const equip = (key, path) =>
-    box(
-      `equip equip-${key.toLowerCase()}`,
-      [
-        box("disc", [img("equip-icon", `$${path}.icon`), box("equip-badge", [text("equip-key", key)])]),
-        text("equip-name", `{${path}.name}`),
-      ],
-      { onDrop: { call: "equip", args: [key, "{drag}"] } },
-    );
-  const topbar = box("topbar", [
-    button("ezlo-btn", [{ set: { hint: true } }], [img("ezlo", "$ezlo")]),
-    chip("chip-rupee", img("hicon hicon-rupee", ui("rupee-green")), "{rupees}"),
-    chip("chip-kin", img("hicon", icon("kinstone-red")), "{kinstones}"),
-    grow(),
-    equip("A", "equipA"),
-    equip("B", "equipB"),
-  ]);
-  const hint = box(
-    "bubble",
-    [
-      img("bubble-ezlo", "$ezlo"),
-      box("bubble-body", [text("bubble-name", "EZLO"), text("bubble-text", "{ezloHint}"), text("bubble-close", "TAP TO CLOSE")]),
-    ],
-    { visibleIf: "$ui.hint", onClick: [{ set: { hint: false } }] },
-  );
-
+  // ---- top bar: tabs, Ezlo, the fact box ------------------------------------------------------------------------------------
   const ORDER = ["map", "items", "kinstone", "quest", "options"];
-  const TITLES = { map: "MAPS", items: "ITEMS", kinstone: "KINSTONE", quest: "QUESTS", options: "OPTIONS" };
-  const tabInner = (t, on) => [
-    img("tab-icon", ui(`tab-${t}-${on ? "on" : "off"}`)),
-    text("tab-label", TITLES[t]),
-    ...(t === "kinstone" ? [img("tab-alert", icon("kinstone-red"), { visibleIf: "$kinstone.ready" })] : []),
-  ];
-  const tabs = (name) =>
-    box("tabs", ORDER.map((t) => (t === name ? box("tab on", tabInner(t, true)) : button("tab", [{ navigate: t }], tabInner(t, false)))));
+  const TITLES = { map: "Map", items: "Gear", kinstone: "Kinstones", quest: "Quest", options: "Options" };
+  const tab = (t, on) =>
+    on
+      ? box("tab on", [text("tab-label", TITLES[t]), img("tab-glyph", ui(`cg-${t}-on`)), box("tab-line", [])])
+      : btn("tab", [{ navigate: t }], [
+          box("tab-label-space", []),
+          img("tab-glyph", ui(`cg-${t}-off`)),
+          ...(t === "kinstone" ? [box("tab-dot", [], { visibleIf: "$kinstone.ready" })] : []),
+        ]);
+  const equipCell = (key, path) =>
+    box(`fact-eq`, [text("fact-key", key), box("fact-well", [img("fact-icon", `$${path}.icon`)])], {
+      onDrop: { call: "equip", args: [key, "{drag}"] },
+    });
+  const topbar = (name) =>
+    box("topbar", [
+      box("tabs", ORDER.map((t) => tab(t, t === name))),
+      grow(),
+      btn("ezlo-btn", [{ set: { hint: true } }], [img("ezlo", "$ezlo")]),
+      box("facts", [
+        box("fact", [img("fact-rupee", ui("rupee-green")), text("num fact-num", "{rupees}")]),
+        box("fact", [img("fact-kin", icon("kinstone-red")), text("num fact-num", "{kinstones}")]),
+        equipCell("B", "equipB"),
+        equipCell("A", "equipA"),
+      ]),
+    ]);
 
-  const pane = (cls, title, body) => box(`pane ${cls}`, [...(title ? [text("pane-title", title)] : []), ...body]);
+  // ---- shared pieces ----------------------------------------------------------------------------------------------------------
+  const inspector = (children) => box("insp", [box("insp-line", []), box("insp-body", children)]);
+  const hair = () => box("hair", []);
 
-  // ---- maps ----
-  const mapTab = (label, worldAt, on) => ({
-    type: "button", class: "map-tab", onClick: [{ set: { mapWorldAt: worldAt } }], classIf: { on }, children: [text("map-tab-label", label)],
-  });
+  // ---- MAP ------------------------------------------------------------------------------------------------------------------
+  const mapTab = (label, worldAt, on) =>
+    btn("fbtn", [{ set: { mapWorldAt: worldAt } }], [text("fbtn-t", label)], { classIf: { on } });
   const dungeonView = box(
     "dmap",
     [
-      box("dmap-head", [text("dmap-name", "{dungeon.name}")]),
-      box("dmap-body", [
-        list("dmap-floors", "$dungeon.floors", box("dfloor", [
-          box("dfloor-mark", [img("dfloor-link", "$icons.linkHead", { visibleIf: "$here" })]),
-          text("num dfloor-name", "{name}"),
-          box("dfloor-mark", [img("dfloor-boss", ui("mark-boss"), { visibleIf: "$boss" })]),
-        ], { classIf: { here: "$here" } })),
-        box("dmap-items", [
-          list("ditem-row", "$dungeon.items", box("ditem", [box("ditem-slot", [img("ditem-icon", "$icon")]), text("ditem-name", "{name}")], {
-            classIf: { missing: "$missing" },
-          })),
-          box("dkeys", [img("dkey-icon", "$dungeon.keyIcon"), text("num dkey-num", "{dungeon.keys}")]),
-        ]),
+      list("dfloors", "$dungeon.floors", box("dfloor", [
+        text("dfloor-name", "{name}"),
+        grow(),
+        img("dfloor-boss", ui("mark-boss"), { visibleIf: "$boss" }),
+        img("dfloor-link", "$icons.linkHead", { visibleIf: "$here" }),
+      ], { classIf: { here: "$here" } })),
+      box("ditems", [
+        list("ditem-row", "$dungeon.items", box("dcell", [img("dcell-icon", "$icon")], { classIf: { missing: "$missing" } })),
+        box("dcell", [img("dcell-icon", "$dungeon.keyIcon"), text("num badge", "{dungeon.keys}")]),
       ]),
     ],
     { visibleIf: "$map.showDungeon" },
   );
-  const mapPage = box("content content-row", [
-    box("master master-map", [
+  // The map gets the whole width: the ROM map at 6x (416.5 x 333.2 dp), a narrow inspector beside it, Ezlo's line under both.
+  const mapPage = box("content content-col", [
+    box("map-row", [
       box("map-view", [
         img("map-img", "$map.image"),
-        img("mark mark-link", "$icons.linkHead", { bindStyle: { left: "{map.linkX}%", top: "{map.linkY}%" } }),
+        img("mark-link", "$icons.linkHead", { bindStyle: { left: "{map.linkX}%", top: "{map.linkY}%" } }),
         dungeonView,
       ]),
-    ]),
-    box("detail", [
-      pane("p-place", "YOU ARE IN", [
-        text("place-name", "{location}"),
-        box("map-tabs", [mapTab("WORLD", "{map.visit}", "$map.showWorld"), mapTab("DUNGEON", "", "$map.showDungeon")], { visibleIf: "$map.inDungeon" }),
-      ]),
-      pane("p-link", "LINK", [
-        box("link-row", [img("link-sprite", "$link.sprite")]),
+      inspector([
+        box("insp-pic insp-pic-s", [img("insp-sprite", "$link.sprite")]),
+        text("insp-name insp-name-s", "{location}"),
+        hair(),
         list("hearts", "$link.hearts", img("heart", "$src"), { visibleIf: "$link.hasHearts" }),
+        grow(),
+        box("map-tabs", [mapTab("World", "{map.visit}", "$map.showWorld"), mapTab("Dungeon", "", "$map.showDungeon")], { visibleIf: "$map.inDungeon" }),
       ]),
     ]),
+    btn("say", [{ set: { hint: true } }], [box("insp-line", []), img("say-ezlo", "$ezlo"), text("say-t", "{ezloHint}")]),
   ]);
 
-  // ---- items ----
+  // ---- GEAR -----------------------------------------------------------------------------------------------------------------
   const pick = [{ set: { pick: "{name}", pickIcon: "{icon}", pickKey: "{equipKey}", picked: true } }];
   const slot = () =>
-    box("slot", [
-      img("slot-icon", "$icon", { visibleIf: "$owned" }),
-      box("slot-count", [text("num count", "{count}")], { visibleIf: "$hasCount" }),
-    ], { classIf: { empty: "$empty", movable: "$canEquip" }, onClick: pick, drag: "{equipKey}", dragIf: "$canEquip" });
-  const gearRow = (iconName, label, val, pct, cls) =>
-    box(`gear-row ${cls}`, [
-      img("gear-icon", icon(iconName)),
-      box("gear-main", [box("gear-line", [text("gear-label", label), grow(), text("num gear-val", val)]), ...(pct ? [bar("gear-bar", pct)] : [])]),
-    ]);
-  const equipBtn = (key) => button(`eq-btn eq-${key.toLowerCase()}`, [{ call: "equip", args: [key, "{ui.pickKey}"] }], [text("eq-btn-t", `SET ${key}`)]);
-  const itemsPage = box("content content-row", [
-    box("master", [pane("p-tiles", "ITEMS", [list("item-grid", "$items", slot())])]),
-    box("detail", [
-      pane("p-picked", "SELECTED  (TAP A TILE)", [
-        box("picked-row", [
-          box("picked-tile", [img("picked-icon", "$ui.pickIcon")], { visibleIf: "$ui.picked" }),
-          text("picked-name", "{ui.pick}", { visibleIf: "$ui.picked" }),
-        ]),
-        box("eq-row", [equipBtn("A"), equipBtn("B")], { visibleIf: "$ui.pickKey" }),
+    box("cell", [
+      img("cell-icon", "$icon", { visibleIf: "$owned" }),
+      text("cell-tag", "{onKey}", { visibleIf: "$onKey" }),
+      text("num badge", "{count}", { visibleIf: "$hasCount" }),
+    ], { classIf: { empty: "$empty", sel: "$sel" }, onClick: pick, drag: "{equipKey}", dragIf: "$canEquip" });
+  const gauge = (iconName, val, pct, cls) =>
+    box(`gauge ${cls}`, [img("gauge-icon", icon(iconName)), box("gauge-main", [text("num gauge-val", val), ...(pct ? [bar("gauge-bar", pct)] : [])])]);
+  const setBtn = (key) =>
+    btn("fbtn", [{ call: "equip", args: [key, "{ui.pickKey}"] }], [text("fbtn-t", `Set to ${key}`)], { classIf: { off: "$pickNoEquip" } });
+  const itemsPage = box("content", [
+    box("master", [
+      list("grid", "$items", slot()),
+      box("gauges", [
+        gauge("bombs", "{gear.bombs}/{gear.bombMax}", "$gear.bombPct", "red"),
+        gauge("quiver", "{gear.arrows}/{gear.arrowMax}", "$gear.arrowPct", "blue"),
+        gauge("farores-charm", "{gear.charmTime}", null, "plain"),
       ]),
-      pane("p-gear", "GEAR", [
-        gearRow("bombs", "BOMBS", "{gear.bombs}/{gear.bombMax}", "$gear.bombPct", "red"),
-        gearRow("quiver", "ARROWS", "{gear.arrows}/{gear.arrowMax}", "$gear.arrowPct", "blue"),
-        gearRow("farores-charm", "CHARM", "{gear.charmTime}", null, "plain"),
-        gearRow("shell", "SHELLS", "{gear.shells}", null, "plain"),
-        gearRow("heart-piece", "PIECES", "{gear.heartPieces}", null, "plain"),
-      ]),
+      box("actions", [setBtn("A"), setBtn("B")]),
+    ]),
+    inspector([
+      box("insp-pic", [img("insp-icon", "$ui.pickIcon", { visibleIf: "$ui.picked" })]),
+      text("insp-name", "{ui.pick}", { visibleIf: "$ui.picked" }),
+      text("insp-name", "Gear", { visibleIf: "$pickNone" }),
+      text("insp-sub", "{pickOn}"),
+      hair(),
+      text("insp-text", "{pickHelp}"),
+      grow(),
+      hair(),
+      box("insp-row", [img("insp-row-icon", "$icons.charm"), text("insp-row-t", "{gear.charm}")]),
     ]),
   ]);
 
-  // ---- kinstone ----
+  // ---- KINSTONES --------------------------------------------------------------------------------------------------------------
   const kinPick = [{ set: { kinName: "{name}", kinIcon: "{icon}", kinId: "{id}", kinAmt: "{amount}", kinPicked: true } }];
-  const kinstonePage = box("content content-row", [
+  const tally = (c) => box("tally", [img("tally-icon", icon(`kinstone-${c}`)), text("num tally-num", `{kinstone.${c}}`)]);
+  const kinstonePage = box("content", [
     box("master", [
-      pane("p-pieces", "KINSTONE BAG", [
-        list("piece-list", "$kinstone.pieces", button("piece", kinPick, [
-          img("piece-icon", "$icon"),
-          text("piece-name", "{name}"),
-          text("num piece-id", "{id}"),
-          text("num piece-amt", "{amount}"),
-        ], { classIf: { red: "$isRed", blue: "$isBlue", green: "$isGreen", gold: "$isGold" } }), { empty: "NO KINSTONE PIECES YET" }),
+      list("grid grid-scroll", "$kinstone.pieces", btn("cell", kinPick, [img("cell-kin", "$icon"), text("num badge", "{amount}")], { classIf: { sel: "$sel" } }),
+        { empty: "No kinstone pieces yet" }),
+      box("alert", [img("alert-icon", icon("kinstone-red")), text("alert-t", "{kinstone.readyHint}")], { visibleIf: "$kinstone.ready" }),
+      box("fused", [
+        box("fused-line", [text("fused-l", "Fused"), grow(), text("num fused-n", "{kinstone.fused}"), text("num fused-of", " / {kinstone.fusionTotal}")]),
+        bar("fused-bar", "$kinstone.fusedPct"),
       ]),
     ]),
-    box("detail", [
-      box("alert", [img("alert-icon", icon("kinstone-red")), text("alert-text", "{kinstone.readyHint}")], { visibleIf: "$kinstone.ready" }),
-      pane("p-fusion", "FUSED", [
-        box("fuse-count", [text("num fuse-num", "{kinstone.fused}"), text("num fuse-of", "/{kinstone.fusionTotal}")]),
-        bar("fuse-bar", "$kinstone.fusedPct"),
-        box("tally", [
-          box("tally-cell", [img("tally-icon", icon("kinstone-red")), text("num tally-num", "{kinstone.red}")]),
-          box("tally-cell", [img("tally-icon", icon("kinstone-blue")), text("num tally-num", "{kinstone.blue}")]),
-          box("tally-cell", [img("tally-icon", icon("kinstone-green")), text("num tally-num", "{kinstone.green}")]),
-          box("tally-cell", [img("tally-icon", icon("kinstone-gold")), text("num tally-num", "{kinstone.gold}")]),
-        ]),
-      ]),
-      pane("p-kin-picked", "PIECE  (TAP A ROW)", [
-        box("picked-row", [
-          box("picked-tile", [img("picked-icon", "$ui.kinIcon")], { visibleIf: "$ui.kinPicked" }),
-          box("kin-text", [text("kin-name", "{ui.kinName}"), text("num kin-id", "{ui.kinId}  x{ui.kinAmt}")], { visibleIf: "$ui.kinPicked" }),
-        ]),
-      ]),
+    inspector([
+      box("insp-pic", [img("insp-kin", "$ui.kinIcon", { visibleIf: "$ui.kinPicked" })]),
+      text("insp-name", "{ui.kinName}", { visibleIf: "$ui.kinPicked" }),
+      text("insp-name", "Kinstones", { visibleIf: "$kinNone" }),
+      text("insp-sub", "{ui.kinId}   {ui.kinAmt}", { visibleIf: "$ui.kinPicked" }),
+      hair(),
+      text("insp-text", "Fuse a piece with someone who holds its other half.", { visibleIf: "$ui.kinPicked" }),
+      text("insp-text", "Tap a piece to see it.", { visibleIf: "$kinNone" }),
+      grow(),
+      hair(),
+      box("tallies", [tally("red"), tally("blue"), tally("green"), tally("gold")]),
     ]),
   ]);
 
-  // ---- quests ----
-  const questPage = box("content content-row", [
+  // ---- QUEST ------------------------------------------------------------------------------------------------------------------
+  const qSet = (name, val, src) => [{ set: { qName: name, qVal: val, qIcon: src, qPicked: true } }];
+  const stat = (name, src, val, key) => btn("cell", qSet(name, val, `{icons.${key}}`), [img("cell-icon", src), text("num badge", val)]);
+  const questPage = box("content", [
     box("master", [
-      box("q-scroll", [
-        pane("p-dungeons", "DUNGEONS", [
-          list("dungeon-list", "$quest.dungeons", box("dungeon", [
-            box("dg-mark", [img("dg-check", ui("check"), { visibleIf: "$cleared" }), img("dg-here", "$icons.linkHead", { visibleIf: "$here" })]),
-            text("dg-name", "{name}"),
-          ], { classIf: { cleared: "$cleared", here: "$here" } })),
-        ]),
-        pane("p-side", "SIDE QUESTS", [
-          list("side-list", "$quest.side", box("side", [img("side-icon", "$icon"), text("side-name", "{name}"), text("side-done", "DONE", { visibleIf: "$done" })], {
-            classIf: { done: "$done" },
-          }), { empty: "NO ERRANDS RIGHT NOW" }),
-        ]),
+      box("q-grid", [
+        list("q-elements", "$quest.elements", btn("cell", qSet("{name}", "{state}", "{icon}"), [img("cell-icon", "$icon")], { classIf: { locked: "$locked" } })),
+        stat("Heart pieces", "$icons.heartPiece", "{quest.heartPieces}", "heartPiece"),
       ]),
+      box("q-grid", [
+        stat("Figurines", "$icons.figurines", "{quest.figurines}", "figurines"),
+        stat("Tiger scrolls", "$icons.tigerScroll", "{quest.skills}", "tigerScroll"),
+        stat("Shells", "$icons.shell", "{quest.shells}", "shell"),
+      ]),
+      text("sect", "Errands"),
+      list("grid grid-side", "$quest.side", btn("cell", qSet("{name}", "Errand", "{icon}"), [img("cell-icon", "$icon")]), { empty: "No errands right now" }),
     ]),
-    box("detail", [
-      pane("p-elements", "ELEMENTS", [
-        list("element-row", "$quest.elements", box("element", [img("element-icon", "$icon"), text("element-name", "{name}")], {
-          classIf: { owned: "$owned", locked: "$locked" },
-        })),
-      ]),
-      pane("p-counts", "COLLECTION", [
-        box("stat", [img("stat-icon", icon("figurines")), text("stat-label", "FIGURINES"), grow(), text("num stat-val", "{quest.figurines}")]),
-        box("stat", [img("stat-icon", icon("tiger-scroll")), text("stat-label", "SKILLS"), grow(), text("num stat-val", "{quest.skills}")]),
-      ]),
+    inspector([
+      box("insp-pic insp-pic-s", [img("insp-icon", "$ui.qIcon")], { visibleIf: "$ui.qPicked" }),
+      text("insp-name", "{ui.qName}", { visibleIf: "$ui.qPicked" }),
+      text("insp-sub", "{ui.qVal}", { visibleIf: "$ui.qPicked" }),
+      text("insp-name", "Dungeons", { visibleIf: "$qNone" }),
+      text("insp-sub", "{questDone}", { visibleIf: "$qNone" }),
+      hair(),
+      list("dlist", "$quest.dungeons", box("drow", [
+        box("drow-mark", [img("drow-check", ui("check"), { visibleIf: "$cleared" }), img("drow-here", "$icons.linkHead", { visibleIf: "$here" })]),
+        text("drow-name", "{name}"),
+      ], { classIf: { cleared: "$cleared", here: "$here" } })),
     ]),
   ]);
 
-  // ---- options: the switches and the look ----
+  // ---- OPTIONS ----------------------------------------------------------------------------------------------------------------
   const option = (title, desc, call, onKey, labelKey) =>
-    button("opt", call === "writePermission" ? { call } : { call, args: ["toggle"] }, [
+    btn("opt", call === "writePermission" ? { call } : { call, args: ["toggle"] }, [
       box("opt-text", [text("opt-title", title), text("opt-desc", desc)]),
-      box("opt-pill", [text("num opt-state", `{${labelKey}}`)], { classIf: { on: `$${onKey}` } }),
+      text("opt-state", `{${labelKey}}`),
+      box("switch", [box("knob", [])], { classIf: { on: `$${onKey}` } }),
     ]);
-  const choice = (label, k, v, flag) => button("choice", [{ set: { [k]: v } }], [text("choice-t", label)], { classIf: { on: `$${flag}` } });
-  const lookRow = (title, desc, choices) => box("look", [box("opt-text", [text("opt-title", title), text("opt-desc", desc)]), box("choices", choices)]);
+  const choice = (label, k, v, flag) => btn("choice", [{ set: { [k]: v } }], [text("choice-t", label)], { classIf: { on: `$${flag}` } });
+  const lookRow = (title, desc, choices) => box("opt", [box("opt-text", [text("opt-title", title), text("opt-desc", desc)]), box("choices", choices)]);
   const optionsPage = box("content", [
     box("opt-list", [
-      lookRow("STYLE", "The look of this companion. Starts as Stone at every launch.", [
-        choice("STONE", "style", "stone", "styleStone"), choice("CLEAN", "style", "clean", "styleClean"),
+      lookRow("Style", "The look of this companion. Starts as Stone at every launch.", [
+        choice("Stone", "style", "stone", "styleStone"), choice("Clean", "style", "clean", "styleClean"),
       ]),
-      lookRow("THEME", "Colours of the clean style.", [
-        choice("FOREST", "theme", "forest", "themeForest"), choice("PARCHMENT", "theme", "parchment", "themeParchment"), choice("NIGHT", "theme", "night", "themeNight"),
+      lookRow("Theme", "Colours of the clean style.", [
+        choice("Slate", "theme", "forest", "themeForest"), choice("Paper", "theme", "parchment", "themeParchment"), choice("Night", "theme", "night", "themeNight"),
       ]),
-      option("WIDE VIEW", "Paint the world beyond the game's frame. Tap again for extra wide.", "wideView", "_wide", "_wideLabel"),
-      option("COLOR AMBIENT", "A richer grade with soft shadows, sunlit edges and drifting clouds.", "ambientView", "_ambient", "_ambientLabel"),
-      option("GAME CHANGES", "Lets this pack hide the game's own HUD and equip items. Tap to be asked again.", "writePermission", "_writePerm", "_writePermLabel"),
+      option("Wide view", "Paint the world beyond the game's frame. Tap again for extra wide.", "wideView", "_wide", "_wideLabel"),
+      option("Colour ambient", "A richer grade with soft shadows, sunlit edges and drifting clouds.", "ambientView", "_ambient", "_ambientLabel"),
+      option("Game changes", "Lets this pack hide the game's HUD and equip items. Tap to be asked again.", "writePermission", "_writePerm", "_writePermLabel"),
     ]),
   ]);
 
-  const page = (name, content) => ({ name, child: box(`page page-${name}`, [content, tabs(name)]) });
-  const shell = box("shell", [
-    topbar,
+  // ---- Ezlo's hint ------------------------------------------------------------------------------------------------------------
+  const hint = box("veil", [
+    box("bubble", [
+      box("insp-line", []),
+      box("bubble-pic", [img("bubble-ezlo", "$ezlo")]),
+      box("bubble-body", [text("insp-name", "Ezlo"), text("insp-text", "{ezloHint}"), text("bubble-close", "Tap to close")]),
+    ]),
+  ], { visibleIf: "$ui.hint", onClick: [{ set: { hint: false } }] });
+
+  const page = (name, content) => ({ name, child: box(`page page-${name}`, [topbar(name), content]) });
+  return box("root", [
     box("pages-wrap", [{
       type: "pages", class: "pages",
       pages: [page("map", mapPage), page("items", itemsPage), page("kinstone", kinstonePage), page("quest", questPage), page("options", optionsPage)],
     }]),
     hint,
   ]);
-  return box("root", [shell]);
 }

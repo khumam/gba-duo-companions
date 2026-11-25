@@ -1,3 +1,26 @@
+# 3.3.0 (2026-11-24): the clean style is now a slate
+
+Only the CLEAN style changed (the stone style is untouched). Design: `.idea/plans/mc-design4` in the app repo, after a
+Sheikah-slate inventory reference. Sources: `art/clean.mjs`, `art/clean.src.css` (old clean style kept in `art/clean-v1/`),
+tab glyphs from `art/clean_glyphs.py` (`assets/ui/cg-*.png`, drawn at the exact device size, `image-rendering: auto`).
+
+- One flat near-black surface; top bar = five one-colour category glyphs (active white + name above + green line), Ezlo, and a fact
+  box (rupees, kinstones, B and A, drag targets). Every page: master on the left, one inspector on the right holding the text,
+  marked by one accent line; flat outlined buttons under the master.
+- Map page: the ROM world map at 6x (416.5 x 333.2 dp), a narrow inspector (location, Link, hearts, WORLD / DUNGEON), Ezlo's line
+  under both (tap = the hint). Gear: 5 x 4 grid, A / B tags on worn items, bomb / arrow / charm gauges, Set to A / Set to B.
+  Kinstones: piece grid, alert, fused bar, colour tallies. Quest: elements, heart pieces, figurines, tiger scrolls, shells,
+  errands; the inspector lists the six dungeons. Options: style, theme (Slate / Paper / Night), Wide view, Colour ambient,
+  Game changes.
+- Sizes: dp for 538 x 468; pixel art in whole device-pixel multiples (16 px sprite at 4x = 27.77 dp, 6x = 41.65, 8x = 55.54);
+  grid cells 65.42 dp so five columns fill the 347.1 dp master exactly. The engine has no `grid-auto-rows`.
+- `main.lua` adds clean-only fields at its end (`cleanFields`, only when the clean style is on): `items[].sel/onKey`,
+  `pickOn/pickHelp/pickNone/pickNoEquip`, `kinstone.pieces[].sel`, `kinNone`, `quest.elements[].state`, `questDone`, `qNone`.
+  New UI keys: `qName/qVal/qIcon/qPicked` (Quest inspector).
+- Fonts: Nunito Sans SemiBold / Bold Italic (OFL, `assets/fonts/OFL-NunitoSans.txt`), static instances cut from the variable font.
+- Previews: `assets/_preview/` holds icons rendered from the USA ROM for the preview kit only; keep it OUT of the release zip
+  (with `art/`, `screenshoots/`, `NOTES.md`, `preview-data.json`). Not checked on a device yet.
+
 # The Legend of Zelda: The Minish Cap companion — build notes
 
 Sources: the [zeldaret/tmc](https://github.com/zeldaret/tmc) decompilation

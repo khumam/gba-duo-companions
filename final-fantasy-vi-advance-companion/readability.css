@@ -1,0 +1,6 @@
+/* readability.css: written by skill/tools/packkit/readability.py from style.css. Do not edit by hand: run the tool again.
+   Adds tracking (and line height for wrapped text) by font and size; rules that set letter-spacing themselves are left alone. */
+.page { letter-spacing: 0.87px; }
+.kind-t { letter-spacing: 0.69px; }
+.combat-t { letter-spacing: 0.69px; }
+.wt-1 { letter-spacing: 0.61px; }

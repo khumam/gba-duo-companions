@@ -1,0 +1,27 @@
+/* readability.css: written by skill/tools/packkit/readability.py from style.css. Do not edit by hand: run the tool again.
+   Adds tracking (and line height for wrapped text) by font and size; rules that set letter-spacing themselves are left alone. */
+.page { letter-spacing: 0.87px; }
+.plabel { letter-spacing: 1.21px; }
+.letter { letter-spacing: 1.56px; }
+.ccount { letter-spacing: 0.87px; }
+.sel-n { letter-spacing: 0.87px; }
+.cry-n { letter-spacing: 0.80px; }
+.do-w { letter-spacing: 1.21px; }
+.eq-cont { letter-spacing: 1.21px; }
+.info-n { letter-spacing: 1.04px; }
+.info-t { letter-spacing: 0.78px; }
+.st-hp { letter-spacing: 1.04px; }
+.st-mp { letter-spacing: 1.04px; }
+.st-mu { letter-spacing: 0.87px; }
+.cl { letter-spacing: 0.87px; }
+.cv { letter-spacing: 1.21px; }
+.gn { letter-spacing: 0.78px; }
+.dh { letter-spacing: 0.80px; }
+.dname { letter-spacing: 0.78px; }
+.dtally { letter-spacing: 0.87px; }
+.nb { letter-spacing: 1.04px; }
+.ntitle { letter-spacing: 1.21px; }
+.w-1 { letter-spacing: 1.91px; }
+.w-2 { letter-spacing: 1.04px; }
+.w-4 { letter-spacing: 0.78px; }
+.map-where { letter-spacing: 0.87px; }

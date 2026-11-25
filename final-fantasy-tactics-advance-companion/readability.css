@@ -1,0 +1,79 @@
+/* readability.css: written by skill/tools/packkit/readability.py from style.css. Do not edit by hand: run the tool again.
+   Adds tracking (and line height for wrapped text) by font and size; rules that set letter-spacing themselves are left alone. */
+.page { letter-spacing: 0.92px; }
+.ttl { letter-spacing: 1.12px; }
+.count { letter-spacing: 0.84px; }
+.at { letter-spacing: 0.96px; }
+.uname { letter-spacing: 1.04px; }
+.ulv { letter-spacing: 0.80px; }
+.ujobt { letter-spacing: 0.80px; }
+.urace { letter-spacing: 0.72px; }
+.tag { letter-spacing: 0.68px; }
+.unum { letter-spacing: 0.84px; }
+.big { letter-spacing: 1.12px; }
+.slab { letter-spacing: 0.88px; }
+.sval { letter-spacing: 1.04px; }
+.note { letter-spacing: 0.64px; }
+.nt { letter-spacing: 0.88px; }
+.w1 { letter-spacing: 0.72px; }
+.w2 { letter-spacing: 0.88px; }
+.w3 { letter-spacing: 0.88px; }
+.sum { letter-spacing: 0.76px; }
+.rt { letter-spacing: 0.68px; }
+.rn { letter-spacing: 0.68px; }
+.sl { letter-spacing: 0.76px; }
+.jname { letter-spacing: 0.60px; }
+.jrace { letter-spacing: 0.88px; }
+.jwho { letter-spacing: 0.76px; line-height: 21.8px; }
+.jn { letter-spacing: 0.92px; }
+.jr { letter-spacing: 0.72px; }
+.jc { letter-spacing: 0.88px; }
+.rt { letter-spacing: 0.64px; }
+.rn { letter-spacing: 0.64px; }
+.sl { letter-spacing: 0.72px; }
+.nt { letter-spacing: 0.68px; }
+.st { letter-spacing: 0.76px; }
+.rk { letter-spacing: 1.12px; }
+.tn { letter-spacing: 0.88px; }
+.tj { letter-spacing: 0.64px; }
+.tv { letter-spacing: 1.04px; }
+.cn { letter-spacing: 0.96px; }
+.cj { letter-spacing: 0.60px; }
+.xa, .xb { letter-spacing: 1.04px; }
+.xl { letter-spacing: 0.72px; }
+.xd { letter-spacing: 0.60px; }
+.sh { letter-spacing: 0.88px; }
+.bn { letter-spacing: 0.64px; }
+.bv { letter-spacing: 0.72px; }
+.al { letter-spacing: 0.68px; }
+.av { letter-spacing: 0.76px; }
+.olab { letter-spacing: 0.96px; }
+.dt { letter-spacing: 0.76px; }
+.oh { letter-spacing: 1.04px; }
+.olab { letter-spacing: 0.96px; }
+.onote { letter-spacing: 0.68px; line-height: 19.5px; }
+.gname { letter-spacing: 0.76px; }
+.ubody .idrow .big { letter-spacing: 0.96px; }
+.ubody .slab { letter-spacing: 0.76px; }
+.ubody .sval { letter-spacing: 0.88px; }
+.ubody .gearp .sh { letter-spacing: 0.76px; }
+.gname { letter-spacing: 0.68px; }
+.xa, .xb { letter-spacing: 0.92px; }
+.ubody .mjrow .tag { letter-spacing: 0.64px; }
+.ubody .mjrow .unum { letter-spacing: 0.88px; }
+.ubody .idrow .big { letter-spacing: 0.88px; }
+.abkind { letter-spacing: 0.56px; }
+.abname { letter-spacing: 0.84px; }
+.abap { letter-spacing: 0.60px; }
+.lh { letter-spacing: 0.60px; }
+.lawf { letter-spacing: 0.76px; }
+.lawr { letter-spacing: 0.76px; }
+.fname { letter-spacing: 0.84px; }
+.fjob { letter-spacing: 0.64px; }
+.flv { letter-spacing: 0.72px; }
+.fhp { letter-spacing: 0.60px; }
+.fmp { letter-spacing: 0.60px; }
+.fmv { letter-spacing: 0.60px; }
+.fstat { letter-spacing: 0.60px; }
+.nbt { letter-spacing: 1.04px; }
+.nbs { letter-spacing: 0.68px; }

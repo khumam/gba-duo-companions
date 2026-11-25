@@ -1,171 +1,176 @@
 #!/usr/bin/env python3
-"""Writes layout.json: Harmony of Dissonance's pause menu, simplified. Same blue / green / white identity, art and data as before
-(originals: art/orig/), but each page is a green title band, ONE scrolling body of plain rows and panels, and the left / right plates fixed at
-the bottom. Nothing is placed by coordinates, so nothing overlaps and long lists simply scroll.
-    python3 art/layout.py
-"""
-import json
-import os
+"""Writes layout.json for the Harmony of Dissonance companion 0.4.0 (design: .idea/plans/cv-design2 in the app repo, hod-*.png).
+The game's pause screens re-laid for a touch screen:
+  * the banded royal-blue field, the green gothic title plaque with its dithered tail (ui/plaque.png, Jacquard 24),
+  * the game's word menu on the left with the white glove (game/hand), each word on its own white rule,
+  * the relics list with the green ON / OFF pills, the equipment rows (WHIP, BODY, GOODS) on rules,
+  * the INFORMATION bar at the bottom: the page's one text zone and its action.
+Same data as before (main.lua only gained the config nav flag). The 0.2/0.3 source is in art/v2/.
+    python3 art/hod_ui.py && python3 art/layout.py && python3 art/css.py"""
+import json, os
+
+here = os.path.dirname(os.path.abspath(__file__))
 
 
-def box(cls, ch=(), **kw): return {"type": "box", "class": cls, "children": list(ch), **kw}
-def text(cls, t, **kw): return {"type": "text", "class": cls, "text": t, **kw}
-def img(cls, src, **kw): return {"type": "image", "class": cls, "src": src, **kw}
-def button(cls, on, ch, **kw): return {"type": "button", "class": cls, "onClick": on, "children": list(ch), **kw}
+def box(cls, ch=(), **kw):      return {"type": "box", "class": cls, "children": list(ch), **kw}
+def text(cls, t, **kw):         return {"type": "text", "class": cls, "text": t, **kw}
+def img(cls, src, **kw):        return {"type": "image", "class": cls, "src": src, **kw}
+def button(cls, on, ch, **kw):  return {"type": "button", "class": cls, "onClick": on, "children": list(ch), **kw}
 def lst(cls, items, tpl, **kw): return {"type": "list", "class": cls, "items": items, "template": tpl, **kw}
-def bar(cls, value, mx, **kw): return {"type": "bar", "class": cls, "value": value, "maxKey": mx, **kw}
+def bar(cls, v, mx, **kw):      return {"type": "bar", "class": cls, "value": v, "maxKey": mx, **kw}
 
 
-PAGES = [("status", "Status"), ("equip", "Equip"), ("items", "Items"), ("book", "Spell Book"), ("relics", "Relics"), ("config", "Key Config"), ("map", "Map")]
+HAND = "asset:ui/hand.png"
+grow = lambda: box("grow")
 
 
-def nav(i):
-    prev, nxt = PAGES[(i - 1) % len(PAGES)], PAGES[(i + 1) % len(PAGES)]
-    pips = [img("pip", "asset:ui/pip-on.png" if k == i else "asset:ui/pip.png") for k in range(len(PAGES))]
-    return box("nav", [
-        button("nbtn", [{"navigate": prev[0]}], [img("nplate", "asset:ui/nav-l.png"), text("nb nb-l", prev[1].upper())]),
-        box("nmid", [img("nplate-m", "asset:ui/nav-mid.png"), text("ntitle", PAGES[i][1].upper()), box("pips", pips)]),
-        button("nbtn", [{"navigate": nxt[0]}], [img("nplate", "asset:ui/nav-r.png"), text("nb nb-r", nxt[1].upper())]),
-    ])
+def plaque(t, extra=()):
+    return box("phead", [box("plaque", [img("plaque-img", "asset:ui/plaque.png"), text("plaque-t", t)]), grow(), *extra])
 
 
-def title(t):
-    return box("title", [img("tplate", "asset:ui/title.png"), text("ttext", t)])
+def info(kids, actions=()):
+    """the INFORMATION bar"""
+    return box("info", [box("info-head", [text("info-tag", "INFORMATION"), box("info-rule")]),
+                        box("info-row", [box("info-body", kids), box("info-act", list(actions))])])
 
 
-def page(name, body, i, head=None):
-    return box(f"page page-{name}", [head or title(PAGES[i][1]), box("body", body), nav(i)])
+def gbtn(label, on, **kw):
+    return button("gbtn", on, [text("gbtn-t", label)], **kw)
 
 
-def panel(ch, cls=""): return box(("panel " + cls).strip(), ch)
-def pair(label, value, cls=""): return box("pair", [text("lab", label), text("val " + cls, value)])
-def hand(): return img("hand", "asset:ui/hand.png", visibleIf="$sel")
+def act(label, on, can, done_label, done):
+    return [gbtn(label, on, visibleIf=can), box("gbtn off", [text("gbtn-t", done_label)], visibleIf=done)]
 
 
-def act_button(cls, label, on, can, done_label, done):
-    return [button(f"abtn {cls}", on, [text("abtn-t", label)], visibleIf=can),
-            box(f"abtn {cls} abtn-done", [text("abtn-t", done_label)], visibleIf=done)]
+barrow = lambda lab, cls, b, v: box("barrow", [text("lab " + cls, lab), b, text("num bar-n", v)])
 
 
-def info(icon_src, name, desc, extra=None, btn=None):
-    kids = [box("dtop", [img("info-i", icon_src), box("dtitle", [text("info-n", name)]), *(btn or [])]), text("info-d", desc)]
-    if extra:
-        kids.append(text("info-x", extra))
-    kids.append(text("note", "{note}"))
-    return panel(kids, "info")
+def dots(lab, key):
+    """the game's dotted leader: LABEL ........ value"""
+    return box("dline", [text("lab", lab), box("leader"), text("num", "{st.%s}" % key)])
 
 
-# ---- status ------------------------------------------------------------------------------------
-status = page("status", [
-    box("hero", [
-        box("crestwrap", [img("crest", "asset:ui/crest.png"),
-                          button("bookslot", [{"navigate": "book"}], [box("bk-frame", [img("bk-img", "$bookNow.img")]), text("lab bk-l", "BOOK")])]),
-        box("hero-in", [
-            box("strip-row", [pair("LEVEL", "{st.level}"), pair("GOLD", "{st.gold}", "gold")]),
-            pair("EXP", "{st.exp}"), pair("NEXT", "{st.next}"),
-            bar("expbar", "$st.expIn", "$st.expSpan"),
-            pair("TIME", "{st.time}"),
-        ]),
+hand_row = lambda on, kids, **kw: button("hrow", on, [box("hand-w", [img("hand", HAND, visibleIf="$sel")]), *kids], **kw)
+
+# ---- STATUS ------------------------------------------------------------------------------------------------------------------------
+status = box("page page-status", [
+    plaque("Juste Belmont"),
+    box("top", [
+        img("port", "asset:game/portrait-juste.png"),
+        button("bookbtn", [{"navigate": "book"}], [img("book-img", "$bookNow.img")]),
+        box("lvl", [box("dline", [text("lab", "LEVEL"), grow(), text("num big", "{st.level}")]),
+                    box("dline", [text("lab", "EXP"), grow(), text("num", "{st.exp}")]),
+                    box("dline", [text("lab", "NEXT"), grow(), text("num", "{st.next}")]),
+                    box("dline", [text("lab", "GOLD"), grow(), text("num gold", "{st.gold}")]),
+                    box("dline", [text("lab", "TIME"), grow(), text("num", "{st.time}")])]),
     ]),
-    panel([pair("HP", "{st.hpText}"), pair("MP", "{st.mpText}"), pair("HEART", "{st.heartText}")]),
-    panel([box("strip-row", [pair("STR", "{st.str}"), pair("DEF", "{st.def}")]),
-           box("strip-row", [pair("INT", "{st.int}"), pair("LCK", "{st.lck}")]),
-           pair("STATUS", "GOOD")]),
-    panel([text("lab", "EQUIPMENT"),
-           lst("slots", "$slots", button("srow", [{"set": {"eqSlot": "{i}", "eqId": -1}}, {"navigate": "equip"}],
-                                         [text("slab", "{label}"), img("sic", "$icon"), text("sname", "{name}")], classIf={"none": "$none"}))]),
-    box("healrow", [
-        button("hbtn", [{"call": "quickHeal", "args": ["{heal.id}"]}], [text("abtn-t", "HEAL")], visibleIf="$heal.can"),
-        box("hbtn abtn-done", [text("abtn-t", "HEAL")], visibleIf="$heal.off"), text("hname", "{heal.name}")]),
-    text("note", "{note}"),
-    text("lab", "MENU"),
-    lst("menu", "$menu", button("mrow", [{"navigate": "{page}"}], [text("mtext", "{label}")])),
-], 0, head=title("Juste Belmont"))
-
-# ---- equip -------------------------------------------------------------------------------------
-equip = page("equip", [
-    lst("eslots", "$eqSlots", button("erow", [{"set": {"eqSlot": "{i}", "eqId": -1}}],
-                                    [hand(), text("elab", "{label}"), img("eic", "$icon"), text("ename", "{name}")],
-                                    classIf={"sel": "$sel", "none": "$none"})),
-    panel([box("strip-row", [pair("STR", "{st.str}"), pair("DEF", "{st.def}")]), box("strip-row", [pair("INT", "{st.int}"), pair("LCK", "{st.lck}")])]),
-    box("band", [lst("blist", "$eqList", button("cell", [{"set": {"eqId": "{id}"}}],
-                                                [hand(), img("cic", "$icon"), text("cname", "{name}"), text("ccount", "{count}")], classIf={"sel": "$sel"}))]),
-    text("band-empty", "---", visibleIf="$eqEmpty"),
-    info("$eqPick.icon", "{eqPick.name}", "{eqPick.desc}", "Change gear in the game's Equip menu: it works out the stats there."),
-], 1)
-
-# ---- items -------------------------------------------------------------------------------------
-items = page("items", [
-    panel([pair("HP", "{st.hpText}"), pair("MP", "{st.mpText}"), pair("HEART", "{st.heartText}"), pair("STATUS", "GOOD")]),
-    box("tabs", [button("itab", [{"set": {"itemTab": "use", "item": -1}}], [text("itab-t", "ITEMS")], classIf={"sel": "$itemUseTab"}),
-                 button("itab", [{"set": {"itemTab": "key", "item": -1}}], [text("itab-t", "KEY ITEMS")], classIf={"sel": "$itemKeyTab"})]),
-    box("band", [lst("blist", "$itemList", button("cell", [{"set": {"item": "{id}"}}],
-                                                  [hand(), img("cic", "$icon"), text("cname", "{name}"), text("ccount", "{count}")], classIf={"sel": "$sel"}))]),
-    text("band-empty", "---", visibleIf="$itemEmpty"),
-    info("$ipick.icon", "{ipick.name}", "{ipick.desc}", "{ipick.effect}",
-         btn=act_button("iuse", "USE", [{"call": "useItem", "args": ["{ipick.id}"]}], "$ipick.canUse", "FULL", "$ipick.full")),
-], 2)
-
-# ---- spell book --------------------------------------------------------------------------------
-book = page("book", [
-    panel([lst("books", "$bookList", button("brow", [{"set": {"book": "{k}"}}],
-                                           [hand(), img("bimg", "$img"), text("bname", "{name}"), box("grow", []),
-                                            box("pill on", [text("pill-t", "SET")], visibleIf="$set")],
-                                           classIf={"locked": "$locked"}))]),
-    info("$bookPick.img", "{bookPick.name}", "{bookPick.desc}", "Cast with a subweapon. Turn it on in the game.",
-         btn=act_button("bset", "SET", [{"call": "setBook", "args": ["{bookPick.k}"]}], "$bookPick.canSet", "IN USE", "$bookPick.isSet")),
-], 3)
-
-# ---- relics ------------------------------------------------------------------------------------
-relics = page("relics", [
-    panel([lst("rlist", "$relicList", button("rrow", [{"set": {"relic": "{k}"}}, {"call": "toggleRelic", "args": ["{k}"]}],
-                                            [img("ric", "$icon"), text("rname", "{name}"), box("grow", []),
-                                             box("pill on", [text("pill-t", "ON")], visibleIf="$on"), box("pill off", [text("pill-t", "OFF")], visibleIf="$off")],
-                                            classIf={"locked": "$locked", "sel": "$sel"}))]),
-    info("asset:ui/ic-goods.png", "{relicPick.name}", "{relicPick.desc}"),
-], 4)
-
-# ---- key config --------------------------------------------------------------------------------
-config = page("config", [
-    panel([lst("cfglist", "$cfgRows", box("crow2", [
-        text("clab", "{label}"), box("grow", []),
-        button("carr", [{"call": "cycleKey", "args": ["{row}", -1]}], [text("carr-t", "<")]),
-        img("ckey", "$keyImg"),
-        button("carr", [{"call": "cycleKey", "args": ["{row}", 1]}], [text("carr-t", ">")]),
-    ]))]),
-    text("cfg-clash", "Control settings are conflicting.", visibleIf="$cfgClash"),
-    box("btnrow", [button("obtn", [{"call": "defaultKeys"}], [text("abtn-t", "DEFAULT")]),
-                   button("perm", [{"call": "writePermission"}], [text("perm-t", "GAME CHANGES: {_writePermLabel}")])]),
-    info("asset:ui/key-A.png", "Key Config.", "Pressing SELECT will reset the system settings. Tap the arrows here; two actions never share a button."),
-], 5)
-
-# ---- map (the game's SELECT map) ---------------------------------------------------------------
-cmap = page("map", [
-    box("tabs", [button("ctab", [{"set": {"castle": 0}}], [text("ctab-t", "CASTLE A  {map.a}")], classIf={"sel": "$map.isA"}),
-                 button("ctab", [{"set": {"castle": 1}}], [text("ctab-t", "CASTLE B  {map.b}")], classIf={"sel": "$map.isB"}),
-                 box("grow", []), text("lab", "TOTAL"), text("val", "{map.total}")]),
-    box("mapfield", [box("mapbox", [lst("maprows", "$mapRuns", box("run", [box("run-in", [])], bindStyle={"left": "{x}", "top": "{y}", "width": "{w}"}))]),
-                     text("map-empty", "Nothing explored in this castle yet.", visibleIf="$map.empty")]),
-], 6)
-
-waiting = box("page page-waiting", [
-    img("w-crest", "asset:ui/crest.png"),
-    text("w-1", "HARMONY OF DISSONANCE"), text("w-2", "COMPANION"),
-    text("w-3", "Load Juste's game to see his status."),
-    text("w-4", "Maxim mode has no pause menu: start a game as Juste.", visibleIf="$maxim"),
-    text("w-4", "This pack reads the USA cartridge (ACHE).", visibleIf="$wrongRom"),
+    box("mid", [
+        box("bars", [barrow("HP", "hp-l", bar("hpbar", "$st.hp", "$st.maxHp", classIf={"low": "$st.lowHp"}), "{st.hpText}"),
+                     barrow("MP", "mp-l", bar("mpbar", "$st.mp", "$st.maxMp"), "{st.mpText}"),
+                     barrow("HEART", "ht-l", bar("htbar", "$st.heart", "$st.maxHeart"), "{st.heartText}")]),
+        box("dots", [dots("STR", "str"), dots("DEF", "def"), dots("INT", "int"), dots("LCK", "lck")]),
+    ]),
+    info([text("info-t", "{heal.name}")],
+         [gbtn("HEAL", [{"call": "quickHeal", "args": ["{heal.id}"]}], visibleIf="$heal.can"), box("gbtn off", [text("gbtn-t", "HEAL")], visibleIf="$heal.off")]),
 ])
 
-body = [("status", status), ("equip", equip), ("items", items), ("book", book), ("relics", relics), ("config", config), ("map", cmap)]
+# ---- EQUIP: the slot rows on rules (WHIP first, like the game), the stats, the choices ------------------------------------------------
+equip = box("page page-equip", [
+    plaque("Equip"),
+    lst("socks", "$eqSlots", button("sock", [{"set": {"eqSlot": "{i}", "eqId": -1}}], [img("sock-ic", "$icon"), text("lab sock-l", "{label}")],
+                                    classIf={"sel": "$sel", "none": "$none"})),
+    box("slotname", [img("hand", HAND), text("slot-n", "{eqPick.name}")]),
+    box("rule"),
+    box("list-w", [lst("glist", "$eqList", hand_row([{"set": {"eqId": "{id}"}}], [img("gicon", "$icon"), text("gname", "{name}"), grow(), text("gnum", "{count}")],
+                                                    classIf={"sel": "$sel"})),
+                   text("empty", "---", visibleIf="$eqEmpty")]),
+    box("statrow", [box("kv", [text("lab", "STR"), text("num", "{st.str}")]), box("kv", [text("lab", "DEF"), text("num", "{st.def}")]),
+                    box("kv", [text("lab", "INT"), text("num", "{st.int}")]), box("kv", [text("lab", "LCK"), text("num", "{st.lck}")])]),
+    info([box("irow", [img("info-ic", "$eqPick.icon"), box("info-txt", [text("info-name", "{eqPick.name}"), text("info-t", "{eqPick.desc}"),
+                                                                       text("info-x", "Change gear in the game's Equip menu.")])])]),
+])
+
+# ---- ITEMS ------------------------------------------------------------------------------------------------------------------------
+items = box("page page-items", [
+    plaque("Items"),
+    box("bars wide", [barrow("HP", "hp-l", bar("hpbar", "$st.hp", "$st.maxHp", classIf={"low": "$st.lowHp"}), "{st.hpText}"),
+                      barrow("MP", "mp-l", bar("mpbar", "$st.mp", "$st.maxMp"), "{st.mpText}"),
+                      barrow("HEART", "ht-l", bar("htbar", "$st.heart", "$st.maxHeart"), "{st.heartText}")]),
+    box("tabs", [button("tab", [{"set": {"itemTab": "use", "item": -1}}], [text("lab tab-t", "ITEMS")], classIf={"on": "$itemUseTab"}),
+                 button("tab", [{"set": {"itemTab": "key", "item": -1}}], [text("lab tab-t", "KEY ITEMS")], classIf={"on": "$itemKeyTab"})]),
+    box("rule"),
+    box("list-w", [lst("glist", "$itemList", hand_row([{"set": {"item": "{id}"}}], [img("gicon", "$icon"), text("gname", "{name}"), grow(), text("gnum", "{count}")],
+                                                      classIf={"sel": "$sel"})),
+                   text("empty", "---", visibleIf="$itemEmpty")]),
+    info([box("irow", [img("info-ic", "$ipick.icon"), box("info-txt", [text("info-name", "{ipick.name}"), text("info-t", "{ipick.desc}"), text("info-x", "{ipick.effect}")])])],
+         act("USE", [{"call": "useItem", "args": ["{ipick.id}"]}], "$ipick.canUse", "FULL", "$ipick.full")),
+])
+
+# ---- SPELL BOOK: the five books as the game's list, the emblem in the bar ----------------------------------------------------------
+book = box("page page-book", [
+    plaque("Spell Book"),
+    box("list-w", [lst("blist", "$bookList", button("hrow brow", [{"set": {"book": "{k}"}}], [
+        box("hand-w", [img("hand", HAND, visibleIf="$set")]), img("bicon", "$img"), text("gname", "{name}"), grow(),
+        box("pill on", [text("pill-t", "SET")], visibleIf="$set")], classIf={"locked": "$locked"}))]),
+    info([box("irow", [img("info-ic", "$bookPick.img"), box("info-txt", [text("info-name", "{bookPick.name}"), text("info-t", "{bookPick.desc}"),
+                                                                        text("info-x", "Cast with a subweapon.")])])],
+         act("SET", [{"call": "setBook", "args": ["{bookPick.k}"]}], "$bookPick.canSet", "IN USE", "$bookPick.isSet")),
+])
+
+# ---- RELICS: the boxed list with the ON / OFF pills ---------------------------------------------------------------------------------
+relics = box("page page-relics", [
+    plaque("Relics"),
+    box("relbox", [lst("rlist", "$relicList", hand_row([{"set": {"relic": "{k}"}}, {"call": "toggleRelic", "args": ["{k}"]}], [
+        img("ricon", "$icon"), text("gname", "{name}"), grow(),
+        box("pills", [box("pill on", [text("pill-t", "ON")], classIf={"lit": "$on"}), box("pill off", [text("pill-t", "OFF")], classIf={"lit": "$off"})], visibleIf="$have"),
+    ], classIf={"locked": "$locked", "sel": "$sel"}))]),
+    info([box("irow", [img("info-ic", "asset:ui/ic-goods.png"), box("info-txt", [text("info-name", "{relicPick.name}"), text("info-t", "{relicPick.desc}")])])]),
+])
+
+# ---- MAP ------------------------------------------------------------------------------------------------------------------------
+cmap = box("page page-map", [
+    plaque("Castle Map"),
+    box("mapwin", [box("mapbox", [lst("ml m-fill", "$mapFill", text("mt", "{t}")), lst("ml m-save", "$mapSave", text("mt", "{t}")),
+                                  lst("ml m-warp", "$mapWarp", text("mt", "{t}")), lst("ml m-walls", "$mapWalls", text("mt", "{t}")),
+                                  box("me", [box("me-in")], bindStyle={"left": "{me.left}", "top": "{me.top}"}, visibleIf="$me.on")], classIf={"b": "$mapB"})]),
+    box("tabs", [button("tab", [{"set": {"castle": 0}}], [text("lab tab-t", "CASTLE A  {map.a}")], classIf={"on": "$map.isA"}),
+                 button("tab", [{"set": {"castle": 1}}], [text("lab tab-t", "CASTLE B  {map.b}")], classIf={"on": "$map.isB"})]),
+    info([box("dline", [text("lab", "TOTAL"), text("num", "{map.total}"), grow(), text("lab", "YOU"), text("num", "{meText}")])]),
+])
+
+# ---- KEY CONFIG -----------------------------------------------------------------------------------------------------------------
+config = box("page page-config", [
+    plaque("Key Config."),
+    lst("cfglist", "$cfgRows", box("crow", [
+        text("lab clab", "{label}"), grow(),
+        button("carr", [{"call": "cycleKey", "args": ["{row}", -1]}], [text("carr-t", "<")]),
+        box("ckey-w", [img("ckey", "$keyImg")]),
+        button("carr", [{"call": "cycleKey", "args": ["{row}", 1]}], [text("carr-t", ">")]),
+    ])),
+    text("clash", "Control settings are conflicting.", visibleIf="$cfgClash"),
+    info([text("info-t", "Pressing SELECT will reset the system settings. Two actions never share a button."), text("info-x", "Game changes: {_writePermLabel}")],
+         [gbtn("DEFAULT", [{"call": "defaultKeys"}]), gbtn("ALLOW", [{"call": "writePermission"}])]),
+])
+
+# ---- shell: the game's word menu ---------------------------------------------------------------------------------------------------------
+NAV = [("status", "STATUS", "onStatus"), ("equip", "EQUIP", "onEquip"), ("items", "ITEMS", "onItems"), ("book", "SPELLBOOK", "onBook"),
+       ("relics", "RELICS", "onRelics"), ("map", "MAP", "onMap"), ("config", "KEYCONFIG", "onConfig")]
+navrow = lambda p, label, flag: button("nrow", [{"navigate": p}], [box("hand-w", [img("hand", HAND, visibleIf="$" + flag)]), text("nrow-t", label)],
+                                       classIf={"on": "$" + flag})
+pages = [("status", status), ("equip", equip), ("items", items), ("book", book), ("relics", relics), ("map", cmap), ("config", config)]
+waiting = box("wait", [img("wait-img", "asset:game/portrait-juste.png"), text("wait-1", "Harmony of Dissonance"), text("wait-2", "COMPANION"),
+                       text("wait-3", "Load a save to see Juste's relics."), text("wait-4", "This pack reads the USA cartridge (ACHE).", visibleIf="$wrongRom")])
 root = box("main", [
     box("waiting", [waiting], visibleIf="$waiting"),
-    box("ready", [{"type": "pages", "class": "stage", "initial": "status", "pages": [{"name": n, "child": c} for n, c in body]},
-                  button("toast", [{"set": {"toastHide": "{toast.id}", "relic": "{toast.relic}", "book": "{toast.book}"}}, {"navigate": "{toast.page}"}],
-                         [img("toast-img", "$toast.img"), box("toast-t", [text("toast-title", "{toast.title}"), text("toast-name", "{toast.name}"), text("toast-sub", "{toast.sub}")]),
-                          button("toast-x", [{"set": {"toastHide": "{toast.id}"}}], [text("toast-x-t", "X")])], visibleIf="$toastOn")],
-        visibleIf="$ready")], id="screen")
+    box("ready", [
+        box("shell", [box("nav", [*[navrow(*n) for n in NAV]]),
+                      box("stage-w", [{"type": "pages", "class": "stage", "initial": "status", "pages": [{"name": n, "child": c} for n, c in pages]}])]),
+        button("toast", [{"set": {"toastHide": "{toast.id}", "relic": "{toast.relic}", "book": "{toast.book}"}}, {"navigate": "{toast.page}"}],
+               [img("toast-img", "$toast.img"), box("toast-t", [text("toast-title", "{toast.title}"), text("toast-name", "{toast.name}"), text("toast-sub", "{toast.sub}")]),
+                button("toast-x", [{"set": {"toastHide": "{toast.id}"}}], [text("toast-x-t", "X")])], visibleIf="$toastOn"),
+    ], visibleIf="$ready"),
+], id="screen")
 
 if __name__ == "__main__":
-    here = os.path.dirname(os.path.abspath(__file__))
     json.dump(root, open(os.path.join(here, "..", "layout.json"), "w"), indent=1)
     print("ok", len(json.dumps(root)))

@@ -1,6 +1,53 @@
+# 0.4.0 (2026-11-24): the game's own pause screen, re-laid for touch
+Design: `.idea/plans/cv-design2/aos-*.png` in the app repo (references in its `ref/`). Source: `art/layout.py`, `art/style.src.css`
+(ap units, `python3 art/layout.py && python3 art/css.py`; the pixel kit is no longer applied; 0.2/0.3 source in `art/v2/`).
+- Left: the game's dark-red command panel (Soma's portrait, LV, STATUS / SOUL SET / EQUIP / ITEM USE / MAP / ENEMY / CONFIG, the white
+  glove on the open page). Top: the silver scroll plaque. Data in thin white outlined boxes, lists on full-width red bands in two columns
+  with the glove on the picked row, the quill-cornered message box at the bottom holds the text and the one action.
+- Readability: labels Silkscreen 7 ap with 0.6 ap tracking, nav / names / numbers Jersey 11-14 ap, a 1 ap drop shadow; every tap target
+  is 20 ap (43 dp) or more; bands are sized to whole rows (4, or 3 on EQUIP).
+- `main.lua`: two nav flags (`onEnemy`, `onConfig`). Enemy pages and the button config were rebuilt in the same frame (no carried 0.1 pages).
+
+# 0.3.0 (2026-11-24): map like the game, pixel kit, one size per control
+- **Map**: the game's own castle map, cell for cell. `mapdata.lua` was read off the game's map screen with every explored bit set (BG0 of the Select map, 4 px per cell: wall = 3 white pixels, door = cyan, save = red, warp = yellow; cells line up with the explored bits at `0x020000B4` / `0x020001F4`: 848 cells, 17 save, 8 warp rooms). `gamemap.lua` draws one `assets/fonts/HodMap.ttf` glyph per cell (font from the community HoD pack) in five layers (fill, save, warp, walls, doors); the explored bits decide what shows. Background `#29007b`, fill `#0000e6`, like the game.
+- **Pixel kit** (`skill/tools/packkit/pixelkit.py`, tokens in `art/pixel.json`, originals in `art/v2/`): square corners, banded (3-tone) bars and buttons instead of smooth gradients, dithered 2-tone panels (`assets/ui/px-*.png`), hard 1 art-pixel shadows, every icon in an inset socket, one height for big buttons (20ap), one for small controls (14ap), one for list icons and rows. Re-run `python3 skill/tools/packkit/pixelkit.py PACK PACK/art/pixel.json && python3 art/css.py` after editing `art/v2/style.src.css`.
+
+## Game art (cut from the game, `assets/game/`) - added 2026-11-24
+Soma's portrait, the title banner (text painted out), the glove cursor, the A / B / L / R button icons, the soul orbs (the red / blue / yellow ones from
+the Soul Set screen, the grey ability orb recoloured from the red), and **every weapon (59), body armor (25), accessory (20) and item (32) icon**.
+Equipment icons were captured by writing each equipment byte and re-entering the Equip screen (the slot shows that item's icon); item icons by walking
+the Item Use list with every count set to 1 (list is the item ids row by row, two columns). Still original art: the element icons on the enemy page,
+the enemy picture frame, the empty-socket / pip placeholders and the map tab glyph (the game has no picture for them).
+
+# 0.2.0 layout (design: `.idea/plans/aos-design/` in the app repo)
+
+A command column on the left (STATUS, SOUL SET, EQUIP, ITEM USE, MAP) mirrors the game's own list; every page then follows one pattern:
+sockets on top, one list, one inspector with the one big button. 0.1.x files (layout, style, Lua, data) are in `art/v1/`.
+
+- **STATUS**: portrait, level, HP / MP, HEAL, big ATT / DEF, four base stats, EXP, time / rate / gold. BOOK and KEYS (title row) open the
+  Enemy data pages and the button settings, which are the 0.1.x pages unchanged (no bottom nav; use the left column).
+- **SOUL SET**: four sockets (bullet, guardian, enchant, ability). Ability souls are no longer a page: the fourth socket lists them with ON / OFF
+  (tap toggles). The enemy drop line sits in the soul inspector as before.
+- **EQUIP / ITEM USE**: same pattern; the AFTER values in the equip inspector are cyan up / red down.
+- **MAP**: the explored castle plus **Soma's cell** (white square, red centre) and a YOU x,y read-out.
+- Alerts (NEW SOUL, LEVEL UP, NEW ENEMY DATA) now sit over the sockets.
+- Rebuild: `python3 art/make_new_art.py`, `python3 art/layout.py`, `python3 ../skill/tools/packkit/css.py .` (CSS in `art/style.src.css`, `ap` = 2.168 dp).
+
+## Player position (found 2026-11-24 with the user's Lv 98 save)
+
+| Address | What |
+|---|---|
+| `0x0200008C` | u8 whole map X of Soma's cell (29 in the save room, 28 in the corridor below it) |
+| `0x03001A0D` / `0x03007CD1` | u8 X / Y offsets from the origin cell (28, 6); IWRAM, three copies of each in the dumps |
+
+How: clearing the explored-map bits in RAM and running 90 frames makes the game mark exactly the cell Soma is in (29,6; 28,6; 28,7 ...), so
+the marked cell is ground truth; the bytes above track it. **Caveat:** the Y offset is only proven over two rooms (rows 6 and 7), and the origin
+(28, 6) is assumed to be global. The pack shows the marker only while `X - xOffset == 28`, so a different origin hides it rather than misplaces it.
+Please check it in other areas on the device (walk to a far room, open MAP, compare with the game's blinking marker).
+
 # Castlevania: Aria of Sorrow companion: notes
 
-USA cartridge only (`A2CE`, v0). Started 2026-11-21. Version 0.1.0, **not yet checked on a device**.
+USA cartridge only (`A2CE`, v0). Started 2026-11-21. Version 0.2.0 layout, **not yet checked on a device**.
 
 ## What it shows
 
@@ -86,5 +133,5 @@ Soul rate = owned souls / 120 (the game's 99.1% with 119).
 ## Not done
 
 - Device check (writes through the app's permission flow, fonts at size, scrolling the band lists).
-- Status ailments (STATUS / GOOD is fixed text), current area name, player marker on the map, enemy sprites, the "recalculate" call.
+- Status ailments (STATUS / GOOD is fixed text), current area name, enemy sprites, the "recalculate" call.
 - EU / JP releases.

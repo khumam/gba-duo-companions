@@ -1,0 +1,30 @@
+/* readability.css: written by skill/tools/packkit/readability.py from style.css. Do not edit by hand: run the tool again.
+   Adds tracking (and line height for wrapped text) by font and size; rules that set letter-spacing themselves are left alone. */
+.bar-title { letter-spacing: 1.04px; }
+.w-title { letter-spacing: 0.80px; }
+.w-sub { letter-spacing: 0.96px; }
+.w-hint { letter-spacing: 0.80px; }
+.gold { letter-spacing: 0.76px; }
+.dim { letter-spacing: 0.80px; }
+.val { letter-spacing: 1.04px; }
+.alert { letter-spacing: 0.88px; }
+.btn text { letter-spacing: 0.88px; }
+.cname { letter-spacing: 1.12px; }
+.chealth { letter-spacing: 0.96px; }
+.pop-name { letter-spacing: 0.68px; }
+.nav-text { letter-spacing: 0.80px; }
+.sec { letter-spacing: 0.96px; }
+.slot-name { letter-spacing: 0.60px; }
+.sname { letter-spacing: 0.96px; }
+.sgroup { letter-spacing: 0.60px; }
+.scount { letter-spacing: 1.12px; }
+.btn-t { letter-spacing: 0.88px; }
+.bar-right { letter-spacing: 0.80px; }
+.fam-name { letter-spacing: 1.04px; }
+.fam-role { letter-spacing: 0.68px; }
+.tile-big { letter-spacing: 1.12px; }
+.tile-sm { letter-spacing: 0.64px; }
+.pill-t { letter-spacing: 0.88px; }
+.bar-l { letter-spacing: 0.64px; }
+.leg-t { letter-spacing: 0.72px; }
+.note { letter-spacing: 0.60px; }

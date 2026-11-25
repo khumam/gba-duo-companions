@@ -15,9 +15,7 @@
   },
   "tickHz": 4,
   "layout": "layout.json",
-  "styles": [
-    "style.css"
-  ],
+  "styles": ["style.css", "readability.css"],
   "script": "main.lua",
   "values": {},
   "permissions": [

@@ -1,0 +1,32 @@
+/* readability.css: written by skill/tools/packkit/readability.py from style.css. Do not edit by hand: run the tool again.
+   Adds tracking (and line height for wrapped text) by font and size; rules that set letter-spacing themselves are left alone. */
+#screen { letter-spacing: 0.88px; }
+.boot-sub { letter-spacing: 0.96px; }
+.mon-name { letter-spacing: 0.96px; }
+.mon-name.big { letter-spacing: 0.60px; }
+.item-name { letter-spacing: 0.96px; }
+.item-list empty { letter-spacing: 0.96px; }
+.insp-name { letter-spacing: 1.04px; }
+.insp-text { letter-spacing: 0.84px; line-height: 24.1px; }
+.map-off-text { line-height: 17.2px; }
+.mtile-v { letter-spacing: 0.88px; }
+.pgrid empty { letter-spacing: 1.04px; }
+.ikey { letter-spacing: 0.76px; }
+.idesc { letter-spacing: 0.72px; line-height: 20.7px; }
+.pill-text { letter-spacing: 0.80px; }
+.mname { letter-spacing: 0.88px; }
+.mdesc { letter-spacing: 0.76px; line-height: 21.8px; }
+.id-val { letter-spacing: 0.60px; }
+.opt-note { letter-spacing: 0.68px; line-height: 19.5px; }
+.skill-name { letter-spacing: 0.84px; }
+.msg-text { line-height: 17.2px; }
+.dex-q { letter-spacing: 1.04px; }
+.dex-name { letter-spacing: 0.84px; }
+.dex-big-q { letter-spacing: 1.12px; }
+.dex-sel-name { letter-spacing: 0.60px; }
+.dex-entry-win .insp-text { letter-spacing: 0.68px; }
+.wild-none-text { letter-spacing: 0.80px; line-height: 23.0px; }
+.tile-label { letter-spacing: 0.88px; }
+.tile-sub { letter-spacing: 0.64px; }
+.search-input { letter-spacing: 0.80px; }
+.search-clear-x { letter-spacing: 0.88px; }

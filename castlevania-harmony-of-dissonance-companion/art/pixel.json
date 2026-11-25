@@ -1,0 +1,18 @@
+{
+ "surf": "#000078",
+ "surf2": "#000094",
+ "well": "#00005c",
+ "well2": "#000072",
+ "cmd": null,
+ "cmd2": null,
+ "shadow": "#000030",
+ "edge": "#6e6ec8",
+ "socket": "#000050",
+ "socket_edge": "#6e6ec8",
+ "btn_hi": "#50ff50",
+ "btn": "#00ad00",
+ "btn_lo": "#006800",
+ "btn_edge": "#ffffff",
+ "off": "#3c3c80",
+ "off_edge": "#8080c0"
+}

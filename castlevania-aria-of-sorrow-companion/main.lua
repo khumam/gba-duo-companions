@@ -332,14 +332,14 @@ local function equippedSummary(out)
   local w = b8(O.weapon)
   local a = b8(O.armor)
   local x = b8(O.accessory)
-  local function gear(label, d)
-    if d then return { label = label, name = d.name, icon = "asset:ui/ic-" .. d.icon .. ".png", none = false } end
+  local function gear(label, d, path)
+    if d then return { label = label, name = d.name, icon = path, none = false } end
     return { label = label, name = "---", icon = "asset:ui/ic-none.png", none = true }
   end
   out.gear = {
-    gear("HAND", D.weapons[w]),
-    gear("BODY", (a <= 44 and D.armor[a].slot == 0) and D.armor[a] or nil),
-    gear("ACC.", (x <= 44 and D.armor[x].slot == 1) and D.armor[x] or nil),
+    gear("HAND", D.weapons[w], "asset:game/w-" .. w .. ".png"),
+    gear("BODY", (a <= 44 and D.armor[a].slot == 0) and D.armor[a] or nil, "asset:game/a-" .. a .. ".png"),
+    gear("ACC.", (x <= 44 and D.armor[x].slot == 1) and D.armor[x] or nil, "asset:game/a-" .. x .. ".png"),
   }
   for i, g in ipairs(out.gear) do g.i = i end
   local sl = {}
@@ -347,24 +347,38 @@ local function equippedSummary(out)
     local id = b8(({ O.bullet, O.guardian, O.enchant })[c])
     local s = (id >= 1 and id <= CATS[c].count) and D.souls[c][id - 1] or nil
     sl[c] = { i = c, cat = CATS[c].key, name = s and s.name or "---", on = s ~= nil, off = s == nil, hex = CATS[c].hex,
-              orb = "asset:ui/orb-" .. CATS[c].color .. (s and "" or "-off") .. ".png" }
+              orb = s and ("asset:game/orb-" .. CATS[c].color .. ".png") or "asset:ui/orb-" .. CATS[c].color .. "-off.png" }
   end
   out.souls = sl
   out.orb1, out.orb2, out.orb3 = sl[1].orb, sl[2].orb, sl[3].orb
 end
 
+local pageAbility
 local function pageSoul(out, ui)
-  local cat = clampInt(ui.soulCat or 1, 1, 3)
-  local slotOff = ({ O.bullet, O.guardian, O.enchant })[cat]
-  local equipped = b8(slotOff)
+  local cat = clampInt(ui.soulCat or 1, 1, 4)
+  out.isAbil, out.notAbil = cat == 4, cat ~= 4
   out.soulTabs = {}
   for c = 1, 3 do
-    out.soulTabs[c] = { c = c, sel = c == cat, name = out.souls[c].name, label = CATS[c].name:upper(), orb = out.souls[c].orb:gsub("orb%-", "orbs-"), key = CATS[c].key, hex = CATS[c].hex }
+    local id = b8(({ O.bullet, O.guardian, O.enchant })[c])
+    local s = (id >= 1 and id <= CATS[c].count) and D.souls[c][id - 1] or nil
+    out.soulTabs[c] = { c = c, sel = c == cat, name = out.souls[c].name, label = CATS[c].name:upper(), key = CATS[c].key, hex = CATS[c].hex,
+                        big = "asset:game/orbbig-" .. CATS[c].color .. ".png", badge = s and s.costN or "" }
   end
+  local nAbil = 0
+  for i = 0, 5 do if soulCount(4, i) > 0 then nAbil = nAbil + 1 end end
+  out.soulTabs[4] = { c = 4, sel = cat == 4, name = "", label = "ABILITY", key = "ability", hex = CATS[4].hex, big = "asset:game/orbbig-grey.png", badge = nAbil .. "/6" }
+  if cat == 4 then
+    pageAbility(out, ui)
+    out.soulList, out.soulOwned = {}, ""
+    out.soulPick = { name = "", desc = "", from = "", cost = "", costN = "", costU = "", hasCost = false, id = -1, cat = 4, canSet = false, isSet = false }
+    return
+  end
+  local slotOff = ({ O.bullet, O.guardian, O.enchant })[cat]
+  local equipped = b8(slotOff)
   local pick = tonumber(ui.soul) or -1
   if pick < 0 then pick = equipped end
   pick = clampInt(pick, 0, CATS[cat].count)
-  out.soulBig = "asset:ui/orbbig-" .. CATS[cat].color .. ".png"
+  out.soulBig = "asset:game/orbbig-" .. CATS[cat].color .. ".png"
   local list = { { id = 0, name = "---", count = "", sel = pick == 0, equipped = equipped == 0, orb = "asset:ui/orb-none.png" } }
   local owned = 0
   for i = 0, CATS[cat].count - 1 do
@@ -372,7 +386,7 @@ local function pageSoul(out, ui)
     if n > 0 then
       owned = owned + 1
       list[#list + 1] = { id = i + 1, name = D.souls[cat][i].name, count = tostring(n), sel = pick == i + 1,
-                          equipped = equipped == i + 1, orb = "asset:ui/orbs-" .. CATS[cat].color .. ".png" }
+                          equipped = equipped == i + 1, orb = "asset:game/orb-" .. CATS[cat].color .. ".png" }
     end
   end
   out.soulList = list
@@ -407,7 +421,7 @@ local function pageEquip(out, ui)
     local n = b8(O.inv + e.gid)
     if e.idx == cur and n > 0 then n = n - 1 end   -- the game counts the worn one; its list does not show it
     if n > 0 then
-      list[#list + 1] = { idx = e.idx, name = e.d.name, count = tostring(n), icon = "asset:ui/ic-" .. e.d.icon .. ".png",
+      list[#list + 1] = { idx = e.idx, name = e.d.name, count = tostring(n), icon = "asset:game/" .. (slot == "hand" and "w-" or "a-") .. e.idx .. ".png",
                           sel = pickIdx == e.idx }
     end
   end
@@ -420,13 +434,13 @@ local function pageEquip(out, ui)
     local gid = (slot == "hand" and 32 or 91) + pickIdx
     local owned = b8(O.inv + gid) > 0
     local canSet = owned and cur ~= pickIdx
-    out.eqPick = { name = d.name, desc = fill(d.desc), stats = d.stats, icon = "asset:ui/ic-" .. d.icon .. ".png", idx = pickIdx, slot = slot,
+    out.eqPick = { name = d.name, desc = fill(d.desc), stats = d.stats, icon = "asset:game/" .. (slot == "hand" and "w-" or "a-") .. pickIdx .. ".png", idx = pickIdx, slot = slot,
                    canSet = canSet, isSet = cur == pickIdx, notOwned = not owned }
     if canSet then out.sw = statView(out.tot, afterSwap(out.tot, d, wornData(slot))); out.cmpOn = true end
   else
     local w = (slot == "hand") and D.weapons[cur] or ((cur <= 44) and D.armor[cur] or nil)
     out.eqPick = { name = w and w.name or "---", desc = w and w.desc or "Nothing equipped.", stats = w and w.stats or "",
-                   icon = w and ("asset:ui/ic-" .. w.icon .. ".png") or "asset:ui/ic-none.png", idx = -1, slot = slot, canSet = false, isSet = w ~= nil, notOwned = false }
+                   icon = w and ("asset:game/" .. (slot == "hand" and "w-" or "a-") .. cur .. ".png") or "asset:ui/ic-none.png", idx = -1, slot = slot, canSet = false, isSet = w ~= nil, notOwned = false }
   end
 end
 
@@ -438,7 +452,7 @@ local function pageItems(out, ui)
     local it = D.items[i]
     local n = b8(O.inv + i)
     if n > 0 and ((it.kind == 4) == key) then
-      list[#list + 1] = { i = i, name = it.name, count = tostring(n), sel = (tonumber(ui.item) or -1) == i, icon = "asset:ui/ic-" .. (it.kind == 4 and "key" or (it.kind == 1 and "mana" or (i >= 10 and "food" or "potion"))) .. ".png" }
+      list[#list + 1] = { i = i, name = it.name, count = tostring(n), sel = (tonumber(ui.item) or -1) == i, icon = "asset:game/i-" .. i .. ".png" }
     end
   end
   out.itemList = list
@@ -457,13 +471,13 @@ local function pageItems(out, ui)
     elseif pick.kind == 2 then what = "Cure" end
     out.itemPick = { name = pick.name, desc = fill(pick.desc), effect = what, i = ii, canUse = useful, usable = pick.kind <= 1,
                      full = have > 0 and pick.kind <= 1 and not useful, notOwned = have == 0,
-                     icon = "asset:ui/ic-" .. (pick.kind == 4 and "key" or (pick.kind == 1 and "mana" or (ii >= 10 and "food" or "potion"))) .. ".png" }
+                     icon = "asset:game/i-" .. ii .. ".png" }
   else
     out.itemPick = { name = "", desc = "Tap an item to read it.", effect = "", i = -1, canUse = false, usable = false, full = false, notOwned = false, icon = "asset:ui/ic-none.png" }
   end
 end
 
-local function pageAbility(out, ui)
+function pageAbility(out, ui)
   local bits = b8(O.abilityOn)
   local list = {}
   for i = 0, 5 do
@@ -471,7 +485,7 @@ local function pageAbility(out, ui)
     local s = D.souls[4][i]
     list[#list + 1] = { i = i, name = owned and s.name or "?????????", owned = owned, locked = not owned,
                         on = owned and (bits & (1 << i)) ~= 0, off = owned and (bits & (1 << i)) == 0, sel = ui.abil == i,
-                        orb = owned and "asset:ui/orb-grey.png" or "asset:ui/orb-none.png" }
+                        orb = owned and "asset:game/orb-grey.png" or "asset:ui/orb-none.png" }
   end
   out.abilList = list
   local n = 0
@@ -523,13 +537,13 @@ local function pageEnemyDetail(out, ui)
     weak = seen and elementList(e.weak) or {}, tol = seen and elementList(e.tol) or {},
     noWeak = seen and e.weak & 0x1FF == 0, noTol = seen and e.tol & 0x1FF == 0,
     soul = (seen and e.soulName) or "---", soulOwned = enemySoulOwned(e), hasSoul = e.soulName ~= nil,
-    orb = e.soulName and ("asset:ui/orbs-" .. CATS[e.soulCat + 1].color .. (enemySoulOwned(e) and "" or "-off") .. ".png") or "asset:ui/pip.png",
+    orb = e.soulName and ("asset:game/orb-" .. CATS[e.soulCat + 1].color .. ".png") or "asset:ui/pip.png",
     prev = (k + 112) % 113, next = (k + 1) % 113,
     prevNo = string.format("%02d", (k + 112) % 113 + 1), nextNo = string.format("%02d", (k + 1) % 113 + 1), page = k // 10,
-    soulLink = e.soulName and { ok = true, page = e.soulCat == 3 and "ability" or "soul", cat = math.min(3, e.soulCat + 1), soul = e.soulId, abil = e.soulId - 1 }
+    soulLink = e.soulName and { ok = true, page = "soul", cat = e.soulCat + 1, soul = e.soulId, abil = e.soulId - 1 }
                or { ok = false, page = "enemyDetail", cat = 1, soul = -1, abil = -1 },
     l1 = itemLink(seen and e.d1 - 1 or -1), l2 = itemLink(seen and e.d2 - 1 or -1),
-    orbBig = e.soulName and ("asset:ui/orbbig-" .. CATS[e.soulCat + 1].color .. ".png") or "asset:ui/orb-none.png",
+    orbBig = e.soulName and ("asset:game/orbbig-" .. CATS[e.soulCat + 1].color .. ".png") or "asset:ui/orb-none.png",
   }
 end
 
@@ -537,7 +551,7 @@ local function pageConfig(out)
   local rows = {}
   for i, r in ipairs(CONFIG_ROWS) do
     local k = keyText(b16(O.config + r.off))
-    rows[i] = { row = i, label = r.label, key = k, keyImg = "asset:ui/key-" .. (k == "?" and "A" or k) .. ".png" }
+    rows[i] = { row = i, label = r.label, key = k, keyImg = "asset:game/key-" .. (k == "?" and "A" or k) .. ".png" }
   end
   out.cfgRows = rows
   local seen, clash = {}, false
@@ -573,8 +587,8 @@ local function watch(out, ui, level, maxHp)
           local s = D.souls[c][i]
           found = { kind = "soul", title = a == 0 and "NEW SOUL" or "SOUL GET", name = s.name,
                     sub = a == 0 and fill(s.desc) or ("Now x" .. b .. "   " .. fill(s.desc)),
-                    orb = "asset:ui/orb-" .. CATS[c].color .. ".png", page = c == 4 and "ability" or "soul",
-                    cat = math.min(3, c), soul = i + 1, abil = i, enemy = -1, hex = CATS[c].hex }
+                    orb = "asset:game/orb-" .. CATS[c].color .. ".png", page = "soul",
+                    cat = c, soul = i + 1, abil = i, enemy = -1, hex = CATS[c].hex }
         end
       end
     end
@@ -583,13 +597,13 @@ local function watch(out, ui, level, maxHp)
       if (now.seen:byte((k >> 3) + 1) & bit) ~= 0 and (prev.seen:byte((k >> 3) + 1) & bit) == 0 then
         changes = changes + 1
         found = found or { kind = "enemy", title = "NEW ENEMY DATA", name = D.enemies[k].name, sub = "Tap to read its entry.",
-                           orb = "asset:ui/orb-grey.png", page = "enemyDetail", cat = 1, soul = -1, abil = -1, enemy = k, hex = "#d6d6ce" }
+                           orb = "asset:game/orb-grey.png", page = "enemyDetail", cat = 1, soul = -1, abil = -1, enemy = k, hex = "#d6d6ce" }
       end
     end
     if level > prev.level then
       changes = changes + 1
       found = { kind = "level", title = "LEVEL UP", name = "LV " .. level, sub = "Max HP " .. prev.maxHp .. " > " .. maxHp,
-                orb = "asset:ui/orbbig-red.png", page = "status", cat = 1, soul = -1, abil = -1, enemy = -1, hex = "#ff7321" }
+                orb = "asset:game/orbbig-red.png", page = "status", cat = 1, soul = -1, abil = -1, enemy = -1, hex = "#ff7321" }
     end
     if found and changes <= 3 then
       found.id = tick
@@ -606,26 +620,31 @@ end
 -- the explored castle (the game's SELECT map): 40 rows of 8 bytes, the row's u32 twice, low bit = left;
 -- columns 0-31 at MAP_L, 32-63 at MAP_R. 848 cells at 100.0%.
 local MAP_L, MAP_R = 0x020000B4, 0x020001F4
-local CELL, AP = 4.0, 2.168
+local GM, MAPDATA = pack.require("gamemap"), pack.require("mapdata")
+local CELLPX = 6.9376   -- 4 game px x 4 device px, one font glyph per cell
+local mapSig, mapBuilt
+local function mapWords(r) return mem.u32(MAP_L + r * 8), mem.u32(MAP_R + r * 8) end
+-- where Soma is: the game's own map cell. X is stored whole at 0x0200008C; the position it draws from is kept as offsets from a fixed origin
+-- (0x03001A0D across, 0x03007CD1 down, origin cell 28,6: checked in 2 rooms, the game re-marks exactly that cell). Shown only while the
+-- offsets and the whole X agree, so a wrong guess hides the marker instead of misplacing it.
+local POS_X, POS_LX, POS_LY, ORG_X, ORG_Y = 0x0200008C, 0x03001A0D, 0x03007CD1, 28, 6
 
 function pageMap(out)
-  local runs, n = {}, 0
+  local sig = GM.signature(MAPDATA, mapWords)
+  if sig ~= mapSig or not mapBuilt then mapBuilt, mapSig = GM.build(MAPDATA, mapWords), sig end
+  out.mapFill, out.mapSave, out.mapWarp, out.mapWalls, out.mapDoors = mapBuilt.fill, mapBuilt.save, mapBuilt.warp, mapBuilt.walls, mapBuilt.doors
+  local n = 0
   for r = 0, 39 do
-    local row = { mem.u32(MAP_L + r * 8), mem.u32(MAP_R + r * 8) }
-    local function lit(c) return (row[(c >> 5) + 1] >> (c & 31)) & 1 == 1 end
-    local c = 0
-    while c < 64 do
-      if lit(c) then
-        local s = c
-        while c < 64 and lit(c) do c = c + 1 end
-        n = n + (c - s)
-        runs[#runs + 1] = { x = string.format("%.2fpx", s * CELL * AP), y = string.format("%.2fpx", r * CELL * AP),
-                            w = string.format("%.2fpx", ((c - s) * CELL - 0.6) * AP) }
-      else c = c + 1 end
-    end
+    local lo, hi = mapWords(r)
+    while lo ~= 0 do lo = lo & (lo - 1); n = n + 1 end
+    while hi ~= 0 do hi = hi & (hi - 1); n = n + 1 end
   end
-  out.mapRuns = runs
   out.mapCells = n .. " / 848"
+  local cx, lx, ly = mem.u8(POS_X), mem.u8(POS_LX), mem.u8(POS_LY)
+  local cy = ORG_Y + ly
+  local on = lx < 40 and ly < 34 and cx - lx == ORG_X and cx < 64 and cy < 40
+  out.me = { on = on, left = string.format("%.2fpx", (cx + 0.5) * CELLPX - 5 * 2.168), top = string.format("%.2fpx", (cy + 0.5) * CELLPX - 5 * 2.168) }
+  out.meText = on and string.format("%d,%d", cx, cy) or "--"
 end
 
 function update(ui)
@@ -677,6 +696,8 @@ function update(ui)
   elseif page == "enemyDetail" then pageEnemyDetail(out, ui)
   elseif page == "config" then pageConfig(out)
   elseif page == "map" then pageMap(out) end
+  out.onStatus, out.onSoul, out.onEquip, out.onItems, out.onMap = page == "status", page == "soul", page == "equip", page == "items", page == "map"
+  out.onEnemy, out.onConfig = page == "enemy" or page == "enemyDetail", page == "config"
   out.note = ui.note or ""
   watch(out, ui, level, maxHp)
   return out

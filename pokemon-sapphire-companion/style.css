@@ -271,15 +271,18 @@ pages { flex: 1; }
 .card-win { flex: 3; }
 .side-col { flex: 2; gap: 10px; min-height: 0; }
 .badge-win { flex: 1; }
-.id-card { gap: 14px; padding: 14px; background-color: #eee4c4; border: 2px solid var(--peach-2); border-radius: 0; }
-.id-band { flex-direction: row; align-items: center; padding: 3px 8px; background-color: #406190; border-radius: 0; }
-.id-band-text { font-family: "Jersey"; font-size: 21px; color: var(--white); text-shadow: 1px 1px 0 #203148; letter-spacing: 1px; }
-.id-band-no { font-family: "Jersey"; font-size: 15px; color: #d4e3f8; letter-spacing: 1px; }
-.id-row { flex-direction: row; align-items: center; gap: 12px; padding: 4px 4px; }
-.id-ico-slot { width: 26px; height: 26px; align-items: center; justify-content: center; }
-.id-ico { width: 26px; height: 26px; }
-.id-key { font-family: "Jersey"; font-size: 17px; color: var(--lilac-d); letter-spacing: 1px; }
-.id-val { font-size: 30px; color: var(--ink); }
+.card-win .wbody { padding: 10px; }
+.id-card { flex: 1; background-color: #eee4c4; border: 2px solid var(--peach-2); border-radius: 0; overflow: hidden; }
+.id-band { flex-direction: row; align-items: center; padding: 5px 10px; background-color: #406190; border-bottom: 2px solid #203148; border-radius: 0; }
+.id-band-text { font-family: "Jersey"; font-size: 26px; line-height: 28px; color: var(--white); text-shadow: 1px 1px 0 #203148; letter-spacing: 1px; }
+.id-no { font-size: 28px; line-height: 30px; color: var(--white); text-shadow: 1px 1px 0 #203148; }
+.id-rows { flex: 1; min-height: 0; justify-content: space-evenly; padding: 6px 12px; }
+.id-row { flex-direction: row; align-items: center; gap: 10px; padding-bottom: 4px; border-bottom: 1px solid var(--peach-2); }
+.id-row:last-child { border-bottom: 0 solid transparent; }
+.id-ico-slot { width: 30px; height: 30px; flex-shrink: 0; align-items: center; justify-content: center; }
+.id-ico { width: 28px; height: 28px; }
+.id-key { font-family: "Jersey"; font-size: 22px; line-height: 24px; color: var(--lilac-d); letter-spacing: 1px; }
+.id-val { font-size: 28px; line-height: 30px; color: var(--ink); }
 .badge-grid { flex-direction: row; flex-wrap: wrap; justify-content: space-between; row-gap: 14px; padding: 8px 4px; }
 .badge { width: 24%; align-items: center; gap: 1px; }
 .badge-img { width: 28px; height: 28px; }

@@ -1,0 +1,34 @@
+/* readability.css: written by skill/tools/packkit/readability.py from style.css. Do not edit by hand: run the tool again.
+   Adds tracking (and line height for wrapped text) by font and size; rules that set letter-spacing themselves are left alone. */
+.page { letter-spacing: 0.87px; }
+.nt { letter-spacing: 0.69px; }
+.nt2 { letter-spacing: 0.78px; }
+.bar-t { letter-spacing: 0.78px; }
+.pp { letter-spacing: 0.61px; }
+.lvl { letter-spacing: 0.61px; }
+.lvn { letter-spacing: 0.61px; }
+.tagt { letter-spacing: 0.61px; }
+.cur { letter-spacing: 0.61px; }
+.max { letter-spacing: 0.95px; }
+.info-card .cur { letter-spacing: 0.96px; }
+.info-card .max { letter-spacing: 0.78px; }
+.ptagt { letter-spacing: 0.61px; }
+.pval { letter-spacing: 0.96px; }
+.tt { letter-spacing: 0.78px; }
+.mname { letter-spacing: 0.69px; }
+.mtagt { letter-spacing: 0.56px; }
+.mval { letter-spacing: 0.87px; }
+.fname { letter-spacing: 0.78px; }
+.fnum { letter-spacing: 0.68px; }
+.fhpt { letter-spacing: 0.95px; }
+.fmax { letter-spacing: 0.78px; }
+.idle1 { letter-spacing: 0.61px; }
+.idle2 { letter-spacing: 0.78px; }
+.fd-name { letter-spacing: 0.95px; }
+.fd-hint { letter-spacing: 0.69px; }
+.ctagt { letter-spacing: 0.61px; }
+.cval { letter-spacing: 0.87px; }
+.bname { letter-spacing: 0.69px; }
+.btagt { letter-spacing: 0.56px; }
+.bval { letter-spacing: 0.78px; }
+.w1 { letter-spacing: 0.61px; }

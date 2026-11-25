@@ -307,11 +307,14 @@ const badge = box("badge", [img("badge-img", "$src", { classIf: { off: "$locked"
 const optionsPage = box("options-area", [
   win("card-win", "TRAINER CARD", [
     box("id-card", [
-      box("id-band", [text("id-band-text", "{trainer.name}"), grow, text("id-band-no", "ID No.{trainer.id}")]),
-      idRow("MONEY", "¥{money}", "coin"),
-      idRow("TIME", "{time}", "clock"),
-      idRow("POKéDEX", "{dexCaught} OWN", "dex"),
-      idRow("BADGES", "{badgeCount}/8", "badge1"),
+      box("id-band", [text("id-band-text", "IDNo."), grow, text("id-no", "{trainer.id}")]),
+      box("id-rows", [
+        idRow("NAME", "{trainer.name}", "ball"),
+        idRow("MONEY", "{money}", "coin"),
+        idRow("TIME", "{time}", "clock"),
+        idRow("DEX", "{dexCaught}", "dex"),
+        idRow("BADGES", "{badgeCount}/8", "badge1"),
+      ]),
     ]),
   ]),
   box("side-col", [

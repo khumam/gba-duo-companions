@@ -1,0 +1,52 @@
+/* readability.css: written by skill/tools/packkit/readability.py from style.css. Do not edit by hand: run the tool again.
+   Adds tracking (and line height for wrapped text) by font and size; rules that set letter-spacing themselves are left alone. */
+.wait-title { letter-spacing: 1.08px; }
+.plate-num { letter-spacing: 0.72px; }
+.plate-hearts { letter-spacing: 0.56px; }
+.equip-key { letter-spacing: 0.78px; }
+.equip-level { letter-spacing: 0.60px; }
+.vslab-label { letter-spacing: 0.96px; }
+.vslab.on .vslab-label { letter-spacing: 1.04px; }
+.era-plate-label { letter-spacing: 0.60px; }
+.era-plate-text { letter-spacing: 0.68px; }
+.tag { letter-spacing: 0.84px; }
+.clevel { letter-spacing: 0.72px; }
+.seed-count { letter-spacing: 1.20px; }
+.seed-name { letter-spacing: 0.68px; }
+.seed-tag { letter-spacing: 0.60px; }
+.supply-value { letter-spacing: 0.84px; }
+.supply-label { letter-spacing: 0.72px; }
+.worn-name { letter-spacing: 0.68px; line-height: 19.5px; }
+.box-name { letter-spacing: 0.64px; }
+.life-value { letter-spacing: 1.44px; }
+.ess-name { letter-spacing: 0.64px; }
+.fact-value { letter-spacing: 0.60px; }
+.fact-label { letter-spacing: 0.68px; }
+.look .era-plate-label { letter-spacing: 0.48px; }
+.look .era-plate-text { letter-spacing: 0.56px; }
+.c-root { letter-spacing: 0.76px; }
+.c-tab-label { letter-spacing: 0.60px; }
+.c-hud-key { letter-spacing: 0.60px; }
+.c-hud-num { letter-spacing: 0.60px; }
+.c-insp-name { letter-spacing: 0.72px; }
+.c-insp-sub { letter-spacing: 0.72px; line-height: 20.7px; }
+.c-insp-text { letter-spacing: 0.76px; line-height: 21.8px; }
+.c-sect { letter-spacing: 0.48px; }
+.c-big-num { letter-spacing: 0.96px; }
+.c-cell-tag { letter-spacing: 0.48px; }
+.c-badge { letter-spacing: 0.42px; }
+.c-eq-key { letter-spacing: 0.72px; }
+.c-eq-name { letter-spacing: 0.96px; }
+.c-eq-lv { letter-spacing: 0.48px; }
+.c-strip-l { letter-spacing: 0.48px; }
+.c-strip-n { letter-spacing: 0.60px; }
+.c-sup-l { letter-spacing: 0.72px; line-height: 20.7px; }
+.c-sup-n { letter-spacing: 0.48px; }
+.c-fact-l { letter-spacing: 0.42px; }
+.c-fact-v { letter-spacing: 0.66px; }
+.c-opt-title { letter-spacing: 0.72px; }
+.c-opt-desc { letter-spacing: 0.72px; line-height: 20.7px; }
+.c-choice-t { letter-spacing: 0.54px; }
+.c-tall-num { letter-spacing: 0.84px; }
+.c-supply-l { letter-spacing: 0.42px; }
+.c-tab-label, .c-tab-label-space { letter-spacing: 0.56px; }

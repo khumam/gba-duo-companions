@@ -1,0 +1,126 @@
+/* Advance Wars companion. A peach folder (the game's dialog paper) on a slate table (its menu panels), four icon-only tabs on the right edge,
+   the dark unit-info panel for inspectors, and ONE accent: the colour of the army whose turn it is (--acc, --pill, --foe come from the script).
+   Whole art px = 1ap = 2.168dp. Layout from art/layout.py, art from art/ui.py, CSS from this file via packkit/css.py. */
+:root { --slate2: #4e5378; --slate: #5f648e; --slate-d: #343a5a; --slate-l: #8086b0; --peach: #ffe7c6; --peach2: #ffdebd; --peach3: #ffd6b5;
+  --ink: #100808; --panel: #2d3542; --panel2: #1e2432; --silver: #c6d6ce; --silver-d: #949c9c; --brown: #4a4231; --gold: #f7c818; --green: #48b840; --white: #ffffff;
+  --acc: #e85428; --pill: #de6b52; --foe: #3068d8; }
+@font-face { font-family: "Jersey"; src: url("assets/fonts/Jersey10-Regular.ttf"); }
+@font-face { font-family: "Silk"; src: url("assets/fonts/Silkscreen-Bold.ttf"); }
+
+image { image-rendering: pixelated; }
+text { white-space: nowrap; }
+#screen { width: 100%; height: 100%; background-color: var(--slate2); font-family: "Jersey"; font-size: 10ap; color: var(--ink); }
+.waiting, .ready, .stage { width: 100%; height: 100%; }
+.grow { flex: 1; }
+
+.wait { flex: 1; align-items: center; justify-content: center; gap: 6ap; background-color: var(--slate2); }
+.w1 { font-family: "Silk"; font-size: 16ap; color: var(--peach); }
+.w2 { font-size: 14ap; color: var(--white); }
+.w3 { font-size: 10ap; color: var(--slate-l); }
+
+/* the table, the folder, the tabs */
+.ready { flex-direction: row; padding: 3ap 2ap 3ap 3ap; }
+.folder { flex: 1; background-color: var(--peach); border: 1ap solid var(--ink); border-radius: 2ap; padding: 5ap; }
+.page { width: 100%; height: 100%; gap: 5ap; }
+.dock { width: 35ap; gap: 4ap; padding: 3ap 0 3ap 0; margin-left: -2ap; }
+.tab { width: 31ap; height: 46ap; padding: 0; margin: 0 0 0 3ap; align-items: center; justify-content: center; background-color: var(--slate-d); border: 1ap solid var(--ink); border-radius: 2ap; box-shadow: 0 1ap 0 var(--ink); }
+.tab:pressed { margin-top: 1ap; }
+.tab.on { width: 36ap; margin-left: 0; background-color: var(--peach); border-left: 0; border-right: 4ap solid var(--acc); border-radius: 0 2ap 2ap 0; box-shadow: none; }
+.tab-ic { opacity: .5; }
+.tab.on .tab-ic { opacity: 1; }
+.tab-ic.field { width: 15ap; height: 15ap; }
+.tab-ic.units { width: 20ap; height: 18ap; }
+.tab-ic.terrain { width: 16ap; height: 16ap; }
+.tab-ic.map { width: 18ap; height: 14ap; }
+
+/* FIELD */
+.plate { flex-direction: row; gap: 3ap; height: 46ap; flex-shrink: 0; padding: 3ap; background-color: var(--silver); border: 1ap solid var(--ink); border-radius: 2ap; box-shadow: 0 2ap 0 var(--silver-d); }
+.plate-crate { width: 36ap; background-color: var(--pill); border: 1ap solid var(--ink); border-radius: 2ap; align-items: center; justify-content: center; }
+.crate { width: 30ap; height: 30ap; }
+.plate-body { flex: 1; gap: 2ap; }
+.pill { flex: 1; flex-direction: row; align-items: center; padding: 0 6ap; background-color: var(--pill); border: 1ap solid var(--ink); border-radius: 2ap; }
+.pill-day { font-family: "Silk"; font-size: 14ap; color: var(--white); text-shadow: 1ap 1ap 0 var(--ink); }
+.pill-num { font-family: "Silk"; font-size: 22ap; color: var(--white); text-shadow: 1ap 1ap 0 var(--ink); }
+.nameplate { height: 12ap; justify-content: center; padding: 0 5ap; background-color: var(--brown); border: 1ap solid var(--ink); border-radius: 2ap; }
+.name { font-size: 10ap; color: var(--white); }
+
+.well { background-color: var(--slate2); border: 1ap solid var(--ink); border-radius: 2ap; }
+.funds { flex-direction: row; align-items: center; gap: 8ap; height: 40ap; flex-shrink: 0; padding: 0 7ap; }
+.coin { width: 14ap; height: 13ap; }
+.funds-num { font-family: "Silk"; font-size: 22ap; color: var(--white); text-shadow: 1ap 1ap 0 var(--ink); }
+.income { flex-direction: row; align-items: center; gap: 4ap; height: 18ap; padding: 0 5ap; background-color: var(--green); border: 1ap solid var(--ink); border-radius: 2ap; }
+.house { width: 12ap; height: 12ap; }
+.income-n { font-size: 12ap; color: var(--white); }
+
+.bars { gap: 4ap; flex: 1; }
+.tug { flex: 1; flex-direction: row; padding: 3ap; background-color: var(--slate-d); }
+.tug-a { height: 100%; flex-direction: row; align-items: center; padding: 0 4ap; background-color: var(--acc); }
+.tug-b { flex: 1; height: 100%; flex-direction: row; align-items: center; padding: 0 4ap; background-color: var(--foe); }
+.tug-n { font-size: 16ap; color: var(--white); text-shadow: 1ap 1ap 0 var(--ink); }
+.chip { width: 18ap; height: 20ap; margin-left: -13ap; margin-right: 0; align-items: center; justify-content: center; background-color: var(--peach); border: 1ap solid var(--ink); border-radius: 2ap; }
+.chip-ic { width: 14ap; height: 14ap; }
+
+/* UNITS */
+.grid { flex-direction: row; flex-wrap: wrap; gap: 2ap; flex-shrink: 0; }
+.tile { position: relative; width: 37ap; height: 28ap; padding: 0; margin: 0; align-items: center; justify-content: center; background-color: var(--slate); border: 1ap solid var(--ink); border-radius: 2ap; box-shadow: 0 2ap 0 var(--slate-d); }
+.tile:pressed { margin-top: 1ap; box-shadow: none; }
+.tile.on { margin-top: 1ap; border: 2ap solid var(--acc); box-shadow: none; }
+.tile.poor .tile-ic { opacity: .4; }
+.tile-ic { width: 20ap; height: 18ap; }
+.own { position: absolute; left: 22ap; top: 1ap; width: 12ap; height: 9ap; text-align: center; font-size: 10ap; background-color: var(--peach); border: 1ap solid var(--ink); border-radius: 1ap; }
+.dot { position: absolute; left: 3ap; top: 20ap; width: 5ap; height: 5ap; background-color: var(--gold); border: 1ap solid var(--ink); border-radius: 3ap; }
+.info { flex: 1; flex-direction: row; gap: 4ap; padding: 4ap; background-color: var(--panel); border: 1ap solid var(--ink); border-radius: 2ap; }
+.info-l { width: 48ap; gap: 2ap; }
+.info-name { font-size: 14ap; color: var(--white); text-shadow: 1ap 1ap 0 var(--ink); }
+.info-sprite { width: 46ap; height: 40ap; align-items: center; justify-content: center; background-color: var(--panel2); border: 1ap solid var(--ink); border-radius: 2ap; }
+.big { width: 40ap; height: 36ap; }
+.info-cost { flex-direction: row; align-items: center; gap: 3ap; }
+.info-cost.poor .cost-n { color: #ff8a70; }
+.coin-s { width: 14ap; height: 13ap; }
+.cost-n { font-size: 12ap; color: var(--white); }
+.dmg { flex: 1; flex-direction: row; flex-wrap: wrap; align-content: flex-start; gap: 6ap 3ap; padding-top: 3ap; }
+.drow { width: 64ap; height: 17ap; flex-direction: row; align-items: center; gap: 3ap; }
+.d-ic { width: 10ap; height: 9ap; }
+.track { width: 34ap; height: 7ap; background-color: #181c28; }
+.fill { height: 100%; background-color: var(--slate-l); }
+.fill.best { background-color: var(--acc); }
+.d-n { width: 18ap; text-align: right; font-size: 10ap; color: var(--white); }
+.d-n.none { color: var(--slate-l); }
+
+/* TERRAIN */
+.tile.t { height: 36ap; }
+.tile-img { width: 32ap; height: 32ap; border: 1ap solid var(--ink); }
+.info.col { flex-direction: column; }
+.info-top { flex-direction: row; gap: 5ap; height: 36ap; flex-shrink: 0; }
+.big-tile { width: 32ap; height: 32ap; border: 1ap solid var(--ink); }
+.info-tname { gap: 3ap; }
+.stars { flex-direction: row; align-items: center; gap: 2ap; }
+.def { font-family: "Silk"; font-size: 8ap; color: var(--silver); margin-right: 2ap; }
+.starrow { flex-direction: row; gap: 1ap; }
+.star { width: 9ap; height: 9ap; }
+.costs { flex: 1; flex-direction: row; gap: 2ap; }
+.cost { width: 36ap; height: 100%; align-items: center; justify-content: center; gap: 1ap; background-color: var(--panel2); border: 1ap solid var(--ink); border-radius: 2ap; }
+.cost.blocked .c-ic { opacity: .3; }
+.c-ic { width: 20ap; height: 18ap; }
+.c-n { font-family: "Silk"; font-size: 16ap; color: var(--white); text-shadow: 1ap 1ap 0 var(--ink); }
+.c-n.blocked { color: var(--slate-l); text-shadow: none; }
+
+/* MAP */
+.mapwell { flex: 1; align-items: center; justify-content: center; background-color: var(--slate-d); padding: 3ap; }
+.mapwrap { position: relative; }
+.mapbg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+.munits, .mprops { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+.mp { position: absolute; border: 1px solid var(--ink); border-radius: 1ap; }
+.mp.hq { border-color: #ffffff; }
+.mu { position: absolute; }
+.mui { width: 100%; height: 100%; }
+.view { position: absolute; border: 2px solid #ffffff; }
+.nomap { font-size: 12ap; color: var(--slate-l); }
+.chips { flex-direction: row; gap: 3ap; height: 42ap; flex-shrink: 0; }
+.mchip { flex: 1; align-items: center; justify-content: center; gap: 2ap; padding-top: 3ap; background-color: var(--slate); border: 1ap solid var(--ink); border-radius: 2ap; box-shadow: 0 2ap 0 var(--slate-d); }
+.mstripe { width: 100%; height: 3ap; flex-shrink: 0; }
+.mchip-ic { width: 20ap; height: 18ap; }
+.mchip-n { font-family: "Silk"; font-size: 13ap; color: var(--white); text-shadow: 1ap 1ap 0 var(--ink); }
+
+.def-ic { width: 24ap; height: 14ap; }
+.def-n { font-family: "Silk"; font-size: 14ap; color: #ffffff; text-shadow: 1ap 1ap 0 var(--ink); }

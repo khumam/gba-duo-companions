@@ -1,0 +1,2220 @@
+{
+ "abilList": [
+  {
+   "i": 0,
+   "locked": false,
+   "name": "Grave Keeper",
+   "off": false,
+   "on": true,
+   "orb": "asset:ui/orb-grey.png",
+   "owned": true,
+   "sel": true
+  },
+  {
+   "i": 1,
+   "locked": false,
+   "name": "Skeleton Blaze",
+   "off": false,
+   "on": true,
+   "orb": "asset:ui/orb-grey.png",
+   "owned": true,
+   "sel": false
+  },
+  {
+   "i": 2,
+   "locked": false,
+   "name": "Malphas",
+   "off": false,
+   "on": true,
+   "orb": "asset:ui/orb-grey.png",
+   "owned": true,
+   "sel": false
+  },
+  {
+   "i": 3,
+   "locked": false,
+   "name": "Kicker Skeleton",
+   "off": false,
+   "on": true,
+   "orb": "asset:ui/orb-grey.png",
+   "owned": true,
+   "sel": false
+  },
+  {
+   "i": 4,
+   "locked": false,
+   "name": "Hippogryph",
+   "off": false,
+   "on": true,
+   "orb": "asset:ui/orb-grey.png",
+   "owned": true,
+   "sel": false
+  },
+  {
+   "i": 5,
+   "locked": false,
+   "name": "Galamoth",
+   "off": false,
+   "on": true,
+   "orb": "asset:ui/orb-grey.png",
+   "owned": true,
+   "sel": false
+  }
+ ],
+ "abilOwned": "6/6",
+ "abilPick": {
+  "desc": "Backdash by pressing L.",
+  "name": "Grave Keeper"
+ },
+ "cfgClash": false,
+ "cfgRows": [
+  {
+   "key": "B",
+   "keyImg": "asset:ui/key-B.png",
+   "label": "ATTACK",
+   "row": 1
+  },
+  {
+   "key": "A",
+   "keyImg": "asset:ui/key-A.png",
+   "label": "JUMP",
+   "row": 2
+  },
+  {
+   "key": "R",
+   "keyImg": "asset:ui/key-R.png",
+   "label": "GUARDIAN",
+   "row": 3
+  },
+  {
+   "key": "L",
+   "keyImg": "asset:ui/key-L.png",
+   "label": "ABILITY",
+   "row": 4
+  }
+ ],
+ "cmpOn": true,
+ "ed": {
+  "desc": "Lives close to the shore and attacks anything that comes near it.",
+  "drop1": "---",
+  "drop2": "---",
+  "exp": "2",
+  "hasSoul": true,
+  "hp": "20",
+  "l1": {
+   "eqItem": -1,
+   "eqSlot": 1,
+   "item": -1,
+   "itemTab": "use",
+   "off": true,
+   "ok": false,
+   "page": "status"
+  },
+  "l2": {
+   "eqItem": -1,
+   "eqSlot": 1,
+   "item": -1,
+   "itemTab": "use",
+   "off": true,
+   "ok": false,
+   "page": "status"
+  },
+  "name": "Merman",
+  "next": 4,
+  "nextNo": "05",
+  "no": "04",
+  "noTol": false,
+  "noWeak": false,
+  "orb": "asset:ui/orbs-red.png",
+  "orbBig": "asset:ui/orbbig-red.png",
+  "page": 0,
+  "prev": 2,
+  "prevNo": "03",
+  "seen": true,
+  "soul": "Merman",
+  "soulLink": {
+   "abil": 3,
+   "cat": 1,
+   "ok": true,
+   "page": "soul",
+   "soul": 4
+  },
+  "soulOwned": true,
+  "tol": [
+   {
+    "icon": "asset:ui/el-water.png",
+    "name": "Water"
+   }
+  ],
+  "unseen": false,
+  "weak": [
+   {
+    "icon": "asset:ui/el-slash.png",
+    "name": "Slash"
+   },
+   {
+    "icon": "asset:ui/el-fire.png",
+    "name": "Fire"
+   },
+   {
+    "icon": "asset:ui/el-curse.png",
+    "name": "Curse"
+   }
+  ]
+ },
+ "enemyRows": [
+  {
+   "k": 0,
+   "name": "Bat",
+   "no": "01",
+   "seen": true,
+   "unseen": false
+  },
+  {
+   "k": 1,
+   "name": "Zombie",
+   "no": "02",
+   "seen": true,
+   "unseen": false
+  },
+  {
+   "k": 2,
+   "name": "Skeleton",
+   "no": "03",
+   "seen": true,
+   "unseen": false
+  },
+  {
+   "k": 3,
+   "name": "Merman",
+   "no": "04",
+   "seen": true,
+   "unseen": false
+  },
+  {
+   "k": 4,
+   "name": "Axe Armor",
+   "no": "05",
+   "seen": true,
+   "unseen": false
+  },
+  {
+   "k": 5,
+   "name": "Skull Archer",
+   "no": "06",
+   "seen": true,
+   "unseen": false
+  },
+  {
+   "k": 6,
+   "name": "Peeping Eye",
+   "no": "07",
+   "seen": true,
+   "unseen": false
+  },
+  {
+   "k": 7,
+   "name": "Killer Fish",
+   "no": "08",
+   "seen": true,
+   "unseen": false
+  },
+  {
+   "k": 8,
+   "name": "Bone Pillar",
+   "no": "09",
+   "seen": true,
+   "unseen": false
+  },
+  {
+   "k": 9,
+   "name": "Blue Crow",
+   "no": "10",
+   "seen": true,
+   "unseen": false
+  }
+ ],
+ "enemySeen": "112 / 113",
+ "epageNext": 1,
+ "epagePrev": 11,
+ "epageText": "01/12",
+ "eqCount": "49 owned",
+ "eqEmpty": false,
+ "eqList": [
+  {
+   "count": "1",
+   "icon": "asset:ui/ic-sword.png",
+   "idx": 0,
+   "name": "Knife",
+   "sel": false
+  },
+  {
+   "count": "9",
+   "icon": "asset:ui/ic-sword.png",
+   "idx": 1,
+   "name": "Baselard",
+   "sel": false
+  },
+  {
+   "count": "7",
+   "icon": "asset:ui/ic-sword.png",
+   "idx": 2,
+   "name": "Combat Knife",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "icon": "asset:ui/ic-sword.png",
+   "idx": 3,
+   "name": "Short Sword",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "icon": "asset:ui/ic-sword.png",
+   "idx": 4,
+   "name": "Bastard Sword",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "icon": "asset:ui/ic-sword.png",
+   "idx": 5,
+   "name": "Whip Sword",
+   "sel": false
+  },
+  {
+   "count": "2",
+   "icon": "asset:ui/ic-sword.png",
+   "idx": 6,
+   "name": "Gladius",
+   "sel": false
+  },
+  {
+   "count": "3",
+   "icon": "asset:ui/ic-sword.png",
+   "idx": 8,
+   "name": "Milican's Sword",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "icon": "asset:ui/ic-sword.png",
+   "idx": 9,
+   "name": "Hrunting",
+   "sel": false
+  },
+  {
+   "count": "4",
+   "icon": "asset:ui/ic-sword.png",
+   "idx": 10,
+   "name": "Mystletain",
+   "sel": false
+  },
+  {
+   "count": "2",
+   "icon": "asset:ui/ic-sword.png",
+   "idx": 11,
+   "name": "Rahab's Sword",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "icon": "asset:ui/ic-sword.png",
+   "idx": 12,
+   "name": "Durandal",
+   "sel": false
+  },
+  {
+   "count": "2",
+   "icon": "asset:ui/ic-sword.png",
+   "idx": 13,
+   "name": "Laevatain",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "icon": "asset:ui/ic-sword.png",
+   "idx": 14,
+   "name": "Burtgang",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "icon": "asset:ui/ic-sword.png",
+   "idx": 15,
+   "name": "Kaladbolg",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "icon": "asset:ui/ic-sword.png",
+   "idx": 16,
+   "name": "Vjaya",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "icon": "asset:ui/ic-sword.png",
+   "idx": 17,
+   "name": "Balmung",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "icon": "asset:ui/ic-greatsword.png",
+   "idx": 18,
+   "name": "Broadsword",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "icon": "asset:ui/ic-greatsword.png",
+   "idx": 20,
+   "name": "Claymore",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "icon": "asset:ui/ic-greatsword.png",
+   "idx": 21,
+   "name": "Great Sword",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "icon": "asset:ui/ic-greatsword.png",
+   "idx": 22,
+   "name": "Joyeuse",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "icon": "asset:ui/ic-greatsword.png",
+   "idx": 23,
+   "name": "Dainslef",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "icon": "asset:ui/ic-greatsword.png",
+   "idx": 24,
+   "name": "Ascalon",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "icon": "asset:ui/ic-greatsword.png",
+   "idx": 25,
+   "name": "Claimh Solais",
+   "sel": true
+  },
+  {
+   "count": "1",
+   "icon": "asset:ui/ic-greatsword.png",
+   "idx": 26,
+   "name": "Final Sword",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "icon": "asset:ui/ic-katana.png",
+   "idx": 27,
+   "name": "Bamboo Sword",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "icon": "asset:ui/ic-katana.png",
+   "idx": 28,
+   "name": "Katana",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "icon": "asset:ui/ic-katana.png",
+   "idx": 29,
+   "name": "Osafune",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "icon": "asset:ui/ic-katana.png",
+   "idx": 30,
+   "name": "Onikiri",
+   "sel": false
+  },
+  {
+   "count": "2",
+   "icon": "asset:ui/ic-katana.png",
+   "idx": 31,
+   "name": "Kunitsuna",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "icon": "asset:ui/ic-katana.png",
+   "idx": 32,
+   "name": "Yasutsuna",
+   "sel": false
+  },
+  {
+   "count": "2",
+   "icon": "asset:ui/ic-katana.png",
+   "idx": 33,
+   "name": "Muramasa",
+   "sel": false
+  },
+  {
+   "count": "5",
+   "icon": "asset:ui/ic-hammer.png",
+   "idx": 34,
+   "name": "Hammer",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "icon": "asset:ui/ic-greatsword.png",
+   "idx": 37,
+   "name": "Tallhammer",
+   "sel": false
+  },
+  {
+   "count": "9",
+   "icon": "asset:ui/ic-axe.png",
+   "idx": 38,
+   "name": "Battle Axe",
+   "sel": false
+  },
+  {
+   "count": "2",
+   "icon": "asset:ui/ic-sword.png",
+   "idx": 40,
+   "name": "Rapier",
+   "sel": false
+  },
+  {
+   "count": "5",
+   "icon": "asset:ui/ic-sword.png",
+   "idx": 41,
+   "name": "Estoc",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "icon": "asset:ui/ic-sword.png",
+   "idx": 42,
+   "name": "Cutall",
+   "sel": false
+  },
+  {
+   "count": "2",
+   "icon": "asset:ui/ic-spear.png",
+   "idx": 43,
+   "name": "Spear",
+   "sel": false
+  },
+  {
+   "count": "9",
+   "icon": "asset:ui/ic-spear.png",
+   "idx": 44,
+   "name": "Trident",
+   "sel": false
+  },
+  {
+   "count": "7",
+   "icon": "asset:ui/ic-spear.png",
+   "idx": 45,
+   "name": "Lance",
+   "sel": false
+  },
+  {
+   "count": "5",
+   "icon": "asset:ui/ic-spear.png",
+   "idx": 46,
+   "name": "Partizan",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "icon": "asset:ui/ic-spear.png",
+   "idx": 47,
+   "name": "Gabolg",
+   "sel": false
+  },
+  {
+   "count": "2",
+   "icon": "asset:ui/ic-spear.png",
+   "idx": 49,
+   "name": "Ronginus' Spear",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "icon": "asset:ui/ic-fist.png",
+   "idx": 50,
+   "name": "Cestus",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "icon": "asset:ui/ic-fist.png",
+   "idx": 52,
+   "name": "Mach Punch",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "icon": "asset:ui/ic-fist.png",
+   "idx": 53,
+   "name": "Whip Knuckle",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "icon": "asset:ui/ic-fist.png",
+   "idx": 54,
+   "name": "Poison Fist",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "icon": "asset:ui/ic-gun.png",
+   "idx": 55,
+   "name": "Handgun",
+   "sel": false
+  }
+ ],
+ "eqPick": {
+  "canSet": true,
+  "desc": "Sword with a sparkling blade.",
+  "icon": "asset:ui/ic-greatsword.png",
+  "idx": 25,
+  "isSet": false,
+  "name": "Claimh Solais",
+  "notOwned": false,
+  "slot": "hand",
+  "stats": "ATT 99  STR+7  CON+7  INT+7"
+ },
+ "eqSlotName": "WEAPONS",
+ "eqSlots": [
+  {
+   "i": 1,
+   "icon": "asset:ui/ic-spear.png",
+   "label": "HAND",
+   "name": "Gungner",
+   "sel": true
+  },
+  {
+   "i": 2,
+   "icon": "asset:ui/ic-armor.png",
+   "label": "BODY",
+   "name": "Dracula's Tunic",
+   "sel": false
+  },
+  {
+   "i": 3,
+   "icon": "asset:ui/ic-ring.png",
+   "label": "ACC.",
+   "name": "Rare Ring",
+   "sel": false
+  }
+ ],
+ "gear": [
+  {
+   "i": 1,
+   "icon": "asset:ui/ic-spear.png",
+   "label": "HAND",
+   "name": "Gungner",
+   "none": false
+  },
+  {
+   "i": 2,
+   "icon": "asset:ui/ic-armor.png",
+   "label": "BODY",
+   "name": "Dracula's Tunic",
+   "none": false
+  },
+  {
+   "i": 3,
+   "icon": "asset:ui/ic-ring.png",
+   "label": "ACC.",
+   "name": "Rare Ring",
+   "none": false
+  }
+ ],
+ "heal": {
+  "can": false,
+  "full": true,
+  "name": "HP full",
+  "none": false
+ },
+ "itemCount": "23 kinds",
+ "itemEmpty": false,
+ "itemKeyTab": false,
+ "itemList": [
+  {
+   "count": "3",
+   "i": 0,
+   "icon": "asset:ui/ic-potion.png",
+   "name": "Potion",
+   "sel": true
+  },
+  {
+   "count": "3",
+   "i": 1,
+   "icon": "asset:ui/ic-potion.png",
+   "name": "High Potion",
+   "sel": false
+  },
+  {
+   "count": "5",
+   "i": 2,
+   "icon": "asset:ui/ic-potion.png",
+   "name": "Super Potion",
+   "sel": false
+  },
+  {
+   "count": "3",
+   "i": 3,
+   "icon": "asset:ui/ic-potion.png",
+   "name": "Meat Strip",
+   "sel": false
+  },
+  {
+   "count": "5",
+   "i": 4,
+   "icon": "asset:ui/ic-potion.png",
+   "name": "Tasty Meat",
+   "sel": false
+  },
+  {
+   "count": "9",
+   "i": 5,
+   "icon": "asset:ui/ic-mana.png",
+   "name": "Mind Up",
+   "sel": false
+  },
+  {
+   "count": "6",
+   "i": 6,
+   "icon": "asset:ui/ic-mana.png",
+   "name": "High Mind Up",
+   "sel": false
+  },
+  {
+   "count": "6",
+   "i": 7,
+   "icon": "asset:ui/ic-mana.png",
+   "name": "Mana Prism",
+   "sel": false
+  },
+  {
+   "count": "9",
+   "i": 8,
+   "icon": "asset:ui/ic-potion.png",
+   "name": "Anti-Venom",
+   "sel": false
+  },
+  {
+   "count": "9",
+   "i": 9,
+   "icon": "asset:ui/ic-potion.png",
+   "name": "Uncurse Potion",
+   "sel": false
+  },
+  {
+   "count": "2",
+   "i": 10,
+   "icon": "asset:ui/ic-food.png",
+   "name": "Potato Pancake",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "i": 11,
+   "icon": "asset:ui/ic-food.png",
+   "name": "Beef Curry",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "i": 12,
+   "icon": "asset:ui/ic-food.png",
+   "name": "Ramen",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "i": 13,
+   "icon": "asset:ui/ic-food.png",
+   "name": "Cream Soda",
+   "sel": false
+  },
+  {
+   "count": "2",
+   "i": 15,
+   "icon": "asset:ui/ic-food.png",
+   "name": "Milk",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "i": 17,
+   "icon": "asset:ui/ic-food.png",
+   "name": "Tea",
+   "sel": false
+  },
+  {
+   "count": "3",
+   "i": 18,
+   "icon": "asset:ui/ic-food.png",
+   "name": "Pudding",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "i": 19,
+   "icon": "asset:ui/ic-food.png",
+   "name": "Strawberry",
+   "sel": false
+  },
+  {
+   "count": "9",
+   "i": 20,
+   "icon": "asset:ui/ic-food.png",
+   "name": "Melon",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "i": 21,
+   "icon": "asset:ui/ic-food.png",
+   "name": "Grapes",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "i": 22,
+   "icon": "asset:ui/ic-food.png",
+   "name": "Persimmon",
+   "sel": false
+  },
+  {
+   "count": "9",
+   "i": 23,
+   "icon": "asset:ui/ic-food.png",
+   "name": "Rotten Meat",
+   "sel": false
+  },
+  {
+   "count": "2",
+   "i": 24,
+   "icon": "asset:ui/ic-food.png",
+   "name": "Spoiled Milk",
+   "sel": false
+  }
+ ],
+ "itemPick": {
+  "canUse": false,
+  "desc": "Restores 100 HP.",
+  "effect": "HP +100",
+  "full": true,
+  "i": 0,
+  "icon": "asset:ui/ic-potion.png",
+  "name": "Potion",
+  "notOwned": false,
+  "usable": true
+ },
+ "itemUseTab": true,
+ "mapCells": "848 / 848",
+ "mapRuns": [
+  {
+   "w": "24.72px",
+   "x": "164.77px",
+   "y": "0.00px"
+  },
+  {
+   "w": "24.72px",
+   "x": "164.77px",
+   "y": "8.67px"
+  },
+  {
+   "w": "7.37px",
+   "x": "225.47px",
+   "y": "8.67px"
+  },
+  {
+   "w": "24.72px",
+   "x": "286.18px",
+   "y": "8.67px"
+  },
+  {
+   "w": "24.72px",
+   "x": "104.06px",
+   "y": "17.34px"
+  },
+  {
+   "w": "24.72px",
+   "x": "164.77px",
+   "y": "17.34px"
+  },
+  {
+   "w": "24.72px",
+   "x": "286.18px",
+   "y": "17.34px"
+  },
+  {
+   "w": "24.72px",
+   "x": "104.06px",
+   "y": "26.02px"
+  },
+  {
+   "w": "33.39px",
+   "x": "208.13px",
+   "y": "26.02px"
+  },
+  {
+   "w": "24.72px",
+   "x": "286.18px",
+   "y": "26.02px"
+  },
+  {
+   "w": "33.39px",
+   "x": "43.36px",
+   "y": "34.69px"
+  },
+  {
+   "w": "24.72px",
+   "x": "104.06px",
+   "y": "34.69px"
+  },
+  {
+   "w": "50.73px",
+   "x": "208.13px",
+   "y": "34.69px"
+  },
+  {
+   "w": "33.39px",
+   "x": "43.36px",
+   "y": "43.36px"
+  },
+  {
+   "w": "24.72px",
+   "x": "156.10px",
+   "y": "43.36px"
+  },
+  {
+   "w": "50.73px",
+   "x": "208.13px",
+   "y": "43.36px"
+  },
+  {
+   "w": "42.06px",
+   "x": "294.85px",
+   "y": "43.36px"
+  },
+  {
+   "w": "33.39px",
+   "x": "43.36px",
+   "y": "52.03px"
+  },
+  {
+   "w": "24.72px",
+   "x": "156.10px",
+   "y": "52.03px"
+  },
+  {
+   "w": "50.73px",
+   "x": "208.13px",
+   "y": "52.03px"
+  },
+  {
+   "w": "24.72px",
+   "x": "303.52px",
+   "y": "52.03px"
+  },
+  {
+   "w": "24.72px",
+   "x": "355.55px",
+   "y": "52.03px"
+  },
+  {
+   "w": "33.39px",
+   "x": "43.36px",
+   "y": "60.70px"
+  },
+  {
+   "w": "24.72px",
+   "x": "156.10px",
+   "y": "60.70px"
+  },
+  {
+   "w": "172.14px",
+   "x": "208.13px",
+   "y": "60.70px"
+  },
+  {
+   "w": "24.72px",
+   "x": "156.10px",
+   "y": "69.38px"
+  },
+  {
+   "w": "50.73px",
+   "x": "208.13px",
+   "y": "69.38px"
+  },
+  {
+   "w": "24.72px",
+   "x": "303.52px",
+   "y": "69.38px"
+  },
+  {
+   "w": "24.72px",
+   "x": "355.55px",
+   "y": "69.38px"
+  },
+  {
+   "w": "16.04px",
+   "x": "104.06px",
+   "y": "78.05px"
+  },
+  {
+   "w": "24.72px",
+   "x": "156.10px",
+   "y": "78.05px"
+  },
+  {
+   "w": "50.73px",
+   "x": "208.13px",
+   "y": "78.05px"
+  },
+  {
+   "w": "24.72px",
+   "x": "303.52px",
+   "y": "78.05px"
+  },
+  {
+   "w": "24.72px",
+   "x": "398.91px",
+   "y": "78.05px"
+  },
+  {
+   "w": "16.04px",
+   "x": "52.03px",
+   "y": "86.72px"
+  },
+  {
+   "w": "16.04px",
+   "x": "104.06px",
+   "y": "86.72px"
+  },
+  {
+   "w": "68.08px",
+   "x": "130.08px",
+   "y": "86.72px"
+  },
+  {
+   "w": "68.08px",
+   "x": "208.13px",
+   "y": "86.72px"
+  },
+  {
+   "w": "42.06px",
+   "x": "294.85px",
+   "y": "86.72px"
+  },
+  {
+   "w": "24.72px",
+   "x": "398.91px",
+   "y": "86.72px"
+  },
+  {
+   "w": "33.39px",
+   "x": "43.36px",
+   "y": "95.39px"
+  },
+  {
+   "w": "94.09px",
+   "x": "104.06px",
+   "y": "95.39px"
+  },
+  {
+   "w": "68.08px",
+   "x": "208.13px",
+   "y": "95.39px"
+  },
+  {
+   "w": "59.40px",
+   "x": "286.18px",
+   "y": "95.39px"
+  },
+  {
+   "w": "24.72px",
+   "x": "398.91px",
+   "y": "95.39px"
+  },
+  {
+   "w": "33.39px",
+   "x": "43.36px",
+   "y": "104.06px"
+  },
+  {
+   "w": "16.04px",
+   "x": "104.06px",
+   "y": "104.06px"
+  },
+  {
+   "w": "59.40px",
+   "x": "138.75px",
+   "y": "104.06px"
+  },
+  {
+   "w": "50.73px",
+   "x": "225.47px",
+   "y": "104.06px"
+  },
+  {
+   "w": "59.40px",
+   "x": "286.18px",
+   "y": "104.06px"
+  },
+  {
+   "w": "50.73px",
+   "x": "34.69px",
+   "y": "112.74px"
+  },
+  {
+   "w": "16.04px",
+   "x": "104.06px",
+   "y": "112.74px"
+  },
+  {
+   "w": "128.78px",
+   "x": "130.08px",
+   "y": "112.74px"
+  },
+  {
+   "w": "59.40px",
+   "x": "286.18px",
+   "y": "112.74px"
+  },
+  {
+   "w": "33.39px",
+   "x": "372.90px",
+   "y": "112.74px"
+  },
+  {
+   "w": "172.14px",
+   "x": "26.02px",
+   "y": "121.41px"
+  },
+  {
+   "w": "50.73px",
+   "x": "208.13px",
+   "y": "121.41px"
+  },
+  {
+   "w": "16.04px",
+   "x": "286.18px",
+   "y": "121.41px"
+  },
+  {
+   "w": "16.04px",
+   "x": "329.54px",
+   "y": "121.41px"
+  },
+  {
+   "w": "33.39px",
+   "x": "372.90px",
+   "y": "121.41px"
+  },
+  {
+   "w": "94.09px",
+   "x": "26.02px",
+   "y": "130.08px"
+  },
+  {
+   "w": "102.76px",
+   "x": "156.10px",
+   "y": "130.08px"
+  },
+  {
+   "w": "59.40px",
+   "x": "286.18px",
+   "y": "130.08px"
+  },
+  {
+   "w": "59.40px",
+   "x": "372.90px",
+   "y": "130.08px"
+  },
+  {
+   "w": "68.08px",
+   "x": "52.03px",
+   "y": "138.75px"
+  },
+  {
+   "w": "215.50px",
+   "x": "138.75px",
+   "y": "138.75px"
+  },
+  {
+   "w": "59.40px",
+   "x": "372.90px",
+   "y": "138.75px"
+  },
+  {
+   "w": "16.04px",
+   "x": "26.02px",
+   "y": "147.42px"
+  },
+  {
+   "w": "68.08px",
+   "x": "52.03px",
+   "y": "147.42px"
+  },
+  {
+   "w": "7.37px",
+   "x": "138.75px",
+   "y": "147.42px"
+  },
+  {
+   "w": "50.73px",
+   "x": "199.46px",
+   "y": "147.42px"
+  },
+  {
+   "w": "111.44px",
+   "x": "320.86px",
+   "y": "147.42px"
+  },
+  {
+   "w": "16.04px",
+   "x": "26.02px",
+   "y": "156.10px"
+  },
+  {
+   "w": "33.39px",
+   "x": "52.03px",
+   "y": "156.10px"
+  },
+  {
+   "w": "16.04px",
+   "x": "104.06px",
+   "y": "156.10px"
+  },
+  {
+   "w": "7.37px",
+   "x": "138.75px",
+   "y": "156.10px"
+  },
+  {
+   "w": "50.73px",
+   "x": "199.46px",
+   "y": "156.10px"
+  },
+  {
+   "w": "59.40px",
+   "x": "286.18px",
+   "y": "156.10px"
+  },
+  {
+   "w": "68.08px",
+   "x": "364.22px",
+   "y": "156.10px"
+  },
+  {
+   "w": "16.04px",
+   "x": "0.00px",
+   "y": "164.77px"
+  },
+  {
+   "w": "16.04px",
+   "x": "26.02px",
+   "y": "164.77px"
+  },
+  {
+   "w": "42.06px",
+   "x": "52.03px",
+   "y": "164.77px"
+  },
+  {
+   "w": "16.04px",
+   "x": "104.06px",
+   "y": "164.77px"
+  },
+  {
+   "w": "7.37px",
+   "x": "138.75px",
+   "y": "164.77px"
+  },
+  {
+   "w": "50.73px",
+   "x": "199.46px",
+   "y": "164.77px"
+  },
+  {
+   "w": "68.08px",
+   "x": "364.22px",
+   "y": "164.77px"
+  },
+  {
+   "w": "42.06px",
+   "x": "0.00px",
+   "y": "173.44px"
+  },
+  {
+   "w": "16.04px",
+   "x": "104.06px",
+   "y": "173.44px"
+  },
+  {
+   "w": "7.37px",
+   "x": "138.75px",
+   "y": "173.44px"
+  },
+  {
+   "w": "85.42px",
+   "x": "173.44px",
+   "y": "173.44px"
+  },
+  {
+   "w": "7.37px",
+   "x": "294.85px",
+   "y": "173.44px"
+  },
+  {
+   "w": "85.42px",
+   "x": "346.88px",
+   "y": "173.44px"
+  },
+  {
+   "w": "154.80px",
+   "x": "0.00px",
+   "y": "182.11px"
+  },
+  {
+   "w": "7.37px",
+   "x": "173.44px",
+   "y": "182.11px"
+  },
+  {
+   "w": "16.04px",
+   "x": "260.16px",
+   "y": "182.11px"
+  },
+  {
+   "w": "7.37px",
+   "x": "294.85px",
+   "y": "182.11px"
+  },
+  {
+   "w": "85.42px",
+   "x": "346.88px",
+   "y": "182.11px"
+  },
+  {
+   "w": "42.06px",
+   "x": "43.36px",
+   "y": "190.78px"
+  },
+  {
+   "w": "16.04px",
+   "x": "104.06px",
+   "y": "190.78px"
+  },
+  {
+   "w": "198.16px",
+   "x": "130.08px",
+   "y": "190.78px"
+  },
+  {
+   "w": "59.40px",
+   "x": "355.55px",
+   "y": "190.78px"
+  },
+  {
+   "w": "94.09px",
+   "x": "43.36px",
+   "y": "199.46px"
+  },
+  {
+   "w": "42.06px",
+   "x": "199.46px",
+   "y": "199.46px"
+  },
+  {
+   "w": "16.04px",
+   "x": "260.16px",
+   "y": "199.46px"
+  },
+  {
+   "w": "24.72px",
+   "x": "286.18px",
+   "y": "199.46px"
+  },
+  {
+   "w": "50.73px",
+   "x": "372.90px",
+   "y": "199.46px"
+  },
+  {
+   "w": "111.44px",
+   "x": "130.08px",
+   "y": "208.13px"
+  },
+  {
+   "w": "16.04px",
+   "x": "260.16px",
+   "y": "208.13px"
+  },
+  {
+   "w": "24.72px",
+   "x": "286.18px",
+   "y": "208.13px"
+  },
+  {
+   "w": "85.42px",
+   "x": "338.21px",
+   "y": "208.13px"
+  },
+  {
+   "w": "68.08px",
+   "x": "26.02px",
+   "y": "216.80px"
+  },
+  {
+   "w": "111.44px",
+   "x": "121.41px",
+   "y": "216.80px"
+  },
+  {
+   "w": "42.06px",
+   "x": "251.49px",
+   "y": "216.80px"
+  },
+  {
+   "w": "7.37px",
+   "x": "303.52px",
+   "y": "216.80px"
+  },
+  {
+   "w": "76.75px",
+   "x": "346.88px",
+   "y": "216.80px"
+  },
+  {
+   "w": "59.40px",
+   "x": "26.02px",
+   "y": "225.47px"
+  },
+  {
+   "w": "7.37px",
+   "x": "147.42px",
+   "y": "225.47px"
+  },
+  {
+   "w": "16.04px",
+   "x": "225.47px",
+   "y": "225.47px"
+  },
+  {
+   "w": "16.04px",
+   "x": "260.16px",
+   "y": "225.47px"
+  },
+  {
+   "w": "16.04px",
+   "x": "303.52px",
+   "y": "225.47px"
+  },
+  {
+   "w": "85.42px",
+   "x": "338.21px",
+   "y": "225.47px"
+  },
+  {
+   "w": "24.72px",
+   "x": "26.02px",
+   "y": "234.14px"
+  },
+  {
+   "w": "7.37px",
+   "x": "78.05px",
+   "y": "234.14px"
+  },
+  {
+   "w": "16.04px",
+   "x": "147.42px",
+   "y": "234.14px"
+  },
+  {
+   "w": "7.37px",
+   "x": "225.47px",
+   "y": "234.14px"
+  },
+  {
+   "w": "24.72px",
+   "x": "260.16px",
+   "y": "234.14px"
+  },
+  {
+   "w": "94.09px",
+   "x": "329.54px",
+   "y": "234.14px"
+  },
+  {
+   "w": "76.75px",
+   "x": "26.02px",
+   "y": "242.82px"
+  },
+  {
+   "w": "16.04px",
+   "x": "138.75px",
+   "y": "242.82px"
+  },
+  {
+   "w": "50.73px",
+   "x": "190.78px",
+   "y": "242.82px"
+  },
+  {
+   "w": "16.04px",
+   "x": "260.16px",
+   "y": "242.82px"
+  },
+  {
+   "w": "7.37px",
+   "x": "329.54px",
+   "y": "242.82px"
+  },
+  {
+   "w": "85.42px",
+   "x": "17.34px",
+   "y": "251.49px"
+  },
+  {
+   "w": "7.37px",
+   "x": "147.42px",
+   "y": "251.49px"
+  },
+  {
+   "w": "189.48px",
+   "x": "190.78px",
+   "y": "251.49px"
+  },
+  {
+   "w": "68.08px",
+   "x": "34.69px",
+   "y": "260.16px"
+  },
+  {
+   "w": "85.42px",
+   "x": "147.42px",
+   "y": "260.16px"
+  },
+  {
+   "w": "24.72px",
+   "x": "372.90px",
+   "y": "260.16px"
+  },
+  {
+   "w": "250.19px",
+   "x": "8.67px",
+   "y": "268.83px"
+  },
+  {
+   "w": "42.06px",
+   "x": "364.22px",
+   "y": "268.83px"
+  },
+  {
+   "w": "24.72px",
+   "x": "121.41px",
+   "y": "277.50px"
+  },
+  {
+   "w": "16.04px",
+   "x": "320.86px",
+   "y": "277.50px"
+  },
+  {
+   "w": "7.37px",
+   "x": "398.91px",
+   "y": "277.50px"
+  },
+  {
+   "w": "7.37px",
+   "x": "138.75px",
+   "y": "286.18px"
+  },
+  {
+   "w": "120.11px",
+   "x": "164.77px",
+   "y": "286.18px"
+  },
+  {
+   "w": "85.42px",
+   "x": "320.86px",
+   "y": "286.18px"
+  },
+  {
+   "w": "163.47px",
+   "x": "130.08px",
+   "y": "294.85px"
+  }
+ ],
+ "menu": [
+  {
+   "hint": "Change spirit's equipment.",
+   "label": "SOUL SET",
+   "page": "soul",
+   "sel": false
+  },
+  {
+   "hint": "Change weapons, armor and accessories.",
+   "label": "EQUIP",
+   "page": "equip",
+   "sel": false
+  },
+  {
+   "hint": "View or use an item.",
+   "label": "ITEM USE",
+   "page": "items",
+   "sel": false
+  },
+  {
+   "hint": "Switch ability souls on and off.",
+   "label": "ABILITY",
+   "page": "ability",
+   "sel": false
+  },
+  {
+   "hint": "View the data of defeated enemies.",
+   "label": "ENEMY",
+   "page": "enemy",
+   "sel": false
+  },
+  {
+   "hint": "Change the button configuration.",
+   "label": "CONFIG",
+   "page": "config",
+   "sel": false
+  }
+ ],
+ "menuHint": "Change spirit's equipment.",
+ "note": "",
+ "orb1": "asset:ui/orb-red.png",
+ "orb2": "asset:ui/orb-blue.png",
+ "orb3": "asset:ui/orb-yellow.png",
+ "ready": true,
+ "soulBig": "asset:ui/orbbig-red.png",
+ "soulCatKey": "bullet",
+ "soulCatName": "BULLET SOULS",
+ "soulList": [
+  {
+   "count": "",
+   "equipped": false,
+   "id": 0,
+   "name": "---",
+   "orb": "asset:ui/orb-none.png",
+   "sel": false
+  },
+  {
+   "count": "4",
+   "equipped": false,
+   "id": 1,
+   "name": "Winged Skeleton",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "9",
+   "equipped": false,
+   "id": 2,
+   "name": "Bat",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "6",
+   "equipped": false,
+   "id": 3,
+   "name": "Skeleton",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "5",
+   "equipped": false,
+   "id": 4,
+   "name": "Merman",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "2",
+   "equipped": false,
+   "id": 5,
+   "name": "Axe Armor",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "4",
+   "equipped": false,
+   "id": 6,
+   "name": "Skull Archer",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "3",
+   "equipped": false,
+   "id": 7,
+   "name": "Killer Fish",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "3",
+   "equipped": false,
+   "id": 8,
+   "name": "Blue Crow",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "3",
+   "equipped": false,
+   "id": 9,
+   "name": "Zombie Soldier",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "equipped": false,
+   "id": 10,
+   "name": "Ghost",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "equipped": false,
+   "id": 11,
+   "name": "Siren",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "6",
+   "equipped": false,
+   "id": 12,
+   "name": "Tiny Devil",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "2",
+   "equipped": false,
+   "id": 13,
+   "name": "Durga",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "3",
+   "equipped": false,
+   "id": 14,
+   "name": "Rock Armor",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "2",
+   "equipped": false,
+   "id": 15,
+   "name": "Student Witch",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "7",
+   "equipped": false,
+   "id": 16,
+   "name": "Arachne",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "5",
+   "equipped": false,
+   "id": 17,
+   "name": "Fleaman",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "5",
+   "equipped": false,
+   "id": 18,
+   "name": "Evil Butcher",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "3",
+   "equipped": false,
+   "id": 19,
+   "name": "Waiter Skeleton",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "equipped": false,
+   "id": 20,
+   "name": "Altair",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "equipped": false,
+   "id": 21,
+   "name": "Mudman",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "3",
+   "equipped": false,
+   "id": 22,
+   "name": "Cockatrice",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "3",
+   "equipped": false,
+   "id": 23,
+   "name": "Werewolf",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "3",
+   "equipped": false,
+   "id": 24,
+   "name": "Harpy",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "2",
+   "equipped": false,
+   "id": 25,
+   "name": "Une",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "7",
+   "equipped": false,
+   "id": 26,
+   "name": "Needles",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "equipped": false,
+   "id": 27,
+   "name": "Man-Eater",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "3",
+   "equipped": false,
+   "id": 28,
+   "name": "Ukoback",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "2",
+   "equipped": false,
+   "id": 29,
+   "name": "Fish Head",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "equipped": false,
+   "id": 30,
+   "name": "Disc Armor",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "6",
+   "equipped": false,
+   "id": 31,
+   "name": "Nightmare",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "3",
+   "equipped": false,
+   "id": 32,
+   "name": "Slime",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "2",
+   "equipped": false,
+   "id": 33,
+   "name": "Dryad",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "3",
+   "equipped": false,
+   "id": 34,
+   "name": "Ripper",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "equipped": false,
+   "id": 35,
+   "name": "Werejaguar",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "equipped": false,
+   "id": 36,
+   "name": "Weretiger",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "2",
+   "equipped": false,
+   "id": 37,
+   "name": "Biphron",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "equipped": false,
+   "id": 38,
+   "name": "Mandragora",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "3",
+   "equipped": false,
+   "id": 39,
+   "name": "Beam Skeleton",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "2",
+   "equipped": false,
+   "id": 40,
+   "name": "Skull Millione",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "4",
+   "equipped": false,
+   "id": 41,
+   "name": "Giant Skeleton",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "2",
+   "equipped": false,
+   "id": 42,
+   "name": "Gladiator",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "equipped": false,
+   "id": 43,
+   "name": "Demon Lord",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "4",
+   "equipped": false,
+   "id": 44,
+   "name": "Flame Demon",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "equipped": false,
+   "id": 45,
+   "name": "Lightning Doll",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "2",
+   "equipped": false,
+   "id": 46,
+   "name": "Valkyrie",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "equipped": false,
+   "id": 47,
+   "name": "Bomber Armor",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "equipped": true,
+   "id": 48,
+   "name": "Red Minotaur",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": true
+  },
+  {
+   "count": "1",
+   "equipped": false,
+   "id": 50,
+   "name": "Balore",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "2",
+   "equipped": false,
+   "id": 51,
+   "name": "Killer Doll",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "equipped": false,
+   "id": 52,
+   "name": "Nemesis",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "equipped": false,
+   "id": 53,
+   "name": "Killer Mantle",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "equipped": false,
+   "id": 54,
+   "name": "Kyoma Demon",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  },
+  {
+   "count": "1",
+   "equipped": false,
+   "id": 55,
+   "name": "Chronomage",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": false
+  }
+ ],
+ "soulOwned": "54 / 55",
+ "soulPick": {
+  "canSet": false,
+  "cat": 1,
+  "cost": "150 MP",
+  "costN": "150",
+  "costU": "USE",
+  "desc": "Swings an oversized axe.",
+  "from": "From Red Minotaur",
+  "hasCost": true,
+  "id": 48,
+  "isSet": true,
+  "name": "Red Minotaur"
+ },
+ "soulTabs": [
+  {
+   "c": 1,
+   "hex": "#ff4838",
+   "key": "bullet",
+   "label": "BULLET",
+   "name": "Red Minotaur",
+   "orb": "asset:ui/orbs-red.png",
+   "sel": true
+  },
+  {
+   "c": 2,
+   "hex": "#7b8bff",
+   "key": "guardian",
+   "label": "GUARDIAN",
+   "name": "Black Panther",
+   "orb": "asset:ui/orbs-blue.png",
+   "sel": false
+  },
+  {
+   "c": 3,
+   "hex": "#ffd040",
+   "key": "enchant",
+   "label": "ENCHANT",
+   "name": "Lubicant",
+   "orb": "asset:ui/orbs-yellow.png",
+   "sel": false
+  }
+ ],
+ "souls": [
+  {
+   "cat": "bullet",
+   "hex": "#ff4838",
+   "i": 1,
+   "name": "Red Minotaur",
+   "off": false,
+   "on": true,
+   "orb": "asset:ui/orb-red.png"
+  },
+  {
+   "cat": "guardian",
+   "hex": "#7b8bff",
+   "i": 2,
+   "name": "Black Panther",
+   "off": false,
+   "on": true,
+   "orb": "asset:ui/orb-blue.png"
+  },
+  {
+   "cat": "enchant",
+   "hex": "#ffd040",
+   "i": 3,
+   "name": "Lubicant",
+   "off": false,
+   "on": true,
+   "orb": "asset:ui/orb-yellow.png"
+  }
+ ],
+ "st": {
+  "att": 232,
+  "con": 175,
+  "def": 125,
+  "exp": "2,932,607",
+  "expIn": 2603,
+  "expSpan": 89496,
+  "gold": "33,838",
+  "hp": 1484,
+  "hpText": "1484/1484",
+  "int": 170,
+  "lck": 117,
+  "level": "98",
+  "lowHp": false,
+  "maxHp": 1484,
+  "maxMp": 1330,
+  "mp": 1330,
+  "mpText": "1330/1330",
+  "next": "86,893",
+  "rate": "100.0%",
+  "soulRate": "99.1%",
+  "souls": "119/120",
+  "str": 203,
+  "time": "18:56:09"
+ },
+ "sw": {
+  "att": {
+   "down": false,
+   "up": false,
+   "v": "232"
+  },
+  "con": {
+   "down": false,
+   "up": false,
+   "v": "175"
+  },
+  "def": {
+   "down": false,
+   "up": false,
+   "v": "125"
+  },
+  "int": {
+   "down": false,
+   "up": false,
+   "v": "170"
+  },
+  "lck": {
+   "down": false,
+   "up": false,
+   "v": "117"
+  },
+  "str": {
+   "down": false,
+   "up": false,
+   "v": "203"
+  }
+ },
+ "toast": {
+  "abil": -1,
+  "cat": 1,
+  "enemy": -1,
+  "hex": "#ffffff",
+  "id": 0,
+  "name": "",
+  "orb": "asset:ui/pip.png",
+  "page": "status",
+  "soul": -1,
+  "sub": "",
+  "title": ""
+ },
+ "toastOn": false,
+ "tot": {
+  "att": 232,
+  "con": 175,
+  "def": 125,
+  "int": 170,
+  "lck": 117,
+  "str": 203
+ },
+ "ui": {
+  "set": {
+   "abil": 0,
+   "enemy": 3,
+   "eqItem": 25,
+   "eqSlot": 1,
+   "item": 0,
+   "soul": 48,
+   "soulCat": 1
+  }
+ },
+ "waiting": false
+}

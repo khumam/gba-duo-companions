@@ -1,0 +1,7 @@
+/* readability.css: written by skill/tools/packkit/readability.py from style.css. Do not edit by hand: run the tool again.
+   Adds tracking (and line height for wrapped text) by font and size; rules that set letter-spacing themselves are left alone. */
+#screen { letter-spacing: 1.39px; }
+.energy-num { letter-spacing: 1.04px; }
+.map-empty-text { letter-spacing: 0.95px; }
+.boot-title { letter-spacing: 1.39px; }
+.boot-sub { letter-spacing: 0.95px; }

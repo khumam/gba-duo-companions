@@ -1,0 +1,37 @@
+/* readability.css: written by skill/tools/packkit/readability.py from style.css. Do not edit by hand: run the tool again.
+   Adds tracking (and line height for wrapped text) by font and size; rules that set letter-spacing themselves are left alone. */
+.wait-line { letter-spacing: 0.88px; }
+.head-count { letter-spacing: 0.72px; }
+.head-zenny { letter-spacing: 0.60px; }
+.card-name { letter-spacing: 0.64px; }
+.card-code { letter-spacing: 0.68px; }
+.card-no { letter-spacing: 1.12px; }
+.card-atk { letter-spacing: 0.68px; }
+.desc-t { letter-spacing: 0.96px; line-height: 27.6px; }
+.owned-t { letter-spacing: 1.04px; }
+.cpill-t { letter-spacing: 1.04px; }
+.row-name { letter-spacing: 0.62px; }
+.row-code { letter-spacing: 0.62px; }
+.lrow-no { letter-spacing: 1.08px; }
+.lrow-own { letter-spacing: 1.04px; }
+.ntitle { letter-spacing: 0.64px; }
+.mm-title { letter-spacing: 0.76px; }
+.mm-lv { letter-spacing: 0.76px; }
+.hp-l { letter-spacing: 0.60px; }
+.hp-v, .zen-v { letter-spacing: 0.68px; }
+.zen-v { letter-spacing: 1.12px; }
+.hint-t { letter-spacing: 1.04px; line-height: 29.9px; }
+.armor-t { letter-spacing: 1.12px; }
+.rd-sub { letter-spacing: 1.16px; }
+.rd-l { letter-spacing: 1.00px; }
+.rd-arr { letter-spacing: 1.12px; }
+.rd-page { letter-spacing: 0.60px; }
+.mrow-sub { letter-spacing: 0.60px; }
+.it-count { letter-spacing: 0.64px; }
+.it-desc .desc-t { letter-spacing: 1.08px; }
+.irow-n { letter-spacing: 1.12px; }
+.ns-l { letter-spacing: 1.12px; }
+.ns-v { letter-spacing: 0.96px; }
+.ns-w { letter-spacing: 0.76px; }
+.ns-sep { letter-spacing: 1.04px; }
+.net-note-t { letter-spacing: 1.08px; line-height: 31.0px; }

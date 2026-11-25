@@ -1,0 +1,29 @@
+/* readability.css: written by skill/tools/packkit/readability.py from style.css. Do not edit by hand: run the tool again.
+   Adds tracking (and line height for wrapped text) by font and size; rules that set letter-spacing themselves are left alone. */
+#screen { letter-spacing: 1.39px; }
+.wait-big { letter-spacing: 1.73px; }
+.wait-small { letter-spacing: 1.04px; }
+.plate { letter-spacing: 1.56px; }
+.k { letter-spacing: 1.04px; }
+.v { letter-spacing: 1.04px; }
+.tab-t { letter-spacing: 1.21px; }
+.lv { letter-spacing: 1.04px; }
+.lv-r { letter-spacing: 1.91px; }
+.life-big { letter-spacing: 1.30px; }
+.life-of { letter-spacing: 1.13px; }
+.life-num { letter-spacing: 1.39px; }
+.slot-no { letter-spacing: 1.04px; }
+.slot-name { letter-spacing: 0.95px; }
+.slot-name.main { letter-spacing: 2.00px; }
+.wide-text { letter-spacing: 1.21px; }
+.rk { letter-spacing: 1.04px; }
+.rk-l { letter-spacing: 0.87px; }
+.rk-v { letter-spacing: 0.95px; }
+.elf-no { letter-spacing: 1.04px; }
+.elf-name { letter-spacing: 1.04px; }
+.elf-desc { letter-spacing: 1.04px; line-height: 29.9px; }
+.o-k { letter-spacing: 1.04px; }
+.o-v { letter-spacing: 0.95px; }
+.msg { letter-spacing: 0.61px; }
+.go-t { letter-spacing: 1.21px; }
+.go-k { letter-spacing: 1.39px; }

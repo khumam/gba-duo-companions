@@ -3263,7 +3263,7 @@
                                       {
                                         "type": "text",
                                         "class": "id-band-text",
-                                        "text": "{trainer.name}"
+                                        "text": "IDNo."
                                       },
                                       {
                                         "type": "box",
@@ -3272,136 +3272,174 @@
                                       },
                                       {
                                         "type": "text",
-                                        "class": "id-band-no",
-                                        "text": "ID No.{trainer.id}"
+                                        "class": "id-no",
+                                        "text": "{trainer.id}"
                                       }
                                     ]
                                   },
                                   {
                                     "type": "box",
-                                    "class": "id-row",
+                                    "class": "id-rows",
                                     "children": [
                                       {
                                         "type": "box",
-                                        "class": "id-ico-slot",
+                                        "class": "id-row",
                                         "children": [
                                           {
-                                            "type": "image",
-                                            "class": "id-ico",
-                                            "src": "asset:ui/coin.png"
+                                            "type": "box",
+                                            "class": "id-ico-slot",
+                                            "children": [
+                                              {
+                                                "type": "image",
+                                                "class": "id-ico",
+                                                "src": "asset:ui/ball.png"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "id-key",
+                                            "text": "NAME"
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "grow",
+                                            "children": []
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "id-val",
+                                            "text": "{trainer.name}"
                                           }
                                         ]
                                       },
                                       {
-                                        "type": "text",
-                                        "class": "id-key",
-                                        "text": "MONEY"
-                                      },
-                                      {
                                         "type": "box",
-                                        "class": "grow",
-                                        "children": []
-                                      },
-                                      {
-                                        "type": "text",
-                                        "class": "id-val",
-                                        "text": "\u00a5{money}"
-                                      }
-                                    ]
-                                  },
-                                  {
-                                    "type": "box",
-                                    "class": "id-row",
-                                    "children": [
-                                      {
-                                        "type": "box",
-                                        "class": "id-ico-slot",
+                                        "class": "id-row",
                                         "children": [
                                           {
-                                            "type": "image",
-                                            "class": "id-ico",
-                                            "src": "asset:ui/clock.png"
+                                            "type": "box",
+                                            "class": "id-ico-slot",
+                                            "children": [
+                                              {
+                                                "type": "image",
+                                                "class": "id-ico",
+                                                "src": "asset:ui/coin.png"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "id-key",
+                                            "text": "MONEY"
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "grow",
+                                            "children": []
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "id-val",
+                                            "text": "{money}"
                                           }
                                         ]
                                       },
                                       {
-                                        "type": "text",
-                                        "class": "id-key",
-                                        "text": "TIME"
-                                      },
-                                      {
                                         "type": "box",
-                                        "class": "grow",
-                                        "children": []
-                                      },
-                                      {
-                                        "type": "text",
-                                        "class": "id-val",
-                                        "text": "{time}"
-                                      }
-                                    ]
-                                  },
-                                  {
-                                    "type": "box",
-                                    "class": "id-row",
-                                    "children": [
-                                      {
-                                        "type": "box",
-                                        "class": "id-ico-slot",
+                                        "class": "id-row",
                                         "children": [
                                           {
-                                            "type": "image",
-                                            "class": "id-ico",
-                                            "src": "asset:ui/dex.png"
+                                            "type": "box",
+                                            "class": "id-ico-slot",
+                                            "children": [
+                                              {
+                                                "type": "image",
+                                                "class": "id-ico",
+                                                "src": "asset:ui/clock.png"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "id-key",
+                                            "text": "TIME"
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "grow",
+                                            "children": []
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "id-val",
+                                            "text": "{time}"
                                           }
                                         ]
                                       },
                                       {
-                                        "type": "text",
-                                        "class": "id-key",
-                                        "text": "POK\u00e9DEX"
-                                      },
-                                      {
                                         "type": "box",
-                                        "class": "grow",
-                                        "children": []
-                                      },
-                                      {
-                                        "type": "text",
-                                        "class": "id-val",
-                                        "text": "{dexCaught} OWN"
-                                      }
-                                    ]
-                                  },
-                                  {
-                                    "type": "box",
-                                    "class": "id-row",
-                                    "children": [
-                                      {
-                                        "type": "box",
-                                        "class": "id-ico-slot",
+                                        "class": "id-row",
                                         "children": [
                                           {
-                                            "type": "image",
-                                            "class": "id-ico",
-                                            "src": "asset:ui/badge1.png"
+                                            "type": "box",
+                                            "class": "id-ico-slot",
+                                            "children": [
+                                              {
+                                                "type": "image",
+                                                "class": "id-ico",
+                                                "src": "asset:ui/dex.png"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "id-key",
+                                            "text": "DEX"
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "grow",
+                                            "children": []
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "id-val",
+                                            "text": "{dexCaught}"
                                           }
                                         ]
                                       },
                                       {
-                                        "type": "text",
-                                        "class": "id-key",
-                                        "text": "BADGES"
-                                      },
-                                      {
                                         "type": "box",
-                                        "class": "grow",
-                                        "children": []
-                                      },
-                                      {
-                                        "type": "text",
-                                        "class": "id-val",
-                                        "text": "{badgeCount}/8"
+                                        "class": "id-row",
+                                        "children": [
+                                          {
+                                            "type": "box",
+                                            "class": "id-ico-slot",
+                                            "children": [
+                                              {
+                                                "type": "image",
+                                                "class": "id-ico",
+                                                "src": "asset:ui/id-badge.png"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "id-key",
+                                            "text": "BADGES"
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "grow",
+                                            "children": []
+                                          },
+                                          {
+                                            "type": "text",
+                                            "class": "id-val",
+                                            "text": "{badgeCount}/8"
+                                          }
+                                        ]
                                       }
                                     ]
                                   }

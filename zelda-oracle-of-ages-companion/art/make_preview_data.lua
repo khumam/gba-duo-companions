@@ -1,6 +1,6 @@
 -- Writes preview-data.json for skill/preview-pack.sh: runs main.lua's update() against fake RAM (a mid-game file: seven
 -- hearts, some items, five essences, some rings) and dumps what it returns. Run from the pack folder:
---   lua art/make_preview_data.lua [page [out.json]]   (the page sets the nav highlight: items, map, seeds, rings, status)
+--   lua art/make_preview_data.lua [page [out.json [k=v,k=v (extra ui keys, e.g. style=clean,theme=past)]]]   (the page sets the nav highlight: items, map, seeds, rings, status)
 local dir = arg[0]:match("^(.*)/art/") or "."
 local ram = {}
 local function put(addr, value, size) for i = 0, (size or 1) - 1 do ram[addr + i] = (value >> (8 * i)) & 255 end end
@@ -52,7 +52,13 @@ local function json(v)
   return tostring(v)
 end
 local page = arg[1] or "items"
-local out = update({ page = page })
+local ui = { page = page }
+for kv in (arg[3] or ""):gmatch("[^,]+") do
+  local k, v = kv:match("^([^=]+)=(.*)$")
+  if v == "true" then v = true elseif v == "false" then v = false end
+  ui[k] = v
+end
+local out = update(ui)
 assert(out.ready, "fake file must be ready")
 local f = assert(io.open(arg[2] or (dir .. "/preview-data.json"), "w")); f:write(json(out)); f:close()
 print("preview-data.json written for " .. page)

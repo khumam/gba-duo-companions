@@ -1,3 +1,22 @@
+# 0.2.0 (2026-11-24): a Clean style with themes, next to the brick one
+
+- **Switch:** the brick look is unchanged and still the default. A LOOK / CLEAN plate at the bottom of the left pillar opens the clean
+  style; its Options page has STYLE (Brick / Clean) and THEME (Present / Past / Night). UI state only, so every launch starts as Brick.
+- **Clean layout** = the Minish Cap pack's slate (top bar, a 347.1 dp master of 65.42 dp cells in 5 columns, one inspector holding the
+  text), in the game's own identity taken from `art/reference/` (the pause screen): the off-white panel as the surface, brick mauve
+  hairlines, the peach HUD strip as the top bar carrying B [ ] / A [ ], rupees and hearts like the game's HUD, the game's [ ] bracket
+  cursor as the selection, the game's item icons as the tabs, Press Start 2P + Jersey 10. Pink is the one accent (active page, the
+  inspector line, the explored meter).
+- **Pages:** Items (16 slots padded to 5 x 4, B / A cards), Map (era map, unseen rooms shaded, Link's room, explored meter), Seeds
+  (tall pouches, S = the satchel's seed, supplies), Rings (all 64, tap for the name, worn ring and ring box in the inspector), Status
+  (hearts, pieces, the eight essences, explored / song / room), Options.
+- **Files:** `art/clean.mjs` (layout, page names citems ... coptions, they share the brick pages' `page` state so the switch also
+  sets the page), `art/clean.src.css`; `style.css` is now generated: `python3 art/build_css.py && node art/layout.mjs`
+  (brick source in `art/style.brick.css`). `art/clean_glyphs.py` draws the map and options tab glyphs. `main.lua` adds the style /
+  theme flags and clean-only fields at its end (`ringList`, selections, `explored`, ...).
+- Previews: `lua art/make_preview_data.lua PAGE OUT.json "style=clean,theme=past,..."` (third argument = extra ui keys).
+  Not checked on a device yet.
+
 # Zelda: Oracle of Ages companion — build notes
 
 ## Brick redesign on the Minish Cap frame (not versioned yet, not checked on a device)
