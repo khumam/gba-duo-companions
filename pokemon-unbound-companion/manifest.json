@@ -1,7 +1,7 @@
 {
   "id": "pokemon-unbound-companion",
   "name": "Pokemon Unbound Companion",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": "khumam",
   "formatVersion": 4,
   "gameScript": "game.lua",
