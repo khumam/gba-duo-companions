@@ -130,9 +130,13 @@ relics = box("page page-relics", [
 # ---- MAP ------------------------------------------------------------------------------------------------------------------------
 cmap = box("page page-map", [
     plaque("Castle Map"),
-    box("mapwin", [box("mapbox", [lst("ml m-fill", "$mapFill", text("mt", "{t}")), lst("ml m-save", "$mapSave", text("mt", "{t}")),
+    box("mapwrap", [
+        box("mapwin", [box("mapbox", [lst("ml m-fill", "$mapFill", text("mt", "{t}")), lst("ml m-save", "$mapSave", text("mt", "{t}")),
                                   lst("ml m-warp", "$mapWarp", text("mt", "{t}")), lst("ml m-walls", "$mapWalls", text("mt", "{t}")),
-                                  box("me", [box("me-in")], bindStyle={"left": "{me.left}", "top": "{me.top}"}, visibleIf="$me.on")], classIf={"b": "$mapB"})]),
+                                  box("me", [box("me-in")], bindStyle={"left": "{me.left}", "top": "{me.top}"}, visibleIf="$me.on")], classIf={"b": "$mapB"})], zoom={"min": 1, "max": 4, "state": "mapZoom"}),
+        # pinch / drag the map, or the - / + keys on its corner (app 1.0.3+; older apps show it at 1x)
+        box("zoom-ctl", [button("zoom-key", {"zoom": "out", "state": "mapZoom"}, [text("zoom-key-t", "-")]),
+                         button("zoom-key", {"zoom": "in", "state": "mapZoom"}, [text("zoom-key-t", "+")])])]),
     box("tabs", [button("tab", [{"set": {"castle": 0}}], [text("lab tab-t", "CASTLE A  {map.a}")], classIf={"on": "$map.isA"}),
                  button("tab", [{"set": {"castle": 1}}], [text("lab tab-t", "CASTLE B  {map.b}")], classIf={"on": "$map.isB"})]),
     info([box("dline", [text("lab", "TOTAL"), text("num", "{map.total}"), grow(), text("lab", "YOU"), text("num", "{meText}")])]),

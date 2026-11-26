@@ -326,6 +326,7 @@ text { white-space: nowrap; }
 .p-map .pinner { gap: 4px; }
 .map-head { flex-shrink: 0; flex-direction: row; align-items: center; gap: 6px; height: 24px; }
 /* The world map's own 5:4 shape (160 x 128), so Link's marker lands on the right spot. */
+.map-wrap { position: relative; flex-shrink: 0; align-self: center; }
 .map-view {
   width: 284px;
   height: 227.2px;
@@ -683,6 +684,12 @@ text { white-space: nowrap; }
 .style-btn-t { font-size: 15px; line-height: 15px; color: #2F9DBB; }
 .style-btn.on .style-btn-t { color: #FFFFFF; }
 
+/* ---- map zoom keys: small stone keys on the map's corner, outside the zoomed box ------------------ */
+.zoom-ctl { position: absolute; right: 4px; bottom: 4px; flex-direction: row; gap: 4px; }
+.zoom-key { width: 34px; height: 34px; padding: 0; margin: 0; align-items: center; justify-content: center; background-color: var(--stone-edge); border: 2px solid #1b1d1b; border-radius: 0; }
+.zoom-key:pressed { transform: translate(0, 2px); }
+.zoom-key-t { font-size: 22px; line-height: 24px; color: var(--stone-band); text-shadow: 2px 2px 0 #1b1d1b; }
+
 /* ======== clean style (art/clean.src.css, built by art/build.py) ======== */
 /*
  * Clean style, the slate (source). art/build.py prefixes every class with c- and every custom property with --c-, and puts it after
@@ -784,7 +791,12 @@ text { white-space: nowrap; }
 /* ---- map ------------------------------------------------------------------------------------------------------------------ */
 .c-content-col { flex-direction: column; }
 .c-map-row { flex-direction: row; gap: 6px; height: 333.2px; flex-shrink: 0; }
+.c-map-wrap { position: relative; flex-shrink: 0; }
 .c-map-view { width: 416.5px; height: 333.2px; flex-shrink: 0; position: relative; overflow: hidden; background-color: var(--c-cell); }
+.c-zoom-ctl { position: absolute; right: 6px; bottom: 6px; flex-direction: row; gap: 6px; }
+.c-zoom-key { width: 40px; height: 40px; padding: 0; margin: 0; align-items: center; justify-content: center; background-color: var(--c-btn); border: 2px solid var(--c-line); border-radius: 0; }
+.c-zoom-key:pressed { border-color: var(--c-acc); }
+.c-zoom-key-t { font-family: "NunitoB"; font-size: 24px; line-height: 26px; color: var(--c-text); }
 .c-map-img { position: absolute; left: 0; top: 0; width: 416.5px; height: 333.2px; }
 .c-mark-link { position: absolute; width: 27.77px; height: 27.77px; transform: translate(-13.88px, -13.88px); }
 .c-insp-name-s { font-size: 15px; line-height: 18px; }

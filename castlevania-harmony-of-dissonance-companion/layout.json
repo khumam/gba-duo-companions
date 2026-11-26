@@ -1773,72 +1773,119 @@
              },
              {
               "type": "box",
-              "class": "mapwin",
+              "class": "mapwrap",
               "children": [
                {
                 "type": "box",
-                "class": "mapbox",
+                "class": "mapwin",
                 "children": [
                  {
-                  "type": "list",
-                  "class": "ml m-fill",
-                  "items": "$mapFill",
-                  "template": {
-                   "type": "text",
-                   "class": "mt",
-                   "text": "{t}"
-                  }
-                 },
-                 {
-                  "type": "list",
-                  "class": "ml m-save",
-                  "items": "$mapSave",
-                  "template": {
-                   "type": "text",
-                   "class": "mt",
-                   "text": "{t}"
-                  }
-                 },
-                 {
-                  "type": "list",
-                  "class": "ml m-warp",
-                  "items": "$mapWarp",
-                  "template": {
-                   "type": "text",
-                   "class": "mt",
-                   "text": "{t}"
-                  }
-                 },
-                 {
-                  "type": "list",
-                  "class": "ml m-walls",
-                  "items": "$mapWalls",
-                  "template": {
-                   "type": "text",
-                   "class": "mt",
-                   "text": "{t}"
-                  }
-                 },
-                 {
                   "type": "box",
-                  "class": "me",
+                  "class": "mapbox",
                   "children": [
                    {
+                    "type": "list",
+                    "class": "ml m-fill",
+                    "items": "$mapFill",
+                    "template": {
+                     "type": "text",
+                     "class": "mt",
+                     "text": "{t}"
+                    }
+                   },
+                   {
+                    "type": "list",
+                    "class": "ml m-save",
+                    "items": "$mapSave",
+                    "template": {
+                     "type": "text",
+                     "class": "mt",
+                     "text": "{t}"
+                    }
+                   },
+                   {
+                    "type": "list",
+                    "class": "ml m-warp",
+                    "items": "$mapWarp",
+                    "template": {
+                     "type": "text",
+                     "class": "mt",
+                     "text": "{t}"
+                    }
+                   },
+                   {
+                    "type": "list",
+                    "class": "ml m-walls",
+                    "items": "$mapWalls",
+                    "template": {
+                     "type": "text",
+                     "class": "mt",
+                     "text": "{t}"
+                    }
+                   },
+                   {
                     "type": "box",
-                    "class": "me-in",
-                    "children": []
+                    "class": "me",
+                    "children": [
+                     {
+                      "type": "box",
+                      "class": "me-in",
+                      "children": []
+                     }
+                    ],
+                    "bindStyle": {
+                     "left": "{me.left}",
+                     "top": "{me.top}"
+                    },
+                    "visibleIf": "$me.on"
                    }
                   ],
-                  "bindStyle": {
-                   "left": "{me.left}",
-                   "top": "{me.top}"
-                  },
-                  "visibleIf": "$me.on"
+                  "classIf": {
+                   "b": "$mapB"
+                  }
                  }
                 ],
-                "classIf": {
-                 "b": "$mapB"
+                "zoom": {
+                 "min": 1,
+                 "max": 4,
+                 "state": "mapZoom"
                 }
+               },
+               {
+                "type": "box",
+                "class": "zoom-ctl",
+                "children": [
+                 {
+                  "type": "button",
+                  "class": "zoom-key",
+                  "onClick": {
+                   "zoom": "out",
+                   "state": "mapZoom"
+                  },
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "zoom-key-t",
+                    "text": "-"
+                   }
+                  ]
+                 },
+                 {
+                  "type": "button",
+                  "class": "zoom-key",
+                  "onClick": {
+                   "zoom": "in",
+                   "state": "mapZoom"
+                  },
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "zoom-key-t",
+                    "text": "+"
+                   }
+                  ]
+                 }
+                ]
                }
               ]
              },

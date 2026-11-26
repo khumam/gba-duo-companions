@@ -231,9 +231,9 @@ bar {
 
 .content-map { gap: 3ap; }
 .banner-room { margin-right: 4ap; }
+.map-wrap { position: relative; align-self: center; }
 .map-frame {
   position: relative;
-  align-self: center;
   width: 499.5px;
   height: 249.75px;
   border: 1ap solid var(--silver-dk);
@@ -247,6 +247,23 @@ bar {
 .crosshair { position: absolute; left: -16.26px; top: -16.26px; width: 32.52px; height: 32.52px; }
 .map-empty { position: absolute; left: 0; top: 0; right: 0; bottom: 0; align-items: center; justify-content: center; }
 .map-empty-text { font-family: "Jersey"; font-size: 11ap; color: var(--cyan); }
+/* zoom keys on the map's bottom right corner, outside the zoomed box so they keep their size */
+.zoom-ctl { position: absolute; right: 2ap; bottom: 2ap; flex-direction: row; gap: 2ap; }
+.zoom-key {
+  width: 15ap;
+  height: 15ap;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background-color: transparent;
+  background-image: url("assets/ui/zoom-key.png");
+  background-size: 15ap 15ap;
+  background-repeat: no-repeat;
+  border: 0;
+  border-radius: 0;
+}
+.zoom-key:pressed { transform: translate(0, 1ap); }
+.zoom-key-t { font-size: 10ap; line-height: 10ap; color: var(--white); text-shadow: 1ap 1ap 0 var(--ink); }
 .hatches { flex-direction: row; gap: 3ap; }
 .hatch {
   flex: 1;

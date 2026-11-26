@@ -180,140 +180,188 @@
                                       },
                                       {
                                         "type": "box",
-                                        "class": "map-view",
+                                        "class": "map-wrap",
                                         "children": [
                                           {
-                                            "type": "image",
-                                            "class": "map-img",
-                                            "src": "$map.image"
-                                          },
-                                          {
-                                            "type": "image",
-                                            "class": "mark mark-link",
-                                            "src": "$icons.linkHead",
-                                            "bindStyle": {
-                                              "left": "{map.linkX}%",
-                                              "top": "{map.linkY}%"
-                                            }
-                                          },
-                                          {
                                             "type": "box",
-                                            "class": "dmap",
+                                            "class": "map-view",
                                             "children": [
                                               {
-                                                "type": "box",
-                                                "class": "dmap-head",
-                                                "children": [
-                                                  {
-                                                    "type": "text",
-                                                    "class": "dmap-name",
-                                                    "text": "{dungeon.name}"
-                                                  }
-                                                ]
+                                                "type": "image",
+                                                "class": "map-img",
+                                                "src": "$map.image"
+                                              },
+                                              {
+                                                "type": "image",
+                                                "class": "mark mark-link",
+                                                "src": "$icons.linkHead",
+                                                "bindStyle": {
+                                                  "left": "{map.linkX}%",
+                                                  "top": "{map.linkY}%"
+                                                }
                                               },
                                               {
                                                 "type": "box",
-                                                "class": "dmap-body",
+                                                "class": "dmap",
                                                 "children": [
                                                   {
-                                                    "type": "list",
-                                                    "class": "dmap-floors",
-                                                    "items": "$dungeon.floors",
-                                                    "template": {
-                                                      "type": "box",
-                                                      "class": "dfloor",
-                                                      "children": [
-                                                        {
-                                                          "type": "box",
-                                                          "class": "dfloor-mark",
-                                                          "children": [
-                                                            {
-                                                              "type": "image",
-                                                              "class": "dfloor-link",
-                                                              "src": "$icons.linkHead",
-                                                              "visibleIf": "$here"
-                                                            }
-                                                          ]
-                                                        },
-                                                        {
-                                                          "type": "text",
-                                                          "class": "num dfloor-name",
-                                                          "text": "{name}"
-                                                        },
-                                                        {
-                                                          "type": "box",
-                                                          "class": "dfloor-mark",
-                                                          "children": [
-                                                            {
-                                                              "type": "image",
-                                                              "class": "dfloor-boss",
-                                                              "src": "asset:ui/mark-boss.png",
-                                                              "visibleIf": "$boss"
-                                                            }
-                                                          ]
-                                                        }
-                                                      ],
-                                                      "classIf": {
-                                                        "here": "$here"
+                                                    "type": "box",
+                                                    "class": "dmap-head",
+                                                    "children": [
+                                                      {
+                                                        "type": "text",
+                                                        "class": "dmap-name",
+                                                        "text": "{dungeon.name}"
                                                       }
-                                                    }
+                                                    ]
                                                   },
                                                   {
                                                     "type": "box",
-                                                    "class": "dmap-items",
+                                                    "class": "dmap-body",
                                                     "children": [
                                                       {
                                                         "type": "list",
-                                                        "class": "ditem-row",
-                                                        "items": "$dungeon.items",
+                                                        "class": "dmap-floors",
+                                                        "items": "$dungeon.floors",
                                                         "template": {
                                                           "type": "box",
-                                                          "class": "ditem",
+                                                          "class": "dfloor",
                                                           "children": [
                                                             {
                                                               "type": "box",
-                                                              "class": "ditem-slot",
+                                                              "class": "dfloor-mark",
                                                               "children": [
                                                                 {
                                                                   "type": "image",
-                                                                  "class": "ditem-icon",
-                                                                  "src": "$icon"
+                                                                  "class": "dfloor-link",
+                                                                  "src": "$icons.linkHead",
+                                                                  "visibleIf": "$here"
                                                                 }
                                                               ]
                                                             },
                                                             {
                                                               "type": "text",
-                                                              "class": "ditem-name",
+                                                              "class": "num dfloor-name",
                                                               "text": "{name}"
+                                                            },
+                                                            {
+                                                              "type": "box",
+                                                              "class": "dfloor-mark",
+                                                              "children": [
+                                                                {
+                                                                  "type": "image",
+                                                                  "class": "dfloor-boss",
+                                                                  "src": "asset:ui/mark-boss.png",
+                                                                  "visibleIf": "$boss"
+                                                                }
+                                                              ]
                                                             }
                                                           ],
                                                           "classIf": {
-                                                            "missing": "$missing"
+                                                            "here": "$here"
                                                           }
                                                         }
                                                       },
                                                       {
                                                         "type": "box",
-                                                        "class": "dkeys",
+                                                        "class": "dmap-items",
                                                         "children": [
                                                           {
-                                                            "type": "image",
-                                                            "class": "dkey-icon",
-                                                            "src": "$dungeon.keyIcon"
+                                                            "type": "list",
+                                                            "class": "ditem-row",
+                                                            "items": "$dungeon.items",
+                                                            "template": {
+                                                              "type": "box",
+                                                              "class": "ditem",
+                                                              "children": [
+                                                                {
+                                                                  "type": "box",
+                                                                  "class": "ditem-slot",
+                                                                  "children": [
+                                                                    {
+                                                                      "type": "image",
+                                                                      "class": "ditem-icon",
+                                                                      "src": "$icon"
+                                                                    }
+                                                                  ]
+                                                                },
+                                                                {
+                                                                  "type": "text",
+                                                                  "class": "ditem-name",
+                                                                  "text": "{name}"
+                                                                }
+                                                              ],
+                                                              "classIf": {
+                                                                "missing": "$missing"
+                                                              }
+                                                            }
                                                           },
                                                           {
-                                                            "type": "text",
-                                                            "class": "num dkey-num",
-                                                            "text": "{dungeon.keys}"
+                                                            "type": "box",
+                                                            "class": "dkeys",
+                                                            "children": [
+                                                              {
+                                                                "type": "image",
+                                                                "class": "dkey-icon",
+                                                                "src": "$dungeon.keyIcon"
+                                                              },
+                                                              {
+                                                                "type": "text",
+                                                                "class": "num dkey-num",
+                                                                "text": "{dungeon.keys}"
+                                                              }
+                                                            ]
                                                           }
                                                         ]
                                                       }
                                                     ]
                                                   }
+                                                ],
+                                                "visibleIf": "$map.showDungeon"
+                                              }
+                                            ],
+                                            "zoom": {
+                                              "min": 1,
+                                              "max": 4,
+                                              "state": "mapZoom"
+                                            }
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "zoom-ctl",
+                                            "children": [
+                                              {
+                                                "type": "button",
+                                                "class": "zoom-key",
+                                                "onClick": {
+                                                  "zoom": "out",
+                                                  "state": "mapZoom"
+                                                },
+                                                "children": [
+                                                  {
+                                                    "type": "text",
+                                                    "class": "zoom-key-t",
+                                                    "text": "-"
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "type": "button",
+                                                "class": "zoom-key",
+                                                "onClick": {
+                                                  "zoom": "in",
+                                                  "state": "mapZoom"
+                                                },
+                                                "children": [
+                                                  {
+                                                    "type": "text",
+                                                    "class": "zoom-key-t",
+                                                    "text": "+"
+                                                  }
                                                 ]
                                               }
                                             ],
-                                            "visibleIf": "$map.showDungeon"
+                                            "visibleIf": "$map.showWorld"
                                           }
                                         ]
                                       }
@@ -2164,105 +2212,153 @@
                             "children": [
                               {
                                 "type": "box",
-                                "class": "c-map-view",
+                                "class": "c-map-wrap",
                                 "children": [
                                   {
-                                    "type": "image",
-                                    "class": "c-map-img",
-                                    "src": "$map.image"
-                                  },
-                                  {
-                                    "type": "image",
-                                    "class": "c-mark-link",
-                                    "src": "$icons.linkHead",
-                                    "bindStyle": {
-                                      "left": "{map.linkX}%",
-                                      "top": "{map.linkY}%"
-                                    }
-                                  },
-                                  {
                                     "type": "box",
-                                    "class": "c-dmap",
+                                    "class": "c-map-view",
                                     "children": [
                                       {
-                                        "type": "list",
-                                        "class": "c-dfloors",
-                                        "items": "$dungeon.floors",
-                                        "template": {
-                                          "type": "box",
-                                          "class": "c-dfloor",
-                                          "children": [
-                                            {
-                                              "type": "text",
-                                              "class": "c-dfloor-name",
-                                              "text": "{name}"
-                                            },
-                                            {
-                                              "type": "box",
-                                              "class": "c-grow",
-                                              "children": []
-                                            },
-                                            {
-                                              "type": "image",
-                                              "class": "c-dfloor-boss",
-                                              "src": "asset:ui/mark-boss.png",
-                                              "visibleIf": "$boss"
-                                            },
-                                            {
-                                              "type": "image",
-                                              "class": "c-dfloor-link",
-                                              "src": "$icons.linkHead",
-                                              "visibleIf": "$here"
-                                            }
-                                          ],
-                                          "classIf": {
-                                            "c-here": "$here"
-                                          }
+                                        "type": "image",
+                                        "class": "c-map-img",
+                                        "src": "$map.image"
+                                      },
+                                      {
+                                        "type": "image",
+                                        "class": "c-mark-link",
+                                        "src": "$icons.linkHead",
+                                        "bindStyle": {
+                                          "left": "{map.linkX}%",
+                                          "top": "{map.linkY}%"
                                         }
                                       },
                                       {
                                         "type": "box",
-                                        "class": "c-ditems",
+                                        "class": "c-dmap",
                                         "children": [
                                           {
                                             "type": "list",
-                                            "class": "c-ditem-row",
-                                            "items": "$dungeon.items",
+                                            "class": "c-dfloors",
+                                            "items": "$dungeon.floors",
                                             "template": {
                                               "type": "box",
-                                              "class": "c-dcell",
+                                              "class": "c-dfloor",
                                               "children": [
                                                 {
+                                                  "type": "text",
+                                                  "class": "c-dfloor-name",
+                                                  "text": "{name}"
+                                                },
+                                                {
+                                                  "type": "box",
+                                                  "class": "c-grow",
+                                                  "children": []
+                                                },
+                                                {
                                                   "type": "image",
-                                                  "class": "c-dcell-icon",
-                                                  "src": "$icon"
+                                                  "class": "c-dfloor-boss",
+                                                  "src": "asset:ui/mark-boss.png",
+                                                  "visibleIf": "$boss"
+                                                },
+                                                {
+                                                  "type": "image",
+                                                  "class": "c-dfloor-link",
+                                                  "src": "$icons.linkHead",
+                                                  "visibleIf": "$here"
                                                 }
                                               ],
                                               "classIf": {
-                                                "c-missing": "$missing"
+                                                "c-here": "$here"
                                               }
                                             }
                                           },
                                           {
                                             "type": "box",
-                                            "class": "c-dcell",
+                                            "class": "c-ditems",
                                             "children": [
                                               {
-                                                "type": "image",
-                                                "class": "c-dcell-icon",
-                                                "src": "$dungeon.keyIcon"
+                                                "type": "list",
+                                                "class": "c-ditem-row",
+                                                "items": "$dungeon.items",
+                                                "template": {
+                                                  "type": "box",
+                                                  "class": "c-dcell",
+                                                  "children": [
+                                                    {
+                                                      "type": "image",
+                                                      "class": "c-dcell-icon",
+                                                      "src": "$icon"
+                                                    }
+                                                  ],
+                                                  "classIf": {
+                                                    "c-missing": "$missing"
+                                                  }
+                                                }
                                               },
                                               {
-                                                "type": "text",
-                                                "class": "c-num c-badge",
-                                                "text": "{dungeon.keys}"
+                                                "type": "box",
+                                                "class": "c-dcell",
+                                                "children": [
+                                                  {
+                                                    "type": "image",
+                                                    "class": "c-dcell-icon",
+                                                    "src": "$dungeon.keyIcon"
+                                                  },
+                                                  {
+                                                    "type": "text",
+                                                    "class": "c-num c-badge",
+                                                    "text": "{dungeon.keys}"
+                                                  }
+                                                ]
                                               }
                                             ]
+                                          }
+                                        ],
+                                        "visibleIf": "$map.showDungeon"
+                                      }
+                                    ],
+                                    "zoom": {
+                                      "min": 1,
+                                      "max": 4,
+                                      "state": "mapZoom"
+                                    }
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-zoom-ctl",
+                                    "children": [
+                                      {
+                                        "type": "button",
+                                        "class": "c-zoom-key",
+                                        "onClick": {
+                                          "zoom": "out",
+                                          "state": "mapZoom"
+                                        },
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "class": "c-zoom-key-t",
+                                            "text": "-"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "button",
+                                        "class": "c-zoom-key",
+                                        "onClick": {
+                                          "zoom": "in",
+                                          "state": "mapZoom"
+                                        },
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "class": "c-zoom-key-t",
+                                            "text": "+"
                                           }
                                         ]
                                       }
                                     ],
-                                    "visibleIf": "$map.showDungeon"
+                                    "visibleIf": "$map.showWorld"
                                   }
                                 ]
                               },

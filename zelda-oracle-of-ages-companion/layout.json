@@ -160,47 +160,94 @@
                                 "children": [
                                   {
                                     "type": "box",
-                                    "class": "map-stack",
+                                    "class": "map-wrap",
                                     "children": [
                                       {
-                                        "type": "image",
-                                        "class": "map-img",
-                                        "src": "asset:ui/map-present.png",
-                                        "visibleIf": "$map.present"
-                                      },
-                                      {
-                                        "type": "image",
-                                        "class": "map-img",
-                                        "src": "asset:ui/map-past.png",
-                                        "visibleIf": "$map.past"
-                                      },
-                                      {
-                                        "type": "list",
-                                        "class": "map-rows",
-                                        "items": "$map.rows",
-                                        "template": {
-                                          "type": "list",
-                                          "class": "map-row",
-                                          "items": "$cells",
-                                          "template": {
-                                            "type": "box",
-                                            "class": "mcell",
-                                            "children": [],
-                                            "classIf": {
-                                              "unseen": "$unseen",
-                                              "here": "$here"
+                                        "type": "box",
+                                        "class": "map-stack",
+                                        "children": [
+                                          {
+                                            "type": "image",
+                                            "class": "map-img",
+                                            "src": "asset:ui/map-present.png",
+                                            "visibleIf": "$map.present"
+                                          },
+                                          {
+                                            "type": "image",
+                                            "class": "map-img",
+                                            "src": "asset:ui/map-past.png",
+                                            "visibleIf": "$map.past"
+                                          },
+                                          {
+                                            "type": "list",
+                                            "class": "map-rows",
+                                            "items": "$map.rows",
+                                            "template": {
+                                              "type": "list",
+                                              "class": "map-row",
+                                              "items": "$cells",
+                                              "template": {
+                                                "type": "box",
+                                                "class": "mcell",
+                                                "children": [],
+                                                "classIf": {
+                                                  "unseen": "$unseen",
+                                                  "here": "$here"
+                                                }
+                                              }
                                             }
+                                          },
+                                          {
+                                            "type": "box",
+                                            "class": "era-badge",
+                                            "children": [
+                                              {
+                                                "type": "text",
+                                                "class": "era-text",
+                                                "text": "{map.era}"
+                                              }
+                                            ]
                                           }
+                                        ],
+                                        "zoom": {
+                                          "min": 1,
+                                          "max": 4,
+                                          "state": "mapZoom"
                                         }
                                       },
                                       {
                                         "type": "box",
-                                        "class": "era-badge",
+                                        "class": "zoom-ctl",
                                         "children": [
                                           {
-                                            "type": "text",
-                                            "class": "era-text",
-                                            "text": "{map.era}"
+                                            "type": "button",
+                                            "class": "zoom-key",
+                                            "onClick": {
+                                              "zoom": "out",
+                                              "state": "mapZoom"
+                                            },
+                                            "children": [
+                                              {
+                                                "type": "text",
+                                                "class": "zoom-key-t",
+                                                "text": "-"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "button",
+                                            "class": "zoom-key",
+                                            "onClick": {
+                                              "zoom": "in",
+                                              "state": "mapZoom"
+                                            },
+                                            "children": [
+                                              {
+                                                "type": "text",
+                                                "class": "zoom-key-t",
+                                                "text": "+"
+                                              }
+                                            ]
                                           }
                                         ]
                                       }
@@ -1864,38 +1911,85 @@
                             "children": [
                               {
                                 "type": "box",
-                                "class": "c-map-view",
+                                "class": "c-map-wrap",
                                 "children": [
                                   {
-                                    "type": "image",
-                                    "class": "c-map-img",
-                                    "src": "asset:ui/map-present.png",
-                                    "visibleIf": "$map.present"
-                                  },
-                                  {
-                                    "type": "image",
-                                    "class": "c-map-img",
-                                    "src": "asset:ui/map-past.png",
-                                    "visibleIf": "$map.past"
-                                  },
-                                  {
-                                    "type": "list",
-                                    "class": "c-map-rows",
-                                    "items": "$map.rows",
-                                    "template": {
-                                      "type": "list",
-                                      "class": "c-map-line",
-                                      "items": "$cells",
-                                      "template": {
-                                        "type": "box",
-                                        "class": "c-mcell",
-                                        "children": [],
-                                        "classIf": {
-                                          "c-unseen": "$unseen",
-                                          "c-here": "$here"
+                                    "type": "box",
+                                    "class": "c-map-view",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "c-map-img",
+                                        "src": "asset:ui/map-present.png",
+                                        "visibleIf": "$map.present"
+                                      },
+                                      {
+                                        "type": "image",
+                                        "class": "c-map-img",
+                                        "src": "asset:ui/map-past.png",
+                                        "visibleIf": "$map.past"
+                                      },
+                                      {
+                                        "type": "list",
+                                        "class": "c-map-rows",
+                                        "items": "$map.rows",
+                                        "template": {
+                                          "type": "list",
+                                          "class": "c-map-line",
+                                          "items": "$cells",
+                                          "template": {
+                                            "type": "box",
+                                            "class": "c-mcell",
+                                            "children": [],
+                                            "classIf": {
+                                              "c-unseen": "$unseen",
+                                              "c-here": "$here"
+                                            }
+                                          }
                                         }
                                       }
+                                    ],
+                                    "zoom": {
+                                      "min": 1,
+                                      "max": 4,
+                                      "state": "mapZoom"
                                     }
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "c-zoom-ctl",
+                                    "children": [
+                                      {
+                                        "type": "button",
+                                        "class": "c-zoom-key",
+                                        "onClick": {
+                                          "zoom": "out",
+                                          "state": "mapZoom"
+                                        },
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "class": "c-zoom-key-t",
+                                            "text": "-"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "button",
+                                        "class": "c-zoom-key",
+                                        "onClick": {
+                                          "zoom": "in",
+                                          "state": "mapZoom"
+                                        },
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "class": "c-zoom-key-t",
+                                            "text": "+"
+                                          }
+                                        ]
+                                      }
+                                    ]
                                   }
                                 ]
                               },

@@ -261,52 +261,100 @@
                       },
                       {
                         "type": "box",
-                        "class": "map-frame",
+                        "class": "map-wrap",
                         "children": [
                           {
                             "type": "box",
-                            "class": "map-pan",
+                            "class": "map-frame",
                             "children": [
                               {
-                                "type": "image",
-                                "class": "map-img",
-                                "src": "$map.image"
-                              },
-                              {
                                 "type": "box",
-                                "class": "map-dim",
-                                "children": []
-                              },
-                              {
-                                "type": "box",
-                                "class": "samus-anchor",
+                                "class": "map-pan",
                                 "children": [
                                   {
                                     "type": "image",
-                                    "class": "crosshair",
-                                    "src": "asset:ui/crosshair.png"
+                                    "class": "map-img",
+                                    "src": "$map.image"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "map-dim",
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "samus-anchor",
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "class": "crosshair",
+                                        "src": "asset:ui/crosshair.png"
+                                      }
+                                    ],
+                                    "bindStyle": {
+                                      "left": "{map.x}px",
+                                      "top": "{map.y}px"
+                                    },
+                                    "visibleIf": "$map.onMap"
                                   }
                                 ],
-                                "bindStyle": {
-                                  "left": "{map.x}px",
-                                  "top": "{map.y}px"
-                                },
-                                "visibleIf": "$map.onMap"
+                                "visibleIf": "$map.has"
+                              },
+                              {
+                                "type": "box",
+                                "class": "map-empty",
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "map-empty-text",
+                                    "text": "{map.status}"
+                                  }
+                                ],
+                                "visibleIf": "$map.none"
                               }
                             ],
-                            "visibleIf": "$map.has"
+                            "zoom": {
+                              "min": 1,
+                              "max": 3,
+                              "state": "mapZoom"
+                            }
                           },
                           {
                             "type": "box",
-                            "class": "map-empty",
+                            "class": "zoom-ctl",
                             "children": [
                               {
-                                "type": "text",
-                                "class": "map-empty-text",
-                                "text": "{map.status}"
+                                "type": "button",
+                                "class": "zoom-key",
+                                "onClick": {
+                                  "zoom": "out",
+                                  "state": "mapZoom"
+                                },
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "zoom-key-t",
+                                    "text": "-"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "zoom-key",
+                                "onClick": {
+                                  "zoom": "in",
+                                  "state": "mapZoom"
+                                },
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "zoom-key-t",
+                                    "text": "+"
+                                  }
+                                ]
                               }
                             ],
-                            "visibleIf": "$map.none"
+                            "visibleIf": "$map.has"
                           }
                         ]
                       },

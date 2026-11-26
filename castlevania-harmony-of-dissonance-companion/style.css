@@ -142,6 +142,7 @@ bar > fill { border-radius: 0; transition: width 300ms; }
 .tab.on .tab-t { color: var(--white); }
 
 /* ---- map -------------------------------------------------------------------------------------------------------------------- */
+.mapwrap { flex: 1; min-height: 0; position: relative; }
 .mapwin { flex: 1; min-height: 0; align-items: center; justify-content: center; background-color: #000018; border: 2.168px solid var(--rule); }
 .mapbox { width: 364.224px; height: 194.2528px; flex-shrink: 0; position: relative; overflow: hidden; }
 .ml { position: absolute; left: 0; top: 0; gap: 0; }
@@ -212,3 +213,9 @@ bar > fill { border-radius: 0; transition: width 300ms; }
 .slotname { flex-direction: row; align-items: center; gap: 8.672px; height: 30.352px; flex-shrink: 0; padding-left: 4.336px; }
 .slotname .slot-n { font-size: 28.184px; }
 .page-equip .list-w { flex: 1; min-height: 0; }
+
+/* ---- map zoom keys: on the map window's corner, outside the zoomed box so they keep their size ---------------------------- */
+.zoom-ctl { position: absolute; right: 6.504px; bottom: 6.504px; flex-direction: row; gap: 4.336px; }
+.zoom-key { width: 34.688px; height: 34.688px; padding: 0; margin: 0; align-items: center; justify-content: center; background-color: var(--green); border: 2.168px solid var(--white); border-radius: 0; }
+.zoom-key:pressed { background-color: var(--green-hi); }
+.zoom-key-t { font-size: 26.016px; line-height: 26.016px; color: var(--white); }

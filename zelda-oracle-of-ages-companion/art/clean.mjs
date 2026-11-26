@@ -68,10 +68,17 @@ export function buildClean(h) {
   // ---- MAP ---------------------------------------------------------------------------------------------------------------------
   const mapPage = box("content content-col", [
     box("map-row", [
-      box("map-view", [
-        img("map-img", ui("map-present"), { visibleIf: "$map.present" }),
-        img("map-img", ui("map-past"), { visibleIf: "$map.past" }),
-        list("map-rows", "$map.rows", list("map-line", "$cells", box("mcell", [], { classIf: { unseen: "$unseen", here: "$here" } }))),
+      // pinch / drag the map, or the - / + keys on its corner (app 1.0.3+; older apps show it at 1x)
+      box("map-wrap", [
+        box("map-view", [
+          img("map-img", ui("map-present"), { visibleIf: "$map.present" }),
+          img("map-img", ui("map-past"), { visibleIf: "$map.past" }),
+          list("map-rows", "$map.rows", list("map-line", "$cells", box("mcell", [], { classIf: { unseen: "$unseen", here: "$here" } }))),
+        ], { zoom: { min: 1, max: 4, state: "mapZoom" } }),
+        box("zoom-ctl", [
+          button("zoom-key", { zoom: "out", state: "mapZoom" }, [text("zoom-key-t", "-")]),
+          button("zoom-key", { zoom: "in", state: "mapZoom" }, [text("zoom-key-t", "+")]),
+        ]),
       ]),
       inspector([
         text("insp-name", "{map.era}"),

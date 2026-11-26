@@ -223,9 +223,9 @@ bar {
 
 .content-map { gap: 6.504px; }
 .banner-room { margin-right: 8.672px; }
+.map-wrap { position: relative; align-self: center; }
 .map-frame {
   position: relative;
-  align-self: center;
   width: 499.5px;
   height: 277.5px;
   border: 2.168px solid var(--teal);
@@ -238,6 +238,11 @@ bar {
 .crosshair { position: absolute; left: -16.26px; top: -16.26px; width: 32.52px; height: 32.52px; }
 .map-empty { position: absolute; left: 0; top: 0; right: 0; bottom: 0; align-items: center; justify-content: center; }
 .map-empty-text { font-family: "Jersey"; font-size: 23.848px; color: var(--mint-lt); }
+/* zoom keys on the map's bottom right corner, outside the zoomed box so they keep their size */
+.zoom-ctl { position: absolute; right: 6.504px; bottom: 6.504px; flex-direction: row; gap: 4.336px; }
+.zoom-key { width: 32.52px; height: 32.52px; padding: 0; align-items: center; justify-content: center; background-color: var(--teal-dd); border: 2.168px solid var(--mint); border-radius: 0; box-shadow: 2.168px 2.168px 0 var(--ink); }
+.zoom-key:pressed { transform: translate(2.168px, 2.168px); }
+.zoom-key-t { font-size: 21.68px; line-height: 21.68px; color: var(--mint-lt); }
 
 /* ---- status ---------------------------------------------------------------------------------- */
 

@@ -53,11 +53,17 @@ const items = box("body body-items", [
 // ---- MAP: the overworld of the current era, rooms Link hasn't visited dimmed -------------------------------------
 
 const map = box("body body-map", [
-  box("map-stack", [
+  // pinch / drag the map, or the - / + keys on its corner (app 1.0.3+; older apps show it at 1x)
+  box("map-wrap", [box("map-stack", [
     img("map-img", ui("map-present"), { visibleIf: "$map.present" }),
     img("map-img", ui("map-past"), { visibleIf: "$map.past" }),
     list("map-rows", "$map.rows", list("map-row", "$cells", box("mcell", [], { classIf: { unseen: "$unseen", here: "$here" } }))),
     box("era-badge", [text("era-text", "{map.era}")]),
+  ], { zoom: { min: 1, max: 4, state: "mapZoom" } }),
+    box("zoom-ctl", [
+      button("zoom-key", { zoom: "out", state: "mapZoom" }, [text("zoom-key-t", "-")]),
+      button("zoom-key", { zoom: "in", state: "mapZoom" }, [text("zoom-key-t", "+")]),
+    ]),
   ]),
 ]);
 

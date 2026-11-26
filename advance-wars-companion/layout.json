@@ -806,83 +806,131 @@
               "children": [
                {
                 "type": "box",
-                "class": "mapwell",
+                "class": "mapzw",
                 "children": [
                  {
                   "type": "box",
-                  "class": "mapwrap",
+                  "class": "mapwell",
                   "children": [
                    {
-                    "type": "image",
-                    "class": "mapbg",
-                    "src": "$mapImg"
-                   },
-                   {
-                    "type": "list",
-                    "class": "mprops",
-                    "items": "$mapProps",
-                    "template": {
-                     "type": "box",
-                     "class": "mp",
-                     "children": [],
-                     "bindStyle": {
-                      "left": "{left}",
-                      "top": "{top}",
-                      "width": "{size}",
-                      "height": "{size}",
-                      "background-color": "{color}"
-                     },
-                     "classIf": {
-                      "hq": "$hq"
-                     }
-                    }
-                   },
-                   {
-                    "type": "list",
-                    "class": "munits",
-                    "items": "$mapUnits",
-                    "template": {
-                     "type": "box",
-                     "class": "mu",
-                     "children": [
-                      {
-                       "type": "image",
-                       "class": "mui",
-                       "src": "$icon"
-                      }
-                     ],
-                     "bindStyle": {
-                      "left": "{left}",
-                      "top": "{top}",
-                      "width": "{size}",
-                      "height": "{sizeH}"
-                     }
-                    }
-                   },
-                   {
                     "type": "box",
-                    "class": "view",
-                    "children": [],
+                    "class": "mapwrap",
+                    "children": [
+                     {
+                      "type": "image",
+                      "class": "mapbg",
+                      "src": "$mapImg"
+                     },
+                     {
+                      "type": "list",
+                      "class": "mprops",
+                      "items": "$mapProps",
+                      "template": {
+                       "type": "box",
+                       "class": "mp",
+                       "children": [],
+                       "bindStyle": {
+                        "left": "{left}",
+                        "top": "{top}",
+                        "width": "{size}",
+                        "height": "{size}",
+                        "background-color": "{color}"
+                       },
+                       "classIf": {
+                        "hq": "$hq"
+                       }
+                      }
+                     },
+                     {
+                      "type": "list",
+                      "class": "munits",
+                      "items": "$mapUnits",
+                      "template": {
+                       "type": "box",
+                       "class": "mu",
+                       "children": [
+                        {
+                         "type": "image",
+                         "class": "mui",
+                         "src": "$icon"
+                        }
+                       ],
+                       "bindStyle": {
+                        "left": "{left}",
+                        "top": "{top}",
+                        "width": "{size}",
+                        "height": "{sizeH}"
+                       }
+                      }
+                     },
+                     {
+                      "type": "box",
+                      "class": "view",
+                      "children": [],
+                      "bindStyle": {
+                       "left": "{view.left}",
+                       "top": "{view.top}",
+                       "width": "{view.width}",
+                       "height": "{view.height}"
+                      },
+                      "visibleIf": "$hasView"
+                     }
+                    ],
                     "bindStyle": {
-                     "left": "{view.left}",
-                     "top": "{view.top}",
-                     "width": "{view.width}",
-                     "height": "{view.height}"
+                     "width": "{mapW}",
+                     "height": "{mapH}"
                     },
-                    "visibleIf": "$hasView"
+                    "visibleIf": "$hasMap"
+                   },
+                   {
+                    "type": "text",
+                    "class": "nomap",
+                    "text": "Open the map screen in the game.",
+                    "visibleIf": "$noMap"
                    }
                   ],
-                  "bindStyle": {
-                   "width": "{mapW}",
-                   "height": "{mapH}"
-                  },
-                  "visibleIf": "$hasMap"
+                  "zoom": {
+                   "min": 1,
+                   "max": 4,
+                   "state": "mapZoom"
+                  }
                  },
                  {
-                  "type": "text",
-                  "class": "nomap",
-                  "text": "Open the map screen in the game.",
-                  "visibleIf": "$noMap"
+                  "type": "box",
+                  "class": "zoom-ctl",
+                  "children": [
+                   {
+                    "type": "button",
+                    "class": "zoom-key",
+                    "onClick": {
+                     "zoom": "out",
+                     "state": "mapZoom"
+                    },
+                    "children": [
+                     {
+                      "type": "text",
+                      "class": "zoom-key-t",
+                      "text": "-"
+                     }
+                    ]
+                   },
+                   {
+                    "type": "button",
+                    "class": "zoom-key",
+                    "onClick": {
+                     "zoom": "in",
+                     "state": "mapZoom"
+                    },
+                    "children": [
+                     {
+                      "type": "text",
+                      "class": "zoom-key-t",
+                      "text": "+"
+                     }
+                    ]
+                   }
+                  ],
+                  "visibleIf": "$hasMap"
                  }
                 ]
                }

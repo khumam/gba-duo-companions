@@ -169,3 +169,72 @@ When asked to review or simplify an existing companion UI:
 2. **Purge Text & Nested Containers:** Strip all text labels from grid tiles and remove borders/shadows from inactive containers.
 3. **Sample the Game's Diegetic Identity:** Match the background material, palette, and border framing to an authentic in-universe object from the target game.
 4. **Enforce Grid Ergonomics:** Resize touch targets to a 3–5 column layout with clear `:active` tactile feedback and a strict 60/30/10 contrast budget.
+---
+
+## In GBADuo packs: the rules made concrete
+
+The rules above are general; this is how they land in a GBADuo pack, taken from the polish pass on the Castlevania
+trilogy, Oracle of Ages and Minish Cap (companions commit `b0d40e0`, 2026-11-25). Read with `SKILL.md` (engine gotchas)
+and `layout-snippets.md`. A polish pass changes **size, spacing and navigation only**: each pack keeps its own frames,
+palette and fonts (its design identity). Do one pack as a pilot, show it, then the rest.
+
+### The engine is not a browser: translate the CSS above
+
+| Above | In a pack |
+|---|---|
+| `:active` for pressed | `:pressed` (`:active` is the *selected tab* in this engine) |
+| `filter: brightness(0)` for locked | `opacity: 0.35`–`0.5`, or a darker `color` / ROM-drawn silhouette (`filter` is skipped) |
+| `border-image` 9-slice | a frame PNG drawn at exactly its CSS size (`art/*.py`), as a background image or an `image` behind the content |
+| `box-shadow: a, inset b` | one shadow only (multiple shadows are skipped); bake the bevel into the PNG |
+| `transition: ... steps(2)` | plain `transition` on `opacity`, `color`, `background-color`, `transform`, `width`, `height` |
+| `px` everywhere | `ap` units from `art/style.src.css` (`tools/packkit/css.py`), so the layout scales to the screen |
+
+### 1. Navigation: big, centred, every page one tap away
+
+- The nav column (side plates, pillar slabs, menu rows) is **centred vertically** (`justify-content: center`), no
+  `padding-top` pushing it toward the top.
+- Plates are tall enough to hit with a thumb: about **25–28 ap** high, labels **8 ap** in Silkscreen or **14 ap** in
+  Jersey (HoD `.nrow` 22 -> 25 ap, label 12 -> 14 ap; CotM `.nplate` 20 -> 28 ap, label 7 -> 8 ap).
+- **Options is a regular page in the nav** (its own slab / plate / tab), never a hidden plate somewhere else. It holds
+  the style switch and the WIDE / COLOR / GAME CHANGES rows.
+- A label too long for the plate gets a `long` class with a smaller font (`label.length > 6 ? "vslab long" : "vslab"`),
+  not a wider plate: all plates stay the same size.
+
+### 2. Clean-style tab bar: icons, no labels, no jumping
+
+- Tabs are **icon only** (rule 2): the page name lives in the page header, not under the icon.
+- Idle icon about **24 px at 50% opacity**, the open tab about **31 px at full opacity** with its accent underline.
+- **Nothing moves when a tab opens**: the open tab keeps the idle width (no `.tab.on { width: ... }`), and idle tabs
+  hold an empty underline-sized box (`.tab-line-space`) so the icon stays at the same height.
+- An alert is a small dot in the tab's top-right corner (`.tab-dot`), not a label.
+
+### 3. Maps fill their frame
+
+- Crop the drawn map to its **content bounds**: the bounding box of every room / visited cell plus one column and row
+  for the right and bottom walls (`gamemap.lua` `M.bounds`), so there's no empty margin inside the frame.
+- Size the map box to exactly the cropped grid (`width` / `height` = cells x cell size, `flex-shrink: 0`) and centre it
+  in the window; shrink the glyph / cell size rather than clip.
+- Offset every marker (the "you are here" square, pins) by the crop origin, and hide it when it falls outside
+  (`on = on and cx >= x0 and ...`).
+
+### 4. Quiet surface (the 60%)
+
+- Backgrounds are the game's own colour with a **gentle** gradient: 2–5 close stops (`#00006b -> #000063`), no slide
+  into near-black at the bottom. Bands of the game's palette are fine if neighbouring bands are close in value.
+
+### 5. Default look and switches
+
+- When a pack has two styles (its identity style and a flat Clean one), it **starts in Clean** at every launch
+  (`local clean = (ui.style ~= "stone")`); the identity style is one tap away on the Options page. UI state isn't
+  remembered between launches.
+- Text that only existed for a removed element goes with it: delete its `readability.css` letter-spacing lines too.
+
+### Checklist for a pack's polish pass
+
+1. Nav centred, plates >= 25 ap, labels readable at a glance; Options in the nav.
+2. Tab bar icon-only, open tab same width, no vertical jump.
+3. Map cropped and filling its frame; markers still on the right cell.
+4. Background calm; one accent colour for "current / equipped / alert".
+5. Clean is the default if the pack has it.
+6. `skill/preview-pack.sh` with no warnings, every page next to the game's reference screens, overview regenerated
+   (`tools/packkit/overview.sh`), then the Thor.

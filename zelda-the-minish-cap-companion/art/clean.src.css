@@ -101,7 +101,12 @@
 /* ---- map ------------------------------------------------------------------------------------------------------------------ */
 .content-col { flex-direction: column; }
 .map-row { flex-direction: row; gap: 6px; height: 333.2px; flex-shrink: 0; }
+.map-wrap { position: relative; flex-shrink: 0; }
 .map-view { width: 416.5px; height: 333.2px; flex-shrink: 0; position: relative; overflow: hidden; background-color: var(--cell); }
+.zoom-ctl { position: absolute; right: 6px; bottom: 6px; flex-direction: row; gap: 6px; }
+.zoom-key { width: 40px; height: 40px; padding: 0; margin: 0; align-items: center; justify-content: center; background-color: var(--btn); border: 2px solid var(--line); border-radius: 0; }
+.zoom-key:pressed { border-color: var(--acc); }
+.zoom-key-t { font-family: "NunitoB"; font-size: 24px; line-height: 26px; color: var(--text); }
 .map-img { position: absolute; left: 0; top: 0; width: 416.5px; height: 333.2px; }
 .mark-link { position: absolute; width: 27.77px; height: 27.77px; transform: translate(-13.88px, -13.88px); }
 .insp-name-s { font-size: 15px; line-height: 18px; }

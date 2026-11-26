@@ -179,3 +179,10 @@
 .choice-t { letter-spacing: 0.8px; }
 .tall-num { letter-spacing: 1px; }
 .supply-l { font-size: 8px; letter-spacing: 0.8px; }
+
+/* map zoom keys, outside the zoomed box */
+.map-wrap { position: relative; flex-shrink: 0; }
+.zoom-ctl { position: absolute; right: 6px; bottom: 6px; flex-direction: row; gap: 6px; }
+.zoom-key { width: 40px; height: 40px; padding: 0; margin: 0; align-items: center; justify-content: center; background-color: var(--cell); border: 2px solid var(--line); border-radius: 0; }
+.zoom-key:pressed { border-color: var(--acc); }
+.zoom-key-t { font-size: 24px; line-height: 26px; color: var(--text); }

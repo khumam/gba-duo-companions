@@ -85,8 +85,12 @@ dungeons = page("dungeons", [
 
 world = page("map", [
     *panel("p-map", "LIGHT WORLD", "green"),
+    # pinch / drag the map, or the - / + keys on its corner (app 1.0.3+; older apps show it at 1x)
     box("mapwin", [img("mapimg", "asset:map/light-world.png"),
-                   img("marker", "asset:ui/marker.png", bindStyle={"left": "{map.x}", "top": "{map.y}"}, visibleIf="$map.known")]),
+                   img("marker", "asset:ui/marker.png", bindStyle={"left": "{map.x}", "top": "{map.y}"}, visibleIf="$map.known")],
+        zoom={"min": 1, "max": 4, "state": "mapZoom"}),
+    box("zoom-ctl", [button("zoom-key", {"zoom": "out", "state": "mapZoom"}, [text("zoom-key-t", "-")]),
+                     button("zoom-key", {"zoom": "in", "state": "mapZoom"}, [text("zoom-key-t", "+")])]),
     text("map-where", "{map.where}"),
 ], 3)
 

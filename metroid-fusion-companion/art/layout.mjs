@@ -42,6 +42,9 @@ const navbar = (i) => {
   ]);
 };
 
+const zoomKey = (step, label) =>
+  button("zoom-key", { zoom: step, state: "mapZoom" }, [text("zoom-key-t", label)]);
+
 const banner = (label, extra = "", end = true) =>
   box(`banner ${extra}`.trim(), [text("banner-text", label), grow(), ...(end ? [img("banner-end", ui("banner-end"))] : [])]);
 
@@ -79,7 +82,7 @@ const mapPage = box("content content-map", [
     text("banner-text banner-room", "{map.room}"),
     img("banner-end", ui("banner-end")),
   ]),
-  box("map-frame", [
+  box("map-wrap", [box("map-frame", [
     box("map-pan", [
       img("map-img", "$map.image"),
       box("map-dim", []),
@@ -89,6 +92,9 @@ const mapPage = box("content content-map", [
       }),
     ], { visibleIf: "$map.has" }),
     box("map-empty", [text("map-empty-text", "{map.status}")], { visibleIf: "$map.none" }),
+  ], { zoom: { min: 1, max: 3, state: "mapZoom" } }),
+    // pinch / drag on the map, or these keys (app 1.0.3+; older apps show the map at 1x)
+    box("zoom-ctl", [zoomKey("out", "-"), zoomKey("in", "+")], { visibleIf: "$map.has" }),
   ]),
   list("hatches", "$hatches", hatch),
 ]);

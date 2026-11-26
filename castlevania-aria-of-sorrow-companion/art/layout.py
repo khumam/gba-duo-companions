@@ -134,10 +134,14 @@ items = box("page", [
 # ---- MAP: the game's SELECT map with Soma on it -----------------------------------------------------------------------------------------
 cmap = box("page", [
     plaque("MAP", [text("num map-rate", "{st.rate}")]),
-    box("mapwin", [box("mapbox", [lst("ml m-fill", "$mapFill", text("mt", "{t}")), lst("ml m-save", "$mapSave", text("mt", "{t}")),
+    box("mapwrap", [
+        box("mapwin", [box("mapbox", [lst("ml m-fill", "$mapFill", text("mt", "{t}")), lst("ml m-save", "$mapSave", text("mt", "{t}")),
                                   lst("ml m-warp", "$mapWarp", text("mt", "{t}")), lst("ml m-walls", "$mapWalls", text("mt", "{t}")),
                                   lst("ml m-doors", "$mapDoors", text("mt", "{t}")),
-                                  box("me", [box("me-in")], bindStyle={"left": "{me.left}", "top": "{me.top}"}, visibleIf="$me.on")])]),
+                                  box("me", [box("me-in")], bindStyle={"left": "{me.left}", "top": "{me.top}"}, visibleIf="$me.on")])], zoom={"min": 1, "max": 4, "state": "mapZoom"}),
+        # pinch / drag the map, or the - / + keys on its corner (app 1.0.3+; older apps show it at 1x)
+        box("zoom-ctl", [button("zoom-key", {"zoom": "out", "state": "mapZoom"}, [text("zoom-key-t", "-")]),
+                         button("zoom-key", {"zoom": "in", "state": "mapZoom"}, [text("zoom-key-t", "+")])])]),
     obox("mapfoot", [text("lab", "YOU"), text("num", "{meText}"), grow(), text("lab", "ROOMS"), text("num gold", "{mapCells}")]),
 ])
 

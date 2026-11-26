@@ -849,6 +849,47 @@
             },
             "visibleIf": "$map.known"
            }
+          ],
+          "zoom": {
+           "min": 1,
+           "max": 4,
+           "state": "mapZoom"
+          }
+         },
+         {
+          "type": "box",
+          "class": "zoom-ctl",
+          "children": [
+           {
+            "type": "button",
+            "class": "zoom-key",
+            "onClick": {
+             "zoom": "out",
+             "state": "mapZoom"
+            },
+            "children": [
+             {
+              "type": "text",
+              "class": "zoom-key-t",
+              "text": "-"
+             }
+            ]
+           },
+           {
+            "type": "button",
+            "class": "zoom-key",
+            "onClick": {
+             "zoom": "in",
+             "state": "mapZoom"
+            },
+            "children": [
+             {
+              "type": "text",
+              "class": "zoom-key-t",
+              "text": "+"
+             }
+            ]
+           }
           ]
          },
          {

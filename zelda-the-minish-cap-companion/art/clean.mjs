@@ -64,10 +64,17 @@ export function buildClean(h) {
   // The map gets the whole width: the ROM map at 6x (416.5 x 333.2 dp), a narrow inspector beside it, Ezlo's line under both.
   const mapPage = box("content content-col", [
     box("map-row", [
-      box("map-view", [
-        img("map-img", "$map.image"),
-        img("mark-link", "$icons.linkHead", { bindStyle: { left: "{map.linkX}%", top: "{map.linkY}%" } }),
-        dungeonView,
+      // pinch / drag the map, or the - / + keys under its corner (app 1.0.3+; older apps show it at 1x)
+      box("map-wrap", [
+        box("map-view", [
+          img("map-img", "$map.image"),
+          img("mark-link", "$icons.linkHead", { bindStyle: { left: "{map.linkX}%", top: "{map.linkY}%" } }),
+          dungeonView,
+        ], { zoom: { min: 1, max: 4, state: "mapZoom" } }),
+        box("zoom-ctl", [
+          btn("zoom-key", { zoom: "out", state: "mapZoom" }, [text("zoom-key-t", "-")]),
+          btn("zoom-key", { zoom: "in", state: "mapZoom" }, [text("zoom-key-t", "+")]),
+        ], { visibleIf: "$map.showWorld" }),
       ]),
       inspector([
         box("insp-pic insp-pic-s", [img("insp-sprite", "$link.sprite")]),

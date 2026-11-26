@@ -139,6 +139,7 @@ bar > fill { border-radius: 0; transition: width 300ms; }
 .page-items .list-w, .page-gear .list-w { max-height: 66ap; }
 
 /* ---- MAP ------------------------------------------------------------------------------------------------------------------- */
+.mapwrap { flex: 1; min-height: 0; position: relative; }
 .mapwin { flex: 1; min-height: 0; align-items: center; justify-content: center; background-color: #000000; }
 .mapbox { width: 326.0672px; height: 277.504px; flex-shrink: 0; position: relative; overflow: hidden; }
 .ml { position: absolute; left: 0; top: 0; gap: 0; }
@@ -182,3 +183,9 @@ bar > fill { border-radius: 0; transition: width 300ms; }
 .wait-2 { font-family: "Silk"; font-size: 7ap; letter-spacing: 1ap; color: var(--hot-hi); }
 .wait-3 { font-size: 12ap; color: var(--soft); }
 .wait-4 { font-size: 11ap; color: var(--down); }
+
+/* ---- map zoom keys: on the map window's corner, outside the zoomed box so they keep their size ---------------------------- */
+.zoom-ctl { position: absolute; right: 3ap; bottom: 3ap; flex-direction: row; gap: 2ap; }
+.zoom-key { width: 16ap; height: 16ap; padding: 0; margin: 0; align-items: center; justify-content: center; background-color: #00005a; border: 1ap solid var(--soft); border-radius: 0; }
+.zoom-key:pressed { background-color: var(--hot); }
+.zoom-key-t { font-size: 12ap; line-height: 12ap; color: var(--white); }

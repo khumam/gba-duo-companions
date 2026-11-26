@@ -86,6 +86,12 @@
 .meter { flex: 1; height: 11.5px; background: #e7d663; border: 2px solid #d6c65a; border-radius: 2px; }
 .map-win { padding: 6px; align-items: center; }
 .map-view { position: relative; width: 498px; height: 216px; }
+/* map zoom keys on the map's corner, outside the zoomed box so they keep their size */
+.map-zw { position: relative; }
+.zoom-ctl { position: absolute; right: 6px; bottom: 6px; flex-direction: row; gap: 6px; }
+.zoom-key { width: 36px; height: 36px; padding: 0; margin: 0; align-items: center; justify-content: center; background: #fff773; border: 3px solid #d6c65a; border-radius: 4px; }
+.zoom-key:pressed { background: #ffffb5; }
+.zoom-key .btn-t { font-size: 24px; line-height: 26px; color: #000000; }
 .map-img { width: 498px; height: 216px; image-rendering: pixelated; }
 .mk { position: absolute; width: 32px; height: 32px; margin-left: -16px; margin-top: -16px; image-rendering: pixelated; }
 .farm-view { position: relative; width: 498px; height: 393.3px; }

@@ -106,7 +106,8 @@ class PreviewRender {
         val tabs = compose.runOnIdle { findTabs(tree.root) }
         note("$prefix: ${tabs?.children?.size ?: 0} nav buttons")
         for (i in 0 until (tabs?.children?.size ?: 1)) {
-            if (tabs != null) compose.runOnUiThread { tabs.children[i].onClick!!.invoke() }
+            // a nav container can hold parts that aren't buttons (a page-name plate): they're shot as they are
+            if (tabs != null) compose.runOnUiThread { tabs.children[i].onClick?.invoke() }
             compose.waitForIdle()
             if (tree.warnings.isNotEmpty()) note("TREE WARN: ${tree.warnings}")
             snapshot("$prefix-$i")

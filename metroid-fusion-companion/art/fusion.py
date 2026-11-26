@@ -133,6 +133,21 @@ def tab(right):
 save("tab-l", tab(False))
 save("tab-r", tab(True))
 
+
+def zoom_button():
+    """A small teal key for the map's zoom: silver rim, the tab's body colours."""
+    w = h = 15
+    im = new(w, h)
+    rect(im, 0, 0, w, h, SIL_BLK)
+    rect(im, 1, 1, w - 1, h - 1, SIL_LO)
+    rect(im, 2, 2, w - 2, h - 2, BLUE_DDD)
+    rect(im, 3, 3, w - 3, h - 3, BLUE_DD)
+    rect(im, 3, 3, w - 3, 4, BLUE)
+    return im
+
+
+save("zoom-key", zoom_button())
+
 # sector plate (centre): green face in a silver rim
 plate = new(72, 19)
 rect(plate, 0, 0, 72, 19, SIL_BLK)

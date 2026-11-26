@@ -866,39 +866,86 @@
             "children": [
              {
               "type": "box",
-              "class": "map-view",
+              "class": "map-zw",
               "children": [
                {
-                "type": "image",
-                "class": "map-img",
-                "src": "asset:ui/map-world.png"
+                "type": "box",
+                "class": "map-view",
+                "zoom": {
+                 "min": 1,
+                 "max": 4,
+                 "state": "mapZoom"
+                },
+                "children": [
+                 {
+                  "type": "image",
+                  "class": "map-img",
+                  "src": "asset:ui/map-world.png"
+                 },
+                 {
+                  "type": "image",
+                  "class": "mk",
+                  "src": "$mkDog",
+                  "bindStyle": {
+                   "left": "{dogX}%",
+                   "top": "{dogY}%"
+                  }
+                 },
+                 {
+                  "type": "image",
+                  "class": "mk",
+                  "src": "$mkHorse",
+                  "bindStyle": {
+                   "left": "{horseX}%",
+                   "top": "{horseY}%"
+                  }
+                 },
+                 {
+                  "type": "image",
+                  "class": "mk mk-me",
+                  "src": "$mkPlayer",
+                  "bindStyle": {
+                   "left": "{playerX}%",
+                   "top": "{playerY}%"
+                  }
+                 }
+                ]
                },
                {
-                "type": "image",
-                "class": "mk",
-                "src": "$mkDog",
-                "bindStyle": {
-                 "left": "{dogX}%",
-                 "top": "{dogY}%"
-                }
-               },
-               {
-                "type": "image",
-                "class": "mk",
-                "src": "$mkHorse",
-                "bindStyle": {
-                 "left": "{horseX}%",
-                 "top": "{horseY}%"
-                }
-               },
-               {
-                "type": "image",
-                "class": "mk mk-me",
-                "src": "$mkPlayer",
-                "bindStyle": {
-                 "left": "{playerX}%",
-                 "top": "{playerY}%"
-                }
+                "type": "box",
+                "class": "zoom-ctl",
+                "children": [
+                 {
+                  "type": "box",
+                  "class": "zoom-key",
+                  "onClick": {
+                   "zoom": "out",
+                   "state": "mapZoom"
+                  },
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "btn-t",
+                    "text": "-"
+                   }
+                  ]
+                 },
+                 {
+                  "type": "box",
+                  "class": "zoom-key",
+                  "onClick": {
+                   "zoom": "in",
+                   "state": "mapZoom"
+                  },
+                  "children": [
+                   {
+                    "type": "text",
+                    "class": "btn-t",
+                    "text": "+"
+                   }
+                  ]
+                 }
+                ]
                }
               ]
              }

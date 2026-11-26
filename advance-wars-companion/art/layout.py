@@ -103,7 +103,11 @@ mapnode = box("mapwrap", [
 mrow = lambda who: box("mrow", [img("emblem", "$%s.crate" % who), img("m-ic", "$%s.icon" % who), text("m-n", "{%s.n}" % who),
                                 img("m-ic", "asset:terrain/city.png"), text("m-n", "{%s.p}" % who)], classIf={"turn": "$%s.turn" % who})
 map_ = box("page", [
-    window("mapwin grow", "MAP", [box("mapwell", [mapnode, text("nomap", "Open the map screen in the game.", visibleIf="$noMap")])]),
+    # pinch / drag the map, or the - / + keys on its corner (app 1.0.3+; older apps show it at 1x)
+    window("mapwin grow", "MAP", [box("mapzw", [
+        box("mapwell", [mapnode, text("nomap", "Open the map screen in the game.", visibleIf="$noMap")], zoom={"min": 1, "max": 4, "state": "mapZoom"}),
+        box("zoom-ctl", [button("zoom-key", {"zoom": "out", "state": "mapZoom"}, [text("zoom-key-t", "-")]),
+                         button("zoom-key", {"zoom": "in", "state": "mapZoom"}, [text("zoom-key-t", "+")])], visibleIf="$hasMap")])]),
     box("mrows", [mrow("chipL"), mrow("chipR")]),
 ])
 

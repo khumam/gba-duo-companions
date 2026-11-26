@@ -162,3 +162,10 @@ text { white-space: nowrap; }
 .w1 { font-family: "Silk"; font-size: 14ap; letter-spacing: 1ap; color: var(--ink); }
 .w2 { font-size: 15ap; letter-spacing: 0.4ap; color: var(--ink); }
 .w3 { font-size: 12ap; letter-spacing: 0.4ap; color: var(--mute); }
+
+/* ---- map zoom keys: on the map well's corner, outside the zoomed box so they keep their size ------------------------------- */
+.mapzw { flex: 1; min-height: 0; position: relative; }
+.zoom-ctl { position: absolute; right: 2ap; bottom: 2ap; flex-direction: row; gap: 2ap; }
+.zoom-key { width: 16ap; height: 16ap; padding: 0; margin: 0; align-items: center; justify-content: center; background-color: var(--paper); border: 1ap solid var(--ink); border-radius: 2ap; }
+.zoom-key:pressed { background-color: var(--band); }
+.zoom-key-t { font-size: 13ap; line-height: 13ap; color: var(--ink); }

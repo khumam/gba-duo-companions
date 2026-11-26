@@ -223,9 +223,9 @@ bar {
 
 .content-map { gap: 3ap; }
 .banner-room { margin-right: 4ap; }
+.map-wrap { position: relative; align-self: center; }
 .map-frame {
   position: relative;
-  align-self: center;
   width: 499.5px;
   height: 277.5px;
   border: 1ap solid var(--teal);
@@ -238,6 +238,11 @@ bar {
 .crosshair { position: absolute; left: -16.26px; top: -16.26px; width: 32.52px; height: 32.52px; }
 .map-empty { position: absolute; left: 0; top: 0; right: 0; bottom: 0; align-items: center; justify-content: center; }
 .map-empty-text { font-family: "Jersey"; font-size: 11ap; color: var(--mint-lt); }
+/* zoom keys on the map's bottom right corner, outside the zoomed box so they keep their size */
+.zoom-ctl { position: absolute; right: 3ap; bottom: 3ap; flex-direction: row; gap: 2ap; }
+.zoom-key { width: 15ap; height: 15ap; padding: 0; align-items: center; justify-content: center; background-color: var(--teal-dd); border: 1ap solid var(--mint); border-radius: 0; box-shadow: 1ap 1ap 0 var(--ink); }
+.zoom-key:pressed { transform: translate(1ap, 1ap); }
+.zoom-key-t { font-size: 10ap; line-height: 10ap; color: var(--mint-lt); }
 
 /* ---- status ---------------------------------------------------------------------------------- */
 

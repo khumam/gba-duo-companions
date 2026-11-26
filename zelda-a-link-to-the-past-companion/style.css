@@ -113,6 +113,11 @@ text { white-space: nowrap; }
 /* ---- world map ---- */
 .p-map { left: 4.336px; top: 6.504px; width: 528.992px; height: 398.912px; } .p-map-l { left: 30.352px; top: 0; }
 .mapwin { position: absolute; left: 78.048px; top: 17.344px; width: 381.568px; height: 381.568px; overflow: hidden; }
+/* map zoom keys on the map's bottom right corner (36 + 176 - 2 = 455.28px), outside the zoomed box so they keep their size */
+.zoom-ctl { position: absolute; left: 379.4px; top: 362.056px; flex-direction: row; gap: 4.336px; }
+.zoom-key { width: 32.52px; height: 32.52px; padding: 0; margin: 0; align-items: center; justify-content: center; background-color: #000000; border: 2.168px solid var(--green); border-radius: 0; }
+.zoom-key:pressed { background-color: #103010; }
+.zoom-key-t { font-size: 23.848px; line-height: 23.848px; color: var(--green); }
 .mapimg { position: absolute; left: 0; top: 0; width: 381.568px; height: 381.568px; }
 .marker { position: absolute; width: 15.176px; height: 15.176px; }
 .map-where { position: absolute; left: 260.16px; width: 260.16px; top: 2.168px; text-align: right; font-family: "Silk"; font-size: 10.84px; color: var(--yellow); background-color: #000000; padding: 0 4.336px; }

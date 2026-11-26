@@ -90,11 +90,14 @@ maps = box("page", [
     text("note", "Marker positions are sample values (not live yet)", visibleIf="$isSample"),
     pills("mapTab", "town", [("Town", "town", "$mpTown"), ("Farm", "farm", "$mpFarm")]),
     box("tabbody", [
-        box("win map-win", [box("map-view", [
+        # pinch / drag the map, or the - / + keys on its corner (app 1.0.3+; older apps show it at 1x)
+        box("win map-win", [box("map-zw", [box("map-view", [
             img("map-img", "asset:ui/map-world.png"),
             img("mk", "$mkDog", bindStyle={"left": "{dogX}%", "top": "{dogY}%"}),
             img("mk", "$mkHorse", bindStyle={"left": "{horseX}%", "top": "{horseY}%"}),
-            img("mk mk-me", "$mkPlayer", bindStyle={"left": "{playerX}%", "top": "{playerY}%"})])]),
+            img("mk mk-me", "$mkPlayer", bindStyle={"left": "{playerX}%", "top": "{playerY}%"})], zoom={"min": 1, "max": 4, "state": "mapZoom"}),
+            box("zoom-ctl", [btn("-", {"zoom": "out", "state": "mapZoom"}, "zoom-key"),
+                             btn("+", {"zoom": "in", "state": "mapZoom"}, "zoom-key")])])]),
         box("win", [row("where", [img("chick", "asset:ui/pawn.png"), text("val", "{where}")])]),
         row("legend", [row("leg", [img("leg-i", "$mkPlayer"), text("leg-t", "You")]),
                        row("leg", [img("leg-i", "$mkDog"), text("leg-t", "Spunky")]),

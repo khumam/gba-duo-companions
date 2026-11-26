@@ -175,11 +175,18 @@ const mapPage = box("content", [
         mapTab("DUNGEON", "", "$map.showDungeon"),
       ], { visibleIf: "$map.inDungeon" }),
     ]),
-    box("map-view", [
-      // The game's own world map, built from the player's ROM by main.lua (or the drawn fallback).
-      img("map-img", "$map.image"),
-      img("mark mark-link", "$icons.linkHead", { bindStyle: { left: "{map.linkX}%", top: "{map.linkY}%" } }),
-      dungeonView,
+    // pinch / drag the map, or the - / + keys on its corner (app 1.0.3+; older apps show it at 1x)
+    box("map-wrap", [
+      box("map-view", [
+        // The game's own world map, built from the player's ROM by main.lua (or the drawn fallback).
+        img("map-img", "$map.image"),
+        img("mark mark-link", "$icons.linkHead", { bindStyle: { left: "{map.linkX}%", top: "{map.linkY}%" } }),
+        dungeonView,
+      ], { zoom: { min: 1, max: 4, state: "mapZoom" } }),
+      box("zoom-ctl", [
+        button("zoom-key", { zoom: "out", state: "mapZoom" }, [text("zoom-key-t", "-")]),
+        button("zoom-key", { zoom: "in", state: "mapZoom" }, [text("zoom-key-t", "+")]),
+      ], { visibleIf: "$map.showWorld" }),
     ]),
   ]),
   // Link and his hearts, as the game draws them (rom_gfx.lua): two rows of ten hold all twenty containers.

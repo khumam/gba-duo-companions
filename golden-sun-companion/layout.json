@@ -760,38 +760,85 @@
                       },
                       {
                         "type": "box",
-                        "class": "map-stage",
+                        "class": "map-zw",
                         "children": [
                           {
                             "type": "box",
-                            "class": "map-frame",
-                            "visibleIf": "$map.on",
-                            "bindStyle": {
-                              "aspect-ratio": "{map.ratio}"
-                            },
+                            "class": "map-stage",
                             "children": [
                               {
-                                "type": "image",
-                                "class": "map-img",
-                                "src": "$map.image"
+                                "type": "box",
+                                "class": "map-frame",
+                                "visibleIf": "$map.on",
+                                "bindStyle": {
+                                  "aspect-ratio": "{map.ratio}"
+                                },
+                                "children": [
+                                  {
+                                    "type": "image",
+                                    "class": "map-img",
+                                    "src": "$map.image"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "class": "map-me",
+                                    "visibleIf": "$map.hasMe",
+                                    "bindStyle": {
+                                      "left": "{map.mx}",
+                                      "top": "{map.my}"
+                                    },
+                                    "children": []
+                                  }
+                                ]
                               },
                               {
-                                "type": "box",
-                                "class": "map-me",
-                                "visibleIf": "$map.hasMe",
-                                "bindStyle": {
-                                  "left": "{map.mx}",
-                                  "top": "{map.my}"
-                                },
-                                "children": []
+                                "type": "text",
+                                "class": "map-off",
+                                "text": "No map here",
+                                "visibleIf": "$map.off"
                               }
-                            ]
+                            ],
+                            "zoom": {
+                              "min": 1,
+                              "max": 4,
+                              "state": "mapZoom"
+                            }
                           },
                           {
-                            "type": "text",
-                            "class": "map-off",
-                            "text": "No map here",
-                            "visibleIf": "$map.off"
+                            "type": "box",
+                            "class": "zoom-ctl",
+                            "children": [
+                              {
+                                "type": "button",
+                                "class": "zoom-key",
+                                "onClick": {
+                                  "zoom": "out",
+                                  "state": "mapZoom"
+                                },
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "zoom-key-t",
+                                    "text": "-"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "class": "zoom-key",
+                                "onClick": {
+                                  "zoom": "in",
+                                  "state": "mapZoom"
+                                },
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "class": "zoom-key-t",
+                                    "text": "+"
+                                  }
+                                ]
+                              }
+                            ]
                           }
                         ]
                       }

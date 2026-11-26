@@ -326,6 +326,7 @@ text { white-space: nowrap; }
 .p-map .pinner { gap: 4px; }
 .map-head { flex-shrink: 0; flex-direction: row; align-items: center; gap: 6px; height: 24px; }
 /* The world map's own 5:4 shape (160 x 128), so Link's marker lands on the right spot. */
+.map-wrap { position: relative; flex-shrink: 0; align-self: center; }
 .map-view {
   width: 284px;
   height: 227.2px;
@@ -682,3 +683,9 @@ text { white-space: nowrap; }
 .style-btn.on { background-color: var(--cyan); background-image: url("assets/ui/tex-cyan.png"); background-size: 48px 48px; }
 .style-btn-t { font-size: 15px; line-height: 15px; color: #2F9DBB; }
 .style-btn.on .style-btn-t { color: #FFFFFF; }
+
+/* ---- map zoom keys: small stone keys on the map's corner, outside the zoomed box ------------------ */
+.zoom-ctl { position: absolute; right: 4px; bottom: 4px; flex-direction: row; gap: 4px; }
+.zoom-key { width: 34px; height: 34px; padding: 0; margin: 0; align-items: center; justify-content: center; background-color: var(--stone-edge); border: 2px solid #1b1d1b; border-radius: 0; }
+.zoom-key:pressed { transform: translate(0, 2px); }
+.zoom-key-t { font-size: 22px; line-height: 24px; color: var(--stone-band); text-shadow: 2px 2px 0 #1b1d1b; }

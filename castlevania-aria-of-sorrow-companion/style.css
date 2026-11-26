@@ -153,6 +153,7 @@ bar > fill { border-radius: 0; transition: width 300ms; }
 .count { font-size: 23.848px; color: var(--soft); text-shadow: 2.168px 2.168px 0 #000000; }
 
 /* ---- map --------------------------------------------------------------------------------------------------------------------- */
+.mapwrap { flex: 1; min-height: 0; position: relative; }
 .mapwin { flex: 1; min-height: 0; align-items: center; justify-content: center; background-color: #29007b; }
 .mapbox { width: 353.8176px; height: 249.7536px; flex-shrink: 0; position: relative; overflow: hidden; }
 .ml { position: absolute; left: 0; top: 0; gap: 0; }
@@ -238,3 +239,9 @@ bar > fill { border-radius: 0; transition: width 300ms; }
 .wait-4 { font-size: 23.848px; color: var(--down); }
 
 .bookhead2 { flex-direction: row; align-items: center; gap: 8.672px; flex-shrink: 0; }
+
+/* ---- map zoom keys: on the map window's corner, outside the zoomed box so they keep their size ---------------------------- */
+.zoom-ctl { position: absolute; right: 6.504px; bottom: 6.504px; flex-direction: row; gap: 4.336px; }
+.zoom-key { width: 34.688px; height: 34.688px; padding: 0; margin: 0; align-items: center; justify-content: center; background-color: var(--panel); border: 2.168px solid var(--edge); border-radius: 0; }
+.zoom-key:pressed { background-color: var(--band-hi); }
+.zoom-key-t { font-size: 26.016px; line-height: 26.016px; color: var(--line); }

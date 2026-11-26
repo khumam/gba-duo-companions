@@ -108,6 +108,27 @@ A box laid out as a centered row with default padding, a rounded background, and
 (`button > .label`). `children` can add more, such as an icon. Any other widget with
 `onClick` works too; `button` just comes styled.
 
+## Zoom (maps)
+
+A `box` with `zoom` lets the player look closer: pinch to zoom, drag with one finger to pan (once zoomed in),
+and `+` / `-` buttons for the same thing. The box stays where it is and clips; its own background stays still;
+everything inside it scales. Taps on what's inside still work (a pin, a room).
+
+```json
+{ "type": "box", "class": "mapwin", "zoom": { "min": 1, "max": 4, "state": "mapZoom" }, "children": [ ... ] },
+{ "type": "button", "class": "zoom-btn", "onClick": { "zoom": "out", "state": "mapZoom" }, "children": [ { "type": "text", "text": "-" } ] },
+{ "type": "button", "class": "zoom-btn", "onClick": { "zoom": "in", "state": "mapZoom" }, "children": [ { "type": "text", "text": "+" } ] }
+```
+
+- `zoom`: `true` (1x to 4x, UI key `zoom`) or `{ "min", "max", "state" }`.
+- The scale is UI state: `$ui.mapZoom` in bindings, `ui.mapZoom` in Lua (a number, `min` until zoomed). A pinch
+  writes it when the fingers lift; `{ "set": { "mapZoom": 2 } }` jumps to 2x.
+- The `zoom` action: `"in"` (x1.5), `"out"` (/1.5) or `"reset"` (back to `min`), clamped to the box's limits.
+  Buttons zoom around the middle of the box; a pinch around the fingers. The content can't be dragged past its edges.
+- A `zoom` action stands alone in its object (put it in a list with other actions).
+- Needs app 1.0.3 or newer. Older apps ignore `zoom` (the map shows at 1x, the buttons do nothing), so a pack
+  that uses it sets `"recommendedAppVersion": "1.0.3"` in its `companions.json` entry rather than `minAppVersion`.
+
 ## Feeding a page from Lua
 
 `update()` receives the UI state, which is also the global `ui`. Use it to compute only

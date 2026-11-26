@@ -30,6 +30,7 @@ agree. Generic "dark dashboard" packs read as foreign next to the game.
 | `pack-anatomy.md` | Starting a pack: folder layout, manifest, the Lua → layout contract, build pipeline, per-pack comparison |
 | `sprites-and-assets.md` | Deciding where every image comes from and how to size/style it (the three strategies, CSS recipes, `gfx.*` API, fallbacks) |
 | `visual-styles.md` | Picking or analysing a look: palettes, fonts, frames, nav, per-game style recipes |
+| `ui-principle.md` | Designing or polishing any pack's screen: the dual-screen companion rules (one job per screen, no labels under icons, one surface, 60/30/10 contrast, fat-thumb targets) and, at the end, how they land in a GBADuo pack (centred big nav, icon-only tabs that don't jump, cropped maps, calm backgrounds, Clean by default) with a polish checklist |
 | `layout-snippets.md` | Writing `layout.json`: skeleton, hero plaque, stat plaque, icon rows, owned/locked, settings pills, tap-to-popup |
 | `interactive-and-game-script.md` | Making it interactive and alive: detail pages, popups, equip, reserved actions (WIDE / COLOR / permission), `game.lua` (`wide`, `ambient`, markers, HUD), memory writes, responsive CSS, limits, plus lessons from the Golden Sun and Emerald packs |
 | `docs-site-and-simulator.md` | The public docs page map, the browser simulator vs `preview-pack.sh`, and details the docs state that are easy to miss (snapshot built-ins, sandbox, `values`, hardcore mode, version gates) |
@@ -101,6 +102,7 @@ Past, FFVI and Metroid packs are worked examples (each pack's `NOTES.md` lists i
 | The game ignores the player's save (title shows New Game only) | read the SRAM directory: slots may be marked empty while the data is intact (Fire Emblem); rebuild the entries + checksums in a scratch copy, never in the player's file |
 | ROM-drawn icons have the wrong colours | one sheet can use several palettes (FE items vs weapon / affinity symbols): match an icon's on-screen colours to ROM palettes (fire-emblem NOTES.md) |
 | Previews can't show `gfx:` images | `run.lua` records gfx calls, `packkit/gfxmock.py` draws them into `assets/_preview` |
+| `preview-pack.sh` clicks a map's - / + zoom keys as if they were the nav (a nav with only 2 buttons ties with them), so the map renders zoomed | pass `--nav <nav container class>` (e.g. `--nav navbar`); parts of the container that aren't buttons are skipped |
 | A face built from a sprite sheet (FE portraits) | `gfx.decode` the whole sheet, then show blocks of it in `overflow: hidden` boxes with negative offsets |
 
 ## Previewing without the device
@@ -172,6 +174,9 @@ Open each PNG (Read tool, or compare with the Thor screenshot in `screenshoots/`
 7. Fidelity to the reference game screen: put them side by side.
 
 ## Design rules that held across all packs
+
+The polish rules from the 2026-11-25 pass (nav, tab bar, maps, background, default style) are in `ui-principle.md`,
+section "In GBADuo packs": check a pack against its checklist before calling it done.
 
 - **Attractive first glance.** One focal hero per page (the map, the party leader, the equipped
   items), a consistent frame/header height, and a clear accent colour for "current"/"owned".
