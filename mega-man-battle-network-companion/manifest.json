@@ -1,7 +1,7 @@
 {
   "id": "mega-man-battle-network-companion",
   "name": "Mega Man Battle Network Companion",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "khumam",
   "formatVersion": 3,
   "match": { "gameCode": ["AREE"], "crc32": [] },
